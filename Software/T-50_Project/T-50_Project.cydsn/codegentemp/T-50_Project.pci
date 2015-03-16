@@ -1,0 +1,33 @@
+# T-50_Project
+# 2015-03-13 10:17:03Z
+
+# IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 2
+# IO_3@[IOP=(3)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 3
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "Collis(0)" iocell 2 3
+set_io "Ldg(0)" iocell 2 4
+set_io "NavB(0)" iocell 2 2
+set_io "NavLR(0)" iocell 2 1
+set_io "OnBoardLED(0)" iocell 1 6
+set_io "Out_Ail1_Pin(0)" iocell 4 3
+set_io "Out_Ail2_Pin(0)" iocell 0 0
+set_io "Out_Ele1_Pin(0)" iocell 0 1
+set_io "Out_Ele2_Pin(0)" iocell 0 2
+set_io "Out_Fl1_Pin(0)" iocell 0 4
+set_io "Out_Fl2_Pin(0)" iocell 0 5
+set_io "Out_Ge1_Pin(0)" iocell 3 5
+set_io "Out_Ge2_Pin(0)" iocell 3 6
+set_io "Out_Ge3_Pin(0)" iocell 3 7
+set_io "Out_Mot_Pin(0)" iocell 4 2
+set_io "Out_Rud_Pin(0)" iocell 0 3
+set_io "PPMIN(0)" iocell 2 6
+set_io "SW1(0)" iocell 0 7
+set_io "SpareLight(0)" iocell 2 5
+set_io "Strobes(0)" iocell 2 0
+set_io "Tx_Telemetry(0)" iocell 3 4
+set_io "\I2CM:scl(0)\" iocell 3 0
+set_io "\I2CM:sda(0)\" iocell 3 1
+set_io "\UART_1:rx(0)\" iocell 4 0
+set_io "\UART_1:tx(0)\" iocell 4 1
