@@ -19,9 +19,10 @@
 // Gyro addresses                   
 #define L3GD20H_ADDRESS_SA0_LOW  (0b1101010)      // as per Datasheet of L3GD20H p 28
 #define L3GD20H_ADDRESS_SA0_HIGH (0b1101011)
+// as per Default the SA0 Bit is set high!!!
 // the 7 bit address is extended with the 8th bit for read / write access
-#define L3GD20H_ADDRESS_READ		0b11010101		//  11010101	for reading
-#define L3GD20H_ADDRESS_WRITE	    0b11010100		//  11010100    for writing
+#define L3GD20H_ADDRESS_READ		0b11010111		//  11010111	for reading
+#define L3GD20H_ADDRESS_WRITE	    0b11010110		//  11010110    for writing
 
 // Gyro registers
 #define L3GD20H_WHO_AM_I		0x0F
@@ -52,23 +53,34 @@ volatile struct turn_rates_s
 {
     long p,q,r;
 };
-struct turn_rates_s gyro_read(void);
 
+void gyro_read(void);
+int16_t gyro_read_p(void);
 //struct turn_rates_obj gyro_read(void);
 void gyro_calibration(void);
 
 // #################################
-// Accelerometer address
+// LSM303 D Accelerometer & Magnetometer
+// 7 bit Address is
+#define LSM303_ADDRESS              0b0011101   // as per Datasheet o 22 - SA0 is High by default
 #define LSM303_ACC_ADDRESS_READ		0x33	// 0011 0011
 #define LSM303_ACC_ADDRESS_WRITE	0x32	// 0011 0010
 
+// Control Registers LSM303
+#define LSM303_MAG_WHO_AM_I			0x0F
+#define LSM303_MAG_CRA_REG			0x00
+#define LSM303_MAG_CRB_REG			0x01
+#define LSM303_MAG_MR_REG			0x02
+#define LSM303_CTRL_REG0		    0x1F
+#define LSM303_CTRL_REG1		    0x20
+#define LSM303_CTRL_REG2		    0x21
+#define LSM303_CTRL_REG3		    0x22
+#define LSM303_CTRL_REG4		    0x23
+#define LSM303_CTRL_REG5		    0x24
+#define LSM303_CTRL_REG6		    0x25
+#define LSM303_CTRL_REG7		    0x26
+
 //Accelerometer registers
-#define LSM303_ACC_CTRL_REG1		0x20
-#define LSM303_ACC_CTRL_REG2		0x21
-#define LSM303_ACC_CTRL_REG3		0x22
-#define LSM303_ACC_CTRL_REG4		0x23
-#define LSM303_ACC_CTRL_REG5		0x24
-#define LSM303_ACC_CTRL_REG6		0x25
 #define LSM303_ACC_REF				0x26
 #define LSM303_ACC_STAT_REG			0x27
 #define LSM303_ACC_OUT_X_L			0x28
@@ -78,14 +90,30 @@ void gyro_calibration(void);
 #define LSM303_ACC_OUT_Z_L			0x2C
 #define LSM303_ACC_OUT_Z_H			0x2D
 
+// Magnetometer registers
+#define LSM303_MAG_STAT_REG			0x07
+#define LSM303_MAG_OUT_X_L			0x08
+#define LSM303_MAG_OUT_X_H			0x09
+#define LSM303_MAG_OUT_Z_L			0x0A
+#define LSM303_MAG_OUT_Z_H			0x0B
+#define LSM303_MAG_OUT_Y_L			0x0C
+#define LSM303_MAG_OUT_Y_H			0x0D
+
+// Temp Sensor register
+#define LSM303_MAG_TEMP_L			0x05
+#define LSM303_MAG_TEMP_H			0x06
+
 //###################################
 // ACC Functions
-/* AcC reading*/
+/* ACC reading*/
 
 // Function prototypes
 void write_acc_registry(char registry, char data);
 void acc_start(void);
 struct acc_readings_obj acc_reading(void);
+
+void write_mag_registry(char registry, char data);
+void mag_start(void);
 
 // #################################
 // Magnetometer address
@@ -93,22 +121,12 @@ struct acc_readings_obj acc_reading(void);
 #define LSM303_MAG_ADDRESS_WRITE	0x3C	// 0011 1100
 
 // Magnetometer Registers
-#define LSM303_MAG_WHO_AM_I			0x0F
-#define LSM303_MAG_CRA_REG			0x00
-#define LSM303_MAG_CRB_REG			0x01
-#define LSM303_MAG_MR_REG			0x02
-#define LSM303_MAG_OUT_X_H			0x03
-#define LSM303_MAG_OUT_X_L			0x04
-#define LSM303_MAG_OUT_Z_H			0x05
-#define LSM303_MAG_OUT_Z_L			0x06
-#define LSM303_MAG_OUT_Y_H			0x07
-#define LSM303_MAG_OUT_Y_L			0x08
-#define LSM303_MAG_TEMP_H			0x31
-#define LSM303_MAG_TEMP_L			0x32
+
+
+
 
 // Function prototypes
-void write_mag_registry(char registry, char data);
-void mag_start(void);
+
 
 // #################################
 // Barometer Addresses

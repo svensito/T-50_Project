@@ -1,0 +1,1311 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2C.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2C_SendStart,"ax",%progbits
+  18              		.align	2
+  19              		.global	I2C_SendStart
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2C_SendStart, %function
+  23              	I2C_SendStart:
+  24              	.LFB33:
+  25              		.file 1 ".\\I2C.c"
+   1:.\I2C.c       **** /* ========================================
+   2:.\I2C.c       ****  *
+   3:.\I2C.c       ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\I2C.c       ****  * All Rights Reserved
+   5:.\I2C.c       ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\I2C.c       ****  *
+   7:.\I2C.c       ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\I2C.c       ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\I2C.c       ****  *
+  10:.\I2C.c       ****  * ========================================
+  11:.\I2C.c       **** */
+  12:.\I2C.c       **** 
+  13:.\I2C.c       **** #include <I2C.h>
+  14:.\I2C.c       **** 
+  15:.\I2C.c       **** void I2C_SendStart(void)
+  16:.\I2C.c       **** {
+  26              		.loc 1 16 0
+  27              		.cfi_startproc
+  28 0000 80B5     		push	{r7, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 7, -8
+  32              		.cfi_offset 14, -4
+  33 0002 00AF     		add	r7, sp, #0
+  34              	.LCFI1:
+  35              		.cfi_def_cfa_register 7
+  17:.\I2C.c       ****             I2CM_I2C_MASTER_GENERATE_START;
+  36              		.loc 1 17 0
+  37 0004 024B     		ldr	r3, .L2
+  38 0006 0222     		mov	r2, #2
+  39 0008 1A60     		str	r2, [r3]
+  18:.\I2C.c       **** }
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 2
+
+
+  40              		.loc 1 18 0
+  41 000a BD46     		mov	sp, r7
+  42              		@ sp needed for prologue
+  43 000c 80BD     		pop	{r7, pc}
+  44              	.L3:
+  45 000e C046     		.align	2
+  46              	.L2:
+  47 0010 68000740 		.word	1074200680
+  48              		.cfi_endproc
+  49              	.LFE33:
+  50              		.size	I2C_SendStart, .-I2C_SendStart
+  51              		.section	.text.I2C_WriteByte,"ax",%progbits
+  52              		.align	2
+  53              		.global	I2C_WriteByte
+  54              		.code	16
+  55              		.thumb_func
+  56              		.type	I2C_WriteByte, %function
+  57              	I2C_WriteByte:
+  58              	.LFB34:
+  19:.\I2C.c       **** 
+  20:.\I2C.c       **** void I2C_WriteByte(uint8_t byte)
+  21:.\I2C.c       **** {
+  59              		.loc 1 21 0
+  60              		.cfi_startproc
+  61 0000 80B5     		push	{r7, lr}
+  62              	.LCFI2:
+  63              		.cfi_def_cfa_offset 8
+  64              		.cfi_offset 7, -8
+  65              		.cfi_offset 14, -4
+  66 0002 82B0     		sub	sp, sp, #8
+  67              	.LCFI3:
+  68              		.cfi_def_cfa_offset 16
+  69 0004 00AF     		add	r7, sp, #0
+  70              	.LCFI4:
+  71              		.cfi_def_cfa_register 7
+  72 0006 021C     		mov	r2, r0
+  73 0008 FB1D     		add	r3, r7, #7
+  74 000a 1A70     		strb	r2, [r3]
+  22:.\I2C.c       ****         I2CM_TX_FIFO_WR_REG = byte;
+  75              		.loc 1 22 0
+  76 000c 064B     		ldr	r3, .L6
+  77 000e FA1D     		add	r2, r7, #7
+  78 0010 1278     		ldrb	r2, [r2]
+  79 0012 1A60     		str	r2, [r3]
+  23:.\I2C.c       **** 
+  24:.\I2C.c       ****         while(!I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK      |
+  80              		.loc 1 24 0
+  81 0014 C046     		mov	r8, r8
+  82              	.L5:
+  83              		.loc 1 24 0 is_stmt 0 discriminator 1
+  84 0016 054B     		ldr	r3, .L6+4
+  85 0018 1A68     		ldr	r2, [r3]
+  86 001a 054B     		ldr	r3, .L6+8
+  87 001c 1340     		and	r3, r2
+  88 001e FAD0     		beq	.L5
+  25:.\I2C.c       ****                                                   I2CM_INTR_MASTER_I2C_NACK     |
+  26:.\I2C.c       ****                                                   I2CM_INTR_MASTER_I2C_ARB_LOST |
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 3
+
+
+  27:.\I2C.c       ****                                                   I2CM_INTR_MASTER_I2C_BUS_ERROR))
+  28:.\I2C.c       ****         {
+  29:.\I2C.c       ****             /* Wait until byte has been transferred */
+  30:.\I2C.c       ****         }
+  31:.\I2C.c       **** }
+  89              		.loc 1 31 0 is_stmt 1
+  90 0020 BD46     		mov	sp, r7
+  91 0022 02B0     		add	sp, sp, #8
+  92              		@ sp needed for prologue
+  93 0024 80BD     		pop	{r7, pc}
+  94              	.L7:
+  95 0026 C046     		.align	2
+  96              	.L6:
+  97 0028 40020740 		.word	1074201152
+  98 002c 000F0740 		.word	1074204416
+  99 0030 07010000 		.word	263
+ 100              		.cfi_endproc
+ 101              	.LFE34:
+ 102              		.size	I2C_WriteByte, .-I2C_WriteByte
+ 103              		.section	.text.I2C_SendReStart,"ax",%progbits
+ 104              		.align	2
+ 105              		.global	I2C_SendReStart
+ 106              		.code	16
+ 107              		.thumb_func
+ 108              		.type	I2C_SendReStart, %function
+ 109              	I2C_SendReStart:
+ 110              	.LFB35:
+  32:.\I2C.c       **** 
+  33:.\I2C.c       **** void I2C_SendReStart(void)
+  34:.\I2C.c       **** {
+ 111              		.loc 1 34 0
+ 112              		.cfi_startproc
+ 113 0000 80B5     		push	{r7, lr}
+ 114              	.LCFI5:
+ 115              		.cfi_def_cfa_offset 8
+ 116              		.cfi_offset 7, -8
+ 117              		.cfi_offset 14, -4
+ 118 0002 00AF     		add	r7, sp, #0
+ 119              	.LCFI6:
+ 120              		.cfi_def_cfa_register 7
+  35:.\I2C.c       ****         I2CM_I2C_MASTER_GENERATE_RESTART;
+ 121              		.loc 1 35 0
+ 122 0004 FFF7FEFF 		bl	I2CM_I2CReStartGeneration
+  36:.\I2C.c       **** 
+  37:.\I2C.c       ****         while(I2CM_CHECK_I2C_MASTER_CMD(I2CM_I2C_MASTER_CMD_M_START))
+ 123              		.loc 1 37 0
+ 124 0008 C046     		mov	r8, r8
+ 125              	.L9:
+ 126              		.loc 1 37 0 is_stmt 0 discriminator 1
+ 127 000a 034B     		ldr	r3, .L10
+ 128 000c 1A68     		ldr	r2, [r3]
+ 129 000e 0123     		mov	r3, #1
+ 130 0010 1340     		and	r3, r2
+ 131 0012 FAD1     		bne	.L9
+  38:.\I2C.c       ****         {
+  39:.\I2C.c       ****             /* Wait until ReStart has been generated */
+  40:.\I2C.c       ****         }
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 4
+
+
+  41:.\I2C.c       **** }
+ 132              		.loc 1 41 0 is_stmt 1
+ 133 0014 BD46     		mov	sp, r7
+ 134              		@ sp needed for prologue
+ 135 0016 80BD     		pop	{r7, pc}
+ 136              	.L11:
+ 137              		.align	2
+ 138              	.L10:
+ 139 0018 68000740 		.word	1074200680
+ 140              		.cfi_endproc
+ 141              	.LFE35:
+ 142              		.size	I2C_SendReStart, .-I2C_SendReStart
+ 143              		.section	.text.I2C_SendStop,"ax",%progbits
+ 144              		.align	2
+ 145              		.global	I2C_SendStop
+ 146              		.code	16
+ 147              		.thumb_func
+ 148              		.type	I2C_SendStop, %function
+ 149              	I2C_SendStop:
+ 150              	.LFB36:
+  42:.\I2C.c       **** 
+  43:.\I2C.c       **** void I2C_SendStop(void)
+  44:.\I2C.c       **** {
+ 151              		.loc 1 44 0
+ 152              		.cfi_startproc
+ 153 0000 80B5     		push	{r7, lr}
+ 154              	.LCFI7:
+ 155              		.cfi_def_cfa_offset 8
+ 156              		.cfi_offset 7, -8
+ 157              		.cfi_offset 14, -4
+ 158 0002 00AF     		add	r7, sp, #0
+ 159              	.LCFI8:
+ 160              		.cfi_def_cfa_register 7
+  45:.\I2C.c       ****         I2CM_I2C_MASTER_GENERATE_STOP;
+ 161              		.loc 1 45 0
+ 162 0004 084B     		ldr	r3, .L16
+ 163 0006 094A     		ldr	r2, .L16+4
+ 164 0008 1168     		ldr	r1, [r2]
+ 165 000a 2022     		mov	r2, #32
+ 166 000c 0A40     		and	r2, r1
+ 167 000e 01D0     		beq	.L13
+ 168              		.loc 1 45 0 is_stmt 0 discriminator 1
+ 169 0010 1822     		mov	r2, #24
+ 170 0012 00E0     		b	.L14
+ 171              	.L13:
+ 172              		.loc 1 45 0 discriminator 2
+ 173 0014 1022     		mov	r2, #16
+ 174              	.L14:
+ 175              		.loc 1 45 0 discriminator 3
+ 176 0016 1A60     		str	r2, [r3]
+  46:.\I2C.c       **** 
+  47:.\I2C.c       ****         while(!I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_STOP     |
+ 177              		.loc 1 47 0 is_stmt 1
+ 178 0018 C046     		mov	r8, r8
+ 179              	.L15:
+ 180              		.loc 1 47 0 is_stmt 0 discriminator 1
+ 181 001a 054B     		ldr	r3, .L16+8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 5
+
+
+ 182 001c 1A68     		ldr	r2, [r3]
+ 183 001e 054B     		ldr	r3, .L16+12
+ 184 0020 1340     		and	r3, r2
+ 185 0022 FAD0     		beq	.L15
+  48:.\I2C.c       ****                                                   I2CM_INTR_MASTER_I2C_ARB_LOST |
+  49:.\I2C.c       ****                                                   I2CM_INTR_MASTER_I2C_BUS_ERROR))
+  50:.\I2C.c       ****         {
+  51:.\I2C.c       ****             /* Wait until Stop has been generated */
+  52:.\I2C.c       ****         }
+  53:.\I2C.c       **** }
+ 186              		.loc 1 53 0 is_stmt 1
+ 187 0024 BD46     		mov	sp, r7
+ 188              		@ sp needed for prologue
+ 189 0026 80BD     		pop	{r7, pc}
+ 190              	.L17:
+ 191              		.align	2
+ 192              	.L16:
+ 193 0028 68000740 		.word	1074200680
+ 194 002c 64000740 		.word	1074200676
+ 195 0030 000F0740 		.word	1074204416
+ 196 0034 11010000 		.word	273
+ 197              		.cfi_endproc
+ 198              	.LFE36:
+ 199              		.size	I2C_SendStop, .-I2C_SendStop
+ 200              		.section	.text.I2C_SendStart_Orig,"ax",%progbits
+ 201              		.align	2
+ 202              		.global	I2C_SendStart_Orig
+ 203              		.code	16
+ 204              		.thumb_func
+ 205              		.type	I2C_SendStart_Orig, %function
+ 206              	I2C_SendStart_Orig:
+ 207              	.LFB37:
+  54:.\I2C.c       **** 
+  55:.\I2C.c       **** 
+  56:.\I2C.c       **** 
+  57:.\I2C.c       **** uint32 I2C_SendStart_Orig(uint8_t slaveAddress, uint8_t bitRnW)
+  58:.\I2C.c       **** {
+ 208              		.loc 1 58 0
+ 209              		.cfi_startproc
+ 210 0000 80B5     		push	{r7, lr}
+ 211              	.LCFI9:
+ 212              		.cfi_def_cfa_offset 8
+ 213              		.cfi_offset 7, -8
+ 214              		.cfi_offset 14, -4
+ 215 0002 84B0     		sub	sp, sp, #16
+ 216              	.LCFI10:
+ 217              		.cfi_def_cfa_offset 24
+ 218 0004 00AF     		add	r7, sp, #0
+ 219              	.LCFI11:
+ 220              		.cfi_def_cfa_register 7
+ 221 0006 0A1C     		mov	r2, r1
+ 222 0008 FB1D     		add	r3, r7, #7
+ 223 000a 011C     		add	r1, r0, #0
+ 224 000c 1970     		strb	r1, [r3]
+ 225 000e BB1D     		add	r3, r7, #6
+ 226 0010 1A70     		strb	r2, [r3]
+  59:.\I2C.c       ****     uint32  resetIp;
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 6
+
+
+  60:.\I2C.c       ****     uint32 errStatus;
+  61:.\I2C.c       **** 
+  62:.\I2C.c       ****     resetIp   = 0u;
+ 227              		.loc 1 62 0
+ 228 0012 0023     		mov	r3, #0
+ 229 0014 FB60     		str	r3, [r7, #12]
+  63:.\I2C.c       ****     errStatus = I2CM_I2C_MSTR_NOT_READY;
+ 230              		.loc 1 63 0
+ 231 0016 0423     		mov	r3, #4
+ 232 0018 BB60     		str	r3, [r7, #8]
+  64:.\I2C.c       **** 
+  65:.\I2C.c       ****     /* Check FSM state before generating Start condition */
+  66:.\I2C.c       ****     if(I2CM_CHECK_I2C_FSM_IDLE)
+ 233              		.loc 1 66 0
+ 234 001a 384B     		ldr	r3, .L29
+ 235 001c 1B78     		ldrb	r3, [r3]
+ 236 001e DBB2     		uxtb	r3, r3
+ 237 0020 102B     		cmp	r3, #16
+ 238 0022 66D1     		bne	.L19
+  67:.\I2C.c       ****     {
+  68:.\I2C.c       ****         /* If bus is free, generate Start condition */
+  69:.\I2C.c       ****         if(I2CM_CHECK_I2C_STATUS(I2CM_I2C_STATUS_BUS_BUSY))
+ 239              		.loc 1 69 0
+ 240 0024 364B     		ldr	r3, .L29+4
+ 241 0026 1A68     		ldr	r2, [r3]
+ 242 0028 0123     		mov	r3, #1
+ 243 002a 1340     		and	r3, r2
+ 244 002c 02D0     		beq	.L20
+  70:.\I2C.c       ****         {
+  71:.\I2C.c       ****             errStatus = I2CM_I2C_MSTR_BUS_BUSY;
+ 245              		.loc 1 71 0
+ 246 002e 0823     		mov	r3, #8
+ 247 0030 BB60     		str	r3, [r7, #8]
+ 248 0032 5EE0     		b	.L19
+ 249              	.L20:
+  72:.\I2C.c       ****         }
+  73:.\I2C.c       ****         else
+  74:.\I2C.c       ****         {
+  75:.\I2C.c       **** 
+  76:.\I2C.c       ****             //slaveAddress = I2CM_GET_I2C_8BIT_ADDRESS(slaveAddress);
+  77:.\I2C.c       **** 
+  78:.\I2C.c       ****             if(0u == bitRnW) /* Write direction */
+ 250              		.loc 1 78 0
+ 251 0034 BB1D     		add	r3, r7, #6
+ 252 0036 1B78     		ldrb	r3, [r3]
+ 253 0038 002B     		cmp	r3, #0
+ 254 003a 08D1     		bne	.L21
+  79:.\I2C.c       ****             {
+  80:.\I2C.c       ****                 slaveAddress = (slaveAddress << 1); 
+ 255              		.loc 1 80 0
+ 256 003c FB1D     		add	r3, r7, #7
+ 257 003e FA1D     		add	r2, r7, #7
+ 258 0040 1278     		ldrb	r2, [r2]
+ 259 0042 5200     		lsl	r2, r2, #1
+ 260 0044 1A70     		strb	r2, [r3]
+  81:.\I2C.c       ****                 I2CM_state = I2CM_I2C_FSM_MSTR_WR_DATA;
+ 261              		.loc 1 81 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 7
+
+
+ 262 0046 2D4B     		ldr	r3, .L29
+ 263 0048 2422     		mov	r2, #36
+ 264 004a 1A70     		strb	r2, [r3]
+ 265 004c 09E0     		b	.L22
+ 266              	.L21:
+  82:.\I2C.c       ****                 
+  83:.\I2C.c       ****             }
+  84:.\I2C.c       ****             else /* Read direction */
+  85:.\I2C.c       ****             {
+  86:.\I2C.c       ****                 slaveAddress = (slaveAddress << 1)+ 0b1;
+ 267              		.loc 1 86 0
+ 268 004e FB1D     		add	r3, r7, #7
+ 269 0050 1B78     		ldrb	r3, [r3]
+ 270 0052 5B00     		lsl	r3, r3, #1
+ 271 0054 DAB2     		uxtb	r2, r3
+ 272 0056 FB1D     		add	r3, r7, #7
+ 273 0058 0132     		add	r2, r2, #1
+ 274 005a 1A70     		strb	r2, [r3]
+  87:.\I2C.c       ****                 I2CM_state = I2CM_I2C_FSM_MSTR_RD_DATA;
+ 275              		.loc 1 87 0
+ 276 005c 274B     		ldr	r3, .L29
+ 277 005e 2522     		mov	r2, #37
+ 278 0060 1A70     		strb	r2, [r3]
+ 279              	.L22:
+  88:.\I2C.c       ****                 
+  89:.\I2C.c       ****             }
+  90:.\I2C.c       **** 
+  91:.\I2C.c       ****             /* The TX and RX FIFO have to be EMPTY */
+  92:.\I2C.c       **** 
+  93:.\I2C.c       ****             I2CM_TX_FIFO_WR_REG = slaveAddress; /* Put address in TX FIFO */
+ 280              		.loc 1 93 0
+ 281 0062 284B     		ldr	r3, .L29+8
+ 282 0064 FA1D     		add	r2, r7, #7
+ 283 0066 1278     		ldrb	r2, [r2]
+ 284 0068 1A60     		str	r2, [r3]
+  94:.\I2C.c       ****             I2CM_ClearMasterInterruptSource(I2CM_INTR_MASTER_ALL);
+ 285              		.loc 1 94 0
+ 286 006a 274B     		ldr	r3, .L29+12
+ 287 006c 274A     		ldr	r2, .L29+16
+ 288 006e 1A60     		str	r2, [r3]
+  95:.\I2C.c       **** 
+  96:.\I2C.c       ****             I2CM_I2C_MASTER_GENERATE_START;
+ 289              		.loc 1 96 0
+ 290 0070 274B     		ldr	r3, .L29+20
+ 291 0072 0222     		mov	r2, #2
+ 292 0074 1A60     		str	r2, [r3]
+  97:.\I2C.c       **** 
+  98:.\I2C.c       **** 
+  99:.\I2C.c       ****             while(!I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK      |
+ 293              		.loc 1 99 0
+ 294 0076 C046     		mov	r8, r8
+ 295              	.L23:
+ 296              		.loc 1 99 0 is_stmt 0 discriminator 1
+ 297 0078 234B     		ldr	r3, .L29+12
+ 298 007a 1A68     		ldr	r2, [r3]
+ 299 007c 254B     		ldr	r3, .L29+24
+ 300 007e 1340     		and	r3, r2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 8
+
+
+ 301 0080 FAD0     		beq	.L23
+ 100:.\I2C.c       ****                                                       I2CM_INTR_MASTER_I2C_NACK     |
+ 101:.\I2C.c       ****                                                       I2CM_INTR_MASTER_I2C_ARB_LOST |
+ 102:.\I2C.c       ****                                                       I2CM_INTR_MASTER_I2C_BUS_ERROR))
+ 103:.\I2C.c       ****             {
+ 104:.\I2C.c       ****                 /*
+ 105:.\I2C.c       ****                 * Write: wait until address has been transferred
+ 106:.\I2C.c       ****                 * Read : wait until address has been transferred, data byte is going to RX FIFO as 
+ 107:.\I2C.c       ****                 */
+ 108:.\I2C.c       ****             }
+ 109:.\I2C.c       **** 
+ 110:.\I2C.c       ****             /* Check the results of the address phase */
+ 111:.\I2C.c       ****             if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK))
+ 302              		.loc 1 111 0 is_stmt 1
+ 303 0082 214B     		ldr	r3, .L29+12
+ 304 0084 1A68     		ldr	r2, [r3]
+ 305 0086 0423     		mov	r3, #4
+ 306 0088 1340     		and	r3, r2
+ 307 008a 02D0     		beq	.L24
+ 112:.\I2C.c       ****             {
+ 113:.\I2C.c       ****                 errStatus = I2CM_I2C_MSTR_NO_ERROR;
+ 308              		.loc 1 113 0
+ 309 008c 0023     		mov	r3, #0
+ 310 008e BB60     		str	r3, [r7, #8]
+ 311 0090 1CE0     		b	.L25
+ 312              	.L24:
+ 114:.\I2C.c       ****             }
+ 115:.\I2C.c       ****             else if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_NACK))
+ 313              		.loc 1 115 0
+ 314 0092 1D4B     		ldr	r3, .L29+12
+ 315 0094 1A68     		ldr	r2, [r3]
+ 316 0096 0223     		mov	r3, #2
+ 317 0098 1340     		and	r3, r2
+ 318 009a 02D0     		beq	.L26
+ 116:.\I2C.c       ****             {
+ 117:.\I2C.c       ****                 errStatus = I2CM_I2C_MSTR_ERR_LB_NAK;
+ 319              		.loc 1 117 0
+ 320 009c 0223     		mov	r3, #2
+ 321 009e BB60     		str	r3, [r7, #8]
+ 322 00a0 14E0     		b	.L25
+ 323              	.L26:
+ 118:.\I2C.c       ****             }
+ 119:.\I2C.c       ****             else if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ARB_LOST))
+ 324              		.loc 1 119 0
+ 325 00a2 194B     		ldr	r3, .L29+12
+ 326 00a4 1A68     		ldr	r2, [r3]
+ 327 00a6 0123     		mov	r3, #1
+ 328 00a8 1340     		and	r3, r2
+ 329 00aa 07D0     		beq	.L27
+ 120:.\I2C.c       ****             {
+ 121:.\I2C.c       ****                 I2CM_state = I2CM_I2C_FSM_IDLE;
+ 330              		.loc 1 121 0
+ 331 00ac 134B     		ldr	r3, .L29
+ 332 00ae 1022     		mov	r2, #16
+ 333 00b0 1A70     		strb	r2, [r3]
+ 122:.\I2C.c       ****                              errStatus = I2CM_I2C_MSTR_ERR_ARB_LOST;
+ 334              		.loc 1 122 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 9
+
+
+ 335 00b2 0123     		mov	r3, #1
+ 336 00b4 BB60     		str	r3, [r7, #8]
+ 123:.\I2C.c       ****                              resetIp   = I2CM_I2C_RESET_ERROR;
+ 337              		.loc 1 123 0
+ 338 00b6 0123     		mov	r3, #1
+ 339 00b8 FB60     		str	r3, [r7, #12]
+ 340 00ba 07E0     		b	.L25
+ 341              	.L27:
+ 124:.\I2C.c       ****             }
+ 125:.\I2C.c       ****             else /* I2CM_INTR_MASTER_I2C_BUS_ERROR set is else condition */
+ 126:.\I2C.c       ****             {
+ 127:.\I2C.c       ****                 I2CM_state = I2CM_I2C_FSM_IDLE;
+ 342              		.loc 1 127 0
+ 343 00bc 0F4B     		ldr	r3, .L29
+ 344 00be 1022     		mov	r2, #16
+ 345 00c0 1A70     		strb	r2, [r3]
+ 128:.\I2C.c       ****                              errStatus = I2CM_I2C_MSTR_ERR_BUS_ERR;
+ 346              		.loc 1 128 0
+ 347 00c2 8023     		mov	r3, #128
+ 348 00c4 5B00     		lsl	r3, r3, #1
+ 349 00c6 BB60     		str	r3, [r7, #8]
+ 129:.\I2C.c       ****                              resetIp   = I2CM_I2C_RESET_ERROR;
+ 350              		.loc 1 129 0
+ 351 00c8 0123     		mov	r3, #1
+ 352 00ca FB60     		str	r3, [r7, #12]
+ 353              	.L25:
+ 130:.\I2C.c       ****             }
+ 131:.\I2C.c       **** 
+ 132:.\I2C.c       ****             I2CM_ClearMasterInterruptSource(I2CM_INTR_MASTER_I2C_ACK      |
+ 354              		.loc 1 132 0
+ 355 00cc 0E4B     		ldr	r3, .L29+12
+ 356 00ce 114A     		ldr	r2, .L29+24
+ 357 00d0 1A60     		str	r2, [r3]
+ 133:.\I2C.c       ****                                                         I2CM_INTR_MASTER_I2C_NACK     |
+ 134:.\I2C.c       ****                                                         I2CM_INTR_MASTER_I2C_ARB_LOST |
+ 135:.\I2C.c       ****                                                         I2CM_INTR_MASTER_I2C_BUS_ERROR);
+ 136:.\I2C.c       **** 
+ 137:.\I2C.c       ****             /* Reset block in case of: LOST_ARB or BUS_ERR */
+ 138:.\I2C.c       ****             if(0u != resetIp)
+ 358              		.loc 1 138 0
+ 359 00d2 FB68     		ldr	r3, [r7, #12]
+ 360 00d4 002B     		cmp	r3, #0
+ 361 00d6 0CD0     		beq	.L19
+ 139:.\I2C.c       ****             {
+ 140:.\I2C.c       ****                 I2CM_SCB_SW_RESET;
+ 362              		.loc 1 140 0
+ 363 00d8 0F4B     		ldr	r3, .L29+28
+ 364 00da 0F4A     		ldr	r2, .L29+28
+ 365 00dc 1268     		ldr	r2, [r2]
+ 366 00de 5200     		lsl	r2, r2, #1
+ 367 00e0 5208     		lsr	r2, r2, #1
+ 368 00e2 1A60     		str	r2, [r3]
+ 369 00e4 0C4B     		ldr	r3, .L29+28
+ 370 00e6 0C4A     		ldr	r2, .L29+28
+ 371 00e8 1268     		ldr	r2, [r2]
+ 372 00ea 8021     		mov	r1, #128
+ 373 00ec 0906     		lsl	r1, r1, #24
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 10
+
+
+ 374 00ee 0A43     		orr	r2, r1
+ 375 00f0 1A60     		str	r2, [r3]
+ 376              	.L19:
+ 141:.\I2C.c       ****             }
+ 142:.\I2C.c       ****         }
+ 143:.\I2C.c       ****     }
+ 144:.\I2C.c       **** 
+ 145:.\I2C.c       ****     return(errStatus);
+ 377              		.loc 1 145 0
+ 378 00f2 BB68     		ldr	r3, [r7, #8]
+ 146:.\I2C.c       **** }
+ 379              		.loc 1 146 0
+ 380 00f4 181C     		mov	r0, r3
+ 381 00f6 BD46     		mov	sp, r7
+ 382 00f8 04B0     		add	sp, sp, #16
+ 383              		@ sp needed for prologue
+ 384 00fa 80BD     		pop	{r7, pc}
+ 385              	.L30:
+ 386              		.align	2
+ 387              	.L29:
+ 388 00fc 00000000 		.word	I2CM_state
+ 389 0100 64000740 		.word	1074200676
+ 390 0104 40020740 		.word	1074201152
+ 391 0108 000F0740 		.word	1074204416
+ 392 010c 17030000 		.word	791
+ 393 0110 68000740 		.word	1074200680
+ 394 0114 07010000 		.word	263
+ 395 0118 00000740 		.word	1074200576
+ 396              		.cfi_endproc
+ 397              	.LFE37:
+ 398              		.size	I2C_SendStart_Orig, .-I2C_SendStart_Orig
+ 399              		.text
+ 400              	.Letext0:
+ 401              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4.7.3\\
+ 402              		.file 3 "./Generated_Source/PSoC4/cytypes.h"
+ 403              		.file 4 "./Generated_Source/PSoC4/I2CM_I2C_PVT.h"
+ 404              		.section	.debug_info,"",%progbits
+ 405              	.Ldebug_info0:
+ 406 0000 8D010000 		.4byte	0x18d
+ 407 0004 0200     		.2byte	0x2
+ 408 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 409 000a 04       		.byte	0x4
+ 410 000b 01       		.uleb128 0x1
+ 411 000c 73010000 		.4byte	.LASF25
+ 412 0010 01       		.byte	0x1
+ 413 0011 06000000 		.4byte	.LASF26
+ 414 0015 4F000000 		.4byte	.LASF27
+ 415 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 416 001d 00000000 		.4byte	0
+ 417 0021 00000000 		.4byte	0
+ 418 0025 00000000 		.4byte	.Ldebug_line0
+ 419 0029 02       		.uleb128 0x2
+ 420 002a 01       		.byte	0x1
+ 421 002b 06       		.byte	0x6
+ 422 002c C5010000 		.4byte	.LASF0
+ 423 0030 03       		.uleb128 0x3
+ 424 0031 33010000 		.4byte	.LASF9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 11
+
+
+ 425 0035 02       		.byte	0x2
+ 426 0036 2A       		.byte	0x2a
+ 427 0037 3B000000 		.4byte	0x3b
+ 428 003b 02       		.uleb128 0x2
+ 429 003c 01       		.byte	0x1
+ 430 003d 08       		.byte	0x8
+ 431 003e B7000000 		.4byte	.LASF1
+ 432 0042 02       		.uleb128 0x2
+ 433 0043 02       		.byte	0x2
+ 434 0044 05       		.byte	0x5
+ 435 0045 64010000 		.4byte	.LASF2
+ 436 0049 02       		.uleb128 0x2
+ 437 004a 02       		.byte	0x2
+ 438 004b 07       		.byte	0x7
+ 439 004c 0E000000 		.4byte	.LASF3
+ 440 0050 02       		.uleb128 0x2
+ 441 0051 04       		.byte	0x4
+ 442 0052 05       		.byte	0x5
+ 443 0053 BC010000 		.4byte	.LASF4
+ 444 0057 02       		.uleb128 0x2
+ 445 0058 04       		.byte	0x4
+ 446 0059 07       		.byte	0x7
+ 447 005a C5000000 		.4byte	.LASF5
+ 448 005e 02       		.uleb128 0x2
+ 449 005f 08       		.byte	0x8
+ 450 0060 05       		.byte	0x5
+ 451 0061 51010000 		.4byte	.LASF6
+ 452 0065 02       		.uleb128 0x2
+ 453 0066 08       		.byte	0x8
+ 454 0067 07       		.byte	0x7
+ 455 0068 1C010000 		.4byte	.LASF7
+ 456 006c 04       		.uleb128 0x4
+ 457 006d 04       		.byte	0x4
+ 458 006e 05       		.byte	0x5
+ 459 006f 696E7400 		.ascii	"int\000"
+ 460 0073 02       		.uleb128 0x2
+ 461 0074 04       		.byte	0x4
+ 462 0075 07       		.byte	0x7
+ 463 0076 0F010000 		.4byte	.LASF8
+ 464 007a 03       		.uleb128 0x3
+ 465 007b EA000000 		.4byte	.LASF10
+ 466 007f 03       		.byte	0x3
+ 467 0080 5B       		.byte	0x5b
+ 468 0081 3B000000 		.4byte	0x3b
+ 469 0085 03       		.uleb128 0x3
+ 470 0086 08010000 		.4byte	.LASF11
+ 471 008a 03       		.byte	0x3
+ 472 008b 5D       		.byte	0x5d
+ 473 008c 57000000 		.4byte	0x57
+ 474 0090 02       		.uleb128 0x2
+ 475 0091 04       		.byte	0x4
+ 476 0092 04       		.byte	0x4
+ 477 0093 A1000000 		.4byte	.LASF12
+ 478 0097 02       		.uleb128 0x2
+ 479 0098 08       		.byte	0x8
+ 480 0099 04       		.byte	0x4
+ 481 009a FA000000 		.4byte	.LASF13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 12
+
+
+ 482 009e 02       		.uleb128 0x2
+ 483 009f 01       		.byte	0x1
+ 484 00a0 08       		.byte	0x8
+ 485 00a1 5F010000 		.4byte	.LASF14
+ 486 00a5 05       		.uleb128 0x5
+ 487 00a6 7A000000 		.4byte	0x7a
+ 488 00aa 03       		.uleb128 0x3
+ 489 00ab 00000000 		.4byte	.LASF15
+ 490 00af 03       		.byte	0x3
+ 491 00b0 F2       		.byte	0xf2
+ 492 00b1 B5000000 		.4byte	0xb5
+ 493 00b5 05       		.uleb128 0x5
+ 494 00b6 85000000 		.4byte	0x85
+ 495 00ba 02       		.uleb128 0x2
+ 496 00bb 04       		.byte	0x4
+ 497 00bc 07       		.byte	0x7
+ 498 00bd 48010000 		.4byte	.LASF16
+ 499 00c1 06       		.uleb128 0x6
+ 500 00c2 01       		.byte	0x1
+ 501 00c3 39000000 		.4byte	.LASF17
+ 502 00c7 01       		.byte	0x1
+ 503 00c8 0F       		.byte	0xf
+ 504 00c9 01       		.byte	0x1
+ 505 00ca 00000000 		.4byte	.LFB33
+ 506 00ce 14000000 		.4byte	.LFE33
+ 507 00d2 00000000 		.4byte	.LLST0
+ 508 00d6 01       		.byte	0x1
+ 509 00d7 07       		.uleb128 0x7
+ 510 00d8 01       		.byte	0x1
+ 511 00d9 D1010000 		.4byte	.LASF28
+ 512 00dd 01       		.byte	0x1
+ 513 00de 14       		.byte	0x14
+ 514 00df 01       		.byte	0x1
+ 515 00e0 00000000 		.4byte	.LFB34
+ 516 00e4 34000000 		.4byte	.LFE34
+ 517 00e8 2C000000 		.4byte	.LLST1
+ 518 00ec 01       		.byte	0x1
+ 519 00ed 00010000 		.4byte	0x100
+ 520 00f1 08       		.uleb128 0x8
+ 521 00f2 6E010000 		.4byte	.LASF20
+ 522 00f6 01       		.byte	0x1
+ 523 00f7 14       		.byte	0x14
+ 524 00f8 30000000 		.4byte	0x30
+ 525 00fc 02       		.byte	0x2
+ 526 00fd 91       		.byte	0x91
+ 527 00fe 77       		.sleb128 -9
+ 528 00ff 00       		.byte	0
+ 529 0100 09       		.uleb128 0x9
+ 530 0101 01       		.byte	0x1
+ 531 0102 A7000000 		.4byte	.LASF18
+ 532 0106 01       		.byte	0x1
+ 533 0107 21       		.byte	0x21
+ 534 0108 01       		.byte	0x1
+ 535 0109 00000000 		.4byte	.LFB35
+ 536 010d 1C000000 		.4byte	.LFE35
+ 537 0111 64000000 		.4byte	.LLST2
+ 538 0115 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 13
+
+
+ 539 0116 06       		.uleb128 0x6
+ 540 0117 01       		.byte	0x1
+ 541 0118 21000000 		.4byte	.LASF19
+ 542 011c 01       		.byte	0x1
+ 543 011d 2B       		.byte	0x2b
+ 544 011e 01       		.byte	0x1
+ 545 011f 00000000 		.4byte	.LFB36
+ 546 0123 38000000 		.4byte	.LFE36
+ 547 0127 90000000 		.4byte	.LLST3
+ 548 012b 01       		.byte	0x1
+ 549 012c 0A       		.uleb128 0xa
+ 550 012d 01       		.byte	0x1
+ 551 012e D7000000 		.4byte	.LASF29
+ 552 0132 01       		.byte	0x1
+ 553 0133 39       		.byte	0x39
+ 554 0134 01       		.byte	0x1
+ 555 0135 85000000 		.4byte	0x85
+ 556 0139 00000000 		.4byte	.LFB37
+ 557 013d 1C010000 		.4byte	.LFE37
+ 558 0141 BC000000 		.4byte	.LLST4
+ 559 0145 01       		.byte	0x1
+ 560 0146 83010000 		.4byte	0x183
+ 561 014a 08       		.uleb128 0x8
+ 562 014b 3B010000 		.4byte	.LASF21
+ 563 014f 01       		.byte	0x1
+ 564 0150 39       		.byte	0x39
+ 565 0151 30000000 		.4byte	0x30
+ 566 0155 02       		.byte	0x2
+ 567 0156 91       		.byte	0x91
+ 568 0157 6F       		.sleb128 -17
+ 569 0158 08       		.uleb128 0x8
+ 570 0159 01010000 		.4byte	.LASF22
+ 571 015d 01       		.byte	0x1
+ 572 015e 39       		.byte	0x39
+ 573 015f 30000000 		.4byte	0x30
+ 574 0163 02       		.byte	0x2
+ 575 0164 91       		.byte	0x91
+ 576 0165 6E       		.sleb128 -18
+ 577 0166 0B       		.uleb128 0xb
+ 578 0167 47000000 		.4byte	.LASF23
+ 579 016b 01       		.byte	0x1
+ 580 016c 3B       		.byte	0x3b
+ 581 016d 85000000 		.4byte	0x85
+ 582 0171 02       		.byte	0x2
+ 583 0172 91       		.byte	0x91
+ 584 0173 74       		.sleb128 -12
+ 585 0174 0B       		.uleb128 0xb
+ 586 0175 F0000000 		.4byte	.LASF24
+ 587 0179 01       		.byte	0x1
+ 588 017a 3C       		.byte	0x3c
+ 589 017b 85000000 		.4byte	0x85
+ 590 017f 02       		.byte	0x2
+ 591 0180 91       		.byte	0x91
+ 592 0181 70       		.sleb128 -16
+ 593 0182 00       		.byte	0
+ 594 0183 0C       		.uleb128 0xc
+ 595 0184 2E000000 		.4byte	.LASF30
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 14
+
+
+ 596 0188 04       		.byte	0x4
+ 597 0189 1D       		.byte	0x1d
+ 598 018a A5000000 		.4byte	0xa5
+ 599 018e 01       		.byte	0x1
+ 600 018f 01       		.byte	0x1
+ 601 0190 00       		.byte	0
+ 602              		.section	.debug_abbrev,"",%progbits
+ 603              	.Ldebug_abbrev0:
+ 604 0000 01       		.uleb128 0x1
+ 605 0001 11       		.uleb128 0x11
+ 606 0002 01       		.byte	0x1
+ 607 0003 25       		.uleb128 0x25
+ 608 0004 0E       		.uleb128 0xe
+ 609 0005 13       		.uleb128 0x13
+ 610 0006 0B       		.uleb128 0xb
+ 611 0007 03       		.uleb128 0x3
+ 612 0008 0E       		.uleb128 0xe
+ 613 0009 1B       		.uleb128 0x1b
+ 614 000a 0E       		.uleb128 0xe
+ 615 000b 55       		.uleb128 0x55
+ 616 000c 06       		.uleb128 0x6
+ 617 000d 11       		.uleb128 0x11
+ 618 000e 01       		.uleb128 0x1
+ 619 000f 52       		.uleb128 0x52
+ 620 0010 01       		.uleb128 0x1
+ 621 0011 10       		.uleb128 0x10
+ 622 0012 06       		.uleb128 0x6
+ 623 0013 00       		.byte	0
+ 624 0014 00       		.byte	0
+ 625 0015 02       		.uleb128 0x2
+ 626 0016 24       		.uleb128 0x24
+ 627 0017 00       		.byte	0
+ 628 0018 0B       		.uleb128 0xb
+ 629 0019 0B       		.uleb128 0xb
+ 630 001a 3E       		.uleb128 0x3e
+ 631 001b 0B       		.uleb128 0xb
+ 632 001c 03       		.uleb128 0x3
+ 633 001d 0E       		.uleb128 0xe
+ 634 001e 00       		.byte	0
+ 635 001f 00       		.byte	0
+ 636 0020 03       		.uleb128 0x3
+ 637 0021 16       		.uleb128 0x16
+ 638 0022 00       		.byte	0
+ 639 0023 03       		.uleb128 0x3
+ 640 0024 0E       		.uleb128 0xe
+ 641 0025 3A       		.uleb128 0x3a
+ 642 0026 0B       		.uleb128 0xb
+ 643 0027 3B       		.uleb128 0x3b
+ 644 0028 0B       		.uleb128 0xb
+ 645 0029 49       		.uleb128 0x49
+ 646 002a 13       		.uleb128 0x13
+ 647 002b 00       		.byte	0
+ 648 002c 00       		.byte	0
+ 649 002d 04       		.uleb128 0x4
+ 650 002e 24       		.uleb128 0x24
+ 651 002f 00       		.byte	0
+ 652 0030 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 15
+
+
+ 653 0031 0B       		.uleb128 0xb
+ 654 0032 3E       		.uleb128 0x3e
+ 655 0033 0B       		.uleb128 0xb
+ 656 0034 03       		.uleb128 0x3
+ 657 0035 08       		.uleb128 0x8
+ 658 0036 00       		.byte	0
+ 659 0037 00       		.byte	0
+ 660 0038 05       		.uleb128 0x5
+ 661 0039 35       		.uleb128 0x35
+ 662 003a 00       		.byte	0
+ 663 003b 49       		.uleb128 0x49
+ 664 003c 13       		.uleb128 0x13
+ 665 003d 00       		.byte	0
+ 666 003e 00       		.byte	0
+ 667 003f 06       		.uleb128 0x6
+ 668 0040 2E       		.uleb128 0x2e
+ 669 0041 00       		.byte	0
+ 670 0042 3F       		.uleb128 0x3f
+ 671 0043 0C       		.uleb128 0xc
+ 672 0044 03       		.uleb128 0x3
+ 673 0045 0E       		.uleb128 0xe
+ 674 0046 3A       		.uleb128 0x3a
+ 675 0047 0B       		.uleb128 0xb
+ 676 0048 3B       		.uleb128 0x3b
+ 677 0049 0B       		.uleb128 0xb
+ 678 004a 27       		.uleb128 0x27
+ 679 004b 0C       		.uleb128 0xc
+ 680 004c 11       		.uleb128 0x11
+ 681 004d 01       		.uleb128 0x1
+ 682 004e 12       		.uleb128 0x12
+ 683 004f 01       		.uleb128 0x1
+ 684 0050 40       		.uleb128 0x40
+ 685 0051 06       		.uleb128 0x6
+ 686 0052 9742     		.uleb128 0x2117
+ 687 0054 0C       		.uleb128 0xc
+ 688 0055 00       		.byte	0
+ 689 0056 00       		.byte	0
+ 690 0057 07       		.uleb128 0x7
+ 691 0058 2E       		.uleb128 0x2e
+ 692 0059 01       		.byte	0x1
+ 693 005a 3F       		.uleb128 0x3f
+ 694 005b 0C       		.uleb128 0xc
+ 695 005c 03       		.uleb128 0x3
+ 696 005d 0E       		.uleb128 0xe
+ 697 005e 3A       		.uleb128 0x3a
+ 698 005f 0B       		.uleb128 0xb
+ 699 0060 3B       		.uleb128 0x3b
+ 700 0061 0B       		.uleb128 0xb
+ 701 0062 27       		.uleb128 0x27
+ 702 0063 0C       		.uleb128 0xc
+ 703 0064 11       		.uleb128 0x11
+ 704 0065 01       		.uleb128 0x1
+ 705 0066 12       		.uleb128 0x12
+ 706 0067 01       		.uleb128 0x1
+ 707 0068 40       		.uleb128 0x40
+ 708 0069 06       		.uleb128 0x6
+ 709 006a 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 16
+
+
+ 710 006c 0C       		.uleb128 0xc
+ 711 006d 01       		.uleb128 0x1
+ 712 006e 13       		.uleb128 0x13
+ 713 006f 00       		.byte	0
+ 714 0070 00       		.byte	0
+ 715 0071 08       		.uleb128 0x8
+ 716 0072 05       		.uleb128 0x5
+ 717 0073 00       		.byte	0
+ 718 0074 03       		.uleb128 0x3
+ 719 0075 0E       		.uleb128 0xe
+ 720 0076 3A       		.uleb128 0x3a
+ 721 0077 0B       		.uleb128 0xb
+ 722 0078 3B       		.uleb128 0x3b
+ 723 0079 0B       		.uleb128 0xb
+ 724 007a 49       		.uleb128 0x49
+ 725 007b 13       		.uleb128 0x13
+ 726 007c 02       		.uleb128 0x2
+ 727 007d 0A       		.uleb128 0xa
+ 728 007e 00       		.byte	0
+ 729 007f 00       		.byte	0
+ 730 0080 09       		.uleb128 0x9
+ 731 0081 2E       		.uleb128 0x2e
+ 732 0082 00       		.byte	0
+ 733 0083 3F       		.uleb128 0x3f
+ 734 0084 0C       		.uleb128 0xc
+ 735 0085 03       		.uleb128 0x3
+ 736 0086 0E       		.uleb128 0xe
+ 737 0087 3A       		.uleb128 0x3a
+ 738 0088 0B       		.uleb128 0xb
+ 739 0089 3B       		.uleb128 0x3b
+ 740 008a 0B       		.uleb128 0xb
+ 741 008b 27       		.uleb128 0x27
+ 742 008c 0C       		.uleb128 0xc
+ 743 008d 11       		.uleb128 0x11
+ 744 008e 01       		.uleb128 0x1
+ 745 008f 12       		.uleb128 0x12
+ 746 0090 01       		.uleb128 0x1
+ 747 0091 40       		.uleb128 0x40
+ 748 0092 06       		.uleb128 0x6
+ 749 0093 9642     		.uleb128 0x2116
+ 750 0095 0C       		.uleb128 0xc
+ 751 0096 00       		.byte	0
+ 752 0097 00       		.byte	0
+ 753 0098 0A       		.uleb128 0xa
+ 754 0099 2E       		.uleb128 0x2e
+ 755 009a 01       		.byte	0x1
+ 756 009b 3F       		.uleb128 0x3f
+ 757 009c 0C       		.uleb128 0xc
+ 758 009d 03       		.uleb128 0x3
+ 759 009e 0E       		.uleb128 0xe
+ 760 009f 3A       		.uleb128 0x3a
+ 761 00a0 0B       		.uleb128 0xb
+ 762 00a1 3B       		.uleb128 0x3b
+ 763 00a2 0B       		.uleb128 0xb
+ 764 00a3 27       		.uleb128 0x27
+ 765 00a4 0C       		.uleb128 0xc
+ 766 00a5 49       		.uleb128 0x49
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 17
+
+
+ 767 00a6 13       		.uleb128 0x13
+ 768 00a7 11       		.uleb128 0x11
+ 769 00a8 01       		.uleb128 0x1
+ 770 00a9 12       		.uleb128 0x12
+ 771 00aa 01       		.uleb128 0x1
+ 772 00ab 40       		.uleb128 0x40
+ 773 00ac 06       		.uleb128 0x6
+ 774 00ad 9742     		.uleb128 0x2117
+ 775 00af 0C       		.uleb128 0xc
+ 776 00b0 01       		.uleb128 0x1
+ 777 00b1 13       		.uleb128 0x13
+ 778 00b2 00       		.byte	0
+ 779 00b3 00       		.byte	0
+ 780 00b4 0B       		.uleb128 0xb
+ 781 00b5 34       		.uleb128 0x34
+ 782 00b6 00       		.byte	0
+ 783 00b7 03       		.uleb128 0x3
+ 784 00b8 0E       		.uleb128 0xe
+ 785 00b9 3A       		.uleb128 0x3a
+ 786 00ba 0B       		.uleb128 0xb
+ 787 00bb 3B       		.uleb128 0x3b
+ 788 00bc 0B       		.uleb128 0xb
+ 789 00bd 49       		.uleb128 0x49
+ 790 00be 13       		.uleb128 0x13
+ 791 00bf 02       		.uleb128 0x2
+ 792 00c0 0A       		.uleb128 0xa
+ 793 00c1 00       		.byte	0
+ 794 00c2 00       		.byte	0
+ 795 00c3 0C       		.uleb128 0xc
+ 796 00c4 34       		.uleb128 0x34
+ 797 00c5 00       		.byte	0
+ 798 00c6 03       		.uleb128 0x3
+ 799 00c7 0E       		.uleb128 0xe
+ 800 00c8 3A       		.uleb128 0x3a
+ 801 00c9 0B       		.uleb128 0xb
+ 802 00ca 3B       		.uleb128 0x3b
+ 803 00cb 0B       		.uleb128 0xb
+ 804 00cc 49       		.uleb128 0x49
+ 805 00cd 13       		.uleb128 0x13
+ 806 00ce 3F       		.uleb128 0x3f
+ 807 00cf 0C       		.uleb128 0xc
+ 808 00d0 3C       		.uleb128 0x3c
+ 809 00d1 0C       		.uleb128 0xc
+ 810 00d2 00       		.byte	0
+ 811 00d3 00       		.byte	0
+ 812 00d4 00       		.byte	0
+ 813              		.section	.debug_loc,"",%progbits
+ 814              	.Ldebug_loc0:
+ 815              	.LLST0:
+ 816 0000 00000000 		.4byte	.LFB33
+ 817 0004 02000000 		.4byte	.LCFI0
+ 818 0008 0200     		.2byte	0x2
+ 819 000a 7D       		.byte	0x7d
+ 820 000b 00       		.sleb128 0
+ 821 000c 02000000 		.4byte	.LCFI0
+ 822 0010 04000000 		.4byte	.LCFI1
+ 823 0014 0200     		.2byte	0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 18
+
+
+ 824 0016 7D       		.byte	0x7d
+ 825 0017 08       		.sleb128 8
+ 826 0018 04000000 		.4byte	.LCFI1
+ 827 001c 14000000 		.4byte	.LFE33
+ 828 0020 0200     		.2byte	0x2
+ 829 0022 77       		.byte	0x77
+ 830 0023 08       		.sleb128 8
+ 831 0024 00000000 		.4byte	0
+ 832 0028 00000000 		.4byte	0
+ 833              	.LLST1:
+ 834 002c 00000000 		.4byte	.LFB34
+ 835 0030 02000000 		.4byte	.LCFI2
+ 836 0034 0200     		.2byte	0x2
+ 837 0036 7D       		.byte	0x7d
+ 838 0037 00       		.sleb128 0
+ 839 0038 02000000 		.4byte	.LCFI2
+ 840 003c 04000000 		.4byte	.LCFI3
+ 841 0040 0200     		.2byte	0x2
+ 842 0042 7D       		.byte	0x7d
+ 843 0043 08       		.sleb128 8
+ 844 0044 04000000 		.4byte	.LCFI3
+ 845 0048 06000000 		.4byte	.LCFI4
+ 846 004c 0200     		.2byte	0x2
+ 847 004e 7D       		.byte	0x7d
+ 848 004f 10       		.sleb128 16
+ 849 0050 06000000 		.4byte	.LCFI4
+ 850 0054 34000000 		.4byte	.LFE34
+ 851 0058 0200     		.2byte	0x2
+ 852 005a 77       		.byte	0x77
+ 853 005b 10       		.sleb128 16
+ 854 005c 00000000 		.4byte	0
+ 855 0060 00000000 		.4byte	0
+ 856              	.LLST2:
+ 857 0064 00000000 		.4byte	.LFB35
+ 858 0068 02000000 		.4byte	.LCFI5
+ 859 006c 0200     		.2byte	0x2
+ 860 006e 7D       		.byte	0x7d
+ 861 006f 00       		.sleb128 0
+ 862 0070 02000000 		.4byte	.LCFI5
+ 863 0074 04000000 		.4byte	.LCFI6
+ 864 0078 0200     		.2byte	0x2
+ 865 007a 7D       		.byte	0x7d
+ 866 007b 08       		.sleb128 8
+ 867 007c 04000000 		.4byte	.LCFI6
+ 868 0080 1C000000 		.4byte	.LFE35
+ 869 0084 0200     		.2byte	0x2
+ 870 0086 77       		.byte	0x77
+ 871 0087 08       		.sleb128 8
+ 872 0088 00000000 		.4byte	0
+ 873 008c 00000000 		.4byte	0
+ 874              	.LLST3:
+ 875 0090 00000000 		.4byte	.LFB36
+ 876 0094 02000000 		.4byte	.LCFI7
+ 877 0098 0200     		.2byte	0x2
+ 878 009a 7D       		.byte	0x7d
+ 879 009b 00       		.sleb128 0
+ 880 009c 02000000 		.4byte	.LCFI7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 19
+
+
+ 881 00a0 04000000 		.4byte	.LCFI8
+ 882 00a4 0200     		.2byte	0x2
+ 883 00a6 7D       		.byte	0x7d
+ 884 00a7 08       		.sleb128 8
+ 885 00a8 04000000 		.4byte	.LCFI8
+ 886 00ac 38000000 		.4byte	.LFE36
+ 887 00b0 0200     		.2byte	0x2
+ 888 00b2 77       		.byte	0x77
+ 889 00b3 08       		.sleb128 8
+ 890 00b4 00000000 		.4byte	0
+ 891 00b8 00000000 		.4byte	0
+ 892              	.LLST4:
+ 893 00bc 00000000 		.4byte	.LFB37
+ 894 00c0 02000000 		.4byte	.LCFI9
+ 895 00c4 0200     		.2byte	0x2
+ 896 00c6 7D       		.byte	0x7d
+ 897 00c7 00       		.sleb128 0
+ 898 00c8 02000000 		.4byte	.LCFI9
+ 899 00cc 04000000 		.4byte	.LCFI10
+ 900 00d0 0200     		.2byte	0x2
+ 901 00d2 7D       		.byte	0x7d
+ 902 00d3 08       		.sleb128 8
+ 903 00d4 04000000 		.4byte	.LCFI10
+ 904 00d8 06000000 		.4byte	.LCFI11
+ 905 00dc 0200     		.2byte	0x2
+ 906 00de 7D       		.byte	0x7d
+ 907 00df 18       		.sleb128 24
+ 908 00e0 06000000 		.4byte	.LCFI11
+ 909 00e4 1C010000 		.4byte	.LFE37
+ 910 00e8 0200     		.2byte	0x2
+ 911 00ea 77       		.byte	0x77
+ 912 00eb 18       		.sleb128 24
+ 913 00ec 00000000 		.4byte	0
+ 914 00f0 00000000 		.4byte	0
+ 915              		.section	.debug_aranges,"",%progbits
+ 916 0000 3C000000 		.4byte	0x3c
+ 917 0004 0200     		.2byte	0x2
+ 918 0006 00000000 		.4byte	.Ldebug_info0
+ 919 000a 04       		.byte	0x4
+ 920 000b 00       		.byte	0
+ 921 000c 0000     		.2byte	0
+ 922 000e 0000     		.2byte	0
+ 923 0010 00000000 		.4byte	.LFB33
+ 924 0014 14000000 		.4byte	.LFE33-.LFB33
+ 925 0018 00000000 		.4byte	.LFB34
+ 926 001c 34000000 		.4byte	.LFE34-.LFB34
+ 927 0020 00000000 		.4byte	.LFB35
+ 928 0024 1C000000 		.4byte	.LFE35-.LFB35
+ 929 0028 00000000 		.4byte	.LFB36
+ 930 002c 38000000 		.4byte	.LFE36-.LFB36
+ 931 0030 00000000 		.4byte	.LFB37
+ 932 0034 1C010000 		.4byte	.LFE37-.LFB37
+ 933 0038 00000000 		.4byte	0
+ 934 003c 00000000 		.4byte	0
+ 935              		.section	.debug_ranges,"",%progbits
+ 936              	.Ldebug_ranges0:
+ 937 0000 00000000 		.4byte	.LFB33
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 20
+
+
+ 938 0004 14000000 		.4byte	.LFE33
+ 939 0008 00000000 		.4byte	.LFB34
+ 940 000c 34000000 		.4byte	.LFE34
+ 941 0010 00000000 		.4byte	.LFB35
+ 942 0014 1C000000 		.4byte	.LFE35
+ 943 0018 00000000 		.4byte	.LFB36
+ 944 001c 38000000 		.4byte	.LFE36
+ 945 0020 00000000 		.4byte	.LFB37
+ 946 0024 1C010000 		.4byte	.LFE37
+ 947 0028 00000000 		.4byte	0
+ 948 002c 00000000 		.4byte	0
+ 949              		.section	.debug_line,"",%progbits
+ 950              	.Ldebug_line0:
+ 951 0000 9F010000 		.section	.debug_str,"MS",%progbits,1
+ 951      0200F600 
+ 951      00000201 
+ 951      FB0E0D00 
+ 951      01010101 
+ 952              	.LASF15:
+ 953 0000 72656733 		.ascii	"reg32\000"
+ 953      3200
+ 954              	.LASF26:
+ 955 0006 2E5C4932 		.ascii	".\\I2C.c\000"
+ 955      432E6300 
+ 956              	.LASF3:
+ 957 000e 73686F72 		.ascii	"short unsigned int\000"
+ 957      7420756E 
+ 957      7369676E 
+ 957      65642069 
+ 957      6E7400
+ 958              	.LASF19:
+ 959 0021 4932435F 		.ascii	"I2C_SendStop\000"
+ 959      53656E64 
+ 959      53746F70 
+ 959      00
+ 960              	.LASF30:
+ 961 002e 4932434D 		.ascii	"I2CM_state\000"
+ 961      5F737461 
+ 961      746500
+ 962              	.LASF17:
+ 963 0039 4932435F 		.ascii	"I2C_SendStart\000"
+ 963      53656E64 
+ 963      53746172 
+ 963      7400
+ 964              	.LASF23:
+ 965 0047 72657365 		.ascii	"resetIp\000"
+ 965      74497000 
+ 966              	.LASF27:
+ 967 004f 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 967      73657273 
+ 967      5C534E46 
+ 967      555C446F 
+ 967      63756D65 
+ 968 007d 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 968      542D3530 
+ 968      5F50726F 
+ 968      6A656374 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 21
+
+
+ 968      5C542D35 
+ 969              	.LASF12:
+ 970 00a1 666C6F61 		.ascii	"float\000"
+ 970      7400
+ 971              	.LASF18:
+ 972 00a7 4932435F 		.ascii	"I2C_SendReStart\000"
+ 972      53656E64 
+ 972      52655374 
+ 972      61727400 
+ 973              	.LASF1:
+ 974 00b7 756E7369 		.ascii	"unsigned char\000"
+ 974      676E6564 
+ 974      20636861 
+ 974      7200
+ 975              	.LASF5:
+ 976 00c5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 976      20756E73 
+ 976      69676E65 
+ 976      6420696E 
+ 976      7400
+ 977              	.LASF29:
+ 978 00d7 4932435F 		.ascii	"I2C_SendStart_Orig\000"
+ 978      53656E64 
+ 978      53746172 
+ 978      745F4F72 
+ 978      696700
+ 979              	.LASF10:
+ 980 00ea 75696E74 		.ascii	"uint8\000"
+ 980      3800
+ 981              	.LASF24:
+ 982 00f0 65727253 		.ascii	"errStatus\000"
+ 982      74617475 
+ 982      7300
+ 983              	.LASF13:
+ 984 00fa 646F7562 		.ascii	"double\000"
+ 984      6C6500
+ 985              	.LASF22:
+ 986 0101 62697452 		.ascii	"bitRnW\000"
+ 986      6E5700
+ 987              	.LASF11:
+ 988 0108 75696E74 		.ascii	"uint32\000"
+ 988      333200
+ 989              	.LASF8:
+ 990 010f 756E7369 		.ascii	"unsigned int\000"
+ 990      676E6564 
+ 990      20696E74 
+ 990      00
+ 991              	.LASF7:
+ 992 011c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 992      206C6F6E 
+ 992      6720756E 
+ 992      7369676E 
+ 992      65642069 
+ 993              	.LASF9:
+ 994 0133 75696E74 		.ascii	"uint8_t\000"
+ 994      385F7400 
+ 995              	.LASF21:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc73kyWG.s 			page 22
+
+
+ 996 013b 736C6176 		.ascii	"slaveAddress\000"
+ 996      65416464 
+ 996      72657373 
+ 996      00
+ 997              	.LASF16:
+ 998 0148 73697A65 		.ascii	"sizetype\000"
+ 998      74797065 
+ 998      00
+ 999              	.LASF6:
+ 1000 0151 6C6F6E67 		.ascii	"long long int\000"
+ 1000      206C6F6E 
+ 1000      6720696E 
+ 1000      7400
+ 1001              	.LASF14:
+ 1002 015f 63686172 		.ascii	"char\000"
+ 1002      00
+ 1003              	.LASF2:
+ 1004 0164 73686F72 		.ascii	"short int\000"
+ 1004      7420696E 
+ 1004      7400
+ 1005              	.LASF20:
+ 1006 016e 62797465 		.ascii	"byte\000"
+ 1006      00
+ 1007              	.LASF25:
+ 1008 0173 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1008      4320342E 
+ 1008      372E3320 
+ 1008      32303133 
+ 1008      30333132 
+ 1009 01a6 616E6368 		.ascii	"anch revision 196615]\000"
+ 1009      20726576 
+ 1009      6973696F 
+ 1009      6E203139 
+ 1009      36363135 
+ 1010              	.LASF4:
+ 1011 01bc 6C6F6E67 		.ascii	"long int\000"
+ 1011      20696E74 
+ 1011      00
+ 1012              	.LASF0:
+ 1013 01c5 7369676E 		.ascii	"signed char\000"
+ 1013      65642063 
+ 1013      68617200 
+ 1014              	.LASF28:
+ 1015 01d1 4932435F 		.ascii	"I2C_WriteByte\000"
+ 1015      57726974 
+ 1015      65427974 
+ 1015      6500
+ 1016              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

@@ -310,7 +310,7 @@ uint32 I2CM_I2CMasterSendStart(uint32 slaveAddress, uint32 bitRnW)
             I2CM_ClearMasterInterruptSource(I2CM_INTR_MASTER_ALL);
 
             I2CM_I2C_MASTER_GENERATE_START;
-            
+
 
             while(!I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK      |
                                                       I2CM_INTR_MASTER_I2C_NACK     |
@@ -355,124 +355,12 @@ uint32 I2CM_I2CMasterSendStart(uint32 slaveAddress, uint32 bitRnW)
             {
                 I2CM_SCB_SW_RESET;
             }
-            
         }
     }
 
     return(errStatus);
 }
 
-/*******************************************************************************
-* Function Name: I2CM_I2CMasterSendStart
-********************************************************************************
-*
-* Summary:
-*  Generates Start condition and sends slave address with read/write bit.
-*  Disables the I2C interrupt.
-*  This function is blocking and does not return until start condition and
-*  address byte are sent and ACK/NACK response is received or errors occurred.
-*
-* Parameters:
-*  slaveAddress: Right justified 7-bit Slave address (valid range 8 to 120).
-*  bitRnW:       Direction of the following transfer. It is defined by
-*                read/write bit within address byte.
-*
-* Return:
-*  Erorr status.
-*
-* Global variables:
-*  I2CM_state - used to store current state of software FSM.
-*
-*******************************************************************************/
-uint32 I2CM_I2CMasterSendStart_NEW(uint32 slaveAddress, uint32 bitRnW)
-{
-    uint32  resetIp;
-    uint32 errStatus;
-
-    resetIp   = 0u;
-    errStatus = I2CM_I2C_MSTR_NOT_READY;
-
-    /* Check FSM state before generating Start condition */
-    if(I2CM_CHECK_I2C_FSM_IDLE)
-    {
-        /* If bus is free, generate Start condition */
-        if(I2CM_CHECK_I2C_STATUS(I2CM_I2C_STATUS_BUS_BUSY))
-        {
-            errStatus = I2CM_I2C_MSTR_BUS_BUSY;
-        }
-        else
-        {
-            //I2CM_DisableInt();
-
-            slaveAddress = I2CM_GET_I2C_8BIT_ADDRESS(slaveAddress);
-
-            if(0u == bitRnW) /* Write direction */
-            {
-                I2CM_state = I2CM_I2C_FSM_MSTR_WR_DATA;
-            }
-            else /* Read direction */
-            {
-                I2CM_state = I2CM_I2C_FSM_MSTR_RD_DATA;
-                         slaveAddress |= I2CM_I2C_READ_FLAG;
-            }
-
-            /* The TX and RX FIFO have to be EMPTY */
-
-            I2CM_TX_FIFO_WR_REG = slaveAddress; /* Put address in TX FIFO */
-            //I2CM_ClearMasterInterruptSource(I2CM_INTR_MASTER_ALL);
-
-            I2CM_I2C_MASTER_GENERATE_START;
-            
-
-            while(!I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK      |
-                                                      I2CM_INTR_MASTER_I2C_NACK     |
-                                                      I2CM_INTR_MASTER_I2C_ARB_LOST |
-                                                      I2CM_INTR_MASTER_I2C_BUS_ERROR))
-            {
-                /*
-                * Write: wait until address has been transferred
-                * Read : wait until address has been transferred, data byte is going to RX FIFO as well.
-                */
-            }
-
-            /* Check the results of the address phase */
-            if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ACK))
-            {
-                errStatus = I2CM_I2C_MSTR_NO_ERROR;
-            }
-            else if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_NACK))
-            {
-                errStatus = I2CM_I2C_MSTR_ERR_LB_NAK;
-            }
-            else if(I2CM_CHECK_INTR_MASTER(I2CM_INTR_MASTER_I2C_ARB_LOST))
-            {
-                I2CM_state = I2CM_I2C_FSM_IDLE;
-                             errStatus = I2CM_I2C_MSTR_ERR_ARB_LOST;
-                             resetIp   = I2CM_I2C_RESET_ERROR;
-            }
-            else /* I2CM_INTR_MASTER_I2C_BUS_ERROR set is else condition */
-            {
-                I2CM_state = I2CM_I2C_FSM_IDLE;
-                             errStatus = I2CM_I2C_MSTR_ERR_BUS_ERR;
-                             resetIp   = I2CM_I2C_RESET_ERROR;
-            }
-
-            I2CM_ClearMasterInterruptSource(I2CM_INTR_MASTER_I2C_ACK      |
-                                                        I2CM_INTR_MASTER_I2C_NACK     |
-                                                        I2CM_INTR_MASTER_I2C_ARB_LOST |
-                                                        I2CM_INTR_MASTER_I2C_BUS_ERROR);
-
-            /* Reset block in case of: LOST_ARB or BUS_ERR */
-            if(0u != resetIp)
-            {
-                I2CM_SCB_SW_RESET;
-            }
-            
-        }
-    }
-
-    return(errStatus);
-}
 
 /*******************************************************************************
 * Function Name: I2CM_I2CMasterSendRestart

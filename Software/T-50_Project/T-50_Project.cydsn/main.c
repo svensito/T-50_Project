@@ -23,6 +23,12 @@ volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Inter
 volatile uint8_t blink_cnt = 0;
 
 /*=============================*/
+/* TASK Flags*/
+/*=============================*/
+
+
+
+/*=============================*/
 /*Remote Input variables*/
 /*=============================*/
 uint8_t PPM_channel = 0;                    // input channel variable
@@ -72,17 +78,17 @@ uint16_t NavLightCompare    = 0;    // Nav Light PWM Compare Value
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
-struct turn_rates_obj
-{
-	long p,q,r;
-};  // used for getting the turnrates within one struct out of IMU.c
-
-struct turn_rates_obj turn_rate;
+#define GYRO_TASK   TRUE
 
 int16_t turn_rate_p = 0;
 int16_t turn_rate_q = 0;
 int16_t turn_rate_r = 0;
 
+
+/*=============================*/
+/* General Functions */
+/*=============================*/
+// UART Put Num to write serial number data
 void UART_1_UartPutNum(int32_t num)
 {
     char k[31];
@@ -112,7 +118,8 @@ int main()
     UART_1_UartPutString("UART OK\r\n");
     
     gyro_start();
-    
+    UART_1_UartPutString("Started OK\r\n");
+    //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
     for(;;)
     {
@@ -124,24 +131,24 @@ int main()
               =======================================*/
             task_flag = FALSE;
             
-            blink_cnt++;
-            if(blink_cnt == 10)
-            {
-                blink_cnt = 0;   
-       
-            }
-            if(blink_cnt == 100)
-            {
-                //Pin_2_Write(0xFF);
-                
-            }
-            if(blink_cnt == 110)
-            {
-                blink_cnt = 0;
-                //Pin_2_Write(0x00);    
-            }
-            //NavLightCompare++;
-            //NavLightPWM_WriteCompare(NavLightCompare);      
+//            blink_cnt++;
+//            if(blink_cnt == 10)
+//            {
+//                blink_cnt = 0;   
+//       
+//            }
+//            if(blink_cnt == 100)
+//            {
+//                //Pin_2_Write(0xFF);
+//                
+//            }
+//            if(blink_cnt == 110)
+//            {
+//                blink_cnt = 0;
+//                //Pin_2_Write(0x00);    
+//            }
+//            //NavLightCompare++;
+//            //NavLightPWM_WriteCompare(NavLightCompare);      
             
             /*=======================================
                 Light Control
@@ -178,9 +185,18 @@ int main()
             /*=======================================
                 Sensor Reading
               =======================================*/
-            turn_rate = gyro_read();
-            UART_1_UartPutNum(turn_rate_p);
-            UART_1_UartPutString(";\r\n");
+            //turn_rate_p = gyro_read_p();
+            //UART_1_UartPutNum(turn_rate_p);
+            if(GYRO_TASK == TRUE)
+            {
+                gyro_read();
+                UART_1_UartPutNum(turn_rate_p);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(turn_rate_q);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(turn_rate_r);
+                UART_1_UartPutString(";\r\n");
+            }
             /*=======================================
                 Output Control
               =======================================*/

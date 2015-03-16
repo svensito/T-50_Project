@@ -80,7 +80,7 @@ T50 Project
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/T-50_Cover.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/T-50_Cover.JPG
 
 \end_inset
 
@@ -301,7 +301,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/T-50_Lights.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/T-50_Lights.JPG
 
 \end_inset
 
@@ -359,7 +359,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/3W_LED.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/3W_LED.JPG
 
 \end_inset
 
@@ -412,7 +412,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/Standard_LED.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/Standard_LED.JPG
 
 \end_inset
 
@@ -500,7 +500,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/LED_Rocket_CutOut.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/LED_Rocket_CutOut.JPG
 	scale 50
 
 \end_inset
@@ -538,17 +538,18 @@ name "fig:Rocket-imitation-cut"
 
 \begin_layout Standard
 The navigation lights have been installed at the center fuselage at the
- sides of the intake.
- The current for the red and green leds have been adapted such that the
- brightness of both leds match.
+ sides of the intake and the rear of the vertical stabilizer.
+ The current for the red, green and white leds have been adapted such that
+ the brightness of all leds match.
  The supply voltage for the lights is 5VDC, the red LED takes a current
  of 30mA at 2,0VDC, therefore needs a resistor of 66 ohms (taking 60 ohms;
  parallel 100 and 150 Ohms) (@ 60mW) to limit the current.
  The green led is much brighter than the red led, at 2,8VDC and 10mA the
  brightness levels of both leds seemed to match.
  The green led is getting a resistor of 220ohms (@ 22mW) in series.
- The brightness levels at 5VDC with limiting resistors is shown in figure
- 
+ The white led is getting a 100ohms resistor and using 20mA of current.
+ The brightness levels of all three leds at 5VDC with limiting resistors
+ is shown in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:NAV-LED-brighntess"
@@ -568,7 +569,8 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/SNFU/Documents/T-50_Project/Docu/Pictures/LED_Brightness.JPG
+	filename C:/Users/SNFU/Documents/T-50_UAV_Project/Docu/Pictures/LED_Brightness_Compl.JPG
+	scale 50
 
 \end_inset
 
