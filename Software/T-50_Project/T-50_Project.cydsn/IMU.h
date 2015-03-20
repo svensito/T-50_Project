@@ -48,23 +48,13 @@ void gyro_start(void);
 void temp_read(void);
 int8_t read_gyro_registry(uint8_t registry);
 void write_gyro_registry(uint8_t registry, uint8_t data);
-
-volatile struct turn_rates_s
-{
-    long p,q,r;
-};
-
 void gyro_read(void);
-int16_t gyro_read_p(void);
-//struct turn_rates_obj gyro_read(void);
 void gyro_calibration(void);
 
 // #################################
 // LSM303 D Accelerometer & Magnetometer
 // 7 bit Address is
 #define LSM303_ADDRESS              0b0011101   // as per Datasheet o 22 - SA0 is High by default
-#define LSM303_ACC_ADDRESS_READ		0x33	// 0011 0011
-#define LSM303_ACC_ADDRESS_WRITE	0x32	// 0011 0010
 
 // Control Registers LSM303
 #define LSM303_MAG_WHO_AM_I			0x0F
@@ -104,29 +94,16 @@ void gyro_calibration(void);
 #define LSM303_MAG_TEMP_H			0x06
 
 //###################################
-// ACC Functions
-/* ACC reading*/
+// LSM303 Functions
 
 // Function prototypes
 void write_acc_registry(char registry, char data);
 void acc_start(void);
-struct acc_readings_obj acc_reading(void);
+void acc_read(void);
 
 void write_mag_registry(char registry, char data);
 void mag_start(void);
-
-// #################################
-// Magnetometer address
-#define LSM303_MAG_ADDRESS_READ		0x3D	// 0011 1101	as per Pololu website and Datasheet
-#define LSM303_MAG_ADDRESS_WRITE	0x3C	// 0011 1100
-
-// Magnetometer Registers
-
-
-
-
-// Function prototypes
-
+void mag_read(void);
 
 // #################################
 // Barometer Addresses

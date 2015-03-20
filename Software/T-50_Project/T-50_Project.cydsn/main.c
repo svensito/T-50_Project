@@ -14,13 +14,17 @@
 #include <project.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <IMU.h>
 
 #define FALSE   0
 #define TRUE    1
 
+#define PI			3.1415926535897932384626433832795
+
 volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
 volatile uint8_t blink_cnt = 0;
+float sample_time = 0.01;               // 10 ms Sample time
 
 /*=============================*/
 /* TASK Flags*/
@@ -79,11 +83,44 @@ uint16_t NavLightCompare    = 0;    // Nav Light PWM Compare Value
 /*IMU variables*/
 /*=============================*/
 #define GYRO_TASK   TRUE
+#define ACC_TASK    TRUE
+#define MAG_TASK    FALSE
 
 int16_t turn_rate_p = 0;
 int16_t turn_rate_q = 0;
 int16_t turn_rate_r = 0;
+/* accelerations*/
+int16_t acc_x_g = 0;
+int16_t acc_y_g = 0;
+int16_t acc_z_g = 0;
+/* magnetic out*/
+int16_t mag_x_g = 0;
+int16_t mag_y_g = 0;
+int16_t mag_z_g = 0;
 
+/* Euler Angles */
+int16_t Theta, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
+int16_t Phi, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+
+
+
+/*=============================*/
+/* Kalman Filter Data			*/
+/*=============================*/
+// weighing matrices ???
+float Q_angle = 0.005;
+float Q_gyro = 0.005;
+float R_angle = 0.02;
+// Estimation of Theta (Kalman)
+float q_bias = 0;
+//int8_t P_00_Theta, P_01_Theta, P_10_Theta, P_11_Theta = 0;
+float P_Theta[2][2] = {0,0,0,0};
+float Theta_temp, S_Theta, K_0_Theta, K_1_Theta = 0;
+// Estimation of Phi (Kalman)
+float p_bias = 0;
+//int8_t P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
+float P_Phi[2][2] = {0,0,0,0};
+float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 
 /*=============================*/
 /* General Functions */
@@ -118,6 +155,7 @@ int main()
     UART_1_UartPutString("UART OK\r\n");
     
     gyro_start();
+    acc_start();
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
@@ -190,13 +228,84 @@ int main()
             if(GYRO_TASK == TRUE)
             {
                 gyro_read();
-                UART_1_UartPutNum(turn_rate_p);
-                UART_1_UartPutString(";");
-                UART_1_UartPutNum(turn_rate_q);
-                UART_1_UartPutString(";");
-                UART_1_UartPutNum(turn_rate_r);
-                UART_1_UartPutString(";\r\n");
             }
+            if(ACC_TASK == TRUE)
+            {
+                acc_read();
+            }
+            
+            /* Theta and Phi out of acceleration data*/
+            Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
+		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
+        
+			/*=========================================================*/
+			/* Calculating the attitude by using Kalman Filtering START*/
+			
+            Theta += sample_time * (turn_rate_q-q_bias);
+            
+			//P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
+            P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
+//			P_01_Theta +=  - sample_time * P_11_Theta;
+            P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
+			//P_10_Theta = P_01_Theta;
+            P_Theta[1][0] = P_Theta[0][1];
+			//P_11_Theta +=  + Q_gyro * sample_time;
+            P_Theta[1][1] +=  + Q_gyro * sample_time;
+			
+			
+			Phi += sample_time * (turn_rate_p-p_bias);
+			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
+			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
+			P_Phi[1][0] = P_Phi[0][1];
+			P_Phi[1][1] +=  + Q_gyro * sample_time;
+			
+		
+			/*
+			Psi += sample_time * (r_filt-r_bias);
+			P_00_Psi +=  - sample_time * (P_10_Psi + P_01_Psi) + Q_angle * sample_time;
+			P_01_Psi +=  - sample_time * P_11_Psi;
+			P_10_Psi +=  - sample_time * P_11_Psi;
+			P_11_Psi +=  + Q_gyro * sample_time;
+			*/
+			Theta_temp = Theta_acc - Theta;
+			S_Theta = P_Theta[0][0] + R_angle;
+			K_0_Theta = P_Theta[0][0] / S_Theta;
+			K_1_Theta = P_Theta[1][0] / S_Theta;
+			
+			Phi_temp = Phi_acc - Phi;
+			S_Phi = P_Phi[0][0] + R_angle;
+			K_0_Phi = P_Phi[0][0] / S_Phi;
+			K_1_Phi = P_Phi[1][0] / S_Phi;
+			/*
+			Psi_temp = mag - Psi;
+			S_Psi = P_00_Psi + R_angle;
+			K_0_Psi = P_00_Psi / S_Psi;
+			K_1_Psi = P_10_Psi / S_Psi;
+			*/
+			Theta +=  K_0_Theta * Theta_temp;
+			q_bias  +=  K_1_Theta * Theta_temp;
+			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
+			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
+			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
+			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
+			
+			Phi +=  K_0_Phi * Phi_temp;
+			p_bias  +=  K_1_Phi * Phi_temp;
+			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
+			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
+			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
+			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
+		
+			
+			/* Calculating the attitude by using Kalman Filtering END*/
+			/*=======================================================*/
+		
+            UART_1_UartPutNum(Theta);
+            UART_1_UartPutString(" ");
+            UART_1_UartPutNum(Phi);
+            UART_1_UartPutString(" \r\n");
+                
+                
             /*=======================================
                 Output Control
               =======================================*/

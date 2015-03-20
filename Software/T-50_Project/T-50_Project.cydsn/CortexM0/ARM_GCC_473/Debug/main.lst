@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -28,108 +28,239 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 1
   25              		.size	blink_cnt, 1
   26              	blink_cnt:
   27 0001 00       		.space	1
-  28              		.global	PPM_channel
-  29              		.type	PPM_channel, %object
-  30              		.size	PPM_channel, 1
-  31              	PPM_channel:
-  32 0002 00       		.space	1
-  33              		.global	ctrl_in
-  34 0003 00       		.align	2
-  35              		.type	ctrl_in, %object
-  36              		.size	ctrl_in, 16
-  37              	ctrl_in:
-  38 0004 00000000 		.space	16
-  38      00000000 
-  38      00000000 
-  38      00000000 
-  39              		.global	ctrl_out
-  40              		.align	2
-  41              		.type	ctrl_out, %object
-  42              		.size	ctrl_out, 26
-  43              	ctrl_out:
-  44 0014 00000000 		.space	26
-  44      00000000 
-  44      00000000 
-  44      00000000 
-  44      00000000 
-  45              		.global	flag_LightsEnabled
-  46              		.data
-  47              		.type	flag_LightsEnabled, %object
-  48              		.size	flag_LightsEnabled, 1
-  49              	flag_LightsEnabled:
-  50 0000 01       		.byte	1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 2
+  28              		.global	sample_time
+  29              		.data
+  30              		.align	2
+  31              		.type	sample_time, %object
+  32              		.size	sample_time, 4
+  33              	sample_time:
+  34 0000 0AD7233C 		.word	1008981770
+  35              		.global	PPM_channel
+  36              		.bss
+  37              		.type	PPM_channel, %object
+  38              		.size	PPM_channel, 1
+  39              	PPM_channel:
+  40 0002 00       		.space	1
+  41              		.global	ctrl_in
+  42 0003 00       		.align	2
+  43              		.type	ctrl_in, %object
+  44              		.size	ctrl_in, 16
+  45              	ctrl_in:
+  46 0004 00000000 		.space	16
+  46      00000000 
+  46      00000000 
+  46      00000000 
+  47              		.global	ctrl_out
+  48              		.align	2
+  49              		.type	ctrl_out, %object
+  50              		.size	ctrl_out, 26
+  51              	ctrl_out:
+  52 0014 00000000 		.space	26
+  52      00000000 
+  52      00000000 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 2
 
 
-  51              		.global	flag_NavLightPulse
-  52              		.bss
-  53              		.type	flag_NavLightPulse, %object
-  54              		.size	flag_NavLightPulse, 1
-  55              	flag_NavLightPulse:
-  56 002e 00       		.space	1
-  57              		.global	NavLightBright
-  58              		.data
-  59 0001 00       		.align	1
-  60              		.type	NavLightBright, %object
-  61              		.size	NavLightBright, 2
-  62              	NavLightBright:
-  63 0002 6400     		.short	100
-  64              		.global	NavLightDim
-  65              		.bss
-  66 002f 00       		.align	1
-  67              		.type	NavLightDim, %object
-  68              		.size	NavLightDim, 2
-  69              	NavLightDim:
-  70 0030 0000     		.space	2
-  71              		.global	NavLightStep
-  72              		.data
-  73              		.align	1
-  74              		.type	NavLightStep, %object
-  75              		.size	NavLightStep, 2
-  76              	NavLightStep:
-  77 0004 0100     		.short	1
-  78              		.global	NavLightCompare
-  79              		.bss
-  80              		.align	1
-  81              		.type	NavLightCompare, %object
-  82              		.size	NavLightCompare, 2
-  83              	NavLightCompare:
-  84 0032 0000     		.space	2
-  85              		.comm	turn_rate,12,4
-  86              		.global	turn_rate_p
-  87              		.align	1
-  88              		.type	turn_rate_p, %object
-  89              		.size	turn_rate_p, 2
-  90              	turn_rate_p:
-  91 0034 0000     		.space	2
-  92              		.global	turn_rate_q
-  93              		.align	1
-  94              		.type	turn_rate_q, %object
-  95              		.size	turn_rate_q, 2
-  96              	turn_rate_q:
-  97 0036 0000     		.space	2
-  98              		.global	turn_rate_r
-  99              		.align	1
- 100              		.type	turn_rate_r, %object
- 101              		.size	turn_rate_r, 2
- 102              	turn_rate_r:
- 103 0038 0000     		.space	2
- 104 003a 0000     		.section	.rodata
- 105              		.align	2
- 106              	.LC0:
- 107 0000 256400   		.ascii	"%d\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 3
+  52      00000000 
+  52      00000000 
+  53              		.global	flag_LightsEnabled
+  54              		.data
+  55              		.type	flag_LightsEnabled, %object
+  56              		.size	flag_LightsEnabled, 1
+  57              	flag_LightsEnabled:
+  58 0004 01       		.byte	1
+  59              		.global	flag_NavLightPulse
+  60              		.bss
+  61              		.type	flag_NavLightPulse, %object
+  62              		.size	flag_NavLightPulse, 1
+  63              	flag_NavLightPulse:
+  64 002e 00       		.space	1
+  65              		.global	NavLightBright
+  66              		.data
+  67 0005 00       		.align	1
+  68              		.type	NavLightBright, %object
+  69              		.size	NavLightBright, 2
+  70              	NavLightBright:
+  71 0006 6400     		.short	100
+  72              		.global	NavLightDim
+  73              		.bss
+  74 002f 00       		.align	1
+  75              		.type	NavLightDim, %object
+  76              		.size	NavLightDim, 2
+  77              	NavLightDim:
+  78 0030 0000     		.space	2
+  79              		.global	NavLightStep
+  80              		.data
+  81              		.align	1
+  82              		.type	NavLightStep, %object
+  83              		.size	NavLightStep, 2
+  84              	NavLightStep:
+  85 0008 0100     		.short	1
+  86              		.global	NavLightCompare
+  87              		.bss
+  88              		.align	1
+  89              		.type	NavLightCompare, %object
+  90              		.size	NavLightCompare, 2
+  91              	NavLightCompare:
+  92 0032 0000     		.space	2
+  93              		.global	turn_rate_p
+  94              		.align	1
+  95              		.type	turn_rate_p, %object
+  96              		.size	turn_rate_p, 2
+  97              	turn_rate_p:
+  98 0034 0000     		.space	2
+  99              		.global	turn_rate_q
+ 100              		.align	1
+ 101              		.type	turn_rate_q, %object
+ 102              		.size	turn_rate_q, 2
+ 103              	turn_rate_q:
+ 104 0036 0000     		.space	2
+ 105              		.global	turn_rate_r
+ 106              		.align	1
+ 107              		.type	turn_rate_r, %object
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 3
 
 
- 108              		.section	.text.UART_1_UartPutNum,"ax",%progbits
- 109              		.align	2
- 110              		.global	UART_1_UartPutNum
- 111              		.code	16
- 112              		.thumb_func
- 113              		.type	UART_1_UartPutNum, %function
- 114              	UART_1_UartPutNum:
- 115              	.LFB33:
- 116              		.file 1 ".\\main.c"
+ 108              		.size	turn_rate_r, 2
+ 109              	turn_rate_r:
+ 110 0038 0000     		.space	2
+ 111              		.global	acc_x_g
+ 112              		.align	1
+ 113              		.type	acc_x_g, %object
+ 114              		.size	acc_x_g, 2
+ 115              	acc_x_g:
+ 116 003a 0000     		.space	2
+ 117              		.global	acc_y_g
+ 118              		.align	1
+ 119              		.type	acc_y_g, %object
+ 120              		.size	acc_y_g, 2
+ 121              	acc_y_g:
+ 122 003c 0000     		.space	2
+ 123              		.global	acc_z_g
+ 124              		.align	1
+ 125              		.type	acc_z_g, %object
+ 126              		.size	acc_z_g, 2
+ 127              	acc_z_g:
+ 128 003e 0000     		.space	2
+ 129              		.global	mag_x_g
+ 130              		.align	1
+ 131              		.type	mag_x_g, %object
+ 132              		.size	mag_x_g, 2
+ 133              	mag_x_g:
+ 134 0040 0000     		.space	2
+ 135              		.global	mag_y_g
+ 136              		.align	1
+ 137              		.type	mag_y_g, %object
+ 138              		.size	mag_y_g, 2
+ 139              	mag_y_g:
+ 140 0042 0000     		.space	2
+ 141              		.global	mag_z_g
+ 142              		.align	1
+ 143              		.type	mag_z_g, %object
+ 144              		.size	mag_z_g, 2
+ 145              	mag_z_g:
+ 146 0044 0000     		.space	2
+ 147              		.comm	Theta,2,2
+ 148              		.global	Theta_acc
+ 149              		.align	1
+ 150              		.type	Theta_acc, %object
+ 151              		.size	Theta_acc, 2
+ 152              	Theta_acc:
+ 153 0046 0000     		.space	2
+ 154              		.comm	Phi,2,2
+ 155              		.global	Phi_acc
+ 156              		.align	1
+ 157              		.type	Phi_acc, %object
+ 158              		.size	Phi_acc, 2
+ 159              	Phi_acc:
+ 160 0048 0000     		.space	2
+ 161              		.global	Q_angle
+ 162              		.data
+ 163 000a 0000     		.align	2
+ 164              		.type	Q_angle, %object
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 4
+
+
+ 165              		.size	Q_angle, 4
+ 166              	Q_angle:
+ 167 000c 0AD7A33B 		.word	1000593162
+ 168              		.global	Q_gyro
+ 169              		.align	2
+ 170              		.type	Q_gyro, %object
+ 171              		.size	Q_gyro, 4
+ 172              	Q_gyro:
+ 173 0010 0AD7A33B 		.word	1000593162
+ 174              		.global	R_angle
+ 175              		.align	2
+ 176              		.type	R_angle, %object
+ 177              		.size	R_angle, 4
+ 178              	R_angle:
+ 179 0014 0AD7A33C 		.word	1017370378
+ 180              		.global	q_bias
+ 181              		.bss
+ 182 004a 0000     		.align	2
+ 183              		.type	q_bias, %object
+ 184              		.size	q_bias, 4
+ 185              	q_bias:
+ 186 004c 00000000 		.space	4
+ 187              		.global	P_Theta
+ 188              		.align	2
+ 189              		.type	P_Theta, %object
+ 190              		.size	P_Theta, 16
+ 191              	P_Theta:
+ 192 0050 00000000 		.space	16
+ 192      00000000 
+ 192      00000000 
+ 192      00000000 
+ 193              		.comm	Theta_temp,4,4
+ 194              		.comm	S_Theta,4,4
+ 195              		.comm	K_0_Theta,4,4
+ 196              		.global	K_1_Theta
+ 197              		.align	2
+ 198              		.type	K_1_Theta, %object
+ 199              		.size	K_1_Theta, 4
+ 200              	K_1_Theta:
+ 201 0060 00000000 		.space	4
+ 202              		.global	p_bias
+ 203              		.align	2
+ 204              		.type	p_bias, %object
+ 205              		.size	p_bias, 4
+ 206              	p_bias:
+ 207 0064 00000000 		.space	4
+ 208              		.global	P_Phi
+ 209              		.align	2
+ 210              		.type	P_Phi, %object
+ 211              		.size	P_Phi, 16
+ 212              	P_Phi:
+ 213 0068 00000000 		.space	16
+ 213      00000000 
+ 213      00000000 
+ 213      00000000 
+ 214              		.comm	Phi_temp,4,4
+ 215              		.comm	S_Phi,4,4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 5
+
+
+ 216              		.comm	K_0_Phi,4,4
+ 217              		.global	K_1_Phi
+ 218              		.align	2
+ 219              		.type	K_1_Phi, %object
+ 220              		.size	K_1_Phi, 4
+ 221              	K_1_Phi:
+ 222 0078 00000000 		.space	4
+ 223              		.section	.rodata
+ 224              		.align	2
+ 225              	.LC0:
+ 226 0000 256400   		.ascii	"%d\000"
+ 227              		.section	.text.UART_1_UartPutNum,"ax",%progbits
+ 228              		.align	2
+ 229              		.global	UART_1_UartPutNum
+ 230              		.code	16
+ 231              		.thumb_func
+ 232              		.type	UART_1_UartPutNum, %function
+ 233              	UART_1_UartPutNum:
+ 234              	.LFB33:
+ 235              		.file 1 ".\\main.c"
    1:.\main.c      **** /* ========================================
    2:.\main.c      ****  *
    3:.\main.c      ****  * Copyright SNFU
@@ -146,1845 +277,2976 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 1
   14:.\main.c      **** #include <project.h>
   15:.\main.c      **** #include <stdio.h>
   16:.\main.c      **** #include <stdlib.h>
-  17:.\main.c      **** #include <IMU.h>
-  18:.\main.c      **** 
-  19:.\main.c      **** #define FALSE   0
-  20:.\main.c      **** #define TRUE    1
-  21:.\main.c      **** 
-  22:.\main.c      **** volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
-  23:.\main.c      **** volatile uint8_t blink_cnt = 0;
+  17:.\main.c      **** #include <math.h>
+  18:.\main.c      **** #include <IMU.h>
+  19:.\main.c      **** 
+  20:.\main.c      **** #define FALSE   0
+  21:.\main.c      **** #define TRUE    1
+  22:.\main.c      **** 
+  23:.\main.c      **** #define PI			3.1415926535897932384626433832795
   24:.\main.c      **** 
-  25:.\main.c      **** /*=============================*/
-  26:.\main.c      **** /* TASK Flags*/
-  27:.\main.c      **** /*=============================*/
-  28:.\main.c      **** #define LIGHT_TASK  TRUE
-  29:.\main.c      **** #define GYRO_TASK   TRUE
-  30:.\main.c      **** 
-  31:.\main.c      **** 
-  32:.\main.c      **** /*=============================*/
-  33:.\main.c      **** /*Remote Input variables*/
-  34:.\main.c      **** /*=============================*/
-  35:.\main.c      **** uint8_t PPM_channel = 0;                    // input channel variable
-  36:.\main.c      **** uint16_t ctrl_in[8] = {0};                  // input control vector
-  37:.\main.c      **** uint16_t ctrl_out[13] = {0};                // output control vector
-  38:.\main.c      **** 
-  39:.\main.c      **** enum e_in{   // Input Control Enum - 8 Channels
-  40:.\main.c      ****     in_mot = 0,
-  41:.\main.c      ****     in_ail,
-  42:.\main.c      ****     in_ele,
-  43:.\main.c      ****     in_rud,
-  44:.\main.c      ****     in_fl,
-  45:.\main.c      ****     in_ge,
-  46:.\main.c      ****     in_sp1,
-  47:.\main.c      ****     in_sp2
-  48:.\main.c      **** };
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 4
+  25:.\main.c      **** volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
+  26:.\main.c      **** volatile uint8_t blink_cnt = 0;
+  27:.\main.c      **** float sample_time = 0.01;               // 10 ms Sample time
+  28:.\main.c      **** 
+  29:.\main.c      **** /*=============================*/
+  30:.\main.c      **** /* TASK Flags*/
+  31:.\main.c      **** /*=============================*/
+  32:.\main.c      **** 
+  33:.\main.c      **** 
+  34:.\main.c      **** 
+  35:.\main.c      **** /*=============================*/
+  36:.\main.c      **** /*Remote Input variables*/
+  37:.\main.c      **** /*=============================*/
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 6
 
 
-  49:.\main.c      **** 
-  50:.\main.c      **** enum e_out{   // Output Control Enum - 13 Signals
-  51:.\main.c      ****     out_mot = 0,
-  52:.\main.c      ****     out_ail1,
-  53:.\main.c      ****     out_ail2,
-  54:.\main.c      ****     out_ele1,
-  55:.\main.c      ****     out_ele2,
-  56:.\main.c      ****     out_rud,
-  57:.\main.c      ****     out_fl1,
-  58:.\main.c      ****     out_fl2,
-  59:.\main.c      ****     out_ge1,
-  60:.\main.c      ****     out_ge2,
-  61:.\main.c      ****     out_ge3,
-  62:.\main.c      ****     out_sp1,
-  63:.\main.c      ****     out_sp2
-  64:.\main.c      **** };
-  65:.\main.c      **** 
-  66:.\main.c      **** /*=============================*/
-  67:.\main.c      **** /*Light control variables*/
-  68:.\main.c      **** /*=============================*/
-  69:.\main.c      **** uint8_t flag_LightsEnabled = TRUE;
-  70:.\main.c      **** 
-  71:.\main.c      **** /*Nav Light Control START -> Pulsing of the Navigation Lights*/
-  72:.\main.c      **** uint8_t flag_NavLightPulse  = FALSE;    // Nav Light Pulse flag (to count up or down)
-  73:.\main.c      **** uint16_t NavLightBright     = 100;  // Upper value for the brightness 100 = 100%
-  74:.\main.c      **** uint16_t NavLightDim        = 0;    // Lower value for the brightness 0 = 0%
-  75:.\main.c      **** uint16_t NavLightStep       = 1;    // Nav Light Pulse Stepwidth => brightness change per 10ms
-  76:.\main.c      **** uint16_t NavLightCompare    = 0;    // Nav Light PWM Compare Value
-  77:.\main.c      **** /*Nav Light Control END*/
-  78:.\main.c      **** 
-  79:.\main.c      **** /*=============================*/
-  80:.\main.c      **** /*IMU variables*/
-  81:.\main.c      **** /*=============================*/
-  82:.\main.c      **** struct turn_rates_obj
-  83:.\main.c      **** {
-  84:.\main.c      **** 	long p,q,r;
-  85:.\main.c      **** };  // used for getting the turnrates within one struct out of IMU.c
-  86:.\main.c      **** 
-  87:.\main.c      **** struct turn_rates_obj turn_rate;
+  38:.\main.c      **** uint8_t PPM_channel = 0;                    // input channel variable
+  39:.\main.c      **** uint16_t ctrl_in[8] = {0};                  // input control vector
+  40:.\main.c      **** uint16_t ctrl_out[13] = {0};                // output control vector
+  41:.\main.c      **** 
+  42:.\main.c      **** enum e_in{   // Input Control Enum - 8 Channels
+  43:.\main.c      ****     in_mot = 0,
+  44:.\main.c      ****     in_ail,
+  45:.\main.c      ****     in_ele,
+  46:.\main.c      ****     in_rud,
+  47:.\main.c      ****     in_fl,
+  48:.\main.c      ****     in_ge,
+  49:.\main.c      ****     in_sp1,
+  50:.\main.c      ****     in_sp2
+  51:.\main.c      **** };
+  52:.\main.c      **** 
+  53:.\main.c      **** enum e_out{   // Output Control Enum - 13 Signals
+  54:.\main.c      ****     out_mot = 0,
+  55:.\main.c      ****     out_ail1,
+  56:.\main.c      ****     out_ail2,
+  57:.\main.c      ****     out_ele1,
+  58:.\main.c      ****     out_ele2,
+  59:.\main.c      ****     out_rud,
+  60:.\main.c      ****     out_fl1,
+  61:.\main.c      ****     out_fl2,
+  62:.\main.c      ****     out_ge1,
+  63:.\main.c      ****     out_ge2,
+  64:.\main.c      ****     out_ge3,
+  65:.\main.c      ****     out_sp1,
+  66:.\main.c      ****     out_sp2
+  67:.\main.c      **** };
+  68:.\main.c      **** 
+  69:.\main.c      **** /*=============================*/
+  70:.\main.c      **** /*Light control variables*/
+  71:.\main.c      **** /*=============================*/
+  72:.\main.c      **** uint8_t flag_LightsEnabled = TRUE;
+  73:.\main.c      **** 
+  74:.\main.c      **** /*Nav Light Control START -> Pulsing of the Navigation Lights*/
+  75:.\main.c      **** uint8_t flag_NavLightPulse  = FALSE;    // Nav Light Pulse flag (to count up or down)
+  76:.\main.c      **** uint16_t NavLightBright     = 100;  // Upper value for the brightness 100 = 100%
+  77:.\main.c      **** uint16_t NavLightDim        = 0;    // Lower value for the brightness 0 = 0%
+  78:.\main.c      **** uint16_t NavLightStep       = 1;    // Nav Light Pulse Stepwidth => brightness change per 10ms
+  79:.\main.c      **** uint16_t NavLightCompare    = 0;    // Nav Light PWM Compare Value
+  80:.\main.c      **** /*Nav Light Control END*/
+  81:.\main.c      **** 
+  82:.\main.c      **** /*=============================*/
+  83:.\main.c      **** /*IMU variables*/
+  84:.\main.c      **** /*=============================*/
+  85:.\main.c      **** #define GYRO_TASK   TRUE
+  86:.\main.c      **** #define ACC_TASK    TRUE
+  87:.\main.c      **** #define MAG_TASK    FALSE
   88:.\main.c      **** 
   89:.\main.c      **** int16_t turn_rate_p = 0;
   90:.\main.c      **** int16_t turn_rate_q = 0;
   91:.\main.c      **** int16_t turn_rate_r = 0;
-  92:.\main.c      **** 
-  93:.\main.c      **** void UART_1_UartPutNum(int32_t num)
-  94:.\main.c      **** {
- 117              		.loc 1 94 0
- 118              		.cfi_startproc
- 119 0000 80B5     		push	{r7, lr}
- 120              	.LCFI0:
- 121              		.cfi_def_cfa_offset 8
- 122              		.cfi_offset 7, -8
- 123              		.cfi_offset 14, -4
- 124 0002 8AB0     		sub	sp, sp, #40
- 125              	.LCFI1:
- 126              		.cfi_def_cfa_offset 48
- 127 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 5
+  92:.\main.c      **** /* accelerations*/
+  93:.\main.c      **** int16_t acc_x_g = 0;
+  94:.\main.c      **** int16_t acc_y_g = 0;
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 7
 
 
- 128              	.LCFI2:
- 129              		.cfi_def_cfa_register 7
- 130 0006 7860     		str	r0, [r7, #4]
-  95:.\main.c      ****     char k[31];
-  96:.\main.c      ****     sprintf(k,"%d",num);
- 131              		.loc 1 96 0
- 132 0008 391C     		mov	r1, r7
- 133 000a 0831     		add	r1, r1, #8
- 134 000c 074A     		ldr	r2, .L2
- 135 000e 7B68     		ldr	r3, [r7, #4]
- 136 0010 081C     		mov	r0, r1
- 137 0012 111C     		mov	r1, r2
- 138 0014 1A1C     		mov	r2, r3
- 139 0016 FFF7FEFF 		bl	sprintf
-  97:.\main.c      ****     UART_1_UartPutString(k);   
- 140              		.loc 1 97 0
- 141 001a 3B1C     		mov	r3, r7
- 142 001c 0833     		add	r3, r3, #8
- 143 001e 181C     		mov	r0, r3
- 144 0020 FFF7FEFF 		bl	UART_1_UartPutString
-  98:.\main.c      **** }
- 145              		.loc 1 98 0
- 146 0024 BD46     		mov	sp, r7
- 147 0026 0AB0     		add	sp, sp, #40
- 148              		@ sp needed for prologue
- 149 0028 80BD     		pop	{r7, pc}
- 150              	.L3:
- 151 002a C046     		.align	2
- 152              	.L2:
- 153 002c 00000000 		.word	.LC0
- 154              		.cfi_endproc
- 155              	.LFE33:
- 156              		.size	UART_1_UartPutNum, .-UART_1_UartPutNum
- 157              		.section	.rodata
- 158 0003 00       		.align	2
- 159              	.LC2:
- 160 0004 55415254 		.ascii	"UART OK\015\012\000"
- 160      204F4B0D 
- 160      0A00
- 161 000e 0000     		.align	2
- 162              	.LC4:
- 163 0010 53746172 		.ascii	"Started OK\015\012\000"
- 163      74656420 
- 163      4F4B0D0A 
- 163      00
- 164 001d 000000   		.align	2
- 165              	.LC15:
- 166 0020 3B00     		.ascii	";\000"
- 167 0022 0000     		.align	2
- 168              	.LC19:
- 169 0024 3B0D0A00 		.ascii	";\015\012\000"
- 170              		.section	.text.main,"ax",%progbits
- 171              		.align	2
- 172              		.global	main
- 173              		.code	16
- 174              		.thumb_func
- 175              		.type	main, %function
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 6
-
-
- 176              	main:
- 177              	.LFB34:
-  99:.\main.c      **** 
+  95:.\main.c      **** int16_t acc_z_g = 0;
+  96:.\main.c      **** /* magnetic out*/
+  97:.\main.c      **** int16_t mag_x_g = 0;
+  98:.\main.c      **** int16_t mag_y_g = 0;
+  99:.\main.c      **** int16_t mag_z_g = 0;
  100:.\main.c      **** 
- 101:.\main.c      **** int main()
- 102:.\main.c      **** {
- 178              		.loc 1 102 0
- 179              		.cfi_startproc
- 180 0000 80B5     		push	{r7, lr}
- 181              	.LCFI3:
- 182              		.cfi_def_cfa_offset 8
- 183              		.cfi_offset 7, -8
- 184              		.cfi_offset 14, -4
- 185 0002 82B0     		sub	sp, sp, #8
- 186              	.LCFI4:
- 187              		.cfi_def_cfa_offset 16
- 188 0004 00AF     		add	r7, sp, #0
- 189              	.LCFI5:
- 190              		.cfi_def_cfa_register 7
- 103:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
- 104:.\main.c      ****     CyGlobalIntEnable; 
- 191              		.loc 1 104 0
- 192              	@ 104 ".\main.c" 1
- 193 0006 62B6     		CPSIE   i
- 194              	@ 0 "" 2
+ 101:.\main.c      **** /* Euler Angles */
+ 102:.\main.c      **** int16_t Theta, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from a
+ 103:.\main.c      **** int16_t Phi, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accel
+ 104:.\main.c      **** 
  105:.\main.c      **** 
- 106:.\main.c      ****     UART_1_Start();     /* Enabling the UART */
- 195              		.loc 1 106 0
- 196              		.code	16
- 197 0008 FFF7FEFF 		bl	UART_1_Start
- 107:.\main.c      ****     I2CM_Start();
- 198              		.loc 1 107 0
- 199 000c FFF7FEFF 		bl	I2CM_Start
- 108:.\main.c      ****     CyDelay(500);
- 200              		.loc 1 108 0
- 201 0010 FA23     		mov	r3, #250
- 202 0012 5B00     		lsl	r3, r3, #1
- 203 0014 181C     		mov	r0, r3
- 204 0016 FFF7FEFF 		bl	CyDelay
- 109:.\main.c      ****     TaskTimer_Start();
- 205              		.loc 1 109 0
- 206 001a FFF7FEFF 		bl	TaskTimer_Start
- 110:.\main.c      ****     NavLightPWM_Start();
- 207              		.loc 1 110 0
- 208 001e FFF7FEFF 		bl	NavLightPWM_Start
- 111:.\main.c      ****     PPMCounter_Start();
- 209              		.loc 1 111 0
- 210 0022 FFF7FEFF 		bl	PPMCounter_Start
- 112:.\main.c      ****     ServoTimer_Start();
- 211              		.loc 1 112 0
- 212 0026 FFF7FEFF 		bl	ServoTimer_Start
- 113:.\main.c      ****     PPMISR_Start();
- 213              		.loc 1 113 0
- 214 002a FFF7FEFF 		bl	PPMISR_Start
- 114:.\main.c      ****     PPMRstISR_Start();
- 215              		.loc 1 114 0
- 216 002e FFF7FEFF 		bl	PPMRstISR_Start
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 7
+ 106:.\main.c      **** 
+ 107:.\main.c      **** /*=============================*/
+ 108:.\main.c      **** /* Kalman Filter Data			*/
+ 109:.\main.c      **** /*=============================*/
+ 110:.\main.c      **** // weighing matrices ???
+ 111:.\main.c      **** float Q_angle = 0.005;
+ 112:.\main.c      **** float Q_gyro = 0.005;
+ 113:.\main.c      **** float R_angle = 0.02;
+ 114:.\main.c      **** // Estimation of Theta (Kalman)
+ 115:.\main.c      **** float q_bias = 0;
+ 116:.\main.c      **** //int8_t P_00_Theta, P_01_Theta, P_10_Theta, P_11_Theta = 0;
+ 117:.\main.c      **** float P_Theta[2][2] = {0,0,0,0};
+ 118:.\main.c      **** float Theta_temp, S_Theta, K_0_Theta, K_1_Theta = 0;
+ 119:.\main.c      **** // Estimation of Phi (Kalman)
+ 120:.\main.c      **** float p_bias = 0;
+ 121:.\main.c      **** //int8_t P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
+ 122:.\main.c      **** float P_Phi[2][2] = {0,0,0,0};
+ 123:.\main.c      **** float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
+ 124:.\main.c      **** 
+ 125:.\main.c      **** /*=============================*/
+ 126:.\main.c      **** /* General Functions */
+ 127:.\main.c      **** /*=============================*/
+ 128:.\main.c      **** // UART Put Num to write serial number data
+ 129:.\main.c      **** void UART_1_UartPutNum(int32_t num)
+ 130:.\main.c      **** {
+ 236              		.loc 1 130 0
+ 237              		.cfi_startproc
+ 238 0000 80B5     		push	{r7, lr}
+ 239              	.LCFI0:
+ 240              		.cfi_def_cfa_offset 8
+ 241              		.cfi_offset 7, -8
+ 242              		.cfi_offset 14, -4
+ 243 0002 8AB0     		sub	sp, sp, #40
+ 244              	.LCFI1:
+ 245              		.cfi_def_cfa_offset 48
+ 246 0004 00AF     		add	r7, sp, #0
+ 247              	.LCFI2:
+ 248              		.cfi_def_cfa_register 7
+ 249 0006 7860     		str	r0, [r7, #4]
+ 131:.\main.c      ****     char k[31];
+ 132:.\main.c      ****     sprintf(k,"%d",num);
+ 250              		.loc 1 132 0
+ 251 0008 391C     		mov	r1, r7
+ 252 000a 0831     		add	r1, r1, #8
+ 253 000c 074A     		ldr	r2, .L2
+ 254 000e 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 8
 
 
- 115:.\main.c      ****     ServoISR_Start();
- 217              		.loc 1 115 0
- 218 0032 FFF7FEFF 		bl	ServoISR_Start
- 116:.\main.c      ****     TaskISR_Start();
- 219              		.loc 1 116 0
- 220 0036 FFF7FEFF 		bl	TaskISR_Start
- 117:.\main.c      ****     BootISR_Start();
- 221              		.loc 1 117 0
- 222 003a FFF7FEFF 		bl	BootISR_Start
- 118:.\main.c      ****     
- 119:.\main.c      ****     UART_1_UartPutString("UART OK\r\n");
- 223              		.loc 1 119 0
- 224 003e 7C4B     		ldr	r3, .L15
- 225 0040 181C     		mov	r0, r3
- 226 0042 FFF7FEFF 		bl	UART_1_UartPutString
- 120:.\main.c      ****     
- 121:.\main.c      ****     gyro_start();
- 227              		.loc 1 121 0
- 228 0046 FFF7FEFF 		bl	gyro_start
- 122:.\main.c      ****     UART_1_UartPutString("Started OK\r\n");
- 229              		.loc 1 122 0
- 230 004a 7A4B     		ldr	r3, .L15+4
- 231 004c 181C     		mov	r0, r3
- 232 004e FFF7FEFF 		bl	UART_1_UartPutString
- 233 0052 00E0     		b	.L13
- 234              	.L14:
- 123:.\main.c      ****     //CyDelay(500);
- 124:.\main.c      ****     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
- 125:.\main.c      ****     for(;;)
- 126:.\main.c      ****     {
- 127:.\main.c      ****         
- 128:.\main.c      ****         if(task_flag == TRUE)
- 129:.\main.c      ****         {
- 130:.\main.c      ****             /*=======================================
- 131:.\main.c      ****                 Main Task that is executed every 10ms
- 132:.\main.c      ****               =======================================*/
- 133:.\main.c      ****             task_flag = FALSE;
- 134:.\main.c      ****             
- 135:.\main.c      ****             blink_cnt++;
- 136:.\main.c      ****             if(blink_cnt == 10)
- 137:.\main.c      ****             {
- 138:.\main.c      ****                 blink_cnt = 0;   
- 139:.\main.c      ****        
- 140:.\main.c      ****             }
- 141:.\main.c      ****             if(blink_cnt == 100)
- 142:.\main.c      ****             {
- 143:.\main.c      ****                 //Pin_2_Write(0xFF);
- 144:.\main.c      ****                 
- 145:.\main.c      ****             }
- 146:.\main.c      ****             if(blink_cnt == 110)
- 147:.\main.c      ****             {
- 148:.\main.c      ****                 blink_cnt = 0;
- 149:.\main.c      ****                 //Pin_2_Write(0x00);    
- 150:.\main.c      ****             }
- 151:.\main.c      ****             //NavLightCompare++;
- 152:.\main.c      ****             //NavLightPWM_WriteCompare(NavLightCompare);      
- 153:.\main.c      ****             
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 8
+ 255 0010 081C     		mov	r0, r1
+ 256 0012 111C     		mov	r1, r2
+ 257 0014 1A1C     		mov	r2, r3
+ 258 0016 FFF7FEFF 		bl	sprintf
+ 133:.\main.c      ****     UART_1_UartPutString(k);   
+ 259              		.loc 1 133 0
+ 260 001a 3B1C     		mov	r3, r7
+ 261 001c 0833     		add	r3, r3, #8
+ 262 001e 181C     		mov	r0, r3
+ 263 0020 FFF7FEFF 		bl	UART_1_UartPutString
+ 134:.\main.c      **** }
+ 264              		.loc 1 134 0
+ 265 0024 BD46     		mov	sp, r7
+ 266 0026 0AB0     		add	sp, sp, #40
+ 267              		@ sp needed for prologue
+ 268 0028 80BD     		pop	{r7, pc}
+ 269              	.L3:
+ 270 002a C046     		.align	2
+ 271              	.L2:
+ 272 002c 00000000 		.word	.LC0
+ 273              		.cfi_endproc
+ 274              	.LFE33:
+ 275              		.size	UART_1_UartPutNum, .-UART_1_UartPutNum
+ 276              		.section	.rodata
+ 277 0003 00       		.align	2
+ 278              	.LC2:
+ 279 0004 55415254 		.ascii	"UART OK\015\012\000"
+ 279      204F4B0D 
+ 279      0A00
+ 280 000e 0000     		.align	2
+ 281              	.LC4:
+ 282 0010 53746172 		.ascii	"Started OK\015\012\000"
+ 282      74656420 
+ 282      4F4B0D0A 
+ 282      00
+ 283              		.global	__aeabi_i2d
+ 284              		.global	__aeabi_dmul
+ 285              		.global	__aeabi_ddiv
+ 286              		.global	__aeabi_d2iz
+ 287              		.global	__aeabi_i2f
+ 288              		.global	__aeabi_fsub
+ 289              		.global	__aeabi_fmul
+ 290              		.global	__aeabi_fadd
+ 291              		.global	__aeabi_f2iz
+ 292              		.global	__aeabi_fdiv
+ 293 001d 000000   		.align	2
+ 294              	.LC38:
+ 295 0020 2000     		.ascii	" \000"
+ 296 0022 0000     		.align	2
+ 297              	.LC40:
+ 298 0024 200D0A00 		.ascii	" \015\012\000"
+ 299              		.section	.text.main,"ax",%progbits
+ 300              		.align	2
+ 301              		.global	main
+ 302              		.code	16
+ 303              		.thumb_func
+ 304              		.type	main, %function
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 9
 
 
- 154:.\main.c      ****             /*=======================================
- 155:.\main.c      ****                 Light Control
- 156:.\main.c      ****               =======================================*/
- 157:.\main.c      ****             
- 158:.\main.c      ****             if(flag_LightsEnabled == TRUE)
- 159:.\main.c      ****             {
- 160:.\main.c      ****                 /* Lights enabled */
- 161:.\main.c      ****                 // START PWM FOR NAV LIGHTS HERE??
- 162:.\main.c      ****                 if(NavLightCompare == NavLightBright)
- 163:.\main.c      ****                 {
- 164:.\main.c      ****                     flag_NavLightPulse = TRUE;
- 165:.\main.c      ****                 }
- 166:.\main.c      ****                 else if (NavLightCompare == NavLightDim)
- 167:.\main.c      ****                 {
- 168:.\main.c      ****                     flag_NavLightPulse = FALSE;
- 169:.\main.c      ****                 }
- 170:.\main.c      ****                 if(flag_NavLightPulse == 0)
- 171:.\main.c      ****                 {
- 172:.\main.c      ****                     NavLightCompare+=NavLightStep;
- 173:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
- 174:.\main.c      ****                 }
- 175:.\main.c      ****                 else
- 176:.\main.c      ****                 {
- 177:.\main.c      ****                     NavLightCompare-=NavLightStep;
- 178:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
- 179:.\main.c      ****                 }
- 180:.\main.c      ****             }
- 181:.\main.c      ****             else
- 182:.\main.c      ****             {
- 183:.\main.c      ****                 /* Lights disabled*/
- 184:.\main.c      ****             }
- 185:.\main.c      ****             
- 186:.\main.c      ****             /*=======================================
- 187:.\main.c      ****                 Sensor Reading
- 188:.\main.c      ****               =======================================*/
- 189:.\main.c      ****             //turn_rate_p = gyro_read_p();
- 190:.\main.c      ****             //UART_1_UartPutNum(turn_rate_p);
- 191:.\main.c      ****             if(GYRO_TASK == TRUE)
- 192:.\main.c      ****             {
- 193:.\main.c      ****                 gyro_read();
- 194:.\main.c      ****                 UART_1_UartPutNum(turn_rate_p);
- 195:.\main.c      ****                 UART_1_UartPutString(";");
- 196:.\main.c      ****                 UART_1_UartPutNum(turn_rate_q);
- 197:.\main.c      ****                 UART_1_UartPutString(";");
- 198:.\main.c      ****                 UART_1_UartPutNum(turn_rate_r);
- 199:.\main.c      ****                 UART_1_UartPutString(";\r\n");
- 200:.\main.c      ****             }
- 201:.\main.c      ****             /*=======================================
- 202:.\main.c      ****                 Output Control
- 203:.\main.c      ****               =======================================*/
- 204:.\main.c      ****         uint8_t debug = 1;
- 205:.\main.c      ****             if(debug == 0)
- 206:.\main.c      ****             {
- 207:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
- 208:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];    
- 209:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
- 210:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 9
+ 305              	main:
+ 306              	.LFB34:
+ 135:.\main.c      **** 
+ 136:.\main.c      **** 
+ 137:.\main.c      **** int main()
+ 138:.\main.c      **** {
+ 307              		.loc 1 138 0
+ 308              		.cfi_startproc
+ 309 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 310              	.LCFI3:
+ 311              		.cfi_def_cfa_offset 20
+ 312              		.cfi_offset 4, -20
+ 313              		.cfi_offset 5, -16
+ 314              		.cfi_offset 6, -12
+ 315              		.cfi_offset 7, -8
+ 316              		.cfi_offset 14, -4
+ 317 0002 83B0     		sub	sp, sp, #12
+ 318              	.LCFI4:
+ 319              		.cfi_def_cfa_offset 32
+ 320 0004 00AF     		add	r7, sp, #0
+ 321              	.LCFI5:
+ 322              		.cfi_def_cfa_register 7
+ 139:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 140:.\main.c      ****     CyGlobalIntEnable; 
+ 323              		.loc 1 140 0
+ 324              	@ 140 ".\main.c" 1
+ 325 0006 62B6     		CPSIE   i
+ 326              	@ 0 "" 2
+ 141:.\main.c      **** 
+ 142:.\main.c      ****     UART_1_Start();     /* Enabling the UART */
+ 327              		.loc 1 142 0
+ 328              		.code	16
+ 329 0008 FFF7FEFF 		bl	UART_1_Start
+ 143:.\main.c      ****     I2CM_Start();
+ 330              		.loc 1 143 0
+ 331 000c FFF7FEFF 		bl	I2CM_Start
+ 144:.\main.c      ****     CyDelay(500);
+ 332              		.loc 1 144 0
+ 333 0010 FA23     		mov	r3, #250
+ 334 0012 5B00     		lsl	r3, r3, #1
+ 335 0014 181C     		mov	r0, r3
+ 336 0016 FFF7FEFF 		bl	CyDelay
+ 145:.\main.c      ****     TaskTimer_Start();
+ 337              		.loc 1 145 0
+ 338 001a FFF7FEFF 		bl	TaskTimer_Start
+ 146:.\main.c      ****     NavLightPWM_Start();
+ 339              		.loc 1 146 0
+ 340 001e FFF7FEFF 		bl	NavLightPWM_Start
+ 147:.\main.c      ****     PPMCounter_Start();
+ 341              		.loc 1 147 0
+ 342 0022 FFF7FEFF 		bl	PPMCounter_Start
+ 148:.\main.c      ****     ServoTimer_Start();
+ 343              		.loc 1 148 0
+ 344 0026 FFF7FEFF 		bl	ServoTimer_Start
+ 149:.\main.c      ****     PPMISR_Start();
+ 345              		.loc 1 149 0
+ 346 002a FFF7FEFF 		bl	PPMISR_Start
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 10
 
 
- 211:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
- 212:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];
- 213:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_fl];
- 214:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_fl];
- 215:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_ge];
- 216:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_ge];
- 217:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_ge];
- 218:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_sp1];
- 219:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
- 220:.\main.c      ****             }
- 221:.\main.c      ****             else
- 222:.\main.c      ****             {
- 223:.\main.c      ****                 ctrl_in[in_mot] = 1000;
- 224:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
- 225:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
- 226:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
- 227:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
- 228:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
- 229:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
- 230:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
- 231:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
- 232:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
- 233:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
- 234:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
- 235:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
- 236:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
- 237:.\main.c      ****             }
- 238:.\main.c      ****             
- 239:.\main.c      ****             /*=======================================
- 240:.\main.c      ****                 Data Logging
- 241:.\main.c      ****               =======================================*/
- 242:.\main.c      ****             /*    
- 243:.\main.c      ****             UART_1_UartPutNum(ctrl_out[out_mot]);
- 244:.\main.c      ****                 UART_1_UartPutString(";");
- 245:.\main.c      ****                 UART_1_UartPutNum(ctrl_out[out_ail1]);
- 246:.\main.c      ****                 UART_1_UartPutString(";");
- 247:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[2]);
- 248:.\main.c      ****                 UART_1_UartPutString(";");
- 249:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[3]);
- 250:.\main.c      ****                 UART_1_UartPutString(";");
- 251:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[4]);
- 252:.\main.c      ****                 UART_1_UartPutString(";");
- 253:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[5]);
- 254:.\main.c      ****                 UART_1_UartPutString(";");
- 255:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[6]);
- 256:.\main.c      ****                 UART_1_UartPutString(";");
- 257:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[7]);
- 258:.\main.c      ****                 UART_1_UartPutString("\r\n");
- 259:.\main.c      ****             */
- 260:.\main.c      ****         }
- 261:.\main.c      **** 
- 262:.\main.c      ****     }
- 235              		.loc 1 262 0
- 236 0054 C046     		mov	r8, r8
- 237              	.L13:
- 128:.\main.c      ****         if(task_flag == TRUE)
- 238              		.loc 1 128 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 10
+ 150:.\main.c      ****     PPMRstISR_Start();
+ 347              		.loc 1 150 0
+ 348 002e FFF7FEFF 		bl	PPMRstISR_Start
+ 151:.\main.c      ****     ServoISR_Start();
+ 349              		.loc 1 151 0
+ 350 0032 FFF7FEFF 		bl	ServoISR_Start
+ 152:.\main.c      ****     TaskISR_Start();
+ 351              		.loc 1 152 0
+ 352 0036 FFF7FEFF 		bl	TaskISR_Start
+ 153:.\main.c      ****     BootISR_Start();
+ 353              		.loc 1 153 0
+ 354 003a FFF7FEFF 		bl	BootISR_Start
+ 154:.\main.c      ****     
+ 155:.\main.c      ****     UART_1_UartPutString("UART OK\r\n");
+ 355              		.loc 1 155 0
+ 356 003e 1F4B     		ldr	r3, .L13
+ 357 0040 181C     		mov	r0, r3
+ 358 0042 FFF7FEFF 		bl	UART_1_UartPutString
+ 156:.\main.c      ****     
+ 157:.\main.c      ****     gyro_start();
+ 359              		.loc 1 157 0
+ 360 0046 FFF7FEFF 		bl	gyro_start
+ 158:.\main.c      ****     acc_start();
+ 361              		.loc 1 158 0
+ 362 004a FFF7FEFF 		bl	acc_start
+ 159:.\main.c      ****     UART_1_UartPutString("Started OK\r\n");
+ 363              		.loc 1 159 0
+ 364 004e 1C4B     		ldr	r3, .L13+4
+ 365 0050 181C     		mov	r0, r3
+ 366 0052 FFF7FEFF 		bl	UART_1_UartPutString
+ 367 0056 00E0     		b	.L11
+ 368              	.L12:
+ 160:.\main.c      ****     //CyDelay(500);
+ 161:.\main.c      ****     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+ 162:.\main.c      ****     for(;;)
+ 163:.\main.c      ****     {
+ 164:.\main.c      ****         
+ 165:.\main.c      ****         if(task_flag == TRUE)
+ 166:.\main.c      ****         {
+ 167:.\main.c      ****             /*=======================================
+ 168:.\main.c      ****                 Main Task that is executed every 10ms
+ 169:.\main.c      ****               =======================================*/
+ 170:.\main.c      ****             task_flag = FALSE;
+ 171:.\main.c      ****             
+ 172:.\main.c      **** //            blink_cnt++;
+ 173:.\main.c      **** //            if(blink_cnt == 10)
+ 174:.\main.c      **** //            {
+ 175:.\main.c      **** //                blink_cnt = 0;   
+ 176:.\main.c      **** //       
+ 177:.\main.c      **** //            }
+ 178:.\main.c      **** //            if(blink_cnt == 100)
+ 179:.\main.c      **** //            {
+ 180:.\main.c      **** //                //Pin_2_Write(0xFF);
+ 181:.\main.c      **** //                
+ 182:.\main.c      **** //            }
+ 183:.\main.c      **** //            if(blink_cnt == 110)
+ 184:.\main.c      **** //            {
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 11
 
 
- 239 0056 784B     		ldr	r3, .L15+8
- 240 0058 1B78     		ldrb	r3, [r3]
- 241 005a DBB2     		uxtb	r3, r3
- 242 005c 012B     		cmp	r3, #1
- 243 005e F9D1     		bne	.L14
- 244              	.LBB2:
- 133:.\main.c      ****             task_flag = FALSE;
- 245              		.loc 1 133 0
- 246 0060 754B     		ldr	r3, .L15+8
- 247 0062 0022     		mov	r2, #0
- 248 0064 1A70     		strb	r2, [r3]
- 135:.\main.c      ****             blink_cnt++;
- 249              		.loc 1 135 0
- 250 0066 754B     		ldr	r3, .L15+12
- 251 0068 1B78     		ldrb	r3, [r3]
- 252 006a DBB2     		uxtb	r3, r3
- 253 006c 0133     		add	r3, r3, #1
- 254 006e DAB2     		uxtb	r2, r3
- 255 0070 724B     		ldr	r3, .L15+12
- 256 0072 1A70     		strb	r2, [r3]
- 136:.\main.c      ****             if(blink_cnt == 10)
- 257              		.loc 1 136 0
- 258 0074 714B     		ldr	r3, .L15+12
- 259 0076 1B78     		ldrb	r3, [r3]
- 260 0078 DBB2     		uxtb	r3, r3
- 261 007a 0A2B     		cmp	r3, #10
- 262 007c 02D1     		bne	.L6
- 138:.\main.c      ****                 blink_cnt = 0;   
- 263              		.loc 1 138 0
- 264 007e 6F4B     		ldr	r3, .L15+12
- 265 0080 0022     		mov	r2, #0
- 266 0082 1A70     		strb	r2, [r3]
- 267              	.L6:
- 141:.\main.c      ****             if(blink_cnt == 100)
- 268              		.loc 1 141 0
- 269 0084 6D4B     		ldr	r3, .L15+12
- 270 0086 1B78     		ldrb	r3, [r3]
- 146:.\main.c      ****             if(blink_cnt == 110)
- 271              		.loc 1 146 0
- 272 0088 6C4B     		ldr	r3, .L15+12
- 273 008a 1B78     		ldrb	r3, [r3]
- 274 008c DBB2     		uxtb	r3, r3
- 275 008e 6E2B     		cmp	r3, #110
- 276 0090 02D1     		bne	.L7
- 148:.\main.c      ****                 blink_cnt = 0;
- 277              		.loc 1 148 0
- 278 0092 6A4B     		ldr	r3, .L15+12
- 279 0094 0022     		mov	r2, #0
- 280 0096 1A70     		strb	r2, [r3]
- 281              	.L7:
- 158:.\main.c      ****             if(flag_LightsEnabled == TRUE)
- 282              		.loc 1 158 0
- 283 0098 694B     		ldr	r3, .L15+16
- 284 009a 1B78     		ldrb	r3, [r3]
- 285 009c 012B     		cmp	r3, #1
- 286 009e 31D1     		bne	.L8
- 162:.\main.c      ****                 if(NavLightCompare == NavLightBright)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 11
+ 185:.\main.c      **** //                blink_cnt = 0;
+ 186:.\main.c      **** //                //Pin_2_Write(0x00);    
+ 187:.\main.c      **** //            }
+ 188:.\main.c      **** //            //NavLightCompare++;
+ 189:.\main.c      **** //            //NavLightPWM_WriteCompare(NavLightCompare);      
+ 190:.\main.c      ****             
+ 191:.\main.c      ****             /*=======================================
+ 192:.\main.c      ****                 Light Control
+ 193:.\main.c      ****               =======================================*/
+ 194:.\main.c      ****             
+ 195:.\main.c      ****             if(flag_LightsEnabled == TRUE)
+ 196:.\main.c      ****             {
+ 197:.\main.c      ****                 /* Lights enabled */
+ 198:.\main.c      ****                 // START PWM FOR NAV LIGHTS HERE??
+ 199:.\main.c      ****                 if(NavLightCompare == NavLightBright)
+ 200:.\main.c      ****                 {
+ 201:.\main.c      ****                     flag_NavLightPulse = TRUE;
+ 202:.\main.c      ****                 }
+ 203:.\main.c      ****                 else if (NavLightCompare == NavLightDim)
+ 204:.\main.c      ****                 {
+ 205:.\main.c      ****                     flag_NavLightPulse = FALSE;
+ 206:.\main.c      ****                 }
+ 207:.\main.c      ****                 if(flag_NavLightPulse == 0)
+ 208:.\main.c      ****                 {
+ 209:.\main.c      ****                     NavLightCompare+=NavLightStep;
+ 210:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
+ 211:.\main.c      ****                 }
+ 212:.\main.c      ****                 else
+ 213:.\main.c      ****                 {
+ 214:.\main.c      ****                     NavLightCompare-=NavLightStep;
+ 215:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
+ 216:.\main.c      ****                 }
+ 217:.\main.c      ****             }
+ 218:.\main.c      ****             else
+ 219:.\main.c      ****             {
+ 220:.\main.c      ****                 /* Lights disabled*/
+ 221:.\main.c      ****             }
+ 222:.\main.c      ****             
+ 223:.\main.c      ****             /*=======================================
+ 224:.\main.c      ****                 Sensor Reading
+ 225:.\main.c      ****               =======================================*/
+ 226:.\main.c      ****             //turn_rate_p = gyro_read_p();
+ 227:.\main.c      ****             //UART_1_UartPutNum(turn_rate_p);
+ 228:.\main.c      ****             if(GYRO_TASK == TRUE)
+ 229:.\main.c      ****             {
+ 230:.\main.c      ****                 gyro_read();
+ 231:.\main.c      ****             }
+ 232:.\main.c      ****             if(ACC_TASK == TRUE)
+ 233:.\main.c      ****             {
+ 234:.\main.c      ****                 acc_read();
+ 235:.\main.c      ****             }
+ 236:.\main.c      ****             
+ 237:.\main.c      ****             /* Theta and Phi out of acceleration data*/
+ 238:.\main.c      ****             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
+ 239:.\main.c      **** 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
+ 240:.\main.c      ****         
+ 241:.\main.c      **** 			/*=========================================================*/
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 12
 
 
- 287              		.loc 1 162 0
- 288 00a0 684B     		ldr	r3, .L15+20
- 289 00a2 1A88     		ldrh	r2, [r3]
- 290 00a4 684B     		ldr	r3, .L15+24
- 291 00a6 1B88     		ldrh	r3, [r3]
- 292 00a8 9A42     		cmp	r2, r3
- 293 00aa 03D1     		bne	.L9
- 164:.\main.c      ****                     flag_NavLightPulse = TRUE;
- 294              		.loc 1 164 0
- 295 00ac 674B     		ldr	r3, .L15+28
- 296 00ae 0122     		mov	r2, #1
- 297 00b0 1A70     		strb	r2, [r3]
- 298 00b2 08E0     		b	.L10
- 299              	.L9:
- 166:.\main.c      ****                 else if (NavLightCompare == NavLightDim)
- 300              		.loc 1 166 0
- 301 00b4 634B     		ldr	r3, .L15+20
- 302 00b6 1A88     		ldrh	r2, [r3]
- 303 00b8 654B     		ldr	r3, .L15+32
- 304 00ba 1B88     		ldrh	r3, [r3]
- 305 00bc 9A42     		cmp	r2, r3
- 306 00be 02D1     		bne	.L10
- 168:.\main.c      ****                     flag_NavLightPulse = FALSE;
- 307              		.loc 1 168 0
- 308 00c0 624B     		ldr	r3, .L15+28
- 309 00c2 0022     		mov	r2, #0
- 310 00c4 1A70     		strb	r2, [r3]
- 311              	.L10:
- 170:.\main.c      ****                 if(flag_NavLightPulse == 0)
- 312              		.loc 1 170 0
- 313 00c6 614B     		ldr	r3, .L15+28
- 314 00c8 1B78     		ldrb	r3, [r3]
- 315 00ca 002B     		cmp	r3, #0
- 316 00cc 0DD1     		bne	.L11
- 172:.\main.c      ****                     NavLightCompare+=NavLightStep;
- 317              		.loc 1 172 0
- 318 00ce 5D4B     		ldr	r3, .L15+20
- 319 00d0 1A88     		ldrh	r2, [r3]
- 320 00d2 604B     		ldr	r3, .L15+36
- 321 00d4 1B88     		ldrh	r3, [r3]
- 322 00d6 D318     		add	r3, r2, r3
- 323 00d8 9AB2     		uxth	r2, r3
- 324 00da 5A4B     		ldr	r3, .L15+20
- 325 00dc 1A80     		strh	r2, [r3]
- 173:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
- 326              		.loc 1 173 0
- 327 00de 594B     		ldr	r3, .L15+20
- 328 00e0 1B88     		ldrh	r3, [r3]
- 329 00e2 181C     		mov	r0, r3
- 330 00e4 FFF7FEFF 		bl	NavLightPWM_WriteCompare
- 331 00e8 0CE0     		b	.L8
- 332              	.L11:
- 177:.\main.c      ****                     NavLightCompare-=NavLightStep;
- 333              		.loc 1 177 0
- 334 00ea 564B     		ldr	r3, .L15+20
- 335 00ec 1A88     		ldrh	r2, [r3]
- 336 00ee 594B     		ldr	r3, .L15+36
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 12
+ 242:.\main.c      **** 			/* Calculating the attitude by using Kalman Filtering START*/
+ 243:.\main.c      **** 			
+ 244:.\main.c      ****             Theta += sample_time * (turn_rate_q-q_bias);
+ 245:.\main.c      ****             
+ 246:.\main.c      **** 			//P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
+ 247:.\main.c      ****             P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
+ 248:.\main.c      **** //			P_01_Theta +=  - sample_time * P_11_Theta;
+ 249:.\main.c      ****             P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
+ 250:.\main.c      **** 			//P_10_Theta = P_01_Theta;
+ 251:.\main.c      ****             P_Theta[1][0] = P_Theta[0][1];
+ 252:.\main.c      **** 			//P_11_Theta +=  + Q_gyro * sample_time;
+ 253:.\main.c      ****             P_Theta[1][1] +=  + Q_gyro * sample_time;
+ 254:.\main.c      **** 			
+ 255:.\main.c      **** 			
+ 256:.\main.c      **** 			Phi += sample_time * (turn_rate_p-p_bias);
+ 257:.\main.c      **** 			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
+ 258:.\main.c      **** 			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
+ 259:.\main.c      **** 			P_Phi[1][0] = P_Phi[0][1];
+ 260:.\main.c      **** 			P_Phi[1][1] +=  + Q_gyro * sample_time;
+ 261:.\main.c      **** 			
+ 262:.\main.c      **** 		
+ 263:.\main.c      **** 			/*
+ 264:.\main.c      **** 			Psi += sample_time * (r_filt-r_bias);
+ 265:.\main.c      **** 			P_00_Psi +=  - sample_time * (P_10_Psi + P_01_Psi) + Q_angle * sample_time;
+ 266:.\main.c      **** 			P_01_Psi +=  - sample_time * P_11_Psi;
+ 267:.\main.c      **** 			P_10_Psi +=  - sample_time * P_11_Psi;
+ 268:.\main.c      **** 			P_11_Psi +=  + Q_gyro * sample_time;
+ 269:.\main.c      **** 			*/
+ 270:.\main.c      **** 			Theta_temp = Theta_acc - Theta;
+ 271:.\main.c      **** 			S_Theta = P_Theta[0][0] + R_angle;
+ 272:.\main.c      **** 			K_0_Theta = P_Theta[0][0] / S_Theta;
+ 273:.\main.c      **** 			K_1_Theta = P_Theta[1][0] / S_Theta;
+ 274:.\main.c      **** 			
+ 275:.\main.c      **** 			Phi_temp = Phi_acc - Phi;
+ 276:.\main.c      **** 			S_Phi = P_Phi[0][0] + R_angle;
+ 277:.\main.c      **** 			K_0_Phi = P_Phi[0][0] / S_Phi;
+ 278:.\main.c      **** 			K_1_Phi = P_Phi[1][0] / S_Phi;
+ 279:.\main.c      **** 			/*
+ 280:.\main.c      **** 			Psi_temp = mag - Psi;
+ 281:.\main.c      **** 			S_Psi = P_00_Psi + R_angle;
+ 282:.\main.c      **** 			K_0_Psi = P_00_Psi / S_Psi;
+ 283:.\main.c      **** 			K_1_Psi = P_10_Psi / S_Psi;
+ 284:.\main.c      **** 			*/
+ 285:.\main.c      **** 			Theta +=  K_0_Theta * Theta_temp;
+ 286:.\main.c      **** 			q_bias  +=  K_1_Theta * Theta_temp;
+ 287:.\main.c      **** 			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
+ 288:.\main.c      **** 			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
+ 289:.\main.c      **** 			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
+ 290:.\main.c      **** 			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
+ 291:.\main.c      **** 			
+ 292:.\main.c      **** 			Phi +=  K_0_Phi * Phi_temp;
+ 293:.\main.c      **** 			p_bias  +=  K_1_Phi * Phi_temp;
+ 294:.\main.c      **** 			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
+ 295:.\main.c      **** 			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
+ 296:.\main.c      **** 			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
+ 297:.\main.c      **** 			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
+ 298:.\main.c      **** 		
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 13
 
 
- 337 00f0 1B88     		ldrh	r3, [r3]
- 338 00f2 D31A     		sub	r3, r2, r3
- 339 00f4 9AB2     		uxth	r2, r3
- 340 00f6 534B     		ldr	r3, .L15+20
- 341 00f8 1A80     		strh	r2, [r3]
- 178:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
- 342              		.loc 1 178 0
- 343 00fa 524B     		ldr	r3, .L15+20
- 344 00fc 1B88     		ldrh	r3, [r3]
- 345 00fe 181C     		mov	r0, r3
- 346 0100 FFF7FEFF 		bl	NavLightPWM_WriteCompare
- 347              	.L8:
- 193:.\main.c      ****                 gyro_read();
- 348              		.loc 1 193 0
- 349 0104 FFF7FEFF 		bl	gyro_read
- 194:.\main.c      ****                 UART_1_UartPutNum(turn_rate_p);
- 350              		.loc 1 194 0
- 351 0108 534B     		ldr	r3, .L15+40
- 352 010a 1B88     		ldrh	r3, [r3]
- 353 010c 1BB2     		sxth	r3, r3
- 354 010e 181C     		mov	r0, r3
- 355 0110 FFF7FEFF 		bl	UART_1_UartPutNum
- 195:.\main.c      ****                 UART_1_UartPutString(";");
- 356              		.loc 1 195 0
- 357 0114 514B     		ldr	r3, .L15+44
- 358 0116 181C     		mov	r0, r3
- 359 0118 FFF7FEFF 		bl	UART_1_UartPutString
- 196:.\main.c      ****                 UART_1_UartPutNum(turn_rate_q);
- 360              		.loc 1 196 0
- 361 011c 504B     		ldr	r3, .L15+48
- 362 011e 1B88     		ldrh	r3, [r3]
- 363 0120 1BB2     		sxth	r3, r3
- 364 0122 181C     		mov	r0, r3
- 365 0124 FFF7FEFF 		bl	UART_1_UartPutNum
- 197:.\main.c      ****                 UART_1_UartPutString(";");
- 366              		.loc 1 197 0
- 367 0128 4C4B     		ldr	r3, .L15+44
- 368 012a 181C     		mov	r0, r3
- 369 012c FFF7FEFF 		bl	UART_1_UartPutString
- 198:.\main.c      ****                 UART_1_UartPutNum(turn_rate_r);
- 370              		.loc 1 198 0
- 371 0130 4C4B     		ldr	r3, .L15+52
- 372 0132 1B88     		ldrh	r3, [r3]
- 373 0134 1BB2     		sxth	r3, r3
- 374 0136 181C     		mov	r0, r3
- 375 0138 FFF7FEFF 		bl	UART_1_UartPutNum
- 199:.\main.c      ****                 UART_1_UartPutString(";\r\n");
- 376              		.loc 1 199 0
- 377 013c 4A4B     		ldr	r3, .L15+56
- 378 013e 181C     		mov	r0, r3
- 379 0140 FFF7FEFF 		bl	UART_1_UartPutString
- 204:.\main.c      ****         uint8_t debug = 1;
- 380              		.loc 1 204 0
- 381 0144 FB1D     		add	r3, r7, #7
- 382 0146 0122     		mov	r2, #1
- 383 0148 1A70     		strb	r2, [r3]
- 205:.\main.c      ****             if(debug == 0)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 13
+ 299:.\main.c      **** 			
+ 300:.\main.c      **** 			/* Calculating the attitude by using Kalman Filtering END*/
+ 301:.\main.c      **** 			/*=======================================================*/
+ 302:.\main.c      **** 		
+ 303:.\main.c      ****             UART_1_UartPutNum(Theta);
+ 304:.\main.c      ****             UART_1_UartPutString(" ");
+ 305:.\main.c      ****             UART_1_UartPutNum(Phi);
+ 306:.\main.c      ****             UART_1_UartPutString(" \r\n");
+ 307:.\main.c      ****                 
+ 308:.\main.c      ****                 
+ 309:.\main.c      ****             /*=======================================
+ 310:.\main.c      ****                 Output Control
+ 311:.\main.c      ****               =======================================*/
+ 312:.\main.c      ****         uint8_t debug = 1;
+ 313:.\main.c      ****             if(debug == 0)
+ 314:.\main.c      ****             {
+ 315:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
+ 316:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];    
+ 317:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
+ 318:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];
+ 319:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
+ 320:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];
+ 321:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_fl];
+ 322:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_fl];
+ 323:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_ge];
+ 324:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_ge];
+ 325:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_ge];
+ 326:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_sp1];
+ 327:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
+ 328:.\main.c      ****             }
+ 329:.\main.c      ****             else
+ 330:.\main.c      ****             {
+ 331:.\main.c      ****                 ctrl_in[in_mot] = 1000;
+ 332:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
+ 333:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
+ 334:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
+ 335:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
+ 336:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
+ 337:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
+ 338:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
+ 339:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
+ 340:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
+ 341:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
+ 342:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
+ 343:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
+ 344:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
+ 345:.\main.c      ****             }
+ 346:.\main.c      ****             
+ 347:.\main.c      ****             /*=======================================
+ 348:.\main.c      ****                 Data Logging
+ 349:.\main.c      ****               =======================================*/
+ 350:.\main.c      ****             /*    
+ 351:.\main.c      ****             UART_1_UartPutNum(ctrl_out[out_mot]);
+ 352:.\main.c      ****                 UART_1_UartPutString(";");
+ 353:.\main.c      ****                 UART_1_UartPutNum(ctrl_out[out_ail1]);
+ 354:.\main.c      ****                 UART_1_UartPutString(";");
+ 355:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[2]);
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 14
 
 
- 384              		.loc 1 205 0
- 385 014a FB1D     		add	r3, r7, #7
- 386 014c 1B78     		ldrb	r3, [r3]
- 387 014e 002B     		cmp	r3, #0
- 388 0150 34D1     		bne	.L12
- 207:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
- 389              		.loc 1 207 0
- 390 0152 464B     		ldr	r3, .L15+60
- 391 0154 1A88     		ldrh	r2, [r3]
- 392 0156 464B     		ldr	r3, .L15+64
- 393 0158 1A80     		strh	r2, [r3]
- 208:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];    
- 394              		.loc 1 208 0
- 395 015a 444B     		ldr	r3, .L15+60
- 396 015c 5A88     		ldrh	r2, [r3, #2]
- 397 015e 444B     		ldr	r3, .L15+64
- 398 0160 5A80     		strh	r2, [r3, #2]
- 209:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
- 399              		.loc 1 209 0
- 400 0162 424B     		ldr	r3, .L15+60
- 401 0164 5A88     		ldrh	r2, [r3, #2]
- 402 0166 424B     		ldr	r3, .L15+64
- 403 0168 9A80     		strh	r2, [r3, #4]
- 210:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];
- 404              		.loc 1 210 0
- 405 016a 404B     		ldr	r3, .L15+60
- 406 016c 9A88     		ldrh	r2, [r3, #4]
- 407 016e 404B     		ldr	r3, .L15+64
- 408 0170 DA80     		strh	r2, [r3, #6]
- 211:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
- 409              		.loc 1 211 0
- 410 0172 3E4B     		ldr	r3, .L15+60
- 411 0174 9A88     		ldrh	r2, [r3, #4]
- 412 0176 3E4B     		ldr	r3, .L15+64
- 413 0178 1A81     		strh	r2, [r3, #8]
- 212:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];
- 414              		.loc 1 212 0
- 415 017a 3C4B     		ldr	r3, .L15+60
- 416 017c DA88     		ldrh	r2, [r3, #6]
- 417 017e 3C4B     		ldr	r3, .L15+64
- 418 0180 5A81     		strh	r2, [r3, #10]
- 213:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_fl];
- 419              		.loc 1 213 0
- 420 0182 3A4B     		ldr	r3, .L15+60
- 421 0184 1A89     		ldrh	r2, [r3, #8]
- 422 0186 3A4B     		ldr	r3, .L15+64
- 423 0188 9A81     		strh	r2, [r3, #12]
- 214:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_fl];
- 424              		.loc 1 214 0
- 425 018a 384B     		ldr	r3, .L15+60
- 426 018c 1A89     		ldrh	r2, [r3, #8]
- 427 018e 384B     		ldr	r3, .L15+64
- 428 0190 DA81     		strh	r2, [r3, #14]
- 215:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_ge];
- 429              		.loc 1 215 0
- 430 0192 364B     		ldr	r3, .L15+60
- 431 0194 5A89     		ldrh	r2, [r3, #10]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 14
+ 356:.\main.c      ****                 UART_1_UartPutString(";");
+ 357:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[3]);
+ 358:.\main.c      ****                 UART_1_UartPutString(";");
+ 359:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[4]);
+ 360:.\main.c      ****                 UART_1_UartPutString(";");
+ 361:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[5]);
+ 362:.\main.c      ****                 UART_1_UartPutString(";");
+ 363:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[6]);
+ 364:.\main.c      ****                 UART_1_UartPutString(";");
+ 365:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[7]);
+ 366:.\main.c      ****                 UART_1_UartPutString("\r\n");
+ 367:.\main.c      ****             */
+ 368:.\main.c      ****         }
+ 369:.\main.c      **** 
+ 370:.\main.c      ****     }
+ 369              		.loc 1 370 0
+ 370 0058 C046     		mov	r8, r8
+ 371              	.L11:
+ 165:.\main.c      ****         if(task_flag == TRUE)
+ 372              		.loc 1 165 0
+ 373 005a 1A4B     		ldr	r3, .L13+8
+ 374 005c 1B78     		ldrb	r3, [r3]
+ 375 005e DBB2     		uxtb	r3, r3
+ 376 0060 012B     		cmp	r3, #1
+ 377 0062 F9D1     		bne	.L12
+ 378              	.LBB2:
+ 170:.\main.c      ****             task_flag = FALSE;
+ 379              		.loc 1 170 0
+ 380 0064 174B     		ldr	r3, .L13+8
+ 381 0066 0022     		mov	r2, #0
+ 382 0068 1A70     		strb	r2, [r3]
+ 195:.\main.c      ****             if(flag_LightsEnabled == TRUE)
+ 383              		.loc 1 195 0
+ 384 006a 174B     		ldr	r3, .L13+12
+ 385 006c 1B78     		ldrb	r3, [r3]
+ 386 006e 012B     		cmp	r3, #1
+ 387 0070 43D1     		bne	.L6
+ 199:.\main.c      ****                 if(NavLightCompare == NavLightBright)
+ 388              		.loc 1 199 0
+ 389 0072 164B     		ldr	r3, .L13+16
+ 390 0074 1A88     		ldrh	r2, [r3]
+ 391 0076 164B     		ldr	r3, .L13+20
+ 392 0078 1B88     		ldrh	r3, [r3]
+ 393 007a 9A42     		cmp	r2, r3
+ 394 007c 03D1     		bne	.L7
+ 201:.\main.c      ****                     flag_NavLightPulse = TRUE;
+ 395              		.loc 1 201 0
+ 396 007e 154B     		ldr	r3, .L13+24
+ 397 0080 0122     		mov	r2, #1
+ 398 0082 1A70     		strb	r2, [r3]
+ 399 0084 08E0     		b	.L8
+ 400              	.L7:
+ 203:.\main.c      ****                 else if (NavLightCompare == NavLightDim)
+ 401              		.loc 1 203 0
+ 402 0086 114B     		ldr	r3, .L13+16
+ 403 0088 1A88     		ldrh	r2, [r3]
+ 404 008a 134B     		ldr	r3, .L13+28
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 15
 
 
- 432 0196 364B     		ldr	r3, .L15+64
- 433 0198 1A82     		strh	r2, [r3, #16]
- 216:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_ge];
- 434              		.loc 1 216 0
- 435 019a 344B     		ldr	r3, .L15+60
- 436 019c 5A89     		ldrh	r2, [r3, #10]
- 437 019e 344B     		ldr	r3, .L15+64
- 438 01a0 5A82     		strh	r2, [r3, #18]
- 217:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_ge];
- 439              		.loc 1 217 0
- 440 01a2 324B     		ldr	r3, .L15+60
- 441 01a4 5A89     		ldrh	r2, [r3, #10]
- 442 01a6 324B     		ldr	r3, .L15+64
- 443 01a8 9A82     		strh	r2, [r3, #20]
- 218:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_sp1];
- 444              		.loc 1 218 0
- 445 01aa 304B     		ldr	r3, .L15+60
- 446 01ac 9A89     		ldrh	r2, [r3, #12]
- 447 01ae 304B     		ldr	r3, .L15+64
- 448 01b0 DA82     		strh	r2, [r3, #22]
- 219:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
- 449              		.loc 1 219 0
- 450 01b2 2E4B     		ldr	r3, .L15+60
- 451 01b4 DA89     		ldrh	r2, [r3, #14]
- 452 01b6 2E4B     		ldr	r3, .L15+64
- 453 01b8 1A83     		strh	r2, [r3, #24]
- 454              	.LBE2:
- 455              		.loc 1 262 0
- 456 01ba 4BE7     		b	.L14
- 457              	.L12:
- 458              	.LBB3:
- 223:.\main.c      ****                 ctrl_in[in_mot] = 1000;
- 459              		.loc 1 223 0
- 460 01bc 2B4B     		ldr	r3, .L15+60
- 461 01be FA22     		mov	r2, #250
- 462 01c0 9200     		lsl	r2, r2, #2
- 463 01c2 1A80     		strh	r2, [r3]
- 224:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
- 464              		.loc 1 224 0
- 465 01c4 294B     		ldr	r3, .L15+60
- 466 01c6 1A88     		ldrh	r2, [r3]
- 467 01c8 294B     		ldr	r3, .L15+64
- 468 01ca 1A80     		strh	r2, [r3]
- 225:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
- 469              		.loc 1 225 0
- 470 01cc 274B     		ldr	r3, .L15+60
- 471 01ce 1A88     		ldrh	r2, [r3]
- 472 01d0 274B     		ldr	r3, .L15+64
- 473 01d2 5A80     		strh	r2, [r3, #2]
- 226:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
- 474              		.loc 1 226 0
- 475 01d4 254B     		ldr	r3, .L15+60
- 476 01d6 1A88     		ldrh	r2, [r3]
- 477 01d8 254B     		ldr	r3, .L15+64
- 478 01da 9A80     		strh	r2, [r3, #4]
- 227:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
- 479              		.loc 1 227 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 15
+ 405 008c 1B88     		ldrh	r3, [r3]
+ 406 008e 9A42     		cmp	r2, r3
+ 407 0090 02D1     		bne	.L8
+ 205:.\main.c      ****                     flag_NavLightPulse = FALSE;
+ 408              		.loc 1 205 0
+ 409 0092 104B     		ldr	r3, .L13+24
+ 410 0094 0022     		mov	r2, #0
+ 411 0096 1A70     		strb	r2, [r3]
+ 412              	.L8:
+ 207:.\main.c      ****                 if(flag_NavLightPulse == 0)
+ 413              		.loc 1 207 0
+ 414 0098 0E4B     		ldr	r3, .L13+24
+ 415 009a 1B78     		ldrb	r3, [r3]
+ 416 009c 002B     		cmp	r3, #0
+ 417 009e 1FD1     		bne	.L9
+ 209:.\main.c      ****                     NavLightCompare+=NavLightStep;
+ 418              		.loc 1 209 0
+ 419 00a0 0A4B     		ldr	r3, .L13+16
+ 420 00a2 1A88     		ldrh	r2, [r3]
+ 421 00a4 0D4B     		ldr	r3, .L13+32
+ 422 00a6 1B88     		ldrh	r3, [r3]
+ 423 00a8 D318     		add	r3, r2, r3
+ 424 00aa 9AB2     		uxth	r2, r3
+ 425 00ac 074B     		ldr	r3, .L13+16
+ 426 00ae 1A80     		strh	r2, [r3]
+ 210:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
+ 427              		.loc 1 210 0
+ 428 00b0 064B     		ldr	r3, .L13+16
+ 429 00b2 1B88     		ldrh	r3, [r3]
+ 430 00b4 181C     		mov	r0, r3
+ 431 00b6 FFF7FEFF 		bl	NavLightPWM_WriteCompare
+ 432 00ba 1EE0     		b	.L6
+ 433              	.L14:
+ 434              		.align	2
+ 435              	.L13:
+ 436 00bc 04000000 		.word	.LC2
+ 437 00c0 10000000 		.word	.LC4
+ 438 00c4 00000000 		.word	task_flag
+ 439 00c8 00000000 		.word	flag_LightsEnabled
+ 440 00cc 00000000 		.word	NavLightCompare
+ 441 00d0 00000000 		.word	NavLightBright
+ 442 00d4 00000000 		.word	flag_NavLightPulse
+ 443 00d8 00000000 		.word	NavLightDim
+ 444 00dc 00000000 		.word	NavLightStep
+ 445              	.L9:
+ 214:.\main.c      ****                     NavLightCompare-=NavLightStep;
+ 446              		.loc 1 214 0
+ 447 00e0 F34B     		ldr	r3, .L15+16
+ 448 00e2 1A88     		ldrh	r2, [r3]
+ 449 00e4 F34B     		ldr	r3, .L15+20
+ 450 00e6 1B88     		ldrh	r3, [r3]
+ 451 00e8 D31A     		sub	r3, r2, r3
+ 452 00ea 9AB2     		uxth	r2, r3
+ 453 00ec F04B     		ldr	r3, .L15+16
+ 454 00ee 1A80     		strh	r2, [r3]
+ 215:.\main.c      ****                     NavLightPWM_WriteCompare(NavLightCompare);
+ 455              		.loc 1 215 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 16
 
 
- 480 01dc 234B     		ldr	r3, .L15+60
- 481 01de 1A88     		ldrh	r2, [r3]
- 482 01e0 234B     		ldr	r3, .L15+64
- 483 01e2 DA80     		strh	r2, [r3, #6]
- 228:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
- 484              		.loc 1 228 0
- 485 01e4 214B     		ldr	r3, .L15+60
- 486 01e6 1A88     		ldrh	r2, [r3]
- 487 01e8 214B     		ldr	r3, .L15+64
- 488 01ea 1A81     		strh	r2, [r3, #8]
- 229:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
- 489              		.loc 1 229 0
- 490 01ec 1F4B     		ldr	r3, .L15+60
- 491 01ee 1A88     		ldrh	r2, [r3]
- 492 01f0 1F4B     		ldr	r3, .L15+64
- 493 01f2 5A81     		strh	r2, [r3, #10]
- 230:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
- 494              		.loc 1 230 0
- 495 01f4 1D4B     		ldr	r3, .L15+60
- 496 01f6 1A88     		ldrh	r2, [r3]
- 497 01f8 1D4B     		ldr	r3, .L15+64
- 498 01fa 9A81     		strh	r2, [r3, #12]
- 231:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
- 499              		.loc 1 231 0
- 500 01fc 1B4B     		ldr	r3, .L15+60
- 501 01fe 1A88     		ldrh	r2, [r3]
- 502 0200 1B4B     		ldr	r3, .L15+64
- 503 0202 DA81     		strh	r2, [r3, #14]
- 232:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
- 504              		.loc 1 232 0
- 505 0204 194B     		ldr	r3, .L15+60
- 506 0206 1A88     		ldrh	r2, [r3]
- 507 0208 194B     		ldr	r3, .L15+64
- 508 020a 1A82     		strh	r2, [r3, #16]
- 233:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
- 509              		.loc 1 233 0
- 510 020c 174B     		ldr	r3, .L15+60
- 511 020e 1A88     		ldrh	r2, [r3]
- 512 0210 174B     		ldr	r3, .L15+64
- 513 0212 5A82     		strh	r2, [r3, #18]
- 234:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
- 514              		.loc 1 234 0
- 515 0214 154B     		ldr	r3, .L15+60
- 516 0216 1A88     		ldrh	r2, [r3]
- 517 0218 154B     		ldr	r3, .L15+64
- 518 021a 9A82     		strh	r2, [r3, #20]
- 235:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
- 519              		.loc 1 235 0
- 520 021c 134B     		ldr	r3, .L15+60
- 521 021e 1A88     		ldrh	r2, [r3]
- 522 0220 134B     		ldr	r3, .L15+64
- 523 0222 DA82     		strh	r2, [r3, #22]
- 236:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
- 524              		.loc 1 236 0
- 525 0224 114B     		ldr	r3, .L15+60
- 526 0226 1A88     		ldrh	r2, [r3]
- 527 0228 114B     		ldr	r3, .L15+64
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 16
+ 456 00f0 EF4B     		ldr	r3, .L15+16
+ 457 00f2 1B88     		ldrh	r3, [r3]
+ 458 00f4 181C     		mov	r0, r3
+ 459 00f6 FFF7FEFF 		bl	NavLightPWM_WriteCompare
+ 460              	.L6:
+ 230:.\main.c      ****                 gyro_read();
+ 461              		.loc 1 230 0
+ 462 00fa FFF7FEFF 		bl	gyro_read
+ 234:.\main.c      ****                 acc_read();
+ 463              		.loc 1 234 0
+ 464 00fe FFF7FEFF 		bl	acc_read
+ 238:.\main.c      ****             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
+ 465              		.loc 1 238 0
+ 466 0102 ED4B     		ldr	r3, .L15+24
+ 467 0104 1B88     		ldrh	r3, [r3]
+ 468 0106 1BB2     		sxth	r3, r3
+ 469 0108 181C     		mov	r0, r3
+ 470 010a FFF7FEFF 		bl	__aeabi_i2d
+ 471 010e 051C     		mov	r5, r0
+ 472 0110 0E1C     		mov	r6, r1
+ 473 0112 EA4B     		ldr	r3, .L15+28
+ 474 0114 1B88     		ldrh	r3, [r3]
+ 475 0116 1BB2     		sxth	r3, r3
+ 476 0118 5B42     		neg	r3, r3
+ 477 011a 181C     		mov	r0, r3
+ 478 011c FFF7FEFF 		bl	__aeabi_i2d
+ 479 0120 031C     		mov	r3, r0
+ 480 0122 0C1C     		mov	r4, r1
+ 481 0124 281C     		mov	r0, r5
+ 482 0126 311C     		mov	r1, r6
+ 483 0128 1A1C     		mov	r2, r3
+ 484 012a 231C     		mov	r3, r4
+ 485 012c FFF7FEFF 		bl	atan2
+ 486 0130 031C     		mov	r3, r0
+ 487 0132 0C1C     		mov	r4, r1
+ 488 0134 181C     		mov	r0, r3
+ 489 0136 211C     		mov	r1, r4
+ 490 0138 DA4B     		ldr	r3, .L15+4
+ 491 013a D94A     		ldr	r2, .L15
+ 492 013c FFF7FEFF 		bl	__aeabi_dmul
+ 493 0140 031C     		mov	r3, r0
+ 494 0142 0C1C     		mov	r4, r1
+ 495 0144 181C     		mov	r0, r3
+ 496 0146 211C     		mov	r1, r4
+ 497 0148 D74A     		ldr	r2, .L15+8
+ 498 014a D84B     		ldr	r3, .L15+12
+ 499 014c FFF7FEFF 		bl	__aeabi_ddiv
+ 500 0150 031C     		mov	r3, r0
+ 501 0152 0C1C     		mov	r4, r1
+ 502 0154 181C     		mov	r0, r3
+ 503 0156 211C     		mov	r1, r4
+ 504 0158 FFF7FEFF 		bl	__aeabi_d2iz
+ 505 015c 031C     		mov	r3, r0
+ 506 015e 9AB2     		uxth	r2, r3
+ 507 0160 D74B     		ldr	r3, .L15+32
+ 508 0162 1A80     		strh	r2, [r3]
+ 239:.\main.c      **** 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 17
 
 
- 528 022a 1A83     		strh	r2, [r3, #24]
- 529              	.LBE3:
- 530              		.loc 1 262 0
- 531 022c 12E7     		b	.L14
- 532              	.L16:
- 533 022e C046     		.align	2
- 534              	.L15:
- 535 0230 04000000 		.word	.LC2
- 536 0234 10000000 		.word	.LC4
- 537 0238 00000000 		.word	task_flag
- 538 023c 00000000 		.word	blink_cnt
- 539 0240 00000000 		.word	flag_LightsEnabled
- 540 0244 00000000 		.word	NavLightCompare
- 541 0248 00000000 		.word	NavLightBright
- 542 024c 00000000 		.word	flag_NavLightPulse
- 543 0250 00000000 		.word	NavLightDim
- 544 0254 00000000 		.word	NavLightStep
- 545 0258 00000000 		.word	turn_rate_p
- 546 025c 20000000 		.word	.LC15
- 547 0260 00000000 		.word	turn_rate_q
- 548 0264 00000000 		.word	turn_rate_r
- 549 0268 24000000 		.word	.LC19
- 550 026c 00000000 		.word	ctrl_in
- 551 0270 00000000 		.word	ctrl_out
- 552              		.cfi_endproc
- 553              	.LFE34:
- 554              		.size	main, .-main
- 555              		.text
- 556              	.Letext0:
- 557              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4.7.3\\
- 558              		.section	.debug_info,"",%progbits
- 559              	.Ldebug_info0:
- 560 0000 27030000 		.4byte	0x327
- 561 0004 0200     		.2byte	0x2
- 562 0006 00000000 		.4byte	.Ldebug_abbrev0
- 563 000a 04       		.byte	0x4
- 564 000b 01       		.uleb128 0x1
- 565 000c D3000000 		.4byte	.LASF58
- 566 0010 01       		.byte	0x1
- 567 0011 34020000 		.4byte	.LASF59
- 568 0015 8F020000 		.4byte	.LASF60
- 569 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
- 570 001d 00000000 		.4byte	0
- 571 0021 00000000 		.4byte	0
- 572 0025 00000000 		.4byte	.Ldebug_line0
- 573 0029 02       		.uleb128 0x2
- 574 002a 01       		.byte	0x1
- 575 002b 06       		.byte	0x6
- 576 002c 52010000 		.4byte	.LASF0
- 577 0030 03       		.uleb128 0x3
- 578 0031 7F000000 		.4byte	.LASF2
- 579 0035 02       		.byte	0x2
- 580 0036 2A       		.byte	0x2a
- 581 0037 3B000000 		.4byte	0x3b
- 582 003b 02       		.uleb128 0x2
- 583 003c 01       		.byte	0x1
- 584 003d 08       		.byte	0x8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 17
+ 509              		.loc 1 239 0
+ 510 0164 D74B     		ldr	r3, .L15+36
+ 511 0166 1B88     		ldrh	r3, [r3]
+ 512 0168 1BB2     		sxth	r3, r3
+ 513 016a 5B42     		neg	r3, r3
+ 514 016c 181C     		mov	r0, r3
+ 515 016e FFF7FEFF 		bl	__aeabi_i2d
+ 516 0172 051C     		mov	r5, r0
+ 517 0174 0E1C     		mov	r6, r1
+ 518 0176 D14B     		ldr	r3, .L15+28
+ 519 0178 1B88     		ldrh	r3, [r3]
+ 520 017a 1BB2     		sxth	r3, r3
+ 521 017c 5B42     		neg	r3, r3
+ 522 017e 181C     		mov	r0, r3
+ 523 0180 FFF7FEFF 		bl	__aeabi_i2d
+ 524 0184 031C     		mov	r3, r0
+ 525 0186 0C1C     		mov	r4, r1
+ 526 0188 281C     		mov	r0, r5
+ 527 018a 311C     		mov	r1, r6
+ 528 018c 1A1C     		mov	r2, r3
+ 529 018e 231C     		mov	r3, r4
+ 530 0190 FFF7FEFF 		bl	atan2
+ 531 0194 031C     		mov	r3, r0
+ 532 0196 0C1C     		mov	r4, r1
+ 533 0198 181C     		mov	r0, r3
+ 534 019a 211C     		mov	r1, r4
+ 535 019c C14B     		ldr	r3, .L15+4
+ 536 019e C04A     		ldr	r2, .L15
+ 537 01a0 FFF7FEFF 		bl	__aeabi_dmul
+ 538 01a4 031C     		mov	r3, r0
+ 539 01a6 0C1C     		mov	r4, r1
+ 540 01a8 181C     		mov	r0, r3
+ 541 01aa 211C     		mov	r1, r4
+ 542 01ac BE4A     		ldr	r2, .L15+8
+ 543 01ae BF4B     		ldr	r3, .L15+12
+ 544 01b0 FFF7FEFF 		bl	__aeabi_ddiv
+ 545 01b4 031C     		mov	r3, r0
+ 546 01b6 0C1C     		mov	r4, r1
+ 547 01b8 181C     		mov	r0, r3
+ 548 01ba 211C     		mov	r1, r4
+ 549 01bc FFF7FEFF 		bl	__aeabi_d2iz
+ 550 01c0 031C     		mov	r3, r0
+ 551 01c2 9AB2     		uxth	r2, r3
+ 552 01c4 C04B     		ldr	r3, .L15+40
+ 553 01c6 1A80     		strh	r2, [r3]
+ 244:.\main.c      ****             Theta += sample_time * (turn_rate_q-q_bias);
+ 554              		.loc 1 244 0
+ 555 01c8 C04B     		ldr	r3, .L15+44
+ 556 01ca 1B88     		ldrh	r3, [r3]
+ 557 01cc 1BB2     		sxth	r3, r3
+ 558 01ce 181C     		mov	r0, r3
+ 559 01d0 FFF7FEFF 		bl	__aeabi_i2f
+ 560 01d4 041C     		add	r4, r0, #0
+ 561 01d6 BE4B     		ldr	r3, .L15+48
+ 562 01d8 1B88     		ldrh	r3, [r3]
+ 563 01da 1BB2     		sxth	r3, r3
+ 564 01dc 181C     		mov	r0, r3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 18
 
 
- 585 003e 1C010000 		.4byte	.LASF1
- 586 0042 03       		.uleb128 0x3
- 587 0043 C8010000 		.4byte	.LASF3
- 588 0047 02       		.byte	0x2
- 589 0048 35       		.byte	0x35
- 590 0049 4D000000 		.4byte	0x4d
- 591 004d 02       		.uleb128 0x2
- 592 004e 02       		.byte	0x2
- 593 004f 05       		.byte	0x5
- 594 0050 24000000 		.4byte	.LASF4
- 595 0054 03       		.uleb128 0x3
- 596 0055 82010000 		.4byte	.LASF5
- 597 0059 02       		.byte	0x2
- 598 005a 36       		.byte	0x36
- 599 005b 5F000000 		.4byte	0x5f
- 600 005f 02       		.uleb128 0x2
- 601 0060 02       		.byte	0x2
- 602 0061 07       		.byte	0x7
- 603 0062 9B010000 		.4byte	.LASF6
- 604 0066 03       		.uleb128 0x3
- 605 0067 C0010000 		.4byte	.LASF7
- 606 006b 02       		.byte	0x2
- 607 006c 4F       		.byte	0x4f
- 608 006d 71000000 		.4byte	0x71
- 609 0071 02       		.uleb128 0x2
- 610 0072 04       		.byte	0x4
- 611 0073 05       		.byte	0x5
- 612 0074 CA000000 		.4byte	.LASF8
- 613 0078 02       		.uleb128 0x2
- 614 0079 04       		.byte	0x4
- 615 007a 07       		.byte	0x7
- 616 007b 08020000 		.4byte	.LASF9
- 617 007f 02       		.uleb128 0x2
- 618 0080 08       		.byte	0x8
- 619 0081 05       		.byte	0x5
- 620 0082 BC000000 		.4byte	.LASF10
- 621 0086 02       		.uleb128 0x2
- 622 0087 08       		.byte	0x8
- 623 0088 07       		.byte	0x7
- 624 0089 5E010000 		.4byte	.LASF11
- 625 008d 04       		.uleb128 0x4
- 626 008e 04       		.byte	0x4
- 627 008f 05       		.byte	0x5
- 628 0090 696E7400 		.ascii	"int\000"
- 629 0094 02       		.uleb128 0x2
- 630 0095 04       		.byte	0x4
- 631 0096 07       		.byte	0x7
- 632 0097 75010000 		.4byte	.LASF12
- 633 009b 02       		.uleb128 0x2
- 634 009c 04       		.byte	0x4
- 635 009d 04       		.byte	0x4
- 636 009e B1000000 		.4byte	.LASF13
- 637 00a2 02       		.uleb128 0x2
- 638 00a3 08       		.byte	0x8
- 639 00a4 04       		.byte	0x4
- 640 00a5 1A020000 		.4byte	.LASF14
- 641 00a9 02       		.uleb128 0x2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 18
+ 565 01de FFF7FEFF 		bl	__aeabi_i2f
+ 566 01e2 021C     		add	r2, r0, #0
+ 567 01e4 BB4B     		ldr	r3, .L15+52
+ 568 01e6 1B68     		ldr	r3, [r3]
+ 569 01e8 101C     		add	r0, r2, #0
+ 570 01ea 191C     		add	r1, r3, #0
+ 571 01ec FFF7FEFF 		bl	__aeabi_fsub
+ 572 01f0 031C     		add	r3, r0, #0
+ 573 01f2 1A1C     		add	r2, r3, #0
+ 574 01f4 B84B     		ldr	r3, .L15+56
+ 575 01f6 1B68     		ldr	r3, [r3]
+ 576 01f8 101C     		add	r0, r2, #0
+ 577 01fa 191C     		add	r1, r3, #0
+ 578 01fc FFF7FEFF 		bl	__aeabi_fmul
+ 579 0200 031C     		add	r3, r0, #0
+ 580 0202 201C     		add	r0, r4, #0
+ 581 0204 191C     		add	r1, r3, #0
+ 582 0206 FFF7FEFF 		bl	__aeabi_fadd
+ 583 020a 031C     		add	r3, r0, #0
+ 584 020c 181C     		add	r0, r3, #0
+ 585 020e FFF7FEFF 		bl	__aeabi_f2iz
+ 586 0212 031C     		mov	r3, r0
+ 587 0214 9AB2     		uxth	r2, r3
+ 588 0216 AD4B     		ldr	r3, .L15+44
+ 589 0218 1A80     		strh	r2, [r3]
+ 247:.\main.c      ****             P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
+ 590              		.loc 1 247 0
+ 591 021a B04B     		ldr	r3, .L15+60
+ 592 021c 1C68     		ldr	r4, [r3]
+ 593 021e AE4B     		ldr	r3, .L15+56
+ 594 0220 1B68     		ldr	r3, [r3]
+ 595 0222 8022     		mov	r2, #128
+ 596 0224 1206     		lsl	r2, r2, #24
+ 597 0226 151C     		mov	r5, r2
+ 598 0228 5D40     		eor	r5, r3
+ 599 022a AC4B     		ldr	r3, .L15+60
+ 600 022c 9A68     		ldr	r2, [r3, #8]
+ 601 022e AB4B     		ldr	r3, .L15+60
+ 602 0230 5B68     		ldr	r3, [r3, #4]
+ 603 0232 101C     		add	r0, r2, #0
+ 604 0234 191C     		add	r1, r3, #0
+ 605 0236 FFF7FEFF 		bl	__aeabi_fadd
+ 606 023a 031C     		add	r3, r0, #0
+ 607 023c 1A1C     		add	r2, r3, #0
+ 608 023e A84B     		ldr	r3, .L15+64
+ 609 0240 1B68     		ldr	r3, [r3]
+ 610 0242 101C     		add	r0, r2, #0
+ 611 0244 191C     		add	r1, r3, #0
+ 612 0246 FFF7FEFF 		bl	__aeabi_fsub
+ 613 024a 031C     		add	r3, r0, #0
+ 614 024c 281C     		add	r0, r5, #0
+ 615 024e 191C     		add	r1, r3, #0
+ 616 0250 FFF7FEFF 		bl	__aeabi_fmul
+ 617 0254 031C     		add	r3, r0, #0
+ 618 0256 201C     		add	r0, r4, #0
+ 619 0258 191C     		add	r1, r3, #0
+ 620 025a FFF7FEFF 		bl	__aeabi_fadd
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 19
 
 
- 642 00aa 01       		.byte	0x1
- 643 00ab 08       		.byte	0x8
- 644 00ac AE010000 		.4byte	.LASF15
- 645 00b0 02       		.uleb128 0x2
- 646 00b1 04       		.byte	0x4
- 647 00b2 07       		.byte	0x7
- 648 00b3 2E000000 		.4byte	.LASF16
- 649 00b7 05       		.uleb128 0x5
- 650 00b8 B7000000 		.4byte	.LASF25
- 651 00bc 01       		.byte	0x1
- 652 00bd 01       		.byte	0x1
- 653 00be 27       		.byte	0x27
- 654 00bf F4000000 		.4byte	0xf4
- 655 00c3 06       		.uleb128 0x6
- 656 00c4 21020000 		.4byte	.LASF17
- 657 00c8 00       		.sleb128 0
- 658 00c9 06       		.uleb128 0x6
- 659 00ca 61020000 		.4byte	.LASF18
- 660 00ce 01       		.sleb128 1
- 661 00cf 06       		.uleb128 0x6
- 662 00d0 50020000 		.4byte	.LASF19
- 663 00d4 02       		.sleb128 2
- 664 00d5 06       		.uleb128 0x6
- 665 00d6 F9010000 		.4byte	.LASF20
- 666 00da 03       		.sleb128 3
- 667 00db 06       		.uleb128 0x6
- 668 00dc 10000000 		.4byte	.LASF21
- 669 00e0 04       		.sleb128 4
- 670 00e1 06       		.uleb128 0x6
- 671 00e2 87000000 		.4byte	.LASF22
- 672 00e6 05       		.sleb128 5
- 673 00e7 06       		.uleb128 0x6
- 674 00e8 16000000 		.4byte	.LASF23
- 675 00ec 06       		.sleb128 6
- 676 00ed 06       		.uleb128 0x6
- 677 00ee 1D000000 		.4byte	.LASF24
- 678 00f2 07       		.sleb128 7
- 679 00f3 00       		.byte	0
- 680 00f4 05       		.uleb128 0x5
- 681 00f5 E1020000 		.4byte	.LASF26
- 682 00f9 01       		.byte	0x1
- 683 00fa 01       		.byte	0x1
- 684 00fb 32       		.byte	0x32
- 685 00fc 4F010000 		.4byte	0x14f
- 686 0100 06       		.uleb128 0x6
- 687 0101 DF010000 		.4byte	.LASF27
- 688 0105 00       		.sleb128 0
- 689 0106 06       		.uleb128 0x6
- 690 0107 3D020000 		.4byte	.LASF28
- 691 010b 01       		.sleb128 1
- 692 010c 06       		.uleb128 0x6
- 693 010d 5B000000 		.4byte	.LASF29
- 694 0111 02       		.sleb128 2
- 695 0112 06       		.uleb128 0x6
- 696 0113 E7010000 		.4byte	.LASF30
- 697 0117 03       		.sleb128 3
- 698 0118 06       		.uleb128 0x6
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 19
+ 621 025e 031C     		add	r3, r0, #0
+ 622 0260 1A1C     		add	r2, r3, #0
+ 623 0262 9E4B     		ldr	r3, .L15+60
+ 624 0264 1A60     		str	r2, [r3]
+ 249:.\main.c      ****             P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
+ 625              		.loc 1 249 0
+ 626 0266 9D4B     		ldr	r3, .L15+60
+ 627 0268 5C68     		ldr	r4, [r3, #4]
+ 628 026a 9B4B     		ldr	r3, .L15+56
+ 629 026c 1B68     		ldr	r3, [r3]
+ 630 026e 8022     		mov	r2, #128
+ 631 0270 1206     		lsl	r2, r2, #24
+ 632 0272 5A40     		eor	r2, r3
+ 633 0274 994B     		ldr	r3, .L15+60
+ 634 0276 DB68     		ldr	r3, [r3, #12]
+ 635 0278 101C     		add	r0, r2, #0
+ 636 027a 191C     		add	r1, r3, #0
+ 637 027c FFF7FEFF 		bl	__aeabi_fmul
+ 638 0280 031C     		add	r3, r0, #0
+ 639 0282 201C     		add	r0, r4, #0
+ 640 0284 191C     		add	r1, r3, #0
+ 641 0286 FFF7FEFF 		bl	__aeabi_fadd
+ 642 028a 031C     		add	r3, r0, #0
+ 643 028c 1A1C     		add	r2, r3, #0
+ 644 028e 934B     		ldr	r3, .L15+60
+ 645 0290 5A60     		str	r2, [r3, #4]
+ 251:.\main.c      ****             P_Theta[1][0] = P_Theta[0][1];
+ 646              		.loc 1 251 0
+ 647 0292 924B     		ldr	r3, .L15+60
+ 648 0294 5A68     		ldr	r2, [r3, #4]
+ 649 0296 914B     		ldr	r3, .L15+60
+ 650 0298 9A60     		str	r2, [r3, #8]
+ 253:.\main.c      ****             P_Theta[1][1] +=  + Q_gyro * sample_time;
+ 651              		.loc 1 253 0
+ 652 029a 904B     		ldr	r3, .L15+60
+ 653 029c DC68     		ldr	r4, [r3, #12]
+ 654 029e 914B     		ldr	r3, .L15+68
+ 655 02a0 1A68     		ldr	r2, [r3]
+ 656 02a2 8D4B     		ldr	r3, .L15+56
+ 657 02a4 1B68     		ldr	r3, [r3]
+ 658 02a6 101C     		add	r0, r2, #0
+ 659 02a8 191C     		add	r1, r3, #0
+ 660 02aa FFF7FEFF 		bl	__aeabi_fmul
+ 661 02ae 031C     		add	r3, r0, #0
+ 662 02b0 201C     		add	r0, r4, #0
+ 663 02b2 191C     		add	r1, r3, #0
+ 664 02b4 FFF7FEFF 		bl	__aeabi_fadd
+ 665 02b8 031C     		add	r3, r0, #0
+ 666 02ba 1A1C     		add	r2, r3, #0
+ 667 02bc 874B     		ldr	r3, .L15+60
+ 668 02be DA60     		str	r2, [r3, #12]
+ 256:.\main.c      **** 			Phi += sample_time * (turn_rate_p-p_bias);
+ 669              		.loc 1 256 0
+ 670 02c0 894B     		ldr	r3, .L15+72
+ 671 02c2 1B88     		ldrh	r3, [r3]
+ 672 02c4 1BB2     		sxth	r3, r3
+ 673 02c6 181C     		mov	r0, r3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 20
 
 
- 699 0119 F0010000 		.4byte	.LASF31
- 700 011d 04       		.sleb128 4
- 701 011e 06       		.uleb128 0x6
- 702 011f 00020000 		.4byte	.LASF32
- 703 0123 05       		.sleb128 5
- 704 0124 06       		.uleb128 0x6
- 705 0125 2A010000 		.4byte	.LASF33
- 706 0129 06       		.sleb128 6
- 707 012a 06       		.uleb128 0x6
- 708 012b 32010000 		.4byte	.LASF34
- 709 012f 07       		.sleb128 7
- 710 0130 06       		.uleb128 0x6
- 711 0131 3A010000 		.4byte	.LASF35
- 712 0135 08       		.sleb128 8
- 713 0136 06       		.uleb128 0x6
- 714 0137 42010000 		.4byte	.LASF36
- 715 013b 09       		.sleb128 9
- 716 013c 06       		.uleb128 0x6
- 717 013d 4A010000 		.4byte	.LASF37
- 718 0141 0A       		.sleb128 10
- 719 0142 06       		.uleb128 0x6
- 720 0143 00000000 		.4byte	.LASF38
- 721 0147 0B       		.sleb128 11
- 722 0148 06       		.uleb128 0x6
- 723 0149 08000000 		.4byte	.LASF39
- 724 014d 0C       		.sleb128 12
- 725 014e 00       		.byte	0
- 726 014f 07       		.uleb128 0x7
- 727 0150 D0010000 		.4byte	.LASF61
- 728 0154 0C       		.byte	0xc
- 729 0155 01       		.byte	0x1
- 730 0156 52       		.byte	0x52
- 731 0157 80010000 		.4byte	0x180
- 732 015b 08       		.uleb128 0x8
- 733 015c 7000     		.ascii	"p\000"
- 734 015e 01       		.byte	0x1
- 735 015f 54       		.byte	0x54
- 736 0160 71000000 		.4byte	0x71
- 737 0164 02       		.byte	0x2
- 738 0165 23       		.byte	0x23
- 739 0166 00       		.uleb128 0
- 740 0167 08       		.uleb128 0x8
- 741 0168 7100     		.ascii	"q\000"
- 742 016a 01       		.byte	0x1
- 743 016b 54       		.byte	0x54
- 744 016c 71000000 		.4byte	0x71
- 745 0170 02       		.byte	0x2
- 746 0171 23       		.byte	0x23
- 747 0172 04       		.uleb128 0x4
- 748 0173 08       		.uleb128 0x8
- 749 0174 7200     		.ascii	"r\000"
- 750 0176 01       		.byte	0x1
- 751 0177 54       		.byte	0x54
- 752 0178 71000000 		.4byte	0x71
- 753 017c 02       		.byte	0x2
- 754 017d 23       		.byte	0x23
- 755 017e 08       		.uleb128 0x8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 20
+ 674 02c8 FFF7FEFF 		bl	__aeabi_i2f
+ 675 02cc 041C     		add	r4, r0, #0
+ 676 02ce 874B     		ldr	r3, .L15+76
+ 677 02d0 1B88     		ldrh	r3, [r3]
+ 678 02d2 1BB2     		sxth	r3, r3
+ 679 02d4 181C     		mov	r0, r3
+ 680 02d6 FFF7FEFF 		bl	__aeabi_i2f
+ 681 02da 021C     		add	r2, r0, #0
+ 682 02dc 844B     		ldr	r3, .L15+80
+ 683 02de 1B68     		ldr	r3, [r3]
+ 684 02e0 101C     		add	r0, r2, #0
+ 685 02e2 191C     		add	r1, r3, #0
+ 686 02e4 FFF7FEFF 		bl	__aeabi_fsub
+ 687 02e8 031C     		add	r3, r0, #0
+ 688 02ea 1A1C     		add	r2, r3, #0
+ 689 02ec 7A4B     		ldr	r3, .L15+56
+ 690 02ee 1B68     		ldr	r3, [r3]
+ 691 02f0 101C     		add	r0, r2, #0
+ 692 02f2 191C     		add	r1, r3, #0
+ 693 02f4 FFF7FEFF 		bl	__aeabi_fmul
+ 694 02f8 031C     		add	r3, r0, #0
+ 695 02fa 201C     		add	r0, r4, #0
+ 696 02fc 191C     		add	r1, r3, #0
+ 697 02fe FFF7FEFF 		bl	__aeabi_fadd
+ 698 0302 031C     		add	r3, r0, #0
+ 699 0304 181C     		add	r0, r3, #0
+ 700 0306 FFF7FEFF 		bl	__aeabi_f2iz
+ 701 030a 031C     		mov	r3, r0
+ 702 030c 9AB2     		uxth	r2, r3
+ 703 030e 764B     		ldr	r3, .L15+72
+ 704 0310 1A80     		strh	r2, [r3]
+ 257:.\main.c      **** 			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
+ 705              		.loc 1 257 0
+ 706 0312 784B     		ldr	r3, .L15+84
+ 707 0314 1C68     		ldr	r4, [r3]
+ 708 0316 704B     		ldr	r3, .L15+56
+ 709 0318 1B68     		ldr	r3, [r3]
+ 710 031a 8022     		mov	r2, #128
+ 711 031c 1206     		lsl	r2, r2, #24
+ 712 031e 151C     		mov	r5, r2
+ 713 0320 5D40     		eor	r5, r3
+ 714 0322 744B     		ldr	r3, .L15+84
+ 715 0324 9A68     		ldr	r2, [r3, #8]
+ 716 0326 734B     		ldr	r3, .L15+84
+ 717 0328 5B68     		ldr	r3, [r3, #4]
+ 718 032a 101C     		add	r0, r2, #0
+ 719 032c 191C     		add	r1, r3, #0
+ 720 032e FFF7FEFF 		bl	__aeabi_fadd
+ 721 0332 031C     		add	r3, r0, #0
+ 722 0334 1A1C     		add	r2, r3, #0
+ 723 0336 6A4B     		ldr	r3, .L15+64
+ 724 0338 1B68     		ldr	r3, [r3]
+ 725 033a 101C     		add	r0, r2, #0
+ 726 033c 191C     		add	r1, r3, #0
+ 727 033e FFF7FEFF 		bl	__aeabi_fsub
+ 728 0342 031C     		add	r3, r0, #0
+ 729 0344 281C     		add	r0, r5, #0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 21
 
 
- 756 017f 00       		.byte	0
- 757 0180 09       		.uleb128 0x9
- 758 0181 01       		.byte	0x1
- 759 0182 64000000 		.4byte	.LASF40
- 760 0186 01       		.byte	0x1
- 761 0187 5D       		.byte	0x5d
- 762 0188 01       		.byte	0x1
- 763 0189 00000000 		.4byte	.LFB33
- 764 018d 30000000 		.4byte	.LFE33
- 765 0191 00000000 		.4byte	.LLST0
- 766 0195 01       		.byte	0x1
- 767 0196 B5010000 		.4byte	0x1b5
- 768 019a 0A       		.uleb128 0xa
- 769 019b 6E756D00 		.ascii	"num\000"
- 770 019f 01       		.byte	0x1
- 771 01a0 5D       		.byte	0x5d
- 772 01a1 66000000 		.4byte	0x66
- 773 01a5 02       		.byte	0x2
- 774 01a6 91       		.byte	0x91
- 775 01a7 54       		.sleb128 -44
- 776 01a8 0B       		.uleb128 0xb
- 777 01a9 6B00     		.ascii	"k\000"
- 778 01ab 01       		.byte	0x1
- 779 01ac 5F       		.byte	0x5f
- 780 01ad B5010000 		.4byte	0x1b5
- 781 01b1 02       		.byte	0x2
- 782 01b2 91       		.byte	0x91
- 783 01b3 58       		.sleb128 -40
- 784 01b4 00       		.byte	0
- 785 01b5 0C       		.uleb128 0xc
- 786 01b6 A9000000 		.4byte	0xa9
- 787 01ba C5010000 		.4byte	0x1c5
- 788 01be 0D       		.uleb128 0xd
- 789 01bf B0000000 		.4byte	0xb0
- 790 01c3 1E       		.byte	0x1e
- 791 01c4 00       		.byte	0
- 792 01c5 0E       		.uleb128 0xe
- 793 01c6 01       		.byte	0x1
- 794 01c7 56000000 		.4byte	.LASF41
- 795 01cb 01       		.byte	0x1
- 796 01cc 65       		.byte	0x65
- 797 01cd 8D000000 		.4byte	0x8d
- 798 01d1 00000000 		.4byte	.LFB34
- 799 01d5 74020000 		.4byte	.LFE34
- 800 01d9 38000000 		.4byte	.LLST1
- 801 01dd 01       		.byte	0x1
- 802 01de F7010000 		.4byte	0x1f7
- 803 01e2 0F       		.uleb128 0xf
- 804 01e3 00000000 		.4byte	.Ldebug_ranges0+0
- 805 01e7 10       		.uleb128 0x10
- 806 01e8 8B010000 		.4byte	.LASF42
- 807 01ec 01       		.byte	0x1
- 808 01ed CC       		.byte	0xcc
- 809 01ee 30000000 		.4byte	0x30
- 810 01f2 02       		.byte	0x2
- 811 01f3 91       		.byte	0x91
- 812 01f4 77       		.sleb128 -9
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 21
+ 730 0346 191C     		add	r1, r3, #0
+ 731 0348 FFF7FEFF 		bl	__aeabi_fmul
+ 732 034c 031C     		add	r3, r0, #0
+ 733 034e 201C     		add	r0, r4, #0
+ 734 0350 191C     		add	r1, r3, #0
+ 735 0352 FFF7FEFF 		bl	__aeabi_fadd
+ 736 0356 031C     		add	r3, r0, #0
+ 737 0358 1A1C     		add	r2, r3, #0
+ 738 035a 664B     		ldr	r3, .L15+84
+ 739 035c 1A60     		str	r2, [r3]
+ 258:.\main.c      **** 			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
+ 740              		.loc 1 258 0
+ 741 035e 654B     		ldr	r3, .L15+84
+ 742 0360 5C68     		ldr	r4, [r3, #4]
+ 743 0362 5D4B     		ldr	r3, .L15+56
+ 744 0364 1B68     		ldr	r3, [r3]
+ 745 0366 8022     		mov	r2, #128
+ 746 0368 1206     		lsl	r2, r2, #24
+ 747 036a 5A40     		eor	r2, r3
+ 748 036c 614B     		ldr	r3, .L15+84
+ 749 036e DB68     		ldr	r3, [r3, #12]
+ 750 0370 101C     		add	r0, r2, #0
+ 751 0372 191C     		add	r1, r3, #0
+ 752 0374 FFF7FEFF 		bl	__aeabi_fmul
+ 753 0378 031C     		add	r3, r0, #0
+ 754 037a 201C     		add	r0, r4, #0
+ 755 037c 191C     		add	r1, r3, #0
+ 756 037e FFF7FEFF 		bl	__aeabi_fadd
+ 757 0382 031C     		add	r3, r0, #0
+ 758 0384 1A1C     		add	r2, r3, #0
+ 759 0386 5B4B     		ldr	r3, .L15+84
+ 760 0388 5A60     		str	r2, [r3, #4]
+ 259:.\main.c      **** 			P_Phi[1][0] = P_Phi[0][1];
+ 761              		.loc 1 259 0
+ 762 038a 5A4B     		ldr	r3, .L15+84
+ 763 038c 5A68     		ldr	r2, [r3, #4]
+ 764 038e 594B     		ldr	r3, .L15+84
+ 765 0390 9A60     		str	r2, [r3, #8]
+ 260:.\main.c      **** 			P_Phi[1][1] +=  + Q_gyro * sample_time;
+ 766              		.loc 1 260 0
+ 767 0392 584B     		ldr	r3, .L15+84
+ 768 0394 DC68     		ldr	r4, [r3, #12]
+ 769 0396 534B     		ldr	r3, .L15+68
+ 770 0398 1A68     		ldr	r2, [r3]
+ 771 039a 4F4B     		ldr	r3, .L15+56
+ 772 039c 1B68     		ldr	r3, [r3]
+ 773 039e 101C     		add	r0, r2, #0
+ 774 03a0 191C     		add	r1, r3, #0
+ 775 03a2 FFF7FEFF 		bl	__aeabi_fmul
+ 776 03a6 031C     		add	r3, r0, #0
+ 777 03a8 201C     		add	r0, r4, #0
+ 778 03aa 191C     		add	r1, r3, #0
+ 779 03ac FFF7FEFF 		bl	__aeabi_fadd
+ 780 03b0 031C     		add	r3, r0, #0
+ 781 03b2 1A1C     		add	r2, r3, #0
+ 782 03b4 4F4B     		ldr	r3, .L15+84
+ 783 03b6 DA60     		str	r2, [r3, #12]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 22
 
 
- 813 01f5 00       		.byte	0
- 814 01f6 00       		.byte	0
- 815 01f7 11       		.uleb128 0x11
- 816 01f8 46020000 		.4byte	.LASF43
- 817 01fc 01       		.byte	0x1
- 818 01fd 16       		.byte	0x16
- 819 01fe 09020000 		.4byte	0x209
- 820 0202 01       		.byte	0x1
- 821 0203 05       		.byte	0x5
- 822 0204 03       		.byte	0x3
- 823 0205 00000000 		.4byte	task_flag
- 824 0209 12       		.uleb128 0x12
- 825 020a 30000000 		.4byte	0x30
- 826 020e 11       		.uleb128 0x11
- 827 020f 57020000 		.4byte	.LASF44
- 828 0213 01       		.byte	0x1
- 829 0214 17       		.byte	0x17
- 830 0215 09020000 		.4byte	0x209
- 831 0219 01       		.byte	0x1
- 832 021a 05       		.byte	0x5
- 833 021b 03       		.byte	0x3
- 834 021c 00000000 		.4byte	blink_cnt
- 835 0220 11       		.uleb128 0x11
- 836 0221 4A000000 		.4byte	.LASF45
- 837 0225 01       		.byte	0x1
- 838 0226 23       		.byte	0x23
- 839 0227 30000000 		.4byte	0x30
- 840 022b 01       		.byte	0x1
- 841 022c 05       		.byte	0x5
- 842 022d 03       		.byte	0x3
- 843 022e 00000000 		.4byte	PPM_channel
- 844 0232 0C       		.uleb128 0xc
- 845 0233 54000000 		.4byte	0x54
- 846 0237 42020000 		.4byte	0x242
- 847 023b 0D       		.uleb128 0xd
- 848 023c B0000000 		.4byte	0xb0
- 849 0240 07       		.byte	0x7
- 850 0241 00       		.byte	0
- 851 0242 11       		.uleb128 0x11
- 852 0243 68020000 		.4byte	.LASF46
- 853 0247 01       		.byte	0x1
- 854 0248 24       		.byte	0x24
- 855 0249 32020000 		.4byte	0x232
- 856 024d 01       		.byte	0x1
- 857 024e 05       		.byte	0x5
- 858 024f 03       		.byte	0x3
- 859 0250 00000000 		.4byte	ctrl_in
- 860 0254 0C       		.uleb128 0xc
- 861 0255 54000000 		.4byte	0x54
- 862 0259 64020000 		.4byte	0x264
- 863 025d 0D       		.uleb128 0xd
- 864 025e B0000000 		.4byte	0xb0
- 865 0262 0C       		.byte	0xc
- 866 0263 00       		.byte	0
- 867 0264 11       		.uleb128 0x11
- 868 0265 76000000 		.4byte	.LASF47
- 869 0269 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 22
+ 270:.\main.c      **** 			Theta_temp = Theta_acc - Theta;
+ 784              		.loc 1 270 0
+ 785 03b8 414B     		ldr	r3, .L15+32
+ 786 03ba 1B88     		ldrh	r3, [r3]
+ 787 03bc 1AB2     		sxth	r2, r3
+ 788 03be 434B     		ldr	r3, .L15+44
+ 789 03c0 1B88     		ldrh	r3, [r3]
+ 790 03c2 1BB2     		sxth	r3, r3
+ 791 03c4 D31A     		sub	r3, r2, r3
+ 792 03c6 181C     		mov	r0, r3
+ 793 03c8 FFF7FEFF 		bl	__aeabi_i2f
+ 794 03cc 021C     		add	r2, r0, #0
+ 795 03ce 4A4B     		ldr	r3, .L15+88
+ 796 03d0 1A60     		str	r2, [r3]
+ 271:.\main.c      **** 			S_Theta = P_Theta[0][0] + R_angle;
+ 797              		.loc 1 271 0
+ 798 03d2 424B     		ldr	r3, .L15+60
+ 799 03d4 1A68     		ldr	r2, [r3]
+ 800 03d6 494B     		ldr	r3, .L15+92
+ 801 03d8 1B68     		ldr	r3, [r3]
+ 802 03da 101C     		add	r0, r2, #0
+ 803 03dc 191C     		add	r1, r3, #0
+ 804 03de FFF7FEFF 		bl	__aeabi_fadd
+ 805 03e2 031C     		add	r3, r0, #0
+ 806 03e4 1A1C     		add	r2, r3, #0
+ 807 03e6 464B     		ldr	r3, .L15+96
+ 808 03e8 1A60     		str	r2, [r3]
+ 272:.\main.c      **** 			K_0_Theta = P_Theta[0][0] / S_Theta;
+ 809              		.loc 1 272 0
+ 810 03ea 3C4B     		ldr	r3, .L15+60
+ 811 03ec 1A68     		ldr	r2, [r3]
+ 812 03ee 444B     		ldr	r3, .L15+96
+ 813 03f0 1B68     		ldr	r3, [r3]
+ 814 03f2 101C     		add	r0, r2, #0
+ 815 03f4 191C     		add	r1, r3, #0
+ 816 03f6 FFF7FEFF 		bl	__aeabi_fdiv
+ 817 03fa 031C     		add	r3, r0, #0
+ 818 03fc 1A1C     		add	r2, r3, #0
+ 819 03fe 414B     		ldr	r3, .L15+100
+ 820 0400 1A60     		str	r2, [r3]
+ 273:.\main.c      **** 			K_1_Theta = P_Theta[1][0] / S_Theta;
+ 821              		.loc 1 273 0
+ 822 0402 364B     		ldr	r3, .L15+60
+ 823 0404 9A68     		ldr	r2, [r3, #8]
+ 824 0406 3E4B     		ldr	r3, .L15+96
+ 825 0408 1B68     		ldr	r3, [r3]
+ 826 040a 101C     		add	r0, r2, #0
+ 827 040c 191C     		add	r1, r3, #0
+ 828 040e FFF7FEFF 		bl	__aeabi_fdiv
+ 829 0412 031C     		add	r3, r0, #0
+ 830 0414 1A1C     		add	r2, r3, #0
+ 831 0416 3C4B     		ldr	r3, .L15+104
+ 832 0418 1A60     		str	r2, [r3]
+ 275:.\main.c      **** 			Phi_temp = Phi_acc - Phi;
+ 833              		.loc 1 275 0
+ 834 041a 2B4B     		ldr	r3, .L15+40
+ 835 041c 1B88     		ldrh	r3, [r3]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 23
 
 
- 870 026a 25       		.byte	0x25
- 871 026b 54020000 		.4byte	0x254
- 872 026f 01       		.byte	0x1
- 873 0270 05       		.byte	0x5
- 874 0271 03       		.byte	0x3
- 875 0272 00000000 		.4byte	ctrl_out
- 876 0276 11       		.uleb128 0x11
- 877 0277 E7020000 		.4byte	.LASF48
- 878 027b 01       		.byte	0x1
- 879 027c 45       		.byte	0x45
- 880 027d 30000000 		.4byte	0x30
- 881 0281 01       		.byte	0x1
- 882 0282 05       		.byte	0x5
- 883 0283 03       		.byte	0x3
- 884 0284 00000000 		.4byte	flag_LightsEnabled
- 885 0288 11       		.uleb128 0x11
- 886 0289 37000000 		.4byte	.LASF49
- 887 028d 01       		.byte	0x1
- 888 028e 48       		.byte	0x48
- 889 028f 30000000 		.4byte	0x30
- 890 0293 01       		.byte	0x1
- 891 0294 05       		.byte	0x5
- 892 0295 03       		.byte	0x3
- 893 0296 00000000 		.4byte	flag_NavLightPulse
- 894 029a 11       		.uleb128 0x11
- 895 029b 70020000 		.4byte	.LASF50
- 896 029f 01       		.byte	0x1
- 897 02a0 49       		.byte	0x49
- 898 02a1 54000000 		.4byte	0x54
- 899 02a5 01       		.byte	0x1
- 900 02a6 05       		.byte	0x5
- 901 02a7 03       		.byte	0x3
- 902 02a8 00000000 		.4byte	NavLightBright
- 903 02ac 11       		.uleb128 0x11
- 904 02ad 28020000 		.4byte	.LASF51
- 905 02b1 01       		.byte	0x1
- 906 02b2 4A       		.byte	0x4a
- 907 02b3 54000000 		.4byte	0x54
- 908 02b7 01       		.byte	0x1
- 909 02b8 05       		.byte	0x5
- 910 02b9 03       		.byte	0x3
- 911 02ba 00000000 		.4byte	NavLightDim
- 912 02be 11       		.uleb128 0x11
- 913 02bf B3010000 		.4byte	.LASF52
- 914 02c3 01       		.byte	0x1
- 915 02c4 4B       		.byte	0x4b
- 916 02c5 54000000 		.4byte	0x54
- 917 02c9 01       		.byte	0x1
- 918 02ca 05       		.byte	0x5
- 919 02cb 03       		.byte	0x3
- 920 02cc 00000000 		.4byte	NavLightStep
- 921 02d0 11       		.uleb128 0x11
- 922 02d1 7F020000 		.4byte	.LASF53
- 923 02d5 01       		.byte	0x1
- 924 02d6 4C       		.byte	0x4c
- 925 02d7 54000000 		.4byte	0x54
- 926 02db 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 23
+ 836 041e 1AB2     		sxth	r2, r3
+ 837 0420 314B     		ldr	r3, .L15+72
+ 838 0422 1B88     		ldrh	r3, [r3]
+ 839 0424 1BB2     		sxth	r3, r3
+ 840 0426 D31A     		sub	r3, r2, r3
+ 841 0428 181C     		mov	r0, r3
+ 842 042a FFF7FEFF 		bl	__aeabi_i2f
+ 843 042e 021C     		add	r2, r0, #0
+ 844 0430 364B     		ldr	r3, .L15+108
+ 845 0432 1A60     		str	r2, [r3]
+ 276:.\main.c      **** 			S_Phi = P_Phi[0][0] + R_angle;
+ 846              		.loc 1 276 0
+ 847 0434 2F4B     		ldr	r3, .L15+84
+ 848 0436 1A68     		ldr	r2, [r3]
+ 849 0438 304B     		ldr	r3, .L15+92
+ 850 043a 1B68     		ldr	r3, [r3]
+ 851 043c 101C     		add	r0, r2, #0
+ 852 043e 191C     		add	r1, r3, #0
+ 853 0440 FFF7FEFF 		bl	__aeabi_fadd
+ 854 0444 031C     		add	r3, r0, #0
+ 855 0446 1A1C     		add	r2, r3, #0
+ 856 0448 314B     		ldr	r3, .L15+112
+ 857 044a 1A60     		str	r2, [r3]
+ 277:.\main.c      **** 			K_0_Phi = P_Phi[0][0] / S_Phi;
+ 858              		.loc 1 277 0
+ 859 044c 294B     		ldr	r3, .L15+84
+ 860 044e 1A68     		ldr	r2, [r3]
+ 861 0450 2F4B     		ldr	r3, .L15+112
+ 862 0452 1B68     		ldr	r3, [r3]
+ 863 0454 101C     		add	r0, r2, #0
+ 864 0456 191C     		add	r1, r3, #0
+ 865 0458 FFF7FEFF 		bl	__aeabi_fdiv
+ 866 045c 031C     		add	r3, r0, #0
+ 867 045e 1A1C     		add	r2, r3, #0
+ 868 0460 2C4B     		ldr	r3, .L15+116
+ 869 0462 1A60     		str	r2, [r3]
+ 278:.\main.c      **** 			K_1_Phi = P_Phi[1][0] / S_Phi;
+ 870              		.loc 1 278 0
+ 871 0464 234B     		ldr	r3, .L15+84
+ 872 0466 9A68     		ldr	r2, [r3, #8]
+ 873 0468 294B     		ldr	r3, .L15+112
+ 874 046a 1B68     		ldr	r3, [r3]
+ 875 046c 101C     		add	r0, r2, #0
+ 876 046e 191C     		add	r1, r3, #0
+ 877 0470 FFF7FEFF 		bl	__aeabi_fdiv
+ 878 0474 031C     		add	r3, r0, #0
+ 879 0476 1A1C     		add	r2, r3, #0
+ 880 0478 274B     		ldr	r3, .L15+120
+ 881 047a 1A60     		str	r2, [r3]
+ 285:.\main.c      **** 			Theta +=  K_0_Theta * Theta_temp;
+ 882              		.loc 1 285 0
+ 883 047c 134B     		ldr	r3, .L15+44
+ 884 047e 1B88     		ldrh	r3, [r3]
+ 885 0480 1BB2     		sxth	r3, r3
+ 886 0482 181C     		mov	r0, r3
+ 887 0484 FFF7FEFF 		bl	__aeabi_i2f
+ 888 0488 041C     		add	r4, r0, #0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 24
 
 
- 927 02dc 05       		.byte	0x5
- 928 02dd 03       		.byte	0x3
- 929 02de 00000000 		.4byte	NavLightCompare
- 930 02e2 11       		.uleb128 0x11
- 931 02e3 91010000 		.4byte	.LASF54
- 932 02e7 01       		.byte	0x1
- 933 02e8 57       		.byte	0x57
- 934 02e9 4F010000 		.4byte	0x14f
- 935 02ed 01       		.byte	0x1
- 936 02ee 05       		.byte	0x5
- 937 02ef 03       		.byte	0x3
- 938 02f0 00000000 		.4byte	turn_rate
- 939 02f4 11       		.uleb128 0x11
- 940 02f5 8D000000 		.4byte	.LASF55
- 941 02f9 01       		.byte	0x1
- 942 02fa 59       		.byte	0x59
- 943 02fb 42000000 		.4byte	0x42
- 944 02ff 01       		.byte	0x1
- 945 0300 05       		.byte	0x5
- 946 0301 03       		.byte	0x3
- 947 0302 00000000 		.4byte	turn_rate_p
- 948 0306 11       		.uleb128 0x11
- 949 0307 99000000 		.4byte	.LASF56
- 950 030b 01       		.byte	0x1
- 951 030c 5A       		.byte	0x5a
- 952 030d 42000000 		.4byte	0x42
- 953 0311 01       		.byte	0x1
- 954 0312 05       		.byte	0x5
- 955 0313 03       		.byte	0x3
- 956 0314 00000000 		.4byte	turn_rate_q
- 957 0318 11       		.uleb128 0x11
- 958 0319 A5000000 		.4byte	.LASF57
- 959 031d 01       		.byte	0x1
- 960 031e 5B       		.byte	0x5b
- 961 031f 42000000 		.4byte	0x42
- 962 0323 01       		.byte	0x1
- 963 0324 05       		.byte	0x5
- 964 0325 03       		.byte	0x3
- 965 0326 00000000 		.4byte	turn_rate_r
- 966 032a 00       		.byte	0
- 967              		.section	.debug_abbrev,"",%progbits
- 968              	.Ldebug_abbrev0:
- 969 0000 01       		.uleb128 0x1
- 970 0001 11       		.uleb128 0x11
- 971 0002 01       		.byte	0x1
- 972 0003 25       		.uleb128 0x25
- 973 0004 0E       		.uleb128 0xe
- 974 0005 13       		.uleb128 0x13
- 975 0006 0B       		.uleb128 0xb
- 976 0007 03       		.uleb128 0x3
- 977 0008 0E       		.uleb128 0xe
- 978 0009 1B       		.uleb128 0x1b
- 979 000a 0E       		.uleb128 0xe
- 980 000b 55       		.uleb128 0x55
- 981 000c 06       		.uleb128 0x6
- 982 000d 11       		.uleb128 0x11
- 983 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 24
+ 889 048a 1E4B     		ldr	r3, .L15+100
+ 890 048c 1A68     		ldr	r2, [r3]
+ 891 048e 1A4B     		ldr	r3, .L15+88
+ 892 0490 1B68     		ldr	r3, [r3]
+ 893 0492 101C     		add	r0, r2, #0
+ 894 0494 191C     		add	r1, r3, #0
+ 895 0496 FFF7FEFF 		bl	__aeabi_fmul
+ 896 049a 031C     		add	r3, r0, #0
+ 897 049c 201C     		add	r0, r4, #0
+ 898 049e 3DE0     		b	.L16
+ 899              	.L17:
+ 900              		.align	3
+ 901              	.L15:
+ 902 04a0 00000000 		.word	0
+ 903 04a4 00806640 		.word	1080459264
+ 904 04a8 182D4454 		.word	1413754136
+ 905 04ac FB210940 		.word	1074340347
+ 906 04b0 00000000 		.word	NavLightCompare
+ 907 04b4 00000000 		.word	NavLightStep
+ 908 04b8 00000000 		.word	acc_x_g
+ 909 04bc 00000000 		.word	acc_z_g
+ 910 04c0 00000000 		.word	Theta_acc
+ 911 04c4 00000000 		.word	acc_y_g
+ 912 04c8 00000000 		.word	Phi_acc
+ 913 04cc 00000000 		.word	Theta
+ 914 04d0 00000000 		.word	turn_rate_q
+ 915 04d4 00000000 		.word	q_bias
+ 916 04d8 00000000 		.word	sample_time
+ 917 04dc 00000000 		.word	P_Theta
+ 918 04e0 00000000 		.word	Q_angle
+ 919 04e4 00000000 		.word	Q_gyro
+ 920 04e8 00000000 		.word	Phi
+ 921 04ec 00000000 		.word	turn_rate_p
+ 922 04f0 00000000 		.word	p_bias
+ 923 04f4 00000000 		.word	P_Phi
+ 924 04f8 00000000 		.word	Theta_temp
+ 925 04fc 00000000 		.word	R_angle
+ 926 0500 00000000 		.word	S_Theta
+ 927 0504 00000000 		.word	K_0_Theta
+ 928 0508 00000000 		.word	K_1_Theta
+ 929 050c 00000000 		.word	Phi_temp
+ 930 0510 00000000 		.word	S_Phi
+ 931 0514 00000000 		.word	K_0_Phi
+ 932 0518 00000000 		.word	K_1_Phi
+ 933              	.L16:
+ 934 051c 191C     		add	r1, r3, #0
+ 935 051e FFF7FEFF 		bl	__aeabi_fadd
+ 936 0522 031C     		add	r3, r0, #0
+ 937 0524 181C     		add	r0, r3, #0
+ 938 0526 FFF7FEFF 		bl	__aeabi_f2iz
+ 939 052a 031C     		mov	r3, r0
+ 940 052c 9AB2     		uxth	r2, r3
+ 941 052e B44B     		ldr	r3, .L18
+ 942 0530 1A80     		strh	r2, [r3]
+ 286:.\main.c      **** 			q_bias  +=  K_1_Theta * Theta_temp;
+ 943              		.loc 1 286 0
+ 944 0532 B44B     		ldr	r3, .L18+4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 25
 
 
- 984 000f 52       		.uleb128 0x52
- 985 0010 01       		.uleb128 0x1
- 986 0011 10       		.uleb128 0x10
- 987 0012 06       		.uleb128 0x6
- 988 0013 00       		.byte	0
- 989 0014 00       		.byte	0
- 990 0015 02       		.uleb128 0x2
- 991 0016 24       		.uleb128 0x24
- 992 0017 00       		.byte	0
- 993 0018 0B       		.uleb128 0xb
- 994 0019 0B       		.uleb128 0xb
- 995 001a 3E       		.uleb128 0x3e
- 996 001b 0B       		.uleb128 0xb
- 997 001c 03       		.uleb128 0x3
- 998 001d 0E       		.uleb128 0xe
- 999 001e 00       		.byte	0
- 1000 001f 00       		.byte	0
- 1001 0020 03       		.uleb128 0x3
- 1002 0021 16       		.uleb128 0x16
- 1003 0022 00       		.byte	0
- 1004 0023 03       		.uleb128 0x3
- 1005 0024 0E       		.uleb128 0xe
- 1006 0025 3A       		.uleb128 0x3a
- 1007 0026 0B       		.uleb128 0xb
- 1008 0027 3B       		.uleb128 0x3b
- 1009 0028 0B       		.uleb128 0xb
- 1010 0029 49       		.uleb128 0x49
- 1011 002a 13       		.uleb128 0x13
- 1012 002b 00       		.byte	0
- 1013 002c 00       		.byte	0
- 1014 002d 04       		.uleb128 0x4
- 1015 002e 24       		.uleb128 0x24
- 1016 002f 00       		.byte	0
- 1017 0030 0B       		.uleb128 0xb
- 1018 0031 0B       		.uleb128 0xb
- 1019 0032 3E       		.uleb128 0x3e
- 1020 0033 0B       		.uleb128 0xb
- 1021 0034 03       		.uleb128 0x3
- 1022 0035 08       		.uleb128 0x8
- 1023 0036 00       		.byte	0
- 1024 0037 00       		.byte	0
- 1025 0038 05       		.uleb128 0x5
- 1026 0039 04       		.uleb128 0x4
- 1027 003a 01       		.byte	0x1
- 1028 003b 03       		.uleb128 0x3
- 1029 003c 0E       		.uleb128 0xe
- 1030 003d 0B       		.uleb128 0xb
- 1031 003e 0B       		.uleb128 0xb
- 1032 003f 3A       		.uleb128 0x3a
- 1033 0040 0B       		.uleb128 0xb
- 1034 0041 3B       		.uleb128 0x3b
- 1035 0042 0B       		.uleb128 0xb
- 1036 0043 01       		.uleb128 0x1
- 1037 0044 13       		.uleb128 0x13
- 1038 0045 00       		.byte	0
- 1039 0046 00       		.byte	0
- 1040 0047 06       		.uleb128 0x6
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 25
+ 945 0534 1A68     		ldr	r2, [r3]
+ 946 0536 B44B     		ldr	r3, .L18+8
+ 947 0538 1B68     		ldr	r3, [r3]
+ 948 053a 101C     		add	r0, r2, #0
+ 949 053c 191C     		add	r1, r3, #0
+ 950 053e FFF7FEFF 		bl	__aeabi_fmul
+ 951 0542 031C     		add	r3, r0, #0
+ 952 0544 1A1C     		add	r2, r3, #0
+ 953 0546 B14B     		ldr	r3, .L18+12
+ 954 0548 1B68     		ldr	r3, [r3]
+ 955 054a 101C     		add	r0, r2, #0
+ 956 054c 191C     		add	r1, r3, #0
+ 957 054e FFF7FEFF 		bl	__aeabi_fadd
+ 958 0552 031C     		add	r3, r0, #0
+ 959 0554 1A1C     		add	r2, r3, #0
+ 960 0556 AD4B     		ldr	r3, .L18+12
+ 961 0558 1A60     		str	r2, [r3]
+ 287:.\main.c      **** 			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
+ 962              		.loc 1 287 0
+ 963 055a AD4B     		ldr	r3, .L18+16
+ 964 055c 1C68     		ldr	r4, [r3]
+ 965 055e AC4B     		ldr	r3, .L18+16
+ 966 0560 1A68     		ldr	r2, [r3]
+ 967 0562 AC4B     		ldr	r3, .L18+20
+ 968 0564 1B68     		ldr	r3, [r3]
+ 969 0566 101C     		add	r0, r2, #0
+ 970 0568 191C     		add	r1, r3, #0
+ 971 056a FFF7FEFF 		bl	__aeabi_fmul
+ 972 056e 031C     		add	r3, r0, #0
+ 973 0570 201C     		add	r0, r4, #0
+ 974 0572 191C     		add	r1, r3, #0
+ 975 0574 FFF7FEFF 		bl	__aeabi_fsub
+ 976 0578 031C     		add	r3, r0, #0
+ 977 057a 1A1C     		add	r2, r3, #0
+ 978 057c A44B     		ldr	r3, .L18+16
+ 979 057e 1A60     		str	r2, [r3]
+ 288:.\main.c      **** 			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
+ 980              		.loc 1 288 0
+ 981 0580 A34B     		ldr	r3, .L18+16
+ 982 0582 5C68     		ldr	r4, [r3, #4]
+ 983 0584 A24B     		ldr	r3, .L18+16
+ 984 0586 5A68     		ldr	r2, [r3, #4]
+ 985 0588 A24B     		ldr	r3, .L18+20
+ 986 058a 1B68     		ldr	r3, [r3]
+ 987 058c 101C     		add	r0, r2, #0
+ 988 058e 191C     		add	r1, r3, #0
+ 989 0590 FFF7FEFF 		bl	__aeabi_fmul
+ 990 0594 031C     		add	r3, r0, #0
+ 991 0596 201C     		add	r0, r4, #0
+ 992 0598 191C     		add	r1, r3, #0
+ 993 059a FFF7FEFF 		bl	__aeabi_fsub
+ 994 059e 031C     		add	r3, r0, #0
+ 995 05a0 1A1C     		add	r2, r3, #0
+ 996 05a2 9B4B     		ldr	r3, .L18+16
+ 997 05a4 5A60     		str	r2, [r3, #4]
+ 289:.\main.c      **** 			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
+ 998              		.loc 1 289 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 26
 
 
- 1041 0048 28       		.uleb128 0x28
- 1042 0049 00       		.byte	0
- 1043 004a 03       		.uleb128 0x3
- 1044 004b 0E       		.uleb128 0xe
- 1045 004c 1C       		.uleb128 0x1c
- 1046 004d 0D       		.uleb128 0xd
- 1047 004e 00       		.byte	0
- 1048 004f 00       		.byte	0
- 1049 0050 07       		.uleb128 0x7
- 1050 0051 13       		.uleb128 0x13
- 1051 0052 01       		.byte	0x1
- 1052 0053 03       		.uleb128 0x3
- 1053 0054 0E       		.uleb128 0xe
- 1054 0055 0B       		.uleb128 0xb
- 1055 0056 0B       		.uleb128 0xb
- 1056 0057 3A       		.uleb128 0x3a
- 1057 0058 0B       		.uleb128 0xb
- 1058 0059 3B       		.uleb128 0x3b
- 1059 005a 0B       		.uleb128 0xb
- 1060 005b 01       		.uleb128 0x1
- 1061 005c 13       		.uleb128 0x13
- 1062 005d 00       		.byte	0
- 1063 005e 00       		.byte	0
- 1064 005f 08       		.uleb128 0x8
- 1065 0060 0D       		.uleb128 0xd
- 1066 0061 00       		.byte	0
- 1067 0062 03       		.uleb128 0x3
- 1068 0063 08       		.uleb128 0x8
- 1069 0064 3A       		.uleb128 0x3a
- 1070 0065 0B       		.uleb128 0xb
- 1071 0066 3B       		.uleb128 0x3b
- 1072 0067 0B       		.uleb128 0xb
- 1073 0068 49       		.uleb128 0x49
- 1074 0069 13       		.uleb128 0x13
- 1075 006a 38       		.uleb128 0x38
- 1076 006b 0A       		.uleb128 0xa
- 1077 006c 00       		.byte	0
- 1078 006d 00       		.byte	0
- 1079 006e 09       		.uleb128 0x9
- 1080 006f 2E       		.uleb128 0x2e
- 1081 0070 01       		.byte	0x1
- 1082 0071 3F       		.uleb128 0x3f
- 1083 0072 0C       		.uleb128 0xc
- 1084 0073 03       		.uleb128 0x3
- 1085 0074 0E       		.uleb128 0xe
- 1086 0075 3A       		.uleb128 0x3a
- 1087 0076 0B       		.uleb128 0xb
- 1088 0077 3B       		.uleb128 0x3b
- 1089 0078 0B       		.uleb128 0xb
- 1090 0079 27       		.uleb128 0x27
- 1091 007a 0C       		.uleb128 0xc
- 1092 007b 11       		.uleb128 0x11
- 1093 007c 01       		.uleb128 0x1
- 1094 007d 12       		.uleb128 0x12
- 1095 007e 01       		.uleb128 0x1
- 1096 007f 40       		.uleb128 0x40
- 1097 0080 06       		.uleb128 0x6
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 26
+ 999 05a6 9A4B     		ldr	r3, .L18+16
+ 1000 05a8 9C68     		ldr	r4, [r3, #8]
+ 1001 05aa 994B     		ldr	r3, .L18+16
+ 1002 05ac 1A68     		ldr	r2, [r3]
+ 1003 05ae 954B     		ldr	r3, .L18+4
+ 1004 05b0 1B68     		ldr	r3, [r3]
+ 1005 05b2 101C     		add	r0, r2, #0
+ 1006 05b4 191C     		add	r1, r3, #0
+ 1007 05b6 FFF7FEFF 		bl	__aeabi_fmul
+ 1008 05ba 031C     		add	r3, r0, #0
+ 1009 05bc 201C     		add	r0, r4, #0
+ 1010 05be 191C     		add	r1, r3, #0
+ 1011 05c0 FFF7FEFF 		bl	__aeabi_fsub
+ 1012 05c4 031C     		add	r3, r0, #0
+ 1013 05c6 1A1C     		add	r2, r3, #0
+ 1014 05c8 914B     		ldr	r3, .L18+16
+ 1015 05ca 9A60     		str	r2, [r3, #8]
+ 290:.\main.c      **** 			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
+ 1016              		.loc 1 290 0
+ 1017 05cc 904B     		ldr	r3, .L18+16
+ 1018 05ce DC68     		ldr	r4, [r3, #12]
+ 1019 05d0 8F4B     		ldr	r3, .L18+16
+ 1020 05d2 5A68     		ldr	r2, [r3, #4]
+ 1021 05d4 8B4B     		ldr	r3, .L18+4
+ 1022 05d6 1B68     		ldr	r3, [r3]
+ 1023 05d8 101C     		add	r0, r2, #0
+ 1024 05da 191C     		add	r1, r3, #0
+ 1025 05dc FFF7FEFF 		bl	__aeabi_fmul
+ 1026 05e0 031C     		add	r3, r0, #0
+ 1027 05e2 201C     		add	r0, r4, #0
+ 1028 05e4 191C     		add	r1, r3, #0
+ 1029 05e6 FFF7FEFF 		bl	__aeabi_fsub
+ 1030 05ea 031C     		add	r3, r0, #0
+ 1031 05ec 1A1C     		add	r2, r3, #0
+ 1032 05ee 884B     		ldr	r3, .L18+16
+ 1033 05f0 DA60     		str	r2, [r3, #12]
+ 292:.\main.c      **** 			Phi +=  K_0_Phi * Phi_temp;
+ 1034              		.loc 1 292 0
+ 1035 05f2 894B     		ldr	r3, .L18+24
+ 1036 05f4 1B88     		ldrh	r3, [r3]
+ 1037 05f6 1BB2     		sxth	r3, r3
+ 1038 05f8 181C     		mov	r0, r3
+ 1039 05fa FFF7FEFF 		bl	__aeabi_i2f
+ 1040 05fe 041C     		add	r4, r0, #0
+ 1041 0600 864B     		ldr	r3, .L18+28
+ 1042 0602 1A68     		ldr	r2, [r3]
+ 1043 0604 864B     		ldr	r3, .L18+32
+ 1044 0606 1B68     		ldr	r3, [r3]
+ 1045 0608 101C     		add	r0, r2, #0
+ 1046 060a 191C     		add	r1, r3, #0
+ 1047 060c FFF7FEFF 		bl	__aeabi_fmul
+ 1048 0610 031C     		add	r3, r0, #0
+ 1049 0612 201C     		add	r0, r4, #0
+ 1050 0614 191C     		add	r1, r3, #0
+ 1051 0616 FFF7FEFF 		bl	__aeabi_fadd
+ 1052 061a 031C     		add	r3, r0, #0
+ 1053 061c 181C     		add	r0, r3, #0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 27
 
 
- 1098 0081 9642     		.uleb128 0x2116
- 1099 0083 0C       		.uleb128 0xc
- 1100 0084 01       		.uleb128 0x1
- 1101 0085 13       		.uleb128 0x13
- 1102 0086 00       		.byte	0
- 1103 0087 00       		.byte	0
- 1104 0088 0A       		.uleb128 0xa
- 1105 0089 05       		.uleb128 0x5
- 1106 008a 00       		.byte	0
- 1107 008b 03       		.uleb128 0x3
- 1108 008c 08       		.uleb128 0x8
- 1109 008d 3A       		.uleb128 0x3a
- 1110 008e 0B       		.uleb128 0xb
- 1111 008f 3B       		.uleb128 0x3b
- 1112 0090 0B       		.uleb128 0xb
- 1113 0091 49       		.uleb128 0x49
- 1114 0092 13       		.uleb128 0x13
- 1115 0093 02       		.uleb128 0x2
- 1116 0094 0A       		.uleb128 0xa
- 1117 0095 00       		.byte	0
- 1118 0096 00       		.byte	0
- 1119 0097 0B       		.uleb128 0xb
- 1120 0098 34       		.uleb128 0x34
- 1121 0099 00       		.byte	0
- 1122 009a 03       		.uleb128 0x3
- 1123 009b 08       		.uleb128 0x8
- 1124 009c 3A       		.uleb128 0x3a
- 1125 009d 0B       		.uleb128 0xb
- 1126 009e 3B       		.uleb128 0x3b
- 1127 009f 0B       		.uleb128 0xb
- 1128 00a0 49       		.uleb128 0x49
- 1129 00a1 13       		.uleb128 0x13
- 1130 00a2 02       		.uleb128 0x2
- 1131 00a3 0A       		.uleb128 0xa
- 1132 00a4 00       		.byte	0
- 1133 00a5 00       		.byte	0
- 1134 00a6 0C       		.uleb128 0xc
- 1135 00a7 01       		.uleb128 0x1
- 1136 00a8 01       		.byte	0x1
- 1137 00a9 49       		.uleb128 0x49
- 1138 00aa 13       		.uleb128 0x13
- 1139 00ab 01       		.uleb128 0x1
- 1140 00ac 13       		.uleb128 0x13
- 1141 00ad 00       		.byte	0
- 1142 00ae 00       		.byte	0
- 1143 00af 0D       		.uleb128 0xd
- 1144 00b0 21       		.uleb128 0x21
- 1145 00b1 00       		.byte	0
- 1146 00b2 49       		.uleb128 0x49
- 1147 00b3 13       		.uleb128 0x13
- 1148 00b4 2F       		.uleb128 0x2f
- 1149 00b5 0B       		.uleb128 0xb
- 1150 00b6 00       		.byte	0
- 1151 00b7 00       		.byte	0
- 1152 00b8 0E       		.uleb128 0xe
- 1153 00b9 2E       		.uleb128 0x2e
- 1154 00ba 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 27
+ 1054 061e FFF7FEFF 		bl	__aeabi_f2iz
+ 1055 0622 031C     		mov	r3, r0
+ 1056 0624 9AB2     		uxth	r2, r3
+ 1057 0626 7C4B     		ldr	r3, .L18+24
+ 1058 0628 1A80     		strh	r2, [r3]
+ 293:.\main.c      **** 			p_bias  +=  K_1_Phi * Phi_temp;
+ 1059              		.loc 1 293 0
+ 1060 062a 7E4B     		ldr	r3, .L18+36
+ 1061 062c 1A68     		ldr	r2, [r3]
+ 1062 062e 7C4B     		ldr	r3, .L18+32
+ 1063 0630 1B68     		ldr	r3, [r3]
+ 1064 0632 101C     		add	r0, r2, #0
+ 1065 0634 191C     		add	r1, r3, #0
+ 1066 0636 FFF7FEFF 		bl	__aeabi_fmul
+ 1067 063a 031C     		add	r3, r0, #0
+ 1068 063c 1A1C     		add	r2, r3, #0
+ 1069 063e 7A4B     		ldr	r3, .L18+40
+ 1070 0640 1B68     		ldr	r3, [r3]
+ 1071 0642 101C     		add	r0, r2, #0
+ 1072 0644 191C     		add	r1, r3, #0
+ 1073 0646 FFF7FEFF 		bl	__aeabi_fadd
+ 1074 064a 031C     		add	r3, r0, #0
+ 1075 064c 1A1C     		add	r2, r3, #0
+ 1076 064e 764B     		ldr	r3, .L18+40
+ 1077 0650 1A60     		str	r2, [r3]
+ 294:.\main.c      **** 			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
+ 1078              		.loc 1 294 0
+ 1079 0652 764B     		ldr	r3, .L18+44
+ 1080 0654 1C68     		ldr	r4, [r3]
+ 1081 0656 754B     		ldr	r3, .L18+44
+ 1082 0658 1A68     		ldr	r2, [r3]
+ 1083 065a 704B     		ldr	r3, .L18+28
+ 1084 065c 1B68     		ldr	r3, [r3]
+ 1085 065e 101C     		add	r0, r2, #0
+ 1086 0660 191C     		add	r1, r3, #0
+ 1087 0662 FFF7FEFF 		bl	__aeabi_fmul
+ 1088 0666 031C     		add	r3, r0, #0
+ 1089 0668 201C     		add	r0, r4, #0
+ 1090 066a 191C     		add	r1, r3, #0
+ 1091 066c FFF7FEFF 		bl	__aeabi_fsub
+ 1092 0670 031C     		add	r3, r0, #0
+ 1093 0672 1A1C     		add	r2, r3, #0
+ 1094 0674 6D4B     		ldr	r3, .L18+44
+ 1095 0676 1A60     		str	r2, [r3]
+ 295:.\main.c      **** 			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
+ 1096              		.loc 1 295 0
+ 1097 0678 6C4B     		ldr	r3, .L18+44
+ 1098 067a 5C68     		ldr	r4, [r3, #4]
+ 1099 067c 6B4B     		ldr	r3, .L18+44
+ 1100 067e 5A68     		ldr	r2, [r3, #4]
+ 1101 0680 664B     		ldr	r3, .L18+28
+ 1102 0682 1B68     		ldr	r3, [r3]
+ 1103 0684 101C     		add	r0, r2, #0
+ 1104 0686 191C     		add	r1, r3, #0
+ 1105 0688 FFF7FEFF 		bl	__aeabi_fmul
+ 1106 068c 031C     		add	r3, r0, #0
+ 1107 068e 201C     		add	r0, r4, #0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 28
 
 
- 1155 00bb 3F       		.uleb128 0x3f
- 1156 00bc 0C       		.uleb128 0xc
- 1157 00bd 03       		.uleb128 0x3
- 1158 00be 0E       		.uleb128 0xe
- 1159 00bf 3A       		.uleb128 0x3a
- 1160 00c0 0B       		.uleb128 0xb
- 1161 00c1 3B       		.uleb128 0x3b
- 1162 00c2 0B       		.uleb128 0xb
- 1163 00c3 49       		.uleb128 0x49
- 1164 00c4 13       		.uleb128 0x13
- 1165 00c5 11       		.uleb128 0x11
- 1166 00c6 01       		.uleb128 0x1
- 1167 00c7 12       		.uleb128 0x12
- 1168 00c8 01       		.uleb128 0x1
- 1169 00c9 40       		.uleb128 0x40
- 1170 00ca 06       		.uleb128 0x6
- 1171 00cb 9642     		.uleb128 0x2116
- 1172 00cd 0C       		.uleb128 0xc
- 1173 00ce 01       		.uleb128 0x1
- 1174 00cf 13       		.uleb128 0x13
- 1175 00d0 00       		.byte	0
- 1176 00d1 00       		.byte	0
- 1177 00d2 0F       		.uleb128 0xf
- 1178 00d3 0B       		.uleb128 0xb
- 1179 00d4 01       		.byte	0x1
- 1180 00d5 55       		.uleb128 0x55
- 1181 00d6 06       		.uleb128 0x6
- 1182 00d7 00       		.byte	0
- 1183 00d8 00       		.byte	0
- 1184 00d9 10       		.uleb128 0x10
- 1185 00da 34       		.uleb128 0x34
- 1186 00db 00       		.byte	0
- 1187 00dc 03       		.uleb128 0x3
- 1188 00dd 0E       		.uleb128 0xe
- 1189 00de 3A       		.uleb128 0x3a
- 1190 00df 0B       		.uleb128 0xb
- 1191 00e0 3B       		.uleb128 0x3b
- 1192 00e1 0B       		.uleb128 0xb
- 1193 00e2 49       		.uleb128 0x49
- 1194 00e3 13       		.uleb128 0x13
- 1195 00e4 02       		.uleb128 0x2
- 1196 00e5 0A       		.uleb128 0xa
- 1197 00e6 00       		.byte	0
- 1198 00e7 00       		.byte	0
- 1199 00e8 11       		.uleb128 0x11
- 1200 00e9 34       		.uleb128 0x34
- 1201 00ea 00       		.byte	0
- 1202 00eb 03       		.uleb128 0x3
- 1203 00ec 0E       		.uleb128 0xe
- 1204 00ed 3A       		.uleb128 0x3a
- 1205 00ee 0B       		.uleb128 0xb
- 1206 00ef 3B       		.uleb128 0x3b
- 1207 00f0 0B       		.uleb128 0xb
- 1208 00f1 49       		.uleb128 0x49
- 1209 00f2 13       		.uleb128 0x13
- 1210 00f3 3F       		.uleb128 0x3f
- 1211 00f4 0C       		.uleb128 0xc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 28
+ 1108 0690 191C     		add	r1, r3, #0
+ 1109 0692 FFF7FEFF 		bl	__aeabi_fsub
+ 1110 0696 031C     		add	r3, r0, #0
+ 1111 0698 1A1C     		add	r2, r3, #0
+ 1112 069a 644B     		ldr	r3, .L18+44
+ 1113 069c 5A60     		str	r2, [r3, #4]
+ 296:.\main.c      **** 			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
+ 1114              		.loc 1 296 0
+ 1115 069e 634B     		ldr	r3, .L18+44
+ 1116 06a0 9C68     		ldr	r4, [r3, #8]
+ 1117 06a2 624B     		ldr	r3, .L18+44
+ 1118 06a4 1A68     		ldr	r2, [r3]
+ 1119 06a6 5F4B     		ldr	r3, .L18+36
+ 1120 06a8 1B68     		ldr	r3, [r3]
+ 1121 06aa 101C     		add	r0, r2, #0
+ 1122 06ac 191C     		add	r1, r3, #0
+ 1123 06ae FFF7FEFF 		bl	__aeabi_fmul
+ 1124 06b2 031C     		add	r3, r0, #0
+ 1125 06b4 201C     		add	r0, r4, #0
+ 1126 06b6 191C     		add	r1, r3, #0
+ 1127 06b8 FFF7FEFF 		bl	__aeabi_fsub
+ 1128 06bc 031C     		add	r3, r0, #0
+ 1129 06be 1A1C     		add	r2, r3, #0
+ 1130 06c0 5A4B     		ldr	r3, .L18+44
+ 1131 06c2 9A60     		str	r2, [r3, #8]
+ 297:.\main.c      **** 			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
+ 1132              		.loc 1 297 0
+ 1133 06c4 594B     		ldr	r3, .L18+44
+ 1134 06c6 DC68     		ldr	r4, [r3, #12]
+ 1135 06c8 584B     		ldr	r3, .L18+44
+ 1136 06ca 5A68     		ldr	r2, [r3, #4]
+ 1137 06cc 554B     		ldr	r3, .L18+36
+ 1138 06ce 1B68     		ldr	r3, [r3]
+ 1139 06d0 101C     		add	r0, r2, #0
+ 1140 06d2 191C     		add	r1, r3, #0
+ 1141 06d4 FFF7FEFF 		bl	__aeabi_fmul
+ 1142 06d8 031C     		add	r3, r0, #0
+ 1143 06da 201C     		add	r0, r4, #0
+ 1144 06dc 191C     		add	r1, r3, #0
+ 1145 06de FFF7FEFF 		bl	__aeabi_fsub
+ 1146 06e2 031C     		add	r3, r0, #0
+ 1147 06e4 1A1C     		add	r2, r3, #0
+ 1148 06e6 514B     		ldr	r3, .L18+44
+ 1149 06e8 DA60     		str	r2, [r3, #12]
+ 303:.\main.c      ****             UART_1_UartPutNum(Theta);
+ 1150              		.loc 1 303 0
+ 1151 06ea 454B     		ldr	r3, .L18
+ 1152 06ec 1B88     		ldrh	r3, [r3]
+ 1153 06ee 1BB2     		sxth	r3, r3
+ 1154 06f0 181C     		mov	r0, r3
+ 1155 06f2 FFF7FEFF 		bl	UART_1_UartPutNum
+ 304:.\main.c      ****             UART_1_UartPutString(" ");
+ 1156              		.loc 1 304 0
+ 1157 06f6 4E4B     		ldr	r3, .L18+48
+ 1158 06f8 181C     		mov	r0, r3
+ 1159 06fa FFF7FEFF 		bl	UART_1_UartPutString
+ 305:.\main.c      ****             UART_1_UartPutNum(Phi);
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 29
 
 
- 1212 00f5 02       		.uleb128 0x2
- 1213 00f6 0A       		.uleb128 0xa
- 1214 00f7 00       		.byte	0
- 1215 00f8 00       		.byte	0
- 1216 00f9 12       		.uleb128 0x12
- 1217 00fa 35       		.uleb128 0x35
- 1218 00fb 00       		.byte	0
- 1219 00fc 49       		.uleb128 0x49
- 1220 00fd 13       		.uleb128 0x13
- 1221 00fe 00       		.byte	0
- 1222 00ff 00       		.byte	0
- 1223 0100 00       		.byte	0
- 1224              		.section	.debug_loc,"",%progbits
- 1225              	.Ldebug_loc0:
- 1226              	.LLST0:
- 1227 0000 00000000 		.4byte	.LFB33
- 1228 0004 02000000 		.4byte	.LCFI0
- 1229 0008 0200     		.2byte	0x2
- 1230 000a 7D       		.byte	0x7d
- 1231 000b 00       		.sleb128 0
- 1232 000c 02000000 		.4byte	.LCFI0
- 1233 0010 04000000 		.4byte	.LCFI1
- 1234 0014 0200     		.2byte	0x2
- 1235 0016 7D       		.byte	0x7d
- 1236 0017 08       		.sleb128 8
- 1237 0018 04000000 		.4byte	.LCFI1
- 1238 001c 06000000 		.4byte	.LCFI2
- 1239 0020 0200     		.2byte	0x2
- 1240 0022 7D       		.byte	0x7d
- 1241 0023 30       		.sleb128 48
- 1242 0024 06000000 		.4byte	.LCFI2
- 1243 0028 30000000 		.4byte	.LFE33
- 1244 002c 0200     		.2byte	0x2
- 1245 002e 77       		.byte	0x77
- 1246 002f 30       		.sleb128 48
- 1247 0030 00000000 		.4byte	0
- 1248 0034 00000000 		.4byte	0
- 1249              	.LLST1:
- 1250 0038 00000000 		.4byte	.LFB34
- 1251 003c 02000000 		.4byte	.LCFI3
- 1252 0040 0200     		.2byte	0x2
- 1253 0042 7D       		.byte	0x7d
- 1254 0043 00       		.sleb128 0
- 1255 0044 02000000 		.4byte	.LCFI3
- 1256 0048 04000000 		.4byte	.LCFI4
- 1257 004c 0200     		.2byte	0x2
- 1258 004e 7D       		.byte	0x7d
- 1259 004f 08       		.sleb128 8
- 1260 0050 04000000 		.4byte	.LCFI4
- 1261 0054 06000000 		.4byte	.LCFI5
- 1262 0058 0200     		.2byte	0x2
- 1263 005a 7D       		.byte	0x7d
- 1264 005b 10       		.sleb128 16
- 1265 005c 06000000 		.4byte	.LCFI5
- 1266 0060 74020000 		.4byte	.LFE34
- 1267 0064 0200     		.2byte	0x2
- 1268 0066 77       		.byte	0x77
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 29
+ 1160              		.loc 1 305 0
+ 1161 06fe 464B     		ldr	r3, .L18+24
+ 1162 0700 1B88     		ldrh	r3, [r3]
+ 1163 0702 1BB2     		sxth	r3, r3
+ 1164 0704 181C     		mov	r0, r3
+ 1165 0706 FFF7FEFF 		bl	UART_1_UartPutNum
+ 306:.\main.c      ****             UART_1_UartPutString(" \r\n");
+ 1166              		.loc 1 306 0
+ 1167 070a 4A4B     		ldr	r3, .L18+52
+ 1168 070c 181C     		mov	r0, r3
+ 1169 070e FFF7FEFF 		bl	UART_1_UartPutString
+ 312:.\main.c      ****         uint8_t debug = 1;
+ 1170              		.loc 1 312 0
+ 1171 0712 FB1D     		add	r3, r7, #7
+ 1172 0714 0122     		mov	r2, #1
+ 1173 0716 1A70     		strb	r2, [r3]
+ 313:.\main.c      ****             if(debug == 0)
+ 1174              		.loc 1 313 0
+ 1175 0718 FB1D     		add	r3, r7, #7
+ 1176 071a 1B78     		ldrb	r3, [r3]
+ 1177 071c 002B     		cmp	r3, #0
+ 1178 071e 34D1     		bne	.L10
+ 315:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
+ 1179              		.loc 1 315 0
+ 1180 0720 454B     		ldr	r3, .L18+56
+ 1181 0722 1A88     		ldrh	r2, [r3]
+ 1182 0724 454B     		ldr	r3, .L18+60
+ 1183 0726 1A80     		strh	r2, [r3]
+ 316:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];    
+ 1184              		.loc 1 316 0
+ 1185 0728 434B     		ldr	r3, .L18+56
+ 1186 072a 5A88     		ldrh	r2, [r3, #2]
+ 1187 072c 434B     		ldr	r3, .L18+60
+ 1188 072e 5A80     		strh	r2, [r3, #2]
+ 317:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
+ 1189              		.loc 1 317 0
+ 1190 0730 414B     		ldr	r3, .L18+56
+ 1191 0732 5A88     		ldrh	r2, [r3, #2]
+ 1192 0734 414B     		ldr	r3, .L18+60
+ 1193 0736 9A80     		strh	r2, [r3, #4]
+ 318:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];
+ 1194              		.loc 1 318 0
+ 1195 0738 3F4B     		ldr	r3, .L18+56
+ 1196 073a 9A88     		ldrh	r2, [r3, #4]
+ 1197 073c 3F4B     		ldr	r3, .L18+60
+ 1198 073e DA80     		strh	r2, [r3, #6]
+ 319:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
+ 1199              		.loc 1 319 0
+ 1200 0740 3D4B     		ldr	r3, .L18+56
+ 1201 0742 9A88     		ldrh	r2, [r3, #4]
+ 1202 0744 3D4B     		ldr	r3, .L18+60
+ 1203 0746 1A81     		strh	r2, [r3, #8]
+ 320:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];
+ 1204              		.loc 1 320 0
+ 1205 0748 3B4B     		ldr	r3, .L18+56
+ 1206 074a DA88     		ldrh	r2, [r3, #6]
+ 1207 074c 3B4B     		ldr	r3, .L18+60
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 30
 
 
- 1269 0067 10       		.sleb128 16
- 1270 0068 00000000 		.4byte	0
- 1271 006c 00000000 		.4byte	0
- 1272              		.section	.debug_aranges,"",%progbits
- 1273 0000 24000000 		.4byte	0x24
- 1274 0004 0200     		.2byte	0x2
- 1275 0006 00000000 		.4byte	.Ldebug_info0
- 1276 000a 04       		.byte	0x4
- 1277 000b 00       		.byte	0
- 1278 000c 0000     		.2byte	0
- 1279 000e 0000     		.2byte	0
- 1280 0010 00000000 		.4byte	.LFB33
- 1281 0014 30000000 		.4byte	.LFE33-.LFB33
- 1282 0018 00000000 		.4byte	.LFB34
- 1283 001c 74020000 		.4byte	.LFE34-.LFB34
- 1284 0020 00000000 		.4byte	0
- 1285 0024 00000000 		.4byte	0
- 1286              		.section	.debug_ranges,"",%progbits
- 1287              	.Ldebug_ranges0:
- 1288 0000 60000000 		.4byte	.LBB2
- 1289 0004 BA010000 		.4byte	.LBE2
- 1290 0008 BC010000 		.4byte	.LBB3
- 1291 000c 2C020000 		.4byte	.LBE3
- 1292 0010 00000000 		.4byte	0
- 1293 0014 00000000 		.4byte	0
- 1294 0018 00000000 		.4byte	.LFB33
- 1295 001c 30000000 		.4byte	.LFE33
- 1296 0020 00000000 		.4byte	.LFB34
- 1297 0024 74020000 		.4byte	.LFE34
- 1298 0028 00000000 		.4byte	0
- 1299 002c 00000000 		.4byte	0
- 1300              		.section	.debug_line,"",%progbits
- 1301              	.Ldebug_line0:
- 1302 0000 41010000 		.section	.debug_str,"MS",%progbits,1
- 1302      0200BF00 
- 1302      00000201 
- 1302      FB0E0D00 
- 1302      01010101 
- 1303              	.LASF38:
- 1304 0000 6F75745F 		.ascii	"out_sp1\000"
- 1304      73703100 
- 1305              	.LASF39:
- 1306 0008 6F75745F 		.ascii	"out_sp2\000"
- 1306      73703200 
- 1307              	.LASF21:
- 1308 0010 696E5F66 		.ascii	"in_fl\000"
- 1308      6C00
- 1309              	.LASF23:
- 1310 0016 696E5F73 		.ascii	"in_sp1\000"
- 1310      703100
- 1311              	.LASF24:
- 1312 001d 696E5F73 		.ascii	"in_sp2\000"
- 1312      703200
- 1313              	.LASF4:
- 1314 0024 73686F72 		.ascii	"short int\000"
- 1314      7420696E 
- 1314      7400
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 30
+ 1208 074e 5A81     		strh	r2, [r3, #10]
+ 321:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_fl];
+ 1209              		.loc 1 321 0
+ 1210 0750 394B     		ldr	r3, .L18+56
+ 1211 0752 1A89     		ldrh	r2, [r3, #8]
+ 1212 0754 394B     		ldr	r3, .L18+60
+ 1213 0756 9A81     		strh	r2, [r3, #12]
+ 322:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_fl];
+ 1214              		.loc 1 322 0
+ 1215 0758 374B     		ldr	r3, .L18+56
+ 1216 075a 1A89     		ldrh	r2, [r3, #8]
+ 1217 075c 374B     		ldr	r3, .L18+60
+ 1218 075e DA81     		strh	r2, [r3, #14]
+ 323:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_ge];
+ 1219              		.loc 1 323 0
+ 1220 0760 354B     		ldr	r3, .L18+56
+ 1221 0762 5A89     		ldrh	r2, [r3, #10]
+ 1222 0764 354B     		ldr	r3, .L18+60
+ 1223 0766 1A82     		strh	r2, [r3, #16]
+ 324:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_ge];
+ 1224              		.loc 1 324 0
+ 1225 0768 334B     		ldr	r3, .L18+56
+ 1226 076a 5A89     		ldrh	r2, [r3, #10]
+ 1227 076c 334B     		ldr	r3, .L18+60
+ 1228 076e 5A82     		strh	r2, [r3, #18]
+ 325:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_ge];
+ 1229              		.loc 1 325 0
+ 1230 0770 314B     		ldr	r3, .L18+56
+ 1231 0772 5A89     		ldrh	r2, [r3, #10]
+ 1232 0774 314B     		ldr	r3, .L18+60
+ 1233 0776 9A82     		strh	r2, [r3, #20]
+ 326:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_sp1];
+ 1234              		.loc 1 326 0
+ 1235 0778 2F4B     		ldr	r3, .L18+56
+ 1236 077a 9A89     		ldrh	r2, [r3, #12]
+ 1237 077c 2F4B     		ldr	r3, .L18+60
+ 1238 077e DA82     		strh	r2, [r3, #22]
+ 327:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
+ 1239              		.loc 1 327 0
+ 1240 0780 2D4B     		ldr	r3, .L18+56
+ 1241 0782 DA89     		ldrh	r2, [r3, #14]
+ 1242 0784 2D4B     		ldr	r3, .L18+60
+ 1243 0786 1A83     		strh	r2, [r3, #24]
+ 1244              	.LBE2:
+ 1245              		.loc 1 370 0
+ 1246 0788 66E4     		b	.L12
+ 1247              	.L10:
+ 1248              	.LBB3:
+ 331:.\main.c      ****                 ctrl_in[in_mot] = 1000;
+ 1249              		.loc 1 331 0
+ 1250 078a 2B4B     		ldr	r3, .L18+56
+ 1251 078c FA22     		mov	r2, #250
+ 1252 078e 9200     		lsl	r2, r2, #2
+ 1253 0790 1A80     		strh	r2, [r3]
+ 332:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
+ 1254              		.loc 1 332 0
+ 1255 0792 294B     		ldr	r3, .L18+56
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 31
 
 
- 1315              	.LASF16:
- 1316 002e 73697A65 		.ascii	"sizetype\000"
- 1316      74797065 
- 1316      00
- 1317              	.LASF49:
- 1318 0037 666C6167 		.ascii	"flag_NavLightPulse\000"
- 1318      5F4E6176 
- 1318      4C696768 
- 1318      7450756C 
- 1318      736500
- 1319              	.LASF45:
- 1320 004a 50504D5F 		.ascii	"PPM_channel\000"
- 1320      6368616E 
- 1320      6E656C00 
- 1321              	.LASF41:
- 1322 0056 6D61696E 		.ascii	"main\000"
- 1322      00
- 1323              	.LASF29:
- 1324 005b 6F75745F 		.ascii	"out_ail2\000"
- 1324      61696C32 
- 1324      00
- 1325              	.LASF40:
- 1326 0064 55415254 		.ascii	"UART_1_UartPutNum\000"
- 1326      5F315F55 
- 1326      61727450 
- 1326      75744E75 
- 1326      6D00
- 1327              	.LASF47:
- 1328 0076 6374726C 		.ascii	"ctrl_out\000"
- 1328      5F6F7574 
- 1328      00
- 1329              	.LASF2:
- 1330 007f 75696E74 		.ascii	"uint8_t\000"
- 1330      385F7400 
- 1331              	.LASF22:
- 1332 0087 696E5F67 		.ascii	"in_ge\000"
- 1332      6500
- 1333              	.LASF55:
- 1334 008d 7475726E 		.ascii	"turn_rate_p\000"
- 1334      5F726174 
- 1334      655F7000 
- 1335              	.LASF56:
- 1336 0099 7475726E 		.ascii	"turn_rate_q\000"
- 1336      5F726174 
- 1336      655F7100 
- 1337              	.LASF57:
- 1338 00a5 7475726E 		.ascii	"turn_rate_r\000"
- 1338      5F726174 
- 1338      655F7200 
- 1339              	.LASF13:
- 1340 00b1 666C6F61 		.ascii	"float\000"
- 1340      7400
- 1341              	.LASF25:
- 1342 00b7 655F696E 		.ascii	"e_in\000"
- 1342      00
- 1343              	.LASF10:
- 1344 00bc 6C6F6E67 		.ascii	"long long int\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 31
+ 1256 0794 1A88     		ldrh	r2, [r3]
+ 1257 0796 294B     		ldr	r3, .L18+60
+ 1258 0798 1A80     		strh	r2, [r3]
+ 333:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
+ 1259              		.loc 1 333 0
+ 1260 079a 274B     		ldr	r3, .L18+56
+ 1261 079c 1A88     		ldrh	r2, [r3]
+ 1262 079e 274B     		ldr	r3, .L18+60
+ 1263 07a0 5A80     		strh	r2, [r3, #2]
+ 334:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
+ 1264              		.loc 1 334 0
+ 1265 07a2 254B     		ldr	r3, .L18+56
+ 1266 07a4 1A88     		ldrh	r2, [r3]
+ 1267 07a6 254B     		ldr	r3, .L18+60
+ 1268 07a8 9A80     		strh	r2, [r3, #4]
+ 335:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
+ 1269              		.loc 1 335 0
+ 1270 07aa 234B     		ldr	r3, .L18+56
+ 1271 07ac 1A88     		ldrh	r2, [r3]
+ 1272 07ae 234B     		ldr	r3, .L18+60
+ 1273 07b0 DA80     		strh	r2, [r3, #6]
+ 336:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
+ 1274              		.loc 1 336 0
+ 1275 07b2 214B     		ldr	r3, .L18+56
+ 1276 07b4 1A88     		ldrh	r2, [r3]
+ 1277 07b6 214B     		ldr	r3, .L18+60
+ 1278 07b8 1A81     		strh	r2, [r3, #8]
+ 337:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
+ 1279              		.loc 1 337 0
+ 1280 07ba 1F4B     		ldr	r3, .L18+56
+ 1281 07bc 1A88     		ldrh	r2, [r3]
+ 1282 07be 1F4B     		ldr	r3, .L18+60
+ 1283 07c0 5A81     		strh	r2, [r3, #10]
+ 338:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
+ 1284              		.loc 1 338 0
+ 1285 07c2 1D4B     		ldr	r3, .L18+56
+ 1286 07c4 1A88     		ldrh	r2, [r3]
+ 1287 07c6 1D4B     		ldr	r3, .L18+60
+ 1288 07c8 9A81     		strh	r2, [r3, #12]
+ 339:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
+ 1289              		.loc 1 339 0
+ 1290 07ca 1B4B     		ldr	r3, .L18+56
+ 1291 07cc 1A88     		ldrh	r2, [r3]
+ 1292 07ce 1B4B     		ldr	r3, .L18+60
+ 1293 07d0 DA81     		strh	r2, [r3, #14]
+ 340:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
+ 1294              		.loc 1 340 0
+ 1295 07d2 194B     		ldr	r3, .L18+56
+ 1296 07d4 1A88     		ldrh	r2, [r3]
+ 1297 07d6 194B     		ldr	r3, .L18+60
+ 1298 07d8 1A82     		strh	r2, [r3, #16]
+ 341:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
+ 1299              		.loc 1 341 0
+ 1300 07da 174B     		ldr	r3, .L18+56
+ 1301 07dc 1A88     		ldrh	r2, [r3]
+ 1302 07de 174B     		ldr	r3, .L18+60
+ 1303 07e0 5A82     		strh	r2, [r3, #18]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 32
 
 
- 1344      206C6F6E 
- 1344      6720696E 
- 1344      7400
- 1345              	.LASF8:
- 1346 00ca 6C6F6E67 		.ascii	"long int\000"
- 1346      20696E74 
- 1346      00
- 1347              	.LASF58:
- 1348 00d3 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1348      4320342E 
- 1348      372E3320 
- 1348      32303133 
- 1348      30333132 
- 1349 0106 616E6368 		.ascii	"anch revision 196615]\000"
- 1349      20726576 
- 1349      6973696F 
- 1349      6E203139 
- 1349      36363135 
- 1350              	.LASF1:
- 1351 011c 756E7369 		.ascii	"unsigned char\000"
- 1351      676E6564 
- 1351      20636861 
- 1351      7200
- 1352              	.LASF33:
- 1353 012a 6F75745F 		.ascii	"out_fl1\000"
- 1353      666C3100 
- 1354              	.LASF34:
- 1355 0132 6F75745F 		.ascii	"out_fl2\000"
- 1355      666C3200 
- 1356              	.LASF35:
- 1357 013a 6F75745F 		.ascii	"out_ge1\000"
- 1357      67653100 
- 1358              	.LASF36:
- 1359 0142 6F75745F 		.ascii	"out_ge2\000"
- 1359      67653200 
- 1360              	.LASF37:
- 1361 014a 6F75745F 		.ascii	"out_ge3\000"
- 1361      67653300 
- 1362              	.LASF0:
- 1363 0152 7369676E 		.ascii	"signed char\000"
- 1363      65642063 
- 1363      68617200 
- 1364              	.LASF11:
- 1365 015e 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1365      206C6F6E 
- 1365      6720756E 
- 1365      7369676E 
- 1365      65642069 
- 1366              	.LASF12:
- 1367 0175 756E7369 		.ascii	"unsigned int\000"
- 1367      676E6564 
- 1367      20696E74 
- 1367      00
- 1368              	.LASF5:
- 1369 0182 75696E74 		.ascii	"uint16_t\000"
- 1369      31365F74 
- 1369      00
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 32
+ 342:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
+ 1304              		.loc 1 342 0
+ 1305 07e2 154B     		ldr	r3, .L18+56
+ 1306 07e4 1A88     		ldrh	r2, [r3]
+ 1307 07e6 154B     		ldr	r3, .L18+60
+ 1308 07e8 9A82     		strh	r2, [r3, #20]
+ 343:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
+ 1309              		.loc 1 343 0
+ 1310 07ea 134B     		ldr	r3, .L18+56
+ 1311 07ec 1A88     		ldrh	r2, [r3]
+ 1312 07ee 134B     		ldr	r3, .L18+60
+ 1313 07f0 DA82     		strh	r2, [r3, #22]
+ 344:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
+ 1314              		.loc 1 344 0
+ 1315 07f2 114B     		ldr	r3, .L18+56
+ 1316 07f4 1A88     		ldrh	r2, [r3]
+ 1317 07f6 114B     		ldr	r3, .L18+60
+ 1318 07f8 1A83     		strh	r2, [r3, #24]
+ 1319              	.LBE3:
+ 1320              		.loc 1 370 0
+ 1321 07fa FFF72DFC 		bl	.L12	@ far jump
+ 1322              	.L19:
+ 1323 07fe C046     		.align	2
+ 1324              	.L18:
+ 1325 0800 00000000 		.word	Theta
+ 1326 0804 00000000 		.word	K_1_Theta
+ 1327 0808 00000000 		.word	Theta_temp
+ 1328 080c 00000000 		.word	q_bias
+ 1329 0810 00000000 		.word	P_Theta
+ 1330 0814 00000000 		.word	K_0_Theta
+ 1331 0818 00000000 		.word	Phi
+ 1332 081c 00000000 		.word	K_0_Phi
+ 1333 0820 00000000 		.word	Phi_temp
+ 1334 0824 00000000 		.word	K_1_Phi
+ 1335 0828 00000000 		.word	p_bias
+ 1336 082c 00000000 		.word	P_Phi
+ 1337 0830 20000000 		.word	.LC38
+ 1338 0834 24000000 		.word	.LC40
+ 1339 0838 00000000 		.word	ctrl_in
+ 1340 083c 00000000 		.word	ctrl_out
+ 1341              		.cfi_endproc
+ 1342              	.LFE34:
+ 1343              		.size	main, .-main
+ 1344              		.text
+ 1345              	.Letext0:
+ 1346              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4.7.3\\
+ 1347              		.section	.debug_info,"",%progbits
+ 1348              	.Ldebug_info0:
+ 1349 0000 D6040000 		.4byte	0x4d6
+ 1350 0004 0200     		.2byte	0x2
+ 1351 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1352 000a 04       		.byte	0x4
+ 1353 000b 01       		.uleb128 0x1
+ 1354 000c 41010000 		.4byte	.LASF83
+ 1355 0010 01       		.byte	0x1
+ 1356 0011 32000000 		.4byte	.LASF84
+ 1357 0015 26030000 		.4byte	.LASF85
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 33
 
 
- 1370              	.LASF42:
- 1371 018b 64656275 		.ascii	"debug\000"
- 1371      6700
- 1372              	.LASF54:
- 1373 0191 7475726E 		.ascii	"turn_rate\000"
- 1373      5F726174 
- 1373      6500
- 1374              	.LASF6:
- 1375 019b 73686F72 		.ascii	"short unsigned int\000"
- 1375      7420756E 
- 1375      7369676E 
- 1375      65642069 
- 1375      6E7400
- 1376              	.LASF15:
- 1377 01ae 63686172 		.ascii	"char\000"
- 1377      00
- 1378              	.LASF52:
- 1379 01b3 4E61764C 		.ascii	"NavLightStep\000"
- 1379      69676874 
- 1379      53746570 
- 1379      00
- 1380              	.LASF7:
- 1381 01c0 696E7433 		.ascii	"int32_t\000"
- 1381      325F7400 
- 1382              	.LASF3:
- 1383 01c8 696E7431 		.ascii	"int16_t\000"
- 1383      365F7400 
- 1384              	.LASF61:
- 1385 01d0 7475726E 		.ascii	"turn_rates_obj\000"
- 1385      5F726174 
- 1385      65735F6F 
- 1385      626A00
- 1386              	.LASF27:
- 1387 01df 6F75745F 		.ascii	"out_mot\000"
- 1387      6D6F7400 
- 1388              	.LASF30:
- 1389 01e7 6F75745F 		.ascii	"out_ele1\000"
- 1389      656C6531 
- 1389      00
- 1390              	.LASF31:
- 1391 01f0 6F75745F 		.ascii	"out_ele2\000"
- 1391      656C6532 
- 1391      00
- 1392              	.LASF20:
- 1393 01f9 696E5F72 		.ascii	"in_rud\000"
- 1393      756400
- 1394              	.LASF32:
- 1395 0200 6F75745F 		.ascii	"out_rud\000"
- 1395      72756400 
- 1396              	.LASF9:
- 1397 0208 6C6F6E67 		.ascii	"long unsigned int\000"
- 1397      20756E73 
- 1397      69676E65 
- 1397      6420696E 
- 1397      7400
- 1398              	.LASF14:
- 1399 021a 646F7562 		.ascii	"double\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 33
+ 1358 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1359 001d 00000000 		.4byte	0
+ 1360 0021 00000000 		.4byte	0
+ 1361 0025 00000000 		.4byte	.Ldebug_line0
+ 1362 0029 02       		.uleb128 0x2
+ 1363 002a 01       		.byte	0x1
+ 1364 002b 06       		.byte	0x6
+ 1365 002c CE010000 		.4byte	.LASF0
+ 1366 0030 03       		.uleb128 0x3
+ 1367 0031 D3000000 		.4byte	.LASF2
+ 1368 0035 02       		.byte	0x2
+ 1369 0036 2A       		.byte	0x2a
+ 1370 0037 3B000000 		.4byte	0x3b
+ 1371 003b 02       		.uleb128 0x2
+ 1372 003c 01       		.byte	0x1
+ 1373 003d 08       		.byte	0x8
+ 1374 003e BA010000 		.4byte	.LASF1
+ 1375 0042 03       		.uleb128 0x3
+ 1376 0043 4F020000 		.4byte	.LASF3
+ 1377 0047 02       		.byte	0x2
+ 1378 0048 35       		.byte	0x35
+ 1379 0049 4D000000 		.4byte	0x4d
+ 1380 004d 02       		.uleb128 0x2
+ 1381 004e 02       		.byte	0x2
+ 1382 004f 05       		.byte	0x5
+ 1383 0050 51000000 		.4byte	.LASF4
+ 1384 0054 03       		.uleb128 0x3
+ 1385 0055 FE010000 		.4byte	.LASF5
+ 1386 0059 02       		.byte	0x2
+ 1387 005a 36       		.byte	0x36
+ 1388 005b 5F000000 		.4byte	0x5f
+ 1389 005f 02       		.uleb128 0x2
+ 1390 0060 02       		.byte	0x2
+ 1391 0061 07       		.byte	0x7
+ 1392 0062 3C020000 		.4byte	.LASF6
+ 1393 0066 03       		.uleb128 0x3
+ 1394 0067 34020000 		.4byte	.LASF7
+ 1395 006b 02       		.byte	0x2
+ 1396 006c 4F       		.byte	0x4f
+ 1397 006d 71000000 		.4byte	0x71
+ 1398 0071 02       		.uleb128 0x2
+ 1399 0072 04       		.byte	0x4
+ 1400 0073 05       		.byte	0x5
+ 1401 0074 26010000 		.4byte	.LASF8
+ 1402 0078 02       		.uleb128 0x2
+ 1403 0079 04       		.byte	0x4
+ 1404 007a 07       		.byte	0x7
+ 1405 007b 88020000 		.4byte	.LASF9
+ 1406 007f 02       		.uleb128 0x2
+ 1407 0080 08       		.byte	0x8
+ 1408 0081 05       		.byte	0x5
+ 1409 0082 18010000 		.4byte	.LASF10
+ 1410 0086 02       		.uleb128 0x2
+ 1411 0087 08       		.byte	0x8
+ 1412 0088 07       		.byte	0x7
+ 1413 0089 DA010000 		.4byte	.LASF11
+ 1414 008d 04       		.uleb128 0x4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 34
 
 
- 1399      6C6500
- 1400              	.LASF17:
- 1401 0221 696E5F6D 		.ascii	"in_mot\000"
- 1401      6F7400
- 1402              	.LASF51:
- 1403 0228 4E61764C 		.ascii	"NavLightDim\000"
- 1403      69676874 
- 1403      44696D00 
- 1404              	.LASF59:
- 1405 0234 2E5C6D61 		.ascii	".\\main.c\000"
- 1405      696E2E63 
- 1405      00
- 1406              	.LASF28:
- 1407 023d 6F75745F 		.ascii	"out_ail1\000"
- 1407      61696C31 
- 1407      00
- 1408              	.LASF43:
- 1409 0246 7461736B 		.ascii	"task_flag\000"
- 1409      5F666C61 
- 1409      6700
- 1410              	.LASF19:
- 1411 0250 696E5F65 		.ascii	"in_ele\000"
- 1411      6C6500
- 1412              	.LASF44:
- 1413 0257 626C696E 		.ascii	"blink_cnt\000"
- 1413      6B5F636E 
- 1413      7400
- 1414              	.LASF18:
- 1415 0261 696E5F61 		.ascii	"in_ail\000"
- 1415      696C00
- 1416              	.LASF46:
- 1417 0268 6374726C 		.ascii	"ctrl_in\000"
- 1417      5F696E00 
- 1418              	.LASF50:
- 1419 0270 4E61764C 		.ascii	"NavLightBright\000"
- 1419      69676874 
- 1419      42726967 
- 1419      687400
- 1420              	.LASF53:
- 1421 027f 4E61764C 		.ascii	"NavLightCompare\000"
- 1421      69676874 
- 1421      436F6D70 
- 1421      61726500 
- 1422              	.LASF60:
- 1423 028f 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 1423      73657273 
- 1423      5C534E46 
- 1423      555C446F 
- 1423      63756D65 
- 1424 02bd 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 1424      542D3530 
- 1424      5F50726F 
- 1424      6A656374 
- 1424      5C542D35 
- 1425              	.LASF26:
- 1426 02e1 655F6F75 		.ascii	"e_out\000"
- 1426      7400
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccShIH9g.s 			page 34
+ 1415 008e 04       		.byte	0x4
+ 1416 008f 05       		.byte	0x5
+ 1417 0090 696E7400 		.ascii	"int\000"
+ 1418 0094 02       		.uleb128 0x2
+ 1419 0095 04       		.byte	0x4
+ 1420 0096 07       		.byte	0x7
+ 1421 0097 F1010000 		.4byte	.LASF12
+ 1422 009b 02       		.uleb128 0x2
+ 1423 009c 04       		.byte	0x4
+ 1424 009d 04       		.byte	0x4
+ 1425 009e 0D010000 		.4byte	.LASF13
+ 1426 00a2 02       		.uleb128 0x2
+ 1427 00a3 08       		.byte	0x8
+ 1428 00a4 04       		.byte	0x4
+ 1429 00a5 9A020000 		.4byte	.LASF14
+ 1430 00a9 02       		.uleb128 0x2
+ 1431 00aa 01       		.byte	0x1
+ 1432 00ab 08       		.byte	0x8
+ 1433 00ac 1D020000 		.4byte	.LASF15
+ 1434 00b0 02       		.uleb128 0x2
+ 1435 00b1 04       		.byte	0x4
+ 1436 00b2 07       		.byte	0x7
+ 1437 00b3 5B000000 		.4byte	.LASF16
+ 1438 00b7 02       		.uleb128 0x2
+ 1439 00b8 08       		.byte	0x8
+ 1440 00b9 04       		.byte	0x4
+ 1441 00ba 9B000000 		.4byte	.LASF17
+ 1442 00be 05       		.uleb128 0x5
+ 1443 00bf 13010000 		.4byte	.LASF26
+ 1444 00c3 01       		.byte	0x1
+ 1445 00c4 01       		.byte	0x1
+ 1446 00c5 2A       		.byte	0x2a
+ 1447 00c6 FB000000 		.4byte	0xfb
+ 1448 00ca 06       		.uleb128 0x6
+ 1449 00cb A1020000 		.4byte	.LASF18
+ 1450 00cf 00       		.sleb128 0
+ 1451 00d0 06       		.uleb128 0x6
+ 1452 00d1 F0020000 		.4byte	.LASF19
+ 1453 00d5 01       		.sleb128 1
+ 1454 00d6 06       		.uleb128 0x6
+ 1455 00d7 D7020000 		.4byte	.LASF20
+ 1456 00db 02       		.sleb128 2
+ 1457 00dc 06       		.uleb128 0x6
+ 1458 00dd 79020000 		.4byte	.LASF21
+ 1459 00e1 03       		.sleb128 3
+ 1460 00e2 06       		.uleb128 0x6
+ 1461 00e3 10000000 		.4byte	.LASF22
+ 1462 00e7 04       		.sleb128 4
+ 1463 00e8 06       		.uleb128 0x6
+ 1464 00e9 DB000000 		.4byte	.LASF23
+ 1465 00ed 05       		.sleb128 5
+ 1466 00ee 06       		.uleb128 0x6
+ 1467 00ef 43000000 		.4byte	.LASF24
+ 1468 00f3 06       		.sleb128 6
+ 1469 00f4 06       		.uleb128 0x6
+ 1470 00f5 4A000000 		.4byte	.LASF25
+ 1471 00f9 07       		.sleb128 7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 35
 
 
- 1427              	.LASF48:
- 1428 02e7 666C6167 		.ascii	"flag_LightsEnabled\000"
- 1428      5F4C6967 
- 1428      68747345 
- 1428      6E61626C 
- 1428      656400
- 1429              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 1472 00fa 00       		.byte	0
+ 1473 00fb 05       		.uleb128 0x5
+ 1474 00fc 88030000 		.4byte	.LASF27
+ 1475 0100 01       		.byte	0x1
+ 1476 0101 01       		.byte	0x1
+ 1477 0102 35       		.byte	0x35
+ 1478 0103 56010000 		.4byte	0x156
+ 1479 0107 06       		.uleb128 0x6
+ 1480 0108 5F020000 		.4byte	.LASF28
+ 1481 010c 00       		.sleb128 0
+ 1482 010d 06       		.uleb128 0x6
+ 1483 010e C4020000 		.4byte	.LASF29
+ 1484 0112 01       		.sleb128 1
+ 1485 0113 06       		.uleb128 0x6
+ 1486 0114 A7000000 		.4byte	.LASF30
+ 1487 0118 02       		.sleb128 2
+ 1488 0119 06       		.uleb128 0x6
+ 1489 011a 67020000 		.4byte	.LASF31
+ 1490 011e 03       		.sleb128 3
+ 1491 011f 06       		.uleb128 0x6
+ 1492 0120 70020000 		.4byte	.LASF32
+ 1493 0124 04       		.sleb128 4
+ 1494 0125 06       		.uleb128 0x6
+ 1495 0126 BC020000 		.4byte	.LASF33
+ 1496 012a 05       		.sleb128 5
+ 1497 012b 06       		.uleb128 0x6
+ 1498 012c 8A010000 		.4byte	.LASF34
+ 1499 0130 06       		.sleb128 6
+ 1500 0131 06       		.uleb128 0x6
+ 1501 0132 92010000 		.4byte	.LASF35
+ 1502 0136 07       		.sleb128 7
+ 1503 0137 06       		.uleb128 0x6
+ 1504 0138 A2010000 		.4byte	.LASF36
+ 1505 013c 08       		.sleb128 8
+ 1506 013d 06       		.uleb128 0x6
+ 1507 013e AA010000 		.4byte	.LASF37
+ 1508 0142 09       		.sleb128 9
+ 1509 0143 06       		.uleb128 0x6
+ 1510 0144 B2010000 		.4byte	.LASF38
+ 1511 0148 0A       		.sleb128 10
+ 1512 0149 06       		.uleb128 0x6
+ 1513 014a 00000000 		.4byte	.LASF39
+ 1514 014e 0B       		.sleb128 11
+ 1515 014f 06       		.uleb128 0x6
+ 1516 0150 08000000 		.4byte	.LASF40
+ 1517 0154 0C       		.sleb128 12
+ 1518 0155 00       		.byte	0
+ 1519 0156 07       		.uleb128 0x7
+ 1520 0157 01       		.byte	0x1
+ 1521 0158 B0000000 		.4byte	.LASF41
+ 1522 015c 01       		.byte	0x1
+ 1523 015d 81       		.byte	0x81
+ 1524 015e 01       		.byte	0x1
+ 1525 015f 00000000 		.4byte	.LFB33
+ 1526 0163 30000000 		.4byte	.LFE33
+ 1527 0167 00000000 		.4byte	.LLST0
+ 1528 016b 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 36
+
+
+ 1529 016c 8B010000 		.4byte	0x18b
+ 1530 0170 08       		.uleb128 0x8
+ 1531 0171 6E756D00 		.ascii	"num\000"
+ 1532 0175 01       		.byte	0x1
+ 1533 0176 81       		.byte	0x81
+ 1534 0177 66000000 		.4byte	0x66
+ 1535 017b 02       		.byte	0x2
+ 1536 017c 91       		.byte	0x91
+ 1537 017d 54       		.sleb128 -44
+ 1538 017e 09       		.uleb128 0x9
+ 1539 017f 6B00     		.ascii	"k\000"
+ 1540 0181 01       		.byte	0x1
+ 1541 0182 83       		.byte	0x83
+ 1542 0183 8B010000 		.4byte	0x18b
+ 1543 0187 02       		.byte	0x2
+ 1544 0188 91       		.byte	0x91
+ 1545 0189 58       		.sleb128 -40
+ 1546 018a 00       		.byte	0
+ 1547 018b 0A       		.uleb128 0xa
+ 1548 018c A9000000 		.4byte	0xa9
+ 1549 0190 9B010000 		.4byte	0x19b
+ 1550 0194 0B       		.uleb128 0xb
+ 1551 0195 B0000000 		.4byte	0xb0
+ 1552 0199 1E       		.byte	0x1e
+ 1553 019a 00       		.byte	0
+ 1554 019b 0C       		.uleb128 0xc
+ 1555 019c 01       		.byte	0x1
+ 1556 019d 22020000 		.4byte	.LASF42
+ 1557 01a1 01       		.byte	0x1
+ 1558 01a2 89       		.byte	0x89
+ 1559 01a3 8D000000 		.4byte	0x8d
+ 1560 01a7 00000000 		.4byte	.LFB34
+ 1561 01ab 40080000 		.4byte	.LFE34
+ 1562 01af 38000000 		.4byte	.LLST1
+ 1563 01b3 01       		.byte	0x1
+ 1564 01b4 CE010000 		.4byte	0x1ce
+ 1565 01b8 0D       		.uleb128 0xd
+ 1566 01b9 00000000 		.4byte	.Ldebug_ranges0+0
+ 1567 01bd 0E       		.uleb128 0xe
+ 1568 01be 07020000 		.4byte	.LASF43
+ 1569 01c2 01       		.byte	0x1
+ 1570 01c3 3801     		.2byte	0x138
+ 1571 01c5 30000000 		.4byte	0x30
+ 1572 01c9 02       		.byte	0x2
+ 1573 01ca 91       		.byte	0x91
+ 1574 01cb 67       		.sleb128 -25
+ 1575 01cc 00       		.byte	0
+ 1576 01cd 00       		.byte	0
+ 1577 01ce 0F       		.uleb128 0xf
+ 1578 01cf CD020000 		.4byte	.LASF44
+ 1579 01d3 01       		.byte	0x1
+ 1580 01d4 19       		.byte	0x19
+ 1581 01d5 E0010000 		.4byte	0x1e0
+ 1582 01d9 01       		.byte	0x1
+ 1583 01da 05       		.byte	0x5
+ 1584 01db 03       		.byte	0x3
+ 1585 01dc 00000000 		.4byte	task_flag
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 37
+
+
+ 1586 01e0 10       		.uleb128 0x10
+ 1587 01e1 30000000 		.4byte	0x30
+ 1588 01e5 0F       		.uleb128 0xf
+ 1589 01e6 E6020000 		.4byte	.LASF45
+ 1590 01ea 01       		.byte	0x1
+ 1591 01eb 1A       		.byte	0x1a
+ 1592 01ec E0010000 		.4byte	0x1e0
+ 1593 01f0 01       		.byte	0x1
+ 1594 01f1 05       		.byte	0x5
+ 1595 01f2 03       		.byte	0x3
+ 1596 01f3 00000000 		.4byte	blink_cnt
+ 1597 01f7 0F       		.uleb128 0xf
+ 1598 01f8 16000000 		.4byte	.LASF46
+ 1599 01fc 01       		.byte	0x1
+ 1600 01fd 1B       		.byte	0x1b
+ 1601 01fe 9B000000 		.4byte	0x9b
+ 1602 0202 01       		.byte	0x1
+ 1603 0203 05       		.byte	0x5
+ 1604 0204 03       		.byte	0x3
+ 1605 0205 00000000 		.4byte	sample_time
+ 1606 0209 0F       		.uleb128 0xf
+ 1607 020a 8F000000 		.4byte	.LASF47
+ 1608 020e 01       		.byte	0x1
+ 1609 020f 26       		.byte	0x26
+ 1610 0210 30000000 		.4byte	0x30
+ 1611 0214 01       		.byte	0x1
+ 1612 0215 05       		.byte	0x5
+ 1613 0216 03       		.byte	0x3
+ 1614 0217 00000000 		.4byte	PPM_channel
+ 1615 021b 0A       		.uleb128 0xa
+ 1616 021c 54000000 		.4byte	0x54
+ 1617 0220 2B020000 		.4byte	0x22b
+ 1618 0224 0B       		.uleb128 0xb
+ 1619 0225 B0000000 		.4byte	0xb0
+ 1620 0229 07       		.byte	0x7
+ 1621 022a 00       		.byte	0
+ 1622 022b 0F       		.uleb128 0xf
+ 1623 022c F7020000 		.4byte	.LASF48
+ 1624 0230 01       		.byte	0x1
+ 1625 0231 27       		.byte	0x27
+ 1626 0232 1B020000 		.4byte	0x21b
+ 1627 0236 01       		.byte	0x1
+ 1628 0237 05       		.byte	0x5
+ 1629 0238 03       		.byte	0x3
+ 1630 0239 00000000 		.4byte	ctrl_in
+ 1631 023d 0A       		.uleb128 0xa
+ 1632 023e 54000000 		.4byte	0x54
+ 1633 0242 4D020000 		.4byte	0x24d
+ 1634 0246 0B       		.uleb128 0xb
+ 1635 0247 B0000000 		.4byte	0xb0
+ 1636 024b 0C       		.byte	0xc
+ 1637 024c 00       		.byte	0
+ 1638 024d 0F       		.uleb128 0xf
+ 1639 024e CA000000 		.4byte	.LASF49
+ 1640 0252 01       		.byte	0x1
+ 1641 0253 28       		.byte	0x28
+ 1642 0254 3D020000 		.4byte	0x23d
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 38
+
+
+ 1643 0258 01       		.byte	0x1
+ 1644 0259 05       		.byte	0x5
+ 1645 025a 03       		.byte	0x3
+ 1646 025b 00000000 		.4byte	ctrl_out
+ 1647 025f 0F       		.uleb128 0xf
+ 1648 0260 9F030000 		.4byte	.LASF50
+ 1649 0264 01       		.byte	0x1
+ 1650 0265 48       		.byte	0x48
+ 1651 0266 30000000 		.4byte	0x30
+ 1652 026a 01       		.byte	0x1
+ 1653 026b 05       		.byte	0x5
+ 1654 026c 03       		.byte	0x3
+ 1655 026d 00000000 		.4byte	flag_LightsEnabled
+ 1656 0271 0F       		.uleb128 0xf
+ 1657 0272 74000000 		.4byte	.LASF51
+ 1658 0276 01       		.byte	0x1
+ 1659 0277 4B       		.byte	0x4b
+ 1660 0278 30000000 		.4byte	0x30
+ 1661 027c 01       		.byte	0x1
+ 1662 027d 05       		.byte	0x5
+ 1663 027e 03       		.byte	0x3
+ 1664 027f 00000000 		.4byte	flag_NavLightPulse
+ 1665 0283 0F       		.uleb128 0xf
+ 1666 0284 07030000 		.4byte	.LASF52
+ 1667 0288 01       		.byte	0x1
+ 1668 0289 4C       		.byte	0x4c
+ 1669 028a 54000000 		.4byte	0x54
+ 1670 028e 01       		.byte	0x1
+ 1671 028f 05       		.byte	0x5
+ 1672 0290 03       		.byte	0x3
+ 1673 0291 00000000 		.4byte	NavLightBright
+ 1674 0295 0F       		.uleb128 0xf
+ 1675 0296 B0020000 		.4byte	.LASF53
+ 1676 029a 01       		.byte	0x1
+ 1677 029b 4D       		.byte	0x4d
+ 1678 029c 54000000 		.4byte	0x54
+ 1679 02a0 01       		.byte	0x1
+ 1680 02a1 05       		.byte	0x5
+ 1681 02a2 03       		.byte	0x3
+ 1682 02a3 00000000 		.4byte	NavLightDim
+ 1683 02a7 0F       		.uleb128 0xf
+ 1684 02a8 27020000 		.4byte	.LASF54
+ 1685 02ac 01       		.byte	0x1
+ 1686 02ad 4E       		.byte	0x4e
+ 1687 02ae 54000000 		.4byte	0x54
+ 1688 02b2 01       		.byte	0x1
+ 1689 02b3 05       		.byte	0x5
+ 1690 02b4 03       		.byte	0x3
+ 1691 02b5 00000000 		.4byte	NavLightStep
+ 1692 02b9 0F       		.uleb128 0xf
+ 1693 02ba 16030000 		.4byte	.LASF55
+ 1694 02be 01       		.byte	0x1
+ 1695 02bf 4F       		.byte	0x4f
+ 1696 02c0 54000000 		.4byte	0x54
+ 1697 02c4 01       		.byte	0x1
+ 1698 02c5 05       		.byte	0x5
+ 1699 02c6 03       		.byte	0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 39
+
+
+ 1700 02c7 00000000 		.4byte	NavLightCompare
+ 1701 02cb 0F       		.uleb128 0xf
+ 1702 02cc E9000000 		.4byte	.LASF56
+ 1703 02d0 01       		.byte	0x1
+ 1704 02d1 59       		.byte	0x59
+ 1705 02d2 42000000 		.4byte	0x42
+ 1706 02d6 01       		.byte	0x1
+ 1707 02d7 05       		.byte	0x5
+ 1708 02d8 03       		.byte	0x3
+ 1709 02d9 00000000 		.4byte	turn_rate_p
+ 1710 02dd 0F       		.uleb128 0xf
+ 1711 02de F5000000 		.4byte	.LASF57
+ 1712 02e2 01       		.byte	0x1
+ 1713 02e3 5A       		.byte	0x5a
+ 1714 02e4 42000000 		.4byte	0x42
+ 1715 02e8 01       		.byte	0x1
+ 1716 02e9 05       		.byte	0x5
+ 1717 02ea 03       		.byte	0x3
+ 1718 02eb 00000000 		.4byte	turn_rate_q
+ 1719 02ef 0F       		.uleb128 0xf
+ 1720 02f0 01010000 		.4byte	.LASF58
+ 1721 02f4 01       		.byte	0x1
+ 1722 02f5 5B       		.byte	0x5b
+ 1723 02f6 42000000 		.4byte	0x42
+ 1724 02fa 01       		.byte	0x1
+ 1725 02fb 05       		.byte	0x5
+ 1726 02fc 03       		.byte	0x3
+ 1727 02fd 00000000 		.4byte	turn_rate_r
+ 1728 0301 0F       		.uleb128 0xf
+ 1729 0302 C2000000 		.4byte	.LASF59
+ 1730 0306 01       		.byte	0x1
+ 1731 0307 5D       		.byte	0x5d
+ 1732 0308 42000000 		.4byte	0x42
+ 1733 030c 01       		.byte	0x1
+ 1734 030d 05       		.byte	0x5
+ 1735 030e 03       		.byte	0x3
+ 1736 030f 00000000 		.4byte	acc_x_g
+ 1737 0313 0F       		.uleb128 0xf
+ 1738 0314 3B000000 		.4byte	.LASF60
+ 1739 0318 01       		.byte	0x1
+ 1740 0319 5E       		.byte	0x5e
+ 1741 031a 42000000 		.4byte	0x42
+ 1742 031e 01       		.byte	0x1
+ 1743 031f 05       		.byte	0x5
+ 1744 0320 03       		.byte	0x3
+ 1745 0321 00000000 		.4byte	acc_y_g
+ 1746 0325 0F       		.uleb128 0xf
+ 1747 0326 A8020000 		.4byte	.LASF61
+ 1748 032a 01       		.byte	0x1
+ 1749 032b 5F       		.byte	0x5f
+ 1750 032c 42000000 		.4byte	0x42
+ 1751 0330 01       		.byte	0x1
+ 1752 0331 05       		.byte	0x5
+ 1753 0332 03       		.byte	0x3
+ 1754 0333 00000000 		.4byte	acc_z_g
+ 1755 0337 0F       		.uleb128 0xf
+ 1756 0338 78030000 		.4byte	.LASF62
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 40
+
+
+ 1757 033c 01       		.byte	0x1
+ 1758 033d 61       		.byte	0x61
+ 1759 033e 42000000 		.4byte	0x42
+ 1760 0342 01       		.byte	0x1
+ 1761 0343 05       		.byte	0x5
+ 1762 0344 03       		.byte	0x3
+ 1763 0345 00000000 		.4byte	mag_x_g
+ 1764 0349 0F       		.uleb128 0xf
+ 1765 034a B2030000 		.4byte	.LASF63
+ 1766 034e 01       		.byte	0x1
+ 1767 034f 62       		.byte	0x62
+ 1768 0350 42000000 		.4byte	0x42
+ 1769 0354 01       		.byte	0x1
+ 1770 0355 05       		.byte	0x5
+ 1771 0356 03       		.byte	0x3
+ 1772 0357 00000000 		.4byte	mag_y_g
+ 1773 035b 0F       		.uleb128 0xf
+ 1774 035c FF020000 		.4byte	.LASF64
+ 1775 0360 01       		.byte	0x1
+ 1776 0361 63       		.byte	0x63
+ 1777 0362 42000000 		.4byte	0x42
+ 1778 0366 01       		.byte	0x1
+ 1779 0367 05       		.byte	0x5
+ 1780 0368 03       		.byte	0x3
+ 1781 0369 00000000 		.4byte	mag_z_g
+ 1782 036d 0F       		.uleb128 0xf
+ 1783 036e 64000000 		.4byte	.LASF65
+ 1784 0372 01       		.byte	0x1
+ 1785 0373 66       		.byte	0x66
+ 1786 0374 42000000 		.4byte	0x42
+ 1787 0378 01       		.byte	0x1
+ 1788 0379 05       		.byte	0x5
+ 1789 037a 03       		.byte	0x3
+ 1790 037b 00000000 		.4byte	Theta
+ 1791 037f 0F       		.uleb128 0xf
+ 1792 0380 6A000000 		.4byte	.LASF66
+ 1793 0384 01       		.byte	0x1
+ 1794 0385 66       		.byte	0x66
+ 1795 0386 42000000 		.4byte	0x42
+ 1796 038a 01       		.byte	0x1
+ 1797 038b 05       		.byte	0x5
+ 1798 038c 03       		.byte	0x3
+ 1799 038d 00000000 		.4byte	Theta_acc
+ 1800 0391 11       		.uleb128 0x11
+ 1801 0392 50686900 		.ascii	"Phi\000"
+ 1802 0396 01       		.byte	0x1
+ 1803 0397 67       		.byte	0x67
+ 1804 0398 42000000 		.4byte	0x42
+ 1805 039c 01       		.byte	0x1
+ 1806 039d 05       		.byte	0x5
+ 1807 039e 03       		.byte	0x3
+ 1808 039f 00000000 		.4byte	Phi
+ 1809 03a3 0F       		.uleb128 0xf
+ 1810 03a4 80020000 		.4byte	.LASF67
+ 1811 03a8 01       		.byte	0x1
+ 1812 03a9 67       		.byte	0x67
+ 1813 03aa 42000000 		.4byte	0x42
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 41
+
+
+ 1814 03ae 01       		.byte	0x1
+ 1815 03af 05       		.byte	0x5
+ 1816 03b0 03       		.byte	0x3
+ 1817 03b1 00000000 		.4byte	Phi_acc
+ 1818 03b5 0F       		.uleb128 0xf
+ 1819 03b6 87000000 		.4byte	.LASF68
+ 1820 03ba 01       		.byte	0x1
+ 1821 03bb 6F       		.byte	0x6f
+ 1822 03bc 9B000000 		.4byte	0x9b
+ 1823 03c0 01       		.byte	0x1
+ 1824 03c1 05       		.byte	0x5
+ 1825 03c2 03       		.byte	0x3
+ 1826 03c3 00000000 		.4byte	Q_angle
+ 1827 03c7 0F       		.uleb128 0xf
+ 1828 03c8 2F010000 		.4byte	.LASF69
+ 1829 03cc 01       		.byte	0x1
+ 1830 03cd 70       		.byte	0x70
+ 1831 03ce 9B000000 		.4byte	0x9b
+ 1832 03d2 01       		.byte	0x1
+ 1833 03d3 05       		.byte	0x5
+ 1834 03d4 03       		.byte	0x3
+ 1835 03d5 00000000 		.4byte	Q_gyro
+ 1836 03d9 0F       		.uleb128 0xf
+ 1837 03da 57020000 		.4byte	.LASF70
+ 1838 03de 01       		.byte	0x1
+ 1839 03df 71       		.byte	0x71
+ 1840 03e0 9B000000 		.4byte	0x9b
+ 1841 03e4 01       		.byte	0x1
+ 1842 03e5 05       		.byte	0x5
+ 1843 03e6 03       		.byte	0x3
+ 1844 03e7 00000000 		.4byte	R_angle
+ 1845 03eb 0F       		.uleb128 0xf
+ 1846 03ec 98030000 		.4byte	.LASF71
+ 1847 03f0 01       		.byte	0x1
+ 1848 03f1 73       		.byte	0x73
+ 1849 03f2 9B000000 		.4byte	0x9b
+ 1850 03f6 01       		.byte	0x1
+ 1851 03f7 05       		.byte	0x5
+ 1852 03f8 03       		.byte	0x3
+ 1853 03f9 00000000 		.4byte	q_bias
+ 1854 03fd 0A       		.uleb128 0xa
+ 1855 03fe 9B000000 		.4byte	0x9b
+ 1856 0402 13040000 		.4byte	0x413
+ 1857 0406 0B       		.uleb128 0xb
+ 1858 0407 B0000000 		.4byte	0xb0
+ 1859 040b 01       		.byte	0x1
+ 1860 040c 0B       		.uleb128 0xb
+ 1861 040d B0000000 		.4byte	0xb0
+ 1862 0411 01       		.byte	0x1
+ 1863 0412 00       		.byte	0
+ 1864 0413 0F       		.uleb128 0xf
+ 1865 0414 DE020000 		.4byte	.LASF72
+ 1866 0418 01       		.byte	0x1
+ 1867 0419 75       		.byte	0x75
+ 1868 041a FD030000 		.4byte	0x3fd
+ 1869 041e 01       		.byte	0x1
+ 1870 041f 05       		.byte	0x5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 42
+
+
+ 1871 0420 03       		.byte	0x3
+ 1872 0421 00000000 		.4byte	P_Theta
+ 1873 0425 0F       		.uleb128 0xf
+ 1874 0426 36010000 		.4byte	.LASF73
+ 1875 042a 01       		.byte	0x1
+ 1876 042b 76       		.byte	0x76
+ 1877 042c 9B000000 		.4byte	0x9b
+ 1878 0430 01       		.byte	0x1
+ 1879 0431 05       		.byte	0x5
+ 1880 0432 03       		.byte	0x3
+ 1881 0433 00000000 		.4byte	Theta_temp
+ 1882 0437 0F       		.uleb128 0xf
+ 1883 0438 9A010000 		.4byte	.LASF74
+ 1884 043c 01       		.byte	0x1
+ 1885 043d 76       		.byte	0x76
+ 1886 043e 9B000000 		.4byte	0x9b
+ 1887 0442 01       		.byte	0x1
+ 1888 0443 05       		.byte	0x5
+ 1889 0444 03       		.byte	0x3
+ 1890 0445 00000000 		.4byte	S_Theta
+ 1891 0449 0F       		.uleb128 0xf
+ 1892 044a 8E030000 		.4byte	.LASF75
+ 1893 044e 01       		.byte	0x1
+ 1894 044f 76       		.byte	0x76
+ 1895 0450 9B000000 		.4byte	0x9b
+ 1896 0454 01       		.byte	0x1
+ 1897 0455 05       		.byte	0x5
+ 1898 0456 03       		.byte	0x3
+ 1899 0457 00000000 		.4byte	K_0_Theta
+ 1900 045b 0F       		.uleb128 0xf
+ 1901 045c 22000000 		.4byte	.LASF76
+ 1902 0460 01       		.byte	0x1
+ 1903 0461 76       		.byte	0x76
+ 1904 0462 9B000000 		.4byte	0x9b
+ 1905 0466 01       		.byte	0x1
+ 1906 0467 05       		.byte	0x5
+ 1907 0468 03       		.byte	0x3
+ 1908 0469 00000000 		.4byte	K_1_Theta
+ 1909 046d 0F       		.uleb128 0xf
+ 1910 046e 16020000 		.4byte	.LASF77
+ 1911 0472 01       		.byte	0x1
+ 1912 0473 78       		.byte	0x78
+ 1913 0474 9B000000 		.4byte	0x9b
+ 1914 0478 01       		.byte	0x1
+ 1915 0479 05       		.byte	0x5
+ 1916 047a 03       		.byte	0x3
+ 1917 047b 00000000 		.4byte	p_bias
+ 1918 047f 0F       		.uleb128 0xf
+ 1919 0480 C8010000 		.4byte	.LASF78
+ 1920 0484 01       		.byte	0x1
+ 1921 0485 7A       		.byte	0x7a
+ 1922 0486 FD030000 		.4byte	0x3fd
+ 1923 048a 01       		.byte	0x1
+ 1924 048b 05       		.byte	0x5
+ 1925 048c 03       		.byte	0x3
+ 1926 048d 00000000 		.4byte	P_Phi
+ 1927 0491 0F       		.uleb128 0xf
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 43
+
+
+ 1928 0492 0D020000 		.4byte	.LASF79
+ 1929 0496 01       		.byte	0x1
+ 1930 0497 7B       		.byte	0x7b
+ 1931 0498 9B000000 		.4byte	0x9b
+ 1932 049c 01       		.byte	0x1
+ 1933 049d 05       		.byte	0x5
+ 1934 049e 03       		.byte	0x3
+ 1935 049f 00000000 		.4byte	Phi_temp
+ 1936 04a3 0F       		.uleb128 0xf
+ 1937 04a4 2C000000 		.4byte	.LASF80
+ 1938 04a8 01       		.byte	0x1
+ 1939 04a9 7B       		.byte	0x7b
+ 1940 04aa 9B000000 		.4byte	0x9b
+ 1941 04ae 01       		.byte	0x1
+ 1942 04af 05       		.byte	0x5
+ 1943 04b0 03       		.byte	0x3
+ 1944 04b1 00000000 		.4byte	S_Phi
+ 1945 04b5 0F       		.uleb128 0xf
+ 1946 04b6 80030000 		.4byte	.LASF81
+ 1947 04ba 01       		.byte	0x1
+ 1948 04bb 7B       		.byte	0x7b
+ 1949 04bc 9B000000 		.4byte	0x9b
+ 1950 04c0 01       		.byte	0x1
+ 1951 04c1 05       		.byte	0x5
+ 1952 04c2 03       		.byte	0x3
+ 1953 04c3 00000000 		.4byte	K_0_Phi
+ 1954 04c7 0F       		.uleb128 0xf
+ 1955 04c8 E1000000 		.4byte	.LASF82
+ 1956 04cc 01       		.byte	0x1
+ 1957 04cd 7B       		.byte	0x7b
+ 1958 04ce 9B000000 		.4byte	0x9b
+ 1959 04d2 01       		.byte	0x1
+ 1960 04d3 05       		.byte	0x5
+ 1961 04d4 03       		.byte	0x3
+ 1962 04d5 00000000 		.4byte	K_1_Phi
+ 1963 04d9 00       		.byte	0
+ 1964              		.section	.debug_abbrev,"",%progbits
+ 1965              	.Ldebug_abbrev0:
+ 1966 0000 01       		.uleb128 0x1
+ 1967 0001 11       		.uleb128 0x11
+ 1968 0002 01       		.byte	0x1
+ 1969 0003 25       		.uleb128 0x25
+ 1970 0004 0E       		.uleb128 0xe
+ 1971 0005 13       		.uleb128 0x13
+ 1972 0006 0B       		.uleb128 0xb
+ 1973 0007 03       		.uleb128 0x3
+ 1974 0008 0E       		.uleb128 0xe
+ 1975 0009 1B       		.uleb128 0x1b
+ 1976 000a 0E       		.uleb128 0xe
+ 1977 000b 55       		.uleb128 0x55
+ 1978 000c 06       		.uleb128 0x6
+ 1979 000d 11       		.uleb128 0x11
+ 1980 000e 01       		.uleb128 0x1
+ 1981 000f 52       		.uleb128 0x52
+ 1982 0010 01       		.uleb128 0x1
+ 1983 0011 10       		.uleb128 0x10
+ 1984 0012 06       		.uleb128 0x6
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 44
+
+
+ 1985 0013 00       		.byte	0
+ 1986 0014 00       		.byte	0
+ 1987 0015 02       		.uleb128 0x2
+ 1988 0016 24       		.uleb128 0x24
+ 1989 0017 00       		.byte	0
+ 1990 0018 0B       		.uleb128 0xb
+ 1991 0019 0B       		.uleb128 0xb
+ 1992 001a 3E       		.uleb128 0x3e
+ 1993 001b 0B       		.uleb128 0xb
+ 1994 001c 03       		.uleb128 0x3
+ 1995 001d 0E       		.uleb128 0xe
+ 1996 001e 00       		.byte	0
+ 1997 001f 00       		.byte	0
+ 1998 0020 03       		.uleb128 0x3
+ 1999 0021 16       		.uleb128 0x16
+ 2000 0022 00       		.byte	0
+ 2001 0023 03       		.uleb128 0x3
+ 2002 0024 0E       		.uleb128 0xe
+ 2003 0025 3A       		.uleb128 0x3a
+ 2004 0026 0B       		.uleb128 0xb
+ 2005 0027 3B       		.uleb128 0x3b
+ 2006 0028 0B       		.uleb128 0xb
+ 2007 0029 49       		.uleb128 0x49
+ 2008 002a 13       		.uleb128 0x13
+ 2009 002b 00       		.byte	0
+ 2010 002c 00       		.byte	0
+ 2011 002d 04       		.uleb128 0x4
+ 2012 002e 24       		.uleb128 0x24
+ 2013 002f 00       		.byte	0
+ 2014 0030 0B       		.uleb128 0xb
+ 2015 0031 0B       		.uleb128 0xb
+ 2016 0032 3E       		.uleb128 0x3e
+ 2017 0033 0B       		.uleb128 0xb
+ 2018 0034 03       		.uleb128 0x3
+ 2019 0035 08       		.uleb128 0x8
+ 2020 0036 00       		.byte	0
+ 2021 0037 00       		.byte	0
+ 2022 0038 05       		.uleb128 0x5
+ 2023 0039 04       		.uleb128 0x4
+ 2024 003a 01       		.byte	0x1
+ 2025 003b 03       		.uleb128 0x3
+ 2026 003c 0E       		.uleb128 0xe
+ 2027 003d 0B       		.uleb128 0xb
+ 2028 003e 0B       		.uleb128 0xb
+ 2029 003f 3A       		.uleb128 0x3a
+ 2030 0040 0B       		.uleb128 0xb
+ 2031 0041 3B       		.uleb128 0x3b
+ 2032 0042 0B       		.uleb128 0xb
+ 2033 0043 01       		.uleb128 0x1
+ 2034 0044 13       		.uleb128 0x13
+ 2035 0045 00       		.byte	0
+ 2036 0046 00       		.byte	0
+ 2037 0047 06       		.uleb128 0x6
+ 2038 0048 28       		.uleb128 0x28
+ 2039 0049 00       		.byte	0
+ 2040 004a 03       		.uleb128 0x3
+ 2041 004b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 45
+
+
+ 2042 004c 1C       		.uleb128 0x1c
+ 2043 004d 0D       		.uleb128 0xd
+ 2044 004e 00       		.byte	0
+ 2045 004f 00       		.byte	0
+ 2046 0050 07       		.uleb128 0x7
+ 2047 0051 2E       		.uleb128 0x2e
+ 2048 0052 01       		.byte	0x1
+ 2049 0053 3F       		.uleb128 0x3f
+ 2050 0054 0C       		.uleb128 0xc
+ 2051 0055 03       		.uleb128 0x3
+ 2052 0056 0E       		.uleb128 0xe
+ 2053 0057 3A       		.uleb128 0x3a
+ 2054 0058 0B       		.uleb128 0xb
+ 2055 0059 3B       		.uleb128 0x3b
+ 2056 005a 0B       		.uleb128 0xb
+ 2057 005b 27       		.uleb128 0x27
+ 2058 005c 0C       		.uleb128 0xc
+ 2059 005d 11       		.uleb128 0x11
+ 2060 005e 01       		.uleb128 0x1
+ 2061 005f 12       		.uleb128 0x12
+ 2062 0060 01       		.uleb128 0x1
+ 2063 0061 40       		.uleb128 0x40
+ 2064 0062 06       		.uleb128 0x6
+ 2065 0063 9642     		.uleb128 0x2116
+ 2066 0065 0C       		.uleb128 0xc
+ 2067 0066 01       		.uleb128 0x1
+ 2068 0067 13       		.uleb128 0x13
+ 2069 0068 00       		.byte	0
+ 2070 0069 00       		.byte	0
+ 2071 006a 08       		.uleb128 0x8
+ 2072 006b 05       		.uleb128 0x5
+ 2073 006c 00       		.byte	0
+ 2074 006d 03       		.uleb128 0x3
+ 2075 006e 08       		.uleb128 0x8
+ 2076 006f 3A       		.uleb128 0x3a
+ 2077 0070 0B       		.uleb128 0xb
+ 2078 0071 3B       		.uleb128 0x3b
+ 2079 0072 0B       		.uleb128 0xb
+ 2080 0073 49       		.uleb128 0x49
+ 2081 0074 13       		.uleb128 0x13
+ 2082 0075 02       		.uleb128 0x2
+ 2083 0076 0A       		.uleb128 0xa
+ 2084 0077 00       		.byte	0
+ 2085 0078 00       		.byte	0
+ 2086 0079 09       		.uleb128 0x9
+ 2087 007a 34       		.uleb128 0x34
+ 2088 007b 00       		.byte	0
+ 2089 007c 03       		.uleb128 0x3
+ 2090 007d 08       		.uleb128 0x8
+ 2091 007e 3A       		.uleb128 0x3a
+ 2092 007f 0B       		.uleb128 0xb
+ 2093 0080 3B       		.uleb128 0x3b
+ 2094 0081 0B       		.uleb128 0xb
+ 2095 0082 49       		.uleb128 0x49
+ 2096 0083 13       		.uleb128 0x13
+ 2097 0084 02       		.uleb128 0x2
+ 2098 0085 0A       		.uleb128 0xa
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 46
+
+
+ 2099 0086 00       		.byte	0
+ 2100 0087 00       		.byte	0
+ 2101 0088 0A       		.uleb128 0xa
+ 2102 0089 01       		.uleb128 0x1
+ 2103 008a 01       		.byte	0x1
+ 2104 008b 49       		.uleb128 0x49
+ 2105 008c 13       		.uleb128 0x13
+ 2106 008d 01       		.uleb128 0x1
+ 2107 008e 13       		.uleb128 0x13
+ 2108 008f 00       		.byte	0
+ 2109 0090 00       		.byte	0
+ 2110 0091 0B       		.uleb128 0xb
+ 2111 0092 21       		.uleb128 0x21
+ 2112 0093 00       		.byte	0
+ 2113 0094 49       		.uleb128 0x49
+ 2114 0095 13       		.uleb128 0x13
+ 2115 0096 2F       		.uleb128 0x2f
+ 2116 0097 0B       		.uleb128 0xb
+ 2117 0098 00       		.byte	0
+ 2118 0099 00       		.byte	0
+ 2119 009a 0C       		.uleb128 0xc
+ 2120 009b 2E       		.uleb128 0x2e
+ 2121 009c 01       		.byte	0x1
+ 2122 009d 3F       		.uleb128 0x3f
+ 2123 009e 0C       		.uleb128 0xc
+ 2124 009f 03       		.uleb128 0x3
+ 2125 00a0 0E       		.uleb128 0xe
+ 2126 00a1 3A       		.uleb128 0x3a
+ 2127 00a2 0B       		.uleb128 0xb
+ 2128 00a3 3B       		.uleb128 0x3b
+ 2129 00a4 0B       		.uleb128 0xb
+ 2130 00a5 49       		.uleb128 0x49
+ 2131 00a6 13       		.uleb128 0x13
+ 2132 00a7 11       		.uleb128 0x11
+ 2133 00a8 01       		.uleb128 0x1
+ 2134 00a9 12       		.uleb128 0x12
+ 2135 00aa 01       		.uleb128 0x1
+ 2136 00ab 40       		.uleb128 0x40
+ 2137 00ac 06       		.uleb128 0x6
+ 2138 00ad 9642     		.uleb128 0x2116
+ 2139 00af 0C       		.uleb128 0xc
+ 2140 00b0 01       		.uleb128 0x1
+ 2141 00b1 13       		.uleb128 0x13
+ 2142 00b2 00       		.byte	0
+ 2143 00b3 00       		.byte	0
+ 2144 00b4 0D       		.uleb128 0xd
+ 2145 00b5 0B       		.uleb128 0xb
+ 2146 00b6 01       		.byte	0x1
+ 2147 00b7 55       		.uleb128 0x55
+ 2148 00b8 06       		.uleb128 0x6
+ 2149 00b9 00       		.byte	0
+ 2150 00ba 00       		.byte	0
+ 2151 00bb 0E       		.uleb128 0xe
+ 2152 00bc 34       		.uleb128 0x34
+ 2153 00bd 00       		.byte	0
+ 2154 00be 03       		.uleb128 0x3
+ 2155 00bf 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 47
+
+
+ 2156 00c0 3A       		.uleb128 0x3a
+ 2157 00c1 0B       		.uleb128 0xb
+ 2158 00c2 3B       		.uleb128 0x3b
+ 2159 00c3 05       		.uleb128 0x5
+ 2160 00c4 49       		.uleb128 0x49
+ 2161 00c5 13       		.uleb128 0x13
+ 2162 00c6 02       		.uleb128 0x2
+ 2163 00c7 0A       		.uleb128 0xa
+ 2164 00c8 00       		.byte	0
+ 2165 00c9 00       		.byte	0
+ 2166 00ca 0F       		.uleb128 0xf
+ 2167 00cb 34       		.uleb128 0x34
+ 2168 00cc 00       		.byte	0
+ 2169 00cd 03       		.uleb128 0x3
+ 2170 00ce 0E       		.uleb128 0xe
+ 2171 00cf 3A       		.uleb128 0x3a
+ 2172 00d0 0B       		.uleb128 0xb
+ 2173 00d1 3B       		.uleb128 0x3b
+ 2174 00d2 0B       		.uleb128 0xb
+ 2175 00d3 49       		.uleb128 0x49
+ 2176 00d4 13       		.uleb128 0x13
+ 2177 00d5 3F       		.uleb128 0x3f
+ 2178 00d6 0C       		.uleb128 0xc
+ 2179 00d7 02       		.uleb128 0x2
+ 2180 00d8 0A       		.uleb128 0xa
+ 2181 00d9 00       		.byte	0
+ 2182 00da 00       		.byte	0
+ 2183 00db 10       		.uleb128 0x10
+ 2184 00dc 35       		.uleb128 0x35
+ 2185 00dd 00       		.byte	0
+ 2186 00de 49       		.uleb128 0x49
+ 2187 00df 13       		.uleb128 0x13
+ 2188 00e0 00       		.byte	0
+ 2189 00e1 00       		.byte	0
+ 2190 00e2 11       		.uleb128 0x11
+ 2191 00e3 34       		.uleb128 0x34
+ 2192 00e4 00       		.byte	0
+ 2193 00e5 03       		.uleb128 0x3
+ 2194 00e6 08       		.uleb128 0x8
+ 2195 00e7 3A       		.uleb128 0x3a
+ 2196 00e8 0B       		.uleb128 0xb
+ 2197 00e9 3B       		.uleb128 0x3b
+ 2198 00ea 0B       		.uleb128 0xb
+ 2199 00eb 49       		.uleb128 0x49
+ 2200 00ec 13       		.uleb128 0x13
+ 2201 00ed 3F       		.uleb128 0x3f
+ 2202 00ee 0C       		.uleb128 0xc
+ 2203 00ef 02       		.uleb128 0x2
+ 2204 00f0 0A       		.uleb128 0xa
+ 2205 00f1 00       		.byte	0
+ 2206 00f2 00       		.byte	0
+ 2207 00f3 00       		.byte	0
+ 2208              		.section	.debug_loc,"",%progbits
+ 2209              	.Ldebug_loc0:
+ 2210              	.LLST0:
+ 2211 0000 00000000 		.4byte	.LFB33
+ 2212 0004 02000000 		.4byte	.LCFI0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 48
+
+
+ 2213 0008 0200     		.2byte	0x2
+ 2214 000a 7D       		.byte	0x7d
+ 2215 000b 00       		.sleb128 0
+ 2216 000c 02000000 		.4byte	.LCFI0
+ 2217 0010 04000000 		.4byte	.LCFI1
+ 2218 0014 0200     		.2byte	0x2
+ 2219 0016 7D       		.byte	0x7d
+ 2220 0017 08       		.sleb128 8
+ 2221 0018 04000000 		.4byte	.LCFI1
+ 2222 001c 06000000 		.4byte	.LCFI2
+ 2223 0020 0200     		.2byte	0x2
+ 2224 0022 7D       		.byte	0x7d
+ 2225 0023 30       		.sleb128 48
+ 2226 0024 06000000 		.4byte	.LCFI2
+ 2227 0028 30000000 		.4byte	.LFE33
+ 2228 002c 0200     		.2byte	0x2
+ 2229 002e 77       		.byte	0x77
+ 2230 002f 30       		.sleb128 48
+ 2231 0030 00000000 		.4byte	0
+ 2232 0034 00000000 		.4byte	0
+ 2233              	.LLST1:
+ 2234 0038 00000000 		.4byte	.LFB34
+ 2235 003c 02000000 		.4byte	.LCFI3
+ 2236 0040 0200     		.2byte	0x2
+ 2237 0042 7D       		.byte	0x7d
+ 2238 0043 00       		.sleb128 0
+ 2239 0044 02000000 		.4byte	.LCFI3
+ 2240 0048 04000000 		.4byte	.LCFI4
+ 2241 004c 0200     		.2byte	0x2
+ 2242 004e 7D       		.byte	0x7d
+ 2243 004f 14       		.sleb128 20
+ 2244 0050 04000000 		.4byte	.LCFI4
+ 2245 0054 06000000 		.4byte	.LCFI5
+ 2246 0058 0200     		.2byte	0x2
+ 2247 005a 7D       		.byte	0x7d
+ 2248 005b 20       		.sleb128 32
+ 2249 005c 06000000 		.4byte	.LCFI5
+ 2250 0060 40080000 		.4byte	.LFE34
+ 2251 0064 0200     		.2byte	0x2
+ 2252 0066 77       		.byte	0x77
+ 2253 0067 20       		.sleb128 32
+ 2254 0068 00000000 		.4byte	0
+ 2255 006c 00000000 		.4byte	0
+ 2256              		.section	.debug_aranges,"",%progbits
+ 2257 0000 24000000 		.4byte	0x24
+ 2258 0004 0200     		.2byte	0x2
+ 2259 0006 00000000 		.4byte	.Ldebug_info0
+ 2260 000a 04       		.byte	0x4
+ 2261 000b 00       		.byte	0
+ 2262 000c 0000     		.2byte	0
+ 2263 000e 0000     		.2byte	0
+ 2264 0010 00000000 		.4byte	.LFB33
+ 2265 0014 30000000 		.4byte	.LFE33-.LFB33
+ 2266 0018 00000000 		.4byte	.LFB34
+ 2267 001c 40080000 		.4byte	.LFE34-.LFB34
+ 2268 0020 00000000 		.4byte	0
+ 2269 0024 00000000 		.4byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 49
+
+
+ 2270              		.section	.debug_ranges,"",%progbits
+ 2271              	.Ldebug_ranges0:
+ 2272 0000 64000000 		.4byte	.LBB2
+ 2273 0004 88070000 		.4byte	.LBE2
+ 2274 0008 8A070000 		.4byte	.LBB3
+ 2275 000c FA070000 		.4byte	.LBE3
+ 2276 0010 00000000 		.4byte	0
+ 2277 0014 00000000 		.4byte	0
+ 2278 0018 00000000 		.4byte	.LFB33
+ 2279 001c 30000000 		.4byte	.LFE33
+ 2280 0020 00000000 		.4byte	.LFB34
+ 2281 0024 40080000 		.4byte	.LFE34
+ 2282 0028 00000000 		.4byte	0
+ 2283 002c 00000000 		.4byte	0
+ 2284              		.section	.debug_line,"",%progbits
+ 2285              	.Ldebug_line0:
+ 2286 0000 7B010000 		.section	.debug_str,"MS",%progbits,1
+ 2286      0200BF00 
+ 2286      00000201 
+ 2286      FB0E0D00 
+ 2286      01010101 
+ 2287              	.LASF39:
+ 2288 0000 6F75745F 		.ascii	"out_sp1\000"
+ 2288      73703100 
+ 2289              	.LASF40:
+ 2290 0008 6F75745F 		.ascii	"out_sp2\000"
+ 2290      73703200 
+ 2291              	.LASF22:
+ 2292 0010 696E5F66 		.ascii	"in_fl\000"
+ 2292      6C00
+ 2293              	.LASF46:
+ 2294 0016 73616D70 		.ascii	"sample_time\000"
+ 2294      6C655F74 
+ 2294      696D6500 
+ 2295              	.LASF76:
+ 2296 0022 4B5F315F 		.ascii	"K_1_Theta\000"
+ 2296      54686574 
+ 2296      6100
+ 2297              	.LASF80:
+ 2298 002c 535F5068 		.ascii	"S_Phi\000"
+ 2298      6900
+ 2299              	.LASF84:
+ 2300 0032 2E5C6D61 		.ascii	".\\main.c\000"
+ 2300      696E2E63 
+ 2300      00
+ 2301              	.LASF60:
+ 2302 003b 6163635F 		.ascii	"acc_y_g\000"
+ 2302      795F6700 
+ 2303              	.LASF24:
+ 2304 0043 696E5F73 		.ascii	"in_sp1\000"
+ 2304      703100
+ 2305              	.LASF25:
+ 2306 004a 696E5F73 		.ascii	"in_sp2\000"
+ 2306      703200
+ 2307              	.LASF4:
+ 2308 0051 73686F72 		.ascii	"short int\000"
+ 2308      7420696E 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 50
+
+
+ 2308      7400
+ 2309              	.LASF16:
+ 2310 005b 73697A65 		.ascii	"sizetype\000"
+ 2310      74797065 
+ 2310      00
+ 2311              	.LASF65:
+ 2312 0064 54686574 		.ascii	"Theta\000"
+ 2312      6100
+ 2313              	.LASF66:
+ 2314 006a 54686574 		.ascii	"Theta_acc\000"
+ 2314      615F6163 
+ 2314      6300
+ 2315              	.LASF51:
+ 2316 0074 666C6167 		.ascii	"flag_NavLightPulse\000"
+ 2316      5F4E6176 
+ 2316      4C696768 
+ 2316      7450756C 
+ 2316      736500
+ 2317              	.LASF68:
+ 2318 0087 515F616E 		.ascii	"Q_angle\000"
+ 2318      676C6500 
+ 2319              	.LASF47:
+ 2320 008f 50504D5F 		.ascii	"PPM_channel\000"
+ 2320      6368616E 
+ 2320      6E656C00 
+ 2321              	.LASF17:
+ 2322 009b 6C6F6E67 		.ascii	"long double\000"
+ 2322      20646F75 
+ 2322      626C6500 
+ 2323              	.LASF30:
+ 2324 00a7 6F75745F 		.ascii	"out_ail2\000"
+ 2324      61696C32 
+ 2324      00
+ 2325              	.LASF41:
+ 2326 00b0 55415254 		.ascii	"UART_1_UartPutNum\000"
+ 2326      5F315F55 
+ 2326      61727450 
+ 2326      75744E75 
+ 2326      6D00
+ 2327              	.LASF59:
+ 2328 00c2 6163635F 		.ascii	"acc_x_g\000"
+ 2328      785F6700 
+ 2329              	.LASF49:
+ 2330 00ca 6374726C 		.ascii	"ctrl_out\000"
+ 2330      5F6F7574 
+ 2330      00
+ 2331              	.LASF2:
+ 2332 00d3 75696E74 		.ascii	"uint8_t\000"
+ 2332      385F7400 
+ 2333              	.LASF23:
+ 2334 00db 696E5F67 		.ascii	"in_ge\000"
+ 2334      6500
+ 2335              	.LASF82:
+ 2336 00e1 4B5F315F 		.ascii	"K_1_Phi\000"
+ 2336      50686900 
+ 2337              	.LASF56:
+ 2338 00e9 7475726E 		.ascii	"turn_rate_p\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 51
+
+
+ 2338      5F726174 
+ 2338      655F7000 
+ 2339              	.LASF57:
+ 2340 00f5 7475726E 		.ascii	"turn_rate_q\000"
+ 2340      5F726174 
+ 2340      655F7100 
+ 2341              	.LASF58:
+ 2342 0101 7475726E 		.ascii	"turn_rate_r\000"
+ 2342      5F726174 
+ 2342      655F7200 
+ 2343              	.LASF13:
+ 2344 010d 666C6F61 		.ascii	"float\000"
+ 2344      7400
+ 2345              	.LASF26:
+ 2346 0113 655F696E 		.ascii	"e_in\000"
+ 2346      00
+ 2347              	.LASF10:
+ 2348 0118 6C6F6E67 		.ascii	"long long int\000"
+ 2348      206C6F6E 
+ 2348      6720696E 
+ 2348      7400
+ 2349              	.LASF8:
+ 2350 0126 6C6F6E67 		.ascii	"long int\000"
+ 2350      20696E74 
+ 2350      00
+ 2351              	.LASF69:
+ 2352 012f 515F6779 		.ascii	"Q_gyro\000"
+ 2352      726F00
+ 2353              	.LASF73:
+ 2354 0136 54686574 		.ascii	"Theta_temp\000"
+ 2354      615F7465 
+ 2354      6D7000
+ 2355              	.LASF83:
+ 2356 0141 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2356      4320342E 
+ 2356      372E3320 
+ 2356      32303133 
+ 2356      30333132 
+ 2357 0174 616E6368 		.ascii	"anch revision 196615]\000"
+ 2357      20726576 
+ 2357      6973696F 
+ 2357      6E203139 
+ 2357      36363135 
+ 2358              	.LASF34:
+ 2359 018a 6F75745F 		.ascii	"out_fl1\000"
+ 2359      666C3100 
+ 2360              	.LASF35:
+ 2361 0192 6F75745F 		.ascii	"out_fl2\000"
+ 2361      666C3200 
+ 2362              	.LASF74:
+ 2363 019a 535F5468 		.ascii	"S_Theta\000"
+ 2363      65746100 
+ 2364              	.LASF36:
+ 2365 01a2 6F75745F 		.ascii	"out_ge1\000"
+ 2365      67653100 
+ 2366              	.LASF37:
+ 2367 01aa 6F75745F 		.ascii	"out_ge2\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 52
+
+
+ 2367      67653200 
+ 2368              	.LASF38:
+ 2369 01b2 6F75745F 		.ascii	"out_ge3\000"
+ 2369      67653300 
+ 2370              	.LASF1:
+ 2371 01ba 756E7369 		.ascii	"unsigned char\000"
+ 2371      676E6564 
+ 2371      20636861 
+ 2371      7200
+ 2372              	.LASF78:
+ 2373 01c8 505F5068 		.ascii	"P_Phi\000"
+ 2373      6900
+ 2374              	.LASF0:
+ 2375 01ce 7369676E 		.ascii	"signed char\000"
+ 2375      65642063 
+ 2375      68617200 
+ 2376              	.LASF11:
+ 2377 01da 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2377      206C6F6E 
+ 2377      6720756E 
+ 2377      7369676E 
+ 2377      65642069 
+ 2378              	.LASF12:
+ 2379 01f1 756E7369 		.ascii	"unsigned int\000"
+ 2379      676E6564 
+ 2379      20696E74 
+ 2379      00
+ 2380              	.LASF5:
+ 2381 01fe 75696E74 		.ascii	"uint16_t\000"
+ 2381      31365F74 
+ 2381      00
+ 2382              	.LASF43:
+ 2383 0207 64656275 		.ascii	"debug\000"
+ 2383      6700
+ 2384              	.LASF79:
+ 2385 020d 5068695F 		.ascii	"Phi_temp\000"
+ 2385      74656D70 
+ 2385      00
+ 2386              	.LASF77:
+ 2387 0216 705F6269 		.ascii	"p_bias\000"
+ 2387      617300
+ 2388              	.LASF15:
+ 2389 021d 63686172 		.ascii	"char\000"
+ 2389      00
+ 2390              	.LASF42:
+ 2391 0222 6D61696E 		.ascii	"main\000"
+ 2391      00
+ 2392              	.LASF54:
+ 2393 0227 4E61764C 		.ascii	"NavLightStep\000"
+ 2393      69676874 
+ 2393      53746570 
+ 2393      00
+ 2394              	.LASF7:
+ 2395 0234 696E7433 		.ascii	"int32_t\000"
+ 2395      325F7400 
+ 2396              	.LASF6:
+ 2397 023c 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 53
+
+
+ 2397      7420756E 
+ 2397      7369676E 
+ 2397      65642069 
+ 2397      6E7400
+ 2398              	.LASF3:
+ 2399 024f 696E7431 		.ascii	"int16_t\000"
+ 2399      365F7400 
+ 2400              	.LASF70:
+ 2401 0257 525F616E 		.ascii	"R_angle\000"
+ 2401      676C6500 
+ 2402              	.LASF28:
+ 2403 025f 6F75745F 		.ascii	"out_mot\000"
+ 2403      6D6F7400 
+ 2404              	.LASF31:
+ 2405 0267 6F75745F 		.ascii	"out_ele1\000"
+ 2405      656C6531 
+ 2405      00
+ 2406              	.LASF32:
+ 2407 0270 6F75745F 		.ascii	"out_ele2\000"
+ 2407      656C6532 
+ 2407      00
+ 2408              	.LASF21:
+ 2409 0279 696E5F72 		.ascii	"in_rud\000"
+ 2409      756400
+ 2410              	.LASF67:
+ 2411 0280 5068695F 		.ascii	"Phi_acc\000"
+ 2411      61636300 
+ 2412              	.LASF9:
+ 2413 0288 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2413      20756E73 
+ 2413      69676E65 
+ 2413      6420696E 
+ 2413      7400
+ 2414              	.LASF14:
+ 2415 029a 646F7562 		.ascii	"double\000"
+ 2415      6C6500
+ 2416              	.LASF18:
+ 2417 02a1 696E5F6D 		.ascii	"in_mot\000"
+ 2417      6F7400
+ 2418              	.LASF61:
+ 2419 02a8 6163635F 		.ascii	"acc_z_g\000"
+ 2419      7A5F6700 
+ 2420              	.LASF53:
+ 2421 02b0 4E61764C 		.ascii	"NavLightDim\000"
+ 2421      69676874 
+ 2421      44696D00 
+ 2422              	.LASF33:
+ 2423 02bc 6F75745F 		.ascii	"out_rud\000"
+ 2423      72756400 
+ 2424              	.LASF29:
+ 2425 02c4 6F75745F 		.ascii	"out_ail1\000"
+ 2425      61696C31 
+ 2425      00
+ 2426              	.LASF44:
+ 2427 02cd 7461736B 		.ascii	"task_flag\000"
+ 2427      5F666C61 
+ 2427      6700
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 54
+
+
+ 2428              	.LASF20:
+ 2429 02d7 696E5F65 		.ascii	"in_ele\000"
+ 2429      6C6500
+ 2430              	.LASF72:
+ 2431 02de 505F5468 		.ascii	"P_Theta\000"
+ 2431      65746100 
+ 2432              	.LASF45:
+ 2433 02e6 626C696E 		.ascii	"blink_cnt\000"
+ 2433      6B5F636E 
+ 2433      7400
+ 2434              	.LASF19:
+ 2435 02f0 696E5F61 		.ascii	"in_ail\000"
+ 2435      696C00
+ 2436              	.LASF48:
+ 2437 02f7 6374726C 		.ascii	"ctrl_in\000"
+ 2437      5F696E00 
+ 2438              	.LASF64:
+ 2439 02ff 6D61675F 		.ascii	"mag_z_g\000"
+ 2439      7A5F6700 
+ 2440              	.LASF52:
+ 2441 0307 4E61764C 		.ascii	"NavLightBright\000"
+ 2441      69676874 
+ 2441      42726967 
+ 2441      687400
+ 2442              	.LASF55:
+ 2443 0316 4E61764C 		.ascii	"NavLightCompare\000"
+ 2443      69676874 
+ 2443      436F6D70 
+ 2443      61726500 
+ 2444              	.LASF85:
+ 2445 0326 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 2445      73657273 
+ 2445      5C534E46 
+ 2445      555C446F 
+ 2445      63756D65 
+ 2446 0354 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 2446      542D3530 
+ 2446      5F50726F 
+ 2446      6A656374 
+ 2446      5C542D35 
+ 2447              	.LASF62:
+ 2448 0378 6D61675F 		.ascii	"mag_x_g\000"
+ 2448      785F6700 
+ 2449              	.LASF81:
+ 2450 0380 4B5F305F 		.ascii	"K_0_Phi\000"
+ 2450      50686900 
+ 2451              	.LASF27:
+ 2452 0388 655F6F75 		.ascii	"e_out\000"
+ 2452      7400
+ 2453              	.LASF75:
+ 2454 038e 4B5F305F 		.ascii	"K_0_Theta\000"
+ 2454      54686574 
+ 2454      6100
+ 2455              	.LASF71:
+ 2456 0398 715F6269 		.ascii	"q_bias\000"
+ 2456      617300
+ 2457              	.LASF50:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccg49us5.s 			page 55
+
+
+ 2458 039f 666C6167 		.ascii	"flag_LightsEnabled\000"
+ 2458      5F4C6967 
+ 2458      68747345 
+ 2458      6E61626C 
+ 2458      656400
+ 2459              	.LASF63:
+ 2460 03b2 6D61675F 		.ascii	"mag_y_g\000"
+ 2460      795F6700 
+ 2461              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
