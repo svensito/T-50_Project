@@ -48,23 +48,13 @@ void gyro_start(void);
 void temp_read(void);
 int8_t read_gyro_registry(uint8_t registry);
 void write_gyro_registry(uint8_t registry, uint8_t data);
-
-volatile struct turn_rates_s
-{
-    long p,q,r;
-};
-
 void gyro_read(void);
-int16_t gyro_read_p(void);
-//struct turn_rates_obj gyro_read(void);
 void gyro_calibration(void);
 
 // #################################
 // LSM303 D Accelerometer & Magnetometer
 // 7 bit Address is
 #define LSM303_ADDRESS              0b0011101   // as per Datasheet o 22 - SA0 is High by default
-#define LSM303_ACC_ADDRESS_READ		0x33	// 0011 0011
-#define LSM303_ACC_ADDRESS_WRITE	0x32	// 0011 0010
 
 // Control Registers LSM303
 #define LSM303_MAG_WHO_AM_I			0x0F
@@ -104,64 +94,36 @@ void gyro_calibration(void);
 #define LSM303_MAG_TEMP_H			0x06
 
 //###################################
-// ACC Functions
-/* ACC reading*/
+// LSM303 Functions
 
 // Function prototypes
 void write_acc_registry(char registry, char data);
 void acc_start(void);
-struct acc_readings_obj acc_reading(void);
+void acc_read(void);
 
 void write_mag_registry(char registry, char data);
 void mag_start(void);
-
-// #################################
-// Magnetometer address
-#define LSM303_MAG_ADDRESS_READ		0x3D	// 0011 1101	as per Pololu website and Datasheet
-#define LSM303_MAG_ADDRESS_WRITE	0x3C	// 0011 1100
-
-// Magnetometer Registers
-
-
-
-
-// Function prototypes
-
+void mag_read(void);
 
 // #################################
 // Barometer Addresses
-#define MPL3115A2_ADDRESS_READ		0xC1	// 1100 0001
-#define MPL3115A2_ADDRESS_WRITE		0xC0	// 1100 0000
+#define LPS25H_ADDRESS				0b1011101	// as per LPS25H Datasheet
 
 // Barometer Registers
-#define MPL3115A2_STATUS			0x00
-#define MPL3115A2_OUT_P_MSB			0x01
-#define MPL3115A2_OUT_P_CSB			0x02
-#define MPL3115A2_OUT_P_LSB			0x03
-#define MPL3115A2_OUT_T_MSB			0x04
-#define MPL3115A2_OUT_T_LSB			0x05
-#define MPL3115A2_STATUS_DR			0x06
-#define MPL3115A2_OUT_P_DELTA_MSB	0x07
-#define MPL3115A2_OUT_P_DELTA_CSB	0x08
-#define MPL3115A2_OUT_P_DELTA_LSB	0x09
-#define MPL3115A2_OUT_T_DELTA_MSB	0x0A
-#define MPL3115A2_OUT_T_DELTA_LSB	0x0B
-#define MPL3115A2_WHO_AM_I			0x0C
-#define MPL3115A2_INT_SOURCE		0x12
-#define MPL3115A2_PT_DATA_CFG		0x13
-#define MPL3115A2_BAR_IN_MSB		0x14
-#define MPL3115A2_BAR_IN_LSB		0x15
-#define MPL3115A2_P_TGT_MSB			0x16
-#define MPL3115A2_P_TGT_LSB			0x17
-#define MPL3115A2_T_TGT				0x18
-#define MPL3115A2_P_WND_MSB			0x19
-#define MPL3115A2_P_WND_LSB			0x1A
-#define MPL3115A2_T_WND				0x1B
-#define MPL3115A2_CTRL_REG1			0x26
-#define MPL3115A2_CTRL_REG2			0x27
-#define MPL3115A2_CTRL_REG3			0x28
-#define MPL3115A2_CTRL_REG4			0x29
-#define MPL3115A2_CTRL_REG5			0x2A
+#define LPS25H_WHO_AM_I				0x0F
+#define LPS25H_RES_CONF				0x10
+#define LPS25H_CTRL_REG1			0x20
+#define LPS25H_CTRL_REG2			0x21
+#define LPS25H_CTRL_REG3			0x22
+#define LPS25H_CTRL_REG4			0x23
+#define LPS25H_STATUS				0x27
+
+#define LPS25H_P_OUT_XL				0x28
+#define LPS25H_P_OUT_L				0x29
+#define LPS25H_P_OUT_H				0x2A
+#define LPS25H_T_OUT_L				0x2B
+#define LPS25H_T_OUT_H				0x2C
+
 
 // Function prototypes
 void write_baro_registry(char registry, char data);

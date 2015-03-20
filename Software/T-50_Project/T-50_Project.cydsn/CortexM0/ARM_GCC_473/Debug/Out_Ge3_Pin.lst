@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
   30:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** ********************************************************************************
   31:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *
   32:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *  Assign a new value to the digital port's data output register.  
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
   66 0036 0F32     		add	r2, r2, #15
   67 0038 1278     		ldrb	r2, [r2]
   68 003a 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 3
 
 
   47:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** }
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
   95              		.cfi_offset 14, -4
   96 0002 82B0     		sub	sp, sp, #8
   97              	.LCFI4:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 4
 
 
   98              		.cfi_def_cfa_offset 16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
   90:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** * Return: 
   91:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *  Returns the current value of the Digital Port as a right justified number
   92:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *  
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 5
 
 
   93:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** * Note:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  110:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** * Parameters:  
  111:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *  None 
  112:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 6
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 6
 
 
  113:.\Generated_Source\PSoC4/Out_Ge3_Pin.c **** * Return: 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  130:.\Generated_Source\PSoC4/Out_Ge3_Pin.c ****     * Summary:
  131:.\Generated_Source\PSoC4/Out_Ge3_Pin.c ****     *  Clears any active interrupts attached to port and returns the value of the 
  132:.\Generated_Source\PSoC4/Out_Ge3_Pin.c ****     *  interrupt status register.
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 7
 
 
  133:.\Generated_Source\PSoC4/Out_Ge3_Pin.c ****     *
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  251 002c 10030440 		.word	1074004752
  252              		.cfi_endproc
  253              	.LFE4:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 8
 
 
  254              		.size	Out_Ge3_Pin_ClearInterrupt, .-Out_Ge3_Pin_ClearInterrupt
@@ -432,10 +432,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  262 0006 00000000 		.4byte	.Ldebug_abbrev0
  263 000a 04       		.byte	0x4
  264 000b 01       		.uleb128 0x1
- 265 000c 84010000 		.4byte	.LASF24
+ 265 000c 88010000 		.4byte	.LASF24
  266 0010 01       		.byte	0x1
- 267 0011 B1000000 		.4byte	.LASF25
- 268 0015 5C000000 		.4byte	.LASF26
+ 267 0011 B5000000 		.4byte	.LASF25
+ 268 0015 1D000000 		.4byte	.LASF26
  269 0019 00000000 		.4byte	.Ldebug_ranges0+0
  270 001d 00000000 		.4byte	0
  271 0021 00000000 		.4byte	0
@@ -443,68 +443,68 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  273 0029 02       		.uleb128 0x2
  274 002a 01       		.byte	0x1
  275 002b 06       		.byte	0x6
- 276 002c D6010000 		.4byte	.LASF0
+ 276 002c DA010000 		.4byte	.LASF0
  277 0030 02       		.uleb128 0x2
  278 0031 01       		.byte	0x1
  279 0032 08       		.byte	0x8
- 280 0033 23000000 		.4byte	.LASF1
+ 280 0033 75000000 		.4byte	.LASF1
  281 0037 02       		.uleb128 0x2
  282 0038 02       		.byte	0x2
  283 0039 05       		.byte	0x5
- 284 003a 74010000 		.4byte	.LASF2
+ 284 003a 78010000 		.4byte	.LASF2
  285 003e 02       		.uleb128 0x2
  286 003f 02       		.byte	0x2
  287 0040 07       		.byte	0x7
- 288 0041 49000000 		.4byte	.LASF3
+ 288 0041 9B000000 		.4byte	.LASF3
  289 0045 02       		.uleb128 0x2
  290 0046 04       		.byte	0x4
  291 0047 05       		.byte	0x5
- 292 0048 CD010000 		.4byte	.LASF4
+ 292 0048 D1010000 		.4byte	.LASF4
  293 004c 02       		.uleb128 0x2
  294 004d 04       		.byte	0x4
  295 004e 07       		.byte	0x7
- 296 004f 37000000 		.4byte	.LASF5
+ 296 004f 89000000 		.4byte	.LASF5
  297 0053 02       		.uleb128 0x2
  298 0054 08       		.byte	0x8
  299 0055 05       		.byte	0x5
- 300 0056 54010000 		.4byte	.LASF6
+ 300 0056 58010000 		.4byte	.LASF6
  301 005a 02       		.uleb128 0x2
  302 005b 08       		.byte	0x8
  303 005c 07       		.byte	0x7
- 304 005d EC000000 		.4byte	.LASF7
+ 304 005d F0000000 		.4byte	.LASF7
  305 0061 03       		.uleb128 0x3
  306 0062 04       		.byte	0x4
  307 0063 05       		.byte	0x5
  308 0064 696E7400 		.ascii	"int\000"
  309 0068 02       		.uleb128 0x2
  310 0069 04       		.byte	0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 9
 
 
  311 006a 07       		.byte	0x7
- 312 006b DF000000 		.4byte	.LASF8
+ 312 006b E3000000 		.4byte	.LASF8
  313 006f 04       		.uleb128 0x4
- 314 0070 7E010000 		.4byte	.LASF9
+ 314 0070 82010000 		.4byte	.LASF9
  315 0074 02       		.byte	0x2
  316 0075 5B       		.byte	0x5b
  317 0076 30000000 		.4byte	0x30
  318 007a 04       		.uleb128 0x4
- 319 007b D8000000 		.4byte	.LASF10
+ 319 007b DC000000 		.4byte	.LASF10
  320 007f 02       		.byte	0x2
  321 0080 5D       		.byte	0x5d
  322 0081 4C000000 		.4byte	0x4c
  323 0085 02       		.uleb128 0x2
  324 0086 04       		.byte	0x4
  325 0087 04       		.byte	0x4
- 326 0088 1D000000 		.4byte	.LASF11
+ 326 0088 6F000000 		.4byte	.LASF11
  327 008c 02       		.uleb128 0x2
  328 008d 08       		.byte	0x8
  329 008e 04       		.byte	0x4
- 330 008f AA000000 		.4byte	.LASF12
+ 330 008f AE000000 		.4byte	.LASF12
  331 0093 02       		.uleb128 0x2
  332 0094 01       		.byte	0x1
  333 0095 08       		.byte	0x8
- 334 0096 6F010000 		.4byte	.LASF13
+ 334 0096 73010000 		.4byte	.LASF13
  335 009a 04       		.uleb128 0x4
  336 009b 00000000 		.4byte	.LASF14
  337 009f 02       		.byte	0x2
@@ -514,7 +514,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  341 00a6 7A000000 		.4byte	0x7a
  342 00aa 06       		.uleb128 0x6
  343 00ab 01       		.byte	0x1
- 344 00ac E2010000 		.4byte	.LASF15
+ 344 00ac E6010000 		.4byte	.LASF15
  345 00b0 01       		.byte	0x1
  346 00b1 2A       		.byte	0x2a
  347 00b2 01       		.byte	0x1
@@ -532,20 +532,20 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  359 00d0 91       		.byte	0x91
  360 00d1 6F       		.sleb128 -17
  361 00d2 08       		.uleb128 0x8
- 362 00d3 31000000 		.4byte	.LASF22
+ 362 00d3 83000000 		.4byte	.LASF22
  363 00d7 01       		.byte	0x1
  364 00d8 2C       		.byte	0x2c
  365 00d9 6F000000 		.4byte	0x6f
  366 00dd 02       		.byte	0x2
  367 00de 91       		.byte	0x91
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 10
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 10
 
 
  368 00df 77       		.sleb128 -9
  369 00e0 00       		.byte	0
  370 00e1 06       		.uleb128 0x6
  371 00e2 01       		.byte	0x1
- 372 00e3 03010000 		.4byte	.LASF16
+ 372 00e3 07010000 		.4byte	.LASF16
  373 00e7 01       		.byte	0x1
  374 00e8 49       		.byte	0x49
  375 00e9 01       		.byte	0x1
@@ -555,7 +555,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  379 00f6 01       		.byte	0x1
  380 00f7 0A010000 		.4byte	0x10a
  381 00fb 07       		.uleb128 0x7
- 382 00fc 37010000 		.4byte	.LASF18
+ 382 00fc 3B010000 		.4byte	.LASF18
  383 0100 01       		.byte	0x1
  384 0101 49       		.byte	0x49
  385 0102 6F000000 		.4byte	0x6f
@@ -576,7 +576,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  400 0123 01       		.byte	0x1
  401 0124 09       		.uleb128 0x9
  402 0125 01       		.byte	0x1
- 403 0126 3C010000 		.4byte	.LASF20
+ 403 0126 40010000 		.4byte	.LASF20
  404 012a 01       		.byte	0x1
  405 012b 75       		.byte	0x75
  406 012c 01       		.byte	0x1
@@ -587,7 +587,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  411 013d 01       		.byte	0x1
  412 013e 0A       		.uleb128 0xa
  413 013f 01       		.byte	0x1
- 414 0140 1C010000 		.4byte	.LASF21
+ 414 0140 20010000 		.4byte	.LASF21
  415 0144 01       		.byte	0x1
  416 0145 8D       		.byte	0x8d
  417 0146 01       		.byte	0x1
@@ -597,8 +597,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  421 0153 C8000000 		.4byte	.LLST4
  422 0157 01       		.byte	0x1
  423 0158 08       		.uleb128 0x8
- 424 0159 62010000 		.4byte	.LASF23
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 11
+ 424 0159 66010000 		.4byte	.LASF23
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 11
 
 
  425 015d 01       		.byte	0x1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  479 002c 16       		.uleb128 0x16
  480 002d 00       		.byte	0
  481 002e 03       		.uleb128 0x3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 12
 
 
  482 002f 0E       		.uleb128 0xe
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  536 0066 00       		.byte	0
  537 0067 00       		.byte	0
  538 0068 08       		.uleb128 0x8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 13
 
 
  539 0069 34       		.uleb128 0x34
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  593 00a0 11       		.uleb128 0x11
  594 00a1 01       		.uleb128 0x1
  595 00a2 12       		.uleb128 0x12
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 14
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 14
 
 
  596 00a3 01       		.uleb128 0x1
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  650 0068 00000000 		.4byte	0
  651 006c 00000000 		.4byte	0
  652              	.LLST2:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 15
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 15
 
 
  653 0070 00000000 		.4byte	.LFB2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  707 00f6 77       		.byte	0x77
  708 00f7 10       		.sleb128 16
  709 00f8 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 16
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 16
 
 
  710 00fc 00000000 		.4byte	0
@@ -955,134 +955,134 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 1
  753      50696E5F 
  753      52656164 
  753      00
- 754              	.LASF11:
- 755 001d 666C6F61 		.ascii	"float\000"
- 755      7400
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 17
+ 754              	.LASF26:
+ 755 001d 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 755      73657273 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 17
 
 
- 756              	.LASF1:
- 757 0023 756E7369 		.ascii	"unsigned char\000"
- 757      676E6564 
- 757      20636861 
- 757      7200
- 758              	.LASF22:
- 759 0031 64725661 		.ascii	"drVal\000"
- 759      6C00
- 760              	.LASF5:
- 761 0037 6C6F6E67 		.ascii	"long unsigned int\000"
- 761      20756E73 
- 761      69676E65 
- 761      6420696E 
- 761      7400
- 762              	.LASF3:
- 763 0049 73686F72 		.ascii	"short unsigned int\000"
- 763      7420756E 
- 763      7369676E 
- 763      65642069 
- 763      6E7400
- 764              	.LASF26:
- 765 005c 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_Project\\Software\\"
- 765      73657273 
- 765      5C534E46 
- 765      555C446F 
- 765      63756D65 
- 766 008a 542D3530 		.ascii	"T-50_Project\\T-50_Project.cydsn\000"
- 766      5F50726F 
- 766      6A656374 
- 766      5C542D35 
- 766      305F5072 
+ 755      5C534E46 
+ 755      555C446F 
+ 755      63756D65 
+ 756 004b 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 756      542D3530 
+ 756      5F50726F 
+ 756      6A656374 
+ 756      5C542D35 
+ 757              	.LASF11:
+ 758 006f 666C6F61 		.ascii	"float\000"
+ 758      7400
+ 759              	.LASF1:
+ 760 0075 756E7369 		.ascii	"unsigned char\000"
+ 760      676E6564 
+ 760      20636861 
+ 760      7200
+ 761              	.LASF22:
+ 762 0083 64725661 		.ascii	"drVal\000"
+ 762      6C00
+ 763              	.LASF5:
+ 764 0089 6C6F6E67 		.ascii	"long unsigned int\000"
+ 764      20756E73 
+ 764      69676E65 
+ 764      6420696E 
+ 764      7400
+ 765              	.LASF3:
+ 766 009b 73686F72 		.ascii	"short unsigned int\000"
+ 766      7420756E 
+ 766      7369676E 
+ 766      65642069 
+ 766      6E7400
  767              	.LASF12:
- 768 00aa 646F7562 		.ascii	"double\000"
+ 768 00ae 646F7562 		.ascii	"double\000"
  768      6C6500
  769              	.LASF25:
- 770 00b1 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\Out_Ge3_Pin.c\000"
+ 770 00b5 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\Out_Ge3_Pin.c\000"
  770      6E657261 
  770      7465645F 
  770      536F7572 
  770      63655C50 
  771              	.LASF10:
- 772 00d8 75696E74 		.ascii	"uint32\000"
+ 772 00dc 75696E74 		.ascii	"uint32\000"
  772      333200
  773              	.LASF8:
- 774 00df 756E7369 		.ascii	"unsigned int\000"
+ 774 00e3 756E7369 		.ascii	"unsigned int\000"
  774      676E6564 
  774      20696E74 
  774      00
  775              	.LASF7:
- 776 00ec 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 776 00f0 6C6F6E67 		.ascii	"long long unsigned int\000"
  776      206C6F6E 
  776      6720756E 
  776      7369676E 
  776      65642069 
  777              	.LASF16:
- 778 0103 4F75745F 		.ascii	"Out_Ge3_Pin_SetDriveMode\000"
+ 778 0107 4F75745F 		.ascii	"Out_Ge3_Pin_SetDriveMode\000"
  778      4765335F 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 18
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 18
 
 
  778      50696E5F 
  778      53657444 
  778      72697665 
  779              	.LASF21:
- 780 011c 4F75745F 		.ascii	"Out_Ge3_Pin_ClearInterrupt\000"
+ 780 0120 4F75745F 		.ascii	"Out_Ge3_Pin_ClearInterrupt\000"
  780      4765335F 
  780      50696E5F 
  780      436C6561 
  780      72496E74 
  781              	.LASF18:
- 782 0137 6D6F6465 		.ascii	"mode\000"
+ 782 013b 6D6F6465 		.ascii	"mode\000"
  782      00
  783              	.LASF20:
- 784 013c 4F75745F 		.ascii	"Out_Ge3_Pin_ReadDataReg\000"
+ 784 0140 4F75745F 		.ascii	"Out_Ge3_Pin_ReadDataReg\000"
  784      4765335F 
  784      50696E5F 
  784      52656164 
  784      44617461 
  785              	.LASF6:
- 786 0154 6C6F6E67 		.ascii	"long long int\000"
+ 786 0158 6C6F6E67 		.ascii	"long long int\000"
  786      206C6F6E 
  786      6720696E 
  786      7400
  787              	.LASF23:
- 788 0162 6D61736B 		.ascii	"maskedStatus\000"
+ 788 0166 6D61736B 		.ascii	"maskedStatus\000"
  788      65645374 
  788      61747573 
  788      00
  789              	.LASF13:
- 790 016f 63686172 		.ascii	"char\000"
+ 790 0173 63686172 		.ascii	"char\000"
  790      00
  791              	.LASF2:
- 792 0174 73686F72 		.ascii	"short int\000"
+ 792 0178 73686F72 		.ascii	"short int\000"
  792      7420696E 
  792      7400
  793              	.LASF9:
- 794 017e 75696E74 		.ascii	"uint8\000"
+ 794 0182 75696E74 		.ascii	"uint8\000"
  794      3800
  795              	.LASF24:
- 796 0184 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 796 0188 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  796      4320342E 
  796      372E3320 
  796      32303133 
  796      30333132 
- 797 01b7 616E6368 		.ascii	"anch revision 196615]\000"
+ 797 01bb 616E6368 		.ascii	"anch revision 196615]\000"
  797      20726576 
  797      6973696F 
  797      6E203139 
  797      36363135 
  798              	.LASF4:
- 799 01cd 6C6F6E67 		.ascii	"long int\000"
+ 799 01d1 6C6F6E67 		.ascii	"long int\000"
  799      20696E74 
  799      00
  800              	.LASF0:
- 801 01d6 7369676E 		.ascii	"signed char\000"
+ 801 01da 7369676E 		.ascii	"signed char\000"
  801      65642063 
  801      68617200 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccedf4E7.s 			page 19
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccvipBgo.s 			page 19
 
 
  802              	.LASF15:
- 803 01e2 4F75745F 		.ascii	"Out_Ge3_Pin_Write\000"
+ 803 01e6 4F75745F 		.ascii	"Out_Ge3_Pin_Write\000"
  803      4765335F 
  803      50696E5F 
  803      57726974 

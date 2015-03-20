@@ -126,6 +126,47 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Section
+TO DO
+\end_layout
+
+\begin_layout Itemize
+navigation lights at intake
+\end_layout
+
+\begin_layout Itemize
+wiring,plugs,resistors for the lights: NavGreen (220Ohms), NavRed (66Ohms), NavWhite (100Ohms), Landing (100Ohms), TipLights (150Ohms)
+\end_layout
+
+\begin_layout Itemize
+whiten gear doors inside
+\end_layout
+
+\begin_layout Itemize
+aileron servos split wire / elevator servos???
+\end_layout
+
+\begin_layout Itemize
+install board and imu
+\end_layout
+
+\begin_layout Itemize
+groundstation?! telemetry etc.
+\end_layout
+
+\begin_layout Itemize
+camera and camera servos
+\end_layout
+
+\begin_layout Itemize
+video transmitter location
+\end_layout
+
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+\begin_layout Section
 Airplane
 \end_layout
 
@@ -556,7 +597,8 @@ reference "fig:NAV-LED-brighntess"
 
 \end_inset
 
-.
+. The landing light is consisting of two leds that are connected in parallel. A resistor of 100ohms is used in series to keep the current at approx 30mA. This gives proper brightness for the landing light. The landing light is installed in the front of the nose gear flap.
+The tip lights are equipped with 150ohms resistors to have the current slightly below 30mA, resulting in slightly darker tiplights than the landing light.
 \end_layout
 
 \begin_layout Standard
@@ -655,6 +697,8 @@ controller
 \begin_layout Subsection
 Light control software
 \end_layout
+
+
 
 \end_body
 \end_document

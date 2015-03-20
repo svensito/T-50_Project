@@ -290,7 +290,7 @@ uint32 I2CM_I2CMasterSendStart(uint32 slaveAddress, uint32 bitRnW)
         }
         else
         {
-            //I2CM_DisableInt();
+            I2CM_DisableInt();
 
             slaveAddress = I2CM_GET_I2C_8BIT_ADDRESS(slaveAddress);
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
   26:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
   27:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
   28:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 2
 
 
   29:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  All configuration registers are retention. Nothing to save here.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
   58:.\Generated_Source\PSoC4/TaskTimer_PM.c **** void TaskTimer_Sleep(void)
   59:.\Generated_Source\PSoC4/TaskTimer_PM.c **** {
   55              		.loc 1 59 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 3
 
 
   56              		.cfi_startproc
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
   98              		.section	.text.TaskTimer_RestoreConfig,"ax",%progbits
   99              		.align	2
  100              		.global	TaskTimer_RestoreConfig
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 4
 
 
  101              		.code	16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
   96:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
   97:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
   98:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 5
 
 
   99:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  Restores the user configuration and restores the enable state.
@@ -298,16 +298,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  167              	.Ldebug_info0:
  168 0000 32010000 		.4byte	0x132
  169 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 6
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 6
 
 
  170 0006 00000000 		.4byte	.Ldebug_abbrev0
  171 000a 04       		.byte	0x4
  172 000b 01       		.uleb128 0x1
- 173 000c 81010000 		.4byte	.LASF20
+ 173 000c 85010000 		.4byte	.LASF20
  174 0010 01       		.byte	0x1
- 175 0011 1E000000 		.4byte	.LASF21
- 176 0015 B8000000 		.4byte	.LASF22
+ 175 0011 70000000 		.4byte	.LASF21
+ 176 0015 1E000000 		.4byte	.LASF22
  177 0019 00000000 		.4byte	.Ldebug_ranges0+0
  178 001d 00000000 		.4byte	0
  179 0021 00000000 		.4byte	0
@@ -315,35 +315,35 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  181 0029 02       		.uleb128 0x2
  182 002a 01       		.byte	0x1
  183 002b 06       		.byte	0x6
- 184 002c DF010000 		.4byte	.LASF0
+ 184 002c E3010000 		.4byte	.LASF0
  185 0030 02       		.uleb128 0x2
  186 0031 01       		.byte	0x1
  187 0032 08       		.byte	0x8
- 188 0033 4C000000 		.4byte	.LASF1
+ 188 0033 9E000000 		.4byte	.LASF1
  189 0037 02       		.uleb128 0x2
  190 0038 02       		.byte	0x2
  191 0039 05       		.byte	0x5
- 192 003a 71010000 		.4byte	.LASF2
+ 192 003a 75010000 		.4byte	.LASF2
  193 003e 02       		.uleb128 0x2
  194 003f 02       		.byte	0x2
  195 0040 07       		.byte	0x7
- 196 0041 95000000 		.4byte	.LASF3
+ 196 0041 E7000000 		.4byte	.LASF3
  197 0045 02       		.uleb128 0x2
  198 0046 04       		.byte	0x4
  199 0047 05       		.byte	0x5
- 200 0048 CA010000 		.4byte	.LASF4
+ 200 0048 CE010000 		.4byte	.LASF4
  201 004c 02       		.uleb128 0x2
  202 004d 04       		.byte	0x4
  203 004e 07       		.byte	0x7
- 204 004f 6B000000 		.4byte	.LASF5
+ 204 004f BD000000 		.4byte	.LASF5
  205 0053 02       		.uleb128 0x2
  206 0054 08       		.byte	0x8
  207 0055 05       		.byte	0x5
- 208 0056 5E010000 		.4byte	.LASF6
+ 208 0056 62010000 		.4byte	.LASF6
  209 005a 02       		.uleb128 0x2
  210 005b 08       		.byte	0x8
  211 005c 07       		.byte	0x7
- 212 005d 47010000 		.4byte	.LASF7
+ 212 005d 4B010000 		.4byte	.LASF7
  213 0061 03       		.uleb128 0x3
  214 0062 04       		.byte	0x4
  215 0063 05       		.byte	0x5
@@ -351,32 +351,32 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  217 0068 02       		.uleb128 0x2
  218 0069 04       		.byte	0x4
  219 006a 07       		.byte	0x7
- 220 006b 3A010000 		.4byte	.LASF8
+ 220 006b 3E010000 		.4byte	.LASF8
  221 006f 04       		.uleb128 0x4
- 222 0070 7B010000 		.4byte	.LASF9
+ 222 0070 7F010000 		.4byte	.LASF9
  223 0074 02       		.byte	0x2
  224 0075 5B       		.byte	0x5b
  225 0076 30000000 		.4byte	0x30
  226 007a 04       		.uleb128 0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 7
 
 
- 227 007b 22010000 		.4byte	.LASF10
+ 227 007b 26010000 		.4byte	.LASF10
  228 007f 02       		.byte	0x2
  229 0080 5D       		.byte	0x5d
  230 0081 4C000000 		.4byte	0x4c
  231 0085 02       		.uleb128 0x2
  232 0086 04       		.byte	0x4
  233 0087 04       		.byte	0x4
- 234 0088 46000000 		.4byte	.LASF11
+ 234 0088 98000000 		.4byte	.LASF11
  235 008c 02       		.uleb128 0x2
  236 008d 08       		.byte	0x8
  237 008e 04       		.byte	0x4
- 238 008f 1B010000 		.4byte	.LASF12
+ 238 008f 1F010000 		.4byte	.LASF12
  239 0093 02       		.uleb128 0x2
  240 0094 01       		.byte	0x1
  241 0095 08       		.byte	0x8
- 242 0096 6C010000 		.4byte	.LASF13
+ 242 0096 70010000 		.4byte	.LASF13
  243 009a 04       		.uleb128 0x4
  244 009b 00000000 		.4byte	.LASF14
  245 009f 02       		.byte	0x2
@@ -390,7 +390,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  253 00ad 1F       		.byte	0x1f
  254 00ae C1000000 		.4byte	0xc1
  255 00b2 07       		.uleb128 0x7
- 256 00b3 D3010000 		.4byte	.LASF23
+ 256 00b3 D7010000 		.4byte	.LASF23
  257 00b7 03       		.byte	0x3
  258 00b8 21       		.byte	0x21
  259 00b9 6F000000 		.4byte	0x6f
@@ -405,7 +405,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  268 00c8 AA000000 		.4byte	0xaa
  269 00cc 08       		.uleb128 0x8
  270 00cd 01       		.byte	0x1
- 271 00ce 06010000 		.4byte	.LASF16
+ 271 00ce 0A010000 		.4byte	.LASF16
  272 00d2 01       		.byte	0x1
  273 00d3 26       		.byte	0x26
  274 00d4 01       		.byte	0x1
@@ -415,10 +415,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  278 00e1 01       		.byte	0x1
  279 00e2 09       		.uleb128 0x9
  280 00e3 01       		.byte	0x1
- 281 00e4 A8000000 		.4byte	.LASF17
+ 281 00e4 FA000000 		.4byte	.LASF17
  282 00e8 01       		.byte	0x1
  283 00e9 3A       		.byte	0x3a
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 8
 
 
  284 00ea 01       		.byte	0x1
@@ -428,7 +428,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  288 00f7 01       		.byte	0x1
  289 00f8 08       		.uleb128 0x8
  290 00f9 01       		.byte	0x1
- 291 00fa 7D000000 		.4byte	.LASF18
+ 291 00fa CF000000 		.4byte	.LASF18
  292 00fe 01       		.byte	0x1
  293 00ff 58       		.byte	0x58
  294 0100 01       		.byte	0x1
@@ -438,7 +438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  298 010d 01       		.byte	0x1
  299 010e 09       		.uleb128 0x9
  300 010f 01       		.byte	0x1
- 301 0110 29010000 		.4byte	.LASF19
+ 301 0110 2D010000 		.4byte	.LASF19
  302 0114 01       		.byte	0x1
  303 0115 6C       		.byte	0x6c
  304 0116 01       		.byte	0x1
@@ -447,7 +447,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  307 011f 84000000 		.4byte	.LLST3
  308 0123 01       		.byte	0x1
  309 0124 0A       		.uleb128 0xa
- 310 0125 5A000000 		.4byte	.LASF24
+ 310 0125 AC000000 		.4byte	.LASF24
  311 0129 01       		.byte	0x1
  312 012a 15       		.byte	0x15
  313 012b C1000000 		.4byte	0xc1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  338 0012 06       		.uleb128 0x6
  339 0013 00       		.byte	0
  340 0014 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 9
 
 
  341 0015 02       		.uleb128 0x2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  395 004b 00       		.byte	0
  396 004c 07       		.uleb128 0x7
  397 004d 0D       		.uleb128 0xd
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 10
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 10
 
 
  398 004e 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  452 0085 06       		.uleb128 0x6
  453 0086 9642     		.uleb128 0x2116
  454 0088 0C       		.uleb128 0xc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 11
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 11
 
 
  455 0089 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  509 0050 00000000 		.4byte	0
  510 0054 00000000 		.4byte	0
  511              	.LLST2:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 12
 
 
  512 0058 00000000 		.4byte	.LFB2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  566              	.Ldebug_ranges0:
  567 0000 00000000 		.4byte	.LFB0
  568 0004 08000000 		.4byte	.LFE0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 13
 
 
  569 0008 00000000 		.4byte	.LFB1
@@ -745,131 +745,131 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 1
  583      725F4241 
  583      434B5550 
  583      5F535452 
- 584              	.LASF21:
- 585 001e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TaskTimer_PM.c\000"
- 585      6E657261 
- 585      7465645F 
- 585      536F7572 
- 585      63655C50 
- 586              	.LASF11:
- 587 0046 666C6F61 		.ascii	"float\000"
- 587      7400
- 588              	.LASF1:
- 589 004c 756E7369 		.ascii	"unsigned char\000"
- 589      676E6564 
- 589      20636861 
- 589      7200
- 590              	.LASF24:
- 591 005a 5461736B 		.ascii	"TaskTimer_backup\000"
- 591      54696D65 
- 591      725F6261 
- 591      636B7570 
- 591      00
- 592              	.LASF5:
- 593 006b 6C6F6E67 		.ascii	"long unsigned int\000"
- 593      20756E73 
- 593      69676E65 
- 593      6420696E 
- 593      7400
- 594              	.LASF18:
- 595 007d 5461736B 		.ascii	"TaskTimer_RestoreConfig\000"
- 595      54696D65 
- 595      725F5265 
- 595      73746F72 
- 595      65436F6E 
- 596              	.LASF3:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 14
+ 584              	.LASF22:
+ 585 001e 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 585      73657273 
+ 585      5C534E46 
+ 585      555C446F 
+ 585      63756D65 
+ 586 004c 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 586      542D3530 
+ 586      5F50726F 
+ 586      6A656374 
+ 586      5C542D35 
+ 587              	.LASF21:
+ 588 0070 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TaskTimer_PM.c\000"
+ 588      6E657261 
+ 588      7465645F 
+ 588      536F7572 
+ 588      63655C50 
+ 589              	.LASF11:
+ 590 0098 666C6F61 		.ascii	"float\000"
+ 590      7400
+ 591              	.LASF1:
+ 592 009e 756E7369 		.ascii	"unsigned char\000"
+ 592      676E6564 
+ 592      20636861 
+ 592      7200
+ 593              	.LASF24:
+ 594 00ac 5461736B 		.ascii	"TaskTimer_backup\000"
+ 594      54696D65 
+ 594      725F6261 
+ 594      636B7570 
+ 594      00
+ 595              	.LASF5:
+ 596 00bd 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 14
 
 
- 597 0095 73686F72 		.ascii	"short unsigned int\000"
- 597      7420756E 
- 597      7369676E 
- 597      65642069 
- 597      6E7400
- 598              	.LASF17:
- 599 00a8 5461736B 		.ascii	"TaskTimer_Sleep\000"
- 599      54696D65 
- 599      725F536C 
- 599      65657000 
- 600              	.LASF22:
- 601 00b8 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_Project\\Software\\"
- 601      73657273 
- 601      5C534E46 
- 601      555C446F 
- 601      63756D65 
- 602 00e6 542D3530 		.ascii	"T-50_Project\\T-50_Project.cydsn\000"
- 602      5F50726F 
- 602      6A656374 
- 602      5C542D35 
- 602      305F5072 
+ 596      20756E73 
+ 596      69676E65 
+ 596      6420696E 
+ 596      7400
+ 597              	.LASF18:
+ 598 00cf 5461736B 		.ascii	"TaskTimer_RestoreConfig\000"
+ 598      54696D65 
+ 598      725F5265 
+ 598      73746F72 
+ 598      65436F6E 
+ 599              	.LASF3:
+ 600 00e7 73686F72 		.ascii	"short unsigned int\000"
+ 600      7420756E 
+ 600      7369676E 
+ 600      65642069 
+ 600      6E7400
+ 601              	.LASF17:
+ 602 00fa 5461736B 		.ascii	"TaskTimer_Sleep\000"
+ 602      54696D65 
+ 602      725F536C 
+ 602      65657000 
  603              	.LASF16:
- 604 0106 5461736B 		.ascii	"TaskTimer_SaveConfig\000"
+ 604 010a 5461736B 		.ascii	"TaskTimer_SaveConfig\000"
  604      54696D65 
  604      725F5361 
  604      7665436F 
  604      6E666967 
  605              	.LASF12:
- 606 011b 646F7562 		.ascii	"double\000"
+ 606 011f 646F7562 		.ascii	"double\000"
  606      6C6500
  607              	.LASF10:
- 608 0122 75696E74 		.ascii	"uint32\000"
+ 608 0126 75696E74 		.ascii	"uint32\000"
  608      333200
  609              	.LASF19:
- 610 0129 5461736B 		.ascii	"TaskTimer_Wakeup\000"
+ 610 012d 5461736B 		.ascii	"TaskTimer_Wakeup\000"
  610      54696D65 
  610      725F5761 
  610      6B657570 
  610      00
  611              	.LASF8:
- 612 013a 756E7369 		.ascii	"unsigned int\000"
+ 612 013e 756E7369 		.ascii	"unsigned int\000"
  612      676E6564 
  612      20696E74 
  612      00
  613              	.LASF7:
- 614 0147 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 614 014b 6C6F6E67 		.ascii	"long long unsigned int\000"
  614      206C6F6E 
  614      6720756E 
  614      7369676E 
  614      65642069 
  615              	.LASF6:
- 616 015e 6C6F6E67 		.ascii	"long long int\000"
+ 616 0162 6C6F6E67 		.ascii	"long long int\000"
  616      206C6F6E 
  616      6720696E 
  616      7400
  617              	.LASF13:
- 618 016c 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccA3SV3g.s 			page 15
+ 618 0170 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccQFSGCa.s 			page 15
 
 
  618      00
  619              	.LASF2:
- 620 0171 73686F72 		.ascii	"short int\000"
+ 620 0175 73686F72 		.ascii	"short int\000"
  620      7420696E 
  620      7400
  621              	.LASF9:
- 622 017b 75696E74 		.ascii	"uint8\000"
+ 622 017f 75696E74 		.ascii	"uint8\000"
  622      3800
  623              	.LASF20:
- 624 0181 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 624 0185 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  624      4320342E 
  624      372E3320 
  624      32303133 
  624      30333132 
- 625 01b4 616E6368 		.ascii	"anch revision 196615]\000"
+ 625 01b8 616E6368 		.ascii	"anch revision 196615]\000"
  625      20726576 
  625      6973696F 
  625      6E203139 
  625      36363135 
  626              	.LASF4:
- 627 01ca 6C6F6E67 		.ascii	"long int\000"
+ 627 01ce 6C6F6E67 		.ascii	"long int\000"
  627      20696E74 
  627      00
  628              	.LASF23:
- 629 01d3 656E6162 		.ascii	"enableState\000"
+ 629 01d7 656E6162 		.ascii	"enableState\000"
  629      6C655374 
  629      61746500 
  630              	.LASF0:
- 631 01df 7369676E 		.ascii	"signed char\000"
+ 631 01e3 7369676E 		.ascii	"signed char\000"
  631      65642063 
  631      68617200 
  632              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
   26:.\Generated_Source\PSoC4/TelemUART_PM.c ****     /* enableState - disabled */
   27:.\Generated_Source\PSoC4/TelemUART_PM.c ****     0u,
   28:.\Generated_Source\PSoC4/TelemUART_PM.c **** };
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 2
 
 
   29:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
   73:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #else
   74:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.tx_period = TelemUART_TXBITCTR_PERIOD_REG;
   75:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #endif /*End TelemUART_TXCLKGEN_DP */
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 3
 
 
   76:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.tx_mask = TelemUART_TXSTATUS_MASK_REG;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
   58              	.LCFI2:
   59              		.cfi_def_cfa_offset 8
   60              		.cfi_offset 7, -8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 4
 
 
   61              		.cfi_offset 14, -4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  147:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
  148:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
  149:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Function Name: TelemUART_Sleep
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 5
 
 
  150:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
   98              		.loc 1 185 0
   99 0012 074B     		ldr	r3, .L6+4
  100 0014 0122     		mov	r2, #1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 6
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 6
 
 
  101 0016 1A70     		strb	r2, [r3]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  208:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
  209:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Return:
  210:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 7
 
 
  211:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  164              	.LFE3:
  165              		.size	TelemUART_Wakeup, .-TelemUART_Wakeup
  166              		.text
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 8
 
 
  167              	.Letext0:
@@ -431,10 +431,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  174 0006 00000000 		.4byte	.Ldebug_abbrev0
  175 000a 04       		.byte	0x4
  176 000b 01       		.uleb128 0x1
- 177 000c 63000000 		.4byte	.LASF22
+ 177 000c 57000000 		.4byte	.LASF22
  178 0010 01       		.byte	0x1
- 179 0011 5A010000 		.4byte	.LASF23
- 180 0015 B2000000 		.4byte	.LASF24
+ 179 0011 64010000 		.4byte	.LASF23
+ 180 0015 E4000000 		.4byte	.LASF24
  181 0019 00000000 		.4byte	.Ldebug_ranges0+0
  182 001d 00000000 		.4byte	0
  183 0021 00000000 		.4byte	0
@@ -442,15 +442,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  185 0029 02       		.uleb128 0x2
  186 002a 01       		.byte	0x1
  187 002b 06       		.byte	0x6
- 188 002c E5010000 		.4byte	.LASF0
+ 188 002c E9010000 		.4byte	.LASF0
  189 0030 02       		.uleb128 0x2
  190 0031 01       		.byte	0x1
  191 0032 08       		.byte	0x8
- 192 0033 47010000 		.4byte	.LASF1
+ 192 0033 51010000 		.4byte	.LASF1
  193 0037 02       		.uleb128 0x2
  194 0038 02       		.byte	0x2
  195 0039 05       		.byte	0x5
- 196 003a F7010000 		.4byte	.LASF2
+ 196 003a FB010000 		.4byte	.LASF2
  197 003e 02       		.uleb128 0x2
  198 003f 02       		.byte	0x2
  199 0040 07       		.byte	0x7
@@ -458,11 +458,11 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  201 0045 02       		.uleb128 0x2
  202 0046 04       		.byte	0x4
  203 0047 05       		.byte	0x5
- 204 0048 82010000 		.4byte	.LASF4
+ 204 0048 8C010000 		.4byte	.LASF4
  205 004c 02       		.uleb128 0x2
  206 004d 04       		.byte	0x4
  207 004e 07       		.byte	0x7
- 208 004f 8B010000 		.4byte	.LASF5
+ 208 004f A6000000 		.4byte	.LASF5
  209 0053 02       		.uleb128 0x2
  210 0054 08       		.byte	0x8
  211 0055 05       		.byte	0x5
@@ -470,7 +470,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  213 005a 02       		.uleb128 0x2
  214 005b 08       		.byte	0x8
  215 005c 07       		.byte	0x7
- 216 005d 00010000 		.4byte	.LASF7
+ 216 005d B8000000 		.4byte	.LASF7
  217 0061 03       		.uleb128 0x3
  218 0062 04       		.byte	0x4
  219 0063 05       		.byte	0x5
@@ -478,29 +478,29 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  221 0068 02       		.uleb128 0x2
  222 0069 04       		.byte	0x4
  223 006a 07       		.byte	0x7
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 9
 
 
  224 006b 32000000 		.4byte	.LASF8
  225 006f 04       		.uleb128 0x4
- 226 0070 AC000000 		.4byte	.LASF12
+ 226 0070 A0000000 		.4byte	.LASF12
  227 0074 02       		.byte	0x2
  228 0075 5B       		.byte	0x5b
  229 0076 30000000 		.4byte	0x30
  230 007a 02       		.uleb128 0x2
  231 007b 04       		.byte	0x4
  232 007c 04       		.byte	0x4
- 233 007d F1010000 		.4byte	.LASF9
+ 233 007d F5010000 		.4byte	.LASF9
  234 0081 02       		.uleb128 0x2
  235 0082 08       		.byte	0x8
  236 0083 04       		.byte	0x4
- 237 0084 9D010000 		.4byte	.LASF10
+ 237 0084 A1010000 		.4byte	.LASF10
  238 0088 02       		.uleb128 0x2
  239 0089 01       		.byte	0x1
  240 008a 08       		.byte	0x8
- 241 008b 55010000 		.4byte	.LASF11
+ 241 008b 5F010000 		.4byte	.LASF11
  242 008f 04       		.uleb128 0x4
- 243 0090 01020000 		.4byte	.LASF13
+ 243 0090 05020000 		.4byte	.LASF13
  244 0094 02       		.byte	0x2
  245 0095 F0       		.byte	0xf0
  246 0096 9A000000 		.4byte	0x9a
@@ -509,7 +509,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  249 009f 02       		.uleb128 0x2
  250 00a0 04       		.byte	0x4
  251 00a1 07       		.byte	0x7
- 252 00a2 06020000 		.4byte	.LASF14
+ 252 00a2 0A020000 		.4byte	.LASF14
  253 00a6 06       		.uleb128 0x6
  254 00a7 3F000000 		.4byte	.LASF25
  255 00ab 02       		.byte	0x2
@@ -517,7 +517,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  257 00ad 45       		.byte	0x45
  258 00ae CF000000 		.4byte	0xcf
  259 00b2 07       		.uleb128 0x7
- 260 00b3 57000000 		.4byte	.LASF15
+ 260 00b3 95010000 		.4byte	.LASF15
  261 00b7 03       		.byte	0x3
  262 00b8 47       		.byte	0x47
  263 00b9 6F000000 		.4byte	0x6f
@@ -525,7 +525,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  265 00be 23       		.byte	0x23
  266 00bf 00       		.uleb128 0
  267 00c0 07       		.uleb128 0x7
- 268 00c1 3C010000 		.4byte	.LASF16
+ 268 00c1 46010000 		.4byte	.LASF16
  269 00c5 03       		.byte	0x3
  270 00c6 59       		.byte	0x59
  271 00c7 6F000000 		.4byte	0x6f
@@ -534,16 +534,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  274 00cd 01       		.uleb128 0x1
  275 00ce 00       		.byte	0
  276 00cf 04       		.uleb128 0x4
- 277 00d0 CD010000 		.4byte	.LASF17
+ 277 00d0 D1010000 		.4byte	.LASF17
  278 00d4 03       		.byte	0x3
  279 00d5 64       		.byte	0x64
  280 00d6 A6000000 		.4byte	0xa6
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 10
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 10
 
 
  281 00da 08       		.uleb128 0x8
  282 00db 01       		.byte	0x1
- 283 00dc 17010000 		.4byte	.LASF18
+ 283 00dc CF000000 		.4byte	.LASF18
  284 00e0 01       		.byte	0x1
  285 00e1 34       		.byte	0x34
  286 00e2 01       		.byte	0x1
@@ -553,7 +553,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  290 00ef 01       		.byte	0x1
  291 00f0 08       		.uleb128 0x8
  292 00f1 01       		.byte	0x1
- 293 00f2 A4010000 		.4byte	.LASF19
+ 293 00f2 A8010000 		.4byte	.LASF19
  294 00f6 01       		.byte	0x1
  295 00f7 6E       		.byte	0x6e
  296 00f8 01       		.byte	0x1
@@ -563,7 +563,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  300 0105 01       		.byte	0x1
  301 0106 09       		.uleb128 0x9
  302 0107 01       		.byte	0x1
- 303 0108 2C010000 		.4byte	.LASF20
+ 303 0108 36010000 		.4byte	.LASF20
  304 010c 01       		.byte	0x1
  305 010d AA       		.byte	0xaa
  306 010e 01       		.byte	0x1
@@ -582,7 +582,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  319 012d 84000000 		.4byte	.LLST3
  320 0131 01       		.byte	0x1
  321 0132 0A       		.uleb128 0xa
- 322 0133 BC010000 		.4byte	.LASF26
+ 322 0133 C0010000 		.4byte	.LASF26
  323 0137 01       		.byte	0x1
  324 0138 18       		.byte	0x18
  325 0139 CF000000 		.4byte	0xcf
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  335 0003 25       		.uleb128 0x25
  336 0004 0E       		.uleb128 0xe
  337 0005 13       		.uleb128 0x13
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 11
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 11
 
 
  338 0006 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  392 003c 13       		.uleb128 0x13
  393 003d 00       		.byte	0
  394 003e 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 12
 
 
  395 003f 06       		.uleb128 0x6
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  449 0076 2E       		.uleb128 0x2e
  450 0077 00       		.byte	0
  451 0078 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 13
 
 
  452 0079 0C       		.uleb128 0xc
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  506 0028 00000000 		.4byte	0
  507              	.LLST1:
  508 002c 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 14
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 14
 
 
  509 0030 02000000 		.4byte	.LCFI2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  563 0004 0200     		.2byte	0x2
  564 0006 00000000 		.4byte	.Ldebug_info0
  565 000a 04       		.byte	0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 15
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 15
 
 
  566 000b 00       		.byte	0
@@ -898,127 +898,127 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 1
  602              	.LASF25:
  603 003f 54656C65 		.ascii	"TelemUART_backupStruct_\000"
  603      6D554152 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 16
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 16
 
 
  603      545F6261 
  603      636B7570 
  603      53747275 
- 604              	.LASF15:
- 605 0057 656E6162 		.ascii	"enableState\000"
- 605      6C655374 
- 605      61746500 
- 606              	.LASF22:
- 607 0063 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 607      4320342E 
- 607      372E3320 
- 607      32303133 
- 607      30333132 
- 608 0096 616E6368 		.ascii	"anch revision 196615]\000"
- 608      20726576 
- 608      6973696F 
- 608      6E203139 
- 608      36363135 
- 609              	.LASF12:
- 610 00ac 75696E74 		.ascii	"uint8\000"
- 610      3800
- 611              	.LASF24:
- 612 00b2 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_Project\\Software\\"
- 612      73657273 
- 612      5C534E46 
- 612      555C446F 
- 612      63756D65 
- 613 00e0 542D3530 		.ascii	"T-50_Project\\T-50_Project.cydsn\000"
- 613      5F50726F 
- 613      6A656374 
- 613      5C542D35 
- 613      305F5072 
- 614              	.LASF7:
- 615 0100 6C6F6E67 		.ascii	"long long unsigned int\000"
- 615      206C6F6E 
- 615      6720756E 
- 615      7369676E 
- 615      65642069 
- 616              	.LASF18:
- 617 0117 54656C65 		.ascii	"TelemUART_SaveConfig\000"
- 617      6D554152 
- 617      545F5361 
- 617      7665436F 
- 617      6E666967 
+ 604              	.LASF22:
+ 605 0057 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 605      4320342E 
+ 605      372E3320 
+ 605      32303133 
+ 605      30333132 
+ 606 008a 616E6368 		.ascii	"anch revision 196615]\000"
+ 606      20726576 
+ 606      6973696F 
+ 606      6E203139 
+ 606      36363135 
+ 607              	.LASF12:
+ 608 00a0 75696E74 		.ascii	"uint8\000"
+ 608      3800
+ 609              	.LASF5:
+ 610 00a6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 610      20756E73 
+ 610      69676E65 
+ 610      6420696E 
+ 610      7400
+ 611              	.LASF7:
+ 612 00b8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 612      206C6F6E 
+ 612      6720756E 
+ 612      7369676E 
+ 612      65642069 
+ 613              	.LASF18:
+ 614 00cf 54656C65 		.ascii	"TelemUART_SaveConfig\000"
+ 614      6D554152 
+ 614      545F5361 
+ 614      7665436F 
+ 614      6E666967 
+ 615              	.LASF24:
+ 616 00e4 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 616      73657273 
+ 616      5C534E46 
+ 616      555C446F 
+ 616      63756D65 
+ 617 0112 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 617      542D3530 
+ 617      5F50726F 
+ 617      6A656374 
+ 617      5C542D35 
  618              	.LASF20:
- 619 012c 54656C65 		.ascii	"TelemUART_Sleep\000"
+ 619 0136 54656C65 		.ascii	"TelemUART_Sleep\000"
  619      6D554152 
  619      545F536C 
  619      65657000 
  620              	.LASF16:
- 621 013c 74785F63 		.ascii	"tx_clk_ctr\000"
+ 621 0146 74785F63 		.ascii	"tx_clk_ctr\000"
  621      6C6B5F63 
  621      747200
  622              	.LASF1:
- 623 0147 756E7369 		.ascii	"unsigned char\000"
+ 623 0151 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 17
+
+
  623      676E6564 
  623      20636861 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 17
-
-
  623      7200
  624              	.LASF11:
- 625 0155 63686172 		.ascii	"char\000"
+ 625 015f 63686172 		.ascii	"char\000"
  625      00
  626              	.LASF23:
- 627 015a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TelemUART_PM.c\000"
+ 627 0164 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TelemUART_PM.c\000"
  627      6E657261 
  627      7465645F 
  627      536F7572 
  627      63655C50 
  628              	.LASF4:
- 629 0182 6C6F6E67 		.ascii	"long int\000"
+ 629 018c 6C6F6E67 		.ascii	"long int\000"
  629      20696E74 
  629      00
- 630              	.LASF5:
- 631 018b 6C6F6E67 		.ascii	"long unsigned int\000"
- 631      20756E73 
- 631      69676E65 
- 631      6420696E 
- 631      7400
+ 630              	.LASF15:
+ 631 0195 656E6162 		.ascii	"enableState\000"
+ 631      6C655374 
+ 631      61746500 
  632              	.LASF10:
- 633 019d 646F7562 		.ascii	"double\000"
+ 633 01a1 646F7562 		.ascii	"double\000"
  633      6C6500
  634              	.LASF19:
- 635 01a4 54656C65 		.ascii	"TelemUART_RestoreConfig\000"
+ 635 01a8 54656C65 		.ascii	"TelemUART_RestoreConfig\000"
  635      6D554152 
  635      545F5265 
  635      73746F72 
  635      65436F6E 
  636              	.LASF26:
- 637 01bc 54656C65 		.ascii	"TelemUART_backup\000"
+ 637 01c0 54656C65 		.ascii	"TelemUART_backup\000"
  637      6D554152 
  637      545F6261 
  637      636B7570 
  637      00
  638              	.LASF17:
- 639 01cd 54656C65 		.ascii	"TelemUART_BACKUP_STRUCT\000"
+ 639 01d1 54656C65 		.ascii	"TelemUART_BACKUP_STRUCT\000"
  639      6D554152 
  639      545F4241 
  639      434B5550 
  639      5F535452 
  640              	.LASF0:
- 641 01e5 7369676E 		.ascii	"signed char\000"
+ 641 01e9 7369676E 		.ascii	"signed char\000"
  641      65642063 
  641      68617200 
  642              	.LASF9:
- 643 01f1 666C6F61 		.ascii	"float\000"
+ 643 01f5 666C6F61 		.ascii	"float\000"
  643      7400
  644              	.LASF2:
- 645 01f7 73686F72 		.ascii	"short int\000"
+ 645 01fb 73686F72 		.ascii	"short int\000"
  645      7420696E 
  645      7400
  646              	.LASF13:
- 647 0201 72656738 		.ascii	"reg8\000"
+ 647 0205 72656738 		.ascii	"reg8\000"
  647      00
  648              	.LASF14:
- 649 0206 73697A65 		.ascii	"sizetype\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc0QHFnL.s 			page 18
+ 649 020a 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc9Izn49.s 			page 18
 
 
  649      74797065 

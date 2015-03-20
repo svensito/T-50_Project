@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
   26:.\Generated_Source\PSoC4/PPMCounter_PM.c **** ********************************************************************************
   27:.\Generated_Source\PSoC4/PPMCounter_PM.c **** *
   28:.\Generated_Source\PSoC4/PPMCounter_PM.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 2
 
 
   29:.\Generated_Source\PSoC4/PPMCounter_PM.c **** *  All configuration registers are retention. Nothing to save here.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
   58:.\Generated_Source\PSoC4/PPMCounter_PM.c **** void PPMCounter_Sleep(void)
   59:.\Generated_Source\PSoC4/PPMCounter_PM.c **** {
   55              		.loc 1 59 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 3
 
 
   56              		.cfi_startproc
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
   98              		.section	.text.PPMCounter_RestoreConfig,"ax",%progbits
   99              		.align	2
  100              		.global	PPMCounter_RestoreConfig
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 4
 
 
  101              		.code	16
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
   96:.\Generated_Source\PSoC4/PPMCounter_PM.c **** ********************************************************************************
   97:.\Generated_Source\PSoC4/PPMCounter_PM.c **** *
   98:.\Generated_Source\PSoC4/PPMCounter_PM.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 5
 
 
   99:.\Generated_Source\PSoC4/PPMCounter_PM.c **** *  Restores the user configuration and restores the enable state.
@@ -298,16 +298,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  167              	.Ldebug_info0:
  168 0000 32010000 		.4byte	0x132
  169 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 6
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 6
 
 
  170 0006 00000000 		.4byte	.Ldebug_abbrev0
  171 000a 04       		.byte	0x4
  172 000b 01       		.uleb128 0x1
- 173 000c 4E010000 		.4byte	.LASF20
+ 173 000c 52010000 		.4byte	.LASF20
  174 0010 01       		.byte	0x1
- 175 0011 A8010000 		.4byte	.LASF21
- 176 0015 3F000000 		.4byte	.LASF22
+ 175 0011 AC010000 		.4byte	.LASF21
+ 176 0015 06000000 		.4byte	.LASF22
  177 0019 00000000 		.4byte	.Ldebug_ranges0+0
  178 001d 00000000 		.4byte	0
  179 0021 00000000 		.4byte	0
@@ -315,35 +315,35 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  181 0029 02       		.uleb128 0x2
  182 002a 01       		.byte	0x1
  183 002b 06       		.byte	0x6
- 184 002c E6010000 		.4byte	.LASF0
+ 184 002c EA010000 		.4byte	.LASF0
  185 0030 02       		.uleb128 0x2
  186 0031 01       		.byte	0x1
  187 0032 08       		.byte	0x8
- 188 0033 0C000000 		.4byte	.LASF1
+ 188 0033 5E000000 		.4byte	.LASF1
  189 0037 02       		.uleb128 0x2
  190 0038 02       		.byte	0x2
  191 0039 05       		.byte	0x5
- 192 003a 3E010000 		.4byte	.LASF2
+ 192 003a 42010000 		.4byte	.LASF2
  193 003e 02       		.uleb128 0x2
  194 003f 02       		.byte	0x2
  195 0040 07       		.byte	0x7
- 196 0041 2C000000 		.4byte	.LASF3
+ 196 0041 7E000000 		.4byte	.LASF3
  197 0045 02       		.uleb128 0x2
  198 0046 04       		.byte	0x4
  199 0047 05       		.byte	0x5
- 200 0048 D1010000 		.4byte	.LASF4
+ 200 0048 D5010000 		.4byte	.LASF4
  201 004c 02       		.uleb128 0x2
  202 004d 04       		.byte	0x4
  203 004e 07       		.byte	0x7
- 204 004f 1A000000 		.4byte	.LASF5
+ 204 004f 6C000000 		.4byte	.LASF5
  205 0053 02       		.uleb128 0x2
  206 0054 08       		.byte	0x8
  207 0055 05       		.byte	0x5
- 208 0056 03010000 		.4byte	.LASF6
+ 208 0056 07010000 		.4byte	.LASF6
  209 005a 02       		.uleb128 0x2
  210 005b 08       		.byte	0x8
  211 005c 07       		.byte	0x7
- 212 005d C1000000 		.4byte	.LASF7
+ 212 005d C5000000 		.4byte	.LASF7
  213 0061 03       		.uleb128 0x3
  214 0062 04       		.byte	0x4
  215 0063 05       		.byte	0x5
@@ -351,32 +351,32 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  217 0068 02       		.uleb128 0x2
  218 0069 04       		.byte	0x4
  219 006a 07       		.byte	0x7
- 220 006b 9B000000 		.4byte	.LASF8
+ 220 006b 9F000000 		.4byte	.LASF8
  221 006f 04       		.uleb128 0x4
- 222 0070 48010000 		.4byte	.LASF9
+ 222 0070 4C010000 		.4byte	.LASF9
  223 0074 02       		.byte	0x2
  224 0075 5B       		.byte	0x5b
  225 0076 30000000 		.4byte	0x30
  226 007a 04       		.uleb128 0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 7
 
 
- 227 007b 94000000 		.4byte	.LASF10
+ 227 007b 98000000 		.4byte	.LASF10
  228 007f 02       		.byte	0x2
  229 0080 5D       		.byte	0x5d
  230 0081 4C000000 		.4byte	0x4c
  231 0085 02       		.uleb128 0x2
  232 0086 04       		.byte	0x4
  233 0087 04       		.byte	0x4
- 234 0088 06000000 		.4byte	.LASF11
+ 234 0088 58000000 		.4byte	.LASF11
  235 008c 02       		.uleb128 0x2
  236 008d 08       		.byte	0x8
  237 008e 04       		.byte	0x4
- 238 008f 8D000000 		.4byte	.LASF12
+ 238 008f 91000000 		.4byte	.LASF12
  239 0093 02       		.uleb128 0x2
  240 0094 01       		.byte	0x1
  241 0095 08       		.byte	0x8
- 242 0096 23010000 		.4byte	.LASF13
+ 242 0096 27010000 		.4byte	.LASF13
  243 009a 04       		.uleb128 0x4
  244 009b 00000000 		.4byte	.LASF14
  245 009f 02       		.byte	0x2
@@ -390,7 +390,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  253 00ad 1F       		.byte	0x1f
  254 00ae C1000000 		.4byte	0xc1
  255 00b2 07       		.uleb128 0x7
- 256 00b3 DA010000 		.4byte	.LASF23
+ 256 00b3 DE010000 		.4byte	.LASF23
  257 00b7 03       		.byte	0x3
  258 00b8 21       		.byte	0x21
  259 00b9 6F000000 		.4byte	0x6f
@@ -399,13 +399,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  262 00bf 00       		.uleb128 0
  263 00c0 00       		.byte	0
  264 00c1 04       		.uleb128 0x4
- 265 00c2 A8000000 		.4byte	.LASF15
+ 265 00c2 AC000000 		.4byte	.LASF15
  266 00c6 03       		.byte	0x3
  267 00c7 22       		.byte	0x22
  268 00c8 AA000000 		.4byte	0xaa
  269 00cc 08       		.uleb128 0x8
  270 00cd 01       		.byte	0x1
- 271 00ce 28010000 		.4byte	.LASF16
+ 271 00ce 2C010000 		.4byte	.LASF16
  272 00d2 01       		.byte	0x1
  273 00d3 26       		.byte	0x26
  274 00d4 01       		.byte	0x1
@@ -415,10 +415,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  278 00e1 01       		.byte	0x1
  279 00e2 09       		.uleb128 0x9
  280 00e3 01       		.byte	0x1
- 281 00e4 97010000 		.4byte	.LASF17
+ 281 00e4 9B010000 		.4byte	.LASF17
  282 00e8 01       		.byte	0x1
  283 00e9 3A       		.byte	0x3a
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 8
 
 
  284 00ea 01       		.byte	0x1
@@ -428,7 +428,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  288 00f7 01       		.byte	0x1
  289 00f8 08       		.uleb128 0x8
  290 00f9 01       		.byte	0x1
- 291 00fa D8000000 		.4byte	.LASF18
+ 291 00fa DC000000 		.4byte	.LASF18
  292 00fe 01       		.byte	0x1
  293 00ff 58       		.byte	0x58
  294 0100 01       		.byte	0x1
@@ -438,7 +438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  298 010d 01       		.byte	0x1
  299 010e 09       		.uleb128 0x9
  300 010f 01       		.byte	0x1
- 301 0110 11010000 		.4byte	.LASF19
+ 301 0110 15010000 		.4byte	.LASF19
  302 0114 01       		.byte	0x1
  303 0115 6C       		.byte	0x6c
  304 0116 01       		.byte	0x1
@@ -447,7 +447,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  307 011f 84000000 		.4byte	.LLST3
  308 0123 01       		.byte	0x1
  309 0124 0A       		.uleb128 0xa
- 310 0125 F1000000 		.4byte	.LASF24
+ 310 0125 F5000000 		.4byte	.LASF24
  311 0129 01       		.byte	0x1
  312 012a 15       		.byte	0x15
  313 012b C1000000 		.4byte	0xc1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  338 0012 06       		.uleb128 0x6
  339 0013 00       		.byte	0
  340 0014 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 9
 
 
  341 0015 02       		.uleb128 0x2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  395 004b 00       		.byte	0
  396 004c 07       		.uleb128 0x7
  397 004d 0D       		.uleb128 0xd
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 10
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 10
 
 
  398 004e 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  452 0085 06       		.uleb128 0x6
  453 0086 9642     		.uleb128 0x2116
  454 0088 0C       		.uleb128 0xc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 11
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 11
 
 
  455 0089 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  509 0050 00000000 		.4byte	0
  510 0054 00000000 		.4byte	0
  511              	.LLST2:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 12
 
 
  512 0058 00000000 		.4byte	.LFB2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  566              	.Ldebug_ranges0:
  567 0000 00000000 		.4byte	.LFB0
  568 0004 08000000 		.4byte	.LFE0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 13
 
 
  569 0008 00000000 		.4byte	.LFB1
@@ -739,138 +739,138 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 1
  580              	.LASF14:
  581 0000 72656733 		.ascii	"reg32\000"
  581      3200
- 582              	.LASF11:
- 583 0006 666C6F61 		.ascii	"float\000"
- 583      7400
- 584              	.LASF1:
- 585 000c 756E7369 		.ascii	"unsigned char\000"
- 585      676E6564 
- 585      20636861 
- 585      7200
- 586              	.LASF5:
- 587 001a 6C6F6E67 		.ascii	"long unsigned int\000"
- 587      20756E73 
- 587      69676E65 
- 587      6420696E 
- 587      7400
- 588              	.LASF3:
- 589 002c 73686F72 		.ascii	"short unsigned int\000"
- 589      7420756E 
- 589      7369676E 
- 589      65642069 
- 589      6E7400
- 590              	.LASF22:
- 591 003f 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_Project\\Software\\"
- 591      73657273 
- 591      5C534E46 
- 591      555C446F 
- 591      63756D65 
- 592 006d 542D3530 		.ascii	"T-50_Project\\T-50_Project.cydsn\000"
- 592      5F50726F 
- 592      6A656374 
- 592      5C542D35 
- 592      305F5072 
+ 582              	.LASF22:
+ 583 0006 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 583      73657273 
+ 583      5C534E46 
+ 583      555C446F 
+ 583      63756D65 
+ 584 0034 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 584      542D3530 
+ 584      5F50726F 
+ 584      6A656374 
+ 584      5C542D35 
+ 585              	.LASF11:
+ 586 0058 666C6F61 		.ascii	"float\000"
+ 586      7400
+ 587              	.LASF1:
+ 588 005e 756E7369 		.ascii	"unsigned char\000"
+ 588      676E6564 
+ 588      20636861 
+ 588      7200
+ 589              	.LASF5:
+ 590 006c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 590      20756E73 
+ 590      69676E65 
+ 590      6420696E 
+ 590      7400
+ 591              	.LASF3:
+ 592 007e 73686F72 		.ascii	"short unsigned int\000"
+ 592      7420756E 
+ 592      7369676E 
+ 592      65642069 
+ 592      6E7400
  593              	.LASF12:
- 594 008d 646F7562 		.ascii	"double\000"
+ 594 0091 646F7562 		.ascii	"double\000"
  594      6C6500
  595              	.LASF10:
- 596 0094 75696E74 		.ascii	"uint32\000"
+ 596 0098 75696E74 		.ascii	"uint32\000"
  596      333200
  597              	.LASF8:
- 598 009b 756E7369 		.ascii	"unsigned int\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 14
+ 598 009f 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 14
 
 
  598      676E6564 
  598      20696E74 
  598      00
  599              	.LASF15:
- 600 00a8 50504D43 		.ascii	"PPMCounter_BACKUP_STRUCT\000"
+ 600 00ac 50504D43 		.ascii	"PPMCounter_BACKUP_STRUCT\000"
  600      6F756E74 
  600      65725F42 
  600      41434B55 
  600      505F5354 
  601              	.LASF7:
- 602 00c1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 602 00c5 6C6F6E67 		.ascii	"long long unsigned int\000"
  602      206C6F6E 
  602      6720756E 
  602      7369676E 
  602      65642069 
  603              	.LASF18:
- 604 00d8 50504D43 		.ascii	"PPMCounter_RestoreConfig\000"
+ 604 00dc 50504D43 		.ascii	"PPMCounter_RestoreConfig\000"
  604      6F756E74 
  604      65725F52 
  604      6573746F 
  604      7265436F 
  605              	.LASF24:
- 606 00f1 50504D43 		.ascii	"PPMCounter_backup\000"
+ 606 00f5 50504D43 		.ascii	"PPMCounter_backup\000"
  606      6F756E74 
  606      65725F62 
  606      61636B75 
  606      7000
  607              	.LASF6:
- 608 0103 6C6F6E67 		.ascii	"long long int\000"
+ 608 0107 6C6F6E67 		.ascii	"long long int\000"
  608      206C6F6E 
  608      6720696E 
  608      7400
  609              	.LASF19:
- 610 0111 50504D43 		.ascii	"PPMCounter_Wakeup\000"
+ 610 0115 50504D43 		.ascii	"PPMCounter_Wakeup\000"
  610      6F756E74 
  610      65725F57 
  610      616B6575 
  610      7000
  611              	.LASF13:
- 612 0123 63686172 		.ascii	"char\000"
+ 612 0127 63686172 		.ascii	"char\000"
  612      00
  613              	.LASF16:
- 614 0128 50504D43 		.ascii	"PPMCounter_SaveConfig\000"
+ 614 012c 50504D43 		.ascii	"PPMCounter_SaveConfig\000"
  614      6F756E74 
  614      65725F53 
  614      61766543 
  614      6F6E6669 
  615              	.LASF2:
- 616 013e 73686F72 		.ascii	"short int\000"
+ 616 0142 73686F72 		.ascii	"short int\000"
  616      7420696E 
  616      7400
  617              	.LASF9:
- 618 0148 75696E74 		.ascii	"uint8\000"
+ 618 014c 75696E74 		.ascii	"uint8\000"
  618      3800
  619              	.LASF20:
- 620 014e 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 620 0152 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  620      4320342E 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbvSQTC.s 			page 15
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccSCpdvE.s 			page 15
 
 
  620      372E3320 
  620      32303133 
  620      30333132 
- 621 0181 616E6368 		.ascii	"anch revision 196615]\000"
+ 621 0185 616E6368 		.ascii	"anch revision 196615]\000"
  621      20726576 
  621      6973696F 
  621      6E203139 
  621      36363135 
  622              	.LASF17:
- 623 0197 50504D43 		.ascii	"PPMCounter_Sleep\000"
+ 623 019b 50504D43 		.ascii	"PPMCounter_Sleep\000"
  623      6F756E74 
  623      65725F53 
  623      6C656570 
  623      00
  624              	.LASF21:
- 625 01a8 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\PPMCounter_PM.c\000"
+ 625 01ac 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\PPMCounter_PM.c\000"
  625      6E657261 
  625      7465645F 
  625      536F7572 
  625      63655C50 
  626              	.LASF4:
- 627 01d1 6C6F6E67 		.ascii	"long int\000"
+ 627 01d5 6C6F6E67 		.ascii	"long int\000"
  627      20696E74 
  627      00
  628              	.LASF23:
- 629 01da 656E6162 		.ascii	"enableState\000"
+ 629 01de 656E6162 		.ascii	"enableState\000"
  629      6C655374 
  629      61746500 
  630              	.LASF0:
- 631 01e6 7369676E 		.ascii	"signed char\000"
+ 631 01ea 7369676E 		.ascii	"signed char\000"
  631      65642063 
  631      68617200 
  632              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
