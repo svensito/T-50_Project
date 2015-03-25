@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -9,7 +9,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
    6              		.eabi_attribute 24, 1
    7              		.eabi_attribute 25, 1
    8              		.eabi_attribute 26, 1
-   9              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 30, 4
   10              		.eabi_attribute 34, 0
   11              		.eabi_attribute 18, 4
   12              		.code	16
@@ -18,7 +18,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
   17              		.section	.text.CySysPmSleep,"ax",%progbits
-  18              		.align	2
+  18              		.align	1
   19              		.global	CySysPmSleep
   20              		.code	16
   21              		.thumb_func
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
   30:.\Generated_Source\PSoC4/cyPm.c **** *  its main clock can be removed. It is identical to Active from a peripheral
   31:.\Generated_Source\PSoC4/cyPm.c **** *  point of view. Any enabled interrupts can cause wakeup from the  Sleep mode.
   32:.\Generated_Source\PSoC4/cyPm.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/cyPm.c **** * Parameters:
@@ -72,76 +72,62 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
   41:.\Generated_Source\PSoC4/cyPm.c **** {
   26              		.loc 1 41 0
   27              		.cfi_startproc
-  28 0000 90B5     		push	{r4, r7, lr}
+  28 0000 08B5     		push	{r3, lr}
   29              	.LCFI0:
-  30              		.cfi_def_cfa_offset 12
-  31              		.cfi_offset 4, -12
-  32              		.cfi_offset 7, -8
-  33              		.cfi_offset 14, -4
-  34 0002 83B0     		sub	sp, sp, #12
-  35              	.LCFI1:
-  36              		.cfi_def_cfa_offset 24
-  37 0004 00AF     		add	r7, sp, #0
-  38              	.LCFI2:
-  39              		.cfi_def_cfa_register 7
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 3, -8
+  32              		.cfi_offset 14, -4
   42:.\Generated_Source\PSoC4/cyPm.c ****     uint8 interruptState;
   43:.\Generated_Source\PSoC4/cyPm.c **** 
   44:.\Generated_Source\PSoC4/cyPm.c ****     interruptState = CyEnterCriticalSection();
-  40              		.loc 1 44 0
-  41 0006 FC1D     		add	r4, r7, #7
-  42 0008 FFF7FEFF 		bl	CyEnterCriticalSection
-  43 000c 031C     		mov	r3, r0
-  44 000e 2370     		strb	r3, [r4]
+  33              		.loc 1 44 0
+  34 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  35              	.LVL0:
   45:.\Generated_Source\PSoC4/cyPm.c **** 
   46:.\Generated_Source\PSoC4/cyPm.c ****     /* CM0 enters Sleep mode upon execution of WFI */
   47:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_CM0_SCR_REG &= (uint32) (~CY_PM_CM0_SCR_SLEEPDEEP);
-  45              		.loc 1 47 0
-  46 0010 074B     		ldr	r3, .L2
-  47 0012 074A     		ldr	r2, .L2
-  48 0014 1268     		ldr	r2, [r2]
-  49 0016 0421     		mov	r1, #4
-  50 0018 8A43     		bic	r2, r1
-  51 001a 1A60     		str	r2, [r3]
+  36              		.loc 1 47 0
+  37 0006 044B     		ldr	r3, .L2
+  38 0008 0421     		mov	r1, #4
+  39 000a 1A68     		ldr	r2, [r3]
+  40 000c 8A43     		bic	r2, r1
+  41 000e 1A60     		str	r2, [r3]
   48:.\Generated_Source\PSoC4/cyPm.c **** 
   49:.\Generated_Source\PSoC4/cyPm.c ****     /* Sleep and wait for interrupt */
   50:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_WFI;
-  52              		.loc 1 50 0
-  53              	@ 50 ".\Generated_Source\PSoC4\cyPm.c" 1
-  54 001c 30BF     		WFI 
-  55              	
-  56              	@ 0 "" 2
+  42              		.loc 1 50 0
+  43              	@ 50 ".\Generated_Source\PSoC4\cyPm.c" 1
+  44 0010 30BF     		WFI 
+  45              	
+  46              	@ 0 "" 2
   51:.\Generated_Source\PSoC4/cyPm.c **** 
   52:.\Generated_Source\PSoC4/cyPm.c ****     CyExitCriticalSection(interruptState);
-  57              		.loc 1 52 0
-  58              		.code	16
-  59 001e FB1D     		add	r3, r7, #7
-  60 0020 1B78     		ldrb	r3, [r3]
-  61 0022 181C     		mov	r0, r3
-  62 0024 FFF7FEFF 		bl	CyExitCriticalSection
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 3
-
-
+  47              		.loc 1 52 0
+  48              		.code	16
+  49 0012 FFF7FEFF 		bl	CyExitCriticalSection
+  50              	.LVL1:
   53:.\Generated_Source\PSoC4/cyPm.c **** }
-  63              		.loc 1 53 0
-  64 0028 BD46     		mov	sp, r7
-  65 002a 03B0     		add	sp, sp, #12
-  66              		@ sp needed for prologue
-  67 002c 90BD     		pop	{r4, r7, pc}
-  68              	.L3:
-  69 002e C046     		.align	2
-  70              	.L2:
-  71 0030 10ED00E0 		.word	-536810224
-  72              		.cfi_endproc
-  73              	.LFE0:
-  74              		.size	CySysPmSleep, .-CySysPmSleep
-  75              		.section	.text.CySysPmDeepSleep,"ax",%progbits
-  76              		.align	2
-  77              		.global	CySysPmDeepSleep
-  78              		.code	16
-  79              		.thumb_func
-  80              		.type	CySysPmDeepSleep, %function
-  81              	CySysPmDeepSleep:
-  82              	.LFB1:
+  51              		.loc 1 53 0
+  52              		@ sp needed for prologue
+  53 0016 08BD     		pop	{r3, pc}
+  54              	.L3:
+  55              		.align	2
+  56              	.L2:
+  57 0018 10ED00E0 		.word	-536810224
+  58              		.cfi_endproc
+  59              	.LFE0:
+  60              		.size	CySysPmSleep, .-CySysPmSleep
+  61              		.section	.text.CySysPmDeepSleep,"ax",%progbits
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 3
+
+
+  62              		.align	1
+  63              		.global	CySysPmDeepSleep
+  64              		.code	16
+  65              		.thumb_func
+  66              		.type	CySysPmDeepSleep, %function
+  67              	CySysPmDeepSleep:
+  68              	.LFB1:
   54:.\Generated_Source\PSoC4/cyPm.c **** 
   55:.\Generated_Source\PSoC4/cyPm.c **** 
   56:.\Generated_Source\PSoC4/cyPm.c **** /*******************************************************************************
@@ -168,144 +154,153 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
   77:.\Generated_Source\PSoC4/cyPm.c **** *******************************************************************************/
   78:.\Generated_Source\PSoC4/cyPm.c **** void CySysPmDeepSleep(void)
   79:.\Generated_Source\PSoC4/cyPm.c **** {
-  83              		.loc 1 79 0
-  84              		.cfi_startproc
-  85 0000 90B5     		push	{r4, r7, lr}
-  86              	.LCFI3:
-  87              		.cfi_def_cfa_offset 12
-  88              		.cfi_offset 4, -12
-  89              		.cfi_offset 7, -8
-  90              		.cfi_offset 14, -4
-  91 0002 83B0     		sub	sp, sp, #12
-  92              	.LCFI4:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 4
-
-
-  93              		.cfi_def_cfa_offset 24
-  94 0004 00AF     		add	r7, sp, #0
-  95              	.LCFI5:
-  96              		.cfi_def_cfa_register 7
+  69              		.loc 1 79 0
+  70              		.cfi_startproc
+  71 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+  72              	.LCFI1:
+  73              		.cfi_def_cfa_offset 24
+  74              		.cfi_offset 0, -24
+  75              		.cfi_offset 1, -20
+  76              		.cfi_offset 2, -16
+  77              		.cfi_offset 4, -12
+  78              		.cfi_offset 5, -8
+  79              		.cfi_offset 14, -4
   80:.\Generated_Source\PSoC4/cyPm.c ****     uint8 interruptState;
   81:.\Generated_Source\PSoC4/cyPm.c ****     #if(CY_PSOC4A)
   82:.\Generated_Source\PSoC4/cyPm.c ****         volatile uint32 clkSelectReg;
   83:.\Generated_Source\PSoC4/cyPm.c ****     #endif /* (CY_PSOC4A) */
   84:.\Generated_Source\PSoC4/cyPm.c **** 
   85:.\Generated_Source\PSoC4/cyPm.c ****     interruptState = CyEnterCriticalSection();
-  97              		.loc 1 85 0
-  98 0006 FC1D     		add	r4, r7, #7
-  99 0008 FFF7FEFF 		bl	CyEnterCriticalSection
- 100 000c 031C     		mov	r3, r0
- 101 000e 2370     		strb	r3, [r4]
+  80              		.loc 1 85 0
+  81 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  82              	.LVL2:
   86:.\Generated_Source\PSoC4/cyPm.c **** 
   87:.\Generated_Source\PSoC4/cyPm.c ****     #if(CY_PSOC4A)
   88:.\Generated_Source\PSoC4/cyPm.c ****         /* Device enters DeepSleep mode when CPU asserts SLEEPDEEP signal */
   89:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_CONTROL_REG &= (uint32) (~CY_PM_PWR_CONTROL_HIBERNATE);
- 102              		.loc 1 89 0
- 103 0010 114B     		ldr	r3, .L5
- 104 0012 114A     		ldr	r2, .L5
- 105 0014 1268     		ldr	r2, [r2]
- 106 0016 5200     		lsl	r2, r2, #1
- 107 0018 5208     		lsr	r2, r2, #1
- 108 001a 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 4
+
+
+  83              		.loc 1 89 0
+  84 0006 0E4B     		ldr	r3, .L5
+  85:.\Generated_Source\PSoC4/cyPm.c ****     interruptState = CyEnterCriticalSection();
+  85              		.loc 1 85 0
+  86 0008 051C     		mov	r5, r0
+  87              	.LVL3:
+  88              		.loc 1 89 0
+  89 000a 1A68     		ldr	r2, [r3]
   90:.\Generated_Source\PSoC4/cyPm.c ****     #endif /* (CY_PSOC4A) */
   91:.\Generated_Source\PSoC4/cyPm.c **** 
   92:.\Generated_Source\PSoC4/cyPm.c ****     /* Adjust delay to wait for references to settle on wakeup from deepsleep */
   93:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_PWR_KEY_DELAY_REG = CY_SFLASH_DPSLP_KEY_DELAY_REG;
- 109              		.loc 1 93 0
- 110 001c 0F4B     		ldr	r3, .L5+4
- 111 001e 104A     		ldr	r2, .L5+8
- 112 0020 1288     		ldrh	r2, [r2]
- 113 0022 92B2     		uxth	r2, r2
- 114 0024 1A60     		str	r2, [r3]
+  90              		.loc 1 93 0
+  91 000c 0D4C     		ldr	r4, .L5+4
+  89:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_CONTROL_REG &= (uint32) (~CY_PM_PWR_CONTROL_HIBERNATE);
+  92              		.loc 1 89 0
+  93 000e 5000     		lsl	r0, r2, #1
+  94              	.LVL4:
+  95 0010 4108     		lsr	r1, r0, #1
+  96 0012 1960     		str	r1, [r3]
+  97              		.loc 1 93 0
+  98 0014 2288     		ldrh	r2, [r4]
+  99 0016 0C4B     		ldr	r3, .L5+8
   94:.\Generated_Source\PSoC4/cyPm.c **** 
   95:.\Generated_Source\PSoC4/cyPm.c ****     /* CM0 enters DeepSleep/Hibernate mode upon execution of WFI */
   96:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_CM0_SCR_REG |= CY_PM_CM0_SCR_SLEEPDEEP;
- 115              		.loc 1 96 0
- 116 0026 0F4B     		ldr	r3, .L5+12
- 117 0028 0E4A     		ldr	r2, .L5+12
- 118 002a 1268     		ldr	r2, [r2]
- 119 002c 0421     		mov	r1, #4
- 120 002e 0A43     		orr	r2, r1
- 121 0030 1A60     		str	r2, [r3]
+ 100              		.loc 1 96 0
+ 101 0018 0C48     		ldr	r0, .L5+12
+  93:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_PWR_KEY_DELAY_REG = CY_SFLASH_DPSLP_KEY_DELAY_REG;
+ 102              		.loc 1 93 0
+ 103 001a 1A60     		str	r2, [r3]
+ 104              		.loc 1 96 0
+ 105 001c 0468     		ldr	r4, [r0]
+ 106 001e 0421     		mov	r1, #4
+ 107 0020 0C43     		orr	r4, r1
+ 108 0022 0460     		str	r4, [r0]
   97:.\Generated_Source\PSoC4/cyPm.c **** 
   98:.\Generated_Source\PSoC4/cyPm.c ****     #if(CY_PSOC4A)
   99:.\Generated_Source\PSoC4/cyPm.c ****         /* Preserve system clock configuration and
  100:.\Generated_Source\PSoC4/cyPm.c ****         * reduce sysclk to <=12 MHz (Cypress ID #158710, #179888).
  101:.\Generated_Source\PSoC4/cyPm.c ****         */
  102:.\Generated_Source\PSoC4/cyPm.c ****         clkSelectReg = CY_SYS_CLK_SELECT_REG;
- 122              		.loc 1 102 0
- 123 0032 0D4B     		ldr	r3, .L5+16
- 124 0034 1B68     		ldr	r3, [r3]
- 125 0036 3B60     		str	r3, [r7]
+ 109              		.loc 1 102 0
+ 110 0024 0A4C     		ldr	r4, .L5+16
  103:.\Generated_Source\PSoC4/cyPm.c ****         CySysClkWriteSysclkDiv(CY_SYS_CLK_SYSCLK_DIV4);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 5
-
-
- 126              		.loc 1 103 0
- 127 0038 0220     		mov	r0, #2
- 128 003a FFF7FEFF 		bl	CySysClkWriteSysclkDiv
+ 111              		.loc 1 103 0
+ 112 0026 0220     		mov	r0, #2
+ 102:.\Generated_Source\PSoC4/cyPm.c ****         clkSelectReg = CY_SYS_CLK_SELECT_REG;
+ 113              		.loc 1 102 0
+ 114 0028 2268     		ldr	r2, [r4]
+ 115              	.LVL5:
+ 116 002a 0192     		str	r2, [sp, #4]
+ 117              		.loc 1 103 0
+ 118 002c FFF7FEFF 		bl	CySysClkWriteSysclkDiv
+ 119              	.LVL6:
  104:.\Generated_Source\PSoC4/cyPm.c ****     #endif /* (CY_PSOC4A) */
  105:.\Generated_Source\PSoC4/cyPm.c **** 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 5
+
+
  106:.\Generated_Source\PSoC4/cyPm.c ****     /* Sleep and wait for interrupt */
  107:.\Generated_Source\PSoC4/cyPm.c ****     CY_PM_WFI;
- 129              		.loc 1 107 0
- 130              	@ 107 ".\Generated_Source\PSoC4\cyPm.c" 1
- 131 003e 30BF     		WFI 
- 132              	
- 133              	@ 0 "" 2
+ 120              		.loc 1 107 0
+ 121              	@ 107 ".\Generated_Source\PSoC4\cyPm.c" 1
+ 122 0030 30BF     		WFI 
+ 123              	
+ 124              	@ 0 "" 2
  108:.\Generated_Source\PSoC4/cyPm.c **** 
  109:.\Generated_Source\PSoC4/cyPm.c ****     #if(CY_PSOC4A)
  110:.\Generated_Source\PSoC4/cyPm.c ****         /* Restore system clock configuration */
  111:.\Generated_Source\PSoC4/cyPm.c ****         CY_SYS_CLK_SELECT_REG = clkSelectReg;
- 134              		.loc 1 111 0
- 135              		.code	16
- 136 0040 094B     		ldr	r3, .L5+16
- 137 0042 3A68     		ldr	r2, [r7]
- 138 0044 1A60     		str	r2, [r3]
+ 125              		.loc 1 111 0
+ 126              		.code	16
+ 127 0032 019B     		ldr	r3, [sp, #4]
  112:.\Generated_Source\PSoC4/cyPm.c ****     #endif /* (CY_PSOC4A) */
  113:.\Generated_Source\PSoC4/cyPm.c **** 
  114:.\Generated_Source\PSoC4/cyPm.c ****     CyExitCriticalSection(interruptState);
- 139              		.loc 1 114 0
- 140 0046 FB1D     		add	r3, r7, #7
- 141 0048 1B78     		ldrb	r3, [r3]
- 142 004a 181C     		mov	r0, r3
- 143 004c FFF7FEFF 		bl	CyExitCriticalSection
+ 128              		.loc 1 114 0
+ 129 0034 281C     		mov	r0, r5
+ 111:.\Generated_Source\PSoC4/cyPm.c ****         CY_SYS_CLK_SELECT_REG = clkSelectReg;
+ 130              		.loc 1 111 0
+ 131 0036 2360     		str	r3, [r4]
+ 132              		.loc 1 114 0
+ 133 0038 FFF7FEFF 		bl	CyExitCriticalSection
+ 134              	.LVL7:
  115:.\Generated_Source\PSoC4/cyPm.c **** }
- 144              		.loc 1 115 0
- 145 0050 BD46     		mov	sp, r7
- 146 0052 03B0     		add	sp, sp, #12
- 147              		@ sp needed for prologue
- 148 0054 90BD     		pop	{r4, r7, pc}
- 149              	.L6:
- 150 0056 C046     		.align	2
- 151              	.L5:
- 152 0058 00000B40 		.word	1074462720
- 153 005c 0C000B40 		.word	1074462732
- 154 0060 52F1FF0F 		.word	268431698
- 155 0064 10ED00E0 		.word	-536810224
- 156 0068 00010B40 		.word	1074462976
- 157              		.cfi_endproc
- 158              	.LFE1:
- 159              		.size	CySysPmDeepSleep, .-CySysPmDeepSleep
- 160              		.section	.text.CySysPmHibernate,"ax",%progbits
- 161              		.align	2
- 162              		.global	CySysPmHibernate
- 163              		.code	16
- 164              		.thumb_func
- 165              		.type	CySysPmHibernate, %function
- 166              	CySysPmHibernate:
- 167              	.LFB2:
+ 135              		.loc 1 115 0
+ 136              		@ sp needed for prologue
+ 137              	.LVL8:
+ 138 003c 37BD     		pop	{r0, r1, r2, r4, r5, pc}
+ 139              	.L6:
+ 140 003e C046     		.align	2
+ 141              	.L5:
+ 142 0040 00000B40 		.word	1074462720
+ 143 0044 52F1FF0F 		.word	268431698
+ 144 0048 0C000B40 		.word	1074462732
+ 145 004c 10ED00E0 		.word	-536810224
+ 146 0050 00010B40 		.word	1074462976
+ 147              		.cfi_endproc
+ 148              	.LFE1:
+ 149              		.size	CySysPmDeepSleep, .-CySysPmDeepSleep
+ 150              		.section	.text.CySysPmHibernate,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	CySysPmHibernate
+ 153              		.code	16
+ 154              		.thumb_func
+ 155              		.type	CySysPmHibernate, %function
+ 156              	CySysPmHibernate:
+ 157              	.LFB2:
  116:.\Generated_Source\PSoC4/cyPm.c **** 
  117:.\Generated_Source\PSoC4/cyPm.c **** 
  118:.\Generated_Source\PSoC4/cyPm.c **** #if(CY_PSOC4A)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 6
-
-
  119:.\Generated_Source\PSoC4/cyPm.c **** 
  120:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
  121:.\Generated_Source\PSoC4/cyPm.c ****     * Function Name: CySysPmHibernate
  122:.\Generated_Source\PSoC4/cyPm.c ****     ********************************************************************************
  123:.\Generated_Source\PSoC4/cyPm.c ****     *
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 6
+
+
  124:.\Generated_Source\PSoC4/cyPm.c ****     * Summary:
  125:.\Generated_Source\PSoC4/cyPm.c ****     *  Puts the part into the Hibernate state. Only SRAM and UDBs are retained;
  126:.\Generated_Source\PSoC4/cyPm.c ****     *  most internal supplies are off. Wakeup is possible from a pin or a hibernate
@@ -336,76 +331,66 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  151:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  152:.\Generated_Source\PSoC4/cyPm.c ****     void CySysPmHibernate(void)
  153:.\Generated_Source\PSoC4/cyPm.c ****     {
- 168              		.loc 1 153 0
- 169              		.cfi_startproc
- 170 0000 90B5     		push	{r4, r7, lr}
- 171              	.LCFI6:
- 172              		.cfi_def_cfa_offset 12
- 173              		.cfi_offset 4, -12
- 174              		.cfi_offset 7, -8
- 175              		.cfi_offset 14, -4
- 176 0002 83B0     		sub	sp, sp, #12
- 177              	.LCFI7:
- 178              		.cfi_def_cfa_offset 24
- 179 0004 00AF     		add	r7, sp, #0
- 180              	.LCFI8:
- 181              		.cfi_def_cfa_register 7
+ 158              		.loc 1 153 0
+ 159              		.cfi_startproc
+ 160 0000 08B5     		push	{r3, lr}
+ 161              	.LCFI2:
+ 162              		.cfi_def_cfa_offset 8
+ 163              		.cfi_offset 3, -8
+ 164              		.cfi_offset 14, -4
  154:.\Generated_Source\PSoC4/cyPm.c ****         uint8 interruptState;
  155:.\Generated_Source\PSoC4/cyPm.c **** 
  156:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
- 182              		.loc 1 156 0
- 183 0006 FC1D     		add	r4, r7, #7
- 184 0008 FFF7FEFF 		bl	CyEnterCriticalSection
- 185 000c 031C     		mov	r3, r0
- 186 000e 2370     		strb	r3, [r4]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 7
-
-
+ 165              		.loc 1 156 0
+ 166 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 167              	.LVL9:
  157:.\Generated_Source\PSoC4/cyPm.c **** 
  158:.\Generated_Source\PSoC4/cyPm.c ****         /* Device enters Hibernate mode when CPU asserts SLEEPDEEP signal */
  159:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_CONTROL_REG |= CY_PM_PWR_CONTROL_HIBERNATE;
- 187              		.loc 1 159 0
- 188 0010 114B     		ldr	r3, .L8
- 189 0012 114A     		ldr	r2, .L8
- 190 0014 1268     		ldr	r2, [r2]
- 191 0016 8021     		mov	r1, #128
- 192 0018 0906     		lsl	r1, r1, #24
- 193 001a 0A43     		orr	r2, r1
- 194 001c 1A60     		str	r2, [r3]
+ 168              		.loc 1 159 0
+ 169 0006 0D4B     		ldr	r3, .L8
+ 170 0008 8022     		mov	r2, #128
+ 171 000a 1968     		ldr	r1, [r3]
+ 172 000c 1206     		lsl	r2, r2, #24
+ 173 000e 0A43     		orr	r2, r1
+ 174 0010 1A60     		str	r2, [r3]
  160:.\Generated_Source\PSoC4/cyPm.c **** 
  161:.\Generated_Source\PSoC4/cyPm.c ****         /* Adjust delay to wait for references to settle on wakeup from hibernate */
  162:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_KEY_DELAY_REG = CY_SFLASH_HIB_KEY_DELAY_REG;
- 195              		.loc 1 162 0
- 196 001e 0F4B     		ldr	r3, .L8+4
- 197 0020 0F4A     		ldr	r2, .L8+8
- 198 0022 1288     		ldrh	r2, [r2]
- 199 0024 92B2     		uxth	r2, r2
- 200 0026 1A60     		str	r2, [r3]
+ 175              		.loc 1 162 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 7
+
+
+ 176 0012 0B4B     		ldr	r3, .L8+4
+ 177 0014 0B4A     		ldr	r2, .L8+8
+ 178 0016 1988     		ldrh	r1, [r3]
  163:.\Generated_Source\PSoC4/cyPm.c **** 
  164:.\Generated_Source\PSoC4/cyPm.c ****         /* CM0 enters DeepSleep/Hibernate mode upon execution of WFI */
  165:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_CM0_SCR_REG |= CY_PM_CM0_SCR_SLEEPDEEP;
- 201              		.loc 1 165 0
- 202 0028 0E4B     		ldr	r3, .L8+12
- 203 002a 0E4A     		ldr	r2, .L8+12
- 204 002c 1268     		ldr	r2, [r2]
- 205 002e 0421     		mov	r1, #4
- 206 0030 0A43     		orr	r2, r1
- 207 0032 1A60     		str	r2, [r3]
+ 179              		.loc 1 165 0
+ 180 0018 0B4B     		ldr	r3, .L8+12
+ 162:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_KEY_DELAY_REG = CY_SFLASH_HIB_KEY_DELAY_REG;
+ 181              		.loc 1 162 0
+ 182 001a 1160     		str	r1, [r2]
+ 183              		.loc 1 165 0
+ 184 001c 1A68     		ldr	r2, [r3]
+ 185 001e 0421     		mov	r1, #4
+ 186 0020 0A43     		orr	r2, r1
+ 187 0022 1A60     		str	r2, [r3]
  166:.\Generated_Source\PSoC4/cyPm.c **** 
  167:.\Generated_Source\PSoC4/cyPm.c ****         /* Save token that will retain through a STOP/WAKEUP sequence
  168:.\Generated_Source\PSoC4/cyPm.c ****          * thus could be used by CySysPmGetResetReason() to differentiate
  169:.\Generated_Source\PSoC4/cyPm.c ****          * WAKEUP from a general RESET event.
  170:.\Generated_Source\PSoC4/cyPm.c ****          */
  171:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) | CY_PM_PW
- 208              		.loc 1 171 0
- 209 0034 0C4B     		ldr	r3, .L8+16
- 210 0036 0C4A     		ldr	r2, .L8+16
- 211 0038 1268     		ldr	r2, [r2]
- 212 003a FF21     		mov	r1, #255
- 213 003c 8A43     		bic	r2, r1
- 214 003e F121     		mov	r1, #241
- 215 0040 0A43     		orr	r2, r1
- 216 0042 1A60     		str	r2, [r3]
+ 188              		.loc 1 171 0
+ 189 0024 094B     		ldr	r3, .L8+16
+ 190 0026 FF21     		mov	r1, #255
+ 191 0028 1A68     		ldr	r2, [r3]
+ 192 002a 8A43     		bic	r2, r1
+ 193 002c F121     		mov	r1, #241
+ 194 002e 0A43     		orr	r2, r1
+ 195 0030 1A60     		str	r2, [r3]
  172:.\Generated_Source\PSoC4/cyPm.c **** 
  173:.\Generated_Source\PSoC4/cyPm.c ****         /* Sleep and wait for interrupt. Wakeup from Hibernate is performed
  174:.\Generated_Source\PSoC4/cyPm.c ****          * through RESET state, causing a normal Boot procedure to occur.
@@ -413,47 +398,43 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  176:.\Generated_Source\PSoC4/cyPm.c ****          * is true when the instruction is executed.
  177:.\Generated_Source\PSoC4/cyPm.c ****          */
  178:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_WFI;
- 217              		.loc 1 178 0
- 218              	@ 178 ".\Generated_Source\PSoC4\cyPm.c" 1
- 219 0044 30BF     		WFI 
- 220              	
- 221              	@ 0 "" 2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 8
-
-
+ 196              		.loc 1 178 0
+ 197              	@ 178 ".\Generated_Source\PSoC4\cyPm.c" 1
+ 198 0032 30BF     		WFI 
+ 199              	
+ 200              	@ 0 "" 2
  179:.\Generated_Source\PSoC4/cyPm.c **** 
  180:.\Generated_Source\PSoC4/cyPm.c ****         CyExitCriticalSection(interruptState);
- 222              		.loc 1 180 0
- 223              		.code	16
- 224 0046 FB1D     		add	r3, r7, #7
- 225 0048 1B78     		ldrb	r3, [r3]
- 226 004a 181C     		mov	r0, r3
- 227 004c FFF7FEFF 		bl	CyExitCriticalSection
+ 201              		.loc 1 180 0
+ 202              		.code	16
+ 203 0034 FFF7FEFF 		bl	CyExitCriticalSection
+ 204              	.LVL10:
  181:.\Generated_Source\PSoC4/cyPm.c ****     }
- 228              		.loc 1 181 0
- 229 0050 BD46     		mov	sp, r7
- 230 0052 03B0     		add	sp, sp, #12
- 231              		@ sp needed for prologue
- 232 0054 90BD     		pop	{r4, r7, pc}
- 233              	.L9:
- 234 0056 C046     		.align	2
- 235              	.L8:
- 236 0058 00000B40 		.word	1074462720
- 237 005c 0C000B40 		.word	1074462732
- 238 0060 50F1FF0F 		.word	268431696
- 239 0064 10ED00E0 		.word	-536810224
- 240 0068 2C000B40 		.word	1074462764
- 241              		.cfi_endproc
- 242              	.LFE2:
- 243              		.size	CySysPmHibernate, .-CySysPmHibernate
- 244              		.section	.text.CySysPmStop,"ax",%progbits
- 245              		.align	2
- 246              		.global	CySysPmStop
- 247              		.code	16
- 248              		.thumb_func
- 249              		.type	CySysPmStop, %function
- 250              	CySysPmStop:
- 251              	.LFB3:
+ 205              		.loc 1 181 0
+ 206              		@ sp needed for prologue
+ 207 0038 08BD     		pop	{r3, pc}
+ 208              	.L9:
+ 209 003a C046     		.align	2
+ 210              	.L8:
+ 211 003c 00000B40 		.word	1074462720
+ 212 0040 50F1FF0F 		.word	268431696
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 8
+
+
+ 213 0044 0C000B40 		.word	1074462732
+ 214 0048 10ED00E0 		.word	-536810224
+ 215 004c 2C000B40 		.word	1074462764
+ 216              		.cfi_endproc
+ 217              	.LFE2:
+ 218              		.size	CySysPmHibernate, .-CySysPmHibernate
+ 219              		.section	.text.CySysPmSetWakeupPolarity,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	CySysPmSetWakeupPolarity
+ 222              		.code	16
+ 223              		.thumb_func
+ 224              		.type	CySysPmSetWakeupPolarity, %function
+ 225              	CySysPmSetWakeupPolarity:
+ 226              	.LFB4:
  182:.\Generated_Source\PSoC4/cyPm.c **** 
  183:.\Generated_Source\PSoC4/cyPm.c **** 
  184:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
@@ -478,9 +459,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  203:.\Generated_Source\PSoC4/cyPm.c ****     *  awake from the Stop mode until the firmware unfreezes them after booting
  204:.\Generated_Source\PSoC4/cyPm.c ****     *  explicitly with CySysPmUnfreezeIo() function call.
  205:.\Generated_Source\PSoC4/cyPm.c ****     *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 9
-
-
  206:.\Generated_Source\PSoC4/cyPm.c ****     * Parameters:
  207:.\Generated_Source\PSoC4/cyPm.c ****     *  None
  208:.\Generated_Source\PSoC4/cyPm.c ****     *
@@ -490,97 +468,34 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  212:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  213:.\Generated_Source\PSoC4/cyPm.c ****     void CySysPmStop(void)
  214:.\Generated_Source\PSoC4/cyPm.c ****     {
- 252              		.loc 1 214 0
- 253              		.cfi_startproc
- 254 0000 80B5     		push	{r7, lr}
- 255              	.LCFI9:
- 256              		.cfi_def_cfa_offset 8
- 257              		.cfi_offset 7, -8
- 258              		.cfi_offset 14, -4
- 259 0002 00AF     		add	r7, sp, #0
- 260              	.LCFI10:
- 261              		.cfi_def_cfa_register 7
  215:.\Generated_Source\PSoC4/cyPm.c ****         (void)CyEnterCriticalSection();
- 262              		.loc 1 215 0
- 263 0004 FFF7FEFF 		bl	CyEnterCriticalSection
  216:.\Generated_Source\PSoC4/cyPm.c **** 
  217:.\Generated_Source\PSoC4/cyPm.c ****         /* Freeze IO-Cells to save IO-Cell state */
  218:.\Generated_Source\PSoC4/cyPm.c ****         CySysPmFreezeIo();
- 264              		.loc 1 218 0
- 265 0008 FFF7FEFF 		bl	CySysPmFreezeIo
  219:.\Generated_Source\PSoC4/cyPm.c **** 
  220:.\Generated_Source\PSoC4/cyPm.c ****         /* Initiates transition to Stop state */
  221:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) |
- 266              		.loc 1 221 0
- 267 000c 064B     		ldr	r3, .L11
- 268 000e 064A     		ldr	r2, .L11
- 269 0010 1168     		ldr	r1, [r2]
  222:.\Generated_Source\PSoC4/cyPm.c ****                             CY_PM_PWR_STOP_TOKEN_STOP | CY_PM_PWR_STOP_STOP;
- 270              		.loc 1 222 0
- 271 0012 064A     		ldr	r2, .L11+4
- 272 0014 0A40     		and	r2, r1
- 273 0016 0649     		ldr	r1, .L11+8
- 274 0018 0A43     		orr	r2, r1
- 221:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) |
- 275              		.loc 1 221 0
- 276 001a 1A60     		str	r2, [r3]
  223:.\Generated_Source\PSoC4/cyPm.c **** 
  224:.\Generated_Source\PSoC4/cyPm.c ****         /* Depending on the clock frequency and internal timing delays,
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 9
+
+
  225:.\Generated_Source\PSoC4/cyPm.c ****          * the final AHB transaction may or may not complete. To guard against
  226:.\Generated_Source\PSoC4/cyPm.c ****          * accidentally executing an unintended instruction, it is recommended
  227:.\Generated_Source\PSoC4/cyPm.c ****          * to add 2 NOP cycles after the final write to the STOP register.
  228:.\Generated_Source\PSoC4/cyPm.c ****          */
  229:.\Generated_Source\PSoC4/cyPm.c ****         CY_NOP;
- 277              		.loc 1 229 0
- 278              	@ 229 ".\Generated_Source\PSoC4\cyPm.c" 1
- 279 001c C046     		NOP
- 280              	
- 281              	@ 0 "" 2
  230:.\Generated_Source\PSoC4/cyPm.c ****         CY_NOP;
- 282              		.loc 1 230 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 10
-
-
- 283              	@ 230 ".\Generated_Source\PSoC4\cyPm.c" 1
- 284 001e C046     		NOP
- 285              	
- 286              	@ 0 "" 2
  231:.\Generated_Source\PSoC4/cyPm.c **** 
  232:.\Generated_Source\PSoC4/cyPm.c ****         /* Should never get to this WFI instruction */
  233:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_WFI;
- 287              		.loc 1 233 0
- 288              	@ 233 ".\Generated_Source\PSoC4\cyPm.c" 1
- 289 0020 30BF     		WFI 
- 290              	
- 291              	@ 0 "" 2
  234:.\Generated_Source\PSoC4/cyPm.c **** 
  235:.\Generated_Source\PSoC4/cyPm.c ****         /* Wakeup from Stop is performed by toggling of Wakeup pin,
  236:.\Generated_Source\PSoC4/cyPm.c ****          * causing a normal Boot procedure to occur. No need to exit
  237:.\Generated_Source\PSoC4/cyPm.c ****          * from the critical section.
  238:.\Generated_Source\PSoC4/cyPm.c ****          */
  239:.\Generated_Source\PSoC4/cyPm.c ****     }
- 292              		.loc 1 239 0
- 293              		.code	16
- 294 0022 BD46     		mov	sp, r7
- 295              		@ sp needed for prologue
- 296 0024 80BD     		pop	{r7, pc}
- 297              	.L12:
- 298 0026 C046     		.align	2
- 299              	.L11:
- 300 0028 2C000B40 		.word	1074462764
- 301 002c 00FFFF7F 		.word	2147483392
- 302 0030 F2000080 		.word	-2147483406
- 303              		.cfi_endproc
- 304              	.LFE3:
- 305              		.size	CySysPmStop, .-CySysPmStop
- 306              		.section	.text.CySysPmSetWakeupPolarity,"ax",%progbits
- 307              		.align	2
- 308              		.global	CySysPmSetWakeupPolarity
- 309              		.code	16
- 310              		.thumb_func
- 311              		.type	CySysPmSetWakeupPolarity, %function
- 312              	CySysPmSetWakeupPolarity:
- 313              	.LFB4:
  240:.\Generated_Source\PSoC4/cyPm.c **** 
  241:.\Generated_Source\PSoC4/cyPm.c **** 
  242:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
@@ -598,9 +513,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  254:.\Generated_Source\PSoC4/cyPm.c ****     *   Value    Define                          Level
  255:.\Generated_Source\PSoC4/cyPm.c ****     *    0        CY_PM_STOP_WAKEUP_ACTIVE_LOW    Logical zero will wakeup the chip
  256:.\Generated_Source\PSoC4/cyPm.c ****     *    1        CY_PM_STOP_WAKEUP_ACTIVE_HIGH   Logical one will wakeup the chip
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 11
-
-
  257:.\Generated_Source\PSoC4/cyPm.c ****     *
  258:.\Generated_Source\PSoC4/cyPm.c ****     * Return:
  259:.\Generated_Source\PSoC4/cyPm.c ****     *  None
@@ -608,92 +520,75 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  261:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  262:.\Generated_Source\PSoC4/cyPm.c ****     void CySysPmSetWakeupPolarity(uint32 polarity)
  263:.\Generated_Source\PSoC4/cyPm.c ****     {
- 314              		.loc 1 263 0
- 315              		.cfi_startproc
- 316 0000 90B5     		push	{r4, r7, lr}
- 317              	.LCFI11:
- 318              		.cfi_def_cfa_offset 12
- 319              		.cfi_offset 4, -12
- 320              		.cfi_offset 7, -8
- 321              		.cfi_offset 14, -4
- 322 0002 85B0     		sub	sp, sp, #20
- 323              	.LCFI12:
- 324              		.cfi_def_cfa_offset 32
- 325 0004 00AF     		add	r7, sp, #0
- 326              	.LCFI13:
- 327              		.cfi_def_cfa_register 7
- 328 0006 7860     		str	r0, [r7, #4]
+ 227              		.loc 1 263 0
+ 228              		.cfi_startproc
+ 229              	.LVL11:
+ 230 0000 10B5     		push	{r4, lr}
+ 231              	.LCFI3:
+ 232              		.cfi_def_cfa_offset 8
+ 233              		.cfi_offset 4, -8
+ 234              		.cfi_offset 14, -4
+ 235              		.loc 1 263 0
+ 236 0002 041C     		mov	r4, r0
  264:.\Generated_Source\PSoC4/cyPm.c ****         uint8 interruptState;
  265:.\Generated_Source\PSoC4/cyPm.c **** 
  266:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
- 329              		.loc 1 266 0
- 330 0008 3C1C     		mov	r4, r7
- 331 000a 0F34     		add	r4, r4, #15
- 332 000c FFF7FEFF 		bl	CyEnterCriticalSection
- 333 0010 031C     		mov	r3, r0
- 334 0012 2370     		strb	r3, [r4]
+ 237              		.loc 1 266 0
+ 238 0004 FFF7FEFF 		bl	CyEnterCriticalSection
+ 239              	.LVL12:
+ 240 0008 064B     		ldr	r3, .L14
  267:.\Generated_Source\PSoC4/cyPm.c **** 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 10
+
+
  268:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_STOP_WAKEUP_ACTIVE_LOW != polarity) ?
- 335              		.loc 1 268 0
- 336 0014 0B4B     		ldr	r3, .L16
  269:.\Generated_Source\PSoC4/cyPm.c ****                             (CY_PM_PWR_STOP_REG | CY_PM_PWR_STOP_POLARITY) :
- 337              		.loc 1 269 0
- 338 0016 7A68     		ldr	r2, [r7, #4]
- 339 0018 002A     		cmp	r2, #0
- 340 001a 05D0     		beq	.L14
- 341              		.loc 1 269 0 is_stmt 0 discriminator 1
- 342 001c 094A     		ldr	r2, .L16
- 343 001e 1268     		ldr	r2, [r2]
- 344 0020 8021     		mov	r1, #128
- 345 0022 4902     		lsl	r1, r1, #9
- 346 0024 0A43     		orr	r2, r1
- 347 0026 03E0     		b	.L15
- 348              	.L14:
+ 241              		.loc 1 269 0
+ 242 000a 1968     		ldr	r1, [r3]
+ 243 000c 002C     		cmp	r4, #0
+ 244 000e 03D0     		beq	.L11
+ 245              		.loc 1 269 0 is_stmt 0 discriminator 1
+ 246 0010 8024     		mov	r4, #128
+ 247              	.LVL13:
+ 248 0012 6202     		lsl	r2, r4, #9
+ 249 0014 0A43     		orr	r2, r1
+ 250 0016 01E0     		b	.L12
+ 251              	.LVL14:
+ 252              	.L11:
+ 253              		.loc 1 269 0 discriminator 2
+ 254 0018 034A     		ldr	r2, .L14+4
+ 255 001a 0A40     		and	r2, r1
+ 256              	.LVL15:
+ 257              	.L12:
+ 268:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_STOP_WAKEUP_ACTIVE_LOW != polarity) ?
+ 258              		.loc 1 268 0 is_stmt 1
+ 259 001c 1A60     		str	r2, [r3]
  270:.\Generated_Source\PSoC4/cyPm.c ****                             (CY_PM_PWR_STOP_REG & (uint32) (~CY_PM_PWR_STOP_POLARITY));
- 349              		.loc 1 270 0 is_stmt 1 discriminator 2
- 350 0028 064A     		ldr	r2, .L16
- 351 002a 1168     		ldr	r1, [r2]
- 269:.\Generated_Source\PSoC4/cyPm.c ****                             (CY_PM_PWR_STOP_REG | CY_PM_PWR_STOP_POLARITY) :
- 352              		.loc 1 269 0 discriminator 2
- 353 002c 064A     		ldr	r2, .L16+4
- 354 002e 0A40     		and	r2, r1
- 355              	.L15:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 12
-
-
- 268:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_STOP_WAKEUP_ACTIVE_LOW != polarity) ?
- 356              		.loc 1 268 0
- 357 0030 1A60     		str	r2, [r3]
  271:.\Generated_Source\PSoC4/cyPm.c **** 
  272:.\Generated_Source\PSoC4/cyPm.c ****         CyExitCriticalSection(interruptState);
- 358              		.loc 1 272 0
- 359 0032 3B1C     		mov	r3, r7
- 360 0034 0F33     		add	r3, r3, #15
- 361 0036 1B78     		ldrb	r3, [r3]
- 362 0038 181C     		mov	r0, r3
- 363 003a FFF7FEFF 		bl	CyExitCriticalSection
+ 260              		.loc 1 272 0
+ 261 001e FFF7FEFF 		bl	CyExitCriticalSection
+ 262              	.LVL16:
  273:.\Generated_Source\PSoC4/cyPm.c ****     }
- 364              		.loc 1 273 0
- 365 003e BD46     		mov	sp, r7
- 366 0040 05B0     		add	sp, sp, #20
- 367              		@ sp needed for prologue
- 368 0042 90BD     		pop	{r4, r7, pc}
- 369              	.L17:
- 370              		.align	2
- 371              	.L16:
- 372 0044 2C000B40 		.word	1074462764
- 373 0048 FFFFFEFF 		.word	-65537
- 374              		.cfi_endproc
- 375              	.LFE4:
- 376              		.size	CySysPmSetWakeupPolarity, .-CySysPmSetWakeupPolarity
- 377              		.section	.text.CySysPmGetResetReason,"ax",%progbits
- 378              		.align	2
- 379              		.global	CySysPmGetResetReason
- 380              		.code	16
- 381              		.thumb_func
- 382              		.type	CySysPmGetResetReason, %function
- 383              	CySysPmGetResetReason:
- 384              	.LFB5:
+ 263              		.loc 1 273 0
+ 264              		@ sp needed for prologue
+ 265 0022 10BD     		pop	{r4, pc}
+ 266              	.L15:
+ 267              		.align	2
+ 268              	.L14:
+ 269 0024 2C000B40 		.word	1074462764
+ 270 0028 FFFFFEFF 		.word	-65537
+ 271              		.cfi_endproc
+ 272              	.LFE4:
+ 273              		.size	CySysPmSetWakeupPolarity, .-CySysPmSetWakeupPolarity
+ 274              		.section	.text.CySysPmGetResetReason,"ax",%progbits
+ 275              		.align	1
+ 276              		.global	CySysPmGetResetReason
+ 277              		.code	16
+ 278              		.thumb_func
+ 279              		.type	CySysPmGetResetReason, %function
+ 280              	CySysPmGetResetReason:
+ 281              	.LFB5:
  274:.\Generated_Source\PSoC4/cyPm.c **** 
  275:.\Generated_Source\PSoC4/cyPm.c **** 
  276:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
@@ -703,6 +598,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  280:.\Generated_Source\PSoC4/cyPm.c ****     * Summary:
  281:.\Generated_Source\PSoC4/cyPm.c ****     *  Retrieves the last reset reason - transition from OFF/XRES/STOP/HIBERNATE to
  282:.\Generated_Source\PSoC4/cyPm.c ****     *  the RESET state. Note that waking up from STOP using XRES will be perceived
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 11
+
+
  283:.\Generated_Source\PSoC4/cyPm.c ****     *  as a general RESET.
  284:.\Generated_Source\PSoC4/cyPm.c ****     *
  285:.\Generated_Source\PSoC4/cyPm.c ****     * Parameters:
@@ -718,110 +616,88 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  295:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  296:.\Generated_Source\PSoC4/cyPm.c ****     uint32 CySysPmGetResetReason(void)
  297:.\Generated_Source\PSoC4/cyPm.c ****     {
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 13
-
-
- 385              		.loc 1 297 0
- 386              		.cfi_startproc
- 387 0000 80B5     		push	{r7, lr}
- 388              	.LCFI14:
- 389              		.cfi_def_cfa_offset 8
- 390              		.cfi_offset 7, -8
- 391              		.cfi_offset 14, -4
- 392 0002 82B0     		sub	sp, sp, #8
- 393              	.LCFI15:
- 394              		.cfi_def_cfa_offset 16
- 395 0004 00AF     		add	r7, sp, #0
- 396              	.LCFI16:
- 397              		.cfi_def_cfa_register 7
+ 282              		.loc 1 297 0
+ 283              		.cfi_startproc
+ 284              	.LVL17:
  298:.\Generated_Source\PSoC4/cyPm.c ****         uint32 reason = CY_PM_RESET_REASON_UNKN;
- 398              		.loc 1 298 0
- 399 0006 0023     		mov	r3, #0
- 400 0008 7B60     		str	r3, [r7, #4]
  299:.\Generated_Source\PSoC4/cyPm.c **** 
  300:.\Generated_Source\PSoC4/cyPm.c ****         switch(CY_PM_PWR_STOP_REG & CY_PM_PWR_STOP_TOKEN_MASK)
- 401              		.loc 1 300 0
- 402 000a 0C4B     		ldr	r3, .L26
- 403 000c 1A68     		ldr	r2, [r3]
- 404 000e FF23     		mov	r3, #255
- 405 0010 1340     		and	r3, r2
- 406 0012 F12B     		cmp	r3, #241
- 407 0014 06D0     		beq	.L21
- 408 0016 F22B     		cmp	r3, #242
- 409 0018 07D0     		beq	.L22
- 410 001a 002B     		cmp	r3, #0
- 411 001c 08D1     		bne	.L25
- 412              	.L20:
+ 285              		.loc 1 300 0
+ 286 0000 074B     		ldr	r3, .L22
+ 297:.\Generated_Source\PSoC4/cyPm.c ****     {
+ 287              		.loc 1 297 0
+ 288 0002 00B5     		push	{lr}
+ 289              	.LCFI4:
+ 290              		.cfi_def_cfa_offset 4
+ 291              		.cfi_offset 14, -4
+ 292              		.loc 1 300 0
+ 293 0004 1868     		ldr	r0, [r3]
+ 294 0006 C0B2     		uxtb	r0, r0
+ 295 0008 F128     		cmp	r0, #241
+ 296 000a 04D0     		beq	.L19
+ 297 000c F228     		cmp	r0, #242
+ 298 000e 04D0     		beq	.L20
+ 298:.\Generated_Source\PSoC4/cyPm.c ****         uint32 reason = CY_PM_RESET_REASON_UNKN;
+ 299              		.loc 1 298 0
+ 300 0010 4342     		neg	r3, r0
+ 301 0012 5841     		adc	r0, r0, r3
+ 302 0014 02E0     		b	.L18
+ 303              	.L19:
+ 304              	.LVL18:
  301:.\Generated_Source\PSoC4/cyPm.c ****         {
  302:.\Generated_Source\PSoC4/cyPm.c ****         /* Power up, XRES */
  303:.\Generated_Source\PSoC4/cyPm.c ****         case CY_PM_PWR_STOP_TOKEN_XRES:
  304:.\Generated_Source\PSoC4/cyPm.c ****             reason = CY_PM_RESET_REASON_XRES;
- 413              		.loc 1 304 0
- 414 001e 0123     		mov	r3, #1
- 415 0020 7B60     		str	r3, [r7, #4]
  305:.\Generated_Source\PSoC4/cyPm.c ****             break;
- 416              		.loc 1 305 0
- 417 0022 06E0     		b	.L23
- 418              	.L21:
  306:.\Generated_Source\PSoC4/cyPm.c **** 
  307:.\Generated_Source\PSoC4/cyPm.c ****         /* Wakeup from Hibernate */
  308:.\Generated_Source\PSoC4/cyPm.c ****         case CY_PM_PWR_STOP_TOKEN_HIB:
  309:.\Generated_Source\PSoC4/cyPm.c ****             reason = CY_PM_RESET_REASON_WAKEUP_HIB;
- 419              		.loc 1 309 0
- 420 0024 0223     		mov	r3, #2
- 421 0026 7B60     		str	r3, [r7, #4]
+ 305              		.loc 1 309 0
+ 306 0016 0220     		mov	r0, #2
  310:.\Generated_Source\PSoC4/cyPm.c ****             break;
- 422              		.loc 1 310 0
- 423 0028 03E0     		b	.L23
- 424              	.L22:
+ 307              		.loc 1 310 0
+ 308 0018 00E0     		b	.L18
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 12
+
+
+ 309              	.LVL19:
+ 310              	.L20:
  311:.\Generated_Source\PSoC4/cyPm.c **** 
  312:.\Generated_Source\PSoC4/cyPm.c ****         /* Wakeup from Stop (through WAKEUP pin assert) */
  313:.\Generated_Source\PSoC4/cyPm.c ****         case CY_PM_PWR_STOP_TOKEN_STOP:
  314:.\Generated_Source\PSoC4/cyPm.c ****             reason = CY_PM_RESET_REASON_WAKEUP_STOP;
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 14
-
-
- 425              		.loc 1 314 0
- 426 002a 0323     		mov	r3, #3
- 427 002c 7B60     		str	r3, [r7, #4]
+ 311              		.loc 1 314 0
+ 312 001a 0320     		mov	r0, #3
+ 313              	.LVL20:
+ 314              	.L18:
  315:.\Generated_Source\PSoC4/cyPm.c ****             break;
- 428              		.loc 1 315 0
- 429 002e 00E0     		b	.L23
- 430              	.L25:
  316:.\Generated_Source\PSoC4/cyPm.c **** 
  317:.\Generated_Source\PSoC4/cyPm.c ****         /* Unknown reason */
  318:.\Generated_Source\PSoC4/cyPm.c ****         default:
  319:.\Generated_Source\PSoC4/cyPm.c ****             break;
- 431              		.loc 1 319 0
- 432 0030 C046     		mov	r8, r8
- 433              	.L23:
  320:.\Generated_Source\PSoC4/cyPm.c ****         }
  321:.\Generated_Source\PSoC4/cyPm.c **** 
  322:.\Generated_Source\PSoC4/cyPm.c ****         return (reason);
- 434              		.loc 1 322 0
- 435 0032 7B68     		ldr	r3, [r7, #4]
  323:.\Generated_Source\PSoC4/cyPm.c ****     }
- 436              		.loc 1 323 0
- 437 0034 181C     		mov	r0, r3
- 438 0036 BD46     		mov	sp, r7
- 439 0038 02B0     		add	sp, sp, #8
- 440              		@ sp needed for prologue
- 441 003a 80BD     		pop	{r7, pc}
- 442              	.L27:
- 443              		.align	2
- 444              	.L26:
- 445 003c 2C000B40 		.word	1074462764
- 446              		.cfi_endproc
- 447              	.LFE5:
- 448              		.size	CySysPmGetResetReason, .-CySysPmGetResetReason
- 449              		.section	.text.CySysPmFreezeIo,"ax",%progbits
- 450              		.align	2
- 451              		.global	CySysPmFreezeIo
- 452              		.code	16
- 453              		.thumb_func
- 454              		.type	CySysPmFreezeIo, %function
- 455              	CySysPmFreezeIo:
- 456              	.LFB6:
+ 315              		.loc 1 323 0
+ 316              		@ sp needed for prologue
+ 317 001c 00BD     		pop	{pc}
+ 318              	.L23:
+ 319 001e C046     		.align	2
+ 320              	.L22:
+ 321 0020 2C000B40 		.word	1074462764
+ 322              		.cfi_endproc
+ 323              	.LFE5:
+ 324              		.size	CySysPmGetResetReason, .-CySysPmGetResetReason
+ 325              		.section	.text.CySysPmFreezeIo,"ax",%progbits
+ 326              		.align	1
+ 327              		.global	CySysPmFreezeIo
+ 328              		.code	16
+ 329              		.thumb_func
+ 330              		.type	CySysPmFreezeIo, %function
+ 331              	CySysPmFreezeIo:
+ 332              	.LFB6:
  324:.\Generated_Source\PSoC4/cyPm.c **** 
  325:.\Generated_Source\PSoC4/cyPm.c **** 
  326:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
@@ -838,36 +714,29 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  337:.\Generated_Source\PSoC4/cyPm.c ****     *  None
  338:.\Generated_Source\PSoC4/cyPm.c ****     *
  339:.\Generated_Source\PSoC4/cyPm.c ****     * Return:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 15
-
-
  340:.\Generated_Source\PSoC4/cyPm.c ****     *  None
  341:.\Generated_Source\PSoC4/cyPm.c ****     *
  342:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  343:.\Generated_Source\PSoC4/cyPm.c ****     void CySysPmFreezeIo(void)
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 13
+
+
  344:.\Generated_Source\PSoC4/cyPm.c ****     {
- 457              		.loc 1 344 0
- 458              		.cfi_startproc
- 459 0000 90B5     		push	{r4, r7, lr}
- 460              	.LCFI17:
- 461              		.cfi_def_cfa_offset 12
- 462              		.cfi_offset 4, -12
- 463              		.cfi_offset 7, -8
- 464              		.cfi_offset 14, -4
- 465 0002 83B0     		sub	sp, sp, #12
- 466              	.LCFI18:
- 467              		.cfi_def_cfa_offset 24
- 468 0004 00AF     		add	r7, sp, #0
- 469              	.LCFI19:
- 470              		.cfi_def_cfa_register 7
+ 333              		.loc 1 344 0
+ 334              		.cfi_startproc
+ 335 0000 38B5     		push	{r3, r4, r5, lr}
+ 336              	.LCFI5:
+ 337              		.cfi_def_cfa_offset 16
+ 338              		.cfi_offset 3, -16
+ 339              		.cfi_offset 4, -12
+ 340              		.cfi_offset 5, -8
+ 341              		.cfi_offset 14, -4
  345:.\Generated_Source\PSoC4/cyPm.c ****         uint8 interruptState;
  346:.\Generated_Source\PSoC4/cyPm.c **** 
  347:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
- 471              		.loc 1 347 0
- 472 0006 FC1D     		add	r4, r7, #7
- 473 0008 FFF7FEFF 		bl	CyEnterCriticalSection
- 474 000c 031C     		mov	r3, r0
- 475 000e 2370     		strb	r3, [r4]
+ 342              		.loc 1 347 0
+ 343 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 344              	.LVL21:
  348:.\Generated_Source\PSoC4/cyPm.c **** 
  349:.\Generated_Source\PSoC4/cyPm.c ****         /* Check FREEZE state to avoid recurrent IO-Cells freeze attempt,
  350:.\Generated_Source\PSoC4/cyPm.c ****          * since the second call to this function will cause accidental switch
@@ -876,91 +745,168 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  353:.\Generated_Source\PSoC4/cyPm.c ****          * in a previous call to this function).
  354:.\Generated_Source\PSoC4/cyPm.c ****          */
  355:.\Generated_Source\PSoC4/cyPm.c ****         if (0u == (CY_PM_PWR_STOP_REG & CY_PM_PWR_STOP_FREEZE))
- 476              		.loc 1 355 0
- 477 0010 0F4B     		ldr	r3, .L30
- 478 0012 1A68     		ldr	r2, [r3]
- 479 0014 8023     		mov	r3, #128
- 480 0016 9B02     		lsl	r3, r3, #10
- 481 0018 1340     		and	r3, r2
- 482 001a 10D1     		bne	.L29
+ 345              		.loc 1 355 0
+ 346 0006 0B4C     		ldr	r4, .L26
+ 347:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
+ 347              		.loc 1 347 0
+ 348 0008 051C     		mov	r5, r0
+ 349              	.LVL22:
+ 350              		.loc 1 355 0
+ 351 000a 2368     		ldr	r3, [r4]
+ 352 000c 9A03     		lsl	r2, r3, #14
+ 353 000e 0CD4     		bmi	.L25
  356:.\Generated_Source\PSoC4/cyPm.c ****         {
  357:.\Generated_Source\PSoC4/cyPm.c ****             /* Preserve last reset reason and disable overrides the next freeze command by peripher
  358:.\Generated_Source\PSoC4/cyPm.c ****             CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_STOP | CY_PM_PWR_STOP_FREEZE | CY_PM_PWR_STOP_UNLOC
- 483              		.loc 1 358 0
- 484 001c 0C4B     		ldr	r3, .L30
  359:.\Generated_Source\PSoC4/cyPm.c ****                                 (CY_PM_PWR_STOP_REG & (CY_PM_PWR_STOP_TOKEN_MASK | CY_PM_PWR_STOP_P
- 485              		.loc 1 359 0
- 486 001e 0C4A     		ldr	r2, .L30
- 487 0020 1168     		ldr	r1, [r2]
- 488 0022 0C4A     		ldr	r2, .L30+4
- 489 0024 0A40     		and	r2, r1
+ 354              		.loc 1 359 0
+ 355 0010 2268     		ldr	r2, [r4]
+ 356 0012 0948     		ldr	r0, .L26+4
+ 357              	.LVL23:
  358:.\Generated_Source\PSoC4/cyPm.c ****             CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_STOP | CY_PM_PWR_STOP_FREEZE | CY_PM_PWR_STOP_UNLOC
- 490              		.loc 1 358 0
- 491 0026 0C49     		ldr	r1, .L30+8
- 492 0028 0A43     		orr	r2, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 16
-
-
- 493 002a 1A60     		str	r2, [r3]
+ 358              		.loc 1 358 0
+ 359 0014 0949     		ldr	r1, .L26+8
+ 360              		.loc 1 359 0
+ 361 0016 1040     		and	r0, r2
+ 358:.\Generated_Source\PSoC4/cyPm.c ****             CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_STOP | CY_PM_PWR_STOP_FREEZE | CY_PM_PWR_STOP_UNLOC
+ 362              		.loc 1 358 0
+ 363 0018 0843     		orr	r0, r1
+ 364 001a 2060     		str	r0, [r4]
  360:.\Generated_Source\PSoC4/cyPm.c **** 
  361:.\Generated_Source\PSoC4/cyPm.c ****             /* PWR_STOP read after write must be delayed for 6 clock cycles to let internal nodes t
  362:.\Generated_Source\PSoC4/cyPm.c ****             CyDelayCycles(6u);
- 494              		.loc 1 362 0
- 495 002c 0620     		mov	r0, #6
- 496 002e FFF7FEFF 		bl	CyDelayCycles
+ 365              		.loc 1 362 0
+ 366 001c 0620     		mov	r0, #6
+ 367 001e FFF7FEFF 		bl	CyDelayCycles
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 14
+
+
+ 368              	.LVL24:
  363:.\Generated_Source\PSoC4/cyPm.c **** 
  364:.\Generated_Source\PSoC4/cyPm.c ****             /* Second write causes the freeze of IO-Cells to save IO-Cell state */
  365:.\Generated_Source\PSoC4/cyPm.c ****             CY_PM_PWR_STOP_REG &= ~CY_PM_PWR_STOP_STOP;
- 497              		.loc 1 365 0
- 498 0032 074B     		ldr	r3, .L30
- 499 0034 064A     		ldr	r2, .L30
- 500 0036 1268     		ldr	r2, [r2]
- 501 0038 5200     		lsl	r2, r2, #1
- 502 003a 5208     		lsr	r2, r2, #1
- 503 003c 1A60     		str	r2, [r3]
- 504              	.L29:
+ 369              		.loc 1 365 0
+ 370 0022 2368     		ldr	r3, [r4]
+ 371 0024 5A00     		lsl	r2, r3, #1
+ 372 0026 5008     		lsr	r0, r2, #1
+ 373 0028 2060     		str	r0, [r4]
+ 374              	.L25:
  366:.\Generated_Source\PSoC4/cyPm.c ****         }
  367:.\Generated_Source\PSoC4/cyPm.c **** 
  368:.\Generated_Source\PSoC4/cyPm.c ****         CyExitCriticalSection(interruptState);
- 505              		.loc 1 368 0
- 506 003e FB1D     		add	r3, r7, #7
- 507 0040 1B78     		ldrb	r3, [r3]
- 508 0042 181C     		mov	r0, r3
- 509 0044 FFF7FEFF 		bl	CyExitCriticalSection
+ 375              		.loc 1 368 0
+ 376 002a 281C     		mov	r0, r5
+ 377 002c FFF7FEFF 		bl	CyExitCriticalSection
+ 378              	.LVL25:
  369:.\Generated_Source\PSoC4/cyPm.c ****     }
- 510              		.loc 1 369 0
- 511 0048 BD46     		mov	sp, r7
- 512 004a 03B0     		add	sp, sp, #12
- 513              		@ sp needed for prologue
- 514 004c 90BD     		pop	{r4, r7, pc}
- 515              	.L31:
- 516 004e C046     		.align	2
- 517              	.L30:
- 518 0050 2C000B40 		.word	1074462764
- 519 0054 FF000100 		.word	65791
- 520 0058 003A0280 		.word	-2147337728
- 521              		.cfi_endproc
- 522              	.LFE6:
- 523              		.size	CySysPmFreezeIo, .-CySysPmFreezeIo
- 524              		.section	.text.CySysPmUnfreezeIo,"ax",%progbits
- 525              		.align	2
- 526              		.global	CySysPmUnfreezeIo
- 527              		.code	16
- 528              		.thumb_func
- 529              		.type	CySysPmUnfreezeIo, %function
- 530              	CySysPmUnfreezeIo:
- 531              	.LFB7:
+ 379              		.loc 1 369 0
+ 380              		@ sp needed for prologue
+ 381              	.LVL26:
+ 382 0030 38BD     		pop	{r3, r4, r5, pc}
+ 383              	.L27:
+ 384 0032 C046     		.align	2
+ 385              	.L26:
+ 386 0034 2C000B40 		.word	1074462764
+ 387 0038 FF000100 		.word	65791
+ 388 003c 003A0280 		.word	-2147337728
+ 389              		.cfi_endproc
+ 390              	.LFE6:
+ 391              		.size	CySysPmFreezeIo, .-CySysPmFreezeIo
+ 392              		.section	.text.CySysPmStop,"ax",%progbits
+ 393              		.align	1
+ 394              		.global	CySysPmStop
+ 395              		.code	16
+ 396              		.thumb_func
+ 397              		.type	CySysPmStop, %function
+ 398              	CySysPmStop:
+ 399              	.LFB3:
+ 214:.\Generated_Source\PSoC4/cyPm.c ****     {
+ 400              		.loc 1 214 0
+ 401              		.cfi_startproc
+ 402 0000 08B5     		push	{r3, lr}
+ 403              	.LCFI6:
+ 404              		.cfi_def_cfa_offset 8
+ 405              		.cfi_offset 3, -8
+ 406              		.cfi_offset 14, -4
+ 215:.\Generated_Source\PSoC4/cyPm.c ****         (void)CyEnterCriticalSection();
+ 407              		.loc 1 215 0
+ 408 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 409              	.LVL27:
+ 218:.\Generated_Source\PSoC4/cyPm.c ****         CySysPmFreezeIo();
+ 410              		.loc 1 218 0
+ 411 0006 FFF7FEFF 		bl	CySysPmFreezeIo
+ 412              	.LVL28:
+ 221:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) |
+ 413              		.loc 1 221 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 15
+
+
+ 414 000a 054B     		ldr	r3, .L29
+ 222:.\Generated_Source\PSoC4/cyPm.c ****                             CY_PM_PWR_STOP_TOKEN_STOP | CY_PM_PWR_STOP_STOP;
+ 415              		.loc 1 222 0
+ 416 000c 054A     		ldr	r2, .L29+4
+ 221:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) |
+ 417              		.loc 1 221 0
+ 418 000e 1968     		ldr	r1, [r3]
+ 222:.\Generated_Source\PSoC4/cyPm.c ****                             CY_PM_PWR_STOP_TOKEN_STOP | CY_PM_PWR_STOP_STOP;
+ 419              		.loc 1 222 0
+ 420 0010 0548     		ldr	r0, .L29+8
+ 421 0012 0A40     		and	r2, r1
+ 422 0014 0243     		orr	r2, r0
+ 221:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = (CY_PM_PWR_STOP_REG & (uint32)(~CY_PM_PWR_STOP_TOKEN_MASK)) |
+ 423              		.loc 1 221 0
+ 424 0016 1A60     		str	r2, [r3]
+ 229:.\Generated_Source\PSoC4/cyPm.c ****         CY_NOP;
+ 425              		.loc 1 229 0
+ 426              	@ 229 ".\Generated_Source\PSoC4\cyPm.c" 1
+ 427 0018 C046     		NOP
+ 428              	
+ 429              	@ 0 "" 2
+ 230:.\Generated_Source\PSoC4/cyPm.c ****         CY_NOP;
+ 430              		.loc 1 230 0
+ 431              	@ 230 ".\Generated_Source\PSoC4\cyPm.c" 1
+ 432 001a C046     		NOP
+ 433              	
+ 434              	@ 0 "" 2
+ 233:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_WFI;
+ 435              		.loc 1 233 0
+ 436              	@ 233 ".\Generated_Source\PSoC4\cyPm.c" 1
+ 437 001c 30BF     		WFI 
+ 438              	
+ 439              	@ 0 "" 2
+ 239:.\Generated_Source\PSoC4/cyPm.c ****     }
+ 440              		.loc 1 239 0
+ 441              		.code	16
+ 442              		@ sp needed for prologue
+ 443 001e 08BD     		pop	{r3, pc}
+ 444              	.L30:
+ 445              		.align	2
+ 446              	.L29:
+ 447 0020 2C000B40 		.word	1074462764
+ 448 0024 00FFFF7F 		.word	2147483392
+ 449 0028 F2000080 		.word	-2147483406
+ 450              		.cfi_endproc
+ 451              	.LFE3:
+ 452              		.size	CySysPmStop, .-CySysPmStop
+ 453              		.section	.text.CySysPmUnfreezeIo,"ax",%progbits
+ 454              		.align	1
+ 455              		.global	CySysPmUnfreezeIo
+ 456              		.code	16
+ 457              		.thumb_func
+ 458              		.type	CySysPmUnfreezeIo, %function
+ 459              	CySysPmUnfreezeIo:
+ 460              	.LFB7:
  370:.\Generated_Source\PSoC4/cyPm.c **** 
  371:.\Generated_Source\PSoC4/cyPm.c **** 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 16
+
+
  372:.\Generated_Source\PSoC4/cyPm.c ****     /*******************************************************************************
  373:.\Generated_Source\PSoC4/cyPm.c ****     * Function Name: CySysPmUnfreezeIo
  374:.\Generated_Source\PSoC4/cyPm.c ****     ********************************************************************************
  375:.\Generated_Source\PSoC4/cyPm.c ****     *
  376:.\Generated_Source\PSoC4/cyPm.c ****     * Summary:
  377:.\Generated_Source\PSoC4/cyPm.c ****     *  The IO-Cells remain frozen after awake from Hibernate or Stop mode until
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 17
-
-
  378:.\Generated_Source\PSoC4/cyPm.c ****     *  the firmware unfreezes them after booting. The call of this function
  379:.\Generated_Source\PSoC4/cyPm.c ****     *  unfreezes IO-Cells explicitly.
  380:.\Generated_Source\PSoC4/cyPm.c ****     *
@@ -973,1033 +919,1281 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 1
  387:.\Generated_Source\PSoC4/cyPm.c ****     *******************************************************************************/
  388:.\Generated_Source\PSoC4/cyPm.c ****     void CySysPmUnfreezeIo(void)
  389:.\Generated_Source\PSoC4/cyPm.c ****     {
- 532              		.loc 1 389 0
- 533              		.cfi_startproc
- 534 0000 90B5     		push	{r4, r7, lr}
- 535              	.LCFI20:
- 536              		.cfi_def_cfa_offset 12
- 537              		.cfi_offset 4, -12
- 538              		.cfi_offset 7, -8
- 539              		.cfi_offset 14, -4
- 540 0002 83B0     		sub	sp, sp, #12
- 541              	.LCFI21:
- 542              		.cfi_def_cfa_offset 24
- 543 0004 00AF     		add	r7, sp, #0
- 544              	.LCFI22:
- 545              		.cfi_def_cfa_register 7
+ 461              		.loc 1 389 0
+ 462              		.cfi_startproc
+ 463 0000 70B5     		push	{r4, r5, r6, lr}
+ 464              	.LCFI7:
+ 465              		.cfi_def_cfa_offset 16
+ 466              		.cfi_offset 4, -16
+ 467              		.cfi_offset 5, -12
+ 468              		.cfi_offset 6, -8
+ 469              		.cfi_offset 14, -4
  390:.\Generated_Source\PSoC4/cyPm.c ****         uint8 interruptState;
  391:.\Generated_Source\PSoC4/cyPm.c **** 
  392:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
- 546              		.loc 1 392 0
- 547 0006 FC1D     		add	r4, r7, #7
- 548 0008 FFF7FEFF 		bl	CyEnterCriticalSection
- 549 000c 031C     		mov	r3, r0
- 550 000e 2370     		strb	r3, [r4]
+ 470              		.loc 1 392 0
+ 471 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 472              	.LVL29:
  393:.\Generated_Source\PSoC4/cyPm.c **** 
  394:.\Generated_Source\PSoC4/cyPm.c ****         /* Preserve last reset reason and wakeup polarity. Then, unfreeze I/O:
  395:.\Generated_Source\PSoC4/cyPm.c ****          * write PWR_STOP.FREEZE=0, .UNLOCK=0x3A, .STOP=0, .TOKEN
  396:.\Generated_Source\PSoC4/cyPm.c ****          */
  397:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_UNLOCK |
- 551              		.loc 1 397 0
- 552 0010 0C4B     		ldr	r3, .L33
  398:.\Generated_Source\PSoC4/cyPm.c ****                             (CY_PM_PWR_STOP_REG & (CY_PM_PWR_STOP_TOKEN_MASK | CY_PM_PWR_STOP_POLAR
- 553              		.loc 1 398 0
- 554 0012 0C4A     		ldr	r2, .L33
- 555 0014 1168     		ldr	r1, [r2]
- 556 0016 0C4A     		ldr	r2, .L33+4
- 557 0018 0A40     		and	r2, r1
+ 473              		.loc 1 398 0
+ 474 0006 094C     		ldr	r4, .L32
+ 475 0008 094D     		ldr	r5, .L32+4
+ 476 000a 2368     		ldr	r3, [r4]
  397:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_UNLOCK |
- 558              		.loc 1 397 0
- 559 001a E821     		mov	r1, #232
- 560 001c 8901     		lsl	r1, r1, #6
- 561 001e 0A43     		orr	r2, r1
- 562 0020 1A60     		str	r2, [r3]
+ 477              		.loc 1 397 0
+ 478 000c E822     		mov	r2, #232
+ 392:.\Generated_Source\PSoC4/cyPm.c ****         interruptState = CyEnterCriticalSection();
+ 479              		.loc 1 392 0
+ 480 000e 061C     		mov	r6, r0
+ 481              	.LVL30:
+ 482              		.loc 1 398 0
+ 483 0010 2B40     		and	r3, r5
+ 397:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG = CY_PM_PWR_STOP_UNLOCK |
+ 484              		.loc 1 397 0
+ 485 0012 9001     		lsl	r0, r2, #6
+ 486              	.LVL31:
+ 487 0014 0343     		orr	r3, r0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 17
+
+
+ 488 0016 2360     		str	r3, [r4]
  399:.\Generated_Source\PSoC4/cyPm.c **** 
  400:.\Generated_Source\PSoC4/cyPm.c ****         /* PWR_STOP read after write must be delayed for 6 clock cycles to let internal nodes to se
  401:.\Generated_Source\PSoC4/cyPm.c ****         CyDelayCycles(6u);
- 563              		.loc 1 401 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 18
-
-
- 564 0022 0620     		mov	r0, #6
- 565 0024 FFF7FEFF 		bl	CyDelayCycles
+ 489              		.loc 1 401 0
+ 490 0018 0620     		mov	r0, #6
+ 491 001a FFF7FEFF 		bl	CyDelayCycles
+ 492              	.LVL32:
  402:.\Generated_Source\PSoC4/cyPm.c **** 
  403:.\Generated_Source\PSoC4/cyPm.c ****         /* Lock STOP mode: write PWR_STOP.FREEZE=0, UNLOCK=0x00, STOP=0, .TOKEN */
  404:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG &= (CY_PM_PWR_STOP_TOKEN_MASK | CY_PM_PWR_STOP_POLARITY);
- 566              		.loc 1 404 0
- 567 0028 064B     		ldr	r3, .L33
- 568 002a 064A     		ldr	r2, .L33
- 569 002c 1168     		ldr	r1, [r2]
- 570 002e 064A     		ldr	r2, .L33+4
- 571 0030 0A40     		and	r2, r1
- 572 0032 1A60     		str	r2, [r3]
+ 493              		.loc 1 404 0
+ 494 001e 2168     		ldr	r1, [r4]
  405:.\Generated_Source\PSoC4/cyPm.c **** 
  406:.\Generated_Source\PSoC4/cyPm.c ****         CyExitCriticalSection(interruptState);
- 573              		.loc 1 406 0
- 574 0034 FB1D     		add	r3, r7, #7
- 575 0036 1B78     		ldrb	r3, [r3]
- 576 0038 181C     		mov	r0, r3
- 577 003a FFF7FEFF 		bl	CyExitCriticalSection
+ 495              		.loc 1 406 0
+ 496 0020 301C     		mov	r0, r6
+ 404:.\Generated_Source\PSoC4/cyPm.c ****         CY_PM_PWR_STOP_REG &= (CY_PM_PWR_STOP_TOKEN_MASK | CY_PM_PWR_STOP_POLARITY);
+ 497              		.loc 1 404 0
+ 498 0022 0D40     		and	r5, r1
+ 499 0024 2560     		str	r5, [r4]
+ 500              		.loc 1 406 0
+ 501 0026 FFF7FEFF 		bl	CyExitCriticalSection
+ 502              	.LVL33:
  407:.\Generated_Source\PSoC4/cyPm.c ****     }
- 578              		.loc 1 407 0
- 579 003e BD46     		mov	sp, r7
- 580 0040 03B0     		add	sp, sp, #12
- 581              		@ sp needed for prologue
- 582 0042 90BD     		pop	{r4, r7, pc}
- 583              	.L34:
- 584              		.align	2
- 585              	.L33:
- 586 0044 2C000B40 		.word	1074462764
- 587 0048 FF000100 		.word	65791
- 588              		.cfi_endproc
- 589              	.LFE7:
- 590              		.size	CySysPmUnfreezeIo, .-CySysPmUnfreezeIo
- 591              		.text
- 592              	.Letext0:
- 593              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
- 594              		.section	.debug_info,"",%progbits
- 595              	.Ldebug_info0:
- 596 0000 23020000 		.4byte	0x223
- 597 0004 0200     		.2byte	0x2
- 598 0006 00000000 		.4byte	.Ldebug_abbrev0
- 599 000a 04       		.byte	0x4
- 600 000b 01       		.uleb128 0x1
- 601 000c B3010000 		.4byte	.LASF26
- 602 0010 01       		.byte	0x1
- 603 0011 89010000 		.4byte	.LASF27
- 604 0015 56000000 		.4byte	.LASF28
- 605 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 606 001d 00000000 		.4byte	0
- 607 0021 00000000 		.4byte	0
- 608 0025 00000000 		.4byte	.Ldebug_line0
- 609 0029 02       		.uleb128 0x2
- 610 002a 01       		.byte	0x1
- 611 002b 06       		.byte	0x6
- 612 002c 16020000 		.4byte	.LASF0
- 613 0030 02       		.uleb128 0x2
- 614 0031 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 19
+ 503              		.loc 1 407 0
+ 504              		@ sp needed for prologue
+ 505              	.LVL34:
+ 506 002a 70BD     		pop	{r4, r5, r6, pc}
+ 507              	.L33:
+ 508              		.align	2
+ 509              	.L32:
+ 510 002c 2C000B40 		.word	1074462764
+ 511 0030 FF000100 		.word	65791
+ 512              		.cfi_endproc
+ 513              	.LFE7:
+ 514              		.size	CySysPmUnfreezeIo, .-CySysPmUnfreezeIo
+ 515              		.text
+ 516              	.Letext0:
+ 517              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 518              		.file 3 ".\\Generated_Source\\PSoC4\\CyLib.h"
+ 519              		.section	.debug_info,"",%progbits
+ 520              	.Ldebug_info0:
+ 521 0000 47030000 		.4byte	0x347
+ 522 0004 0200     		.2byte	0x2
+ 523 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 524 000a 04       		.byte	0x4
+ 525 000b 01       		.uleb128 0x1
+ 526 000c 05020000 		.4byte	.LASF30
+ 527 0010 01       		.byte	0x1
+ 528 0011 DB010000 		.4byte	.LASF31
+ 529 0015 64000000 		.4byte	.LASF32
+ 530 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 531 001d 00000000 		.4byte	0
+ 532 0021 00000000 		.4byte	0
+ 533 0025 00000000 		.4byte	.Ldebug_line0
+ 534 0029 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 18
 
 
- 615 0032 08       		.byte	0x8
- 616 0033 AE000000 		.4byte	.LASF1
- 617 0037 02       		.uleb128 0x2
- 618 0038 02       		.byte	0x2
- 619 0039 05       		.byte	0x5
- 620 003a A9010000 		.4byte	.LASF2
- 621 003e 02       		.uleb128 0x2
- 622 003f 02       		.byte	0x2
- 623 0040 07       		.byte	0x7
- 624 0041 32000000 		.4byte	.LASF3
- 625 0045 02       		.uleb128 0x2
- 626 0046 04       		.byte	0x4
- 627 0047 05       		.byte	0x5
- 628 0048 0D020000 		.4byte	.LASF4
- 629 004c 02       		.uleb128 0x2
- 630 004d 04       		.byte	0x4
- 631 004e 07       		.byte	0x7
- 632 004f CB000000 		.4byte	.LASF5
- 633 0053 02       		.uleb128 0x2
- 634 0054 08       		.byte	0x8
- 635 0055 05       		.byte	0x5
- 636 0056 69010000 		.4byte	.LASF6
- 637 005a 02       		.uleb128 0x2
- 638 005b 08       		.byte	0x8
- 639 005c 07       		.byte	0x7
- 640 005d 23010000 		.4byte	.LASF7
- 641 0061 03       		.uleb128 0x3
- 642 0062 04       		.byte	0x4
- 643 0063 05       		.byte	0x5
- 644 0064 696E7400 		.ascii	"int\000"
- 645 0068 02       		.uleb128 0x2
- 646 0069 04       		.byte	0x4
- 647 006a 07       		.byte	0x7
- 648 006b 16010000 		.4byte	.LASF8
- 649 006f 04       		.uleb128 0x4
- 650 0070 DD000000 		.4byte	.LASF9
- 651 0074 02       		.byte	0x2
- 652 0075 5B       		.byte	0x5b
- 653 0076 30000000 		.4byte	0x30
- 654 007a 04       		.uleb128 0x4
- 655 007b 08010000 		.4byte	.LASF10
- 656 007f 02       		.byte	0x2
- 657 0080 5C       		.byte	0x5c
- 658 0081 3E000000 		.4byte	0x3e
- 659 0085 04       		.uleb128 0x4
- 660 0086 0F010000 		.4byte	.LASF11
- 661 008a 02       		.byte	0x2
- 662 008b 5D       		.byte	0x5d
- 663 008c 4C000000 		.4byte	0x4c
- 664 0090 02       		.uleb128 0x2
- 665 0091 04       		.byte	0x4
- 666 0092 04       		.byte	0x4
- 667 0093 A8000000 		.4byte	.LASF12
- 668 0097 02       		.uleb128 0x2
- 669 0098 08       		.byte	0x8
- 670 0099 04       		.byte	0x4
- 671 009a EF000000 		.4byte	.LASF13
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 20
+ 535 002a 01       		.byte	0x1
+ 536 002b 06       		.byte	0x6
+ 537 002c 68020000 		.4byte	.LASF0
+ 538 0030 02       		.uleb128 0x2
+ 539 0031 01       		.byte	0x1
+ 540 0032 08       		.byte	0x8
+ 541 0033 D3000000 		.4byte	.LASF1
+ 542 0037 02       		.uleb128 0x2
+ 543 0038 02       		.byte	0x2
+ 544 0039 05       		.byte	0x5
+ 545 003a FB010000 		.4byte	.LASF2
+ 546 003e 02       		.uleb128 0x2
+ 547 003f 02       		.byte	0x2
+ 548 0040 07       		.byte	0x7
+ 549 0041 40000000 		.4byte	.LASF3
+ 550 0045 02       		.uleb128 0x2
+ 551 0046 04       		.byte	0x4
+ 552 0047 05       		.byte	0x5
+ 553 0048 5F020000 		.4byte	.LASF4
+ 554 004c 02       		.uleb128 0x2
+ 555 004d 04       		.byte	0x4
+ 556 004e 07       		.byte	0x7
+ 557 004f F0000000 		.4byte	.LASF5
+ 558 0053 02       		.uleb128 0x2
+ 559 0054 08       		.byte	0x8
+ 560 0055 05       		.byte	0x5
+ 561 0056 BB010000 		.4byte	.LASF6
+ 562 005a 02       		.uleb128 0x2
+ 563 005b 08       		.byte	0x8
+ 564 005c 07       		.byte	0x7
+ 565 005d BC000000 		.4byte	.LASF7
+ 566 0061 03       		.uleb128 0x3
+ 567 0062 04       		.byte	0x4
+ 568 0063 05       		.byte	0x5
+ 569 0064 696E7400 		.ascii	"int\000"
+ 570 0068 02       		.uleb128 0x2
+ 571 0069 04       		.byte	0x4
+ 572 006a 07       		.byte	0x7
+ 573 006b 52010000 		.4byte	.LASF8
+ 574 006f 04       		.uleb128 0x4
+ 575 0070 02010000 		.4byte	.LASF9
+ 576 0074 02       		.byte	0x2
+ 577 0075 5B       		.byte	0x5b
+ 578 0076 30000000 		.4byte	0x30
+ 579 007a 04       		.uleb128 0x4
+ 580 007b 2D010000 		.4byte	.LASF10
+ 581 007f 02       		.byte	0x2
+ 582 0080 5C       		.byte	0x5c
+ 583 0081 3E000000 		.4byte	0x3e
+ 584 0085 04       		.uleb128 0x4
+ 585 0086 34010000 		.4byte	.LASF11
+ 586 008a 02       		.byte	0x2
+ 587 008b 5D       		.byte	0x5d
+ 588 008c 4C000000 		.4byte	0x4c
+ 589 0090 02       		.uleb128 0x2
+ 590 0091 04       		.byte	0x4
+ 591 0092 04       		.byte	0x4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 19
 
 
- 672 009e 02       		.uleb128 0x2
- 673 009f 01       		.byte	0x1
- 674 00a0 08       		.byte	0x8
- 675 00a1 77010000 		.4byte	.LASF14
- 676 00a5 04       		.uleb128 0x4
- 677 00a6 00000000 		.4byte	.LASF15
- 678 00aa 02       		.byte	0x2
- 679 00ab F1       		.byte	0xf1
- 680 00ac B0000000 		.4byte	0xb0
- 681 00b0 05       		.uleb128 0x5
- 682 00b1 7A000000 		.4byte	0x7a
- 683 00b5 04       		.uleb128 0x4
- 684 00b6 06000000 		.4byte	.LASF16
- 685 00ba 02       		.byte	0x2
- 686 00bb F2       		.byte	0xf2
- 687 00bc C0000000 		.4byte	0xc0
- 688 00c0 05       		.uleb128 0x5
- 689 00c1 85000000 		.4byte	0x85
- 690 00c5 02       		.uleb128 0x2
- 691 00c6 04       		.byte	0x4
- 692 00c7 07       		.byte	0x7
- 693 00c8 60010000 		.4byte	.LASF17
- 694 00cc 06       		.uleb128 0x6
- 695 00cd 01       		.byte	0x1
- 696 00ce 25000000 		.4byte	.LASF18
- 697 00d2 01       		.byte	0x1
- 698 00d3 28       		.byte	0x28
- 699 00d4 01       		.byte	0x1
- 700 00d5 00000000 		.4byte	.LFB0
- 701 00d9 34000000 		.4byte	.LFE0
- 702 00dd 00000000 		.4byte	.LLST0
- 703 00e1 01       		.byte	0x1
- 704 00e2 F5000000 		.4byte	0xf5
- 705 00e6 07       		.uleb128 0x7
- 706 00e7 BC000000 		.4byte	.LASF20
- 707 00eb 01       		.byte	0x1
- 708 00ec 2A       		.byte	0x2a
- 709 00ed 6F000000 		.4byte	0x6f
- 710 00f1 02       		.byte	0x2
- 711 00f2 91       		.byte	0x91
- 712 00f3 6F       		.sleb128 -17
- 713 00f4 00       		.byte	0
- 714 00f5 06       		.uleb128 0x6
- 715 00f6 01       		.byte	0x1
- 716 00f7 FC010000 		.4byte	.LASF19
- 717 00fb 01       		.byte	0x1
- 718 00fc 4E       		.byte	0x4e
- 719 00fd 01       		.byte	0x1
- 720 00fe 00000000 		.4byte	.LFB1
- 721 0102 6C000000 		.4byte	.LFE1
- 722 0106 38000000 		.4byte	.LLST1
- 723 010a 01       		.byte	0x1
- 724 010b 2C010000 		.4byte	0x12c
- 725 010f 07       		.uleb128 0x7
- 726 0110 BC000000 		.4byte	.LASF20
- 727 0114 01       		.byte	0x1
- 728 0115 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 21
+ 592 0093 B6000000 		.4byte	.LASF12
+ 593 0097 02       		.uleb128 0x2
+ 594 0098 08       		.byte	0x8
+ 595 0099 04       		.byte	0x4
+ 596 009a 14010000 		.4byte	.LASF13
+ 597 009e 02       		.uleb128 0x2
+ 598 009f 01       		.byte	0x1
+ 599 00a0 08       		.byte	0x8
+ 600 00a1 C9010000 		.4byte	.LASF14
+ 601 00a5 04       		.uleb128 0x4
+ 602 00a6 00000000 		.4byte	.LASF15
+ 603 00aa 02       		.byte	0x2
+ 604 00ab F1       		.byte	0xf1
+ 605 00ac B0000000 		.4byte	0xb0
+ 606 00b0 05       		.uleb128 0x5
+ 607 00b1 7A000000 		.4byte	0x7a
+ 608 00b5 04       		.uleb128 0x4
+ 609 00b6 14000000 		.4byte	.LASF16
+ 610 00ba 02       		.byte	0x2
+ 611 00bb F2       		.byte	0xf2
+ 612 00bc C0000000 		.4byte	0xc0
+ 613 00c0 05       		.uleb128 0x5
+ 614 00c1 85000000 		.4byte	0x85
+ 615 00c5 02       		.uleb128 0x2
+ 616 00c6 04       		.byte	0x4
+ 617 00c7 07       		.byte	0x7
+ 618 00c8 B2010000 		.4byte	.LASF17
+ 619 00cc 06       		.uleb128 0x6
+ 620 00cd 01       		.byte	0x1
+ 621 00ce 33000000 		.4byte	.LASF18
+ 622 00d2 01       		.byte	0x1
+ 623 00d3 28       		.byte	0x28
+ 624 00d4 01       		.byte	0x1
+ 625 00d5 00000000 		.4byte	.LFB0
+ 626 00d9 1C000000 		.4byte	.LFE0
+ 627 00dd 00000000 		.4byte	.LLST0
+ 628 00e1 01       		.byte	0x1
+ 629 00e2 08010000 		.4byte	0x108
+ 630 00e6 07       		.uleb128 0x7
+ 631 00e7 E1000000 		.4byte	.LASF20
+ 632 00eb 01       		.byte	0x1
+ 633 00ec 2A       		.byte	0x2a
+ 634 00ed 6F000000 		.4byte	0x6f
+ 635 00f1 20000000 		.4byte	.LLST1
+ 636 00f5 08       		.uleb128 0x8
+ 637 00f6 06000000 		.4byte	.LVL0
+ 638 00fa 04030000 		.4byte	0x304
+ 639 00fe 08       		.uleb128 0x8
+ 640 00ff 16000000 		.4byte	.LVL1
+ 641 0103 12030000 		.4byte	0x312
+ 642 0107 00       		.byte	0
+ 643 0108 06       		.uleb128 0x6
+ 644 0109 01       		.byte	0x1
+ 645 010a 4E020000 		.4byte	.LASF19
+ 646 010e 01       		.byte	0x1
+ 647 010f 4E       		.byte	0x4e
+ 648 0110 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 20
 
 
- 729 0116 6F000000 		.4byte	0x6f
- 730 011a 02       		.byte	0x2
- 731 011b 91       		.byte	0x91
- 732 011c 6F       		.sleb128 -17
- 733 011d 07       		.uleb128 0x7
- 734 011e 7C010000 		.4byte	.LASF21
- 735 0122 01       		.byte	0x1
- 736 0123 52       		.byte	0x52
- 737 0124 C0000000 		.4byte	0xc0
- 738 0128 02       		.byte	0x2
- 739 0129 91       		.byte	0x91
- 740 012a 68       		.sleb128 -24
- 741 012b 00       		.byte	0
- 742 012c 06       		.uleb128 0x6
- 743 012d 01       		.byte	0x1
- 744 012e 45000000 		.4byte	.LASF22
- 745 0132 01       		.byte	0x1
- 746 0133 98       		.byte	0x98
- 747 0134 01       		.byte	0x1
- 748 0135 00000000 		.4byte	.LFB2
- 749 0139 6C000000 		.4byte	.LFE2
- 750 013d 70000000 		.4byte	.LLST2
- 751 0141 01       		.byte	0x1
- 752 0142 55010000 		.4byte	0x155
- 753 0146 07       		.uleb128 0x7
- 754 0147 BC000000 		.4byte	.LASF20
- 755 014b 01       		.byte	0x1
- 756 014c 9A       		.byte	0x9a
- 757 014d 6F000000 		.4byte	0x6f
- 758 0151 02       		.byte	0x2
- 759 0152 91       		.byte	0x91
- 760 0153 6F       		.sleb128 -17
- 761 0154 00       		.byte	0
- 762 0155 08       		.uleb128 0x8
- 763 0156 01       		.byte	0x1
- 764 0157 E3000000 		.4byte	.LASF29
- 765 015b 01       		.byte	0x1
- 766 015c D5       		.byte	0xd5
- 767 015d 01       		.byte	0x1
- 768 015e 00000000 		.4byte	.LFB3
- 769 0162 34000000 		.4byte	.LFE3
- 770 0166 A8000000 		.4byte	.LLST3
- 771 016a 01       		.byte	0x1
- 772 016b 09       		.uleb128 0x9
- 773 016c 01       		.byte	0x1
- 774 016d 0C000000 		.4byte	.LASF23
- 775 0171 01       		.byte	0x1
- 776 0172 0601     		.2byte	0x106
- 777 0174 01       		.byte	0x1
- 778 0175 00000000 		.4byte	.LFB4
- 779 0179 4C000000 		.4byte	.LFE4
- 780 017d D4000000 		.4byte	.LLST4
- 781 0181 01       		.byte	0x1
- 782 0182 A5010000 		.4byte	0x1a5
- 783 0186 0A       		.uleb128 0xa
- 784 0187 41010000 		.4byte	.LASF30
- 785 018b 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 22
+ 649 0111 00000000 		.4byte	.LFB1
+ 650 0115 54000000 		.4byte	.LFE1
+ 651 0119 33000000 		.4byte	.LLST2
+ 652 011d 01       		.byte	0x1
+ 653 011e 6D010000 		.4byte	0x16d
+ 654 0122 07       		.uleb128 0x7
+ 655 0123 E1000000 		.4byte	.LASF20
+ 656 0127 01       		.byte	0x1
+ 657 0128 50       		.byte	0x50
+ 658 0129 6F000000 		.4byte	0x6f
+ 659 012d 53000000 		.4byte	.LLST3
+ 660 0131 07       		.uleb128 0x7
+ 661 0132 CE010000 		.4byte	.LASF21
+ 662 0136 01       		.byte	0x1
+ 663 0137 52       		.byte	0x52
+ 664 0138 C0000000 		.4byte	0xc0
+ 665 013c 71000000 		.4byte	.LLST4
+ 666 0140 08       		.uleb128 0x8
+ 667 0141 06000000 		.4byte	.LVL2
+ 668 0145 04030000 		.4byte	0x304
+ 669 0149 09       		.uleb128 0x9
+ 670 014a 30000000 		.4byte	.LVL6
+ 671 014e 26030000 		.4byte	0x326
+ 672 0152 5C010000 		.4byte	0x15c
+ 673 0156 0A       		.uleb128 0xa
+ 674 0157 01       		.byte	0x1
+ 675 0158 50       		.byte	0x50
+ 676 0159 01       		.byte	0x1
+ 677 015a 32       		.byte	0x32
+ 678 015b 00       		.byte	0
+ 679 015c 0B       		.uleb128 0xb
+ 680 015d 3C000000 		.4byte	.LVL7
+ 681 0161 12030000 		.4byte	0x312
+ 682 0165 0A       		.uleb128 0xa
+ 683 0166 01       		.byte	0x1
+ 684 0167 50       		.byte	0x50
+ 685 0168 02       		.byte	0x2
+ 686 0169 75       		.byte	0x75
+ 687 016a 00       		.sleb128 0
+ 688 016b 00       		.byte	0
+ 689 016c 00       		.byte	0
+ 690 016d 06       		.uleb128 0x6
+ 691 016e 01       		.byte	0x1
+ 692 016f 53000000 		.4byte	.LASF22
+ 693 0173 01       		.byte	0x1
+ 694 0174 98       		.byte	0x98
+ 695 0175 01       		.byte	0x1
+ 696 0176 00000000 		.4byte	.LFB2
+ 697 017a 50000000 		.4byte	.LFE2
+ 698 017e 90000000 		.4byte	.LLST5
+ 699 0182 01       		.byte	0x1
+ 700 0183 A9010000 		.4byte	0x1a9
+ 701 0187 07       		.uleb128 0x7
+ 702 0188 E1000000 		.4byte	.LASF20
+ 703 018c 01       		.byte	0x1
+ 704 018d 9A       		.byte	0x9a
+ 705 018e 6F000000 		.4byte	0x6f
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 21
 
 
- 786 018c 0601     		.2byte	0x106
- 787 018e 85000000 		.4byte	0x85
- 788 0192 02       		.byte	0x2
- 789 0193 91       		.byte	0x91
- 790 0194 64       		.sleb128 -28
- 791 0195 0B       		.uleb128 0xb
- 792 0196 BC000000 		.4byte	.LASF20
- 793 019a 01       		.byte	0x1
- 794 019b 0801     		.2byte	0x108
- 795 019d 6F000000 		.4byte	0x6f
- 796 01a1 02       		.byte	0x2
- 797 01a2 91       		.byte	0x91
- 798 01a3 6F       		.sleb128 -17
- 799 01a4 00       		.byte	0
- 800 01a5 0C       		.uleb128 0xc
- 801 01a6 01       		.byte	0x1
- 802 01a7 4A010000 		.4byte	.LASF31
- 803 01ab 01       		.byte	0x1
- 804 01ac 2801     		.2byte	0x128
- 805 01ae 01       		.byte	0x1
- 806 01af 85000000 		.4byte	0x85
- 807 01b3 00000000 		.4byte	.LFB5
- 808 01b7 40000000 		.4byte	.LFE5
- 809 01bb 0C010000 		.4byte	.LLST5
- 810 01bf 01       		.byte	0x1
- 811 01c0 D4010000 		.4byte	0x1d4
- 812 01c4 0B       		.uleb128 0xb
- 813 01c5 3A010000 		.4byte	.LASF24
- 814 01c9 01       		.byte	0x1
- 815 01ca 2A01     		.2byte	0x12a
- 816 01cc 85000000 		.4byte	0x85
- 817 01d0 02       		.byte	0x2
- 818 01d1 91       		.byte	0x91
- 819 01d2 74       		.sleb128 -12
- 820 01d3 00       		.byte	0
- 821 01d4 09       		.uleb128 0x9
- 822 01d5 01       		.byte	0x1
- 823 01d6 22020000 		.4byte	.LASF25
- 824 01da 01       		.byte	0x1
- 825 01db 5701     		.2byte	0x157
- 826 01dd 01       		.byte	0x1
- 827 01de 00000000 		.4byte	.LFB6
- 828 01e2 5C000000 		.4byte	.LFE6
- 829 01e6 44010000 		.4byte	.LLST6
- 830 01ea 01       		.byte	0x1
- 831 01eb FF010000 		.4byte	0x1ff
- 832 01ef 0B       		.uleb128 0xb
- 833 01f0 BC000000 		.4byte	.LASF20
- 834 01f4 01       		.byte	0x1
- 835 01f5 5901     		.2byte	0x159
- 836 01f7 6F000000 		.4byte	0x6f
- 837 01fb 02       		.byte	0x2
- 838 01fc 91       		.byte	0x91
- 839 01fd 6F       		.sleb128 -17
- 840 01fe 00       		.byte	0
- 841 01ff 0D       		.uleb128 0xd
- 842 0200 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 23
+ 706 0192 B0000000 		.4byte	.LLST6
+ 707 0196 08       		.uleb128 0x8
+ 708 0197 06000000 		.4byte	.LVL9
+ 709 019b 04030000 		.4byte	0x304
+ 710 019f 08       		.uleb128 0x8
+ 711 01a0 38000000 		.4byte	.LVL10
+ 712 01a4 12030000 		.4byte	0x312
+ 713 01a8 00       		.byte	0
+ 714 01a9 0C       		.uleb128 0xc
+ 715 01aa 01       		.byte	0x1
+ 716 01ab 1A000000 		.4byte	.LASF23
+ 717 01af 01       		.byte	0x1
+ 718 01b0 0601     		.2byte	0x106
+ 719 01b2 01       		.byte	0x1
+ 720 01b3 00000000 		.4byte	.LFB4
+ 721 01b7 2C000000 		.4byte	.LFE4
+ 722 01bb C3000000 		.4byte	.LLST7
+ 723 01bf 01       		.byte	0x1
+ 724 01c0 F7010000 		.4byte	0x1f7
+ 725 01c4 0D       		.uleb128 0xd
+ 726 01c5 93010000 		.4byte	.LASF33
+ 727 01c9 01       		.byte	0x1
+ 728 01ca 0601     		.2byte	0x106
+ 729 01cc 85000000 		.4byte	0x85
+ 730 01d0 E3000000 		.4byte	.LLST8
+ 731 01d4 0E       		.uleb128 0xe
+ 732 01d5 E1000000 		.4byte	.LASF20
+ 733 01d9 01       		.byte	0x1
+ 734 01da 0801     		.2byte	0x108
+ 735 01dc 6F000000 		.4byte	0x6f
+ 736 01e0 28010000 		.4byte	.LLST9
+ 737 01e4 08       		.uleb128 0x8
+ 738 01e5 08000000 		.4byte	.LVL12
+ 739 01e9 04030000 		.4byte	0x304
+ 740 01ed 08       		.uleb128 0x8
+ 741 01ee 22000000 		.4byte	.LVL16
+ 742 01f2 12030000 		.4byte	0x312
+ 743 01f6 00       		.byte	0
+ 744 01f7 0F       		.uleb128 0xf
+ 745 01f8 01       		.byte	0x1
+ 746 01f9 9C010000 		.4byte	.LASF34
+ 747 01fd 01       		.byte	0x1
+ 748 01fe 2801     		.2byte	0x128
+ 749 0200 01       		.byte	0x1
+ 750 0201 85000000 		.4byte	0x85
+ 751 0205 00000000 		.4byte	.LFB5
+ 752 0209 24000000 		.4byte	.LFE5
+ 753 020d 3B010000 		.4byte	.LLST10
+ 754 0211 01       		.byte	0x1
+ 755 0212 27020000 		.4byte	0x227
+ 756 0216 0E       		.uleb128 0xe
+ 757 0217 8C010000 		.4byte	.LASF24
+ 758 021b 01       		.byte	0x1
+ 759 021c 2A01     		.2byte	0x12a
+ 760 021e 85000000 		.4byte	0x85
+ 761 0222 5B010000 		.4byte	.LLST11
+ 762 0226 00       		.byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 22
 
 
- 843 0201 F6000000 		.4byte	.LASF32
- 844 0205 01       		.byte	0x1
- 845 0206 8401     		.2byte	0x184
- 846 0208 01       		.byte	0x1
- 847 0209 00000000 		.4byte	.LFB7
- 848 020d 4C000000 		.4byte	.LFE7
- 849 0211 7C010000 		.4byte	.LLST7
- 850 0215 01       		.byte	0x1
- 851 0216 0B       		.uleb128 0xb
- 852 0217 BC000000 		.4byte	.LASF20
- 853 021b 01       		.byte	0x1
- 854 021c 8601     		.2byte	0x186
- 855 021e 6F000000 		.4byte	0x6f
- 856 0222 02       		.byte	0x2
- 857 0223 91       		.byte	0x91
- 858 0224 6F       		.sleb128 -17
- 859 0225 00       		.byte	0
- 860 0226 00       		.byte	0
- 861              		.section	.debug_abbrev,"",%progbits
- 862              	.Ldebug_abbrev0:
- 863 0000 01       		.uleb128 0x1
- 864 0001 11       		.uleb128 0x11
- 865 0002 01       		.byte	0x1
- 866 0003 25       		.uleb128 0x25
- 867 0004 0E       		.uleb128 0xe
- 868 0005 13       		.uleb128 0x13
- 869 0006 0B       		.uleb128 0xb
- 870 0007 03       		.uleb128 0x3
- 871 0008 0E       		.uleb128 0xe
- 872 0009 1B       		.uleb128 0x1b
- 873 000a 0E       		.uleb128 0xe
- 874 000b 55       		.uleb128 0x55
- 875 000c 06       		.uleb128 0x6
- 876 000d 11       		.uleb128 0x11
- 877 000e 01       		.uleb128 0x1
- 878 000f 52       		.uleb128 0x52
- 879 0010 01       		.uleb128 0x1
- 880 0011 10       		.uleb128 0x10
- 881 0012 06       		.uleb128 0x6
- 882 0013 00       		.byte	0
- 883 0014 00       		.byte	0
- 884 0015 02       		.uleb128 0x2
- 885 0016 24       		.uleb128 0x24
- 886 0017 00       		.byte	0
- 887 0018 0B       		.uleb128 0xb
- 888 0019 0B       		.uleb128 0xb
- 889 001a 3E       		.uleb128 0x3e
- 890 001b 0B       		.uleb128 0xb
- 891 001c 03       		.uleb128 0x3
- 892 001d 0E       		.uleb128 0xe
- 893 001e 00       		.byte	0
- 894 001f 00       		.byte	0
- 895 0020 03       		.uleb128 0x3
- 896 0021 24       		.uleb128 0x24
- 897 0022 00       		.byte	0
- 898 0023 0B       		.uleb128 0xb
- 899 0024 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 24
+ 763 0227 0C       		.uleb128 0xc
+ 764 0228 01       		.byte	0x1
+ 765 0229 74020000 		.4byte	.LASF25
+ 766 022d 01       		.byte	0x1
+ 767 022e 5701     		.2byte	0x157
+ 768 0230 01       		.byte	0x1
+ 769 0231 00000000 		.4byte	.LFB6
+ 770 0235 40000000 		.4byte	.LFE6
+ 771 0239 92010000 		.4byte	.LLST12
+ 772 023d 01       		.byte	0x1
+ 773 023e 7F020000 		.4byte	0x27f
+ 774 0242 0E       		.uleb128 0xe
+ 775 0243 E1000000 		.4byte	.LASF20
+ 776 0247 01       		.byte	0x1
+ 777 0248 5901     		.2byte	0x159
+ 778 024a 6F000000 		.4byte	0x6f
+ 779 024e B2010000 		.4byte	.LLST13
+ 780 0252 08       		.uleb128 0x8
+ 781 0253 06000000 		.4byte	.LVL21
+ 782 0257 04030000 		.4byte	0x304
+ 783 025b 09       		.uleb128 0x9
+ 784 025c 22000000 		.4byte	.LVL24
+ 785 0260 3A030000 		.4byte	0x33a
+ 786 0264 6E020000 		.4byte	0x26e
+ 787 0268 0A       		.uleb128 0xa
+ 788 0269 01       		.byte	0x1
+ 789 026a 50       		.byte	0x50
+ 790 026b 01       		.byte	0x1
+ 791 026c 36       		.byte	0x36
+ 792 026d 00       		.byte	0
+ 793 026e 0B       		.uleb128 0xb
+ 794 026f 30000000 		.4byte	.LVL25
+ 795 0273 12030000 		.4byte	0x312
+ 796 0277 0A       		.uleb128 0xa
+ 797 0278 01       		.byte	0x1
+ 798 0279 50       		.byte	0x50
+ 799 027a 02       		.byte	0x2
+ 800 027b 75       		.byte	0x75
+ 801 027c 00       		.sleb128 0
+ 802 027d 00       		.byte	0
+ 803 027e 00       		.byte	0
+ 804 027f 06       		.uleb128 0x6
+ 805 0280 01       		.byte	0x1
+ 806 0281 08010000 		.4byte	.LASF26
+ 807 0285 01       		.byte	0x1
+ 808 0286 D5       		.byte	0xd5
+ 809 0287 01       		.byte	0x1
+ 810 0288 00000000 		.4byte	.LFB3
+ 811 028c 2C000000 		.4byte	.LFE3
+ 812 0290 D0010000 		.4byte	.LLST14
+ 813 0294 01       		.byte	0x1
+ 814 0295 AC020000 		.4byte	0x2ac
+ 815 0299 08       		.uleb128 0x8
+ 816 029a 06000000 		.4byte	.LVL27
+ 817 029e 04030000 		.4byte	0x304
+ 818 02a2 08       		.uleb128 0x8
+ 819 02a3 0A000000 		.4byte	.LVL28
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 23
 
 
- 900 0025 3E       		.uleb128 0x3e
- 901 0026 0B       		.uleb128 0xb
- 902 0027 03       		.uleb128 0x3
- 903 0028 08       		.uleb128 0x8
- 904 0029 00       		.byte	0
- 905 002a 00       		.byte	0
- 906 002b 04       		.uleb128 0x4
- 907 002c 16       		.uleb128 0x16
- 908 002d 00       		.byte	0
- 909 002e 03       		.uleb128 0x3
- 910 002f 0E       		.uleb128 0xe
- 911 0030 3A       		.uleb128 0x3a
- 912 0031 0B       		.uleb128 0xb
- 913 0032 3B       		.uleb128 0x3b
- 914 0033 0B       		.uleb128 0xb
- 915 0034 49       		.uleb128 0x49
- 916 0035 13       		.uleb128 0x13
- 917 0036 00       		.byte	0
- 918 0037 00       		.byte	0
- 919 0038 05       		.uleb128 0x5
- 920 0039 35       		.uleb128 0x35
- 921 003a 00       		.byte	0
- 922 003b 49       		.uleb128 0x49
- 923 003c 13       		.uleb128 0x13
- 924 003d 00       		.byte	0
- 925 003e 00       		.byte	0
- 926 003f 06       		.uleb128 0x6
- 927 0040 2E       		.uleb128 0x2e
- 928 0041 01       		.byte	0x1
- 929 0042 3F       		.uleb128 0x3f
- 930 0043 0C       		.uleb128 0xc
- 931 0044 03       		.uleb128 0x3
- 932 0045 0E       		.uleb128 0xe
- 933 0046 3A       		.uleb128 0x3a
- 934 0047 0B       		.uleb128 0xb
- 935 0048 3B       		.uleb128 0x3b
- 936 0049 0B       		.uleb128 0xb
- 937 004a 27       		.uleb128 0x27
- 938 004b 0C       		.uleb128 0xc
- 939 004c 11       		.uleb128 0x11
- 940 004d 01       		.uleb128 0x1
- 941 004e 12       		.uleb128 0x12
- 942 004f 01       		.uleb128 0x1
- 943 0050 40       		.uleb128 0x40
- 944 0051 06       		.uleb128 0x6
- 945 0052 9642     		.uleb128 0x2116
- 946 0054 0C       		.uleb128 0xc
- 947 0055 01       		.uleb128 0x1
- 948 0056 13       		.uleb128 0x13
- 949 0057 00       		.byte	0
- 950 0058 00       		.byte	0
- 951 0059 07       		.uleb128 0x7
- 952 005a 34       		.uleb128 0x34
- 953 005b 00       		.byte	0
- 954 005c 03       		.uleb128 0x3
- 955 005d 0E       		.uleb128 0xe
- 956 005e 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 25
+ 820 02a7 27020000 		.4byte	0x227
+ 821 02ab 00       		.byte	0
+ 822 02ac 0C       		.uleb128 0xc
+ 823 02ad 01       		.byte	0x1
+ 824 02ae 1B010000 		.4byte	.LASF27
+ 825 02b2 01       		.byte	0x1
+ 826 02b3 8401     		.2byte	0x184
+ 827 02b5 01       		.byte	0x1
+ 828 02b6 00000000 		.4byte	.LFB7
+ 829 02ba 34000000 		.4byte	.LFE7
+ 830 02be F0010000 		.4byte	.LLST15
+ 831 02c2 01       		.byte	0x1
+ 832 02c3 04030000 		.4byte	0x304
+ 833 02c7 0E       		.uleb128 0xe
+ 834 02c8 E1000000 		.4byte	.LASF20
+ 835 02cc 01       		.byte	0x1
+ 836 02cd 8601     		.2byte	0x186
+ 837 02cf 6F000000 		.4byte	0x6f
+ 838 02d3 10020000 		.4byte	.LLST16
+ 839 02d7 08       		.uleb128 0x8
+ 840 02d8 06000000 		.4byte	.LVL29
+ 841 02dc 04030000 		.4byte	0x304
+ 842 02e0 09       		.uleb128 0x9
+ 843 02e1 1E000000 		.4byte	.LVL32
+ 844 02e5 3A030000 		.4byte	0x33a
+ 845 02e9 F3020000 		.4byte	0x2f3
+ 846 02ed 0A       		.uleb128 0xa
+ 847 02ee 01       		.byte	0x1
+ 848 02ef 50       		.byte	0x50
+ 849 02f0 01       		.byte	0x1
+ 850 02f1 36       		.byte	0x36
+ 851 02f2 00       		.byte	0
+ 852 02f3 0B       		.uleb128 0xb
+ 853 02f4 2A000000 		.4byte	.LVL33
+ 854 02f8 12030000 		.4byte	0x312
+ 855 02fc 0A       		.uleb128 0xa
+ 856 02fd 01       		.byte	0x1
+ 857 02fe 50       		.byte	0x50
+ 858 02ff 02       		.byte	0x2
+ 859 0300 76       		.byte	0x76
+ 860 0301 00       		.sleb128 0
+ 861 0302 00       		.byte	0
+ 862 0303 00       		.byte	0
+ 863 0304 10       		.uleb128 0x10
+ 864 0305 01       		.byte	0x1
+ 865 0306 3B010000 		.4byte	.LASF35
+ 866 030a 03       		.byte	0x3
+ 867 030b 73       		.byte	0x73
+ 868 030c 01       		.byte	0x1
+ 869 030d 6F000000 		.4byte	0x6f
+ 870 0311 01       		.byte	0x1
+ 871 0312 11       		.uleb128 0x11
+ 872 0313 01       		.byte	0x1
+ 873 0314 5F010000 		.4byte	.LASF28
+ 874 0318 03       		.byte	0x3
+ 875 0319 74       		.byte	0x74
+ 876 031a 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 24
 
 
- 957 005f 0B       		.uleb128 0xb
- 958 0060 3B       		.uleb128 0x3b
- 959 0061 0B       		.uleb128 0xb
- 960 0062 49       		.uleb128 0x49
- 961 0063 13       		.uleb128 0x13
- 962 0064 02       		.uleb128 0x2
- 963 0065 0A       		.uleb128 0xa
- 964 0066 00       		.byte	0
- 965 0067 00       		.byte	0
- 966 0068 08       		.uleb128 0x8
- 967 0069 2E       		.uleb128 0x2e
- 968 006a 00       		.byte	0
- 969 006b 3F       		.uleb128 0x3f
- 970 006c 0C       		.uleb128 0xc
- 971 006d 03       		.uleb128 0x3
- 972 006e 0E       		.uleb128 0xe
- 973 006f 3A       		.uleb128 0x3a
- 974 0070 0B       		.uleb128 0xb
- 975 0071 3B       		.uleb128 0x3b
- 976 0072 0B       		.uleb128 0xb
- 977 0073 27       		.uleb128 0x27
- 978 0074 0C       		.uleb128 0xc
- 979 0075 11       		.uleb128 0x11
- 980 0076 01       		.uleb128 0x1
- 981 0077 12       		.uleb128 0x12
- 982 0078 01       		.uleb128 0x1
- 983 0079 40       		.uleb128 0x40
- 984 007a 06       		.uleb128 0x6
- 985 007b 9642     		.uleb128 0x2116
- 986 007d 0C       		.uleb128 0xc
- 987 007e 00       		.byte	0
- 988 007f 00       		.byte	0
- 989 0080 09       		.uleb128 0x9
- 990 0081 2E       		.uleb128 0x2e
- 991 0082 01       		.byte	0x1
- 992 0083 3F       		.uleb128 0x3f
- 993 0084 0C       		.uleb128 0xc
- 994 0085 03       		.uleb128 0x3
- 995 0086 0E       		.uleb128 0xe
- 996 0087 3A       		.uleb128 0x3a
- 997 0088 0B       		.uleb128 0xb
- 998 0089 3B       		.uleb128 0x3b
- 999 008a 05       		.uleb128 0x5
- 1000 008b 27       		.uleb128 0x27
- 1001 008c 0C       		.uleb128 0xc
- 1002 008d 11       		.uleb128 0x11
- 1003 008e 01       		.uleb128 0x1
- 1004 008f 12       		.uleb128 0x12
- 1005 0090 01       		.uleb128 0x1
- 1006 0091 40       		.uleb128 0x40
- 1007 0092 06       		.uleb128 0x6
- 1008 0093 9642     		.uleb128 0x2116
- 1009 0095 0C       		.uleb128 0xc
- 1010 0096 01       		.uleb128 0x1
- 1011 0097 13       		.uleb128 0x13
- 1012 0098 00       		.byte	0
- 1013 0099 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 26
+ 877 031b 01       		.byte	0x1
+ 878 031c 26030000 		.4byte	0x326
+ 879 0320 12       		.uleb128 0x12
+ 880 0321 6F000000 		.4byte	0x6f
+ 881 0325 00       		.byte	0
+ 882 0326 11       		.uleb128 0x11
+ 883 0327 01       		.byte	0x1
+ 884 0328 75010000 		.4byte	.LASF29
+ 885 032c 03       		.byte	0x3
+ 886 032d 2A       		.byte	0x2a
+ 887 032e 01       		.byte	0x1
+ 888 032f 01       		.byte	0x1
+ 889 0330 3A030000 		.4byte	0x33a
+ 890 0334 12       		.uleb128 0x12
+ 891 0335 85000000 		.4byte	0x85
+ 892 0339 00       		.byte	0
+ 893 033a 13       		.uleb128 0x13
+ 894 033b 01       		.byte	0x1
+ 895 033c 06000000 		.4byte	.LASF36
+ 896 0340 03       		.byte	0x3
+ 897 0341 6F       		.byte	0x6f
+ 898 0342 01       		.byte	0x1
+ 899 0343 01       		.byte	0x1
+ 900 0344 12       		.uleb128 0x12
+ 901 0345 85000000 		.4byte	0x85
+ 902 0349 00       		.byte	0
+ 903 034a 00       		.byte	0
+ 904              		.section	.debug_abbrev,"",%progbits
+ 905              	.Ldebug_abbrev0:
+ 906 0000 01       		.uleb128 0x1
+ 907 0001 11       		.uleb128 0x11
+ 908 0002 01       		.byte	0x1
+ 909 0003 25       		.uleb128 0x25
+ 910 0004 0E       		.uleb128 0xe
+ 911 0005 13       		.uleb128 0x13
+ 912 0006 0B       		.uleb128 0xb
+ 913 0007 03       		.uleb128 0x3
+ 914 0008 0E       		.uleb128 0xe
+ 915 0009 1B       		.uleb128 0x1b
+ 916 000a 0E       		.uleb128 0xe
+ 917 000b 55       		.uleb128 0x55
+ 918 000c 06       		.uleb128 0x6
+ 919 000d 11       		.uleb128 0x11
+ 920 000e 01       		.uleb128 0x1
+ 921 000f 52       		.uleb128 0x52
+ 922 0010 01       		.uleb128 0x1
+ 923 0011 10       		.uleb128 0x10
+ 924 0012 06       		.uleb128 0x6
+ 925 0013 00       		.byte	0
+ 926 0014 00       		.byte	0
+ 927 0015 02       		.uleb128 0x2
+ 928 0016 24       		.uleb128 0x24
+ 929 0017 00       		.byte	0
+ 930 0018 0B       		.uleb128 0xb
+ 931 0019 0B       		.uleb128 0xb
+ 932 001a 3E       		.uleb128 0x3e
+ 933 001b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 25
 
 
- 1014 009a 0A       		.uleb128 0xa
- 1015 009b 05       		.uleb128 0x5
- 1016 009c 00       		.byte	0
- 1017 009d 03       		.uleb128 0x3
- 1018 009e 0E       		.uleb128 0xe
- 1019 009f 3A       		.uleb128 0x3a
- 1020 00a0 0B       		.uleb128 0xb
- 1021 00a1 3B       		.uleb128 0x3b
- 1022 00a2 05       		.uleb128 0x5
- 1023 00a3 49       		.uleb128 0x49
- 1024 00a4 13       		.uleb128 0x13
- 1025 00a5 02       		.uleb128 0x2
- 1026 00a6 0A       		.uleb128 0xa
- 1027 00a7 00       		.byte	0
- 1028 00a8 00       		.byte	0
- 1029 00a9 0B       		.uleb128 0xb
- 1030 00aa 34       		.uleb128 0x34
- 1031 00ab 00       		.byte	0
- 1032 00ac 03       		.uleb128 0x3
- 1033 00ad 0E       		.uleb128 0xe
- 1034 00ae 3A       		.uleb128 0x3a
- 1035 00af 0B       		.uleb128 0xb
- 1036 00b0 3B       		.uleb128 0x3b
- 1037 00b1 05       		.uleb128 0x5
- 1038 00b2 49       		.uleb128 0x49
- 1039 00b3 13       		.uleb128 0x13
- 1040 00b4 02       		.uleb128 0x2
- 1041 00b5 0A       		.uleb128 0xa
- 1042 00b6 00       		.byte	0
- 1043 00b7 00       		.byte	0
- 1044 00b8 0C       		.uleb128 0xc
- 1045 00b9 2E       		.uleb128 0x2e
- 1046 00ba 01       		.byte	0x1
- 1047 00bb 3F       		.uleb128 0x3f
- 1048 00bc 0C       		.uleb128 0xc
- 1049 00bd 03       		.uleb128 0x3
- 1050 00be 0E       		.uleb128 0xe
- 1051 00bf 3A       		.uleb128 0x3a
- 1052 00c0 0B       		.uleb128 0xb
- 1053 00c1 3B       		.uleb128 0x3b
- 1054 00c2 05       		.uleb128 0x5
- 1055 00c3 27       		.uleb128 0x27
- 1056 00c4 0C       		.uleb128 0xc
- 1057 00c5 49       		.uleb128 0x49
- 1058 00c6 13       		.uleb128 0x13
- 1059 00c7 11       		.uleb128 0x11
- 1060 00c8 01       		.uleb128 0x1
- 1061 00c9 12       		.uleb128 0x12
- 1062 00ca 01       		.uleb128 0x1
- 1063 00cb 40       		.uleb128 0x40
- 1064 00cc 06       		.uleb128 0x6
- 1065 00cd 9742     		.uleb128 0x2117
- 1066 00cf 0C       		.uleb128 0xc
- 1067 00d0 01       		.uleb128 0x1
- 1068 00d1 13       		.uleb128 0x13
- 1069 00d2 00       		.byte	0
- 1070 00d3 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 27
+ 934 001c 03       		.uleb128 0x3
+ 935 001d 0E       		.uleb128 0xe
+ 936 001e 00       		.byte	0
+ 937 001f 00       		.byte	0
+ 938 0020 03       		.uleb128 0x3
+ 939 0021 24       		.uleb128 0x24
+ 940 0022 00       		.byte	0
+ 941 0023 0B       		.uleb128 0xb
+ 942 0024 0B       		.uleb128 0xb
+ 943 0025 3E       		.uleb128 0x3e
+ 944 0026 0B       		.uleb128 0xb
+ 945 0027 03       		.uleb128 0x3
+ 946 0028 08       		.uleb128 0x8
+ 947 0029 00       		.byte	0
+ 948 002a 00       		.byte	0
+ 949 002b 04       		.uleb128 0x4
+ 950 002c 16       		.uleb128 0x16
+ 951 002d 00       		.byte	0
+ 952 002e 03       		.uleb128 0x3
+ 953 002f 0E       		.uleb128 0xe
+ 954 0030 3A       		.uleb128 0x3a
+ 955 0031 0B       		.uleb128 0xb
+ 956 0032 3B       		.uleb128 0x3b
+ 957 0033 0B       		.uleb128 0xb
+ 958 0034 49       		.uleb128 0x49
+ 959 0035 13       		.uleb128 0x13
+ 960 0036 00       		.byte	0
+ 961 0037 00       		.byte	0
+ 962 0038 05       		.uleb128 0x5
+ 963 0039 35       		.uleb128 0x35
+ 964 003a 00       		.byte	0
+ 965 003b 49       		.uleb128 0x49
+ 966 003c 13       		.uleb128 0x13
+ 967 003d 00       		.byte	0
+ 968 003e 00       		.byte	0
+ 969 003f 06       		.uleb128 0x6
+ 970 0040 2E       		.uleb128 0x2e
+ 971 0041 01       		.byte	0x1
+ 972 0042 3F       		.uleb128 0x3f
+ 973 0043 0C       		.uleb128 0xc
+ 974 0044 03       		.uleb128 0x3
+ 975 0045 0E       		.uleb128 0xe
+ 976 0046 3A       		.uleb128 0x3a
+ 977 0047 0B       		.uleb128 0xb
+ 978 0048 3B       		.uleb128 0x3b
+ 979 0049 0B       		.uleb128 0xb
+ 980 004a 27       		.uleb128 0x27
+ 981 004b 0C       		.uleb128 0xc
+ 982 004c 11       		.uleb128 0x11
+ 983 004d 01       		.uleb128 0x1
+ 984 004e 12       		.uleb128 0x12
+ 985 004f 01       		.uleb128 0x1
+ 986 0050 40       		.uleb128 0x40
+ 987 0051 06       		.uleb128 0x6
+ 988 0052 9742     		.uleb128 0x2117
+ 989 0054 0C       		.uleb128 0xc
+ 990 0055 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 26
 
 
- 1071 00d4 0D       		.uleb128 0xd
- 1072 00d5 2E       		.uleb128 0x2e
- 1073 00d6 01       		.byte	0x1
- 1074 00d7 3F       		.uleb128 0x3f
- 1075 00d8 0C       		.uleb128 0xc
- 1076 00d9 03       		.uleb128 0x3
- 1077 00da 0E       		.uleb128 0xe
- 1078 00db 3A       		.uleb128 0x3a
- 1079 00dc 0B       		.uleb128 0xb
- 1080 00dd 3B       		.uleb128 0x3b
- 1081 00de 05       		.uleb128 0x5
- 1082 00df 27       		.uleb128 0x27
- 1083 00e0 0C       		.uleb128 0xc
- 1084 00e1 11       		.uleb128 0x11
- 1085 00e2 01       		.uleb128 0x1
- 1086 00e3 12       		.uleb128 0x12
- 1087 00e4 01       		.uleb128 0x1
- 1088 00e5 40       		.uleb128 0x40
- 1089 00e6 06       		.uleb128 0x6
- 1090 00e7 9642     		.uleb128 0x2116
- 1091 00e9 0C       		.uleb128 0xc
- 1092 00ea 00       		.byte	0
- 1093 00eb 00       		.byte	0
- 1094 00ec 00       		.byte	0
- 1095              		.section	.debug_loc,"",%progbits
- 1096              	.Ldebug_loc0:
- 1097              	.LLST0:
- 1098 0000 00000000 		.4byte	.LFB0
- 1099 0004 02000000 		.4byte	.LCFI0
- 1100 0008 0200     		.2byte	0x2
- 1101 000a 7D       		.byte	0x7d
- 1102 000b 00       		.sleb128 0
- 1103 000c 02000000 		.4byte	.LCFI0
- 1104 0010 04000000 		.4byte	.LCFI1
- 1105 0014 0200     		.2byte	0x2
- 1106 0016 7D       		.byte	0x7d
- 1107 0017 0C       		.sleb128 12
- 1108 0018 04000000 		.4byte	.LCFI1
- 1109 001c 06000000 		.4byte	.LCFI2
- 1110 0020 0200     		.2byte	0x2
- 1111 0022 7D       		.byte	0x7d
- 1112 0023 18       		.sleb128 24
- 1113 0024 06000000 		.4byte	.LCFI2
- 1114 0028 34000000 		.4byte	.LFE0
- 1115 002c 0200     		.2byte	0x2
- 1116 002e 77       		.byte	0x77
- 1117 002f 18       		.sleb128 24
- 1118 0030 00000000 		.4byte	0
- 1119 0034 00000000 		.4byte	0
- 1120              	.LLST1:
- 1121 0038 00000000 		.4byte	.LFB1
- 1122 003c 02000000 		.4byte	.LCFI3
- 1123 0040 0200     		.2byte	0x2
- 1124 0042 7D       		.byte	0x7d
- 1125 0043 00       		.sleb128 0
- 1126 0044 02000000 		.4byte	.LCFI3
- 1127 0048 04000000 		.4byte	.LCFI4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 28
+ 991 0056 13       		.uleb128 0x13
+ 992 0057 00       		.byte	0
+ 993 0058 00       		.byte	0
+ 994 0059 07       		.uleb128 0x7
+ 995 005a 34       		.uleb128 0x34
+ 996 005b 00       		.byte	0
+ 997 005c 03       		.uleb128 0x3
+ 998 005d 0E       		.uleb128 0xe
+ 999 005e 3A       		.uleb128 0x3a
+ 1000 005f 0B       		.uleb128 0xb
+ 1001 0060 3B       		.uleb128 0x3b
+ 1002 0061 0B       		.uleb128 0xb
+ 1003 0062 49       		.uleb128 0x49
+ 1004 0063 13       		.uleb128 0x13
+ 1005 0064 02       		.uleb128 0x2
+ 1006 0065 06       		.uleb128 0x6
+ 1007 0066 00       		.byte	0
+ 1008 0067 00       		.byte	0
+ 1009 0068 08       		.uleb128 0x8
+ 1010 0069 898201   		.uleb128 0x4109
+ 1011 006c 00       		.byte	0
+ 1012 006d 11       		.uleb128 0x11
+ 1013 006e 01       		.uleb128 0x1
+ 1014 006f 31       		.uleb128 0x31
+ 1015 0070 13       		.uleb128 0x13
+ 1016 0071 00       		.byte	0
+ 1017 0072 00       		.byte	0
+ 1018 0073 09       		.uleb128 0x9
+ 1019 0074 898201   		.uleb128 0x4109
+ 1020 0077 01       		.byte	0x1
+ 1021 0078 11       		.uleb128 0x11
+ 1022 0079 01       		.uleb128 0x1
+ 1023 007a 31       		.uleb128 0x31
+ 1024 007b 13       		.uleb128 0x13
+ 1025 007c 01       		.uleb128 0x1
+ 1026 007d 13       		.uleb128 0x13
+ 1027 007e 00       		.byte	0
+ 1028 007f 00       		.byte	0
+ 1029 0080 0A       		.uleb128 0xa
+ 1030 0081 8A8201   		.uleb128 0x410a
+ 1031 0084 00       		.byte	0
+ 1032 0085 02       		.uleb128 0x2
+ 1033 0086 0A       		.uleb128 0xa
+ 1034 0087 9142     		.uleb128 0x2111
+ 1035 0089 0A       		.uleb128 0xa
+ 1036 008a 00       		.byte	0
+ 1037 008b 00       		.byte	0
+ 1038 008c 0B       		.uleb128 0xb
+ 1039 008d 898201   		.uleb128 0x4109
+ 1040 0090 01       		.byte	0x1
+ 1041 0091 11       		.uleb128 0x11
+ 1042 0092 01       		.uleb128 0x1
+ 1043 0093 31       		.uleb128 0x31
+ 1044 0094 13       		.uleb128 0x13
+ 1045 0095 00       		.byte	0
+ 1046 0096 00       		.byte	0
+ 1047 0097 0C       		.uleb128 0xc
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 27
 
 
- 1128 004c 0200     		.2byte	0x2
- 1129 004e 7D       		.byte	0x7d
- 1130 004f 0C       		.sleb128 12
- 1131 0050 04000000 		.4byte	.LCFI4
- 1132 0054 06000000 		.4byte	.LCFI5
- 1133 0058 0200     		.2byte	0x2
- 1134 005a 7D       		.byte	0x7d
- 1135 005b 18       		.sleb128 24
- 1136 005c 06000000 		.4byte	.LCFI5
- 1137 0060 6C000000 		.4byte	.LFE1
- 1138 0064 0200     		.2byte	0x2
- 1139 0066 77       		.byte	0x77
- 1140 0067 18       		.sleb128 24
- 1141 0068 00000000 		.4byte	0
- 1142 006c 00000000 		.4byte	0
- 1143              	.LLST2:
- 1144 0070 00000000 		.4byte	.LFB2
- 1145 0074 02000000 		.4byte	.LCFI6
- 1146 0078 0200     		.2byte	0x2
- 1147 007a 7D       		.byte	0x7d
- 1148 007b 00       		.sleb128 0
- 1149 007c 02000000 		.4byte	.LCFI6
- 1150 0080 04000000 		.4byte	.LCFI7
- 1151 0084 0200     		.2byte	0x2
- 1152 0086 7D       		.byte	0x7d
- 1153 0087 0C       		.sleb128 12
- 1154 0088 04000000 		.4byte	.LCFI7
- 1155 008c 06000000 		.4byte	.LCFI8
- 1156 0090 0200     		.2byte	0x2
- 1157 0092 7D       		.byte	0x7d
- 1158 0093 18       		.sleb128 24
- 1159 0094 06000000 		.4byte	.LCFI8
- 1160 0098 6C000000 		.4byte	.LFE2
- 1161 009c 0200     		.2byte	0x2
- 1162 009e 77       		.byte	0x77
- 1163 009f 18       		.sleb128 24
- 1164 00a0 00000000 		.4byte	0
- 1165 00a4 00000000 		.4byte	0
- 1166              	.LLST3:
- 1167 00a8 00000000 		.4byte	.LFB3
- 1168 00ac 02000000 		.4byte	.LCFI9
- 1169 00b0 0200     		.2byte	0x2
- 1170 00b2 7D       		.byte	0x7d
- 1171 00b3 00       		.sleb128 0
- 1172 00b4 02000000 		.4byte	.LCFI9
- 1173 00b8 04000000 		.4byte	.LCFI10
- 1174 00bc 0200     		.2byte	0x2
- 1175 00be 7D       		.byte	0x7d
- 1176 00bf 08       		.sleb128 8
- 1177 00c0 04000000 		.4byte	.LCFI10
- 1178 00c4 34000000 		.4byte	.LFE3
- 1179 00c8 0200     		.2byte	0x2
- 1180 00ca 77       		.byte	0x77
- 1181 00cb 08       		.sleb128 8
- 1182 00cc 00000000 		.4byte	0
- 1183 00d0 00000000 		.4byte	0
- 1184              	.LLST4:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 29
+ 1048 0098 2E       		.uleb128 0x2e
+ 1049 0099 01       		.byte	0x1
+ 1050 009a 3F       		.uleb128 0x3f
+ 1051 009b 0C       		.uleb128 0xc
+ 1052 009c 03       		.uleb128 0x3
+ 1053 009d 0E       		.uleb128 0xe
+ 1054 009e 3A       		.uleb128 0x3a
+ 1055 009f 0B       		.uleb128 0xb
+ 1056 00a0 3B       		.uleb128 0x3b
+ 1057 00a1 05       		.uleb128 0x5
+ 1058 00a2 27       		.uleb128 0x27
+ 1059 00a3 0C       		.uleb128 0xc
+ 1060 00a4 11       		.uleb128 0x11
+ 1061 00a5 01       		.uleb128 0x1
+ 1062 00a6 12       		.uleb128 0x12
+ 1063 00a7 01       		.uleb128 0x1
+ 1064 00a8 40       		.uleb128 0x40
+ 1065 00a9 06       		.uleb128 0x6
+ 1066 00aa 9742     		.uleb128 0x2117
+ 1067 00ac 0C       		.uleb128 0xc
+ 1068 00ad 01       		.uleb128 0x1
+ 1069 00ae 13       		.uleb128 0x13
+ 1070 00af 00       		.byte	0
+ 1071 00b0 00       		.byte	0
+ 1072 00b1 0D       		.uleb128 0xd
+ 1073 00b2 05       		.uleb128 0x5
+ 1074 00b3 00       		.byte	0
+ 1075 00b4 03       		.uleb128 0x3
+ 1076 00b5 0E       		.uleb128 0xe
+ 1077 00b6 3A       		.uleb128 0x3a
+ 1078 00b7 0B       		.uleb128 0xb
+ 1079 00b8 3B       		.uleb128 0x3b
+ 1080 00b9 05       		.uleb128 0x5
+ 1081 00ba 49       		.uleb128 0x49
+ 1082 00bb 13       		.uleb128 0x13
+ 1083 00bc 02       		.uleb128 0x2
+ 1084 00bd 06       		.uleb128 0x6
+ 1085 00be 00       		.byte	0
+ 1086 00bf 00       		.byte	0
+ 1087 00c0 0E       		.uleb128 0xe
+ 1088 00c1 34       		.uleb128 0x34
+ 1089 00c2 00       		.byte	0
+ 1090 00c3 03       		.uleb128 0x3
+ 1091 00c4 0E       		.uleb128 0xe
+ 1092 00c5 3A       		.uleb128 0x3a
+ 1093 00c6 0B       		.uleb128 0xb
+ 1094 00c7 3B       		.uleb128 0x3b
+ 1095 00c8 05       		.uleb128 0x5
+ 1096 00c9 49       		.uleb128 0x49
+ 1097 00ca 13       		.uleb128 0x13
+ 1098 00cb 02       		.uleb128 0x2
+ 1099 00cc 06       		.uleb128 0x6
+ 1100 00cd 00       		.byte	0
+ 1101 00ce 00       		.byte	0
+ 1102 00cf 0F       		.uleb128 0xf
+ 1103 00d0 2E       		.uleb128 0x2e
+ 1104 00d1 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 28
 
 
- 1185 00d4 00000000 		.4byte	.LFB4
- 1186 00d8 02000000 		.4byte	.LCFI11
- 1187 00dc 0200     		.2byte	0x2
- 1188 00de 7D       		.byte	0x7d
- 1189 00df 00       		.sleb128 0
- 1190 00e0 02000000 		.4byte	.LCFI11
- 1191 00e4 04000000 		.4byte	.LCFI12
- 1192 00e8 0200     		.2byte	0x2
- 1193 00ea 7D       		.byte	0x7d
- 1194 00eb 0C       		.sleb128 12
- 1195 00ec 04000000 		.4byte	.LCFI12
- 1196 00f0 06000000 		.4byte	.LCFI13
- 1197 00f4 0200     		.2byte	0x2
- 1198 00f6 7D       		.byte	0x7d
- 1199 00f7 20       		.sleb128 32
- 1200 00f8 06000000 		.4byte	.LCFI13
- 1201 00fc 4C000000 		.4byte	.LFE4
- 1202 0100 0200     		.2byte	0x2
- 1203 0102 77       		.byte	0x77
- 1204 0103 20       		.sleb128 32
- 1205 0104 00000000 		.4byte	0
- 1206 0108 00000000 		.4byte	0
- 1207              	.LLST5:
- 1208 010c 00000000 		.4byte	.LFB5
- 1209 0110 02000000 		.4byte	.LCFI14
- 1210 0114 0200     		.2byte	0x2
- 1211 0116 7D       		.byte	0x7d
- 1212 0117 00       		.sleb128 0
- 1213 0118 02000000 		.4byte	.LCFI14
- 1214 011c 04000000 		.4byte	.LCFI15
- 1215 0120 0200     		.2byte	0x2
- 1216 0122 7D       		.byte	0x7d
- 1217 0123 08       		.sleb128 8
- 1218 0124 04000000 		.4byte	.LCFI15
- 1219 0128 06000000 		.4byte	.LCFI16
- 1220 012c 0200     		.2byte	0x2
- 1221 012e 7D       		.byte	0x7d
- 1222 012f 10       		.sleb128 16
- 1223 0130 06000000 		.4byte	.LCFI16
- 1224 0134 40000000 		.4byte	.LFE5
- 1225 0138 0200     		.2byte	0x2
- 1226 013a 77       		.byte	0x77
- 1227 013b 10       		.sleb128 16
- 1228 013c 00000000 		.4byte	0
- 1229 0140 00000000 		.4byte	0
- 1230              	.LLST6:
- 1231 0144 00000000 		.4byte	.LFB6
- 1232 0148 02000000 		.4byte	.LCFI17
- 1233 014c 0200     		.2byte	0x2
- 1234 014e 7D       		.byte	0x7d
- 1235 014f 00       		.sleb128 0
- 1236 0150 02000000 		.4byte	.LCFI17
- 1237 0154 04000000 		.4byte	.LCFI18
- 1238 0158 0200     		.2byte	0x2
- 1239 015a 7D       		.byte	0x7d
- 1240 015b 0C       		.sleb128 12
- 1241 015c 04000000 		.4byte	.LCFI18
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 30
+ 1105 00d2 3F       		.uleb128 0x3f
+ 1106 00d3 0C       		.uleb128 0xc
+ 1107 00d4 03       		.uleb128 0x3
+ 1108 00d5 0E       		.uleb128 0xe
+ 1109 00d6 3A       		.uleb128 0x3a
+ 1110 00d7 0B       		.uleb128 0xb
+ 1111 00d8 3B       		.uleb128 0x3b
+ 1112 00d9 05       		.uleb128 0x5
+ 1113 00da 27       		.uleb128 0x27
+ 1114 00db 0C       		.uleb128 0xc
+ 1115 00dc 49       		.uleb128 0x49
+ 1116 00dd 13       		.uleb128 0x13
+ 1117 00de 11       		.uleb128 0x11
+ 1118 00df 01       		.uleb128 0x1
+ 1119 00e0 12       		.uleb128 0x12
+ 1120 00e1 01       		.uleb128 0x1
+ 1121 00e2 40       		.uleb128 0x40
+ 1122 00e3 06       		.uleb128 0x6
+ 1123 00e4 9742     		.uleb128 0x2117
+ 1124 00e6 0C       		.uleb128 0xc
+ 1125 00e7 01       		.uleb128 0x1
+ 1126 00e8 13       		.uleb128 0x13
+ 1127 00e9 00       		.byte	0
+ 1128 00ea 00       		.byte	0
+ 1129 00eb 10       		.uleb128 0x10
+ 1130 00ec 2E       		.uleb128 0x2e
+ 1131 00ed 00       		.byte	0
+ 1132 00ee 3F       		.uleb128 0x3f
+ 1133 00ef 0C       		.uleb128 0xc
+ 1134 00f0 03       		.uleb128 0x3
+ 1135 00f1 0E       		.uleb128 0xe
+ 1136 00f2 3A       		.uleb128 0x3a
+ 1137 00f3 0B       		.uleb128 0xb
+ 1138 00f4 3B       		.uleb128 0x3b
+ 1139 00f5 0B       		.uleb128 0xb
+ 1140 00f6 27       		.uleb128 0x27
+ 1141 00f7 0C       		.uleb128 0xc
+ 1142 00f8 49       		.uleb128 0x49
+ 1143 00f9 13       		.uleb128 0x13
+ 1144 00fa 3C       		.uleb128 0x3c
+ 1145 00fb 0C       		.uleb128 0xc
+ 1146 00fc 00       		.byte	0
+ 1147 00fd 00       		.byte	0
+ 1148 00fe 11       		.uleb128 0x11
+ 1149 00ff 2E       		.uleb128 0x2e
+ 1150 0100 01       		.byte	0x1
+ 1151 0101 3F       		.uleb128 0x3f
+ 1152 0102 0C       		.uleb128 0xc
+ 1153 0103 03       		.uleb128 0x3
+ 1154 0104 0E       		.uleb128 0xe
+ 1155 0105 3A       		.uleb128 0x3a
+ 1156 0106 0B       		.uleb128 0xb
+ 1157 0107 3B       		.uleb128 0x3b
+ 1158 0108 0B       		.uleb128 0xb
+ 1159 0109 27       		.uleb128 0x27
+ 1160 010a 0C       		.uleb128 0xc
+ 1161 010b 3C       		.uleb128 0x3c
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 29
 
 
- 1242 0160 06000000 		.4byte	.LCFI19
- 1243 0164 0200     		.2byte	0x2
- 1244 0166 7D       		.byte	0x7d
- 1245 0167 18       		.sleb128 24
- 1246 0168 06000000 		.4byte	.LCFI19
- 1247 016c 5C000000 		.4byte	.LFE6
- 1248 0170 0200     		.2byte	0x2
- 1249 0172 77       		.byte	0x77
- 1250 0173 18       		.sleb128 24
- 1251 0174 00000000 		.4byte	0
- 1252 0178 00000000 		.4byte	0
- 1253              	.LLST7:
- 1254 017c 00000000 		.4byte	.LFB7
- 1255 0180 02000000 		.4byte	.LCFI20
- 1256 0184 0200     		.2byte	0x2
- 1257 0186 7D       		.byte	0x7d
- 1258 0187 00       		.sleb128 0
- 1259 0188 02000000 		.4byte	.LCFI20
- 1260 018c 04000000 		.4byte	.LCFI21
- 1261 0190 0200     		.2byte	0x2
- 1262 0192 7D       		.byte	0x7d
- 1263 0193 0C       		.sleb128 12
- 1264 0194 04000000 		.4byte	.LCFI21
- 1265 0198 06000000 		.4byte	.LCFI22
- 1266 019c 0200     		.2byte	0x2
- 1267 019e 7D       		.byte	0x7d
- 1268 019f 18       		.sleb128 24
- 1269 01a0 06000000 		.4byte	.LCFI22
- 1270 01a4 4C000000 		.4byte	.LFE7
- 1271 01a8 0200     		.2byte	0x2
- 1272 01aa 77       		.byte	0x77
- 1273 01ab 18       		.sleb128 24
- 1274 01ac 00000000 		.4byte	0
- 1275 01b0 00000000 		.4byte	0
- 1276              		.section	.debug_aranges,"",%progbits
- 1277 0000 54000000 		.4byte	0x54
- 1278 0004 0200     		.2byte	0x2
- 1279 0006 00000000 		.4byte	.Ldebug_info0
- 1280 000a 04       		.byte	0x4
- 1281 000b 00       		.byte	0
- 1282 000c 0000     		.2byte	0
- 1283 000e 0000     		.2byte	0
- 1284 0010 00000000 		.4byte	.LFB0
- 1285 0014 34000000 		.4byte	.LFE0-.LFB0
- 1286 0018 00000000 		.4byte	.LFB1
- 1287 001c 6C000000 		.4byte	.LFE1-.LFB1
- 1288 0020 00000000 		.4byte	.LFB2
- 1289 0024 6C000000 		.4byte	.LFE2-.LFB2
- 1290 0028 00000000 		.4byte	.LFB3
- 1291 002c 34000000 		.4byte	.LFE3-.LFB3
- 1292 0030 00000000 		.4byte	.LFB4
- 1293 0034 4C000000 		.4byte	.LFE4-.LFB4
- 1294 0038 00000000 		.4byte	.LFB5
- 1295 003c 40000000 		.4byte	.LFE5-.LFB5
- 1296 0040 00000000 		.4byte	.LFB6
- 1297 0044 5C000000 		.4byte	.LFE6-.LFB6
- 1298 0048 00000000 		.4byte	.LFB7
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 31
+ 1162 010c 0C       		.uleb128 0xc
+ 1163 010d 01       		.uleb128 0x1
+ 1164 010e 13       		.uleb128 0x13
+ 1165 010f 00       		.byte	0
+ 1166 0110 00       		.byte	0
+ 1167 0111 12       		.uleb128 0x12
+ 1168 0112 05       		.uleb128 0x5
+ 1169 0113 00       		.byte	0
+ 1170 0114 49       		.uleb128 0x49
+ 1171 0115 13       		.uleb128 0x13
+ 1172 0116 00       		.byte	0
+ 1173 0117 00       		.byte	0
+ 1174 0118 13       		.uleb128 0x13
+ 1175 0119 2E       		.uleb128 0x2e
+ 1176 011a 01       		.byte	0x1
+ 1177 011b 3F       		.uleb128 0x3f
+ 1178 011c 0C       		.uleb128 0xc
+ 1179 011d 03       		.uleb128 0x3
+ 1180 011e 0E       		.uleb128 0xe
+ 1181 011f 3A       		.uleb128 0x3a
+ 1182 0120 0B       		.uleb128 0xb
+ 1183 0121 3B       		.uleb128 0x3b
+ 1184 0122 0B       		.uleb128 0xb
+ 1185 0123 27       		.uleb128 0x27
+ 1186 0124 0C       		.uleb128 0xc
+ 1187 0125 3C       		.uleb128 0x3c
+ 1188 0126 0C       		.uleb128 0xc
+ 1189 0127 00       		.byte	0
+ 1190 0128 00       		.byte	0
+ 1191 0129 00       		.byte	0
+ 1192              		.section	.debug_loc,"",%progbits
+ 1193              	.Ldebug_loc0:
+ 1194              	.LLST0:
+ 1195 0000 00000000 		.4byte	.LFB0
+ 1196 0004 02000000 		.4byte	.LCFI0
+ 1197 0008 0200     		.2byte	0x2
+ 1198 000a 7D       		.byte	0x7d
+ 1199 000b 00       		.sleb128 0
+ 1200 000c 02000000 		.4byte	.LCFI0
+ 1201 0010 1C000000 		.4byte	.LFE0
+ 1202 0014 0200     		.2byte	0x2
+ 1203 0016 7D       		.byte	0x7d
+ 1204 0017 08       		.sleb128 8
+ 1205 0018 00000000 		.4byte	0
+ 1206 001c 00000000 		.4byte	0
+ 1207              	.LLST1:
+ 1208 0020 06000000 		.4byte	.LVL0
+ 1209 0024 15000000 		.4byte	.LVL1-1
+ 1210 0028 0100     		.2byte	0x1
+ 1211 002a 50       		.byte	0x50
+ 1212 002b 00000000 		.4byte	0
+ 1213 002f 00000000 		.4byte	0
+ 1214              	.LLST2:
+ 1215 0033 00000000 		.4byte	.LFB1
+ 1216 0037 02000000 		.4byte	.LCFI1
+ 1217 003b 0200     		.2byte	0x2
+ 1218 003d 7D       		.byte	0x7d
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 30
 
 
- 1299 004c 4C000000 		.4byte	.LFE7-.LFB7
- 1300 0050 00000000 		.4byte	0
- 1301 0054 00000000 		.4byte	0
- 1302              		.section	.debug_ranges,"",%progbits
- 1303              	.Ldebug_ranges0:
- 1304 0000 00000000 		.4byte	.LFB0
- 1305 0004 34000000 		.4byte	.LFE0
- 1306 0008 00000000 		.4byte	.LFB1
- 1307 000c 6C000000 		.4byte	.LFE1
- 1308 0010 00000000 		.4byte	.LFB2
- 1309 0014 6C000000 		.4byte	.LFE2
- 1310 0018 00000000 		.4byte	.LFB3
- 1311 001c 34000000 		.4byte	.LFE3
- 1312 0020 00000000 		.4byte	.LFB4
- 1313 0024 4C000000 		.4byte	.LFE4
- 1314 0028 00000000 		.4byte	.LFB5
- 1315 002c 40000000 		.4byte	.LFE5
- 1316 0030 00000000 		.4byte	.LFB6
- 1317 0034 5C000000 		.4byte	.LFE6
- 1318 0038 00000000 		.4byte	.LFB7
- 1319 003c 4C000000 		.4byte	.LFE7
- 1320 0040 00000000 		.4byte	0
- 1321 0044 00000000 		.4byte	0
- 1322              		.section	.debug_line,"",%progbits
- 1323              	.Ldebug_line0:
- 1324 0000 1B010000 		.section	.debug_str,"MS",%progbits,1
- 1324      02004300 
- 1324      00000201 
- 1324      FB0E0D00 
- 1324      01010101 
- 1325              	.LASF15:
- 1326 0000 72656731 		.ascii	"reg16\000"
- 1326      3600
- 1327              	.LASF16:
- 1328 0006 72656733 		.ascii	"reg32\000"
- 1328      3200
- 1329              	.LASF23:
- 1330 000c 43795379 		.ascii	"CySysPmSetWakeupPolarity\000"
- 1330      73506D53 
- 1330      65745761 
- 1330      6B657570 
- 1330      506F6C61 
- 1331              	.LASF18:
- 1332 0025 43795379 		.ascii	"CySysPmSleep\000"
- 1332      73506D53 
- 1332      6C656570 
- 1332      00
- 1333              	.LASF3:
- 1334 0032 73686F72 		.ascii	"short unsigned int\000"
- 1334      7420756E 
- 1334      7369676E 
- 1334      65642069 
- 1334      6E7400
- 1335              	.LASF22:
- 1336 0045 43795379 		.ascii	"CySysPmHibernate\000"
- 1336      73506D48 
- 1336      69626572 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 32
+ 1219 003e 00       		.sleb128 0
+ 1220 003f 02000000 		.4byte	.LCFI1
+ 1221 0043 54000000 		.4byte	.LFE1
+ 1222 0047 0200     		.2byte	0x2
+ 1223 0049 7D       		.byte	0x7d
+ 1224 004a 18       		.sleb128 24
+ 1225 004b 00000000 		.4byte	0
+ 1226 004f 00000000 		.4byte	0
+ 1227              	.LLST3:
+ 1228 0053 0A000000 		.4byte	.LVL3
+ 1229 0057 10000000 		.4byte	.LVL4
+ 1230 005b 0100     		.2byte	0x1
+ 1231 005d 50       		.byte	0x50
+ 1232 005e 10000000 		.4byte	.LVL4
+ 1233 0062 3C000000 		.4byte	.LVL8
+ 1234 0066 0100     		.2byte	0x1
+ 1235 0068 55       		.byte	0x55
+ 1236 0069 00000000 		.4byte	0
+ 1237 006d 00000000 		.4byte	0
+ 1238              	.LLST4:
+ 1239 0071 2A000000 		.4byte	.LVL5
+ 1240 0075 2F000000 		.4byte	.LVL6-1
+ 1241 0079 0100     		.2byte	0x1
+ 1242 007b 52       		.byte	0x52
+ 1243 007c 2F000000 		.4byte	.LVL6-1
+ 1244 0080 54000000 		.4byte	.LFE1
+ 1245 0084 0200     		.2byte	0x2
+ 1246 0086 91       		.byte	0x91
+ 1247 0087 6C       		.sleb128 -20
+ 1248 0088 00000000 		.4byte	0
+ 1249 008c 00000000 		.4byte	0
+ 1250              	.LLST5:
+ 1251 0090 00000000 		.4byte	.LFB2
+ 1252 0094 02000000 		.4byte	.LCFI2
+ 1253 0098 0200     		.2byte	0x2
+ 1254 009a 7D       		.byte	0x7d
+ 1255 009b 00       		.sleb128 0
+ 1256 009c 02000000 		.4byte	.LCFI2
+ 1257 00a0 50000000 		.4byte	.LFE2
+ 1258 00a4 0200     		.2byte	0x2
+ 1259 00a6 7D       		.byte	0x7d
+ 1260 00a7 08       		.sleb128 8
+ 1261 00a8 00000000 		.4byte	0
+ 1262 00ac 00000000 		.4byte	0
+ 1263              	.LLST6:
+ 1264 00b0 06000000 		.4byte	.LVL9
+ 1265 00b4 37000000 		.4byte	.LVL10-1
+ 1266 00b8 0100     		.2byte	0x1
+ 1267 00ba 50       		.byte	0x50
+ 1268 00bb 00000000 		.4byte	0
+ 1269 00bf 00000000 		.4byte	0
+ 1270              	.LLST7:
+ 1271 00c3 00000000 		.4byte	.LFB4
+ 1272 00c7 02000000 		.4byte	.LCFI3
+ 1273 00cb 0200     		.2byte	0x2
+ 1274 00cd 7D       		.byte	0x7d
+ 1275 00ce 00       		.sleb128 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 31
 
 
- 1336      6E617465 
- 1336      00
- 1337              	.LASF28:
- 1338 0056 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 1338      73657273 
- 1338      5C534E46 
- 1338      555C446F 
- 1338      63756D65 
- 1339 0084 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 1339      542D3530 
- 1339      5F50726F 
- 1339      6A656374 
- 1339      5C542D35 
- 1340              	.LASF12:
- 1341 00a8 666C6F61 		.ascii	"float\000"
- 1341      7400
- 1342              	.LASF1:
- 1343 00ae 756E7369 		.ascii	"unsigned char\000"
- 1343      676E6564 
- 1343      20636861 
- 1343      7200
- 1344              	.LASF20:
- 1345 00bc 696E7465 		.ascii	"interruptState\000"
- 1345      72727570 
- 1345      74537461 
- 1345      746500
- 1346              	.LASF5:
- 1347 00cb 6C6F6E67 		.ascii	"long unsigned int\000"
- 1347      20756E73 
- 1347      69676E65 
- 1347      6420696E 
- 1347      7400
- 1348              	.LASF9:
- 1349 00dd 75696E74 		.ascii	"uint8\000"
- 1349      3800
- 1350              	.LASF29:
- 1351 00e3 43795379 		.ascii	"CySysPmStop\000"
- 1351      73506D53 
- 1351      746F7000 
- 1352              	.LASF13:
- 1353 00ef 646F7562 		.ascii	"double\000"
- 1353      6C6500
- 1354              	.LASF32:
- 1355 00f6 43795379 		.ascii	"CySysPmUnfreezeIo\000"
- 1355      73506D55 
- 1355      6E667265 
- 1355      657A6549 
- 1355      6F00
- 1356              	.LASF10:
- 1357 0108 75696E74 		.ascii	"uint16\000"
- 1357      313600
- 1358              	.LASF11:
- 1359 010f 75696E74 		.ascii	"uint32\000"
- 1359      333200
- 1360              	.LASF8:
- 1361 0116 756E7369 		.ascii	"unsigned int\000"
- 1361      676E6564 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 33
+ 1276 00cf 02000000 		.4byte	.LCFI3
+ 1277 00d3 2C000000 		.4byte	.LFE4
+ 1278 00d7 0200     		.2byte	0x2
+ 1279 00d9 7D       		.byte	0x7d
+ 1280 00da 08       		.sleb128 8
+ 1281 00db 00000000 		.4byte	0
+ 1282 00df 00000000 		.4byte	0
+ 1283              	.LLST8:
+ 1284 00e3 00000000 		.4byte	.LVL11
+ 1285 00e7 07000000 		.4byte	.LVL12-1
+ 1286 00eb 0100     		.2byte	0x1
+ 1287 00ed 50       		.byte	0x50
+ 1288 00ee 07000000 		.4byte	.LVL12-1
+ 1289 00f2 12000000 		.4byte	.LVL13
+ 1290 00f6 0100     		.2byte	0x1
+ 1291 00f8 54       		.byte	0x54
+ 1292 00f9 12000000 		.4byte	.LVL13
+ 1293 00fd 18000000 		.4byte	.LVL14
+ 1294 0101 0400     		.2byte	0x4
+ 1295 0103 F3       		.byte	0xf3
+ 1296 0104 01       		.uleb128 0x1
+ 1297 0105 50       		.byte	0x50
+ 1298 0106 9F       		.byte	0x9f
+ 1299 0107 18000000 		.4byte	.LVL14
+ 1300 010b 1C000000 		.4byte	.LVL15
+ 1301 010f 0100     		.2byte	0x1
+ 1302 0111 54       		.byte	0x54
+ 1303 0112 1C000000 		.4byte	.LVL15
+ 1304 0116 2C000000 		.4byte	.LFE4
+ 1305 011a 0400     		.2byte	0x4
+ 1306 011c F3       		.byte	0xf3
+ 1307 011d 01       		.uleb128 0x1
+ 1308 011e 50       		.byte	0x50
+ 1309 011f 9F       		.byte	0x9f
+ 1310 0120 00000000 		.4byte	0
+ 1311 0124 00000000 		.4byte	0
+ 1312              	.LLST9:
+ 1313 0128 08000000 		.4byte	.LVL12
+ 1314 012c 21000000 		.4byte	.LVL16-1
+ 1315 0130 0100     		.2byte	0x1
+ 1316 0132 50       		.byte	0x50
+ 1317 0133 00000000 		.4byte	0
+ 1318 0137 00000000 		.4byte	0
+ 1319              	.LLST10:
+ 1320 013b 00000000 		.4byte	.LFB5
+ 1321 013f 04000000 		.4byte	.LCFI4
+ 1322 0143 0200     		.2byte	0x2
+ 1323 0145 7D       		.byte	0x7d
+ 1324 0146 00       		.sleb128 0
+ 1325 0147 04000000 		.4byte	.LCFI4
+ 1326 014b 24000000 		.4byte	.LFE5
+ 1327 014f 0200     		.2byte	0x2
+ 1328 0151 7D       		.byte	0x7d
+ 1329 0152 04       		.sleb128 4
+ 1330 0153 00000000 		.4byte	0
+ 1331 0157 00000000 		.4byte	0
+ 1332              	.LLST11:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 32
 
 
- 1361      20696E74 
- 1361      00
- 1362              	.LASF7:
- 1363 0123 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1363      206C6F6E 
- 1363      6720756E 
- 1363      7369676E 
- 1363      65642069 
- 1364              	.LASF24:
- 1365 013a 72656173 		.ascii	"reason\000"
- 1365      6F6E00
- 1366              	.LASF30:
- 1367 0141 706F6C61 		.ascii	"polarity\000"
- 1367      72697479 
- 1367      00
- 1368              	.LASF31:
- 1369 014a 43795379 		.ascii	"CySysPmGetResetReason\000"
- 1369      73506D47 
- 1369      65745265 
- 1369      73657452 
- 1369      6561736F 
- 1370              	.LASF17:
- 1371 0160 73697A65 		.ascii	"sizetype\000"
- 1371      74797065 
- 1371      00
- 1372              	.LASF6:
- 1373 0169 6C6F6E67 		.ascii	"long long int\000"
- 1373      206C6F6E 
- 1373      6720696E 
- 1373      7400
- 1374              	.LASF14:
- 1375 0177 63686172 		.ascii	"char\000"
- 1375      00
- 1376              	.LASF21:
- 1377 017c 636C6B53 		.ascii	"clkSelectReg\000"
- 1377      656C6563 
- 1377      74526567 
- 1377      00
- 1378              	.LASF27:
- 1379 0189 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\cyPm.c\000"
- 1379      6E657261 
- 1379      7465645F 
- 1379      536F7572 
- 1379      63655C50 
- 1380              	.LASF2:
- 1381 01a9 73686F72 		.ascii	"short int\000"
- 1381      7420696E 
- 1381      7400
- 1382              	.LASF26:
- 1383 01b3 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1383      4320342E 
- 1383      372E3320 
- 1383      32303133 
- 1383      30333132 
- 1384 01e6 616E6368 		.ascii	"anch revision 196615]\000"
- 1384      20726576 
- 1384      6973696F 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccmBhWaa.s 			page 34
+ 1333 015b 00000000 		.4byte	.LVL17
+ 1334 015f 16000000 		.4byte	.LVL18
+ 1335 0163 0200     		.2byte	0x2
+ 1336 0165 30       		.byte	0x30
+ 1337 0166 9F       		.byte	0x9f
+ 1338 0167 16000000 		.4byte	.LVL18
+ 1339 016b 1A000000 		.4byte	.LVL19
+ 1340 016f 0200     		.2byte	0x2
+ 1341 0171 32       		.byte	0x32
+ 1342 0172 9F       		.byte	0x9f
+ 1343 0173 1A000000 		.4byte	.LVL19
+ 1344 0177 1C000000 		.4byte	.LVL20
+ 1345 017b 0200     		.2byte	0x2
+ 1346 017d 33       		.byte	0x33
+ 1347 017e 9F       		.byte	0x9f
+ 1348 017f 1C000000 		.4byte	.LVL20
+ 1349 0183 24000000 		.4byte	.LFE5
+ 1350 0187 0100     		.2byte	0x1
+ 1351 0189 50       		.byte	0x50
+ 1352 018a 00000000 		.4byte	0
+ 1353 018e 00000000 		.4byte	0
+ 1354              	.LLST12:
+ 1355 0192 00000000 		.4byte	.LFB6
+ 1356 0196 02000000 		.4byte	.LCFI5
+ 1357 019a 0200     		.2byte	0x2
+ 1358 019c 7D       		.byte	0x7d
+ 1359 019d 00       		.sleb128 0
+ 1360 019e 02000000 		.4byte	.LCFI5
+ 1361 01a2 40000000 		.4byte	.LFE6
+ 1362 01a6 0200     		.2byte	0x2
+ 1363 01a8 7D       		.byte	0x7d
+ 1364 01a9 10       		.sleb128 16
+ 1365 01aa 00000000 		.4byte	0
+ 1366 01ae 00000000 		.4byte	0
+ 1367              	.LLST13:
+ 1368 01b2 0A000000 		.4byte	.LVL22
+ 1369 01b6 14000000 		.4byte	.LVL23
+ 1370 01ba 0100     		.2byte	0x1
+ 1371 01bc 50       		.byte	0x50
+ 1372 01bd 14000000 		.4byte	.LVL23
+ 1373 01c1 30000000 		.4byte	.LVL26
+ 1374 01c5 0100     		.2byte	0x1
+ 1375 01c7 55       		.byte	0x55
+ 1376 01c8 00000000 		.4byte	0
+ 1377 01cc 00000000 		.4byte	0
+ 1378              	.LLST14:
+ 1379 01d0 00000000 		.4byte	.LFB3
+ 1380 01d4 02000000 		.4byte	.LCFI6
+ 1381 01d8 0200     		.2byte	0x2
+ 1382 01da 7D       		.byte	0x7d
+ 1383 01db 00       		.sleb128 0
+ 1384 01dc 02000000 		.4byte	.LCFI6
+ 1385 01e0 2C000000 		.4byte	.LFE3
+ 1386 01e4 0200     		.2byte	0x2
+ 1387 01e6 7D       		.byte	0x7d
+ 1388 01e7 08       		.sleb128 8
+ 1389 01e8 00000000 		.4byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 33
 
 
- 1384      6E203139 
- 1384      36363135 
- 1385              	.LASF19:
- 1386 01fc 43795379 		.ascii	"CySysPmDeepSleep\000"
- 1386      73506D44 
- 1386      65657053 
- 1386      6C656570 
- 1386      00
- 1387              	.LASF4:
- 1388 020d 6C6F6E67 		.ascii	"long int\000"
- 1388      20696E74 
- 1388      00
- 1389              	.LASF0:
- 1390 0216 7369676E 		.ascii	"signed char\000"
- 1390      65642063 
- 1390      68617200 
- 1391              	.LASF25:
- 1392 0222 43795379 		.ascii	"CySysPmFreezeIo\000"
- 1392      73506D46 
- 1392      7265657A 
- 1392      65496F00 
- 1393              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 1390 01ec 00000000 		.4byte	0
+ 1391              	.LLST15:
+ 1392 01f0 00000000 		.4byte	.LFB7
+ 1393 01f4 02000000 		.4byte	.LCFI7
+ 1394 01f8 0200     		.2byte	0x2
+ 1395 01fa 7D       		.byte	0x7d
+ 1396 01fb 00       		.sleb128 0
+ 1397 01fc 02000000 		.4byte	.LCFI7
+ 1398 0200 34000000 		.4byte	.LFE7
+ 1399 0204 0200     		.2byte	0x2
+ 1400 0206 7D       		.byte	0x7d
+ 1401 0207 10       		.sleb128 16
+ 1402 0208 00000000 		.4byte	0
+ 1403 020c 00000000 		.4byte	0
+ 1404              	.LLST16:
+ 1405 0210 10000000 		.4byte	.LVL30
+ 1406 0214 14000000 		.4byte	.LVL31
+ 1407 0218 0100     		.2byte	0x1
+ 1408 021a 50       		.byte	0x50
+ 1409 021b 14000000 		.4byte	.LVL31
+ 1410 021f 2A000000 		.4byte	.LVL34
+ 1411 0223 0100     		.2byte	0x1
+ 1412 0225 56       		.byte	0x56
+ 1413 0226 00000000 		.4byte	0
+ 1414 022a 00000000 		.4byte	0
+ 1415              		.section	.debug_aranges,"",%progbits
+ 1416 0000 54000000 		.4byte	0x54
+ 1417 0004 0200     		.2byte	0x2
+ 1418 0006 00000000 		.4byte	.Ldebug_info0
+ 1419 000a 04       		.byte	0x4
+ 1420 000b 00       		.byte	0
+ 1421 000c 0000     		.2byte	0
+ 1422 000e 0000     		.2byte	0
+ 1423 0010 00000000 		.4byte	.LFB0
+ 1424 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 1425 0018 00000000 		.4byte	.LFB1
+ 1426 001c 54000000 		.4byte	.LFE1-.LFB1
+ 1427 0020 00000000 		.4byte	.LFB2
+ 1428 0024 50000000 		.4byte	.LFE2-.LFB2
+ 1429 0028 00000000 		.4byte	.LFB4
+ 1430 002c 2C000000 		.4byte	.LFE4-.LFB4
+ 1431 0030 00000000 		.4byte	.LFB5
+ 1432 0034 24000000 		.4byte	.LFE5-.LFB5
+ 1433 0038 00000000 		.4byte	.LFB6
+ 1434 003c 40000000 		.4byte	.LFE6-.LFB6
+ 1435 0040 00000000 		.4byte	.LFB3
+ 1436 0044 2C000000 		.4byte	.LFE3-.LFB3
+ 1437 0048 00000000 		.4byte	.LFB7
+ 1438 004c 34000000 		.4byte	.LFE7-.LFB7
+ 1439 0050 00000000 		.4byte	0
+ 1440 0054 00000000 		.4byte	0
+ 1441              		.section	.debug_ranges,"",%progbits
+ 1442              	.Ldebug_ranges0:
+ 1443 0000 00000000 		.4byte	.LFB0
+ 1444 0004 1C000000 		.4byte	.LFE0
+ 1445 0008 00000000 		.4byte	.LFB1
+ 1446 000c 54000000 		.4byte	.LFE1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 34
+
+
+ 1447 0010 00000000 		.4byte	.LFB2
+ 1448 0014 50000000 		.4byte	.LFE2
+ 1449 0018 00000000 		.4byte	.LFB4
+ 1450 001c 2C000000 		.4byte	.LFE4
+ 1451 0020 00000000 		.4byte	.LFB5
+ 1452 0024 24000000 		.4byte	.LFE5
+ 1453 0028 00000000 		.4byte	.LFB6
+ 1454 002c 40000000 		.4byte	.LFE6
+ 1455 0030 00000000 		.4byte	.LFB3
+ 1456 0034 2C000000 		.4byte	.LFE3
+ 1457 0038 00000000 		.4byte	.LFB7
+ 1458 003c 34000000 		.4byte	.LFE7
+ 1459 0040 00000000 		.4byte	0
+ 1460 0044 00000000 		.4byte	0
+ 1461              		.section	.debug_line,"",%progbits
+ 1462              	.Ldebug_line0:
+ 1463 0000 39010000 		.section	.debug_str,"MS",%progbits,1
+ 1463      02004E00 
+ 1463      00000201 
+ 1463      FB0E0D00 
+ 1463      01010101 
+ 1464              	.LASF15:
+ 1465 0000 72656731 		.ascii	"reg16\000"
+ 1465      3600
+ 1466              	.LASF36:
+ 1467 0006 43794465 		.ascii	"CyDelayCycles\000"
+ 1467      6C617943 
+ 1467      79636C65 
+ 1467      7300
+ 1468              	.LASF16:
+ 1469 0014 72656733 		.ascii	"reg32\000"
+ 1469      3200
+ 1470              	.LASF23:
+ 1471 001a 43795379 		.ascii	"CySysPmSetWakeupPolarity\000"
+ 1471      73506D53 
+ 1471      65745761 
+ 1471      6B657570 
+ 1471      506F6C61 
+ 1472              	.LASF18:
+ 1473 0033 43795379 		.ascii	"CySysPmSleep\000"
+ 1473      73506D53 
+ 1473      6C656570 
+ 1473      00
+ 1474              	.LASF3:
+ 1475 0040 73686F72 		.ascii	"short unsigned int\000"
+ 1475      7420756E 
+ 1475      7369676E 
+ 1475      65642069 
+ 1475      6E7400
+ 1476              	.LASF22:
+ 1477 0053 43795379 		.ascii	"CySysPmHibernate\000"
+ 1477      73506D48 
+ 1477      69626572 
+ 1477      6E617465 
+ 1477      00
+ 1478              	.LASF32:
+ 1479 0064 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 35
+
+
+ 1479      73657273 
+ 1479      5C534E46 
+ 1479      555C446F 
+ 1479      63756D65 
+ 1480 0092 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 1480      542D3530 
+ 1480      5F50726F 
+ 1480      6A656374 
+ 1480      5C542D35 
+ 1481              	.LASF12:
+ 1482 00b6 666C6F61 		.ascii	"float\000"
+ 1482      7400
+ 1483              	.LASF7:
+ 1484 00bc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1484      206C6F6E 
+ 1484      6720756E 
+ 1484      7369676E 
+ 1484      65642069 
+ 1485              	.LASF1:
+ 1486 00d3 756E7369 		.ascii	"unsigned char\000"
+ 1486      676E6564 
+ 1486      20636861 
+ 1486      7200
+ 1487              	.LASF20:
+ 1488 00e1 696E7465 		.ascii	"interruptState\000"
+ 1488      72727570 
+ 1488      74537461 
+ 1488      746500
+ 1489              	.LASF5:
+ 1490 00f0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1490      20756E73 
+ 1490      69676E65 
+ 1490      6420696E 
+ 1490      7400
+ 1491              	.LASF9:
+ 1492 0102 75696E74 		.ascii	"uint8\000"
+ 1492      3800
+ 1493              	.LASF26:
+ 1494 0108 43795379 		.ascii	"CySysPmStop\000"
+ 1494      73506D53 
+ 1494      746F7000 
+ 1495              	.LASF13:
+ 1496 0114 646F7562 		.ascii	"double\000"
+ 1496      6C6500
+ 1497              	.LASF27:
+ 1498 011b 43795379 		.ascii	"CySysPmUnfreezeIo\000"
+ 1498      73506D55 
+ 1498      6E667265 
+ 1498      657A6549 
+ 1498      6F00
+ 1499              	.LASF10:
+ 1500 012d 75696E74 		.ascii	"uint16\000"
+ 1500      313600
+ 1501              	.LASF11:
+ 1502 0134 75696E74 		.ascii	"uint32\000"
+ 1502      333200
+ 1503              	.LASF35:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 36
+
+
+ 1504 013b 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1504      74657243 
+ 1504      72697469 
+ 1504      63616C53 
+ 1504      65637469 
+ 1505              	.LASF8:
+ 1506 0152 756E7369 		.ascii	"unsigned int\000"
+ 1506      676E6564 
+ 1506      20696E74 
+ 1506      00
+ 1507              	.LASF28:
+ 1508 015f 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1508      69744372 
+ 1508      69746963 
+ 1508      616C5365 
+ 1508      6374696F 
+ 1509              	.LASF29:
+ 1510 0175 43795379 		.ascii	"CySysClkWriteSysclkDiv\000"
+ 1510      73436C6B 
+ 1510      57726974 
+ 1510      65537973 
+ 1510      636C6B44 
+ 1511              	.LASF24:
+ 1512 018c 72656173 		.ascii	"reason\000"
+ 1512      6F6E00
+ 1513              	.LASF33:
+ 1514 0193 706F6C61 		.ascii	"polarity\000"
+ 1514      72697479 
+ 1514      00
+ 1515              	.LASF34:
+ 1516 019c 43795379 		.ascii	"CySysPmGetResetReason\000"
+ 1516      73506D47 
+ 1516      65745265 
+ 1516      73657452 
+ 1516      6561736F 
+ 1517              	.LASF17:
+ 1518 01b2 73697A65 		.ascii	"sizetype\000"
+ 1518      74797065 
+ 1518      00
+ 1519              	.LASF6:
+ 1520 01bb 6C6F6E67 		.ascii	"long long int\000"
+ 1520      206C6F6E 
+ 1520      6720696E 
+ 1520      7400
+ 1521              	.LASF14:
+ 1522 01c9 63686172 		.ascii	"char\000"
+ 1522      00
+ 1523              	.LASF21:
+ 1524 01ce 636C6B53 		.ascii	"clkSelectReg\000"
+ 1524      656C6563 
+ 1524      74526567 
+ 1524      00
+ 1525              	.LASF31:
+ 1526 01db 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\cyPm.c\000"
+ 1526      6E657261 
+ 1526      7465645F 
+ 1526      536F7572 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccJA6eF3.s 			page 37
+
+
+ 1526      63655C50 
+ 1527              	.LASF2:
+ 1528 01fb 73686F72 		.ascii	"short int\000"
+ 1528      7420696E 
+ 1528      7400
+ 1529              	.LASF30:
+ 1530 0205 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1530      4320342E 
+ 1530      372E3320 
+ 1530      32303133 
+ 1530      30333132 
+ 1531 0238 616E6368 		.ascii	"anch revision 196615]\000"
+ 1531      20726576 
+ 1531      6973696F 
+ 1531      6E203139 
+ 1531      36363135 
+ 1532              	.LASF19:
+ 1533 024e 43795379 		.ascii	"CySysPmDeepSleep\000"
+ 1533      73506D44 
+ 1533      65657053 
+ 1533      6C656570 
+ 1533      00
+ 1534              	.LASF4:
+ 1535 025f 6C6F6E67 		.ascii	"long int\000"
+ 1535      20696E74 
+ 1535      00
+ 1536              	.LASF0:
+ 1537 0268 7369676E 		.ascii	"signed char\000"
+ 1537      65642063 
+ 1537      68617200 
+ 1538              	.LASF25:
+ 1539 0274 43795379 		.ascii	"CySysPmFreezeIo\000"
+ 1539      73506D46 
+ 1539      7265657A 
+ 1539      65496F00 
+ 1540              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

@@ -123,11 +123,9 @@ void gyro_start(void)
     // CTRL REG 1
 	write_gyro_registry(L3GD20H_CTRL_REG1, 0x0F);		// Enabling all axes read out and Power On -> 100 Hz output data rate
     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
-    CyDelay(100);
     // CTRL REG 2
 	write_gyro_registry(L3GD20H_CTRL_REG2, 0x20);		// Normal Mode of High Pass Filter (High Bits), Filter Rate (Low Bits 0-9), Output Data Rate to 100 Hz (default)
     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
-    CyDelay(100);
     // CTRL REG 5
 	write_gyro_registry(L3GD20H_CTRL_REG5, 0x10);		// High Pass Filter Enable (High Bit 1)
     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
@@ -175,7 +173,8 @@ void acc_start(void)
 	write_acc_registry(LSM303_CTRL_REG1, 0x67);		// Enabling all axes read out and Power On -> 100 Hz output data rate
     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG1));
     // CTRL REG 2
-	write_acc_registry(LSM303_CTRL_REG2, 0x08);		// FS set to +-4G
+	
+    //write_mag_registry(LSM303_CTRL_REG6, 0x20);		// Magnetometer FS +-4Gauss
     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG2));
     UART_1_UartPutString("Acc started\r\n");
 }
@@ -239,7 +238,7 @@ void mag_read(void)
     mag_x = (mag_x_h<<8) | (mag_x_l);
 	mag_y = (mag_y_h<<8) | (mag_y_l);
 	mag_z = (mag_z_h<<8) | (mag_z_l);
-    mag_x_g = mag_x * 0.16;	// milli Gauss									
+    mag_x_g = mag_x * 0.16;	// milli Gauss		    // bla					
 	mag_y_g = mag_y * 0.16;	// milli Gauss			// Magnetic sensitivity at 4Gauss gives 0.16 mgauss/bit
 	mag_z_g = mag_z * 0.16;	// milli Gauss			// see Mag datasheet page 10  
 }

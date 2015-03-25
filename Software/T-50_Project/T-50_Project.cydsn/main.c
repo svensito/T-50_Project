@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <IMU.h>
-#include <common/mavlink.h>
+#include <mavlink.h>
 #include <mavlink_types.h>
 
 #define FALSE   0
@@ -79,14 +79,16 @@ uint16_t NavLightBright     = 100;  // Upper value for the brightness 100 = 100%
 uint16_t NavLightDim        = 0;    // Lower value for the brightness 0 = 0%
 uint16_t NavLightStep       = 1;    // Nav Light Pulse Stepwidth => brightness change per 10ms
 uint16_t NavLightCompare    = 0;    // Nav Light PWM Compare Value
-/*Nav Light Control END*/
+/*Strobe Light*/
+uint8_t cnt_StrobeLight     = 0;
+
 
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
 #define GYRO_TASK   TRUE
 #define ACC_TASK    TRUE
-#define MAG_TASK    FALSE
+#define MAG_TASK    TRUE
 
 /* turn rates */
 int16_t turn_rate_p = 0;
@@ -102,10 +104,13 @@ int16_t mag_y_g = 0;
 int16_t mag_z_g = 0;
 
 /* Euler Angles */
-int16_t Theta, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
-int16_t Phi, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+float Theta, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
+float Phi, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+float Psi, Psi_acc = 0;       // Psi , Psi_acc => Psi from accelerometer
 
-
+/* Magnetic Heading*/
+int32_t Mag_Heading = 0;
+float Mag_x, Mag_y = 0;    
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -116,16 +121,20 @@ float Q_gyro = 0.005;
 float R_angle = 0.02;
 // Estimation of Theta (Kalman)
 float q_bias = 0;
-float P_00_Theta, P_01_Theta, P_10_Theta, P_11_Theta = 0;
+//int8_t P_00_Theta, P_01_Theta, P_10_Theta, P_11_Theta = 0;
+float P_Theta[2][2] = {0,0,0,0};
 float Theta_temp, S_Theta, K_0_Theta, K_1_Theta = 0;
 // Estimation of Phi (Kalman)
 float p_bias = 0;
-float P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
+//int8_t P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
+float P_Phi[2][2] = {0,0,0,0};
 float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 
 /*=============================*/
 /* MAVLINK			*/
 /*=============================*/
+#define MAVLINK_TASK    FALSE
+
 mavlink_system_t mavlink_system;
 // Define the system type, in this case an airplane
 uint8_t system_type = MAV_TYPE_FIXED_WING;        //MAV_TYPE_FIXED_WING;
@@ -189,11 +198,9 @@ int main()
     
     UART_1_UartPutString("UART OK\r\n");
     
-    //if(GYRO_TASK == TRUE) gyro_start();
-    //if(ACC_TASK == TRUE) acc_start();
-    //if(MAG_TASK == TRUE) mag_start();
-    uint8_t test = read_gyro_registry(L3GD20H_CTRL_REG1);
-    //UART_1_UartPutNum(test);
+    if(GYRO_TASK == TRUE) gyro_start();
+    if(ACC_TASK == TRUE) acc_start();
+    if(MAG_TASK == TRUE) mag_start();
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
@@ -252,10 +259,20 @@ int main()
                     NavLightCompare-=NavLightStep;
                     NavLightPWM_WriteCompare(NavLightCompare);
                 }
+                if(cnt_StrobeLight == 200) Strobes_Write(0xFF); // Setting Output High
+                if(cnt_StrobeLight == 205)  // (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe
+                {
+                    cnt_StrobeLight = 0;
+                    Strobes_Write(0x00);    // Setting output Low
+                }
+                cnt_StrobeLight++;
+                //UART_1_UartPutNum(cnt_StrobeLight);UART_1_UartPutString("\r\n");
             }
             else
             {
                 /* Lights disabled*/
+                NavLightPWM_WriteCompare(0);    // Nav Lights set to 0
+                
             }
             
             /*=======================================
@@ -279,70 +296,120 @@ int main()
             /* Theta and Phi out of acceleration data*/
             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
-        
+            //Psi_acc = (atan2(-acc_y_g,-acc_x_g))*180/PI;
 			/*=========================================================*/
 			/* Calculating the attitude by using Kalman Filtering START*/
-			Theta += sample_time * (turn_rate_q-q_bias);
 			
-			P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
-			P_01_Theta +=  - sample_time * P_11_Theta;
-			P_10_Theta = P_01_Theta;
-			P_11_Theta +=  + Q_gyro * sample_time;
-			
-			
-			Phi += sample_time * (turn_rate_p-p_bias);
-			P_00_Phi +=  - sample_time * ((P_10_Phi + P_01_Phi) - Q_angle);
-			P_01_Phi +=  - sample_time * P_11_Phi;
-			P_10_Phi = P_01_Phi;
-			P_11_Phi +=  + Q_gyro * sample_time;
-			
+//            Theta += sample_time * (turn_rate_q-q_bias);
+//            
+//			//P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
+//            P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
+////			P_01_Theta +=  - sample_time * P_11_Theta;
+//            P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
+//			//P_10_Theta = P_01_Theta;
+//            P_Theta[1][0] = P_Theta[0][1];
+//			//P_11_Theta +=  + Q_gyro * sample_time;
+//            P_Theta[1][1] +=  + Q_gyro * sample_time;
+//			
+//			
+//			Phi += sample_time * (turn_rate_p-p_bias);
+//			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
+//			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
+//			P_Phi[1][0] = P_Phi[0][1];
+//			P_Phi[1][1] +=  + Q_gyro * sample_time;
+//			
+//		
+//			/*
+//			Psi += sample_time * (r_filt-r_bias);
+//			P_00_Psi +=  - sample_time * (P_10_Psi + P_01_Psi) + Q_angle * sample_time;
+//			P_01_Psi +=  - sample_time * P_11_Psi;
+//			P_10_Psi +=  - sample_time * P_11_Psi;
+//			P_11_Psi +=  + Q_gyro * sample_time;
+//			*/
+//			Theta_temp = Theta_acc - Theta;
+//			S_Theta = P_Theta[0][0] + R_angle;
+//			K_0_Theta = P_Theta[0][0] / S_Theta;
+//			K_1_Theta = P_Theta[1][0] / S_Theta;
+//			
+//			Phi_temp = Phi_acc - Phi;
+//			S_Phi = P_Phi[0][0] + R_angle;
+//			K_0_Phi = P_Phi[0][0] / S_Phi;
+//			K_1_Phi = P_Phi[1][0] / S_Phi;
+//			/*
+//			Psi_temp = mag - Psi;
+//			S_Psi = P_00_Psi + R_angle;
+//			K_0_Psi = P_00_Psi / S_Psi;
+//			K_1_Psi = P_10_Psi / S_Psi;
+//			*/
+//			Theta +=  K_0_Theta * Theta_temp;
+//			q_bias  +=  K_1_Theta * Theta_temp;
+//			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
+//			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
+//			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
+//			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
+//			
+//			Phi +=  K_0_Phi * Phi_temp;
+//			p_bias  +=  K_1_Phi * Phi_temp;
+//			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
+//			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
+//			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
+//			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
 		
-			/*
-			Psi += sample_time * (r_filt-r_bias);
-			P_00_Psi +=  - sample_time * (P_10_Psi + P_01_Psi) + Q_angle * sample_time;
-			P_01_Psi +=  - sample_time * P_11_Psi;
-			P_10_Psi +=  - sample_time * P_11_Psi;
-			P_11_Psi +=  + Q_gyro * sample_time;
-			*/
-			Theta_temp = Theta_acc - Theta;
-			S_Theta = P_00_Theta + R_angle;
-			K_0_Theta = P_00_Theta / S_Theta;
-			K_1_Theta = P_10_Theta / S_Theta;
-			
-			Phi_temp = Phi_acc - Phi;
-			S_Phi = P_00_Phi + R_angle;
-			K_0_Phi = P_00_Phi / S_Phi;
-			K_1_Phi = P_10_Phi / S_Phi;
-			/*
-			Psi_temp = mag - Psi;
-			S_Psi = P_00_Psi + R_angle;
-			K_0_Psi = P_00_Psi / S_Psi;
-			K_1_Psi = P_10_Psi / S_Psi;
-			*/
-			Theta +=  K_0_Theta * Theta_temp;
-			q_bias  +=  K_1_Theta * Theta_temp;
-			P_00_Theta -= K_0_Theta * P_00_Theta;
-			P_01_Theta -= K_0_Theta * P_01_Theta;
-			P_10_Theta -= K_1_Theta * P_00_Theta;
-			P_11_Theta -= K_1_Theta * P_01_Theta;
-			
-			Phi +=  K_0_Phi * Phi_temp;
-			p_bias  +=  K_1_Phi * Phi_temp;
-			P_00_Phi -= K_0_Phi * P_00_Phi;
-			P_01_Phi -= K_0_Phi * P_01_Phi;
-			P_10_Phi -= K_1_Phi * P_00_Phi;
-			P_11_Phi -= K_1_Phi * P_01_Phi;
-		
-			
+			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
+            // Complementary filter. Substitute for Kalman filter.
+            // it is not clear why the 8 in the end is required, but it gives useable results
+            Theta = (0.90* (Theta + turn_rate_q*sample_time) + 0.10*Theta_acc)*PI/180*8;
+            Phi = (0.90 * (Phi + turn_rate_p*sample_time) + 0.10*Phi_acc)*PI/180*8;
+
+            
+             // Tilt compensated Magnetic filed X:
+            //  MAG_X = c_magnetom_x*cos_pitch+c_magnetom_y*sin_roll*sin_pitch+c_magnetom_z*cos_roll*sin_pitch;
+            //  // Tilt compensated Magnetic filed Y:
+            //  MAG_Y = c_magnetom_y*cos_roll-c_magnetom_z*sin_roll;
+            //  // Magnetic Heading
+            //  MAG_Heading = atan2(-MAG_Y,MAG_X);
+            
+            // cos of radian angles
+//            Mag_x = mag_x_g*cos(Theta) + mag_y_g*sin(Phi)*sin(Theta) + mag_z_g*cos(Phi)*sin(Theta);
+//            Mag_y = mag_y_g*cos(Phi) - mag_z_g*sin(Phi);
+//
+            //Mag_x = mag_x_g*cos(Theta);//+ mag_y_g*sin(Phi)*sin(Theta)+ mag_z_g*cos(Phi)*sin(Theta);
+            //Mag_y = mag_y_g*cos(Phi);// - mag_z_g*sin(Phi);
+            Mag_Heading = atan2(-(mag_y_g),(mag_x_g))*180/PI;
+            UART_1_UartPutNum(Mag_Heading);
+            UART_1_UartPutString(";\r\n");
+
 			/* Calculating the attitude by using Kalman Filtering END*/
 			/*=======================================================*/
-		
-//            UART_1_UartPutNum(Theta);
-//            UART_1_UartPutString(" ");
-//            UART_1_UartPutNum(Phi);
-//            UART_1_UartPutString(" \r\n");
-                
-                
+            /* MAVLINK
+            /*=======================================================*/
+            
+		    if(MAVLINK_TASK == TRUE)
+            {
+                if((cnt_ML_HEARTBEAT_send % 20) == 0)  // 20*10ms = 200ms
+                {
+                    mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0, Phi, Theta, 0, 0,0,0);
+                    uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+                    UART_1_UartSendMavlink(buf, len);
+                    
+                    // GLOBAL_POSITION_INT
+                    //mavlink_msg_global_position_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0,0,0,10,0,0,0,0,Mag_Heading);
+                    //uint16_t len2 = mavlink_msg_to_send_buffer(buf, &msg);
+                    //UART_1_UartSendMavlink(buf, len);
+                    
+                }               
+                if((cnt_ML_HEARTBEAT_send % 100) == 0)  // 100*10ms = 1000ms
+                {
+                    cnt_ML_HEARTBEAT_send = 0;
+                    mavlink_msg_heartbeat_pack(mavlink_system.sysid, mavlink_system.compid, &msg, system_type, autopilot_type, system_mode, custom_mode, system_state);
+
+                    // Copy the message to the send buffer
+                    uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+                      
+                      UART_1_UartSendMavlink(buf, len);
+                }
+                cnt_ML_HEARTBEAT_send++;
+            }
             /*=======================================
                 Output Control
               =======================================*/
@@ -384,45 +451,6 @@ int main()
             /*=======================================
                 Data Logging
               =======================================*/
-            // Pack the message
-            if((cnt_ML_HEARTBEAT_send % 20) == 0)  // 20*10ms = 200ms
-            {
-                mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0, Phi, Theta, 0, 0,0,0);
-                uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
-                UART_1_UartSendMavlink(buf, len);
-            }
-            
-            if((cnt_ML_HEARTBEAT_send % 100) == 0)  // 100*10ms = 1000ms
-            {
-                  cnt_ML_HEARTBEAT_send = 0;
-                
-                  mavlink_msg_heartbeat_pack(mavlink_system.sysid, mavlink_system.compid, &msg, system_type, autopilot_type, system_mode, custom_mode, system_state);
-//     
-//                // Copy the message to the send buffer
-                  uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
-                  
-                  UART_1_UartSendMavlink(buf, len);
-                
-//                UART_1_UartPutChar(0xFE);   // message header
-//                UART_1_UartPutChar(0x09);   // message length
-//                UART_1_UartPutChar(cnt_Mavlink_seq);   // Sequence number (0 to 255 counting)
-//                UART_1_UartPutChar(mavlink_system.sysid);
-//                UART_1_UartPutChar(mavlink_system.compid);
-//                UART_1_UartPutChar(0);      // 0 = Heartbeat Message
-//                UART_1_UartPutChar(0);      // 0 = Heartbeat Message // Byte 6
-//                UART_1_UartPutChar(0);      // 0 = Heartbeat Message // Byte 7
-//                UART_1_UartPutChar(0);      // 0 = Heartbeat Message // Byte 8
-//                UART_1_UartPutChar(0);      // 0 = Heartbeat Message // Byte 9
-//                UART_1_UartPutChar(0x01);      // 0 = Heartbeat Message // Byte 10
-//                UART_1_UartPutChar(0x00);      // 0 = Heartbeat Message // Byte 11
-//                UART_1_UartPutChar(0x00);      // 0 = Heartbeat Message // Byte 12
-//                UART_1_UartPutChar(0x03);      // 0 = Heartbeat Message // Byte 13
-//                UART_1_UartPutChar(0x03);      // 0 = Heartbeat Message // Byte 14
-                
-                
-                //cnt_Mavlink_seq++;
-            }
-            cnt_ML_HEARTBEAT_send++;
             /*    
             UART_1_UartPutNum(ctrl_out[out_mot]);
                 UART_1_UartPutString(";");
