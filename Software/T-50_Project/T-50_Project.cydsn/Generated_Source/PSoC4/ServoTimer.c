@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: ServoTimer.c
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides the source code to the API for the ServoTimer
@@ -17,7 +17,6 @@
 *******************************************************************************/
 
 #include "ServoTimer.h"
-#include "CyLib.h"
 
 uint8 ServoTimer_initVar = 0u;
 
@@ -41,95 +40,31 @@ void ServoTimer_Init(void)
 
     /* Set values from customizer to CTRL */
     #if (ServoTimer__QUAD == ServoTimer_CONFIG)
-        ServoTimer_CONTROL_REG =
-        (((uint32)(ServoTimer_QUAD_ENCODING_MODES     << ServoTimer_QUAD_MODE_SHIFT))       |
-         ((uint32)(ServoTimer_CONFIG                  << ServoTimer_MODE_SHIFT)));
-    #endif  /* (ServoTimer__QUAD == ServoTimer_CONFIG) */
+        ServoTimer_CONTROL_REG = ServoTimer_CTRL_QUAD_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        ServoTimer_TRIG_CONTROL1_REG  = ServoTimer_QUAD_SIGNALS_MODES;
 
-    #if (ServoTimer__PWM_SEL == ServoTimer_CONFIG)
-        ServoTimer_CONTROL_REG =
-        (((uint32)(ServoTimer_PWM_STOP_EVENT          << ServoTimer_PWM_STOP_KILL_SHIFT))    |
-         ((uint32)(ServoTimer_PWM_OUT_INVERT          << ServoTimer_INV_OUT_SHIFT))         |
-         ((uint32)(ServoTimer_PWM_OUT_N_INVERT        << ServoTimer_INV_COMPL_OUT_SHIFT))     |
-         ((uint32)(ServoTimer_PWM_MODE                << ServoTimer_MODE_SHIFT)));
-
-        #if (ServoTimer__PWM_PR == ServoTimer_PWM_MODE)
-            ServoTimer_CONTROL_REG |=
-            ((uint32)(ServoTimer_PWM_RUN_MODE         << ServoTimer_ONESHOT_SHIFT));
-
-            ServoTimer_WriteCounter(ServoTimer_PWM_PR_INIT_VALUE);
-        #else
-            ServoTimer_CONTROL_REG |=
-            (((uint32)(ServoTimer_PWM_ALIGN           << ServoTimer_UPDOWN_SHIFT))          |
-             ((uint32)(ServoTimer_PWM_KILL_EVENT      << ServoTimer_PWM_SYNC_KILL_SHIFT)));
-        #endif  /* (ServoTimer__PWM_PR == ServoTimer_PWM_MODE) */
-
-        #if (ServoTimer__PWM_DT == ServoTimer_PWM_MODE)
-            ServoTimer_CONTROL_REG |=
-            ((uint32)(ServoTimer_PWM_DEAD_TIME_CYCLE  << ServoTimer_PRESCALER_SHIFT));
-        #endif  /* (ServoTimer__PWM_DT == ServoTimer_PWM_MODE) */
-
-        #if (ServoTimer__PWM == ServoTimer_PWM_MODE)
-            ServoTimer_CONTROL_REG |=
-            ((uint32)ServoTimer_PWM_PRESCALER         << ServoTimer_PRESCALER_SHIFT);
-        #endif  /* (ServoTimer__PWM == ServoTimer_PWM_MODE) */
-    #endif  /* (ServoTimer__PWM_SEL == ServoTimer_CONFIG) */
-
-    #if (ServoTimer__TIMER == ServoTimer_CONFIG)
-        ServoTimer_CONTROL_REG =
-        (((uint32)(ServoTimer_TC_PRESCALER            << ServoTimer_PRESCALER_SHIFT))   |
-         ((uint32)(ServoTimer_TC_COUNTER_MODE         << ServoTimer_UPDOWN_SHIFT))      |
-         ((uint32)(ServoTimer_TC_RUN_MODE             << ServoTimer_ONESHOT_SHIFT))     |
-         ((uint32)(ServoTimer_TC_COMP_CAP_MODE        << ServoTimer_MODE_SHIFT)));
-    #endif  /* (ServoTimer__TIMER == ServoTimer_CONFIG) */
-
-    /* Set values from customizer to CTRL1 */
-    #if (ServoTimer__QUAD == ServoTimer_CONFIG)
-        ServoTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(ServoTimer_QUAD_PHIA_SIGNAL_MODE   << ServoTimer_COUNT_SHIFT))       |
-         ((uint32)(ServoTimer_QUAD_INDEX_SIGNAL_MODE  << ServoTimer_RELOAD_SHIFT))      |
-         ((uint32)(ServoTimer_QUAD_STOP_SIGNAL_MODE   << ServoTimer_STOP_SHIFT))        |
-         ((uint32)(ServoTimer_QUAD_PHIB_SIGNAL_MODE   << ServoTimer_START_SHIFT)));
-    #endif  /* (ServoTimer__QUAD == ServoTimer_CONFIG) */
-
-    #if (ServoTimer__PWM_SEL == ServoTimer_CONFIG)
-        ServoTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(ServoTimer_PWM_SWITCH_SIGNAL_MODE  << ServoTimer_CAPTURE_SHIFT))     |
-         ((uint32)(ServoTimer_PWM_COUNT_SIGNAL_MODE   << ServoTimer_COUNT_SHIFT))       |
-         ((uint32)(ServoTimer_PWM_RELOAD_SIGNAL_MODE  << ServoTimer_RELOAD_SHIFT))      |
-         ((uint32)(ServoTimer_PWM_STOP_SIGNAL_MODE    << ServoTimer_STOP_SHIFT))        |
-         ((uint32)(ServoTimer_PWM_START_SIGNAL_MODE   << ServoTimer_START_SHIFT)));
-    #endif  /* (ServoTimer__PWM_SEL == ServoTimer_CONFIG) */
-
-    #if (ServoTimer__TIMER == ServoTimer_CONFIG)
-        ServoTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(ServoTimer_TC_CAPTURE_SIGNAL_MODE  << ServoTimer_CAPTURE_SHIFT))     |
-         ((uint32)(ServoTimer_TC_COUNT_SIGNAL_MODE    << ServoTimer_COUNT_SHIFT))       |
-         ((uint32)(ServoTimer_TC_RELOAD_SIGNAL_MODE   << ServoTimer_RELOAD_SHIFT))      |
-         ((uint32)(ServoTimer_TC_STOP_SIGNAL_MODE     << ServoTimer_STOP_SHIFT))        |
-         ((uint32)(ServoTimer_TC_START_SIGNAL_MODE    << ServoTimer_START_SHIFT)));
-    #endif  /* (ServoTimer__TIMER == ServoTimer_CONFIG) */
-
-    /* Set values from customizer to INTR */
-    #if (ServoTimer__QUAD == ServoTimer_CONFIG)
+        /* Set values from customizer to INTR */
         ServoTimer_SetInterruptMode(ServoTimer_QUAD_INTERRUPT_MASK);
+        
+         /* Set other values */
+        ServoTimer_SetCounterMode(ServoTimer_COUNT_DOWN);
+        ServoTimer_WritePeriod(ServoTimer_QUAD_PERIOD_INIT_VALUE);
+        ServoTimer_WriteCounter(ServoTimer_QUAD_PERIOD_INIT_VALUE);
     #endif  /* (ServoTimer__QUAD == ServoTimer_CONFIG) */
 
-    #if (ServoTimer__PWM_SEL == ServoTimer_CONFIG)
-        ServoTimer_SetInterruptMode(ServoTimer_PWM_INTERRUPT_MASK);
-    #endif  /* (ServoTimer__PWM_SEL == ServoTimer_CONFIG) */
-
     #if (ServoTimer__TIMER == ServoTimer_CONFIG)
+        ServoTimer_CONTROL_REG = ServoTimer_CTRL_TIMER_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        ServoTimer_TRIG_CONTROL1_REG  = ServoTimer_TIMER_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
         ServoTimer_SetInterruptMode(ServoTimer_TC_INTERRUPT_MASK);
-    #endif  /* (ServoTimer__TIMER == ServoTimer_CONFIG) */
-
-    /* Set other values from customizer */
-    #if (ServoTimer__TIMER == ServoTimer_CONFIG)
+        
+        /* Set other values from customizer */
         ServoTimer_WritePeriod(ServoTimer_TC_PERIOD_VALUE );
-
-        #if (ServoTimer__COUNT_DOWN == ServoTimer_TC_COUNTER_MODE)
-            ServoTimer_WriteCounter(ServoTimer_TC_PERIOD_VALUE );
-        #endif  /* (ServoTimer__COUNT_DOWN == ServoTimer_TC_COUNTER_MODE) */
 
         #if (ServoTimer__COMPARE == ServoTimer_TC_COMP_CAP_MODE)
             ServoTimer_WriteCompare(ServoTimer_TC_COMPARE_VALUE);
@@ -139,21 +74,49 @@ void ServoTimer_Init(void)
                 ServoTimer_WriteCompareBuf(ServoTimer_TC_COMPARE_BUF_VALUE);
             #endif  /* (1u == ServoTimer_TC_COMPARE_SWAP) */
         #endif  /* (ServoTimer__COMPARE == ServoTimer_TC_COMP_CAP_MODE) */
+
+        /* Initialize counter value */
+        #if (ServoTimer_CY_TCPWM_V2 && ServoTimer_TIMER_UPDOWN_CNT_USED && !ServoTimer_CY_TCPWM_4000)
+            ServoTimer_WriteCounter(1u);
+        #elif(ServoTimer__COUNT_DOWN == ServoTimer_TC_COUNTER_MODE)
+            ServoTimer_WriteCounter(ServoTimer_TC_PERIOD_VALUE);
+        #else
+            ServoTimer_WriteCounter(0u);
+        #endif /* (ServoTimer_CY_TCPWM_V2 && ServoTimer_TIMER_UPDOWN_CNT_USED && !ServoTimer_CY_TCPWM_4000) */
     #endif  /* (ServoTimer__TIMER == ServoTimer_CONFIG) */
 
     #if (ServoTimer__PWM_SEL == ServoTimer_CONFIG)
-        ServoTimer_WritePeriod(ServoTimer_PWM_PERIOD_VALUE );
-        ServoTimer_WriteCompare(ServoTimer_PWM_COMPARE_VALUE);
+        ServoTimer_CONTROL_REG = ServoTimer_CTRL_PWM_BASE_CONFIG;
 
-        #if (1u == ServoTimer_PWM_COMPARE_SWAP)
-            ServoTimer_SetCompareSwap(1u);
-            ServoTimer_WriteCompareBuf(ServoTimer_PWM_COMPARE_BUF_VALUE);
-        #endif  /* (1u == ServoTimer_PWM_COMPARE_SWAP) */
+        #if (ServoTimer__PWM_PR == ServoTimer_PWM_MODE)
+            ServoTimer_CONTROL_REG |= ServoTimer_CTRL_PWM_RUN_MODE;
+            ServoTimer_WriteCounter(ServoTimer_PWM_PR_INIT_VALUE);
+        #else
+            ServoTimer_CONTROL_REG |= ServoTimer_CTRL_PWM_ALIGN | ServoTimer_CTRL_PWM_KILL_EVENT;
+            
+            /* Initialize counter value */
+            #if (ServoTimer_CY_TCPWM_V2 && ServoTimer_PWM_UPDOWN_CNT_USED && !ServoTimer_CY_TCPWM_4000)
+                ServoTimer_WriteCounter(1u);
+            #elif (ServoTimer__RIGHT == ServoTimer_PWM_ALIGN)
+                ServoTimer_WriteCounter(ServoTimer_PWM_PERIOD_VALUE);
+            #else 
+                ServoTimer_WriteCounter(0u);
+            #endif  /* (ServoTimer_CY_TCPWM_V2 && ServoTimer_PWM_UPDOWN_CNT_USED && !ServoTimer_CY_TCPWM_4000) */
+        #endif  /* (ServoTimer__PWM_PR == ServoTimer_PWM_MODE) */
 
-        #if (1u == ServoTimer_PWM_PERIOD_SWAP)
-            ServoTimer_SetPeriodSwap(1u);
-            ServoTimer_WritePeriodBuf(ServoTimer_PWM_PERIOD_BUF_VALUE);
-        #endif  /* (1u == ServoTimer_PWM_PERIOD_SWAP) */
+        #if (ServoTimer__PWM_DT == ServoTimer_PWM_MODE)
+            ServoTimer_CONTROL_REG |= ServoTimer_CTRL_PWM_DEAD_TIME_CYCLE;
+        #endif  /* (ServoTimer__PWM_DT == ServoTimer_PWM_MODE) */
+
+        #if (ServoTimer__PWM == ServoTimer_PWM_MODE)
+            ServoTimer_CONTROL_REG |= ServoTimer_CTRL_PWM_PRESCALER;
+        #endif  /* (ServoTimer__PWM == ServoTimer_PWM_MODE) */
+
+        /* Set values from customizer to CTRL1 */
+        ServoTimer_TRIG_CONTROL1_REG  = ServoTimer_PWM_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
+        ServoTimer_SetInterruptMode(ServoTimer_PWM_INTERRUPT_MASK);
 
         /* Set values from customizer to CTRL2 */
         #if (ServoTimer__PWM_PR == ServoTimer_PWM_MODE)
@@ -167,7 +130,6 @@ void ServoTimer_Init(void)
             #endif  /* ( ServoTimer_PWM_LEFT == ServoTimer_PWM_ALIGN) */
 
             #if (ServoTimer__RIGHT == ServoTimer_PWM_ALIGN)
-                ServoTimer_WriteCounter(ServoTimer_PWM_PERIOD_VALUE);
                 ServoTimer_TRIG_CONTROL2_REG = ServoTimer_PWM_MODE_RIGHT;
             #endif  /* ( ServoTimer_PWM_RIGHT == ServoTimer_PWM_ALIGN) */
 
@@ -179,7 +141,22 @@ void ServoTimer_Init(void)
                 ServoTimer_TRIG_CONTROL2_REG = ServoTimer_PWM_MODE_ASYM;
             #endif  /* (ServoTimer__ASYMMETRIC == ServoTimer_PWM_ALIGN) */
         #endif  /* (ServoTimer__PWM_PR == ServoTimer_PWM_MODE) */
+
+        /* Set other values from customizer */
+        ServoTimer_WritePeriod(ServoTimer_PWM_PERIOD_VALUE );
+        ServoTimer_WriteCompare(ServoTimer_PWM_COMPARE_VALUE);
+
+        #if (1u == ServoTimer_PWM_COMPARE_SWAP)
+            ServoTimer_SetCompareSwap(1u);
+            ServoTimer_WriteCompareBuf(ServoTimer_PWM_COMPARE_BUF_VALUE);
+        #endif  /* (1u == ServoTimer_PWM_COMPARE_SWAP) */
+
+        #if (1u == ServoTimer_PWM_PERIOD_SWAP)
+            ServoTimer_SetPeriodSwap(1u);
+            ServoTimer_WritePeriodBuf(ServoTimer_PWM_PERIOD_BUF_VALUE);
+        #endif  /* (1u == ServoTimer_PWM_PERIOD_SWAP) */
     #endif  /* (ServoTimer__PWM_SEL == ServoTimer_CONFIG) */
+    
 }
 
 
@@ -857,28 +834,29 @@ void ServoTimer_SetPeriodSwap(uint32 swapEnable)
 *******************************************************************************/
 void ServoTimer_WriteCompare(uint32 compare)
 {
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         currentMode = ((ServoTimer_CONTROL_REG & ServoTimer_UPDOWN_MASK) >> ServoTimer_UPDOWN_SHIFT);
 
-        if (ServoTimer__COUNT_DOWN == currentMode)
+        if (((uint32)ServoTimer__COUNT_DOWN == currentMode) && (0xFFFFu != compare))
         {
-            ServoTimer_COMP_CAP_REG = ((compare + 1u) & ServoTimer_16BIT_MASK);
+            compare++;
         }
-        else if (ServoTimer__COUNT_UP == currentMode)
+        else if (((uint32)ServoTimer__COUNT_UP == currentMode) && (0u != compare))
         {
-            ServoTimer_COMP_CAP_REG = ((compare - 1u) & ServoTimer_16BIT_MASK);
+            compare--;
         }
         else
         {
-            ServoTimer_COMP_CAP_REG = (compare & ServoTimer_16BIT_MASK);
         }
-    #else
-        ServoTimer_COMP_CAP_REG = (compare & ServoTimer_16BIT_MASK);
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+        
+    
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
+    
+    ServoTimer_COMP_CAP_REG = (compare & ServoTimer_16BIT_MASK);
 }
 
 
@@ -899,30 +877,32 @@ void ServoTimer_WriteCompare(uint32 compare)
 *******************************************************************************/
 uint32 ServoTimer_ReadCompare(void)
 {
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         currentMode = ((ServoTimer_CONTROL_REG & ServoTimer_UPDOWN_MASK) >> ServoTimer_UPDOWN_SHIFT);
-
-        if (ServoTimer__COUNT_DOWN == currentMode)
+        
+        regVal = ServoTimer_COMP_CAP_REG;
+        
+        if (((uint32)ServoTimer__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((ServoTimer_COMP_CAP_REG - 1u) & ServoTimer_16BIT_MASK);
+            regVal--;
         }
-        else if (ServoTimer__COUNT_UP == currentMode)
+        else if (((uint32)ServoTimer__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((ServoTimer_COMP_CAP_REG + 1u) & ServoTimer_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (ServoTimer_COMP_CAP_REG & ServoTimer_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & ServoTimer_16BIT_MASK);
     #else
         return (ServoTimer_COMP_CAP_REG & ServoTimer_16BIT_MASK);
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 }
 
 
@@ -943,28 +923,27 @@ uint32 ServoTimer_ReadCompare(void)
 *******************************************************************************/
 void ServoTimer_WriteCompareBuf(uint32 compareBuf)
 {
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         currentMode = ((ServoTimer_CONTROL_REG & ServoTimer_UPDOWN_MASK) >> ServoTimer_UPDOWN_SHIFT);
 
-        if (ServoTimer__COUNT_DOWN == currentMode)
+        if (((uint32)ServoTimer__COUNT_DOWN == currentMode) && (0xFFFFu != compareBuf))
         {
-            ServoTimer_COMP_CAP_BUF_REG = ((compareBuf + 1u) & ServoTimer_16BIT_MASK);
+            compareBuf++;
         }
-        else if (ServoTimer__COUNT_UP == currentMode)
+        else if (((uint32)ServoTimer__COUNT_UP == currentMode) && (0u != compareBuf))
         {
-            ServoTimer_COMP_CAP_BUF_REG = ((compareBuf - 1u) & ServoTimer_16BIT_MASK);
+            compareBuf --;
         }
         else
         {
-            ServoTimer_COMP_CAP_BUF_REG = (compareBuf & ServoTimer_16BIT_MASK);
         }
-    #else
-        ServoTimer_COMP_CAP_BUF_REG = (compareBuf & ServoTimer_16BIT_MASK);
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
+    
+    ServoTimer_COMP_CAP_BUF_REG = (compareBuf & ServoTimer_16BIT_MASK);
 }
 
 
@@ -985,30 +964,32 @@ void ServoTimer_WriteCompareBuf(uint32 compareBuf)
 *******************************************************************************/
 uint32 ServoTimer_ReadCompareBuf(void)
 {
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 
-    #if (ServoTimer_CY_TCPWM_V2)
+    #if (ServoTimer_CY_TCPWM_4000)
         currentMode = ((ServoTimer_CONTROL_REG & ServoTimer_UPDOWN_MASK) >> ServoTimer_UPDOWN_SHIFT);
 
-        if (ServoTimer__COUNT_DOWN == currentMode)
+        regVal = ServoTimer_COMP_CAP_BUF_REG;
+        
+        if (((uint32)ServoTimer__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((ServoTimer_COMP_CAP_BUF_REG - 1u) & ServoTimer_16BIT_MASK);
+            regVal--;
         }
-        else if (ServoTimer__COUNT_UP == currentMode)
+        else if (((uint32)ServoTimer__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((ServoTimer_COMP_CAP_BUF_REG + 1u) & ServoTimer_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (ServoTimer_COMP_CAP_BUF_REG & ServoTimer_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & ServoTimer_16BIT_MASK);
     #else
         return (ServoTimer_COMP_CAP_BUF_REG & ServoTimer_16BIT_MASK);
-    #endif /* (ServoTimer_CY_TCPWM_V2) */
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
 }
 
 

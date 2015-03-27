@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: I2CM_scl.h  
-* Version 2.0
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define I2CM_scl_0		I2CM_scl__0__PC
+#define I2CM_scl_0		(I2CM_scl__0__PC)
+#define I2CM_scl_0_PS		(I2CM_scl__0__PS)
+#define I2CM_scl_0_PC		(I2CM_scl__0__PC)
+#define I2CM_scl_0_DR		(I2CM_scl__0__DR)
+#define I2CM_scl_0_SHIFT	(I2CM_scl__0__SHIFT)
+
 
 #endif /* End Pins I2CM_scl_ALIASES_H */
 

@@ -1,0 +1,1005 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"TelemUART_PM.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TelemUART_SaveConfig,"ax",%progbits
+  18              		.align	1
+  19              		.global	TelemUART_SaveConfig
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	TelemUART_SaveConfig, %function
+  23              	TelemUART_SaveConfig:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\TelemUART_PM.c"
+   1:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/TelemUART_PM.c **** * File Name: TelemUART_PM.c
+   3:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Version 2.30
+   4:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+   5:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Description:
+   6:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  This file provides Sleep/WakeUp APIs functionality.
+   7:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+   8:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Note:
+   9:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  10:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC4/TelemUART_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC4/TelemUART_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC4/TelemUART_PM.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC4/TelemUART_PM.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  17:.\Generated_Source\PSoC4/TelemUART_PM.c **** #include "TelemUART.h"
+  18:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  19:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  20:.\Generated_Source\PSoC4/TelemUART_PM.c **** /***************************************
+  21:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Local data allocation
+  22:.\Generated_Source\PSoC4/TelemUART_PM.c **** ***************************************/
+  23:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  24:.\Generated_Source\PSoC4/TelemUART_PM.c **** static TelemUART_BACKUP_STRUCT  TelemUART_backup =
+  25:.\Generated_Source\PSoC4/TelemUART_PM.c **** {
+  26:.\Generated_Source\PSoC4/TelemUART_PM.c ****     /* enableState - disabled */
+  27:.\Generated_Source\PSoC4/TelemUART_PM.c ****     0u,
+  28:.\Generated_Source\PSoC4/TelemUART_PM.c **** };
+  29:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  30:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  31:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  32:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Function Name: TelemUART_SaveConfig
+  34:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
+  35:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  36:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Summary:
+  37:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  Saves the current user configuration.
+  38:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  39:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Parameters:
+  40:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+  41:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  42:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Return:
+  43:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+  44:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  45:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Global Variables:
+  46:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  TelemUART_backup - modified when non-retention registers are saved.
+  47:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  48:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Reentrant:
+  49:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  No.
+  50:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  51:.\Generated_Source\PSoC4/TelemUART_PM.c **** *******************************************************************************/
+  52:.\Generated_Source\PSoC4/TelemUART_PM.c **** void TelemUART_SaveConfig(void)
+  53:.\Generated_Source\PSoC4/TelemUART_PM.c **** {
+  26              		.loc 1 53 0
+  27              		.cfi_startproc
+  54:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #if (CY_UDB_V0)
+  55:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  56:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_CONTROL_REG_REMOVED == 0u)
+  57:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.cr = TelemUART_CONTROL_REG;
+  58:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /* End TelemUART_CONTROL_REG_REMOVED */
+  59:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  60:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if( (TelemUART_RX_ENABLED) || (TelemUART_HD_ENABLED) )
+  61:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.rx_period = TelemUART_RXBITCTR_PERIOD_REG;
+  62:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.rx_mask = TelemUART_RXSTATUS_MASK_REG;
+  63:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #if (TelemUART_RXHW_ADDRESS_ENABLED)
+  64:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.rx_addr1 = TelemUART_RXADDRESS1_REG;
+  65:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.rx_addr2 = TelemUART_RXADDRESS2_REG;
+  66:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #endif /* End TelemUART_RXHW_ADDRESS_ENABLED */
+  67:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /* End TelemUART_RX_ENABLED | TelemUART_HD_ENABLED*/
+  68:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  69:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_TX_ENABLED)
+  70:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #if(TelemUART_TXCLKGEN_DP)
+  71:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.tx_clk_ctr = TelemUART_TXBITCLKGEN_CTR_REG;
+  72:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.tx_clk_compl = TelemUART_TXBITCLKTX_COMPLETE_REG;
+  73:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #else
+  74:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_backup.tx_period = TelemUART_TXBITCTR_PERIOD_REG;
+  75:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #endif /*End TelemUART_TXCLKGEN_DP */
+  76:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.tx_mask = TelemUART_TXSTATUS_MASK_REG;
+  77:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /*End TelemUART_TX_ENABLED */
+  78:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  79:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  80:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #else /* CY_UDB_V1 */
+  81:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  82:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_CONTROL_REG_REMOVED == 0u)
+  83:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.cr = TelemUART_CONTROL_REG;
+  84:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /* End TelemUART_CONTROL_REG_REMOVED */
+  85:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  86:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #endif  /* End CY_UDB_V0 */
+  87:.\Generated_Source\PSoC4/TelemUART_PM.c **** }
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 3
+
+
+  28              		.loc 1 87 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE0:
+  33              		.size	TelemUART_SaveConfig, .-TelemUART_SaveConfig
+  34              		.section	.text.TelemUART_RestoreConfig,"ax",%progbits
+  35              		.align	1
+  36              		.global	TelemUART_RestoreConfig
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	TelemUART_RestoreConfig, %function
+  40              	TelemUART_RestoreConfig:
+  41              	.LFB1:
+  88:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  89:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+  90:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
+  91:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Function Name: TelemUART_RestoreConfig
+  92:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
+  93:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  94:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Summary:
+  95:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  Restores the current user configuration.
+  96:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+  97:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Parameters:
+  98:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+  99:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 100:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Return:
+ 101:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+ 102:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 103:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Global Variables:
+ 104:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  TelemUART_backup - used when non-retention registers are restored.
+ 105:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 106:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Reentrant:
+ 107:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  No.
+ 108:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 109:.\Generated_Source\PSoC4/TelemUART_PM.c **** *******************************************************************************/
+ 110:.\Generated_Source\PSoC4/TelemUART_PM.c **** void TelemUART_RestoreConfig(void)
+ 111:.\Generated_Source\PSoC4/TelemUART_PM.c **** {
+  42              		.loc 1 111 0
+  43              		.cfi_startproc
+ 112:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 113:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #if (CY_UDB_V0)
+ 114:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 115:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_CONTROL_REG_REMOVED == 0u)
+ 116:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_CONTROL_REG = TelemUART_backup.cr;
+ 117:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /* End TelemUART_CONTROL_REG_REMOVED */
+ 118:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 119:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if( (TelemUART_RX_ENABLED) || (TelemUART_HD_ENABLED) )
+ 120:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_RXBITCTR_PERIOD_REG = TelemUART_backup.rx_period;
+ 121:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_RXSTATUS_MASK_REG = TelemUART_backup.rx_mask;
+ 122:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #if (TelemUART_RXHW_ADDRESS_ENABLED)
+ 123:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_RXADDRESS1_REG = TelemUART_backup.rx_addr1;
+ 124:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_RXADDRESS2_REG = TelemUART_backup.rx_addr2;
+ 125:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #endif /* End TelemUART_RXHW_ADDRESS_ENABLED */
+ 126:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif  /* End (TelemUART_RX_ENABLED) || (TelemUART_HD_ENABLED) */
+ 127:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 128:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_TX_ENABLED)
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 4
+
+
+ 129:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #if(TelemUART_TXCLKGEN_DP)
+ 130:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_TXBITCLKGEN_CTR_REG = TelemUART_backup.tx_clk_ctr;
+ 131:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_TXBITCLKTX_COMPLETE_REG = TelemUART_backup.tx_clk_compl;
+ 132:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #else
+ 133:.\Generated_Source\PSoC4/TelemUART_PM.c ****                 TelemUART_TXBITCTR_PERIOD_REG = TelemUART_backup.tx_period;
+ 134:.\Generated_Source\PSoC4/TelemUART_PM.c ****             #endif /*End TelemUART_TXCLKGEN_DP */
+ 135:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_TXSTATUS_MASK_REG = TelemUART_backup.tx_mask;
+ 136:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /*End TelemUART_TX_ENABLED */
+ 137:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 138:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #else /* CY_UDB_V1 */
+ 139:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 140:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #if(TelemUART_CONTROL_REG_REMOVED == 0u)
+ 141:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_CONTROL_REG = TelemUART_backup.cr;
+ 142:.\Generated_Source\PSoC4/TelemUART_PM.c ****         #endif /* End TelemUART_CONTROL_REG_REMOVED */
+ 143:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 144:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #endif  /* End CY_UDB_V0 */
+ 145:.\Generated_Source\PSoC4/TelemUART_PM.c **** }
+  44              		.loc 1 145 0
+  45              		@ sp needed
+  46 0000 7047     		bx	lr
+  47              		.cfi_endproc
+  48              	.LFE1:
+  49              		.size	TelemUART_RestoreConfig, .-TelemUART_RestoreConfig
+  50              		.section	.text.TelemUART_Sleep,"ax",%progbits
+  51              		.align	1
+  52              		.global	TelemUART_Sleep
+  53              		.code	16
+  54              		.thumb_func
+  55              		.type	TelemUART_Sleep, %function
+  56              	TelemUART_Sleep:
+  57              	.LFB2:
+ 146:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 147:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 148:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
+ 149:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Function Name: TelemUART_Sleep
+ 150:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
+ 151:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 152:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Summary:
+ 153:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  Stops and saves the user configuration. Should be called
+ 154:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  just prior to entering sleep.
+ 155:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 156:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 157:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Parameters:
+ 158:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+ 159:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 160:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Return:
+ 161:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+ 162:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 163:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Global Variables:
+ 164:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  TelemUART_backup - modified when non-retention registers are saved.
+ 165:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 166:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Reentrant:
+ 167:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  No.
+ 168:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 169:.\Generated_Source\PSoC4/TelemUART_PM.c **** *******************************************************************************/
+ 170:.\Generated_Source\PSoC4/TelemUART_PM.c **** void TelemUART_Sleep(void)
+ 171:.\Generated_Source\PSoC4/TelemUART_PM.c **** {
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 5
+
+
+  58              		.loc 1 171 0
+  59              		.cfi_startproc
+  60 0000 08B5     		push	{r3, lr}
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 3, -8
+  63              		.cfi_offset 14, -4
+ 172:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 173:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #if(TelemUART_RX_ENABLED || TelemUART_HD_ENABLED)
+ 174:.\Generated_Source\PSoC4/TelemUART_PM.c ****         if((TelemUART_RXSTATUS_ACTL_REG  & TelemUART_INT_ENABLE) != 0u)
+ 175:.\Generated_Source\PSoC4/TelemUART_PM.c ****         {
+ 176:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.enableState = 1u;
+ 177:.\Generated_Source\PSoC4/TelemUART_PM.c ****         }
+ 178:.\Generated_Source\PSoC4/TelemUART_PM.c ****         else
+ 179:.\Generated_Source\PSoC4/TelemUART_PM.c ****         {
+ 180:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.enableState = 0u;
+ 181:.\Generated_Source\PSoC4/TelemUART_PM.c ****         }
+ 182:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #else
+ 183:.\Generated_Source\PSoC4/TelemUART_PM.c ****         if((TelemUART_TXSTATUS_ACTL_REG  & TelemUART_INT_ENABLE) !=0u)
+  64              		.loc 1 183 0
+  65 0002 054B     		ldr	r3, .L7
+  66 0004 1A78     		ldrb	r2, [r3]
+  67 0006 1023     		mov	r3, #16
+  68 0008 1A40     		and	r2, r3
+  69 000a 044B     		ldr	r3, .L7+4
+  70 000c 00D0     		beq	.L4
+ 184:.\Generated_Source\PSoC4/TelemUART_PM.c ****         {
+ 185:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.enableState = 1u;
+  71              		.loc 1 185 0
+  72 000e 0122     		mov	r2, #1
+  73              	.L4:
+ 186:.\Generated_Source\PSoC4/TelemUART_PM.c ****         }
+ 187:.\Generated_Source\PSoC4/TelemUART_PM.c ****         else
+ 188:.\Generated_Source\PSoC4/TelemUART_PM.c ****         {
+ 189:.\Generated_Source\PSoC4/TelemUART_PM.c ****             TelemUART_backup.enableState = 0u;
+  74              		.loc 1 189 0
+  75 0010 1A70     		strb	r2, [r3]
+ 190:.\Generated_Source\PSoC4/TelemUART_PM.c ****         }
+ 191:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #endif /* End TelemUART_RX_ENABLED || TelemUART_HD_ENABLED*/
+ 192:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 193:.\Generated_Source\PSoC4/TelemUART_PM.c ****     TelemUART_Stop();
+ 194:.\Generated_Source\PSoC4/TelemUART_PM.c ****     TelemUART_SaveConfig();
+ 195:.\Generated_Source\PSoC4/TelemUART_PM.c **** }
+  76              		.loc 1 195 0
+  77              		@ sp needed
+ 193:.\Generated_Source\PSoC4/TelemUART_PM.c ****     TelemUART_Stop();
+  78              		.loc 1 193 0
+  79 0012 FFF7FEFF 		bl	TelemUART_Stop
+  80              	.LVL0:
+  81              		.loc 1 195 0
+  82 0016 08BD     		pop	{r3, pc}
+  83              	.L8:
+  84              		.align	2
+  85              	.L7:
+  86 0018 92000F40 		.word	1074725010
+  87 001c 00000000 		.word	.LANCHOR0
+  88              		.cfi_endproc
+  89              	.LFE2:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 6
+
+
+  90              		.size	TelemUART_Sleep, .-TelemUART_Sleep
+  91              		.section	.text.TelemUART_Wakeup,"ax",%progbits
+  92              		.align	1
+  93              		.global	TelemUART_Wakeup
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	TelemUART_Wakeup, %function
+  97              	TelemUART_Wakeup:
+  98              	.LFB3:
+ 196:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 197:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 198:.\Generated_Source\PSoC4/TelemUART_PM.c **** /*******************************************************************************
+ 199:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Function Name: TelemUART_Wakeup
+ 200:.\Generated_Source\PSoC4/TelemUART_PM.c **** ********************************************************************************
+ 201:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 202:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Summary:
+ 203:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  Restores and enables the user configuration. Should be called
+ 204:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  just after awaking from sleep.
+ 205:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 206:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Parameters:
+ 207:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+ 208:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 209:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Return:
+ 210:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  None.
+ 211:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 212:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Global Variables:
+ 213:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  TelemUART_backup - used when non-retention registers are restored.
+ 214:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 215:.\Generated_Source\PSoC4/TelemUART_PM.c **** * Reentrant:
+ 216:.\Generated_Source\PSoC4/TelemUART_PM.c **** *  No.
+ 217:.\Generated_Source\PSoC4/TelemUART_PM.c **** *
+ 218:.\Generated_Source\PSoC4/TelemUART_PM.c **** *******************************************************************************/
+ 219:.\Generated_Source\PSoC4/TelemUART_PM.c **** void TelemUART_Wakeup(void)
+ 220:.\Generated_Source\PSoC4/TelemUART_PM.c **** {
+  99              		.loc 1 220 0
+ 100              		.cfi_startproc
+ 101 0000 08B5     		push	{r3, lr}
+ 102              		.cfi_def_cfa_offset 8
+ 103              		.cfi_offset 3, -8
+ 104              		.cfi_offset 14, -4
+ 221:.\Generated_Source\PSoC4/TelemUART_PM.c ****     TelemUART_RestoreConfig();
+ 222:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #if( (TelemUART_RX_ENABLED) || (TelemUART_HD_ENABLED) )
+ 223:.\Generated_Source\PSoC4/TelemUART_PM.c ****         TelemUART_ClearRxBuffer();
+ 224:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #endif /* End (TelemUART_RX_ENABLED) || (TelemUART_HD_ENABLED) */
+ 225:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #if(TelemUART_TX_ENABLED || TelemUART_HD_ENABLED)
+ 226:.\Generated_Source\PSoC4/TelemUART_PM.c ****         TelemUART_ClearTxBuffer();
+ 105              		.loc 1 226 0
+ 106 0002 FFF7FEFF 		bl	TelemUART_ClearTxBuffer
+ 107              	.LVL1:
+ 227:.\Generated_Source\PSoC4/TelemUART_PM.c ****     #endif /* End TelemUART_TX_ENABLED || TelemUART_HD_ENABLED */
+ 228:.\Generated_Source\PSoC4/TelemUART_PM.c **** 
+ 229:.\Generated_Source\PSoC4/TelemUART_PM.c ****     if(TelemUART_backup.enableState != 0u)
+ 108              		.loc 1 229 0
+ 109 0006 034B     		ldr	r3, .L14
+ 110 0008 1B78     		ldrb	r3, [r3]
+ 111 000a 002B     		cmp	r3, #0
+ 112 000c 01D0     		beq	.L9
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 7
+
+
+ 230:.\Generated_Source\PSoC4/TelemUART_PM.c ****     {
+ 231:.\Generated_Source\PSoC4/TelemUART_PM.c ****         TelemUART_Enable();
+ 113              		.loc 1 231 0
+ 114 000e FFF7FEFF 		bl	TelemUART_Enable
+ 115              	.LVL2:
+ 116              	.L9:
+ 232:.\Generated_Source\PSoC4/TelemUART_PM.c ****     }
+ 233:.\Generated_Source\PSoC4/TelemUART_PM.c **** }
+ 117              		.loc 1 233 0
+ 118              		@ sp needed
+ 119 0012 08BD     		pop	{r3, pc}
+ 120              	.L15:
+ 121              		.align	2
+ 122              	.L14:
+ 123 0014 00000000 		.word	.LANCHOR0
+ 124              		.cfi_endproc
+ 125              	.LFE3:
+ 126              		.size	TelemUART_Wakeup, .-TelemUART_Wakeup
+ 127              		.bss
+ 128              		.set	.LANCHOR0,. + 0
+ 129              		.type	TelemUART_backup, %object
+ 130              		.size	TelemUART_backup, 2
+ 131              	TelemUART_backup:
+ 132 0000 0000     		.space	2
+ 133              		.text
+ 134              	.Letext0:
+ 135              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 136              		.file 3 ".\\Generated_Source\\PSoC4\\TelemUART.h"
+ 137              		.section	.debug_info,"",%progbits
+ 138              	.Ldebug_info0:
+ 139 0000 6B010000 		.4byte	0x16b
+ 140 0004 0400     		.2byte	0x4
+ 141 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 142 000a 04       		.byte	0x4
+ 143 000b 01       		.uleb128 0x1
+ 144 000c C1010000 		.4byte	.LASF25
+ 145 0010 01       		.byte	0x1
+ 146 0011 5A010000 		.4byte	.LASF26
+ 147 0015 49000000 		.4byte	.LASF27
+ 148 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 149 001d 00000000 		.4byte	0
+ 150 0021 00000000 		.4byte	.Ldebug_line0
+ 151 0025 02       		.uleb128 0x2
+ 152 0026 01       		.byte	0x1
+ 153 0027 06       		.byte	0x6
+ 154 0028 76020000 		.4byte	.LASF0
+ 155 002c 02       		.uleb128 0x2
+ 156 002d 01       		.byte	0x1
+ 157 002e 08       		.byte	0x8
+ 158 002f A1000000 		.4byte	.LASF1
+ 159 0033 02       		.uleb128 0x2
+ 160 0034 02       		.byte	0x2
+ 161 0035 05       		.byte	0x5
+ 162 0036 B7010000 		.4byte	.LASF2
+ 163 003a 02       		.uleb128 0x2
+ 164 003b 02       		.byte	0x2
+ 165 003c 07       		.byte	0x7
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 8
+
+
+ 166 003d 10000000 		.4byte	.LASF3
+ 167 0041 02       		.uleb128 0x2
+ 168 0042 04       		.byte	0x4
+ 169 0043 05       		.byte	0x5
+ 170 0044 50020000 		.4byte	.LASF4
+ 171 0048 02       		.uleb128 0x2
+ 172 0049 04       		.byte	0x4
+ 173 004a 07       		.byte	0x7
+ 174 004b F5000000 		.4byte	.LASF5
+ 175 004f 02       		.uleb128 0x2
+ 176 0050 08       		.byte	0x8
+ 177 0051 05       		.byte	0x5
+ 178 0052 4C010000 		.4byte	.LASF6
+ 179 0056 02       		.uleb128 0x2
+ 180 0057 08       		.byte	0x8
+ 181 0058 07       		.byte	0x7
+ 182 0059 2C010000 		.4byte	.LASF7
+ 183 005d 03       		.uleb128 0x3
+ 184 005e 04       		.byte	0x4
+ 185 005f 05       		.byte	0x5
+ 186 0060 696E7400 		.ascii	"int\000"
+ 187 0064 02       		.uleb128 0x2
+ 188 0065 04       		.byte	0x4
+ 189 0066 07       		.byte	0x7
+ 190 0067 07010000 		.4byte	.LASF8
+ 191 006b 04       		.uleb128 0x4
+ 192 006c D0000000 		.4byte	.LASF12
+ 193 0070 02       		.byte	0x2
+ 194 0071 A1       		.byte	0xa1
+ 195 0072 2C000000 		.4byte	0x2c
+ 196 0076 02       		.uleb128 0x2
+ 197 0077 04       		.byte	0x4
+ 198 0078 04       		.byte	0x4
+ 199 0079 9B000000 		.4byte	.LASF9
+ 200 007d 02       		.uleb128 0x2
+ 201 007e 08       		.byte	0x8
+ 202 007f 04       		.byte	0x4
+ 203 0080 D6000000 		.4byte	.LASF10
+ 204 0084 02       		.uleb128 0x2
+ 205 0085 01       		.byte	0x1
+ 206 0086 08       		.byte	0x8
+ 207 0087 9A010000 		.4byte	.LASF11
+ 208 008b 05       		.uleb128 0x5
+ 209 008c AF000000 		.4byte	.LASF13
+ 210 0090 02       		.byte	0x2
+ 211 0091 4B01     		.2byte	0x14b
+ 212 0093 97000000 		.4byte	0x97
+ 213 0097 06       		.uleb128 0x6
+ 214 0098 6B000000 		.4byte	0x6b
+ 215 009c 02       		.uleb128 0x2
+ 216 009d 04       		.byte	0x4
+ 217 009e 07       		.byte	0x7
+ 218 009f 43010000 		.4byte	.LASF14
+ 219 00a3 07       		.uleb128 0x7
+ 220 00a4 DD000000 		.4byte	.LASF28
+ 221 00a8 02       		.byte	0x2
+ 222 00a9 03       		.byte	0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 9
+
+
+ 223 00aa 45       		.byte	0x45
+ 224 00ab C8000000 		.4byte	0xc8
+ 225 00af 08       		.uleb128 0x8
+ 226 00b0 59020000 		.4byte	.LASF15
+ 227 00b4 03       		.byte	0x3
+ 228 00b5 47       		.byte	0x47
+ 229 00b6 6B000000 		.4byte	0x6b
+ 230 00ba 00       		.byte	0
+ 231 00bb 08       		.uleb128 0x8
+ 232 00bc C5000000 		.4byte	.LASF16
+ 233 00c0 03       		.byte	0x3
+ 234 00c1 59       		.byte	0x59
+ 235 00c2 6B000000 		.4byte	0x6b
+ 236 00c6 01       		.byte	0x1
+ 237 00c7 00       		.byte	0
+ 238 00c8 04       		.uleb128 0x4
+ 239 00c9 82010000 		.4byte	.LASF17
+ 240 00cd 03       		.byte	0x3
+ 241 00ce 64       		.byte	0x64
+ 242 00cf A3000000 		.4byte	0xa3
+ 243 00d3 09       		.uleb128 0x9
+ 244 00d4 23000000 		.4byte	.LASF18
+ 245 00d8 01       		.byte	0x1
+ 246 00d9 34       		.byte	0x34
+ 247 00da 01       		.byte	0x1
+ 248 00db 09       		.uleb128 0x9
+ 249 00dc 9F010000 		.4byte	.LASF19
+ 250 00e0 01       		.byte	0x1
+ 251 00e1 6E       		.byte	0x6e
+ 252 00e2 01       		.byte	0x1
+ 253 00e3 0A       		.uleb128 0xa
+ 254 00e4 D3000000 		.4byte	0xd3
+ 255 00e8 00000000 		.4byte	.LFB0
+ 256 00ec 02000000 		.4byte	.LFE0-.LFB0
+ 257 00f0 01       		.uleb128 0x1
+ 258 00f1 9C       		.byte	0x9c
+ 259 00f2 0A       		.uleb128 0xa
+ 260 00f3 DB000000 		.4byte	0xdb
+ 261 00f7 00000000 		.4byte	.LFB1
+ 262 00fb 02000000 		.4byte	.LFE1-.LFB1
+ 263 00ff 01       		.uleb128 0x1
+ 264 0100 9C       		.byte	0x9c
+ 265 0101 0B       		.uleb128 0xb
+ 266 0102 00000000 		.4byte	.LASF20
+ 267 0106 01       		.byte	0x1
+ 268 0107 AA       		.byte	0xaa
+ 269 0108 00000000 		.4byte	.LFB2
+ 270 010c 20000000 		.4byte	.LFE2-.LFB2
+ 271 0110 01       		.uleb128 0x1
+ 272 0111 9C       		.byte	0x9c
+ 273 0112 20010000 		.4byte	0x120
+ 274 0116 0C       		.uleb128 0xc
+ 275 0117 16000000 		.4byte	.LVL0
+ 276 011b 59010000 		.4byte	0x159
+ 277 011f 00       		.byte	0
+ 278 0120 0B       		.uleb128 0xb
+ 279 0121 B4000000 		.4byte	.LASF21
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 10
+
+
+ 280 0125 01       		.byte	0x1
+ 281 0126 DB       		.byte	0xdb
+ 282 0127 00000000 		.4byte	.LFB3
+ 283 012b 18000000 		.4byte	.LFE3-.LFB3
+ 284 012f 01       		.uleb128 0x1
+ 285 0130 9C       		.byte	0x9c
+ 286 0131 48010000 		.4byte	0x148
+ 287 0135 0C       		.uleb128 0xc
+ 288 0136 06000000 		.4byte	.LVL1
+ 289 013a 60010000 		.4byte	0x160
+ 290 013e 0C       		.uleb128 0xc
+ 291 013f 12000000 		.4byte	.LVL2
+ 292 0143 67010000 		.4byte	0x167
+ 293 0147 00       		.byte	0
+ 294 0148 0D       		.uleb128 0xd
+ 295 0149 38000000 		.4byte	.LASF29
+ 296 014d 01       		.byte	0x1
+ 297 014e 18       		.byte	0x18
+ 298 014f C8000000 		.4byte	0xc8
+ 299 0153 05       		.uleb128 0x5
+ 300 0154 03       		.byte	0x3
+ 301 0155 00000000 		.4byte	TelemUART_backup
+ 302 0159 0E       		.uleb128 0xe
+ 303 015a 82020000 		.4byte	.LASF22
+ 304 015e 03       		.byte	0x3
+ 305 015f 6C       		.byte	0x6c
+ 306 0160 0E       		.uleb128 0xe
+ 307 0161 14010000 		.4byte	.LASF23
+ 308 0165 03       		.byte	0x3
+ 309 0166 A4       		.byte	0xa4
+ 310 0167 0E       		.uleb128 0xe
+ 311 0168 65020000 		.4byte	.LASF24
+ 312 016c 03       		.byte	0x3
+ 313 016d 71       		.byte	0x71
+ 314 016e 00       		.byte	0
+ 315              		.section	.debug_abbrev,"",%progbits
+ 316              	.Ldebug_abbrev0:
+ 317 0000 01       		.uleb128 0x1
+ 318 0001 11       		.uleb128 0x11
+ 319 0002 01       		.byte	0x1
+ 320 0003 25       		.uleb128 0x25
+ 321 0004 0E       		.uleb128 0xe
+ 322 0005 13       		.uleb128 0x13
+ 323 0006 0B       		.uleb128 0xb
+ 324 0007 03       		.uleb128 0x3
+ 325 0008 0E       		.uleb128 0xe
+ 326 0009 1B       		.uleb128 0x1b
+ 327 000a 0E       		.uleb128 0xe
+ 328 000b 55       		.uleb128 0x55
+ 329 000c 17       		.uleb128 0x17
+ 330 000d 11       		.uleb128 0x11
+ 331 000e 01       		.uleb128 0x1
+ 332 000f 10       		.uleb128 0x10
+ 333 0010 17       		.uleb128 0x17
+ 334 0011 00       		.byte	0
+ 335 0012 00       		.byte	0
+ 336 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 11
+
+
+ 337 0014 24       		.uleb128 0x24
+ 338 0015 00       		.byte	0
+ 339 0016 0B       		.uleb128 0xb
+ 340 0017 0B       		.uleb128 0xb
+ 341 0018 3E       		.uleb128 0x3e
+ 342 0019 0B       		.uleb128 0xb
+ 343 001a 03       		.uleb128 0x3
+ 344 001b 0E       		.uleb128 0xe
+ 345 001c 00       		.byte	0
+ 346 001d 00       		.byte	0
+ 347 001e 03       		.uleb128 0x3
+ 348 001f 24       		.uleb128 0x24
+ 349 0020 00       		.byte	0
+ 350 0021 0B       		.uleb128 0xb
+ 351 0022 0B       		.uleb128 0xb
+ 352 0023 3E       		.uleb128 0x3e
+ 353 0024 0B       		.uleb128 0xb
+ 354 0025 03       		.uleb128 0x3
+ 355 0026 08       		.uleb128 0x8
+ 356 0027 00       		.byte	0
+ 357 0028 00       		.byte	0
+ 358 0029 04       		.uleb128 0x4
+ 359 002a 16       		.uleb128 0x16
+ 360 002b 00       		.byte	0
+ 361 002c 03       		.uleb128 0x3
+ 362 002d 0E       		.uleb128 0xe
+ 363 002e 3A       		.uleb128 0x3a
+ 364 002f 0B       		.uleb128 0xb
+ 365 0030 3B       		.uleb128 0x3b
+ 366 0031 0B       		.uleb128 0xb
+ 367 0032 49       		.uleb128 0x49
+ 368 0033 13       		.uleb128 0x13
+ 369 0034 00       		.byte	0
+ 370 0035 00       		.byte	0
+ 371 0036 05       		.uleb128 0x5
+ 372 0037 16       		.uleb128 0x16
+ 373 0038 00       		.byte	0
+ 374 0039 03       		.uleb128 0x3
+ 375 003a 0E       		.uleb128 0xe
+ 376 003b 3A       		.uleb128 0x3a
+ 377 003c 0B       		.uleb128 0xb
+ 378 003d 3B       		.uleb128 0x3b
+ 379 003e 05       		.uleb128 0x5
+ 380 003f 49       		.uleb128 0x49
+ 381 0040 13       		.uleb128 0x13
+ 382 0041 00       		.byte	0
+ 383 0042 00       		.byte	0
+ 384 0043 06       		.uleb128 0x6
+ 385 0044 35       		.uleb128 0x35
+ 386 0045 00       		.byte	0
+ 387 0046 49       		.uleb128 0x49
+ 388 0047 13       		.uleb128 0x13
+ 389 0048 00       		.byte	0
+ 390 0049 00       		.byte	0
+ 391 004a 07       		.uleb128 0x7
+ 392 004b 13       		.uleb128 0x13
+ 393 004c 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 12
+
+
+ 394 004d 03       		.uleb128 0x3
+ 395 004e 0E       		.uleb128 0xe
+ 396 004f 0B       		.uleb128 0xb
+ 397 0050 0B       		.uleb128 0xb
+ 398 0051 3A       		.uleb128 0x3a
+ 399 0052 0B       		.uleb128 0xb
+ 400 0053 3B       		.uleb128 0x3b
+ 401 0054 0B       		.uleb128 0xb
+ 402 0055 01       		.uleb128 0x1
+ 403 0056 13       		.uleb128 0x13
+ 404 0057 00       		.byte	0
+ 405 0058 00       		.byte	0
+ 406 0059 08       		.uleb128 0x8
+ 407 005a 0D       		.uleb128 0xd
+ 408 005b 00       		.byte	0
+ 409 005c 03       		.uleb128 0x3
+ 410 005d 0E       		.uleb128 0xe
+ 411 005e 3A       		.uleb128 0x3a
+ 412 005f 0B       		.uleb128 0xb
+ 413 0060 3B       		.uleb128 0x3b
+ 414 0061 0B       		.uleb128 0xb
+ 415 0062 49       		.uleb128 0x49
+ 416 0063 13       		.uleb128 0x13
+ 417 0064 38       		.uleb128 0x38
+ 418 0065 0B       		.uleb128 0xb
+ 419 0066 00       		.byte	0
+ 420 0067 00       		.byte	0
+ 421 0068 09       		.uleb128 0x9
+ 422 0069 2E       		.uleb128 0x2e
+ 423 006a 00       		.byte	0
+ 424 006b 3F       		.uleb128 0x3f
+ 425 006c 19       		.uleb128 0x19
+ 426 006d 03       		.uleb128 0x3
+ 427 006e 0E       		.uleb128 0xe
+ 428 006f 3A       		.uleb128 0x3a
+ 429 0070 0B       		.uleb128 0xb
+ 430 0071 3B       		.uleb128 0x3b
+ 431 0072 0B       		.uleb128 0xb
+ 432 0073 27       		.uleb128 0x27
+ 433 0074 19       		.uleb128 0x19
+ 434 0075 20       		.uleb128 0x20
+ 435 0076 0B       		.uleb128 0xb
+ 436 0077 00       		.byte	0
+ 437 0078 00       		.byte	0
+ 438 0079 0A       		.uleb128 0xa
+ 439 007a 2E       		.uleb128 0x2e
+ 440 007b 00       		.byte	0
+ 441 007c 31       		.uleb128 0x31
+ 442 007d 13       		.uleb128 0x13
+ 443 007e 11       		.uleb128 0x11
+ 444 007f 01       		.uleb128 0x1
+ 445 0080 12       		.uleb128 0x12
+ 446 0081 06       		.uleb128 0x6
+ 447 0082 40       		.uleb128 0x40
+ 448 0083 18       		.uleb128 0x18
+ 449 0084 9742     		.uleb128 0x2117
+ 450 0086 19       		.uleb128 0x19
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 13
+
+
+ 451 0087 00       		.byte	0
+ 452 0088 00       		.byte	0
+ 453 0089 0B       		.uleb128 0xb
+ 454 008a 2E       		.uleb128 0x2e
+ 455 008b 01       		.byte	0x1
+ 456 008c 3F       		.uleb128 0x3f
+ 457 008d 19       		.uleb128 0x19
+ 458 008e 03       		.uleb128 0x3
+ 459 008f 0E       		.uleb128 0xe
+ 460 0090 3A       		.uleb128 0x3a
+ 461 0091 0B       		.uleb128 0xb
+ 462 0092 3B       		.uleb128 0x3b
+ 463 0093 0B       		.uleb128 0xb
+ 464 0094 27       		.uleb128 0x27
+ 465 0095 19       		.uleb128 0x19
+ 466 0096 11       		.uleb128 0x11
+ 467 0097 01       		.uleb128 0x1
+ 468 0098 12       		.uleb128 0x12
+ 469 0099 06       		.uleb128 0x6
+ 470 009a 40       		.uleb128 0x40
+ 471 009b 18       		.uleb128 0x18
+ 472 009c 9742     		.uleb128 0x2117
+ 473 009e 19       		.uleb128 0x19
+ 474 009f 01       		.uleb128 0x1
+ 475 00a0 13       		.uleb128 0x13
+ 476 00a1 00       		.byte	0
+ 477 00a2 00       		.byte	0
+ 478 00a3 0C       		.uleb128 0xc
+ 479 00a4 898201   		.uleb128 0x4109
+ 480 00a7 00       		.byte	0
+ 481 00a8 11       		.uleb128 0x11
+ 482 00a9 01       		.uleb128 0x1
+ 483 00aa 31       		.uleb128 0x31
+ 484 00ab 13       		.uleb128 0x13
+ 485 00ac 00       		.byte	0
+ 486 00ad 00       		.byte	0
+ 487 00ae 0D       		.uleb128 0xd
+ 488 00af 34       		.uleb128 0x34
+ 489 00b0 00       		.byte	0
+ 490 00b1 03       		.uleb128 0x3
+ 491 00b2 0E       		.uleb128 0xe
+ 492 00b3 3A       		.uleb128 0x3a
+ 493 00b4 0B       		.uleb128 0xb
+ 494 00b5 3B       		.uleb128 0x3b
+ 495 00b6 0B       		.uleb128 0xb
+ 496 00b7 49       		.uleb128 0x49
+ 497 00b8 13       		.uleb128 0x13
+ 498 00b9 02       		.uleb128 0x2
+ 499 00ba 18       		.uleb128 0x18
+ 500 00bb 00       		.byte	0
+ 501 00bc 00       		.byte	0
+ 502 00bd 0E       		.uleb128 0xe
+ 503 00be 2E       		.uleb128 0x2e
+ 504 00bf 00       		.byte	0
+ 505 00c0 3F       		.uleb128 0x3f
+ 506 00c1 19       		.uleb128 0x19
+ 507 00c2 03       		.uleb128 0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 14
+
+
+ 508 00c3 0E       		.uleb128 0xe
+ 509 00c4 3A       		.uleb128 0x3a
+ 510 00c5 0B       		.uleb128 0xb
+ 511 00c6 3B       		.uleb128 0x3b
+ 512 00c7 0B       		.uleb128 0xb
+ 513 00c8 27       		.uleb128 0x27
+ 514 00c9 19       		.uleb128 0x19
+ 515 00ca 3C       		.uleb128 0x3c
+ 516 00cb 19       		.uleb128 0x19
+ 517 00cc 00       		.byte	0
+ 518 00cd 00       		.byte	0
+ 519 00ce 00       		.byte	0
+ 520              		.section	.debug_aranges,"",%progbits
+ 521 0000 34000000 		.4byte	0x34
+ 522 0004 0200     		.2byte	0x2
+ 523 0006 00000000 		.4byte	.Ldebug_info0
+ 524 000a 04       		.byte	0x4
+ 525 000b 00       		.byte	0
+ 526 000c 0000     		.2byte	0
+ 527 000e 0000     		.2byte	0
+ 528 0010 00000000 		.4byte	.LFB0
+ 529 0014 02000000 		.4byte	.LFE0-.LFB0
+ 530 0018 00000000 		.4byte	.LFB1
+ 531 001c 02000000 		.4byte	.LFE1-.LFB1
+ 532 0020 00000000 		.4byte	.LFB2
+ 533 0024 20000000 		.4byte	.LFE2-.LFB2
+ 534 0028 00000000 		.4byte	.LFB3
+ 535 002c 18000000 		.4byte	.LFE3-.LFB3
+ 536 0030 00000000 		.4byte	0
+ 537 0034 00000000 		.4byte	0
+ 538              		.section	.debug_ranges,"",%progbits
+ 539              	.Ldebug_ranges0:
+ 540 0000 00000000 		.4byte	.LFB0
+ 541 0004 02000000 		.4byte	.LFE0
+ 542 0008 00000000 		.4byte	.LFB1
+ 543 000c 02000000 		.4byte	.LFE1
+ 544 0010 00000000 		.4byte	.LFB2
+ 545 0014 20000000 		.4byte	.LFE2
+ 546 0018 00000000 		.4byte	.LFB3
+ 547 001c 18000000 		.4byte	.LFE3
+ 548 0020 00000000 		.4byte	0
+ 549 0024 00000000 		.4byte	0
+ 550              		.section	.debug_line,"",%progbits
+ 551              	.Ldebug_line0:
+ 552 0000 B1000000 		.section	.debug_str,"MS",%progbits,1
+ 552      02005A00 
+ 552      00000201 
+ 552      FB0E0D00 
+ 552      01010101 
+ 553              	.LASF20:
+ 554 0000 54656C65 		.ascii	"TelemUART_Sleep\000"
+ 554      6D554152 
+ 554      545F536C 
+ 554      65657000 
+ 555              	.LASF3:
+ 556 0010 73686F72 		.ascii	"short unsigned int\000"
+ 556      7420756E 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 15
+
+
+ 556      7369676E 
+ 556      65642069 
+ 556      6E7400
+ 557              	.LASF18:
+ 558 0023 54656C65 		.ascii	"TelemUART_SaveConfig\000"
+ 558      6D554152 
+ 558      545F5361 
+ 558      7665436F 
+ 558      6E666967 
+ 559              	.LASF29:
+ 560 0038 54656C65 		.ascii	"TelemUART_backup\000"
+ 560      6D554152 
+ 560      545F6261 
+ 560      636B7570 
+ 560      00
+ 561              	.LASF27:
+ 562 0049 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 562      73657273 
+ 562      5C534E46 
+ 562      555C446F 
+ 562      63756D65 
+ 563 0077 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 563      542D3530 
+ 563      5F50726F 
+ 563      6A656374 
+ 563      5C542D35 
+ 564              	.LASF9:
+ 565 009b 666C6F61 		.ascii	"float\000"
+ 565      7400
+ 566              	.LASF1:
+ 567 00a1 756E7369 		.ascii	"unsigned char\000"
+ 567      676E6564 
+ 567      20636861 
+ 567      7200
+ 568              	.LASF13:
+ 569 00af 72656738 		.ascii	"reg8\000"
+ 569      00
+ 570              	.LASF21:
+ 571 00b4 54656C65 		.ascii	"TelemUART_Wakeup\000"
+ 571      6D554152 
+ 571      545F5761 
+ 571      6B657570 
+ 571      00
+ 572              	.LASF16:
+ 573 00c5 74785F63 		.ascii	"tx_clk_ctr\000"
+ 573      6C6B5F63 
+ 573      747200
+ 574              	.LASF12:
+ 575 00d0 75696E74 		.ascii	"uint8\000"
+ 575      3800
+ 576              	.LASF10:
+ 577 00d6 646F7562 		.ascii	"double\000"
+ 577      6C6500
+ 578              	.LASF28:
+ 579 00dd 54656C65 		.ascii	"TelemUART_backupStruct_\000"
+ 579      6D554152 
+ 579      545F6261 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 16
+
+
+ 579      636B7570 
+ 579      53747275 
+ 580              	.LASF5:
+ 581 00f5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 581      20756E73 
+ 581      69676E65 
+ 581      6420696E 
+ 581      7400
+ 582              	.LASF8:
+ 583 0107 756E7369 		.ascii	"unsigned int\000"
+ 583      676E6564 
+ 583      20696E74 
+ 583      00
+ 584              	.LASF23:
+ 585 0114 54656C65 		.ascii	"TelemUART_ClearTxBuffer\000"
+ 585      6D554152 
+ 585      545F436C 
+ 585      65617254 
+ 585      78427566 
+ 586              	.LASF7:
+ 587 012c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 587      206C6F6E 
+ 587      6720756E 
+ 587      7369676E 
+ 587      65642069 
+ 588              	.LASF14:
+ 589 0143 73697A65 		.ascii	"sizetype\000"
+ 589      74797065 
+ 589      00
+ 590              	.LASF6:
+ 591 014c 6C6F6E67 		.ascii	"long long int\000"
+ 591      206C6F6E 
+ 591      6720696E 
+ 591      7400
+ 592              	.LASF26:
+ 593 015a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TelemUART_PM.c\000"
+ 593      6E657261 
+ 593      7465645F 
+ 593      536F7572 
+ 593      63655C50 
+ 594              	.LASF17:
+ 595 0182 54656C65 		.ascii	"TelemUART_BACKUP_STRUCT\000"
+ 595      6D554152 
+ 595      545F4241 
+ 595      434B5550 
+ 595      5F535452 
+ 596              	.LASF11:
+ 597 019a 63686172 		.ascii	"char\000"
+ 597      00
+ 598              	.LASF19:
+ 599 019f 54656C65 		.ascii	"TelemUART_RestoreConfig\000"
+ 599      6D554152 
+ 599      545F5265 
+ 599      73746F72 
+ 599      65436F6E 
+ 600              	.LASF2:
+ 601 01b7 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc33EglS.s 			page 17
+
+
+ 601      7420696E 
+ 601      7400
+ 602              	.LASF25:
+ 603 01c1 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 603      4320342E 
+ 603      382E3420 
+ 603      32303134 
+ 603      30353236 
+ 604 01f4 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 604      20726576 
+ 604      6973696F 
+ 604      6E203231 
+ 604      31333538 
+ 605 0227 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 605      66756E63 
+ 605      74696F6E 
+ 605      2D736563 
+ 605      74696F6E 
+ 606              	.LASF4:
+ 607 0250 6C6F6E67 		.ascii	"long int\000"
+ 607      20696E74 
+ 607      00
+ 608              	.LASF15:
+ 609 0259 656E6162 		.ascii	"enableState\000"
+ 609      6C655374 
+ 609      61746500 
+ 610              	.LASF24:
+ 611 0265 54656C65 		.ascii	"TelemUART_Enable\000"
+ 611      6D554152 
+ 611      545F456E 
+ 611      61626C65 
+ 611      00
+ 612              	.LASF0:
+ 613 0276 7369676E 		.ascii	"signed char\000"
+ 613      65642063 
+ 613      68617200 
+ 614              	.LASF22:
+ 615 0282 54656C65 		.ascii	"TelemUART_Stop\000"
+ 615      6D554152 
+ 615      545F5374 
+ 615      6F7000
+ 616              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

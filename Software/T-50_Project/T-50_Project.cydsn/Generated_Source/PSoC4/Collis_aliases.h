@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: Collis.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define Collis_0		Collis__0__PC
+#define Collis_0		(Collis__0__PC)
+#define Collis_0_PS		(Collis__0__PS)
+#define Collis_0_PC		(Collis__0__PC)
+#define Collis_0_DR		(Collis__0__DR)
+#define Collis_0_SHIFT	(Collis__0__SHIFT)
+
 
 #endif /* End Pins Collis_ALIASES_H */
 

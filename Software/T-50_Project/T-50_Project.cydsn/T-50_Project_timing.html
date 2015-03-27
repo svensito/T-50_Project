@@ -539,7 +539,7 @@ function getElementsByClass(rootNode, elemName, className)
 <tr> <td class="prop"> Project :</td>
 <td class="proptext"> T-50_Project</td></tr>
 <tr> <td class="prop"> Build Time :</td>
-<td class="proptext"> 03/25/15 10:46:18</td></tr>
+<td class="proptext"> 03/25/15 22:18:45</td></tr>
 <tr> <td class="prop"> Device :</td>
 <td class="proptext"> CY8C4245AXI-483</td></tr>
 <tr> <td class="prop"> Temperature :</td>
@@ -661,7 +661,7 @@ Clock Summary Section</span>
  <td class = "text_info">CyHFCLK</td>
  <td class = "number">76.677&nbsp;kHz</td>
  <td class = "number">76.677&nbsp;kHz</td>
- <td class = "number">43.725&nbsp;MHz</td>
+ <td class = "number">45.558&nbsp;MHz</td>
  <td class = "text_info"></td>
 </tr>
 <tr> 
@@ -685,6 +685,14 @@ Clock Summary Section</span>
  <td class = "text_info">CyLFCLK</td>
  <td class = "number">32.000&nbsp;kHz</td>
  <td class = "number">32.000&nbsp;kHz</td>
+ <td class = "number"> N/A </td>
+ <td class = "text_info"> </td>
+</tr>
+<tr> 
+ <td class = "text_info">CyRouted1</td>
+ <td class = "text_info">CyRouted1</td>
+ <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">24.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -756,9 +764,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">43.725&nbsp;MHz</td>
- <td class = "number">22.870</td>
- <td class = "number">13018.797</td>
+ <td class = "number">45.558&nbsp;MHz</td>
+ <td class = "number">21.950</td>
+ <td class = "number">13019.717</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -778,7 +786,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">macrocell6</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/clock_0</td>
@@ -792,7 +800,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_0</td>
- <td class = "number">4.491</td>
+ <td class = "number">3.602</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell2</td>
@@ -810,92 +818,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">2.259</td>
+ <td class = "number">2.228</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(1,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
- <td class = "text_info"></td>
- <td class = "text_info">SETUP</td>
- <td class = "number">11.520</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">44.551&nbsp;MHz</td>
- <td class = "number">22.446</td>
- <td class = "number">13019.221</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="6">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell7</td>
- <td class = "text_info">U(1,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_2</td>
- <td class = "number">4.067</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell2</td>
  <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_2</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
- <td class = "number">3.350</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
- <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
- <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">2.259</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
  <td class = "text_info"></td>
@@ -918,9 +845,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">45.836&nbsp;MHz</td>
- <td class = "number">21.817</td>
- <td class = "number">13019.850</td>
+ <td class = "number">45.859&nbsp;MHz</td>
+ <td class = "number">21.806</td>
+ <td class = "number">13019.861</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -954,7 +881,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_1</td>
- <td class = "number">3.438</td>
+ <td class = "number">3.458</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell2</td>
@@ -972,11 +899,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">2.259</td>
+ <td class = "number">2.228</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
  <td class = "text_info"></td>
@@ -999,9 +926,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">45.909&nbsp;MHz</td>
- <td class = "number">21.782</td>
- <td class = "number">13019.885</td>
+ <td class = "number">46.516&nbsp;MHz</td>
+ <td class = "number">21.498</td>
+ <td class = "number">13020.169</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1021,7 +948,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">macrocell3</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
@@ -1035,7 +962,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_3</td>
- <td class = "number">3.403</td>
+ <td class = "number">3.150</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell2</td>
@@ -1053,11 +980,92 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
  <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
- <td class = "number">2.259</td>
+ <td class = "number">2.228</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
+ <td class = "text_info"></td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">11.520</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
+ <td class = "number">46.609&nbsp;MHz</td>
+ <td class = "number">21.455</td>
+ <td class = "number">13020.212</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="6">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell7</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_2</td>
+ <td class = "number">3.107</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell2</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\/main_2</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
+ <td class = "number">3.350</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\</td>
+ <td class = "text_info">\TelemUART:BUART:counter_load_not\/q</td>
+ <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0</td>
+ <td class = "number">2.228</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
  <td class = "text_info"></td>
@@ -1080,9 +1088,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_0</td>
- <td class = "number">50.424&nbsp;MHz</td>
- <td class = "number">19.832</td>
- <td class = "number">13021.835</td>
+ <td class = "number">50.464&nbsp;MHz</td>
+ <td class = "number">19.816</td>
+ <td class = "number">13021.851</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1102,7 +1110,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/clock</td>
@@ -1116,11 +1124,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_dp\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_enable_pre\/main_0</td>
- <td class = "number">2.256</td>
+ <td class = "number">2.244</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell4</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_enable_pre\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_enable_pre\/main_0</td>
@@ -1134,11 +1142,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_enable_pre\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk_enable_pre\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_0</td>
- <td class = "number">2.256</td>
+ <td class = "number">2.252</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\</td>
  <td class = "text_info"></td>
@@ -1161,9 +1169,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">63.183&nbsp;MHz</td>
- <td class = "number">15.827</td>
- <td class = "number">13025.840</td>
+ <td class = "number">68.092&nbsp;MHz</td>
+ <td class = "number">14.686</td>
+ <td class = "number">13026.981</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1183,7 +1191,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/clock</td>
@@ -1197,11 +1205,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_fifo_empty\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_2</td>
- <td class = "number">3.375</td>
+ <td class = "number">2.238</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell8</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_2</td>
@@ -1215,11 +1223,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">2.252</td>
+ <td class = "number">2.248</td>
 </tr>
 <tr> 
  <td class = "text_info">statusicell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\</td>
  <td class = "text_info"></td>
@@ -1242,9 +1250,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/so_comb</td>
  <td class = "text_info">\TelemUART:BUART:txn\/main_3</td>
- <td class = "number">76.705&nbsp;MHz</td>
- <td class = "number">13.037</td>
- <td class = "number">13028.630</td>
+ <td class = "number">76.787&nbsp;MHz</td>
+ <td class = "number">13.023</td>
+ <td class = "number">13028.644</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1264,7 +1272,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/clock</td>
@@ -1278,7 +1286,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_shift_out\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/so_comb</td>
  <td class = "text_info">\TelemUART:BUART:txn\/main_3</td>
- <td class = "number">2.247</td>
+ <td class = "number">2.233</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell10</td>
@@ -1305,9 +1313,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">77.441&nbsp;MHz</td>
- <td class = "number">12.913</td>
- <td class = "number">13028.754</td>
+ <td class = "number">83.209&nbsp;MHz</td>
+ <td class = "number">12.018</td>
+ <td class = "number">13029.649</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1327,7 +1335,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">macrocell6</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/clock_0</td>
@@ -1341,11 +1349,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_0</td>
- <td class = "number">4.491</td>
+ <td class = "number">3.600</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell8</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_0</td>
@@ -1359,11 +1367,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">2.252</td>
+ <td class = "number">2.248</td>
 </tr>
 <tr> 
  <td class = "text_info">statusicell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\</td>
  <td class = "text_info"></td>
@@ -1386,9 +1394,9 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tr> 
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_2</td>
- <td class = "number">79.758&nbsp;MHz</td>
- <td class = "number">12.538</td>
- <td class = "number">13029.129</td>
+ <td class = "number">83.907&nbsp;MHz</td>
+ <td class = "number">11.918</td>
+ <td class = "number">13029.749</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1408,7 +1416,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 <tbody>
 <tr> 
  <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/clock</td>
@@ -1422,7 +1430,7 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_fifo_empty\</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_2</td>
- <td class = "number">3.748</td>
+ <td class = "number">3.128</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell5</td>
@@ -1447,11 +1455,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">80.070&nbsp;MHz</td>
- <td class = "number">12.489</td>
- <td class = "number">13029.178</td>
+ <td class = "number">85.106&nbsp;MHz</td>
+ <td class = "number">11.750</td>
+ <td class = "number">13029.917</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1470,29 +1478,29 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell7</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">macrocell5</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
  <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"> </td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_3</td>
- <td class = "number">4.067</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_1</td>
+ <td class = "number">3.332</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell8</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_3</td>
+ <td class = "text_info">\TelemUART:BUART:tx_status_0\/main_1</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/q</td>
  <td class = "number">3.350</td>
 </tr>
@@ -1503,11 +1511,11 @@ Destination Clock : TelemUART_IntClock : Positive edge(Required Frequency 76.677
  <td class = "text_info">\TelemUART:BUART:tx_status_0\</td>
  <td class = "text_info">\TelemUART:BUART:tx_status_0\/q</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\/status_0</td>
- <td class = "number">2.252</td>
+ <td class = "number">2.248</td>
 </tr>
 <tr> 
  <td class = "text_info">statusicell1</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:sTX:TxSts\</td>
  <td class = "text_info"></td>
@@ -1566,7 +1574,7 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 <tr> 
  <td class = "text_info">\TelemUART:BUART:txn\/q</td>
  <td class = "text_info">\TelemUART:BUART:txn\/main_0</td>
- <td class = "number">3.789</td>
+ <td class = "number">3.913</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1600,7 +1608,7 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
  <td class = "text_info">\TelemUART:BUART:txn\</td>
  <td class = "text_info">\TelemUART:BUART:txn\/q</td>
  <td class = "text_info">\TelemUART:BUART:txn\/main_0</td>
- <td class = "number">2.539</td>
+ <td class = "number">2.663</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell10</td>
@@ -1625,9 +1633,9 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_4</td>
- <td class = "number">4.547</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_2</td>
+ <td class = "number">4.357</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1646,87 +1654,26 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell3</td>
+ <td class = "text_info">macrocell7</td>
  <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
  <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_4</td>
- <td class = "number">3.297</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell5</td>
- <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_3</td>
- <td class = "number">4.552</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell3</td>
- <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_3</td>
- <td class = "number">3.302</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell7</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_2</td>
+ <td class = "number">3.107</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell7</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
  <td class = "text_info"> </td>
@@ -1747,9 +1694,9 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:txn\/main_5</td>
- <td class = "number">4.552</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_3</td>
+ <td class = "number">4.365</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1767,90 +1714,29 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </tr>
 </thead> 
 <tbody>
-<tr> 
- <td class = "text_info">macrocell3</td>
- <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
- <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
- <td class = "text_info">\TelemUART:BUART:txn\/main_5</td>
- <td class = "number">3.302</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell10</td>
- <td class = "text_info">U(1,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:txn\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_1</td>
- <td class = "number">4.572</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell5</td>
- <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_1</td>
- <td class = "number">3.322</td>
-</tr>
 <tr> 
  <td class = "text_info">macrocell7</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_3</td>
+ <td class = "number">3.115</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell5</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
@@ -1869,9 +1755,9 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:txn\/main_2</td>
- <td class = "number">4.572</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_2</td>
+ <td class = "number">4.365</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1890,87 +1776,26 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell5</td>
+ <td class = "text_info">macrocell7</td>
  <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
  <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:txn\/main_2</td>
- <td class = "number">3.322</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell10</td>
- <td class = "text_info">U(1,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:txn\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_1</td>
- <td class = "number">4.575</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell5</td>
- <td class = "text_info">U(0,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_1</td>
- <td class = "number">3.325</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_2</td>
+ <td class = "number">3.115</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell6</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
  <td class = "text_info"> </td>
@@ -1992,8 +1817,8 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </tr>
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_2</td>
- <td class = "number">4.653</td>
+ <td class = "text_info">\TelemUART:BUART:txn\/main_4</td>
+ <td class = "number">4.369</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -2013,7 +1838,7 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 <tbody>
 <tr> 
  <td class = "text_info">macrocell7</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
@@ -2026,14 +1851,14 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_2</td>
- <td class = "number">3.403</td>
+ <td class = "text_info">\TelemUART:BUART:txn\/main_4</td>
+ <td class = "number">3.119</td>
 </tr>
 <tr> 
- <td class = "text_info">macrocell6</td>
+ <td class = "text_info">macrocell10</td>
  <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
+ <td class = "text_info">\TelemUART:BUART:txn\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
@@ -2052,9 +1877,9 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_3</td>
- <td class = "number">4.657</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_3</td>
+ <td class = "number">4.400</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -2073,22 +1898,83 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell7</td>
+ <td class = "text_info">macrocell3</td>
  <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/clock_0</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
  <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_2\/main_3</td>
+ <td class = "number">3.150</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell7</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_2\</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_2\/q</td>
- <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_3</td>
- <td class = "number">3.407</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_4</td>
+ <td class = "number">4.402</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell3</td>
+ <td class = "text_info">U(1,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_4</td>
+ <td class = "number">3.152</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell5</td>
@@ -2115,7 +2001,7 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 <tr> 
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_3</td>
- <td class = "number">4.662</td>
+ <td class = "number">4.402</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -2135,7 +2021,7 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
 <tbody>
 <tr> 
  <td class = "text_info">macrocell3</td>
- <td class = "text_info">U(0,0)</td>
+ <td class = "text_info">U(1,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
@@ -2149,13 +2035,135 @@ Destination Clock : TelemUART_IntClock : Positive edge</span>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
  <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\/main_3</td>
- <td class = "number">3.412</td>
+ <td class = "number">3.152</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell6</td>
- <td class = "text_info">U(1,0)</td>
+ <td class = "text_info">U(0,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:txn\/main_5</td>
+ <td class = "number">4.403</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell3</td>
+ <td class = "text_info">U(1,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_bitclk\/q</td>
+ <td class = "text_info">\TelemUART:BUART:txn\/main_5</td>
+ <td class = "number">3.153</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell10</td>
+ <td class = "text_info">U(1,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:txn\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_0</td>
+ <td class = "number">4.431</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell6</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/clock_0</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_1\/q</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\/main_0</td>
+ <td class = "number">3.181</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell5</td>
+ <td class = "text_info">U(0,0)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\TelemUART:BUART:tx_state_0\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
@@ -2193,7 +2201,7 @@ Clock To Output Section</span>
 <div>
 <a href="#" style="text-decoration: none; color: inherit;">
 <span class="sec_head"><span style="font-family: monospace;">+</span>
-Clock_1(FFB)</span>
+Clock_2(FFB)</span>
 </a>
 </div><div class="sta_secbody"><table class="sta_tscs">
  <thead> 
@@ -2433,7 +2441,7 @@ TelemUART_IntClock</span>
 <tr> 
  <td class = "text_info">\TelemUART:BUART:txn\/q</td>
  <td class = "text_info">Tx_Telemetry(0)_PAD</td>
- <td class = "number">29.835</td>
+ <td class = "number">29.965</td>
 </tr>
 <tr class="sta_path">
 <td class="sta_path"  colspan="3">
@@ -2466,7 +2474,7 @@ TelemUART_IntClock</span>
  <td class = "text_info">\TelemUART:BUART:txn\</td>
  <td class = "text_info">\TelemUART:BUART:txn\/q</td>
  <td class = "text_info">Net_206/main_0</td>
- <td class = "number">2.538</td>
+ <td class = "number">2.668</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell1</td>

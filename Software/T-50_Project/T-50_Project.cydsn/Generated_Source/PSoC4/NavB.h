@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: NavB.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   NavB_ClearInterrupt(void) ;
 /* Drive Modes */
 #define NavB_DRIVE_MODE_BITS        (3)
 #define NavB_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - NavB_DRIVE_MODE_BITS))
-#define NavB_DRIVE_MODE_SHIFT       (0x00u)
-#define NavB_DRIVE_MODE_MASK        (0x07u << NavB_DRIVE_MODE_SHIFT)
 
-#define NavB_DM_ALG_HIZ         (0x00u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_DIG_HIZ         (0x01u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_RES_UP          (0x02u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_RES_DWN         (0x03u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_OD_LO           (0x04u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_OD_HI           (0x05u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_STRONG          (0x06u << NavB_DRIVE_MODE_SHIFT)
-#define NavB_DM_RES_UPDWN       (0x07u << NavB_DRIVE_MODE_SHIFT)
+#define NavB_DM_ALG_HIZ         (0x00u)
+#define NavB_DM_DIG_HIZ         (0x01u)
+#define NavB_DM_RES_UP          (0x02u)
+#define NavB_DM_RES_DWN         (0x03u)
+#define NavB_DM_OD_LO           (0x04u)
+#define NavB_DM_OD_HI           (0x05u)
+#define NavB_DM_STRONG          (0x06u)
+#define NavB_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define NavB_MASK               NavB__MASK
@@ -78,6 +76,16 @@ uint8   NavB_ClearInterrupt(void) ;
     #define NavB_INTSTAT                (* (reg32 *) NavB__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define NavB_DRIVE_MODE_SHIFT       (0x00u)
+#define NavB_DRIVE_MODE_MASK        (0x07u << NavB_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins NavB_H */
 

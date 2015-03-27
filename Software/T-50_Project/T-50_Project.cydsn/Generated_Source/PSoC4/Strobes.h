@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: Strobes.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   Strobes_ClearInterrupt(void) ;
 /* Drive Modes */
 #define Strobes_DRIVE_MODE_BITS        (3)
 #define Strobes_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - Strobes_DRIVE_MODE_BITS))
-#define Strobes_DRIVE_MODE_SHIFT       (0x00u)
-#define Strobes_DRIVE_MODE_MASK        (0x07u << Strobes_DRIVE_MODE_SHIFT)
 
-#define Strobes_DM_ALG_HIZ         (0x00u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_DIG_HIZ         (0x01u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_RES_UP          (0x02u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_RES_DWN         (0x03u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_OD_LO           (0x04u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_OD_HI           (0x05u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_STRONG          (0x06u << Strobes_DRIVE_MODE_SHIFT)
-#define Strobes_DM_RES_UPDWN       (0x07u << Strobes_DRIVE_MODE_SHIFT)
+#define Strobes_DM_ALG_HIZ         (0x00u)
+#define Strobes_DM_DIG_HIZ         (0x01u)
+#define Strobes_DM_RES_UP          (0x02u)
+#define Strobes_DM_RES_DWN         (0x03u)
+#define Strobes_DM_OD_LO           (0x04u)
+#define Strobes_DM_OD_HI           (0x05u)
+#define Strobes_DM_STRONG          (0x06u)
+#define Strobes_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define Strobes_MASK               Strobes__MASK
@@ -78,6 +76,16 @@ uint8   Strobes_ClearInterrupt(void) ;
     #define Strobes_INTSTAT                (* (reg32 *) Strobes__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define Strobes_DRIVE_MODE_SHIFT       (0x00u)
+#define Strobes_DRIVE_MODE_MASK        (0x07u << Strobes_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins Strobes_H */
 

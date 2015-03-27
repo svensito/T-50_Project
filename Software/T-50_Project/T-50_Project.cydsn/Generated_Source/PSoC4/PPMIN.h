@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: PPMIN.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   PPMIN_ClearInterrupt(void) ;
 /* Drive Modes */
 #define PPMIN_DRIVE_MODE_BITS        (3)
 #define PPMIN_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - PPMIN_DRIVE_MODE_BITS))
-#define PPMIN_DRIVE_MODE_SHIFT       (0x00u)
-#define PPMIN_DRIVE_MODE_MASK        (0x07u << PPMIN_DRIVE_MODE_SHIFT)
 
-#define PPMIN_DM_ALG_HIZ         (0x00u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_DIG_HIZ         (0x01u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_RES_UP          (0x02u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_RES_DWN         (0x03u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_OD_LO           (0x04u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_OD_HI           (0x05u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_STRONG          (0x06u << PPMIN_DRIVE_MODE_SHIFT)
-#define PPMIN_DM_RES_UPDWN       (0x07u << PPMIN_DRIVE_MODE_SHIFT)
+#define PPMIN_DM_ALG_HIZ         (0x00u)
+#define PPMIN_DM_DIG_HIZ         (0x01u)
+#define PPMIN_DM_RES_UP          (0x02u)
+#define PPMIN_DM_RES_DWN         (0x03u)
+#define PPMIN_DM_OD_LO           (0x04u)
+#define PPMIN_DM_OD_HI           (0x05u)
+#define PPMIN_DM_STRONG          (0x06u)
+#define PPMIN_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define PPMIN_MASK               PPMIN__MASK
@@ -78,6 +76,16 @@ uint8   PPMIN_ClearInterrupt(void) ;
     #define PPMIN_INTSTAT                (* (reg32 *) PPMIN__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define PPMIN_DRIVE_MODE_SHIFT       (0x00u)
+#define PPMIN_DRIVE_MODE_MASK        (0x07u << PPMIN_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins PPMIN_H */
 

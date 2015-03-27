@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: Ldg.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   Ldg_ClearInterrupt(void) ;
 /* Drive Modes */
 #define Ldg_DRIVE_MODE_BITS        (3)
 #define Ldg_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - Ldg_DRIVE_MODE_BITS))
-#define Ldg_DRIVE_MODE_SHIFT       (0x00u)
-#define Ldg_DRIVE_MODE_MASK        (0x07u << Ldg_DRIVE_MODE_SHIFT)
 
-#define Ldg_DM_ALG_HIZ         (0x00u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_DIG_HIZ         (0x01u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_RES_UP          (0x02u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_RES_DWN         (0x03u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_OD_LO           (0x04u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_OD_HI           (0x05u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_STRONG          (0x06u << Ldg_DRIVE_MODE_SHIFT)
-#define Ldg_DM_RES_UPDWN       (0x07u << Ldg_DRIVE_MODE_SHIFT)
+#define Ldg_DM_ALG_HIZ         (0x00u)
+#define Ldg_DM_DIG_HIZ         (0x01u)
+#define Ldg_DM_RES_UP          (0x02u)
+#define Ldg_DM_RES_DWN         (0x03u)
+#define Ldg_DM_OD_LO           (0x04u)
+#define Ldg_DM_OD_HI           (0x05u)
+#define Ldg_DM_STRONG          (0x06u)
+#define Ldg_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define Ldg_MASK               Ldg__MASK
@@ -78,6 +76,16 @@ uint8   Ldg_ClearInterrupt(void) ;
     #define Ldg_INTSTAT                (* (reg32 *) Ldg__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define Ldg_DRIVE_MODE_SHIFT       (0x00u)
+#define Ldg_DRIVE_MODE_MASK        (0x07u << Ldg_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins Ldg_H */
 

@@ -89,6 +89,7 @@ uint8_t cnt_StrobeLight     = 0;
 #define GYRO_TASK   TRUE
 #define ACC_TASK    TRUE
 #define MAG_TASK    TRUE
+#define BARO_TASK   TRUE
 
 /* turn rates */
 int16_t turn_rate_p = 0;
@@ -111,6 +112,10 @@ float Psi, Psi_acc = 0;       // Psi , Psi_acc => Psi from accelerometer
 /* Magnetic Heading*/
 int32_t Mag_Heading = 0;
 float Mag_x, Mag_y = 0;    
+
+/* Barometer Reading*/
+uint32_t Bar_press = 0;
+uint8_t cnt_baro  = 0;
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -201,6 +206,7 @@ int main()
     if(GYRO_TASK == TRUE) gyro_start();
     if(ACC_TASK == TRUE) acc_start();
     if(MAG_TASK == TRUE) mag_start();
+    if(BARO_TASK == TRUE) baro_start();
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
@@ -292,6 +298,15 @@ int main()
             {
                 mag_read();
             }
+            if(BARO_TASK == TRUE)
+            {
+                cnt_baro++;
+                if(cnt_baro == 10)
+                {
+                    cnt_baro = 0;
+                    baro_read();
+                }
+            }
             
             /* Theta and Phi out of acceleration data*/
             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
@@ -376,9 +391,10 @@ int main()
             //Mag_x = mag_x_g*cos(Theta);//+ mag_y_g*sin(Phi)*sin(Theta)+ mag_z_g*cos(Phi)*sin(Theta);
             //Mag_y = mag_y_g*cos(Phi);// - mag_z_g*sin(Phi);
             Mag_Heading = atan2(-(mag_y_g),(mag_x_g))*180/PI;
-            UART_1_UartPutNum(Mag_Heading);
+            //UART_1_UartPutNum(Mag_Heading);
+            UART_1_UartPutNum(Bar_press);   //Print Baro Press
             UART_1_UartPutString(";\r\n");
-
+            
 			/* Calculating the attitude by using Kalman Filtering END*/
 			/*=======================================================*/
             /* MAVLINK

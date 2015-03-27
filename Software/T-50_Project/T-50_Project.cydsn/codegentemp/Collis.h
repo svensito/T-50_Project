@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: Collis.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   Collis_ClearInterrupt(void) ;
 /* Drive Modes */
 #define Collis_DRIVE_MODE_BITS        (3)
 #define Collis_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - Collis_DRIVE_MODE_BITS))
-#define Collis_DRIVE_MODE_SHIFT       (0x00u)
-#define Collis_DRIVE_MODE_MASK        (0x07u << Collis_DRIVE_MODE_SHIFT)
 
-#define Collis_DM_ALG_HIZ         (0x00u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_DIG_HIZ         (0x01u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_RES_UP          (0x02u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_RES_DWN         (0x03u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_OD_LO           (0x04u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_OD_HI           (0x05u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_STRONG          (0x06u << Collis_DRIVE_MODE_SHIFT)
-#define Collis_DM_RES_UPDWN       (0x07u << Collis_DRIVE_MODE_SHIFT)
+#define Collis_DM_ALG_HIZ         (0x00u)
+#define Collis_DM_DIG_HIZ         (0x01u)
+#define Collis_DM_RES_UP          (0x02u)
+#define Collis_DM_RES_DWN         (0x03u)
+#define Collis_DM_OD_LO           (0x04u)
+#define Collis_DM_OD_HI           (0x05u)
+#define Collis_DM_STRONG          (0x06u)
+#define Collis_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define Collis_MASK               Collis__MASK
@@ -78,6 +76,16 @@ uint8   Collis_ClearInterrupt(void) ;
     #define Collis_INTSTAT                (* (reg32 *) Collis__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define Collis_DRIVE_MODE_SHIFT       (0x00u)
+#define Collis_DRIVE_MODE_MASK        (0x07u << Collis_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins Collis_H */
 

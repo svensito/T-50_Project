@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: Strobes.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define Strobes_0		Strobes__0__PC
+#define Strobes_0		(Strobes__0__PC)
+#define Strobes_0_PS		(Strobes__0__PS)
+#define Strobes_0_PC		(Strobes__0__PC)
+#define Strobes_0_DR		(Strobes__0__DR)
+#define Strobes_0_SHIFT	(Strobes__0__SHIFT)
+
 
 #endif /* End Pins Strobes_ALIASES_H */
 

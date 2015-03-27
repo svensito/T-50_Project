@@ -1,0 +1,947 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"NavLR.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.NavLR_Write,"ax",%progbits
+  18              		.align	1
+  19              		.global	NavLR_Write
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	NavLR_Write, %function
+  23              	NavLR_Write:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\NavLR.c"
+   1:.\Generated_Source\PSoC4/NavLR.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/NavLR.c **** * File Name: NavLR.c  
+   3:.\Generated_Source\PSoC4/NavLR.c **** * Version 2.10
+   4:.\Generated_Source\PSoC4/NavLR.c **** *
+   5:.\Generated_Source\PSoC4/NavLR.c **** * Description:
+   6:.\Generated_Source\PSoC4/NavLR.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC4/NavLR.c **** *
+   8:.\Generated_Source\PSoC4/NavLR.c **** * Note:
+   9:.\Generated_Source\PSoC4/NavLR.c **** *
+  10:.\Generated_Source\PSoC4/NavLR.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC4/NavLR.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC4/NavLR.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC4/NavLR.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC4/NavLR.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC4/NavLR.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC4/NavLR.c **** 
+  17:.\Generated_Source\PSoC4/NavLR.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC4/NavLR.c **** #include "NavLR.h"
+  19:.\Generated_Source\PSoC4/NavLR.c **** 
+  20:.\Generated_Source\PSoC4/NavLR.c **** #define SetP4PinDriveMode(shift, mode)  \
+  21:.\Generated_Source\PSoC4/NavLR.c ****     do { \
+  22:.\Generated_Source\PSoC4/NavLR.c ****         NavLR_PC =   (NavLR_PC & \
+  23:.\Generated_Source\PSoC4/NavLR.c ****                                 (uint32)(~(uint32)(NavLR_DRIVE_MODE_IND_MASK << (NavLR_DRIVE_MODE_B
+  24:.\Generated_Source\PSoC4/NavLR.c ****                                 (uint32)((uint32)(mode) << (NavLR_DRIVE_MODE_BITS * (shift))); \
+  25:.\Generated_Source\PSoC4/NavLR.c ****     } while (0)
+  26:.\Generated_Source\PSoC4/NavLR.c **** 
+  27:.\Generated_Source\PSoC4/NavLR.c **** 
+  28:.\Generated_Source\PSoC4/NavLR.c **** /*******************************************************************************
+  29:.\Generated_Source\PSoC4/NavLR.c **** * Function Name: NavLR_Write
+  30:.\Generated_Source\PSoC4/NavLR.c **** ********************************************************************************
+  31:.\Generated_Source\PSoC4/NavLR.c **** *
+  32:.\Generated_Source\PSoC4/NavLR.c **** * Summary:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/NavLR.c **** *  Assign a new value to the digital port's data output register.  
+  34:.\Generated_Source\PSoC4/NavLR.c **** *
+  35:.\Generated_Source\PSoC4/NavLR.c **** * Parameters:  
+  36:.\Generated_Source\PSoC4/NavLR.c **** *  prtValue:  The value to be assigned to the Digital Port. 
+  37:.\Generated_Source\PSoC4/NavLR.c **** *
+  38:.\Generated_Source\PSoC4/NavLR.c **** * Return: 
+  39:.\Generated_Source\PSoC4/NavLR.c **** *  None 
+  40:.\Generated_Source\PSoC4/NavLR.c **** *  
+  41:.\Generated_Source\PSoC4/NavLR.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC4/NavLR.c **** void NavLR_Write(uint8 value) 
+  43:.\Generated_Source\PSoC4/NavLR.c **** {
+  26              		.loc 1 43 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  44:.\Generated_Source\PSoC4/NavLR.c ****     uint8 drVal = (uint8)(NavLR_DR & (uint8)(~NavLR_MASK));
+  29              		.loc 1 44 0
+  30 0000 044B     		ldr	r3, .L2
+  31 0002 0222     		mov	r2, #2
+  32 0004 1968     		ldr	r1, [r3]
+  45:.\Generated_Source\PSoC4/NavLR.c ****     drVal = (drVal | ((uint8)(value << NavLR_SHIFT) & NavLR_MASK));
+  33              		.loc 1 45 0
+  34 0006 4000     		lsl	r0, r0, #1
+  35              	.LVL1:
+  44:.\Generated_Source\PSoC4/NavLR.c ****     uint8 drVal = (uint8)(NavLR_DR & (uint8)(~NavLR_MASK));
+  36              		.loc 1 44 0
+  37 0008 9143     		bic	r1, r2
+  38 000a C9B2     		uxtb	r1, r1
+  39              		.loc 1 45 0
+  40 000c 0240     		and	r2, r0
+  46:.\Generated_Source\PSoC4/NavLR.c ****     NavLR_DR = (uint32)drVal;
+  41              		.loc 1 46 0
+  42 000e 0A43     		orr	r2, r1
+  43 0010 1A60     		str	r2, [r3]
+  47:.\Generated_Source\PSoC4/NavLR.c **** }
+  44              		.loc 1 47 0
+  45              		@ sp needed
+  46 0012 7047     		bx	lr
+  47              	.L3:
+  48              		.align	2
+  49              	.L2:
+  50 0014 00020440 		.word	1074004480
+  51              		.cfi_endproc
+  52              	.LFE0:
+  53              		.size	NavLR_Write, .-NavLR_Write
+  54              		.section	.text.NavLR_SetDriveMode,"ax",%progbits
+  55              		.align	1
+  56              		.global	NavLR_SetDriveMode
+  57              		.code	16
+  58              		.thumb_func
+  59              		.type	NavLR_SetDriveMode, %function
+  60              	NavLR_SetDriveMode:
+  61              	.LFB1:
+  48:.\Generated_Source\PSoC4/NavLR.c **** 
+  49:.\Generated_Source\PSoC4/NavLR.c **** 
+  50:.\Generated_Source\PSoC4/NavLR.c **** /*******************************************************************************
+  51:.\Generated_Source\PSoC4/NavLR.c **** * Function Name: NavLR_SetDriveMode
+  52:.\Generated_Source\PSoC4/NavLR.c **** ********************************************************************************
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 3
+
+
+  53:.\Generated_Source\PSoC4/NavLR.c **** *
+  54:.\Generated_Source\PSoC4/NavLR.c **** * Summary:
+  55:.\Generated_Source\PSoC4/NavLR.c **** *  Change the drive mode on the pins of the port.
+  56:.\Generated_Source\PSoC4/NavLR.c **** * 
+  57:.\Generated_Source\PSoC4/NavLR.c **** * Parameters:  
+  58:.\Generated_Source\PSoC4/NavLR.c **** *  mode:  Change the pins to one of the following drive modes.
+  59:.\Generated_Source\PSoC4/NavLR.c **** *
+  60:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_STRONG     Strong Drive 
+  61:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_OD_HI      Open Drain, Drives High 
+  62:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_OD_LO      Open Drain, Drives Low 
+  63:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_RES_UP     Resistive Pull Up 
+  64:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_RES_DWN    Resistive Pull Down 
+  65:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_RES_UPDWN  Resistive Pull Up/Down 
+  66:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_DIG_HIZ    High Impedance Digital 
+  67:.\Generated_Source\PSoC4/NavLR.c **** *  NavLR_DM_ALG_HIZ    High Impedance Analog 
+  68:.\Generated_Source\PSoC4/NavLR.c **** *
+  69:.\Generated_Source\PSoC4/NavLR.c **** * Return: 
+  70:.\Generated_Source\PSoC4/NavLR.c **** *  None
+  71:.\Generated_Source\PSoC4/NavLR.c **** *
+  72:.\Generated_Source\PSoC4/NavLR.c **** *******************************************************************************/
+  73:.\Generated_Source\PSoC4/NavLR.c **** void NavLR_SetDriveMode(uint8 mode) 
+  74:.\Generated_Source\PSoC4/NavLR.c **** {
+  62              		.loc 1 74 0
+  63              		.cfi_startproc
+  64              	.LVL2:
+  75:.\Generated_Source\PSoC4/NavLR.c **** 	SetP4PinDriveMode(NavLR__0__SHIFT, mode);
+  65              		.loc 1 75 0
+  66 0000 044B     		ldr	r3, .L5
+  67 0002 C200     		lsl	r2, r0, #3
+  68 0004 1968     		ldr	r1, [r3]
+  69 0006 3820     		mov	r0, #56
+  70              	.LVL3:
+  71 0008 8143     		bic	r1, r0
+  72 000a 081C     		mov	r0, r1
+  73 000c 1043     		orr	r0, r2
+  74 000e 1860     		str	r0, [r3]
+  76:.\Generated_Source\PSoC4/NavLR.c **** }
+  75              		.loc 1 76 0
+  76              		@ sp needed
+  77 0010 7047     		bx	lr
+  78              	.L6:
+  79 0012 C046     		.align	2
+  80              	.L5:
+  81 0014 08020440 		.word	1074004488
+  82              		.cfi_endproc
+  83              	.LFE1:
+  84              		.size	NavLR_SetDriveMode, .-NavLR_SetDriveMode
+  85              		.section	.text.NavLR_Read,"ax",%progbits
+  86              		.align	1
+  87              		.global	NavLR_Read
+  88              		.code	16
+  89              		.thumb_func
+  90              		.type	NavLR_Read, %function
+  91              	NavLR_Read:
+  92              	.LFB2:
+  77:.\Generated_Source\PSoC4/NavLR.c **** 
+  78:.\Generated_Source\PSoC4/NavLR.c **** 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 4
+
+
+  79:.\Generated_Source\PSoC4/NavLR.c **** /*******************************************************************************
+  80:.\Generated_Source\PSoC4/NavLR.c **** * Function Name: NavLR_Read
+  81:.\Generated_Source\PSoC4/NavLR.c **** ********************************************************************************
+  82:.\Generated_Source\PSoC4/NavLR.c **** *
+  83:.\Generated_Source\PSoC4/NavLR.c **** * Summary:
+  84:.\Generated_Source\PSoC4/NavLR.c **** *  Read the current value on the pins of the Digital Port in right justified 
+  85:.\Generated_Source\PSoC4/NavLR.c **** *  form.
+  86:.\Generated_Source\PSoC4/NavLR.c **** *
+  87:.\Generated_Source\PSoC4/NavLR.c **** * Parameters:  
+  88:.\Generated_Source\PSoC4/NavLR.c **** *  None 
+  89:.\Generated_Source\PSoC4/NavLR.c **** *
+  90:.\Generated_Source\PSoC4/NavLR.c **** * Return: 
+  91:.\Generated_Source\PSoC4/NavLR.c **** *  Returns the current value of the Digital Port as a right justified number
+  92:.\Generated_Source\PSoC4/NavLR.c **** *  
+  93:.\Generated_Source\PSoC4/NavLR.c **** * Note:
+  94:.\Generated_Source\PSoC4/NavLR.c **** *  Macro NavLR_ReadPS calls this function. 
+  95:.\Generated_Source\PSoC4/NavLR.c **** *  
+  96:.\Generated_Source\PSoC4/NavLR.c **** *******************************************************************************/
+  97:.\Generated_Source\PSoC4/NavLR.c **** uint8 NavLR_Read(void) 
+  98:.\Generated_Source\PSoC4/NavLR.c **** {
+  93              		.loc 1 98 0
+  94              		.cfi_startproc
+  99:.\Generated_Source\PSoC4/NavLR.c ****     return (uint8)((NavLR_PS & NavLR_MASK) >> NavLR_SHIFT);
+  95              		.loc 1 99 0
+  96 0000 024B     		ldr	r3, .L8
+ 100:.\Generated_Source\PSoC4/NavLR.c **** }
+  97              		.loc 1 100 0
+  98              		@ sp needed
+  99:.\Generated_Source\PSoC4/NavLR.c ****     return (uint8)((NavLR_PS & NavLR_MASK) >> NavLR_SHIFT);
+  99              		.loc 1 99 0
+ 100 0002 1868     		ldr	r0, [r3]
+ 101 0004 8007     		lsl	r0, r0, #30
+ 102 0006 C00F     		lsr	r0, r0, #31
+ 103              		.loc 1 100 0
+ 104 0008 7047     		bx	lr
+ 105              	.L9:
+ 106 000a C046     		.align	2
+ 107              	.L8:
+ 108 000c 04020440 		.word	1074004484
+ 109              		.cfi_endproc
+ 110              	.LFE2:
+ 111              		.size	NavLR_Read, .-NavLR_Read
+ 112              		.section	.text.NavLR_ReadDataReg,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	NavLR_ReadDataReg
+ 115              		.code	16
+ 116              		.thumb_func
+ 117              		.type	NavLR_ReadDataReg, %function
+ 118              	NavLR_ReadDataReg:
+ 119              	.LFB3:
+ 101:.\Generated_Source\PSoC4/NavLR.c **** 
+ 102:.\Generated_Source\PSoC4/NavLR.c **** 
+ 103:.\Generated_Source\PSoC4/NavLR.c **** /*******************************************************************************
+ 104:.\Generated_Source\PSoC4/NavLR.c **** * Function Name: NavLR_ReadDataReg
+ 105:.\Generated_Source\PSoC4/NavLR.c **** ********************************************************************************
+ 106:.\Generated_Source\PSoC4/NavLR.c **** *
+ 107:.\Generated_Source\PSoC4/NavLR.c **** * Summary:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 5
+
+
+ 108:.\Generated_Source\PSoC4/NavLR.c **** *  Read the current value assigned to a Digital Port's data output register
+ 109:.\Generated_Source\PSoC4/NavLR.c **** *
+ 110:.\Generated_Source\PSoC4/NavLR.c **** * Parameters:  
+ 111:.\Generated_Source\PSoC4/NavLR.c **** *  None 
+ 112:.\Generated_Source\PSoC4/NavLR.c **** *
+ 113:.\Generated_Source\PSoC4/NavLR.c **** * Return: 
+ 114:.\Generated_Source\PSoC4/NavLR.c **** *  Returns the current value assigned to the Digital Port's data output register
+ 115:.\Generated_Source\PSoC4/NavLR.c **** *  
+ 116:.\Generated_Source\PSoC4/NavLR.c **** *******************************************************************************/
+ 117:.\Generated_Source\PSoC4/NavLR.c **** uint8 NavLR_ReadDataReg(void) 
+ 118:.\Generated_Source\PSoC4/NavLR.c **** {
+ 120              		.loc 1 118 0
+ 121              		.cfi_startproc
+ 119:.\Generated_Source\PSoC4/NavLR.c ****     return (uint8)((NavLR_DR & NavLR_MASK) >> NavLR_SHIFT);
+ 122              		.loc 1 119 0
+ 123 0000 024B     		ldr	r3, .L11
+ 120:.\Generated_Source\PSoC4/NavLR.c **** }
+ 124              		.loc 1 120 0
+ 125              		@ sp needed
+ 119:.\Generated_Source\PSoC4/NavLR.c ****     return (uint8)((NavLR_DR & NavLR_MASK) >> NavLR_SHIFT);
+ 126              		.loc 1 119 0
+ 127 0002 1868     		ldr	r0, [r3]
+ 128 0004 8007     		lsl	r0, r0, #30
+ 129 0006 C00F     		lsr	r0, r0, #31
+ 130              		.loc 1 120 0
+ 131 0008 7047     		bx	lr
+ 132              	.L12:
+ 133 000a C046     		.align	2
+ 134              	.L11:
+ 135 000c 00020440 		.word	1074004480
+ 136              		.cfi_endproc
+ 137              	.LFE3:
+ 138              		.size	NavLR_ReadDataReg, .-NavLR_ReadDataReg
+ 139              		.section	.text.NavLR_ClearInterrupt,"ax",%progbits
+ 140              		.align	1
+ 141              		.global	NavLR_ClearInterrupt
+ 142              		.code	16
+ 143              		.thumb_func
+ 144              		.type	NavLR_ClearInterrupt, %function
+ 145              	NavLR_ClearInterrupt:
+ 146              	.LFB4:
+ 121:.\Generated_Source\PSoC4/NavLR.c **** 
+ 122:.\Generated_Source\PSoC4/NavLR.c **** 
+ 123:.\Generated_Source\PSoC4/NavLR.c **** /* If Interrupts Are Enabled for this Pins component */ 
+ 124:.\Generated_Source\PSoC4/NavLR.c **** #if defined(NavLR_INTSTAT) 
+ 125:.\Generated_Source\PSoC4/NavLR.c **** 
+ 126:.\Generated_Source\PSoC4/NavLR.c ****     /*******************************************************************************
+ 127:.\Generated_Source\PSoC4/NavLR.c ****     * Function Name: NavLR_ClearInterrupt
+ 128:.\Generated_Source\PSoC4/NavLR.c ****     ********************************************************************************
+ 129:.\Generated_Source\PSoC4/NavLR.c ****     *
+ 130:.\Generated_Source\PSoC4/NavLR.c ****     * Summary:
+ 131:.\Generated_Source\PSoC4/NavLR.c ****     *  Clears any active interrupts attached to port and returns the value of the 
+ 132:.\Generated_Source\PSoC4/NavLR.c ****     *  interrupt status register.
+ 133:.\Generated_Source\PSoC4/NavLR.c ****     *
+ 134:.\Generated_Source\PSoC4/NavLR.c ****     * Parameters:  
+ 135:.\Generated_Source\PSoC4/NavLR.c ****     *  None 
+ 136:.\Generated_Source\PSoC4/NavLR.c ****     *
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 6
+
+
+ 137:.\Generated_Source\PSoC4/NavLR.c ****     * Return: 
+ 138:.\Generated_Source\PSoC4/NavLR.c ****     *  Returns the value of the interrupt status register
+ 139:.\Generated_Source\PSoC4/NavLR.c ****     *  
+ 140:.\Generated_Source\PSoC4/NavLR.c ****     *******************************************************************************/
+ 141:.\Generated_Source\PSoC4/NavLR.c ****     uint8 NavLR_ClearInterrupt(void) 
+ 142:.\Generated_Source\PSoC4/NavLR.c ****     {
+ 147              		.loc 1 142 0
+ 148              		.cfi_startproc
+ 143:.\Generated_Source\PSoC4/NavLR.c **** 		uint8 maskedStatus = (uint8)(NavLR_INTSTAT & NavLR_MASK);
+ 149              		.loc 1 143 0
+ 150 0000 034B     		ldr	r3, .L14
+ 151 0002 0222     		mov	r2, #2
+ 152 0004 1868     		ldr	r0, [r3]
+ 144:.\Generated_Source\PSoC4/NavLR.c **** 		NavLR_INTSTAT = maskedStatus;
+ 145:.\Generated_Source\PSoC4/NavLR.c ****         return maskedStatus >> NavLR_SHIFT;
+ 146:.\Generated_Source\PSoC4/NavLR.c ****     }
+ 153              		.loc 1 146 0
+ 154              		@ sp needed
+ 143:.\Generated_Source\PSoC4/NavLR.c **** 		uint8 maskedStatus = (uint8)(NavLR_INTSTAT & NavLR_MASK);
+ 155              		.loc 1 143 0
+ 156 0006 1040     		and	r0, r2
+ 157              	.LVL4:
+ 144:.\Generated_Source\PSoC4/NavLR.c **** 		NavLR_INTSTAT = maskedStatus;
+ 158              		.loc 1 144 0
+ 159 0008 1860     		str	r0, [r3]
+ 145:.\Generated_Source\PSoC4/NavLR.c ****         return maskedStatus >> NavLR_SHIFT;
+ 160              		.loc 1 145 0
+ 161 000a 4008     		lsr	r0, r0, #1
+ 162              	.LVL5:
+ 163 000c C0B2     		uxtb	r0, r0
+ 164              		.loc 1 146 0
+ 165 000e 7047     		bx	lr
+ 166              	.L15:
+ 167              		.align	2
+ 168              	.L14:
+ 169 0010 10020440 		.word	1074004496
+ 170              		.cfi_endproc
+ 171              	.LFE4:
+ 172              		.size	NavLR_ClearInterrupt, .-NavLR_ClearInterrupt
+ 173              		.text
+ 174              	.Letext0:
+ 175              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 176              		.section	.debug_info,"",%progbits
+ 177              	.Ldebug_info0:
+ 178 0000 48010000 		.4byte	0x148
+ 179 0004 0400     		.2byte	0x4
+ 180 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 181 000a 04       		.byte	0x4
+ 182 000b 01       		.uleb128 0x1
+ 183 000c 5E010000 		.4byte	.LASF22
+ 184 0010 01       		.byte	0x1
+ 185 0011 00000000 		.4byte	.LASF23
+ 186 0015 51000000 		.4byte	.LASF24
+ 187 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 188 001d 00000000 		.4byte	0
+ 189 0021 00000000 		.4byte	.Ldebug_line0
+ 190 0025 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 7
+
+
+ 191 0026 01       		.byte	0x1
+ 192 0027 06       		.byte	0x6
+ 193 0028 0E020000 		.4byte	.LASF0
+ 194 002c 02       		.uleb128 0x2
+ 195 002d 01       		.byte	0x1
+ 196 002e 08       		.byte	0x8
+ 197 002f AF000000 		.4byte	.LASF1
+ 198 0033 02       		.uleb128 0x2
+ 199 0034 02       		.byte	0x2
+ 200 0035 05       		.byte	0x5
+ 201 0036 54010000 		.4byte	.LASF2
+ 202 003a 02       		.uleb128 0x2
+ 203 003b 02       		.byte	0x2
+ 204 003c 07       		.byte	0x7
+ 205 003d D5000000 		.4byte	.LASF3
+ 206 0041 02       		.uleb128 0x2
+ 207 0042 04       		.byte	0x4
+ 208 0043 05       		.byte	0x5
+ 209 0044 ED010000 		.4byte	.LASF4
+ 210 0048 02       		.uleb128 0x2
+ 211 0049 04       		.byte	0x4
+ 212 004a 07       		.byte	0x7
+ 213 004b C3000000 		.4byte	.LASF5
+ 214 004f 02       		.uleb128 0x2
+ 215 0050 08       		.byte	0x8
+ 216 0051 05       		.byte	0x5
+ 217 0052 34010000 		.4byte	.LASF6
+ 218 0056 02       		.uleb128 0x2
+ 219 0057 08       		.byte	0x8
+ 220 0058 07       		.byte	0x7
+ 221 0059 18010000 		.4byte	.LASF7
+ 222 005d 03       		.uleb128 0x3
+ 223 005e 04       		.byte	0x4
+ 224 005f 05       		.byte	0x5
+ 225 0060 696E7400 		.ascii	"int\000"
+ 226 0064 02       		.uleb128 0x2
+ 227 0065 04       		.byte	0x4
+ 228 0066 07       		.byte	0x7
+ 229 0067 0B010000 		.4byte	.LASF8
+ 230 006b 04       		.uleb128 0x4
+ 231 006c A9000000 		.4byte	.LASF9
+ 232 0070 02       		.byte	0x2
+ 233 0071 A1       		.byte	0xa1
+ 234 0072 2C000000 		.4byte	0x2c
+ 235 0076 04       		.uleb128 0x4
+ 236 0077 04010000 		.4byte	.LASF10
+ 237 007b 02       		.byte	0x2
+ 238 007c A3       		.byte	0xa3
+ 239 007d 48000000 		.4byte	0x48
+ 240 0081 02       		.uleb128 0x2
+ 241 0082 04       		.byte	0x4
+ 242 0083 04       		.byte	0x4
+ 243 0084 A3000000 		.4byte	.LASF11
+ 244 0088 02       		.uleb128 0x2
+ 245 0089 08       		.byte	0x8
+ 246 008a 04       		.byte	0x4
+ 247 008b E8000000 		.4byte	.LASF12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 8
+
+
+ 248 008f 02       		.uleb128 0x2
+ 249 0090 01       		.byte	0x1
+ 250 0091 08       		.byte	0x8
+ 251 0092 4F010000 		.4byte	.LASF13
+ 252 0096 05       		.uleb128 0x5
+ 253 0097 F6010000 		.4byte	.LASF14
+ 254 009b 02       		.byte	0x2
+ 255 009c 4D01     		.2byte	0x14d
+ 256 009e A2000000 		.4byte	0xa2
+ 257 00a2 06       		.uleb128 0x6
+ 258 00a3 76000000 		.4byte	0x76
+ 259 00a7 07       		.uleb128 0x7
+ 260 00a8 3A000000 		.4byte	.LASF15
+ 261 00ac 01       		.byte	0x1
+ 262 00ad 2A       		.byte	0x2a
+ 263 00ae 00000000 		.4byte	.LFB0
+ 264 00b2 18000000 		.4byte	.LFE0-.LFB0
+ 265 00b6 01       		.uleb128 0x1
+ 266 00b7 9C       		.byte	0x9c
+ 267 00b8 D7000000 		.4byte	0xd7
+ 268 00bc 08       		.uleb128 0x8
+ 269 00bd 34000000 		.4byte	.LASF17
+ 270 00c1 01       		.byte	0x1
+ 271 00c2 2A       		.byte	0x2a
+ 272 00c3 6B000000 		.4byte	0x6b
+ 273 00c7 00000000 		.4byte	.LLST0
+ 274 00cb 09       		.uleb128 0x9
+ 275 00cc BD000000 		.4byte	.LASF25
+ 276 00d0 01       		.byte	0x1
+ 277 00d1 2C       		.byte	0x2c
+ 278 00d2 6B000000 		.4byte	0x6b
+ 279 00d6 00       		.byte	0
+ 280 00d7 07       		.uleb128 0x7
+ 281 00d8 21000000 		.4byte	.LASF16
+ 282 00dc 01       		.byte	0x1
+ 283 00dd 49       		.byte	0x49
+ 284 00de 00000000 		.4byte	.LFB1
+ 285 00e2 18000000 		.4byte	.LFE1-.LFB1
+ 286 00e6 01       		.uleb128 0x1
+ 287 00e7 9C       		.byte	0x9c
+ 288 00e8 FC000000 		.4byte	0xfc
+ 289 00ec 08       		.uleb128 0x8
+ 290 00ed 2F010000 		.4byte	.LASF18
+ 291 00f1 01       		.byte	0x1
+ 292 00f2 49       		.byte	0x49
+ 293 00f3 6B000000 		.4byte	0x6b
+ 294 00f7 21000000 		.4byte	.LLST1
+ 295 00fb 00       		.byte	0
+ 296 00fc 0A       		.uleb128 0xa
+ 297 00fd 46000000 		.4byte	.LASF19
+ 298 0101 01       		.byte	0x1
+ 299 0102 61       		.byte	0x61
+ 300 0103 6B000000 		.4byte	0x6b
+ 301 0107 00000000 		.4byte	.LFB2
+ 302 010b 10000000 		.4byte	.LFE2-.LFB2
+ 303 010f 01       		.uleb128 0x1
+ 304 0110 9C       		.byte	0x9c
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 9
+
+
+ 305 0111 0A       		.uleb128 0xa
+ 306 0112 FC010000 		.4byte	.LASF20
+ 307 0116 01       		.byte	0x1
+ 308 0117 75       		.byte	0x75
+ 309 0118 6B000000 		.4byte	0x6b
+ 310 011c 00000000 		.4byte	.LFB3
+ 311 0120 10000000 		.4byte	.LFE3-.LFB3
+ 312 0124 01       		.uleb128 0x1
+ 313 0125 9C       		.byte	0x9c
+ 314 0126 0B       		.uleb128 0xb
+ 315 0127 EF000000 		.4byte	.LASF21
+ 316 012b 01       		.byte	0x1
+ 317 012c 8D       		.byte	0x8d
+ 318 012d 6B000000 		.4byte	0x6b
+ 319 0131 00000000 		.4byte	.LFB4
+ 320 0135 14000000 		.4byte	.LFE4-.LFB4
+ 321 0139 01       		.uleb128 0x1
+ 322 013a 9C       		.byte	0x9c
+ 323 013b 0C       		.uleb128 0xc
+ 324 013c 42010000 		.4byte	.LASF26
+ 325 0140 01       		.byte	0x1
+ 326 0141 8F       		.byte	0x8f
+ 327 0142 6B000000 		.4byte	0x6b
+ 328 0146 42000000 		.4byte	.LLST2
+ 329 014a 00       		.byte	0
+ 330 014b 00       		.byte	0
+ 331              		.section	.debug_abbrev,"",%progbits
+ 332              	.Ldebug_abbrev0:
+ 333 0000 01       		.uleb128 0x1
+ 334 0001 11       		.uleb128 0x11
+ 335 0002 01       		.byte	0x1
+ 336 0003 25       		.uleb128 0x25
+ 337 0004 0E       		.uleb128 0xe
+ 338 0005 13       		.uleb128 0x13
+ 339 0006 0B       		.uleb128 0xb
+ 340 0007 03       		.uleb128 0x3
+ 341 0008 0E       		.uleb128 0xe
+ 342 0009 1B       		.uleb128 0x1b
+ 343 000a 0E       		.uleb128 0xe
+ 344 000b 55       		.uleb128 0x55
+ 345 000c 17       		.uleb128 0x17
+ 346 000d 11       		.uleb128 0x11
+ 347 000e 01       		.uleb128 0x1
+ 348 000f 10       		.uleb128 0x10
+ 349 0010 17       		.uleb128 0x17
+ 350 0011 00       		.byte	0
+ 351 0012 00       		.byte	0
+ 352 0013 02       		.uleb128 0x2
+ 353 0014 24       		.uleb128 0x24
+ 354 0015 00       		.byte	0
+ 355 0016 0B       		.uleb128 0xb
+ 356 0017 0B       		.uleb128 0xb
+ 357 0018 3E       		.uleb128 0x3e
+ 358 0019 0B       		.uleb128 0xb
+ 359 001a 03       		.uleb128 0x3
+ 360 001b 0E       		.uleb128 0xe
+ 361 001c 00       		.byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 10
+
+
+ 362 001d 00       		.byte	0
+ 363 001e 03       		.uleb128 0x3
+ 364 001f 24       		.uleb128 0x24
+ 365 0020 00       		.byte	0
+ 366 0021 0B       		.uleb128 0xb
+ 367 0022 0B       		.uleb128 0xb
+ 368 0023 3E       		.uleb128 0x3e
+ 369 0024 0B       		.uleb128 0xb
+ 370 0025 03       		.uleb128 0x3
+ 371 0026 08       		.uleb128 0x8
+ 372 0027 00       		.byte	0
+ 373 0028 00       		.byte	0
+ 374 0029 04       		.uleb128 0x4
+ 375 002a 16       		.uleb128 0x16
+ 376 002b 00       		.byte	0
+ 377 002c 03       		.uleb128 0x3
+ 378 002d 0E       		.uleb128 0xe
+ 379 002e 3A       		.uleb128 0x3a
+ 380 002f 0B       		.uleb128 0xb
+ 381 0030 3B       		.uleb128 0x3b
+ 382 0031 0B       		.uleb128 0xb
+ 383 0032 49       		.uleb128 0x49
+ 384 0033 13       		.uleb128 0x13
+ 385 0034 00       		.byte	0
+ 386 0035 00       		.byte	0
+ 387 0036 05       		.uleb128 0x5
+ 388 0037 16       		.uleb128 0x16
+ 389 0038 00       		.byte	0
+ 390 0039 03       		.uleb128 0x3
+ 391 003a 0E       		.uleb128 0xe
+ 392 003b 3A       		.uleb128 0x3a
+ 393 003c 0B       		.uleb128 0xb
+ 394 003d 3B       		.uleb128 0x3b
+ 395 003e 05       		.uleb128 0x5
+ 396 003f 49       		.uleb128 0x49
+ 397 0040 13       		.uleb128 0x13
+ 398 0041 00       		.byte	0
+ 399 0042 00       		.byte	0
+ 400 0043 06       		.uleb128 0x6
+ 401 0044 35       		.uleb128 0x35
+ 402 0045 00       		.byte	0
+ 403 0046 49       		.uleb128 0x49
+ 404 0047 13       		.uleb128 0x13
+ 405 0048 00       		.byte	0
+ 406 0049 00       		.byte	0
+ 407 004a 07       		.uleb128 0x7
+ 408 004b 2E       		.uleb128 0x2e
+ 409 004c 01       		.byte	0x1
+ 410 004d 3F       		.uleb128 0x3f
+ 411 004e 19       		.uleb128 0x19
+ 412 004f 03       		.uleb128 0x3
+ 413 0050 0E       		.uleb128 0xe
+ 414 0051 3A       		.uleb128 0x3a
+ 415 0052 0B       		.uleb128 0xb
+ 416 0053 3B       		.uleb128 0x3b
+ 417 0054 0B       		.uleb128 0xb
+ 418 0055 27       		.uleb128 0x27
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 11
+
+
+ 419 0056 19       		.uleb128 0x19
+ 420 0057 11       		.uleb128 0x11
+ 421 0058 01       		.uleb128 0x1
+ 422 0059 12       		.uleb128 0x12
+ 423 005a 06       		.uleb128 0x6
+ 424 005b 40       		.uleb128 0x40
+ 425 005c 18       		.uleb128 0x18
+ 426 005d 9742     		.uleb128 0x2117
+ 427 005f 19       		.uleb128 0x19
+ 428 0060 01       		.uleb128 0x1
+ 429 0061 13       		.uleb128 0x13
+ 430 0062 00       		.byte	0
+ 431 0063 00       		.byte	0
+ 432 0064 08       		.uleb128 0x8
+ 433 0065 05       		.uleb128 0x5
+ 434 0066 00       		.byte	0
+ 435 0067 03       		.uleb128 0x3
+ 436 0068 0E       		.uleb128 0xe
+ 437 0069 3A       		.uleb128 0x3a
+ 438 006a 0B       		.uleb128 0xb
+ 439 006b 3B       		.uleb128 0x3b
+ 440 006c 0B       		.uleb128 0xb
+ 441 006d 49       		.uleb128 0x49
+ 442 006e 13       		.uleb128 0x13
+ 443 006f 02       		.uleb128 0x2
+ 444 0070 17       		.uleb128 0x17
+ 445 0071 00       		.byte	0
+ 446 0072 00       		.byte	0
+ 447 0073 09       		.uleb128 0x9
+ 448 0074 34       		.uleb128 0x34
+ 449 0075 00       		.byte	0
+ 450 0076 03       		.uleb128 0x3
+ 451 0077 0E       		.uleb128 0xe
+ 452 0078 3A       		.uleb128 0x3a
+ 453 0079 0B       		.uleb128 0xb
+ 454 007a 3B       		.uleb128 0x3b
+ 455 007b 0B       		.uleb128 0xb
+ 456 007c 49       		.uleb128 0x49
+ 457 007d 13       		.uleb128 0x13
+ 458 007e 00       		.byte	0
+ 459 007f 00       		.byte	0
+ 460 0080 0A       		.uleb128 0xa
+ 461 0081 2E       		.uleb128 0x2e
+ 462 0082 00       		.byte	0
+ 463 0083 3F       		.uleb128 0x3f
+ 464 0084 19       		.uleb128 0x19
+ 465 0085 03       		.uleb128 0x3
+ 466 0086 0E       		.uleb128 0xe
+ 467 0087 3A       		.uleb128 0x3a
+ 468 0088 0B       		.uleb128 0xb
+ 469 0089 3B       		.uleb128 0x3b
+ 470 008a 0B       		.uleb128 0xb
+ 471 008b 27       		.uleb128 0x27
+ 472 008c 19       		.uleb128 0x19
+ 473 008d 49       		.uleb128 0x49
+ 474 008e 13       		.uleb128 0x13
+ 475 008f 11       		.uleb128 0x11
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 12
+
+
+ 476 0090 01       		.uleb128 0x1
+ 477 0091 12       		.uleb128 0x12
+ 478 0092 06       		.uleb128 0x6
+ 479 0093 40       		.uleb128 0x40
+ 480 0094 18       		.uleb128 0x18
+ 481 0095 9742     		.uleb128 0x2117
+ 482 0097 19       		.uleb128 0x19
+ 483 0098 00       		.byte	0
+ 484 0099 00       		.byte	0
+ 485 009a 0B       		.uleb128 0xb
+ 486 009b 2E       		.uleb128 0x2e
+ 487 009c 01       		.byte	0x1
+ 488 009d 3F       		.uleb128 0x3f
+ 489 009e 19       		.uleb128 0x19
+ 490 009f 03       		.uleb128 0x3
+ 491 00a0 0E       		.uleb128 0xe
+ 492 00a1 3A       		.uleb128 0x3a
+ 493 00a2 0B       		.uleb128 0xb
+ 494 00a3 3B       		.uleb128 0x3b
+ 495 00a4 0B       		.uleb128 0xb
+ 496 00a5 27       		.uleb128 0x27
+ 497 00a6 19       		.uleb128 0x19
+ 498 00a7 49       		.uleb128 0x49
+ 499 00a8 13       		.uleb128 0x13
+ 500 00a9 11       		.uleb128 0x11
+ 501 00aa 01       		.uleb128 0x1
+ 502 00ab 12       		.uleb128 0x12
+ 503 00ac 06       		.uleb128 0x6
+ 504 00ad 40       		.uleb128 0x40
+ 505 00ae 18       		.uleb128 0x18
+ 506 00af 9742     		.uleb128 0x2117
+ 507 00b1 19       		.uleb128 0x19
+ 508 00b2 00       		.byte	0
+ 509 00b3 00       		.byte	0
+ 510 00b4 0C       		.uleb128 0xc
+ 511 00b5 34       		.uleb128 0x34
+ 512 00b6 00       		.byte	0
+ 513 00b7 03       		.uleb128 0x3
+ 514 00b8 0E       		.uleb128 0xe
+ 515 00b9 3A       		.uleb128 0x3a
+ 516 00ba 0B       		.uleb128 0xb
+ 517 00bb 3B       		.uleb128 0x3b
+ 518 00bc 0B       		.uleb128 0xb
+ 519 00bd 49       		.uleb128 0x49
+ 520 00be 13       		.uleb128 0x13
+ 521 00bf 02       		.uleb128 0x2
+ 522 00c0 17       		.uleb128 0x17
+ 523 00c1 00       		.byte	0
+ 524 00c2 00       		.byte	0
+ 525 00c3 00       		.byte	0
+ 526              		.section	.debug_loc,"",%progbits
+ 527              	.Ldebug_loc0:
+ 528              	.LLST0:
+ 529 0000 00000000 		.4byte	.LVL0
+ 530 0004 08000000 		.4byte	.LVL1
+ 531 0008 0100     		.2byte	0x1
+ 532 000a 50       		.byte	0x50
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 13
+
+
+ 533 000b 08000000 		.4byte	.LVL1
+ 534 000f 18000000 		.4byte	.LFE0
+ 535 0013 0400     		.2byte	0x4
+ 536 0015 F3       		.byte	0xf3
+ 537 0016 01       		.uleb128 0x1
+ 538 0017 50       		.byte	0x50
+ 539 0018 9F       		.byte	0x9f
+ 540 0019 00000000 		.4byte	0
+ 541 001d 00000000 		.4byte	0
+ 542              	.LLST1:
+ 543 0021 00000000 		.4byte	.LVL2
+ 544 0025 08000000 		.4byte	.LVL3
+ 545 0029 0100     		.2byte	0x1
+ 546 002b 50       		.byte	0x50
+ 547 002c 08000000 		.4byte	.LVL3
+ 548 0030 18000000 		.4byte	.LFE1
+ 549 0034 0400     		.2byte	0x4
+ 550 0036 F3       		.byte	0xf3
+ 551 0037 01       		.uleb128 0x1
+ 552 0038 50       		.byte	0x50
+ 553 0039 9F       		.byte	0x9f
+ 554 003a 00000000 		.4byte	0
+ 555 003e 00000000 		.4byte	0
+ 556              	.LLST2:
+ 557 0042 08000000 		.4byte	.LVL4
+ 558 0046 0C000000 		.4byte	.LVL5
+ 559 004a 0100     		.2byte	0x1
+ 560 004c 50       		.byte	0x50
+ 561 004d 0C000000 		.4byte	.LVL5
+ 562 0051 14000000 		.4byte	.LFE4
+ 563 0055 0400     		.2byte	0x4
+ 564 0057 73       		.byte	0x73
+ 565 0058 00       		.sleb128 0
+ 566 0059 06       		.byte	0x6
+ 567 005a 9F       		.byte	0x9f
+ 568 005b 00000000 		.4byte	0
+ 569 005f 00000000 		.4byte	0
+ 570              		.section	.debug_aranges,"",%progbits
+ 571 0000 3C000000 		.4byte	0x3c
+ 572 0004 0200     		.2byte	0x2
+ 573 0006 00000000 		.4byte	.Ldebug_info0
+ 574 000a 04       		.byte	0x4
+ 575 000b 00       		.byte	0
+ 576 000c 0000     		.2byte	0
+ 577 000e 0000     		.2byte	0
+ 578 0010 00000000 		.4byte	.LFB0
+ 579 0014 18000000 		.4byte	.LFE0-.LFB0
+ 580 0018 00000000 		.4byte	.LFB1
+ 581 001c 18000000 		.4byte	.LFE1-.LFB1
+ 582 0020 00000000 		.4byte	.LFB2
+ 583 0024 10000000 		.4byte	.LFE2-.LFB2
+ 584 0028 00000000 		.4byte	.LFB3
+ 585 002c 10000000 		.4byte	.LFE3-.LFB3
+ 586 0030 00000000 		.4byte	.LFB4
+ 587 0034 14000000 		.4byte	.LFE4-.LFB4
+ 588 0038 00000000 		.4byte	0
+ 589 003c 00000000 		.4byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 14
+
+
+ 590              		.section	.debug_ranges,"",%progbits
+ 591              	.Ldebug_ranges0:
+ 592 0000 00000000 		.4byte	.LFB0
+ 593 0004 18000000 		.4byte	.LFE0
+ 594 0008 00000000 		.4byte	.LFB1
+ 595 000c 18000000 		.4byte	.LFE1
+ 596 0010 00000000 		.4byte	.LFB2
+ 597 0014 10000000 		.4byte	.LFE2
+ 598 0018 00000000 		.4byte	.LFB3
+ 599 001c 10000000 		.4byte	.LFE3
+ 600 0020 00000000 		.4byte	.LFB4
+ 601 0024 14000000 		.4byte	.LFE4
+ 602 0028 00000000 		.4byte	0
+ 603 002c 00000000 		.4byte	0
+ 604              		.section	.debug_line,"",%progbits
+ 605              	.Ldebug_line0:
+ 606 0000 AF000000 		.section	.debug_str,"MS",%progbits,1
+ 606      02004400 
+ 606      00000201 
+ 606      FB0E0D00 
+ 606      01010101 
+ 607              	.LASF23:
+ 608 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\NavLR.c\000"
+ 608      6E657261 
+ 608      7465645F 
+ 608      536F7572 
+ 608      63655C50 
+ 609              	.LASF16:
+ 610 0021 4E61764C 		.ascii	"NavLR_SetDriveMode\000"
+ 610      525F5365 
+ 610      74447269 
+ 610      76654D6F 
+ 610      646500
+ 611              	.LASF17:
+ 612 0034 76616C75 		.ascii	"value\000"
+ 612      6500
+ 613              	.LASF15:
+ 614 003a 4E61764C 		.ascii	"NavLR_Write\000"
+ 614      525F5772 
+ 614      69746500 
+ 615              	.LASF19:
+ 616 0046 4E61764C 		.ascii	"NavLR_Read\000"
+ 616      525F5265 
+ 616      616400
+ 617              	.LASF24:
+ 618 0051 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 618      73657273 
+ 618      5C534E46 
+ 618      555C446F 
+ 618      63756D65 
+ 619 007f 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 619      542D3530 
+ 619      5F50726F 
+ 619      6A656374 
+ 619      5C542D35 
+ 620              	.LASF11:
+ 621 00a3 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 15
+
+
+ 621      7400
+ 622              	.LASF9:
+ 623 00a9 75696E74 		.ascii	"uint8\000"
+ 623      3800
+ 624              	.LASF1:
+ 625 00af 756E7369 		.ascii	"unsigned char\000"
+ 625      676E6564 
+ 625      20636861 
+ 625      7200
+ 626              	.LASF25:
+ 627 00bd 64725661 		.ascii	"drVal\000"
+ 627      6C00
+ 628              	.LASF5:
+ 629 00c3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 629      20756E73 
+ 629      69676E65 
+ 629      6420696E 
+ 629      7400
+ 630              	.LASF3:
+ 631 00d5 73686F72 		.ascii	"short unsigned int\000"
+ 631      7420756E 
+ 631      7369676E 
+ 631      65642069 
+ 631      6E7400
+ 632              	.LASF12:
+ 633 00e8 646F7562 		.ascii	"double\000"
+ 633      6C6500
+ 634              	.LASF21:
+ 635 00ef 4E61764C 		.ascii	"NavLR_ClearInterrupt\000"
+ 635      525F436C 
+ 635      65617249 
+ 635      6E746572 
+ 635      72757074 
+ 636              	.LASF10:
+ 637 0104 75696E74 		.ascii	"uint32\000"
+ 637      333200
+ 638              	.LASF8:
+ 639 010b 756E7369 		.ascii	"unsigned int\000"
+ 639      676E6564 
+ 639      20696E74 
+ 639      00
+ 640              	.LASF7:
+ 641 0118 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 641      206C6F6E 
+ 641      6720756E 
+ 641      7369676E 
+ 641      65642069 
+ 642              	.LASF18:
+ 643 012f 6D6F6465 		.ascii	"mode\000"
+ 643      00
+ 644              	.LASF6:
+ 645 0134 6C6F6E67 		.ascii	"long long int\000"
+ 645      206C6F6E 
+ 645      6720696E 
+ 645      7400
+ 646              	.LASF26:
+ 647 0142 6D61736B 		.ascii	"maskedStatus\000"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc22proL.s 			page 16
+
+
+ 647      65645374 
+ 647      61747573 
+ 647      00
+ 648              	.LASF13:
+ 649 014f 63686172 		.ascii	"char\000"
+ 649      00
+ 650              	.LASF2:
+ 651 0154 73686F72 		.ascii	"short int\000"
+ 651      7420696E 
+ 651      7400
+ 652              	.LASF22:
+ 653 015e 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 653      4320342E 
+ 653      382E3420 
+ 653      32303134 
+ 653      30353236 
+ 654 0191 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 654      20726576 
+ 654      6973696F 
+ 654      6E203231 
+ 654      31333538 
+ 655 01c4 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 655      66756E63 
+ 655      74696F6E 
+ 655      2D736563 
+ 655      74696F6E 
+ 656              	.LASF4:
+ 657 01ed 6C6F6E67 		.ascii	"long int\000"
+ 657      20696E74 
+ 657      00
+ 658              	.LASF14:
+ 659 01f6 72656733 		.ascii	"reg32\000"
+ 659      3200
+ 660              	.LASF20:
+ 661 01fc 4E61764C 		.ascii	"NavLR_ReadDataReg\000"
+ 661      525F5265 
+ 661      61644461 
+ 661      74615265 
+ 661      6700
+ 662              	.LASF0:
+ 663 020e 7369676E 		.ascii	"signed char\000"
+ 663      65642063 
+ 663      68617200 
+ 664              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

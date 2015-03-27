@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: NavLR.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define NavLR_0		NavLR__0__PC
+#define NavLR_0		(NavLR__0__PC)
+#define NavLR_0_PS		(NavLR__0__PS)
+#define NavLR_0_PC		(NavLR__0__PC)
+#define NavLR_0_DR		(NavLR__0__DR)
+#define NavLR_0_SHIFT	(NavLR__0__SHIFT)
+
 
 #endif /* End Pins NavLR_ALIASES_H */
 

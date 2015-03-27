@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: SW1.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   SW1_ClearInterrupt(void) ;
 /* Drive Modes */
 #define SW1_DRIVE_MODE_BITS        (3)
 #define SW1_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - SW1_DRIVE_MODE_BITS))
-#define SW1_DRIVE_MODE_SHIFT       (0x00u)
-#define SW1_DRIVE_MODE_MASK        (0x07u << SW1_DRIVE_MODE_SHIFT)
 
-#define SW1_DM_ALG_HIZ         (0x00u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_DIG_HIZ         (0x01u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_RES_UP          (0x02u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_RES_DWN         (0x03u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_OD_LO           (0x04u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_OD_HI           (0x05u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_STRONG          (0x06u << SW1_DRIVE_MODE_SHIFT)
-#define SW1_DM_RES_UPDWN       (0x07u << SW1_DRIVE_MODE_SHIFT)
+#define SW1_DM_ALG_HIZ         (0x00u)
+#define SW1_DM_DIG_HIZ         (0x01u)
+#define SW1_DM_RES_UP          (0x02u)
+#define SW1_DM_RES_DWN         (0x03u)
+#define SW1_DM_OD_LO           (0x04u)
+#define SW1_DM_OD_HI           (0x05u)
+#define SW1_DM_STRONG          (0x06u)
+#define SW1_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define SW1_MASK               SW1__MASK
@@ -78,6 +76,16 @@ uint8   SW1_ClearInterrupt(void) ;
     #define SW1_INTSTAT                (* (reg32 *) SW1__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define SW1_DRIVE_MODE_SHIFT       (0x00u)
+#define SW1_DRIVE_MODE_MASK        (0x07u << SW1_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins SW1_H */
 

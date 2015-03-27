@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: NavLightPWM.h
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides constants and parameter values for the NavLightPWM
@@ -19,6 +19,8 @@
 #if !defined(CY_TCPWM_NavLightPWM_H)
 #define CY_TCPWM_NavLightPWM_H
 
+
+#include "CyLib.h"
 #include "cytypes.h"
 #include "cyfitter.h"
 
@@ -45,6 +47,7 @@ extern uint8  NavLightPWM_initVar;
 ****************************************/
 
 #define NavLightPWM_CY_TCPWM_V2                    (CYIPBLOCK_m0s8tcpwm_VERSION == 2u)
+#define NavLightPWM_CY_TCPWM_4000                  (CY_PSOC4_4000)
 
 /* TCPWM Configuration */
 #define NavLightPWM_CONFIG                         (7lu)
@@ -262,12 +265,25 @@ extern uint8  NavLightPWM_initVar;
 #define NavLightPWM_PWM_MODE_RIGHT                 (NavLightPWM_CC_MATCH_SET          |   \
                                                          NavLightPWM_OVERLOW_NO_CHANGE     |   \
                                                          NavLightPWM_UNDERFLOW_CLEAR)
-#define NavLightPWM_PWM_MODE_CENTER                (NavLightPWM_CC_MATCH_INVERT       |   \
-                                                         NavLightPWM_OVERLOW_NO_CHANGE     |   \
-                                                         NavLightPWM_UNDERFLOW_CLEAR)
-#define NavLightPWM_PWM_MODE_ASYM                  (NavLightPWM_CC_MATCH_NO_CHANGE    |   \
+#define NavLightPWM_PWM_MODE_ASYM                  (NavLightPWM_CC_MATCH_INVERT       |   \
                                                          NavLightPWM_OVERLOW_SET           |   \
-                                                         NavLightPWM_UNDERFLOW_CLEAR )
+                                                         NavLightPWM_UNDERFLOW_CLEAR)
+
+#if (NavLightPWM_CY_TCPWM_V2)
+    #if(NavLightPWM_CY_TCPWM_4000)
+        #define NavLightPWM_PWM_MODE_CENTER                (NavLightPWM_CC_MATCH_INVERT       |   \
+                                                                 NavLightPWM_OVERLOW_NO_CHANGE     |   \
+                                                                 NavLightPWM_UNDERFLOW_CLEAR)
+    #else
+        #define NavLightPWM_PWM_MODE_CENTER                (NavLightPWM_CC_MATCH_INVERT       |   \
+                                                                 NavLightPWM_OVERLOW_SET           |   \
+                                                                 NavLightPWM_UNDERFLOW_CLEAR)
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
+#else
+    #define NavLightPWM_PWM_MODE_CENTER                (NavLightPWM_CC_MATCH_INVERT       |   \
+                                                             NavLightPWM_OVERLOW_NO_CHANGE     |   \
+                                                             NavLightPWM_UNDERFLOW_CLEAR)
+#endif /* (NavLightPWM_CY_TCPWM_NEW) */
 
 /* Command operations without condition */
 #define NavLightPWM_CMD_CAPTURE                    (0u)
@@ -458,7 +474,69 @@ void   NavLightPWM_Wakeup(void);
 *    Initial Constants
 ***************************************/
 
+#define NavLightPWM_CTRL_QUAD_BASE_CONFIG                                                          \
+        (((uint32)(NavLightPWM_QUAD_ENCODING_MODES     << NavLightPWM_QUAD_MODE_SHIFT))       |\
+         ((uint32)(NavLightPWM_CONFIG                  << NavLightPWM_MODE_SHIFT)))
+
+#define NavLightPWM_CTRL_PWM_BASE_CONFIG                                                           \
+        (((uint32)(NavLightPWM_PWM_STOP_EVENT          << NavLightPWM_PWM_STOP_KILL_SHIFT))   |\
+         ((uint32)(NavLightPWM_PWM_OUT_INVERT          << NavLightPWM_INV_OUT_SHIFT))         |\
+         ((uint32)(NavLightPWM_PWM_OUT_N_INVERT        << NavLightPWM_INV_COMPL_OUT_SHIFT))   |\
+         ((uint32)(NavLightPWM_PWM_MODE                << NavLightPWM_MODE_SHIFT)))
+
+#define NavLightPWM_CTRL_PWM_RUN_MODE                                                              \
+            ((uint32)(NavLightPWM_PWM_RUN_MODE         << NavLightPWM_ONESHOT_SHIFT))
+            
+#define NavLightPWM_CTRL_PWM_ALIGN                                                                 \
+            ((uint32)(NavLightPWM_PWM_ALIGN            << NavLightPWM_UPDOWN_SHIFT))
+
+#define NavLightPWM_CTRL_PWM_KILL_EVENT                                                            \
+             ((uint32)(NavLightPWM_PWM_KILL_EVENT      << NavLightPWM_PWM_SYNC_KILL_SHIFT))
+
+#define NavLightPWM_CTRL_PWM_DEAD_TIME_CYCLE                                                       \
+            ((uint32)(NavLightPWM_PWM_DEAD_TIME_CYCLE  << NavLightPWM_PRESCALER_SHIFT))
+
+#define NavLightPWM_CTRL_PWM_PRESCALER                                                             \
+            ((uint32)(NavLightPWM_PWM_PRESCALER        << NavLightPWM_PRESCALER_SHIFT))
+
+#define NavLightPWM_CTRL_TIMER_BASE_CONFIG                                                         \
+        (((uint32)(NavLightPWM_TC_PRESCALER            << NavLightPWM_PRESCALER_SHIFT))       |\
+         ((uint32)(NavLightPWM_TC_COUNTER_MODE         << NavLightPWM_UPDOWN_SHIFT))          |\
+         ((uint32)(NavLightPWM_TC_RUN_MODE             << NavLightPWM_ONESHOT_SHIFT))         |\
+         ((uint32)(NavLightPWM_TC_COMP_CAP_MODE        << NavLightPWM_MODE_SHIFT)))
+        
+#define NavLightPWM_QUAD_SIGNALS_MODES                                                             \
+        (((uint32)(NavLightPWM_QUAD_PHIA_SIGNAL_MODE   << NavLightPWM_COUNT_SHIFT))           |\
+         ((uint32)(NavLightPWM_QUAD_INDEX_SIGNAL_MODE  << NavLightPWM_RELOAD_SHIFT))          |\
+         ((uint32)(NavLightPWM_QUAD_STOP_SIGNAL_MODE   << NavLightPWM_STOP_SHIFT))            |\
+         ((uint32)(NavLightPWM_QUAD_PHIB_SIGNAL_MODE   << NavLightPWM_START_SHIFT)))
+
+#define NavLightPWM_PWM_SIGNALS_MODES                                                              \
+        (((uint32)(NavLightPWM_PWM_SWITCH_SIGNAL_MODE  << NavLightPWM_CAPTURE_SHIFT))         |\
+         ((uint32)(NavLightPWM_PWM_COUNT_SIGNAL_MODE   << NavLightPWM_COUNT_SHIFT))           |\
+         ((uint32)(NavLightPWM_PWM_RELOAD_SIGNAL_MODE  << NavLightPWM_RELOAD_SHIFT))          |\
+         ((uint32)(NavLightPWM_PWM_STOP_SIGNAL_MODE    << NavLightPWM_STOP_SHIFT))            |\
+         ((uint32)(NavLightPWM_PWM_START_SIGNAL_MODE   << NavLightPWM_START_SHIFT)))
+
+#define NavLightPWM_TIMER_SIGNALS_MODES                                                            \
+        (((uint32)(NavLightPWM_TC_CAPTURE_SIGNAL_MODE  << NavLightPWM_CAPTURE_SHIFT))         |\
+         ((uint32)(NavLightPWM_TC_COUNT_SIGNAL_MODE    << NavLightPWM_COUNT_SHIFT))           |\
+         ((uint32)(NavLightPWM_TC_RELOAD_SIGNAL_MODE   << NavLightPWM_RELOAD_SHIFT))          |\
+         ((uint32)(NavLightPWM_TC_STOP_SIGNAL_MODE     << NavLightPWM_STOP_SHIFT))            |\
+         ((uint32)(NavLightPWM_TC_START_SIGNAL_MODE    << NavLightPWM_START_SHIFT)))
+        
+#define NavLightPWM_TIMER_UPDOWN_CNT_USED                                                          \
+                ((NavLightPWM__COUNT_UPDOWN0 == NavLightPWM_TC_COUNTER_MODE)                  ||\
+                 (NavLightPWM__COUNT_UPDOWN1 == NavLightPWM_TC_COUNTER_MODE))
+
+#define NavLightPWM_PWM_UPDOWN_CNT_USED                                                            \
+                ((NavLightPWM__CENTER == NavLightPWM_PWM_ALIGN)                               ||\
+                 (NavLightPWM__ASYMMETRIC == NavLightPWM_PWM_ALIGN))               
+        
 #define NavLightPWM_PWM_PR_INIT_VALUE              (1u)
+#define NavLightPWM_QUAD_PERIOD_INIT_VALUE         (0x8000u)
+
+
 
 #endif /* End CY_TCPWM_NavLightPWM_H */
 

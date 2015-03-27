@@ -1,0 +1,999 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2CM_SCBCLK.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2CM_SCBCLK_Start,"ax",%progbits
+  18              		.align	1
+  19              		.global	I2CM_SCBCLK_Start
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2CM_SCBCLK_Start, %function
+  23              	I2CM_SCBCLK_Start:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\I2CM_SCBCLK.c"
+   1:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * File Name: I2CM_SCBCLK.c
+   3:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Version 2.20
+   4:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+   5:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Description:
+   6:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *   Provides system API for the clocking, interrupts and watchdog timer.
+   7:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+   8:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Note:
+   9:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *   Documentation of the API's in this file is located in the
+  10:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *   System Reference Guide provided with PSoC Creator.
+  11:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  12:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  19:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #include <cydevice_trm.h>
+  20:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #include "I2CM_SCBCLK.h"
+  21:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  22:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #if defined CYREG_PERI_DIV_CMD
+  23:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  24:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_StartEx
+  26:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  28:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+  29:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Starts the clock, aligned to the specified running clock.
+  30:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  31:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+  32:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  alignClkDiv:  The divider to which phase alignment is performed when the
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *    clock is started.
+  34:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  35:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+  36:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+  37:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  38:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+  39:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** void I2CM_SCBCLK_StartEx(uint32 alignClkDiv)
+  40:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+  41:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Make sure any previous start command has finished. */
+  42:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     while((I2CM_SCBCLK_CMD_REG & I2CM_SCBCLK_CMD_ENABLE_MASK) != 0u)
+  43:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     {
+  44:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     }
+  45:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+  46:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Specify the target divider and it's alignment divider, and enable. */
+  47:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_CMD_REG =
+  48:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         ((uint32)I2CM_SCBCLK__DIV_ID << I2CM_SCBCLK_CMD_DIV_SHIFT)|
+  49:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         (alignClkDiv << I2CM_SCBCLK_CMD_PA_DIV_SHIFT) |
+  50:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         (uint32)I2CM_SCBCLK_CMD_ENABLE_MASK;
+  51:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+  52:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  53:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #else
+  54:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  55:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+  56:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_Start
+  57:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+  58:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  59:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+  60:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Starts the clock.
+  61:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  62:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+  63:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+  64:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  65:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+  66:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+  67:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  68:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  70:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** void I2CM_SCBCLK_Start(void)
+  71:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+  26              		.loc 1 71 0
+  27              		.cfi_startproc
+  72:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Set the bit to enable the clock. */
+  73:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_ENABLE_REG |= I2CM_SCBCLK__ENABLE_MASK;
+  28              		.loc 1 73 0
+  29 0000 034B     		ldr	r3, .L2
+  30 0002 8022     		mov	r2, #128
+  31 0004 1968     		ldr	r1, [r3]
+  32 0006 1206     		lsl	r2, r2, #24
+  33 0008 0A43     		orr	r2, r1
+  34 000a 1A60     		str	r2, [r3]
+  74:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+  35              		.loc 1 74 0
+  36              		@ sp needed
+  37 000c 7047     		bx	lr
+  38              	.L3:
+  39 000e C046     		.align	2
+  40              	.L2:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 3
+
+
+  41 0010 00000240 		.word	1073872896
+  42              		.cfi_endproc
+  43              	.LFE0:
+  44              		.size	I2CM_SCBCLK_Start, .-I2CM_SCBCLK_Start
+  45              		.section	.text.I2CM_SCBCLK_Stop,"ax",%progbits
+  46              		.align	1
+  47              		.global	I2CM_SCBCLK_Stop
+  48              		.code	16
+  49              		.thumb_func
+  50              		.type	I2CM_SCBCLK_Stop, %function
+  51              	I2CM_SCBCLK_Stop:
+  52              	.LFB1:
+  75:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  76:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #endif /* CYREG_PERI_DIV_CMD */
+  77:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  78:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  79:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+  80:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_Stop
+  81:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+  82:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  83:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+  84:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Stops the clock and returns immediately. This API does not require the
+  85:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  source clock to be running but may return before the hardware is actually
+  86:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  disabled.
+  87:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  88:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+  89:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+  90:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  91:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+  92:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+  93:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+  94:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+  95:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** void I2CM_SCBCLK_Stop(void)
+  96:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+  53              		.loc 1 96 0
+  54              		.cfi_startproc
+  97:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #if defined CYREG_PERI_DIV_CMD
+  98:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+  99:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Make sure any previous start command has finished. */
+ 100:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     while((I2CM_SCBCLK_CMD_REG & I2CM_SCBCLK_CMD_ENABLE_MASK) != 0u)
+ 101:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     {
+ 102:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     }
+ 103:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 104:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Specify the target divider and it's alignment divider, and disable. */
+ 105:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_CMD_REG =
+ 106:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         ((uint32)I2CM_SCBCLK__DIV_ID << I2CM_SCBCLK_CMD_DIV_SHIFT)|
+ 107:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         ((uint32)I2CM_SCBCLK_CMD_DISABLE_MASK);
+ 108:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 109:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #else
+ 110:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 111:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* Clear the bit to disable the clock. */
+ 112:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_ENABLE_REG &= (uint32)(~I2CM_SCBCLK__ENABLE_MASK);
+  55              		.loc 1 112 0
+  56 0000 024B     		ldr	r3, .L5
+ 113:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 114:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #endif /* CYREG_PERI_DIV_CMD */
+ 115:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 4
+
+
+  57              		.loc 1 115 0
+  58              		@ sp needed
+ 112:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_ENABLE_REG &= (uint32)(~I2CM_SCBCLK__ENABLE_MASK);
+  59              		.loc 1 112 0
+  60 0002 1A68     		ldr	r2, [r3]
+  61 0004 5200     		lsl	r2, r2, #1
+  62 0006 5208     		lsr	r2, r2, #1
+  63 0008 1A60     		str	r2, [r3]
+  64              		.loc 1 115 0
+  65 000a 7047     		bx	lr
+  66              	.L6:
+  67              		.align	2
+  68              	.L5:
+  69 000c 00000240 		.word	1073872896
+  70              		.cfi_endproc
+  71              	.LFE1:
+  72              		.size	I2CM_SCBCLK_Stop, .-I2CM_SCBCLK_Stop
+  73              		.section	.text.I2CM_SCBCLK_SetFractionalDividerRegister,"ax",%progbits
+  74              		.align	1
+  75              		.global	I2CM_SCBCLK_SetFractionalDividerRegister
+  76              		.code	16
+  77              		.thumb_func
+  78              		.type	I2CM_SCBCLK_SetFractionalDividerRegister, %function
+  79              	I2CM_SCBCLK_SetFractionalDividerRegister:
+  80              	.LFB2:
+ 116:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 117:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 118:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+ 119:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_SetFractionalDividerRegister
+ 120:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+ 121:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 122:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+ 123:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Modifies the clock divider and the fractional divider.
+ 124:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 125:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+ 126:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  clkDivider:  Divider register value (0-65535). This value is NOT the
+ 127:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *    divider; the clock hardware divides by clkDivider plus one. For example,
+ 128:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *    to divide the clock by 2, this parameter should be set to 1.
+ 129:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  fracDivider:  Fractional Divider register value (0-31).
+ 130:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+ 131:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+ 132:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 133:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+ 134:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** void I2CM_SCBCLK_SetFractionalDividerRegister(uint16 clkDivider, uint8 clkFractional)
+ 135:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+  81              		.loc 1 135 0
+  82              		.cfi_startproc
+  83              	.LVL0:
+ 136:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     uint32 maskVal;
+ 137:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     uint32 regVal;
+ 138:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 139:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #if defined (I2CM_SCBCLK__FRAC_MASK) || defined (CYREG_PERI_DIV_CMD)
+ 140:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 141:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 	/* get all but divider bits */
+ 142:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     maskVal = I2CM_SCBCLK_DIV_REG & 
+ 143:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****                     (uint32)(~(uint32)(I2CM_SCBCLK_DIV_INT_MASK | I2CM_SCBCLK_DIV_FRAC_MASK)); 
+ 144:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 	/* combine mask and new divider vals into 32-bit value */
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 5
+
+
+ 145:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     regVal = maskVal |
+ 146:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         ((uint32)((uint32)clkDivider <<  I2CM_SCBCLK_DIV_INT_SHIFT) & I2CM_SCBCLK_DIV_INT_MASK) |
+ 147:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         ((uint32)((uint32)clkFractional << I2CM_SCBCLK_DIV_FRAC_SHIFT) & I2CM_SCBCLK_DIV_FRAC_MASK)
+ 148:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 149:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #else
+ 150:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* get all but integer divider bits */
+ 151:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     maskVal = I2CM_SCBCLK_DIV_REG & (uint32)(~(uint32)I2CM_SCBCLK__DIVIDER_MASK);
+  84              		.loc 1 151 0
+  85 0000 034B     		ldr	r3, .L8
+ 152:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* combine mask and new divider val into 32-bit value */
+ 153:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     regVal = clkDivider | maskVal;
+ 154:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     
+ 155:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #endif /* I2CM_SCBCLK__FRAC_MASK || CYREG_PERI_DIV_CMD */
+ 156:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 157:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_DIV_REG = regVal;
+ 158:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+  86              		.loc 1 158 0
+  87              		@ sp needed
+ 151:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     maskVal = I2CM_SCBCLK_DIV_REG & (uint32)(~(uint32)I2CM_SCBCLK__DIVIDER_MASK);
+  88              		.loc 1 151 0
+  89 0002 1A68     		ldr	r2, [r3]
+  90              	.LVL1:
+  91 0004 120C     		lsr	r2, r2, #16
+  92              	.LVL2:
+  93 0006 1204     		lsl	r2, r2, #16
+ 153:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     regVal = clkDivider | maskVal;
+  94              		.loc 1 153 0
+  95 0008 1043     		orr	r0, r2
+  96              	.LVL3:
+ 157:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     I2CM_SCBCLK_DIV_REG = regVal;
+  97              		.loc 1 157 0
+  98 000a 1860     		str	r0, [r3]
+  99              		.loc 1 158 0
+ 100 000c 7047     		bx	lr
+ 101              	.L9:
+ 102 000e C046     		.align	2
+ 103              	.L8:
+ 104 0010 00000240 		.word	1073872896
+ 105              		.cfi_endproc
+ 106              	.LFE2:
+ 107              		.size	I2CM_SCBCLK_SetFractionalDividerRegister, .-I2CM_SCBCLK_SetFractionalDividerRegister
+ 108              		.section	.text.I2CM_SCBCLK_GetDividerRegister,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	I2CM_SCBCLK_GetDividerRegister
+ 111              		.code	16
+ 112              		.thumb_func
+ 113              		.type	I2CM_SCBCLK_GetDividerRegister, %function
+ 114              	I2CM_SCBCLK_GetDividerRegister:
+ 115              	.LFB3:
+ 159:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 160:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 161:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_GetDividerRegister
+ 163:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+ 164:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 165:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+ 166:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Gets the clock divider register value.
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 6
+
+
+ 167:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 168:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+ 169:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+ 170:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 171:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+ 172:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Divide value of the clock minus 1. For example, if the clock is set to
+ 173:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  divide by 2, the return value will be 1.
+ 174:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 175:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+ 176:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** uint16 I2CM_SCBCLK_GetDividerRegister(void)
+ 177:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+ 116              		.loc 1 177 0
+ 117              		.cfi_startproc
+ 178:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     return (uint16)((I2CM_SCBCLK_DIV_REG & I2CM_SCBCLK_DIV_INT_MASK)
+ 118              		.loc 1 178 0
+ 119 0000 014B     		ldr	r3, .L11
+ 179:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         >> I2CM_SCBCLK_DIV_INT_SHIFT);
+ 180:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+ 120              		.loc 1 180 0
+ 121              		@ sp needed
+ 178:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     return (uint16)((I2CM_SCBCLK_DIV_REG & I2CM_SCBCLK_DIV_INT_MASK)
+ 122              		.loc 1 178 0
+ 123 0002 1868     		ldr	r0, [r3]
+ 124 0004 80B2     		uxth	r0, r0
+ 125              		.loc 1 180 0
+ 126 0006 7047     		bx	lr
+ 127              	.L12:
+ 128              		.align	2
+ 129              	.L11:
+ 130 0008 00000240 		.word	1073872896
+ 131              		.cfi_endproc
+ 132              	.LFE3:
+ 133              		.size	I2CM_SCBCLK_GetDividerRegister, .-I2CM_SCBCLK_GetDividerRegister
+ 134              		.section	.text.I2CM_SCBCLK_GetFractionalDividerRegister,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	I2CM_SCBCLK_GetFractionalDividerRegister
+ 137              		.code	16
+ 138              		.thumb_func
+ 139              		.type	I2CM_SCBCLK_GetFractionalDividerRegister, %function
+ 140              	I2CM_SCBCLK_GetFractionalDividerRegister:
+ 141              	.LFB4:
+ 181:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 182:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** 
+ 183:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** /*******************************************************************************
+ 184:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Function Name: I2CM_SCBCLK_GetFractionalDividerRegister
+ 185:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** ********************************************************************************
+ 186:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 187:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Summary:
+ 188:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Gets the clock fractional divider register value.
+ 189:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 190:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Parameters:
+ 191:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  None
+ 192:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ 193:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** * Returns:
+ 194:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  Fractional Divide value of the clock
+ 195:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *  0 if the fractional divider is not in use.
+ 196:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 7
+
+
+ 197:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** *******************************************************************************/
+ 198:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** uint8 I2CM_SCBCLK_GetFractionalDividerRegister(void)
+ 199:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** {
+ 142              		.loc 1 199 0
+ 143              		.cfi_startproc
+ 200:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #if defined (I2CM_SCBCLK__FRAC_MASK)
+ 201:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     /* return fractional divider bits */
+ 202:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     return (uint8)((I2CM_SCBCLK_DIV_REG & I2CM_SCBCLK_DIV_FRAC_MASK)
+ 203:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****         >> I2CM_SCBCLK_DIV_FRAC_SHIFT);
+ 204:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #else
+ 205:.\Generated_Source\PSoC4/I2CM_SCBCLK.c ****     return 0u;
+ 206:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** #endif /* I2CM_SCBCLK__FRAC_MASK */
+ 207:.\Generated_Source\PSoC4/I2CM_SCBCLK.c **** }
+ 144              		.loc 1 207 0
+ 145 0000 0020     		mov	r0, #0
+ 146              		@ sp needed
+ 147 0002 7047     		bx	lr
+ 148              		.cfi_endproc
+ 149              	.LFE4:
+ 150              		.size	I2CM_SCBCLK_GetFractionalDividerRegister, .-I2CM_SCBCLK_GetFractionalDividerRegister
+ 151              		.text
+ 152              	.Letext0:
+ 153              		.file 2 ".\\Generated_Source\\PSoC4/cytypes.h"
+ 154              		.section	.debug_info,"",%progbits
+ 155              	.Ldebug_info0:
+ 156 0000 49010000 		.4byte	0x149
+ 157 0004 0400     		.2byte	0x4
+ 158 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 159 000a 04       		.byte	0x4
+ 160 000b 01       		.uleb128 0x1
+ 161 000c D0010000 		.4byte	.LASF24
+ 162 0010 01       		.byte	0x1
+ 163 0011 8C010000 		.4byte	.LASF25
+ 164 0015 68000000 		.4byte	.LASF26
+ 165 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 166 001d 00000000 		.4byte	0
+ 167 0021 00000000 		.4byte	.Ldebug_line0
+ 168 0025 02       		.uleb128 0x2
+ 169 0026 01       		.byte	0x1
+ 170 0027 06       		.byte	0x6
+ 171 0028 68020000 		.4byte	.LASF0
+ 172 002c 02       		.uleb128 0x2
+ 173 002d 01       		.byte	0x1
+ 174 002e 08       		.byte	0x8
+ 175 002f C6000000 		.4byte	.LASF1
+ 176 0033 02       		.uleb128 0x2
+ 177 0034 02       		.byte	0x2
+ 178 0035 05       		.byte	0x5
+ 179 0036 C6010000 		.4byte	.LASF2
+ 180 003a 02       		.uleb128 0x2
+ 181 003b 02       		.byte	0x2
+ 182 003c 07       		.byte	0x7
+ 183 003d E6000000 		.4byte	.LASF3
+ 184 0041 02       		.uleb128 0x2
+ 185 0042 04       		.byte	0x4
+ 186 0043 05       		.byte	0x5
+ 187 0044 5F020000 		.4byte	.LASF4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 8
+
+
+ 188 0048 02       		.uleb128 0x2
+ 189 0049 04       		.byte	0x4
+ 190 004a 07       		.byte	0x7
+ 191 004b D4000000 		.4byte	.LASF5
+ 192 004f 02       		.uleb128 0x2
+ 193 0050 08       		.byte	0x8
+ 194 0051 05       		.byte	0x5
+ 195 0052 B3010000 		.4byte	.LASF6
+ 196 0056 02       		.uleb128 0x2
+ 197 0057 08       		.byte	0x8
+ 198 0058 07       		.byte	0x7
+ 199 0059 75010000 		.4byte	.LASF7
+ 200 005d 03       		.uleb128 0x3
+ 201 005e 04       		.byte	0x4
+ 202 005f 05       		.byte	0x5
+ 203 0060 696E7400 		.ascii	"int\000"
+ 204 0064 02       		.uleb128 0x2
+ 205 0065 04       		.byte	0x4
+ 206 0066 07       		.byte	0x7
+ 207 0067 68010000 		.4byte	.LASF8
+ 208 006b 04       		.uleb128 0x4
+ 209 006c C0000000 		.4byte	.LASF9
+ 210 0070 02       		.byte	0x2
+ 211 0071 A1       		.byte	0xa1
+ 212 0072 2C000000 		.4byte	0x2c
+ 213 0076 04       		.uleb128 0x4
+ 214 0077 49010000 		.4byte	.LASF10
+ 215 007b 02       		.byte	0x2
+ 216 007c A2       		.byte	0xa2
+ 217 007d 3A000000 		.4byte	0x3a
+ 218 0081 04       		.uleb128 0x4
+ 219 0082 50010000 		.4byte	.LASF11
+ 220 0086 02       		.byte	0x2
+ 221 0087 A3       		.byte	0xa3
+ 222 0088 48000000 		.4byte	0x48
+ 223 008c 02       		.uleb128 0x2
+ 224 008d 04       		.byte	0x4
+ 225 008e 04       		.byte	0x4
+ 226 008f BA000000 		.4byte	.LASF12
+ 227 0093 02       		.uleb128 0x2
+ 228 0094 08       		.byte	0x8
+ 229 0095 04       		.byte	0x4
+ 230 0096 2D010000 		.4byte	.LASF13
+ 231 009a 02       		.uleb128 0x2
+ 232 009b 01       		.byte	0x1
+ 233 009c 08       		.byte	0x8
+ 234 009d C1010000 		.4byte	.LASF14
+ 235 00a1 05       		.uleb128 0x5
+ 236 00a2 00000000 		.4byte	.LASF15
+ 237 00a6 02       		.byte	0x2
+ 238 00a7 4D01     		.2byte	0x14d
+ 239 00a9 AD000000 		.4byte	0xad
+ 240 00ad 06       		.uleb128 0x6
+ 241 00ae 81000000 		.4byte	0x81
+ 242 00b2 07       		.uleb128 0x7
+ 243 00b3 2D000000 		.4byte	.LASF16
+ 244 00b7 01       		.byte	0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 9
+
+
+ 245 00b8 46       		.byte	0x46
+ 246 00b9 00000000 		.4byte	.LFB0
+ 247 00bd 14000000 		.4byte	.LFE0-.LFB0
+ 248 00c1 01       		.uleb128 0x1
+ 249 00c2 9C       		.byte	0x9c
+ 250 00c3 07       		.uleb128 0x7
+ 251 00c4 57010000 		.4byte	.LASF17
+ 252 00c8 01       		.byte	0x1
+ 253 00c9 5F       		.byte	0x5f
+ 254 00ca 00000000 		.4byte	.LFB1
+ 255 00ce 10000000 		.4byte	.LFE1-.LFB1
+ 256 00d2 01       		.uleb128 0x1
+ 257 00d3 9C       		.byte	0x9c
+ 258 00d4 08       		.uleb128 0x8
+ 259 00d5 F9000000 		.4byte	.LASF27
+ 260 00d9 01       		.byte	0x1
+ 261 00da 86       		.byte	0x86
+ 262 00db 00000000 		.4byte	.LFB2
+ 263 00df 14000000 		.4byte	.LFE2-.LFB2
+ 264 00e3 01       		.uleb128 0x1
+ 265 00e4 9C       		.byte	0x9c
+ 266 00e5 22010000 		.4byte	0x122
+ 267 00e9 09       		.uleb128 0x9
+ 268 00ea 22010000 		.4byte	.LASF18
+ 269 00ee 01       		.byte	0x1
+ 270 00ef 86       		.byte	0x86
+ 271 00f0 76000000 		.4byte	0x76
+ 272 00f4 00000000 		.4byte	.LLST0
+ 273 00f8 0A       		.uleb128 0xa
+ 274 00f9 3B010000 		.4byte	.LASF19
+ 275 00fd 01       		.byte	0x1
+ 276 00fe 86       		.byte	0x86
+ 277 00ff 6B000000 		.4byte	0x6b
+ 278 0103 01       		.uleb128 0x1
+ 279 0104 51       		.byte	0x51
+ 280 0105 0B       		.uleb128 0xb
+ 281 0106 25000000 		.4byte	.LASF20
+ 282 010a 01       		.byte	0x1
+ 283 010b 88       		.byte	0x88
+ 284 010c 81000000 		.4byte	0x81
+ 285 0110 21000000 		.4byte	.LLST1
+ 286 0114 0C       		.uleb128 0xc
+ 287 0115 34010000 		.4byte	.LASF21
+ 288 0119 01       		.byte	0x1
+ 289 011a 89       		.byte	0x89
+ 290 011b 81000000 		.4byte	0x81
+ 291 011f 01       		.uleb128 0x1
+ 292 0120 50       		.byte	0x50
+ 293 0121 00       		.byte	0
+ 294 0122 0D       		.uleb128 0xd
+ 295 0123 06000000 		.4byte	.LASF22
+ 296 0127 01       		.byte	0x1
+ 297 0128 B0       		.byte	0xb0
+ 298 0129 76000000 		.4byte	0x76
+ 299 012d 00000000 		.4byte	.LFB3
+ 300 0131 0C000000 		.4byte	.LFE3-.LFB3
+ 301 0135 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 10
+
+
+ 302 0136 9C       		.byte	0x9c
+ 303 0137 0D       		.uleb128 0xd
+ 304 0138 3F000000 		.4byte	.LASF23
+ 305 013c 01       		.byte	0x1
+ 306 013d C6       		.byte	0xc6
+ 307 013e 6B000000 		.4byte	0x6b
+ 308 0142 00000000 		.4byte	.LFB4
+ 309 0146 04000000 		.4byte	.LFE4-.LFB4
+ 310 014a 01       		.uleb128 0x1
+ 311 014b 9C       		.byte	0x9c
+ 312 014c 00       		.byte	0
+ 313              		.section	.debug_abbrev,"",%progbits
+ 314              	.Ldebug_abbrev0:
+ 315 0000 01       		.uleb128 0x1
+ 316 0001 11       		.uleb128 0x11
+ 317 0002 01       		.byte	0x1
+ 318 0003 25       		.uleb128 0x25
+ 319 0004 0E       		.uleb128 0xe
+ 320 0005 13       		.uleb128 0x13
+ 321 0006 0B       		.uleb128 0xb
+ 322 0007 03       		.uleb128 0x3
+ 323 0008 0E       		.uleb128 0xe
+ 324 0009 1B       		.uleb128 0x1b
+ 325 000a 0E       		.uleb128 0xe
+ 326 000b 55       		.uleb128 0x55
+ 327 000c 17       		.uleb128 0x17
+ 328 000d 11       		.uleb128 0x11
+ 329 000e 01       		.uleb128 0x1
+ 330 000f 10       		.uleb128 0x10
+ 331 0010 17       		.uleb128 0x17
+ 332 0011 00       		.byte	0
+ 333 0012 00       		.byte	0
+ 334 0013 02       		.uleb128 0x2
+ 335 0014 24       		.uleb128 0x24
+ 336 0015 00       		.byte	0
+ 337 0016 0B       		.uleb128 0xb
+ 338 0017 0B       		.uleb128 0xb
+ 339 0018 3E       		.uleb128 0x3e
+ 340 0019 0B       		.uleb128 0xb
+ 341 001a 03       		.uleb128 0x3
+ 342 001b 0E       		.uleb128 0xe
+ 343 001c 00       		.byte	0
+ 344 001d 00       		.byte	0
+ 345 001e 03       		.uleb128 0x3
+ 346 001f 24       		.uleb128 0x24
+ 347 0020 00       		.byte	0
+ 348 0021 0B       		.uleb128 0xb
+ 349 0022 0B       		.uleb128 0xb
+ 350 0023 3E       		.uleb128 0x3e
+ 351 0024 0B       		.uleb128 0xb
+ 352 0025 03       		.uleb128 0x3
+ 353 0026 08       		.uleb128 0x8
+ 354 0027 00       		.byte	0
+ 355 0028 00       		.byte	0
+ 356 0029 04       		.uleb128 0x4
+ 357 002a 16       		.uleb128 0x16
+ 358 002b 00       		.byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 11
+
+
+ 359 002c 03       		.uleb128 0x3
+ 360 002d 0E       		.uleb128 0xe
+ 361 002e 3A       		.uleb128 0x3a
+ 362 002f 0B       		.uleb128 0xb
+ 363 0030 3B       		.uleb128 0x3b
+ 364 0031 0B       		.uleb128 0xb
+ 365 0032 49       		.uleb128 0x49
+ 366 0033 13       		.uleb128 0x13
+ 367 0034 00       		.byte	0
+ 368 0035 00       		.byte	0
+ 369 0036 05       		.uleb128 0x5
+ 370 0037 16       		.uleb128 0x16
+ 371 0038 00       		.byte	0
+ 372 0039 03       		.uleb128 0x3
+ 373 003a 0E       		.uleb128 0xe
+ 374 003b 3A       		.uleb128 0x3a
+ 375 003c 0B       		.uleb128 0xb
+ 376 003d 3B       		.uleb128 0x3b
+ 377 003e 05       		.uleb128 0x5
+ 378 003f 49       		.uleb128 0x49
+ 379 0040 13       		.uleb128 0x13
+ 380 0041 00       		.byte	0
+ 381 0042 00       		.byte	0
+ 382 0043 06       		.uleb128 0x6
+ 383 0044 35       		.uleb128 0x35
+ 384 0045 00       		.byte	0
+ 385 0046 49       		.uleb128 0x49
+ 386 0047 13       		.uleb128 0x13
+ 387 0048 00       		.byte	0
+ 388 0049 00       		.byte	0
+ 389 004a 07       		.uleb128 0x7
+ 390 004b 2E       		.uleb128 0x2e
+ 391 004c 00       		.byte	0
+ 392 004d 3F       		.uleb128 0x3f
+ 393 004e 19       		.uleb128 0x19
+ 394 004f 03       		.uleb128 0x3
+ 395 0050 0E       		.uleb128 0xe
+ 396 0051 3A       		.uleb128 0x3a
+ 397 0052 0B       		.uleb128 0xb
+ 398 0053 3B       		.uleb128 0x3b
+ 399 0054 0B       		.uleb128 0xb
+ 400 0055 27       		.uleb128 0x27
+ 401 0056 19       		.uleb128 0x19
+ 402 0057 11       		.uleb128 0x11
+ 403 0058 01       		.uleb128 0x1
+ 404 0059 12       		.uleb128 0x12
+ 405 005a 06       		.uleb128 0x6
+ 406 005b 40       		.uleb128 0x40
+ 407 005c 18       		.uleb128 0x18
+ 408 005d 9742     		.uleb128 0x2117
+ 409 005f 19       		.uleb128 0x19
+ 410 0060 00       		.byte	0
+ 411 0061 00       		.byte	0
+ 412 0062 08       		.uleb128 0x8
+ 413 0063 2E       		.uleb128 0x2e
+ 414 0064 01       		.byte	0x1
+ 415 0065 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 12
+
+
+ 416 0066 19       		.uleb128 0x19
+ 417 0067 03       		.uleb128 0x3
+ 418 0068 0E       		.uleb128 0xe
+ 419 0069 3A       		.uleb128 0x3a
+ 420 006a 0B       		.uleb128 0xb
+ 421 006b 3B       		.uleb128 0x3b
+ 422 006c 0B       		.uleb128 0xb
+ 423 006d 27       		.uleb128 0x27
+ 424 006e 19       		.uleb128 0x19
+ 425 006f 11       		.uleb128 0x11
+ 426 0070 01       		.uleb128 0x1
+ 427 0071 12       		.uleb128 0x12
+ 428 0072 06       		.uleb128 0x6
+ 429 0073 40       		.uleb128 0x40
+ 430 0074 18       		.uleb128 0x18
+ 431 0075 9742     		.uleb128 0x2117
+ 432 0077 19       		.uleb128 0x19
+ 433 0078 01       		.uleb128 0x1
+ 434 0079 13       		.uleb128 0x13
+ 435 007a 00       		.byte	0
+ 436 007b 00       		.byte	0
+ 437 007c 09       		.uleb128 0x9
+ 438 007d 05       		.uleb128 0x5
+ 439 007e 00       		.byte	0
+ 440 007f 03       		.uleb128 0x3
+ 441 0080 0E       		.uleb128 0xe
+ 442 0081 3A       		.uleb128 0x3a
+ 443 0082 0B       		.uleb128 0xb
+ 444 0083 3B       		.uleb128 0x3b
+ 445 0084 0B       		.uleb128 0xb
+ 446 0085 49       		.uleb128 0x49
+ 447 0086 13       		.uleb128 0x13
+ 448 0087 02       		.uleb128 0x2
+ 449 0088 17       		.uleb128 0x17
+ 450 0089 00       		.byte	0
+ 451 008a 00       		.byte	0
+ 452 008b 0A       		.uleb128 0xa
+ 453 008c 05       		.uleb128 0x5
+ 454 008d 00       		.byte	0
+ 455 008e 03       		.uleb128 0x3
+ 456 008f 0E       		.uleb128 0xe
+ 457 0090 3A       		.uleb128 0x3a
+ 458 0091 0B       		.uleb128 0xb
+ 459 0092 3B       		.uleb128 0x3b
+ 460 0093 0B       		.uleb128 0xb
+ 461 0094 49       		.uleb128 0x49
+ 462 0095 13       		.uleb128 0x13
+ 463 0096 02       		.uleb128 0x2
+ 464 0097 18       		.uleb128 0x18
+ 465 0098 00       		.byte	0
+ 466 0099 00       		.byte	0
+ 467 009a 0B       		.uleb128 0xb
+ 468 009b 34       		.uleb128 0x34
+ 469 009c 00       		.byte	0
+ 470 009d 03       		.uleb128 0x3
+ 471 009e 0E       		.uleb128 0xe
+ 472 009f 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 13
+
+
+ 473 00a0 0B       		.uleb128 0xb
+ 474 00a1 3B       		.uleb128 0x3b
+ 475 00a2 0B       		.uleb128 0xb
+ 476 00a3 49       		.uleb128 0x49
+ 477 00a4 13       		.uleb128 0x13
+ 478 00a5 02       		.uleb128 0x2
+ 479 00a6 17       		.uleb128 0x17
+ 480 00a7 00       		.byte	0
+ 481 00a8 00       		.byte	0
+ 482 00a9 0C       		.uleb128 0xc
+ 483 00aa 34       		.uleb128 0x34
+ 484 00ab 00       		.byte	0
+ 485 00ac 03       		.uleb128 0x3
+ 486 00ad 0E       		.uleb128 0xe
+ 487 00ae 3A       		.uleb128 0x3a
+ 488 00af 0B       		.uleb128 0xb
+ 489 00b0 3B       		.uleb128 0x3b
+ 490 00b1 0B       		.uleb128 0xb
+ 491 00b2 49       		.uleb128 0x49
+ 492 00b3 13       		.uleb128 0x13
+ 493 00b4 02       		.uleb128 0x2
+ 494 00b5 18       		.uleb128 0x18
+ 495 00b6 00       		.byte	0
+ 496 00b7 00       		.byte	0
+ 497 00b8 0D       		.uleb128 0xd
+ 498 00b9 2E       		.uleb128 0x2e
+ 499 00ba 00       		.byte	0
+ 500 00bb 3F       		.uleb128 0x3f
+ 501 00bc 19       		.uleb128 0x19
+ 502 00bd 03       		.uleb128 0x3
+ 503 00be 0E       		.uleb128 0xe
+ 504 00bf 3A       		.uleb128 0x3a
+ 505 00c0 0B       		.uleb128 0xb
+ 506 00c1 3B       		.uleb128 0x3b
+ 507 00c2 0B       		.uleb128 0xb
+ 508 00c3 27       		.uleb128 0x27
+ 509 00c4 19       		.uleb128 0x19
+ 510 00c5 49       		.uleb128 0x49
+ 511 00c6 13       		.uleb128 0x13
+ 512 00c7 11       		.uleb128 0x11
+ 513 00c8 01       		.uleb128 0x1
+ 514 00c9 12       		.uleb128 0x12
+ 515 00ca 06       		.uleb128 0x6
+ 516 00cb 40       		.uleb128 0x40
+ 517 00cc 18       		.uleb128 0x18
+ 518 00cd 9742     		.uleb128 0x2117
+ 519 00cf 19       		.uleb128 0x19
+ 520 00d0 00       		.byte	0
+ 521 00d1 00       		.byte	0
+ 522 00d2 00       		.byte	0
+ 523              		.section	.debug_loc,"",%progbits
+ 524              	.Ldebug_loc0:
+ 525              	.LLST0:
+ 526 0000 00000000 		.4byte	.LVL0
+ 527 0004 0A000000 		.4byte	.LVL3
+ 528 0008 0100     		.2byte	0x1
+ 529 000a 50       		.byte	0x50
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 14
+
+
+ 530 000b 0A000000 		.4byte	.LVL3
+ 531 000f 14000000 		.4byte	.LFE2
+ 532 0013 0400     		.2byte	0x4
+ 533 0015 F3       		.byte	0xf3
+ 534 0016 01       		.uleb128 0x1
+ 535 0017 50       		.byte	0x50
+ 536 0018 9F       		.byte	0x9f
+ 537 0019 00000000 		.4byte	0
+ 538 001d 00000000 		.4byte	0
+ 539              	.LLST1:
+ 540 0021 04000000 		.4byte	.LVL1
+ 541 0025 06000000 		.4byte	.LVL2
+ 542 0029 0800     		.2byte	0x8
+ 543 002b 72       		.byte	0x72
+ 544 002c 00       		.sleb128 0
+ 545 002d 11       		.byte	0x11
+ 546 002e 80807C   		.sleb128 -65536
+ 547 0031 1A       		.byte	0x1a
+ 548 0032 9F       		.byte	0x9f
+ 549 0033 00000000 		.4byte	0
+ 550 0037 00000000 		.4byte	0
+ 551              		.section	.debug_aranges,"",%progbits
+ 552 0000 3C000000 		.4byte	0x3c
+ 553 0004 0200     		.2byte	0x2
+ 554 0006 00000000 		.4byte	.Ldebug_info0
+ 555 000a 04       		.byte	0x4
+ 556 000b 00       		.byte	0
+ 557 000c 0000     		.2byte	0
+ 558 000e 0000     		.2byte	0
+ 559 0010 00000000 		.4byte	.LFB0
+ 560 0014 14000000 		.4byte	.LFE0-.LFB0
+ 561 0018 00000000 		.4byte	.LFB1
+ 562 001c 10000000 		.4byte	.LFE1-.LFB1
+ 563 0020 00000000 		.4byte	.LFB2
+ 564 0024 14000000 		.4byte	.LFE2-.LFB2
+ 565 0028 00000000 		.4byte	.LFB3
+ 566 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 567 0030 00000000 		.4byte	.LFB4
+ 568 0034 04000000 		.4byte	.LFE4-.LFB4
+ 569 0038 00000000 		.4byte	0
+ 570 003c 00000000 		.4byte	0
+ 571              		.section	.debug_ranges,"",%progbits
+ 572              	.Ldebug_ranges0:
+ 573 0000 00000000 		.4byte	.LFB0
+ 574 0004 14000000 		.4byte	.LFE0
+ 575 0008 00000000 		.4byte	.LFB1
+ 576 000c 10000000 		.4byte	.LFE1
+ 577 0010 00000000 		.4byte	.LFB2
+ 578 0014 14000000 		.4byte	.LFE2
+ 579 0018 00000000 		.4byte	.LFB3
+ 580 001c 0C000000 		.4byte	.LFE3
+ 581 0020 00000000 		.4byte	.LFB4
+ 582 0024 04000000 		.4byte	.LFE4
+ 583 0028 00000000 		.4byte	0
+ 584 002c 00000000 		.4byte	0
+ 585              		.section	.debug_line,"",%progbits
+ 586              	.Ldebug_line0:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 15
+
+
+ 587 0000 B7000000 		.section	.debug_str,"MS",%progbits,1
+ 587      02004A00 
+ 587      00000201 
+ 587      FB0E0D00 
+ 587      01010101 
+ 588              	.LASF15:
+ 589 0000 72656733 		.ascii	"reg32\000"
+ 589      3200
+ 590              	.LASF22:
+ 591 0006 4932434D 		.ascii	"I2CM_SCBCLK_GetDividerRegister\000"
+ 591      5F534342 
+ 591      434C4B5F 
+ 591      47657444 
+ 591      69766964 
+ 592              	.LASF20:
+ 593 0025 6D61736B 		.ascii	"maskVal\000"
+ 593      56616C00 
+ 594              	.LASF16:
+ 595 002d 4932434D 		.ascii	"I2CM_SCBCLK_Start\000"
+ 595      5F534342 
+ 595      434C4B5F 
+ 595      53746172 
+ 595      7400
+ 596              	.LASF23:
+ 597 003f 4932434D 		.ascii	"I2CM_SCBCLK_GetFractionalDividerRegister\000"
+ 597      5F534342 
+ 597      434C4B5F 
+ 597      47657446 
+ 597      72616374 
+ 598              	.LASF26:
+ 599 0068 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 599      73657273 
+ 599      5C534E46 
+ 599      555C446F 
+ 599      63756D65 
+ 600 0096 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 600      542D3530 
+ 600      5F50726F 
+ 600      6A656374 
+ 600      5C542D35 
+ 601              	.LASF12:
+ 602 00ba 666C6F61 		.ascii	"float\000"
+ 602      7400
+ 603              	.LASF9:
+ 604 00c0 75696E74 		.ascii	"uint8\000"
+ 604      3800
+ 605              	.LASF1:
+ 606 00c6 756E7369 		.ascii	"unsigned char\000"
+ 606      676E6564 
+ 606      20636861 
+ 606      7200
+ 607              	.LASF5:
+ 608 00d4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 608      20756E73 
+ 608      69676E65 
+ 608      6420696E 
+ 608      7400
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 16
+
+
+ 609              	.LASF3:
+ 610 00e6 73686F72 		.ascii	"short unsigned int\000"
+ 610      7420756E 
+ 610      7369676E 
+ 610      65642069 
+ 610      6E7400
+ 611              	.LASF27:
+ 612 00f9 4932434D 		.ascii	"I2CM_SCBCLK_SetFractionalDividerRegister\000"
+ 612      5F534342 
+ 612      434C4B5F 
+ 612      53657446 
+ 612      72616374 
+ 613              	.LASF18:
+ 614 0122 636C6B44 		.ascii	"clkDivider\000"
+ 614      69766964 
+ 614      657200
+ 615              	.LASF13:
+ 616 012d 646F7562 		.ascii	"double\000"
+ 616      6C6500
+ 617              	.LASF21:
+ 618 0134 72656756 		.ascii	"regVal\000"
+ 618      616C00
+ 619              	.LASF19:
+ 620 013b 636C6B46 		.ascii	"clkFractional\000"
+ 620      72616374 
+ 620      696F6E61 
+ 620      6C00
+ 621              	.LASF10:
+ 622 0149 75696E74 		.ascii	"uint16\000"
+ 622      313600
+ 623              	.LASF11:
+ 624 0150 75696E74 		.ascii	"uint32\000"
+ 624      333200
+ 625              	.LASF17:
+ 626 0157 4932434D 		.ascii	"I2CM_SCBCLK_Stop\000"
+ 626      5F534342 
+ 626      434C4B5F 
+ 626      53746F70 
+ 626      00
+ 627              	.LASF8:
+ 628 0168 756E7369 		.ascii	"unsigned int\000"
+ 628      676E6564 
+ 628      20696E74 
+ 628      00
+ 629              	.LASF7:
+ 630 0175 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 630      206C6F6E 
+ 630      6720756E 
+ 630      7369676E 
+ 630      65642069 
+ 631              	.LASF25:
+ 632 018c 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\I2CM_SCBCLK.c\000"
+ 632      6E657261 
+ 632      7465645F 
+ 632      536F7572 
+ 632      63655C50 
+ 633              	.LASF6:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc8jXfPz.s 			page 17
+
+
+ 634 01b3 6C6F6E67 		.ascii	"long long int\000"
+ 634      206C6F6E 
+ 634      6720696E 
+ 634      7400
+ 635              	.LASF14:
+ 636 01c1 63686172 		.ascii	"char\000"
+ 636      00
+ 637              	.LASF2:
+ 638 01c6 73686F72 		.ascii	"short int\000"
+ 638      7420696E 
+ 638      7400
+ 639              	.LASF24:
+ 640 01d0 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 640      4320342E 
+ 640      382E3420 
+ 640      32303134 
+ 640      30353236 
+ 641 0203 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 641      20726576 
+ 641      6973696F 
+ 641      6E203231 
+ 641      31333538 
+ 642 0236 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 642      66756E63 
+ 642      74696F6E 
+ 642      2D736563 
+ 642      74696F6E 
+ 643              	.LASF4:
+ 644 025f 6C6F6E67 		.ascii	"long int\000"
+ 644      20696E74 
+ 644      00
+ 645              	.LASF0:
+ 646 0268 7369676E 		.ascii	"signed char\000"
+ 646      65642063 
+ 646      68617200 
+ 647              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

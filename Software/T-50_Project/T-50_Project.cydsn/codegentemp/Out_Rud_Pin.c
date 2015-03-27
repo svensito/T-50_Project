@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: Out_Rud_Pin.c  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file contains API to enable firmware control of a Pins component.

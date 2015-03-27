@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: PPMCounter.c
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides the source code to the API for the PPMCounter
@@ -17,7 +17,6 @@
 *******************************************************************************/
 
 #include "PPMCounter.h"
-#include "CyLib.h"
 
 uint8 PPMCounter_initVar = 0u;
 
@@ -41,95 +40,31 @@ void PPMCounter_Init(void)
 
     /* Set values from customizer to CTRL */
     #if (PPMCounter__QUAD == PPMCounter_CONFIG)
-        PPMCounter_CONTROL_REG =
-        (((uint32)(PPMCounter_QUAD_ENCODING_MODES     << PPMCounter_QUAD_MODE_SHIFT))       |
-         ((uint32)(PPMCounter_CONFIG                  << PPMCounter_MODE_SHIFT)));
-    #endif  /* (PPMCounter__QUAD == PPMCounter_CONFIG) */
+        PPMCounter_CONTROL_REG = PPMCounter_CTRL_QUAD_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        PPMCounter_TRIG_CONTROL1_REG  = PPMCounter_QUAD_SIGNALS_MODES;
 
-    #if (PPMCounter__PWM_SEL == PPMCounter_CONFIG)
-        PPMCounter_CONTROL_REG =
-        (((uint32)(PPMCounter_PWM_STOP_EVENT          << PPMCounter_PWM_STOP_KILL_SHIFT))    |
-         ((uint32)(PPMCounter_PWM_OUT_INVERT          << PPMCounter_INV_OUT_SHIFT))         |
-         ((uint32)(PPMCounter_PWM_OUT_N_INVERT        << PPMCounter_INV_COMPL_OUT_SHIFT))     |
-         ((uint32)(PPMCounter_PWM_MODE                << PPMCounter_MODE_SHIFT)));
-
-        #if (PPMCounter__PWM_PR == PPMCounter_PWM_MODE)
-            PPMCounter_CONTROL_REG |=
-            ((uint32)(PPMCounter_PWM_RUN_MODE         << PPMCounter_ONESHOT_SHIFT));
-
-            PPMCounter_WriteCounter(PPMCounter_PWM_PR_INIT_VALUE);
-        #else
-            PPMCounter_CONTROL_REG |=
-            (((uint32)(PPMCounter_PWM_ALIGN           << PPMCounter_UPDOWN_SHIFT))          |
-             ((uint32)(PPMCounter_PWM_KILL_EVENT      << PPMCounter_PWM_SYNC_KILL_SHIFT)));
-        #endif  /* (PPMCounter__PWM_PR == PPMCounter_PWM_MODE) */
-
-        #if (PPMCounter__PWM_DT == PPMCounter_PWM_MODE)
-            PPMCounter_CONTROL_REG |=
-            ((uint32)(PPMCounter_PWM_DEAD_TIME_CYCLE  << PPMCounter_PRESCALER_SHIFT));
-        #endif  /* (PPMCounter__PWM_DT == PPMCounter_PWM_MODE) */
-
-        #if (PPMCounter__PWM == PPMCounter_PWM_MODE)
-            PPMCounter_CONTROL_REG |=
-            ((uint32)PPMCounter_PWM_PRESCALER         << PPMCounter_PRESCALER_SHIFT);
-        #endif  /* (PPMCounter__PWM == PPMCounter_PWM_MODE) */
-    #endif  /* (PPMCounter__PWM_SEL == PPMCounter_CONFIG) */
-
-    #if (PPMCounter__TIMER == PPMCounter_CONFIG)
-        PPMCounter_CONTROL_REG =
-        (((uint32)(PPMCounter_TC_PRESCALER            << PPMCounter_PRESCALER_SHIFT))   |
-         ((uint32)(PPMCounter_TC_COUNTER_MODE         << PPMCounter_UPDOWN_SHIFT))      |
-         ((uint32)(PPMCounter_TC_RUN_MODE             << PPMCounter_ONESHOT_SHIFT))     |
-         ((uint32)(PPMCounter_TC_COMP_CAP_MODE        << PPMCounter_MODE_SHIFT)));
-    #endif  /* (PPMCounter__TIMER == PPMCounter_CONFIG) */
-
-    /* Set values from customizer to CTRL1 */
-    #if (PPMCounter__QUAD == PPMCounter_CONFIG)
-        PPMCounter_TRIG_CONTROL1_REG  =
-        (((uint32)(PPMCounter_QUAD_PHIA_SIGNAL_MODE   << PPMCounter_COUNT_SHIFT))       |
-         ((uint32)(PPMCounter_QUAD_INDEX_SIGNAL_MODE  << PPMCounter_RELOAD_SHIFT))      |
-         ((uint32)(PPMCounter_QUAD_STOP_SIGNAL_MODE   << PPMCounter_STOP_SHIFT))        |
-         ((uint32)(PPMCounter_QUAD_PHIB_SIGNAL_MODE   << PPMCounter_START_SHIFT)));
-    #endif  /* (PPMCounter__QUAD == PPMCounter_CONFIG) */
-
-    #if (PPMCounter__PWM_SEL == PPMCounter_CONFIG)
-        PPMCounter_TRIG_CONTROL1_REG  =
-        (((uint32)(PPMCounter_PWM_SWITCH_SIGNAL_MODE  << PPMCounter_CAPTURE_SHIFT))     |
-         ((uint32)(PPMCounter_PWM_COUNT_SIGNAL_MODE   << PPMCounter_COUNT_SHIFT))       |
-         ((uint32)(PPMCounter_PWM_RELOAD_SIGNAL_MODE  << PPMCounter_RELOAD_SHIFT))      |
-         ((uint32)(PPMCounter_PWM_STOP_SIGNAL_MODE    << PPMCounter_STOP_SHIFT))        |
-         ((uint32)(PPMCounter_PWM_START_SIGNAL_MODE   << PPMCounter_START_SHIFT)));
-    #endif  /* (PPMCounter__PWM_SEL == PPMCounter_CONFIG) */
-
-    #if (PPMCounter__TIMER == PPMCounter_CONFIG)
-        PPMCounter_TRIG_CONTROL1_REG  =
-        (((uint32)(PPMCounter_TC_CAPTURE_SIGNAL_MODE  << PPMCounter_CAPTURE_SHIFT))     |
-         ((uint32)(PPMCounter_TC_COUNT_SIGNAL_MODE    << PPMCounter_COUNT_SHIFT))       |
-         ((uint32)(PPMCounter_TC_RELOAD_SIGNAL_MODE   << PPMCounter_RELOAD_SHIFT))      |
-         ((uint32)(PPMCounter_TC_STOP_SIGNAL_MODE     << PPMCounter_STOP_SHIFT))        |
-         ((uint32)(PPMCounter_TC_START_SIGNAL_MODE    << PPMCounter_START_SHIFT)));
-    #endif  /* (PPMCounter__TIMER == PPMCounter_CONFIG) */
-
-    /* Set values from customizer to INTR */
-    #if (PPMCounter__QUAD == PPMCounter_CONFIG)
+        /* Set values from customizer to INTR */
         PPMCounter_SetInterruptMode(PPMCounter_QUAD_INTERRUPT_MASK);
+        
+         /* Set other values */
+        PPMCounter_SetCounterMode(PPMCounter_COUNT_DOWN);
+        PPMCounter_WritePeriod(PPMCounter_QUAD_PERIOD_INIT_VALUE);
+        PPMCounter_WriteCounter(PPMCounter_QUAD_PERIOD_INIT_VALUE);
     #endif  /* (PPMCounter__QUAD == PPMCounter_CONFIG) */
 
-    #if (PPMCounter__PWM_SEL == PPMCounter_CONFIG)
-        PPMCounter_SetInterruptMode(PPMCounter_PWM_INTERRUPT_MASK);
-    #endif  /* (PPMCounter__PWM_SEL == PPMCounter_CONFIG) */
-
     #if (PPMCounter__TIMER == PPMCounter_CONFIG)
+        PPMCounter_CONTROL_REG = PPMCounter_CTRL_TIMER_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        PPMCounter_TRIG_CONTROL1_REG  = PPMCounter_TIMER_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
         PPMCounter_SetInterruptMode(PPMCounter_TC_INTERRUPT_MASK);
-    #endif  /* (PPMCounter__TIMER == PPMCounter_CONFIG) */
-
-    /* Set other values from customizer */
-    #if (PPMCounter__TIMER == PPMCounter_CONFIG)
+        
+        /* Set other values from customizer */
         PPMCounter_WritePeriod(PPMCounter_TC_PERIOD_VALUE );
-
-        #if (PPMCounter__COUNT_DOWN == PPMCounter_TC_COUNTER_MODE)
-            PPMCounter_WriteCounter(PPMCounter_TC_PERIOD_VALUE );
-        #endif  /* (PPMCounter__COUNT_DOWN == PPMCounter_TC_COUNTER_MODE) */
 
         #if (PPMCounter__COMPARE == PPMCounter_TC_COMP_CAP_MODE)
             PPMCounter_WriteCompare(PPMCounter_TC_COMPARE_VALUE);
@@ -139,21 +74,49 @@ void PPMCounter_Init(void)
                 PPMCounter_WriteCompareBuf(PPMCounter_TC_COMPARE_BUF_VALUE);
             #endif  /* (1u == PPMCounter_TC_COMPARE_SWAP) */
         #endif  /* (PPMCounter__COMPARE == PPMCounter_TC_COMP_CAP_MODE) */
+
+        /* Initialize counter value */
+        #if (PPMCounter_CY_TCPWM_V2 && PPMCounter_TIMER_UPDOWN_CNT_USED && !PPMCounter_CY_TCPWM_4000)
+            PPMCounter_WriteCounter(1u);
+        #elif(PPMCounter__COUNT_DOWN == PPMCounter_TC_COUNTER_MODE)
+            PPMCounter_WriteCounter(PPMCounter_TC_PERIOD_VALUE);
+        #else
+            PPMCounter_WriteCounter(0u);
+        #endif /* (PPMCounter_CY_TCPWM_V2 && PPMCounter_TIMER_UPDOWN_CNT_USED && !PPMCounter_CY_TCPWM_4000) */
     #endif  /* (PPMCounter__TIMER == PPMCounter_CONFIG) */
 
     #if (PPMCounter__PWM_SEL == PPMCounter_CONFIG)
-        PPMCounter_WritePeriod(PPMCounter_PWM_PERIOD_VALUE );
-        PPMCounter_WriteCompare(PPMCounter_PWM_COMPARE_VALUE);
+        PPMCounter_CONTROL_REG = PPMCounter_CTRL_PWM_BASE_CONFIG;
 
-        #if (1u == PPMCounter_PWM_COMPARE_SWAP)
-            PPMCounter_SetCompareSwap(1u);
-            PPMCounter_WriteCompareBuf(PPMCounter_PWM_COMPARE_BUF_VALUE);
-        #endif  /* (1u == PPMCounter_PWM_COMPARE_SWAP) */
+        #if (PPMCounter__PWM_PR == PPMCounter_PWM_MODE)
+            PPMCounter_CONTROL_REG |= PPMCounter_CTRL_PWM_RUN_MODE;
+            PPMCounter_WriteCounter(PPMCounter_PWM_PR_INIT_VALUE);
+        #else
+            PPMCounter_CONTROL_REG |= PPMCounter_CTRL_PWM_ALIGN | PPMCounter_CTRL_PWM_KILL_EVENT;
+            
+            /* Initialize counter value */
+            #if (PPMCounter_CY_TCPWM_V2 && PPMCounter_PWM_UPDOWN_CNT_USED && !PPMCounter_CY_TCPWM_4000)
+                PPMCounter_WriteCounter(1u);
+            #elif (PPMCounter__RIGHT == PPMCounter_PWM_ALIGN)
+                PPMCounter_WriteCounter(PPMCounter_PWM_PERIOD_VALUE);
+            #else 
+                PPMCounter_WriteCounter(0u);
+            #endif  /* (PPMCounter_CY_TCPWM_V2 && PPMCounter_PWM_UPDOWN_CNT_USED && !PPMCounter_CY_TCPWM_4000) */
+        #endif  /* (PPMCounter__PWM_PR == PPMCounter_PWM_MODE) */
 
-        #if (1u == PPMCounter_PWM_PERIOD_SWAP)
-            PPMCounter_SetPeriodSwap(1u);
-            PPMCounter_WritePeriodBuf(PPMCounter_PWM_PERIOD_BUF_VALUE);
-        #endif  /* (1u == PPMCounter_PWM_PERIOD_SWAP) */
+        #if (PPMCounter__PWM_DT == PPMCounter_PWM_MODE)
+            PPMCounter_CONTROL_REG |= PPMCounter_CTRL_PWM_DEAD_TIME_CYCLE;
+        #endif  /* (PPMCounter__PWM_DT == PPMCounter_PWM_MODE) */
+
+        #if (PPMCounter__PWM == PPMCounter_PWM_MODE)
+            PPMCounter_CONTROL_REG |= PPMCounter_CTRL_PWM_PRESCALER;
+        #endif  /* (PPMCounter__PWM == PPMCounter_PWM_MODE) */
+
+        /* Set values from customizer to CTRL1 */
+        PPMCounter_TRIG_CONTROL1_REG  = PPMCounter_PWM_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
+        PPMCounter_SetInterruptMode(PPMCounter_PWM_INTERRUPT_MASK);
 
         /* Set values from customizer to CTRL2 */
         #if (PPMCounter__PWM_PR == PPMCounter_PWM_MODE)
@@ -167,7 +130,6 @@ void PPMCounter_Init(void)
             #endif  /* ( PPMCounter_PWM_LEFT == PPMCounter_PWM_ALIGN) */
 
             #if (PPMCounter__RIGHT == PPMCounter_PWM_ALIGN)
-                PPMCounter_WriteCounter(PPMCounter_PWM_PERIOD_VALUE);
                 PPMCounter_TRIG_CONTROL2_REG = PPMCounter_PWM_MODE_RIGHT;
             #endif  /* ( PPMCounter_PWM_RIGHT == PPMCounter_PWM_ALIGN) */
 
@@ -179,7 +141,22 @@ void PPMCounter_Init(void)
                 PPMCounter_TRIG_CONTROL2_REG = PPMCounter_PWM_MODE_ASYM;
             #endif  /* (PPMCounter__ASYMMETRIC == PPMCounter_PWM_ALIGN) */
         #endif  /* (PPMCounter__PWM_PR == PPMCounter_PWM_MODE) */
+
+        /* Set other values from customizer */
+        PPMCounter_WritePeriod(PPMCounter_PWM_PERIOD_VALUE );
+        PPMCounter_WriteCompare(PPMCounter_PWM_COMPARE_VALUE);
+
+        #if (1u == PPMCounter_PWM_COMPARE_SWAP)
+            PPMCounter_SetCompareSwap(1u);
+            PPMCounter_WriteCompareBuf(PPMCounter_PWM_COMPARE_BUF_VALUE);
+        #endif  /* (1u == PPMCounter_PWM_COMPARE_SWAP) */
+
+        #if (1u == PPMCounter_PWM_PERIOD_SWAP)
+            PPMCounter_SetPeriodSwap(1u);
+            PPMCounter_WritePeriodBuf(PPMCounter_PWM_PERIOD_BUF_VALUE);
+        #endif  /* (1u == PPMCounter_PWM_PERIOD_SWAP) */
     #endif  /* (PPMCounter__PWM_SEL == PPMCounter_CONFIG) */
+    
 }
 
 
@@ -857,28 +834,29 @@ void PPMCounter_SetPeriodSwap(uint32 swapEnable)
 *******************************************************************************/
 void PPMCounter_WriteCompare(uint32 compare)
 {
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         currentMode = ((PPMCounter_CONTROL_REG & PPMCounter_UPDOWN_MASK) >> PPMCounter_UPDOWN_SHIFT);
 
-        if (PPMCounter__COUNT_DOWN == currentMode)
+        if (((uint32)PPMCounter__COUNT_DOWN == currentMode) && (0xFFFFu != compare))
         {
-            PPMCounter_COMP_CAP_REG = ((compare + 1u) & PPMCounter_16BIT_MASK);
+            compare++;
         }
-        else if (PPMCounter__COUNT_UP == currentMode)
+        else if (((uint32)PPMCounter__COUNT_UP == currentMode) && (0u != compare))
         {
-            PPMCounter_COMP_CAP_REG = ((compare - 1u) & PPMCounter_16BIT_MASK);
+            compare--;
         }
         else
         {
-            PPMCounter_COMP_CAP_REG = (compare & PPMCounter_16BIT_MASK);
         }
-    #else
-        PPMCounter_COMP_CAP_REG = (compare & PPMCounter_16BIT_MASK);
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+        
+    
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
+    
+    PPMCounter_COMP_CAP_REG = (compare & PPMCounter_16BIT_MASK);
 }
 
 
@@ -899,30 +877,32 @@ void PPMCounter_WriteCompare(uint32 compare)
 *******************************************************************************/
 uint32 PPMCounter_ReadCompare(void)
 {
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         currentMode = ((PPMCounter_CONTROL_REG & PPMCounter_UPDOWN_MASK) >> PPMCounter_UPDOWN_SHIFT);
-
-        if (PPMCounter__COUNT_DOWN == currentMode)
+        
+        regVal = PPMCounter_COMP_CAP_REG;
+        
+        if (((uint32)PPMCounter__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((PPMCounter_COMP_CAP_REG - 1u) & PPMCounter_16BIT_MASK);
+            regVal--;
         }
-        else if (PPMCounter__COUNT_UP == currentMode)
+        else if (((uint32)PPMCounter__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((PPMCounter_COMP_CAP_REG + 1u) & PPMCounter_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (PPMCounter_COMP_CAP_REG & PPMCounter_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & PPMCounter_16BIT_MASK);
     #else
         return (PPMCounter_COMP_CAP_REG & PPMCounter_16BIT_MASK);
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 }
 
 
@@ -943,28 +923,27 @@ uint32 PPMCounter_ReadCompare(void)
 *******************************************************************************/
 void PPMCounter_WriteCompareBuf(uint32 compareBuf)
 {
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         currentMode = ((PPMCounter_CONTROL_REG & PPMCounter_UPDOWN_MASK) >> PPMCounter_UPDOWN_SHIFT);
 
-        if (PPMCounter__COUNT_DOWN == currentMode)
+        if (((uint32)PPMCounter__COUNT_DOWN == currentMode) && (0xFFFFu != compareBuf))
         {
-            PPMCounter_COMP_CAP_BUF_REG = ((compareBuf + 1u) & PPMCounter_16BIT_MASK);
+            compareBuf++;
         }
-        else if (PPMCounter__COUNT_UP == currentMode)
+        else if (((uint32)PPMCounter__COUNT_UP == currentMode) && (0u != compareBuf))
         {
-            PPMCounter_COMP_CAP_BUF_REG = ((compareBuf - 1u) & PPMCounter_16BIT_MASK);
+            compareBuf --;
         }
         else
         {
-            PPMCounter_COMP_CAP_BUF_REG = (compareBuf & PPMCounter_16BIT_MASK);
         }
-    #else
-        PPMCounter_COMP_CAP_BUF_REG = (compareBuf & PPMCounter_16BIT_MASK);
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
+    
+    PPMCounter_COMP_CAP_BUF_REG = (compareBuf & PPMCounter_16BIT_MASK);
 }
 
 
@@ -985,30 +964,32 @@ void PPMCounter_WriteCompareBuf(uint32 compareBuf)
 *******************************************************************************/
 uint32 PPMCounter_ReadCompareBuf(void)
 {
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 
-    #if (PPMCounter_CY_TCPWM_V2)
+    #if (PPMCounter_CY_TCPWM_4000)
         currentMode = ((PPMCounter_CONTROL_REG & PPMCounter_UPDOWN_MASK) >> PPMCounter_UPDOWN_SHIFT);
 
-        if (PPMCounter__COUNT_DOWN == currentMode)
+        regVal = PPMCounter_COMP_CAP_BUF_REG;
+        
+        if (((uint32)PPMCounter__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((PPMCounter_COMP_CAP_BUF_REG - 1u) & PPMCounter_16BIT_MASK);
+            regVal--;
         }
-        else if (PPMCounter__COUNT_UP == currentMode)
+        else if (((uint32)PPMCounter__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((PPMCounter_COMP_CAP_BUF_REG + 1u) & PPMCounter_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (PPMCounter_COMP_CAP_BUF_REG & PPMCounter_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & PPMCounter_16BIT_MASK);
     #else
         return (PPMCounter_COMP_CAP_BUF_REG & PPMCounter_16BIT_MASK);
-    #endif /* (PPMCounter_CY_TCPWM_V2) */
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
 }
 
 

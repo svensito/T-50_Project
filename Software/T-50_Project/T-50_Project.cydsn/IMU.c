@@ -93,6 +93,13 @@ int16_t mag_z	= 0;		// the value read on the z axis of the magnetometer
 extern int16_t	mag_z_g;		// the geodetic reference frame value of y
 
 /* ================================= */
+/* BAROMETER VARIABLES				 */
+/* ================================= */
+uint8_t bar_h    = 0;    // high byte
+uint8_t bar_l   = 0;    // middle byte
+uint8_t bar_xl  = 0;    // lowest byte
+extern uint32_t Bar_press;   // Barometric Pressure
+/* ================================= */
 /* GYRO FUNCTIONS					*/
 /* ================================= */
 void write_gyro_registry(uint8_t registry, uint8_t data)
@@ -156,6 +163,9 @@ void gyro_read(void)
 /* ================================= */
 /* ACC & MAG FUNCTIONS					*/
 /* ================================= */
+
+/*  ACCELEROMETER FUNCTIONS */
+
 void write_acc_registry(char registry, char data)
 {
 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
@@ -199,7 +209,8 @@ void acc_read(void)
 	acc_z_g = acc_z * 0.122;	// milli G					// see ACC datasheet page 10  
 }
 
-/* Magnetometer Functions */
+/*  MAGNETOMETER FUNCTIONS */
+
 void write_mag_registry(char registry, char data)
 {
 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
@@ -241,6 +252,44 @@ void mag_read(void)
     mag_x_g = mag_x * 0.16;	// milli Gauss		    // bla					
 	mag_y_g = mag_y * 0.16;	// milli Gauss			// Magnetic sensitivity at 4Gauss gives 0.16 mgauss/bit
 	mag_z_g = mag_z * 0.16;	// milli Gauss			// see Mag datasheet page 10  
+}
+
+/* ================================= */
+/* BAROMETER FUNCTIONS				 */
+/* ================================= */
+
+void write_baro_registry(char registry, char data)
+{
+    I2CM_I2CMasterSendStart(LPS25H_ADDRESS, WRITE);
+	//UART_1_UartPutString("B W Add Ok");
+	I2CM_I2CMasterWriteByte(registry);
+    //UART_1_UartPutString("B W Reg Ok");
+    I2CM_I2CMasterWriteByte(data);
+    //UART_1_UartPutString("B W Dat Ok");
+    I2CM_I2C_MASTER_GENERATE_STOP;
+    //UART_1_UartPutString("B W Stop Ok"); 
+}
+
+void baro_start(void)
+{
+    write_baro_registry(LPS25H_CTRL_REG1,0xC6);         // Enabling the Baro, 25Hz output, enable Block Data Update
+    UART_1_UartPutString("Baro Started");
+}
+
+void baro_read(void)
+{
+    I2CM_I2CMasterSendStart(LPS25H_ADDRESS, WRITE);
+	I2CM_I2CMasterWriteByte(LPS25H_P_OUT_XL + 0b10000000); // add MSB to activate auto increment
+	I2CM_I2CMasterSendRestart(LSM303_ADDRESS, READ);
+	bar_xl = I2CM_I2CMasterReadByte(ACK);
+	bar_l = I2CM_I2CMasterReadByte(ACK);
+    bar_h = I2CM_I2CMasterReadByte(NACK);
+    I2CM_I2C_MASTER_GENERATE_STOP;
+    uint32_t press_temp = (bar_l<<8) | (bar_xl);
+    press_temp = (bar_h << 16) | press_temp;
+    
+    Bar_press = press_temp / 4096;      // 4096 bit / hPa = 4096 bit / mbar
+    
 }
 
 /* [] END OF FILE */

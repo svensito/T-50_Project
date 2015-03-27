@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: TaskTimer.c
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides the source code to the API for the TaskTimer
@@ -17,7 +17,6 @@
 *******************************************************************************/
 
 #include "TaskTimer.h"
-#include "CyLib.h"
 
 uint8 TaskTimer_initVar = 0u;
 
@@ -41,95 +40,31 @@ void TaskTimer_Init(void)
 
     /* Set values from customizer to CTRL */
     #if (TaskTimer__QUAD == TaskTimer_CONFIG)
-        TaskTimer_CONTROL_REG =
-        (((uint32)(TaskTimer_QUAD_ENCODING_MODES     << TaskTimer_QUAD_MODE_SHIFT))       |
-         ((uint32)(TaskTimer_CONFIG                  << TaskTimer_MODE_SHIFT)));
-    #endif  /* (TaskTimer__QUAD == TaskTimer_CONFIG) */
+        TaskTimer_CONTROL_REG = TaskTimer_CTRL_QUAD_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        TaskTimer_TRIG_CONTROL1_REG  = TaskTimer_QUAD_SIGNALS_MODES;
 
-    #if (TaskTimer__PWM_SEL == TaskTimer_CONFIG)
-        TaskTimer_CONTROL_REG =
-        (((uint32)(TaskTimer_PWM_STOP_EVENT          << TaskTimer_PWM_STOP_KILL_SHIFT))    |
-         ((uint32)(TaskTimer_PWM_OUT_INVERT          << TaskTimer_INV_OUT_SHIFT))         |
-         ((uint32)(TaskTimer_PWM_OUT_N_INVERT        << TaskTimer_INV_COMPL_OUT_SHIFT))     |
-         ((uint32)(TaskTimer_PWM_MODE                << TaskTimer_MODE_SHIFT)));
-
-        #if (TaskTimer__PWM_PR == TaskTimer_PWM_MODE)
-            TaskTimer_CONTROL_REG |=
-            ((uint32)(TaskTimer_PWM_RUN_MODE         << TaskTimer_ONESHOT_SHIFT));
-
-            TaskTimer_WriteCounter(TaskTimer_PWM_PR_INIT_VALUE);
-        #else
-            TaskTimer_CONTROL_REG |=
-            (((uint32)(TaskTimer_PWM_ALIGN           << TaskTimer_UPDOWN_SHIFT))          |
-             ((uint32)(TaskTimer_PWM_KILL_EVENT      << TaskTimer_PWM_SYNC_KILL_SHIFT)));
-        #endif  /* (TaskTimer__PWM_PR == TaskTimer_PWM_MODE) */
-
-        #if (TaskTimer__PWM_DT == TaskTimer_PWM_MODE)
-            TaskTimer_CONTROL_REG |=
-            ((uint32)(TaskTimer_PWM_DEAD_TIME_CYCLE  << TaskTimer_PRESCALER_SHIFT));
-        #endif  /* (TaskTimer__PWM_DT == TaskTimer_PWM_MODE) */
-
-        #if (TaskTimer__PWM == TaskTimer_PWM_MODE)
-            TaskTimer_CONTROL_REG |=
-            ((uint32)TaskTimer_PWM_PRESCALER         << TaskTimer_PRESCALER_SHIFT);
-        #endif  /* (TaskTimer__PWM == TaskTimer_PWM_MODE) */
-    #endif  /* (TaskTimer__PWM_SEL == TaskTimer_CONFIG) */
-
-    #if (TaskTimer__TIMER == TaskTimer_CONFIG)
-        TaskTimer_CONTROL_REG =
-        (((uint32)(TaskTimer_TC_PRESCALER            << TaskTimer_PRESCALER_SHIFT))   |
-         ((uint32)(TaskTimer_TC_COUNTER_MODE         << TaskTimer_UPDOWN_SHIFT))      |
-         ((uint32)(TaskTimer_TC_RUN_MODE             << TaskTimer_ONESHOT_SHIFT))     |
-         ((uint32)(TaskTimer_TC_COMP_CAP_MODE        << TaskTimer_MODE_SHIFT)));
-    #endif  /* (TaskTimer__TIMER == TaskTimer_CONFIG) */
-
-    /* Set values from customizer to CTRL1 */
-    #if (TaskTimer__QUAD == TaskTimer_CONFIG)
-        TaskTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(TaskTimer_QUAD_PHIA_SIGNAL_MODE   << TaskTimer_COUNT_SHIFT))       |
-         ((uint32)(TaskTimer_QUAD_INDEX_SIGNAL_MODE  << TaskTimer_RELOAD_SHIFT))      |
-         ((uint32)(TaskTimer_QUAD_STOP_SIGNAL_MODE   << TaskTimer_STOP_SHIFT))        |
-         ((uint32)(TaskTimer_QUAD_PHIB_SIGNAL_MODE   << TaskTimer_START_SHIFT)));
-    #endif  /* (TaskTimer__QUAD == TaskTimer_CONFIG) */
-
-    #if (TaskTimer__PWM_SEL == TaskTimer_CONFIG)
-        TaskTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(TaskTimer_PWM_SWITCH_SIGNAL_MODE  << TaskTimer_CAPTURE_SHIFT))     |
-         ((uint32)(TaskTimer_PWM_COUNT_SIGNAL_MODE   << TaskTimer_COUNT_SHIFT))       |
-         ((uint32)(TaskTimer_PWM_RELOAD_SIGNAL_MODE  << TaskTimer_RELOAD_SHIFT))      |
-         ((uint32)(TaskTimer_PWM_STOP_SIGNAL_MODE    << TaskTimer_STOP_SHIFT))        |
-         ((uint32)(TaskTimer_PWM_START_SIGNAL_MODE   << TaskTimer_START_SHIFT)));
-    #endif  /* (TaskTimer__PWM_SEL == TaskTimer_CONFIG) */
-
-    #if (TaskTimer__TIMER == TaskTimer_CONFIG)
-        TaskTimer_TRIG_CONTROL1_REG  =
-        (((uint32)(TaskTimer_TC_CAPTURE_SIGNAL_MODE  << TaskTimer_CAPTURE_SHIFT))     |
-         ((uint32)(TaskTimer_TC_COUNT_SIGNAL_MODE    << TaskTimer_COUNT_SHIFT))       |
-         ((uint32)(TaskTimer_TC_RELOAD_SIGNAL_MODE   << TaskTimer_RELOAD_SHIFT))      |
-         ((uint32)(TaskTimer_TC_STOP_SIGNAL_MODE     << TaskTimer_STOP_SHIFT))        |
-         ((uint32)(TaskTimer_TC_START_SIGNAL_MODE    << TaskTimer_START_SHIFT)));
-    #endif  /* (TaskTimer__TIMER == TaskTimer_CONFIG) */
-
-    /* Set values from customizer to INTR */
-    #if (TaskTimer__QUAD == TaskTimer_CONFIG)
+        /* Set values from customizer to INTR */
         TaskTimer_SetInterruptMode(TaskTimer_QUAD_INTERRUPT_MASK);
+        
+         /* Set other values */
+        TaskTimer_SetCounterMode(TaskTimer_COUNT_DOWN);
+        TaskTimer_WritePeriod(TaskTimer_QUAD_PERIOD_INIT_VALUE);
+        TaskTimer_WriteCounter(TaskTimer_QUAD_PERIOD_INIT_VALUE);
     #endif  /* (TaskTimer__QUAD == TaskTimer_CONFIG) */
 
-    #if (TaskTimer__PWM_SEL == TaskTimer_CONFIG)
-        TaskTimer_SetInterruptMode(TaskTimer_PWM_INTERRUPT_MASK);
-    #endif  /* (TaskTimer__PWM_SEL == TaskTimer_CONFIG) */
-
     #if (TaskTimer__TIMER == TaskTimer_CONFIG)
+        TaskTimer_CONTROL_REG = TaskTimer_CTRL_TIMER_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        TaskTimer_TRIG_CONTROL1_REG  = TaskTimer_TIMER_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
         TaskTimer_SetInterruptMode(TaskTimer_TC_INTERRUPT_MASK);
-    #endif  /* (TaskTimer__TIMER == TaskTimer_CONFIG) */
-
-    /* Set other values from customizer */
-    #if (TaskTimer__TIMER == TaskTimer_CONFIG)
+        
+        /* Set other values from customizer */
         TaskTimer_WritePeriod(TaskTimer_TC_PERIOD_VALUE );
-
-        #if (TaskTimer__COUNT_DOWN == TaskTimer_TC_COUNTER_MODE)
-            TaskTimer_WriteCounter(TaskTimer_TC_PERIOD_VALUE );
-        #endif  /* (TaskTimer__COUNT_DOWN == TaskTimer_TC_COUNTER_MODE) */
 
         #if (TaskTimer__COMPARE == TaskTimer_TC_COMP_CAP_MODE)
             TaskTimer_WriteCompare(TaskTimer_TC_COMPARE_VALUE);
@@ -139,21 +74,49 @@ void TaskTimer_Init(void)
                 TaskTimer_WriteCompareBuf(TaskTimer_TC_COMPARE_BUF_VALUE);
             #endif  /* (1u == TaskTimer_TC_COMPARE_SWAP) */
         #endif  /* (TaskTimer__COMPARE == TaskTimer_TC_COMP_CAP_MODE) */
+
+        /* Initialize counter value */
+        #if (TaskTimer_CY_TCPWM_V2 && TaskTimer_TIMER_UPDOWN_CNT_USED && !TaskTimer_CY_TCPWM_4000)
+            TaskTimer_WriteCounter(1u);
+        #elif(TaskTimer__COUNT_DOWN == TaskTimer_TC_COUNTER_MODE)
+            TaskTimer_WriteCounter(TaskTimer_TC_PERIOD_VALUE);
+        #else
+            TaskTimer_WriteCounter(0u);
+        #endif /* (TaskTimer_CY_TCPWM_V2 && TaskTimer_TIMER_UPDOWN_CNT_USED && !TaskTimer_CY_TCPWM_4000) */
     #endif  /* (TaskTimer__TIMER == TaskTimer_CONFIG) */
 
     #if (TaskTimer__PWM_SEL == TaskTimer_CONFIG)
-        TaskTimer_WritePeriod(TaskTimer_PWM_PERIOD_VALUE );
-        TaskTimer_WriteCompare(TaskTimer_PWM_COMPARE_VALUE);
+        TaskTimer_CONTROL_REG = TaskTimer_CTRL_PWM_BASE_CONFIG;
 
-        #if (1u == TaskTimer_PWM_COMPARE_SWAP)
-            TaskTimer_SetCompareSwap(1u);
-            TaskTimer_WriteCompareBuf(TaskTimer_PWM_COMPARE_BUF_VALUE);
-        #endif  /* (1u == TaskTimer_PWM_COMPARE_SWAP) */
+        #if (TaskTimer__PWM_PR == TaskTimer_PWM_MODE)
+            TaskTimer_CONTROL_REG |= TaskTimer_CTRL_PWM_RUN_MODE;
+            TaskTimer_WriteCounter(TaskTimer_PWM_PR_INIT_VALUE);
+        #else
+            TaskTimer_CONTROL_REG |= TaskTimer_CTRL_PWM_ALIGN | TaskTimer_CTRL_PWM_KILL_EVENT;
+            
+            /* Initialize counter value */
+            #if (TaskTimer_CY_TCPWM_V2 && TaskTimer_PWM_UPDOWN_CNT_USED && !TaskTimer_CY_TCPWM_4000)
+                TaskTimer_WriteCounter(1u);
+            #elif (TaskTimer__RIGHT == TaskTimer_PWM_ALIGN)
+                TaskTimer_WriteCounter(TaskTimer_PWM_PERIOD_VALUE);
+            #else 
+                TaskTimer_WriteCounter(0u);
+            #endif  /* (TaskTimer_CY_TCPWM_V2 && TaskTimer_PWM_UPDOWN_CNT_USED && !TaskTimer_CY_TCPWM_4000) */
+        #endif  /* (TaskTimer__PWM_PR == TaskTimer_PWM_MODE) */
 
-        #if (1u == TaskTimer_PWM_PERIOD_SWAP)
-            TaskTimer_SetPeriodSwap(1u);
-            TaskTimer_WritePeriodBuf(TaskTimer_PWM_PERIOD_BUF_VALUE);
-        #endif  /* (1u == TaskTimer_PWM_PERIOD_SWAP) */
+        #if (TaskTimer__PWM_DT == TaskTimer_PWM_MODE)
+            TaskTimer_CONTROL_REG |= TaskTimer_CTRL_PWM_DEAD_TIME_CYCLE;
+        #endif  /* (TaskTimer__PWM_DT == TaskTimer_PWM_MODE) */
+
+        #if (TaskTimer__PWM == TaskTimer_PWM_MODE)
+            TaskTimer_CONTROL_REG |= TaskTimer_CTRL_PWM_PRESCALER;
+        #endif  /* (TaskTimer__PWM == TaskTimer_PWM_MODE) */
+
+        /* Set values from customizer to CTRL1 */
+        TaskTimer_TRIG_CONTROL1_REG  = TaskTimer_PWM_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
+        TaskTimer_SetInterruptMode(TaskTimer_PWM_INTERRUPT_MASK);
 
         /* Set values from customizer to CTRL2 */
         #if (TaskTimer__PWM_PR == TaskTimer_PWM_MODE)
@@ -167,7 +130,6 @@ void TaskTimer_Init(void)
             #endif  /* ( TaskTimer_PWM_LEFT == TaskTimer_PWM_ALIGN) */
 
             #if (TaskTimer__RIGHT == TaskTimer_PWM_ALIGN)
-                TaskTimer_WriteCounter(TaskTimer_PWM_PERIOD_VALUE);
                 TaskTimer_TRIG_CONTROL2_REG = TaskTimer_PWM_MODE_RIGHT;
             #endif  /* ( TaskTimer_PWM_RIGHT == TaskTimer_PWM_ALIGN) */
 
@@ -179,7 +141,22 @@ void TaskTimer_Init(void)
                 TaskTimer_TRIG_CONTROL2_REG = TaskTimer_PWM_MODE_ASYM;
             #endif  /* (TaskTimer__ASYMMETRIC == TaskTimer_PWM_ALIGN) */
         #endif  /* (TaskTimer__PWM_PR == TaskTimer_PWM_MODE) */
+
+        /* Set other values from customizer */
+        TaskTimer_WritePeriod(TaskTimer_PWM_PERIOD_VALUE );
+        TaskTimer_WriteCompare(TaskTimer_PWM_COMPARE_VALUE);
+
+        #if (1u == TaskTimer_PWM_COMPARE_SWAP)
+            TaskTimer_SetCompareSwap(1u);
+            TaskTimer_WriteCompareBuf(TaskTimer_PWM_COMPARE_BUF_VALUE);
+        #endif  /* (1u == TaskTimer_PWM_COMPARE_SWAP) */
+
+        #if (1u == TaskTimer_PWM_PERIOD_SWAP)
+            TaskTimer_SetPeriodSwap(1u);
+            TaskTimer_WritePeriodBuf(TaskTimer_PWM_PERIOD_BUF_VALUE);
+        #endif  /* (1u == TaskTimer_PWM_PERIOD_SWAP) */
     #endif  /* (TaskTimer__PWM_SEL == TaskTimer_CONFIG) */
+    
 }
 
 
@@ -857,28 +834,29 @@ void TaskTimer_SetPeriodSwap(uint32 swapEnable)
 *******************************************************************************/
 void TaskTimer_WriteCompare(uint32 compare)
 {
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         currentMode = ((TaskTimer_CONTROL_REG & TaskTimer_UPDOWN_MASK) >> TaskTimer_UPDOWN_SHIFT);
 
-        if (TaskTimer__COUNT_DOWN == currentMode)
+        if (((uint32)TaskTimer__COUNT_DOWN == currentMode) && (0xFFFFu != compare))
         {
-            TaskTimer_COMP_CAP_REG = ((compare + 1u) & TaskTimer_16BIT_MASK);
+            compare++;
         }
-        else if (TaskTimer__COUNT_UP == currentMode)
+        else if (((uint32)TaskTimer__COUNT_UP == currentMode) && (0u != compare))
         {
-            TaskTimer_COMP_CAP_REG = ((compare - 1u) & TaskTimer_16BIT_MASK);
+            compare--;
         }
         else
         {
-            TaskTimer_COMP_CAP_REG = (compare & TaskTimer_16BIT_MASK);
         }
-    #else
-        TaskTimer_COMP_CAP_REG = (compare & TaskTimer_16BIT_MASK);
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+        
+    
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
+    
+    TaskTimer_COMP_CAP_REG = (compare & TaskTimer_16BIT_MASK);
 }
 
 
@@ -899,30 +877,32 @@ void TaskTimer_WriteCompare(uint32 compare)
 *******************************************************************************/
 uint32 TaskTimer_ReadCompare(void)
 {
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         currentMode = ((TaskTimer_CONTROL_REG & TaskTimer_UPDOWN_MASK) >> TaskTimer_UPDOWN_SHIFT);
-
-        if (TaskTimer__COUNT_DOWN == currentMode)
+        
+        regVal = TaskTimer_COMP_CAP_REG;
+        
+        if (((uint32)TaskTimer__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((TaskTimer_COMP_CAP_REG - 1u) & TaskTimer_16BIT_MASK);
+            regVal--;
         }
-        else if (TaskTimer__COUNT_UP == currentMode)
+        else if (((uint32)TaskTimer__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((TaskTimer_COMP_CAP_REG + 1u) & TaskTimer_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (TaskTimer_COMP_CAP_REG & TaskTimer_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & TaskTimer_16BIT_MASK);
     #else
         return (TaskTimer_COMP_CAP_REG & TaskTimer_16BIT_MASK);
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 }
 
 
@@ -943,28 +923,27 @@ uint32 TaskTimer_ReadCompare(void)
 *******************************************************************************/
 void TaskTimer_WriteCompareBuf(uint32 compareBuf)
 {
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         currentMode = ((TaskTimer_CONTROL_REG & TaskTimer_UPDOWN_MASK) >> TaskTimer_UPDOWN_SHIFT);
 
-        if (TaskTimer__COUNT_DOWN == currentMode)
+        if (((uint32)TaskTimer__COUNT_DOWN == currentMode) && (0xFFFFu != compareBuf))
         {
-            TaskTimer_COMP_CAP_BUF_REG = ((compareBuf + 1u) & TaskTimer_16BIT_MASK);
+            compareBuf++;
         }
-        else if (TaskTimer__COUNT_UP == currentMode)
+        else if (((uint32)TaskTimer__COUNT_UP == currentMode) && (0u != compareBuf))
         {
-            TaskTimer_COMP_CAP_BUF_REG = ((compareBuf - 1u) & TaskTimer_16BIT_MASK);
+            compareBuf --;
         }
         else
         {
-            TaskTimer_COMP_CAP_BUF_REG = (compareBuf & TaskTimer_16BIT_MASK);
         }
-    #else
-        TaskTimer_COMP_CAP_BUF_REG = (compareBuf & TaskTimer_16BIT_MASK);
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
+    
+    TaskTimer_COMP_CAP_BUF_REG = (compareBuf & TaskTimer_16BIT_MASK);
 }
 
 
@@ -985,30 +964,32 @@ void TaskTimer_WriteCompareBuf(uint32 compareBuf)
 *******************************************************************************/
 uint32 TaskTimer_ReadCompareBuf(void)
 {
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 
-    #if (TaskTimer_CY_TCPWM_V2)
+    #if (TaskTimer_CY_TCPWM_4000)
         currentMode = ((TaskTimer_CONTROL_REG & TaskTimer_UPDOWN_MASK) >> TaskTimer_UPDOWN_SHIFT);
 
-        if (TaskTimer__COUNT_DOWN == currentMode)
+        regVal = TaskTimer_COMP_CAP_BUF_REG;
+        
+        if (((uint32)TaskTimer__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((TaskTimer_COMP_CAP_BUF_REG - 1u) & TaskTimer_16BIT_MASK);
+            regVal--;
         }
-        else if (TaskTimer__COUNT_UP == currentMode)
+        else if (((uint32)TaskTimer__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((TaskTimer_COMP_CAP_BUF_REG + 1u) & TaskTimer_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (TaskTimer_COMP_CAP_BUF_REG & TaskTimer_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & TaskTimer_16BIT_MASK);
     #else
         return (TaskTimer_COMP_CAP_BUF_REG & TaskTimer_16BIT_MASK);
-    #endif /* (TaskTimer_CY_TCPWM_V2) */
+    #endif /* (TaskTimer_CY_TCPWM_4000) */
 }
 
 

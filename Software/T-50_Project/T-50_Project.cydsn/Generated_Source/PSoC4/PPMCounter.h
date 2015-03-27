@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: PPMCounter.h
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides constants and parameter values for the PPMCounter
@@ -19,6 +19,8 @@
 #if !defined(CY_TCPWM_PPMCounter_H)
 #define CY_TCPWM_PPMCounter_H
 
+
+#include "CyLib.h"
 #include "cytypes.h"
 #include "cyfitter.h"
 
@@ -45,6 +47,7 @@ extern uint8  PPMCounter_initVar;
 ****************************************/
 
 #define PPMCounter_CY_TCPWM_V2                    (CYIPBLOCK_m0s8tcpwm_VERSION == 2u)
+#define PPMCounter_CY_TCPWM_4000                  (CY_PSOC4_4000)
 
 /* TCPWM Configuration */
 #define PPMCounter_CONFIG                         (1lu)
@@ -262,12 +265,25 @@ extern uint8  PPMCounter_initVar;
 #define PPMCounter_PWM_MODE_RIGHT                 (PPMCounter_CC_MATCH_SET          |   \
                                                          PPMCounter_OVERLOW_NO_CHANGE     |   \
                                                          PPMCounter_UNDERFLOW_CLEAR)
-#define PPMCounter_PWM_MODE_CENTER                (PPMCounter_CC_MATCH_INVERT       |   \
-                                                         PPMCounter_OVERLOW_NO_CHANGE     |   \
-                                                         PPMCounter_UNDERFLOW_CLEAR)
-#define PPMCounter_PWM_MODE_ASYM                  (PPMCounter_CC_MATCH_NO_CHANGE    |   \
+#define PPMCounter_PWM_MODE_ASYM                  (PPMCounter_CC_MATCH_INVERT       |   \
                                                          PPMCounter_OVERLOW_SET           |   \
-                                                         PPMCounter_UNDERFLOW_CLEAR )
+                                                         PPMCounter_UNDERFLOW_CLEAR)
+
+#if (PPMCounter_CY_TCPWM_V2)
+    #if(PPMCounter_CY_TCPWM_4000)
+        #define PPMCounter_PWM_MODE_CENTER                (PPMCounter_CC_MATCH_INVERT       |   \
+                                                                 PPMCounter_OVERLOW_NO_CHANGE     |   \
+                                                                 PPMCounter_UNDERFLOW_CLEAR)
+    #else
+        #define PPMCounter_PWM_MODE_CENTER                (PPMCounter_CC_MATCH_INVERT       |   \
+                                                                 PPMCounter_OVERLOW_SET           |   \
+                                                                 PPMCounter_UNDERFLOW_CLEAR)
+    #endif /* (PPMCounter_CY_TCPWM_4000) */
+#else
+    #define PPMCounter_PWM_MODE_CENTER                (PPMCounter_CC_MATCH_INVERT       |   \
+                                                             PPMCounter_OVERLOW_NO_CHANGE     |   \
+                                                             PPMCounter_UNDERFLOW_CLEAR)
+#endif /* (PPMCounter_CY_TCPWM_NEW) */
 
 /* Command operations without condition */
 #define PPMCounter_CMD_CAPTURE                    (0u)
@@ -458,7 +474,69 @@ void   PPMCounter_Wakeup(void);
 *    Initial Constants
 ***************************************/
 
+#define PPMCounter_CTRL_QUAD_BASE_CONFIG                                                          \
+        (((uint32)(PPMCounter_QUAD_ENCODING_MODES     << PPMCounter_QUAD_MODE_SHIFT))       |\
+         ((uint32)(PPMCounter_CONFIG                  << PPMCounter_MODE_SHIFT)))
+
+#define PPMCounter_CTRL_PWM_BASE_CONFIG                                                           \
+        (((uint32)(PPMCounter_PWM_STOP_EVENT          << PPMCounter_PWM_STOP_KILL_SHIFT))   |\
+         ((uint32)(PPMCounter_PWM_OUT_INVERT          << PPMCounter_INV_OUT_SHIFT))         |\
+         ((uint32)(PPMCounter_PWM_OUT_N_INVERT        << PPMCounter_INV_COMPL_OUT_SHIFT))   |\
+         ((uint32)(PPMCounter_PWM_MODE                << PPMCounter_MODE_SHIFT)))
+
+#define PPMCounter_CTRL_PWM_RUN_MODE                                                              \
+            ((uint32)(PPMCounter_PWM_RUN_MODE         << PPMCounter_ONESHOT_SHIFT))
+            
+#define PPMCounter_CTRL_PWM_ALIGN                                                                 \
+            ((uint32)(PPMCounter_PWM_ALIGN            << PPMCounter_UPDOWN_SHIFT))
+
+#define PPMCounter_CTRL_PWM_KILL_EVENT                                                            \
+             ((uint32)(PPMCounter_PWM_KILL_EVENT      << PPMCounter_PWM_SYNC_KILL_SHIFT))
+
+#define PPMCounter_CTRL_PWM_DEAD_TIME_CYCLE                                                       \
+            ((uint32)(PPMCounter_PWM_DEAD_TIME_CYCLE  << PPMCounter_PRESCALER_SHIFT))
+
+#define PPMCounter_CTRL_PWM_PRESCALER                                                             \
+            ((uint32)(PPMCounter_PWM_PRESCALER        << PPMCounter_PRESCALER_SHIFT))
+
+#define PPMCounter_CTRL_TIMER_BASE_CONFIG                                                         \
+        (((uint32)(PPMCounter_TC_PRESCALER            << PPMCounter_PRESCALER_SHIFT))       |\
+         ((uint32)(PPMCounter_TC_COUNTER_MODE         << PPMCounter_UPDOWN_SHIFT))          |\
+         ((uint32)(PPMCounter_TC_RUN_MODE             << PPMCounter_ONESHOT_SHIFT))         |\
+         ((uint32)(PPMCounter_TC_COMP_CAP_MODE        << PPMCounter_MODE_SHIFT)))
+        
+#define PPMCounter_QUAD_SIGNALS_MODES                                                             \
+        (((uint32)(PPMCounter_QUAD_PHIA_SIGNAL_MODE   << PPMCounter_COUNT_SHIFT))           |\
+         ((uint32)(PPMCounter_QUAD_INDEX_SIGNAL_MODE  << PPMCounter_RELOAD_SHIFT))          |\
+         ((uint32)(PPMCounter_QUAD_STOP_SIGNAL_MODE   << PPMCounter_STOP_SHIFT))            |\
+         ((uint32)(PPMCounter_QUAD_PHIB_SIGNAL_MODE   << PPMCounter_START_SHIFT)))
+
+#define PPMCounter_PWM_SIGNALS_MODES                                                              \
+        (((uint32)(PPMCounter_PWM_SWITCH_SIGNAL_MODE  << PPMCounter_CAPTURE_SHIFT))         |\
+         ((uint32)(PPMCounter_PWM_COUNT_SIGNAL_MODE   << PPMCounter_COUNT_SHIFT))           |\
+         ((uint32)(PPMCounter_PWM_RELOAD_SIGNAL_MODE  << PPMCounter_RELOAD_SHIFT))          |\
+         ((uint32)(PPMCounter_PWM_STOP_SIGNAL_MODE    << PPMCounter_STOP_SHIFT))            |\
+         ((uint32)(PPMCounter_PWM_START_SIGNAL_MODE   << PPMCounter_START_SHIFT)))
+
+#define PPMCounter_TIMER_SIGNALS_MODES                                                            \
+        (((uint32)(PPMCounter_TC_CAPTURE_SIGNAL_MODE  << PPMCounter_CAPTURE_SHIFT))         |\
+         ((uint32)(PPMCounter_TC_COUNT_SIGNAL_MODE    << PPMCounter_COUNT_SHIFT))           |\
+         ((uint32)(PPMCounter_TC_RELOAD_SIGNAL_MODE   << PPMCounter_RELOAD_SHIFT))          |\
+         ((uint32)(PPMCounter_TC_STOP_SIGNAL_MODE     << PPMCounter_STOP_SHIFT))            |\
+         ((uint32)(PPMCounter_TC_START_SIGNAL_MODE    << PPMCounter_START_SHIFT)))
+        
+#define PPMCounter_TIMER_UPDOWN_CNT_USED                                                          \
+                ((PPMCounter__COUNT_UPDOWN0 == PPMCounter_TC_COUNTER_MODE)                  ||\
+                 (PPMCounter__COUNT_UPDOWN1 == PPMCounter_TC_COUNTER_MODE))
+
+#define PPMCounter_PWM_UPDOWN_CNT_USED                                                            \
+                ((PPMCounter__CENTER == PPMCounter_PWM_ALIGN)                               ||\
+                 (PPMCounter__ASYMMETRIC == PPMCounter_PWM_ALIGN))               
+        
 #define PPMCounter_PWM_PR_INIT_VALUE              (1u)
+#define PPMCounter_QUAD_PERIOD_INIT_VALUE         (0x8000u)
+
+
 
 #endif /* End CY_TCPWM_PPMCounter_H */
 

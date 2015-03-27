@@ -1,0 +1,4523 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"IMU.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.write_gyro_registry,"ax",%progbits
+  18              		.align	1
+  19              		.global	write_gyro_registry
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	write_gyro_registry, %function
+  23              	write_gyro_registry:
+  24              	.LFB33:
+  25              		.file 1 ".\\IMU.c"
+   1:.\IMU.c       **** /* ========================================
+   2:.\IMU.c       ****  *
+   3:.\IMU.c       ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\IMU.c       ****  * All Rights Reserved
+   5:.\IMU.c       ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\IMU.c       ****  *
+   7:.\IMU.c       ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\IMU.c       ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\IMU.c       ****  *
+  10:.\IMU.c       ****  * ========================================
+  11:.\IMU.c       **** */
+  12:.\IMU.c       **** 
+  13:.\IMU.c       **** // #include <project.h>     // this is included in IMU.h file
+  14:.\IMU.c       **** #include <IMU.h>
+  15:.\IMU.c       **** 
+  16:.\IMU.c       **** extern void UART_1_UartPutNum();
+  17:.\IMU.c       **** 
+  18:.\IMU.c       **** #define READ    1
+  19:.\IMU.c       **** #define WRITE   0
+  20:.\IMU.c       **** #define ACK     0
+  21:.\IMU.c       **** #define NACK    1
+  22:.\IMU.c       **** 
+  23:.\IMU.c       **** /* ================================= */
+  24:.\IMU.c       **** /* GYRO VARIABLES					*/
+  25:.\IMU.c       **** /* ================================= */
+  26:.\IMU.c       **** 
+  27:.\IMU.c       **** /* x component*/
+  28:.\IMU.c       **** int8_t	gyro_x_h	= 0;
+  29:.\IMU.c       **** uint8_t gyro_x_l	= 0;
+  30:.\IMU.c       **** int16_t gyro_x		= 0;
+  31:.\IMU.c       **** extern int16_t turn_rate_p;		// from main.c file
+  32:.\IMU.c       **** int16_t	gyro_p		= 0;
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 2
+
+
+  33:.\IMU.c       **** 
+  34:.\IMU.c       **** /* y component*/
+  35:.\IMU.c       **** int8_t	gyro_y_h	= 0;
+  36:.\IMU.c       **** uint8_t gyro_y_l	= 0;
+  37:.\IMU.c       **** int16_t gyro_y		= 0;
+  38:.\IMU.c       **** int16_t	gyro_q		= 0;
+  39:.\IMU.c       **** extern int16_t turn_rate_q;		// from main.c file
+  40:.\IMU.c       **** 
+  41:.\IMU.c       **** /* z component*/
+  42:.\IMU.c       **** int8_t	gyro_z_h	= 0;
+  43:.\IMU.c       **** uint8_t gyro_z_l	= 0;
+  44:.\IMU.c       **** int16_t gyro_z		= 0;
+  45:.\IMU.c       **** int16_t	gyro_r		= 0;
+  46:.\IMU.c       **** extern int16_t turn_rate_r;		// from main.c file
+  47:.\IMU.c       **** 
+  48:.\IMU.c       **** // Gyro temperature
+  49:.\IMU.c       **** int8_t	temperature	= 0;
+  50:.\IMU.c       **** uint8_t temperature_0	= 50;
+  51:.\IMU.c       **** 
+  52:.\IMU.c       **** // Gyro Calibration Variables
+  53:.\IMU.c       **** // idea: count 100 samples (IMU needs to be steady) and calculate the offset
+  54:.\IMU.c       **** 
+  55:.\IMU.c       **** int16_t gyro_p_offset = 0;
+  56:.\IMU.c       **** int16_t gyro_q_offset = 0;
+  57:.\IMU.c       **** int16_t gyro_r_offset = 0;
+  58:.\IMU.c       **** //int cal_complete = FALSE;	// Flag to cover if the calibration is complete
+  59:.\IMU.c       **** uint8_t error_stat = 0;
+  60:.\IMU.c       **** 
+  61:.\IMU.c       **** /* ================================= */
+  62:.\IMU.c       **** /* ACC & MAG VARIABLES					*/
+  63:.\IMU.c       **** /* ================================= */
+  64:.\IMU.c       **** 
+  65:.\IMU.c       **** int8_t	acc_x_h		= 0;		// high bits of acc x reading
+  66:.\IMU.c       **** uint8_t	acc_x_l		= 0;		// low bits of acc x reading
+  67:.\IMU.c       **** int16_t acc_x		= 0;		// combined value of acc x reading
+  68:.\IMU.c       **** extern int16_t	acc_x_g;		// acc_x from main.c file
+  69:.\IMU.c       **** 
+  70:.\IMU.c       **** int8_t	acc_y_h		= 0;		// high bits of acc x reading
+  71:.\IMU.c       **** uint8_t	acc_y_l		= 0;		// low bits of acc x reading
+  72:.\IMU.c       **** int16_t acc_y		= 0;		// combined value of acc x reading
+  73:.\IMU.c       **** extern int16_t	acc_y_g;		// acc_y from main.c file
+  74:.\IMU.c       **** 
+  75:.\IMU.c       **** int8_t	acc_z_h		= 0;		// high bits of acc x reading
+  76:.\IMU.c       **** uint8_t	acc_z_l		= 0;		// low bits of acc x reading
+  77:.\IMU.c       **** int16_t acc_z		= 0;		// combined value of acc x reading
+  78:.\IMU.c       **** extern int16_t	acc_z_g;		// acc_z from main.c file
+  79:.\IMU.c       **** 
+  80:.\IMU.c       **** int8_t	mag_x_h		= 0;		// high bits of mag x reading
+  81:.\IMU.c       **** uint8_t	mag_x_l		= 0;		// low bits of mag x reading
+  82:.\IMU.c       **** int16_t mag_x		= 0;		// the value read on the x axis of the magnetometer
+  83:.\IMU.c       **** extern int16_t	mag_x_g;		// the geodetic reference frame value of x
+  84:.\IMU.c       **** 
+  85:.\IMU.c       **** int8_t	mag_y_h		= 0;		// high bits of mag y reading
+  86:.\IMU.c       **** uint8_t	mag_y_l		= 0;		// low bits of mag y reading
+  87:.\IMU.c       **** int16_t mag_y		= 0;		// the value read on the y axis of the magnetometer
+  88:.\IMU.c       **** extern int16_t	mag_y_g;		// the geodetic reference frame value of y
+  89:.\IMU.c       **** 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 3
+
+
+  90:.\IMU.c       **** int8_t	mag_z_h		= 0;		// high bits of mag z reading
+  91:.\IMU.c       **** uint8_t	mag_z_l		= 0;		// low bits of mag z reading
+  92:.\IMU.c       **** int16_t mag_z	= 0;		// the value read on the z axis of the magnetometer
+  93:.\IMU.c       **** extern int16_t	mag_z_g;		// the geodetic reference frame value of y
+  94:.\IMU.c       **** 
+  95:.\IMU.c       **** /* ================================= */
+  96:.\IMU.c       **** /* BAROMETER VARIABLES				 */
+  97:.\IMU.c       **** /* ================================= */
+  98:.\IMU.c       **** uint8_t bar_h    = 0;    // high byte
+  99:.\IMU.c       **** uint8_t bar_l   = 0;    // middle byte
+ 100:.\IMU.c       **** uint8_t bar_xl  = 0;    // lowest byte
+ 101:.\IMU.c       **** extern uint32_t Bar_press;   // Barometric Pressure
+ 102:.\IMU.c       **** /* ================================= */
+ 103:.\IMU.c       **** /* GYRO FUNCTIONS					*/
+ 104:.\IMU.c       **** /* ================================= */
+ 105:.\IMU.c       **** void write_gyro_registry(uint8_t registry, uint8_t data)
+ 106:.\IMU.c       **** {
+  26              		.loc 1 106 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 38B5     		push	{r3, r4, r5, lr}
+  30              		.cfi_def_cfa_offset 16
+  31              		.cfi_offset 3, -16
+  32              		.cfi_offset 4, -12
+  33              		.cfi_offset 5, -8
+  34              		.cfi_offset 14, -4
+  35              		.loc 1 106 0
+  36 0002 051C     		mov	r5, r0
+  37 0004 0C1C     		mov	r4, r1
+ 107:.\IMU.c       ****     I2CM_I2CMasterSendStart(L3GD20H_ADDRESS_SA0_HIGH, WRITE);
+  38              		.loc 1 107 0
+  39 0006 6B20     		mov	r0, #107
+  40              	.LVL1:
+  41 0008 0021     		mov	r1, #0
+  42              	.LVL2:
+  43 000a FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+  44              	.LVL3:
+ 108:.\IMU.c       **** 	UART_1_UartPutString("GYR W Add Ok\r\n");
+  45              		.loc 1 108 0
+  46 000e 0D48     		ldr	r0, .L6
+  47 0010 FFF7FEFF 		bl	UART_1_UartPutString
+  48              	.LVL4:
+ 109:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(registry);
+  49              		.loc 1 109 0
+  50 0014 281C     		mov	r0, r5
+  51 0016 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+  52              	.LVL5:
+ 110:.\IMU.c       ****     UART_1_UartPutString("GYR W Reg Ok\r\n");
+  53              		.loc 1 110 0
+  54 001a 0B48     		ldr	r0, .L6+4
+  55 001c FFF7FEFF 		bl	UART_1_UartPutString
+  56              	.LVL6:
+ 111:.\IMU.c       ****     I2CM_I2CMasterWriteByte(data);
+  57              		.loc 1 111 0
+  58 0020 201C     		mov	r0, r4
+  59 0022 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+  60              	.LVL7:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 4
+
+
+ 112:.\IMU.c       ****     UART_1_UartPutString("GYR W Dat Ok\r\n");
+  61              		.loc 1 112 0
+  62 0026 0948     		ldr	r0, .L6+8
+  63 0028 FFF7FEFF 		bl	UART_1_UartPutString
+  64              	.LVL8:
+ 113:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+  65              		.loc 1 113 0
+  66 002c 084B     		ldr	r3, .L6+12
+  67 002e 1A68     		ldr	r2, [r3]
+  68 0030 1023     		mov	r3, #16
+  69 0032 9106     		lsl	r1, r2, #26
+  70 0034 00D5     		bpl	.L2
+  71 0036 1823     		mov	r3, #24
+  72              	.L2:
+  73              		.loc 1 113 0 is_stmt 0 discriminator 3
+  74 0038 064A     		ldr	r2, .L6+16
+ 114:.\IMU.c       ****     UART_1_UartPutString("GYR W Stop Ok\r\n");    
+  75              		.loc 1 114 0 is_stmt 1 discriminator 3
+  76 003a 0748     		ldr	r0, .L6+20
+ 113:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+  77              		.loc 1 113 0 discriminator 3
+  78 003c 1360     		str	r3, [r2]
+  79              		.loc 1 114 0 discriminator 3
+  80 003e FFF7FEFF 		bl	UART_1_UartPutString
+  81              	.LVL9:
+ 115:.\IMU.c       **** }
+  82              		.loc 1 115 0 discriminator 3
+  83              		@ sp needed
+  84 0042 38BD     		pop	{r3, r4, r5, pc}
+  85              	.L7:
+  86              		.align	2
+  87              	.L6:
+  88 0044 00000000 		.word	.LC0
+  89 0048 0F000000 		.word	.LC2
+  90 004c 1E000000 		.word	.LC4
+  91 0050 64000740 		.word	1074200676
+  92 0054 68000740 		.word	1074200680
+  93 0058 2D000000 		.word	.LC6
+  94              		.cfi_endproc
+  95              	.LFE33:
+  96              		.size	write_gyro_registry, .-write_gyro_registry
+  97              		.section	.text.read_gyro_registry,"ax",%progbits
+  98              		.align	1
+  99              		.global	read_gyro_registry
+ 100              		.code	16
+ 101              		.thumb_func
+ 102              		.type	read_gyro_registry, %function
+ 103              	read_gyro_registry:
+ 104              	.LFB34:
+ 116:.\IMU.c       **** 
+ 117:.\IMU.c       **** int8_t read_gyro_registry(uint8_t registry)
+ 118:.\IMU.c       **** {
+ 105              		.loc 1 118 0
+ 106              		.cfi_startproc
+ 107              	.LVL10:
+ 108 0000 10B5     		push	{r4, lr}
+ 109              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 5
+
+
+ 110              		.cfi_offset 4, -8
+ 111              		.cfi_offset 14, -4
+ 119:.\IMU.c       **** 	uint8_t data;
+ 120:.\IMU.c       **** 	I2CM_I2CMasterSendStart(L3GD20H_ADDRESS_SA0_HIGH, WRITE);
+ 112              		.loc 1 120 0
+ 113 0002 0021     		mov	r1, #0
+ 118:.\IMU.c       **** {
+ 114              		.loc 1 118 0
+ 115 0004 041C     		mov	r4, r0
+ 116              		.loc 1 120 0
+ 117 0006 6B20     		mov	r0, #107
+ 118              	.LVL11:
+ 119 0008 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 120              	.LVL12:
+ 121:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(registry);
+ 121              		.loc 1 121 0
+ 122 000c 201C     		mov	r0, r4
+ 123 000e FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 124              	.LVL13:
+ 122:.\IMU.c       **** 	I2CM_I2CMasterSendRestart(L3GD20H_ADDRESS_SA0_HIGH, READ);
+ 125              		.loc 1 122 0
+ 126 0012 0121     		mov	r1, #1
+ 127 0014 6B20     		mov	r0, #107
+ 128 0016 FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+ 129              	.LVL14:
+ 123:.\IMU.c       **** 	data = I2CM_I2CMasterReadByte(NACK);
+ 130              		.loc 1 123 0
+ 131 001a 0120     		mov	r0, #1
+ 132 001c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 133              	.LVL15:
+ 124:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 134              		.loc 1 124 0
+ 135 0020 044B     		ldr	r3, .L12
+ 136 0022 1A68     		ldr	r2, [r3]
+ 137 0024 1023     		mov	r3, #16
+ 138 0026 9106     		lsl	r1, r2, #26
+ 139 0028 00D5     		bpl	.L9
+ 140 002a 1823     		mov	r3, #24
+ 141              	.L9:
+ 142              		.loc 1 124 0 is_stmt 0 discriminator 3
+ 143 002c 024A     		ldr	r2, .L12+4
+ 125:.\IMU.c       ****     return(data);
+ 144              		.loc 1 125 0 is_stmt 1 discriminator 3
+ 145 002e 40B2     		sxtb	r0, r0
+ 146              	.LVL16:
+ 124:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 147              		.loc 1 124 0 discriminator 3
+ 148 0030 1360     		str	r3, [r2]
+ 126:.\IMU.c       **** }
+ 149              		.loc 1 126 0 discriminator 3
+ 150              		@ sp needed
+ 151 0032 10BD     		pop	{r4, pc}
+ 152              	.L13:
+ 153              		.align	2
+ 154              	.L12:
+ 155 0034 64000740 		.word	1074200676
+ 156 0038 68000740 		.word	1074200680
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 6
+
+
+ 157              		.cfi_endproc
+ 158              	.LFE34:
+ 159              		.size	read_gyro_registry, .-read_gyro_registry
+ 160              		.section	.text.gyro_start,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	gyro_start
+ 163              		.code	16
+ 164              		.thumb_func
+ 165              		.type	gyro_start, %function
+ 166              	gyro_start:
+ 167              	.LFB35:
+ 127:.\IMU.c       **** 
+ 128:.\IMU.c       **** void gyro_start(void)
+ 129:.\IMU.c       **** {
+ 168              		.loc 1 129 0
+ 169              		.cfi_startproc
+ 170 0000 08B5     		push	{r3, lr}
+ 171              		.cfi_def_cfa_offset 8
+ 172              		.cfi_offset 3, -8
+ 173              		.cfi_offset 14, -4
+ 130:.\IMU.c       ****     // CTRL REG 1
+ 131:.\IMU.c       **** 	write_gyro_registry(L3GD20H_CTRL_REG1, 0x0F);		// Enabling all axes read out and Power On -> 100 H
+ 174              		.loc 1 131 0
+ 175 0002 2020     		mov	r0, #32
+ 176 0004 0F21     		mov	r1, #15
+ 177 0006 FFF7FEFF 		bl	write_gyro_registry
+ 178              	.LVL17:
+ 132:.\IMU.c       ****     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
+ 133:.\IMU.c       ****     // CTRL REG 2
+ 134:.\IMU.c       **** 	write_gyro_registry(L3GD20H_CTRL_REG2, 0x20);		// Normal Mode of High Pass Filter (High Bits), Fil
+ 179              		.loc 1 134 0
+ 180 000a 2120     		mov	r0, #33
+ 181 000c 2021     		mov	r1, #32
+ 182 000e FFF7FEFF 		bl	write_gyro_registry
+ 183              	.LVL18:
+ 135:.\IMU.c       ****     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
+ 136:.\IMU.c       ****     // CTRL REG 5
+ 137:.\IMU.c       **** 	write_gyro_registry(L3GD20H_CTRL_REG5, 0x10);		// High Pass Filter Enable (High Bit 1)
+ 184              		.loc 1 137 0
+ 185 0012 2420     		mov	r0, #36
+ 186 0014 1021     		mov	r1, #16
+ 187 0016 FFF7FEFF 		bl	write_gyro_registry
+ 188              	.LVL19:
+ 138:.\IMU.c       ****     //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
+ 139:.\IMU.c       ****     UART_1_UartPutString("Gyro started\r\n");
+ 189              		.loc 1 139 0
+ 190 001a 0248     		ldr	r0, .L15
+ 191 001c FFF7FEFF 		bl	UART_1_UartPutString
+ 192              	.LVL20:
+ 140:.\IMU.c       **** }
+ 193              		.loc 1 140 0
+ 194              		@ sp needed
+ 195 0020 08BD     		pop	{r3, pc}
+ 196              	.L16:
+ 197 0022 C046     		.align	2
+ 198              	.L15:
+ 199 0024 3D000000 		.word	.LC8
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 7
+
+
+ 200              		.cfi_endproc
+ 201              	.LFE35:
+ 202              		.size	gyro_start, .-gyro_start
+ 203              		.global	__aeabi_i2d
+ 204              		.global	__aeabi_dmul
+ 205              		.global	__aeabi_d2iz
+ 206              		.section	.text.gyro_read,"ax",%progbits
+ 207              		.align	1
+ 208              		.global	gyro_read
+ 209              		.code	16
+ 210              		.thumb_func
+ 211              		.type	gyro_read, %function
+ 212              	gyro_read:
+ 213              	.LFB36:
+ 141:.\IMU.c       **** 
+ 142:.\IMU.c       **** // Gyro turn rate reading
+ 143:.\IMU.c       **** void gyro_read(void)
+ 144:.\IMU.c       **** {
+ 214              		.loc 1 144 0
+ 215              		.cfi_startproc
+ 216 0000 38B5     		push	{r3, r4, r5, lr}
+ 217              		.cfi_def_cfa_offset 16
+ 218              		.cfi_offset 3, -16
+ 219              		.cfi_offset 4, -12
+ 220              		.cfi_offset 5, -8
+ 221              		.cfi_offset 14, -4
+ 145:.\IMU.c       ****     I2CM_I2CMasterSendStart(L3GD20H_ADDRESS_SA0_HIGH, WRITE);
+ 222              		.loc 1 145 0
+ 223 0002 0021     		mov	r1, #0
+ 224 0004 6B20     		mov	r0, #107
+ 225 0006 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 226              	.LVL21:
+ 146:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(L3GD20H_OUT_X_L + 0b10000000); // add MSB to activate auto increment
+ 227              		.loc 1 146 0
+ 228 000a A820     		mov	r0, #168
+ 229 000c FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 230              	.LVL22:
+ 147:.\IMU.c       **** 	I2CM_I2CMasterSendRestart(L3GD20H_ADDRESS_SA0_HIGH, READ);
+ 231              		.loc 1 147 0
+ 232 0010 0121     		mov	r1, #1
+ 233 0012 6B20     		mov	r0, #107
+ 234 0014 FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+ 235              	.LVL23:
+ 148:.\IMU.c       **** 	gyro_x_l = I2CM_I2CMasterReadByte(ACK);
+ 236              		.loc 1 148 0
+ 237 0018 0020     		mov	r0, #0
+ 238 001a FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 239              	.LVL24:
+ 240 001e 2E4D     		ldr	r5, .L21+8
+ 241 0020 2870     		strb	r0, [r5]
+ 149:.\IMU.c       **** 	gyro_x_h = I2CM_I2CMasterReadByte(ACK);
+ 242              		.loc 1 149 0
+ 243 0022 0020     		mov	r0, #0
+ 244 0024 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 245              	.LVL25:
+ 246 0028 6870     		strb	r0, [r5, #1]
+ 150:.\IMU.c       ****     gyro_y_l = I2CM_I2CMasterReadByte(ACK);
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 8
+
+
+ 247              		.loc 1 150 0
+ 248 002a 0020     		mov	r0, #0
+ 249 002c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 250              	.LVL26:
+ 251 0030 A870     		strb	r0, [r5, #2]
+ 151:.\IMU.c       **** 	gyro_y_h = I2CM_I2CMasterReadByte(ACK);
+ 252              		.loc 1 151 0
+ 253 0032 0020     		mov	r0, #0
+ 254 0034 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 255              	.LVL27:
+ 256 0038 E870     		strb	r0, [r5, #3]
+ 152:.\IMU.c       **** 	gyro_z_l = I2CM_I2CMasterReadByte(ACK);
+ 257              		.loc 1 152 0
+ 258 003a 0020     		mov	r0, #0
+ 259 003c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 260              	.LVL28:
+ 261 0040 2871     		strb	r0, [r5, #4]
+ 153:.\IMU.c       **** 	gyro_z_h = I2CM_I2CMasterReadByte(NACK);
+ 262              		.loc 1 153 0
+ 263 0042 0120     		mov	r0, #1
+ 264 0044 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 265              	.LVL29:
+ 154:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 266              		.loc 1 154 0
+ 267 0048 244B     		ldr	r3, .L21+12
+ 153:.\IMU.c       **** 	gyro_z_h = I2CM_I2CMasterReadByte(NACK);
+ 268              		.loc 1 153 0
+ 269 004a C0B2     		uxtb	r0, r0
+ 270 004c 6871     		strb	r0, [r5, #5]
+ 271              		.loc 1 154 0
+ 272 004e 1968     		ldr	r1, [r3]
+ 273 0050 1022     		mov	r2, #16
+ 274 0052 2B1C     		mov	r3, r5
+ 275 0054 8C06     		lsl	r4, r1, #26
+ 276 0056 00D5     		bpl	.L18
+ 277 0058 1822     		mov	r2, #24
+ 278              	.L18:
+ 279              		.loc 1 154 0 is_stmt 0 discriminator 3
+ 280 005a 2149     		ldr	r1, .L21+16
+ 155:.\IMU.c       ****     gyro_x = (gyro_x_h<<8) | (gyro_x_l);
+ 156:.\IMU.c       **** 	gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+ 281              		.loc 1 156 0 is_stmt 1 discriminator 3
+ 282 005c 0325     		mov	r5, #3
+ 154:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 283              		.loc 1 154 0 discriminator 3
+ 284 005e 0A60     		str	r2, [r1]
+ 155:.\IMU.c       ****     gyro_x = (gyro_x_h<<8) | (gyro_x_l);
+ 285              		.loc 1 155 0 discriminator 3
+ 286 0060 0122     		mov	r2, #1
+ 287 0062 9A56     		ldrsb	r2, [r3, r2]
+ 288 0064 1978     		ldrb	r1, [r3]
+ 289 0066 1202     		lsl	r2, r2, #8
+ 290 0068 0A43     		orr	r2, r1
+ 291 006a 92B2     		uxth	r2, r2
+ 292 006c DA80     		strh	r2, [r3, #6]
+ 293              		.loc 1 156 0 discriminator 3
+ 294 006e 5D57     		ldrsb	r5, [r3, r5]
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 9
+
+
+ 295 0070 9978     		ldrb	r1, [r3, #2]
+ 157:.\IMU.c       **** 	gyro_z = (gyro_z_h<<8) | (gyro_z_l);
+ 296              		.loc 1 157 0 discriminator 3
+ 297 0072 1C79     		ldrb	r4, [r3, #4]
+ 298 0074 40B2     		sxtb	r0, r0
+ 299 0076 0002     		lsl	r0, r0, #8
+ 156:.\IMU.c       **** 	gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+ 300              		.loc 1 156 0 discriminator 3
+ 301 0078 2D02     		lsl	r5, r5, #8
+ 302 007a 0D43     		orr	r5, r1
+ 303              		.loc 1 157 0 discriminator 3
+ 304 007c 0443     		orr	r4, r0
+ 156:.\IMU.c       **** 	gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+ 305              		.loc 1 156 0 discriminator 3
+ 306 007e ADB2     		uxth	r5, r5
+ 307              		.loc 1 157 0 discriminator 3
+ 308 0080 A4B2     		uxth	r4, r4
+ 156:.\IMU.c       **** 	gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+ 309              		.loc 1 156 0 discriminator 3
+ 310 0082 1D81     		strh	r5, [r3, #8]
+ 311              		.loc 1 157 0 discriminator 3
+ 312 0084 5C81     		strh	r4, [r3, #10]
+ 158:.\IMU.c       ****     turn_rate_p = gyro_x * 0.00875;						// the conversion comes from the default sensitivity value
+ 313              		.loc 1 158 0 discriminator 3
+ 314 0086 10B2     		sxth	r0, r2
+ 315 0088 FFF7FEFF 		bl	__aeabi_i2d
+ 316              	.LVL30:
+ 317 008c 114B     		ldr	r3, .L21+4
+ 318 008e 104A     		ldr	r2, .L21
+ 319 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 320              	.LVL31:
+ 321 0094 FFF7FEFF 		bl	__aeabi_d2iz
+ 322              	.LVL32:
+ 323 0098 124B     		ldr	r3, .L21+20
+ 159:.\IMU.c       **** 	turn_rate_q = gyro_y * 0.00875;
+ 160:.\IMU.c       **** 	turn_rate_r = gyro_z * 0.00875;						// see gyro datasheet page 10    
+ 161:.\IMU.c       **** }
+ 324              		.loc 1 161 0 discriminator 3
+ 325              		@ sp needed
+ 158:.\IMU.c       ****     turn_rate_p = gyro_x * 0.00875;						// the conversion comes from the default sensitivity value
+ 326              		.loc 1 158 0 discriminator 3
+ 327 009a 1880     		strh	r0, [r3]
+ 159:.\IMU.c       **** 	turn_rate_q = gyro_y * 0.00875;
+ 328              		.loc 1 159 0 discriminator 3
+ 329 009c 28B2     		sxth	r0, r5
+ 330 009e FFF7FEFF 		bl	__aeabi_i2d
+ 331              	.LVL33:
+ 332 00a2 0C4B     		ldr	r3, .L21+4
+ 333 00a4 0A4A     		ldr	r2, .L21
+ 334 00a6 FFF7FEFF 		bl	__aeabi_dmul
+ 335              	.LVL34:
+ 336 00aa FFF7FEFF 		bl	__aeabi_d2iz
+ 337              	.LVL35:
+ 338 00ae 0E4B     		ldr	r3, .L21+24
+ 339 00b0 1880     		strh	r0, [r3]
+ 160:.\IMU.c       **** 	turn_rate_r = gyro_z * 0.00875;						// see gyro datasheet page 10    
+ 340              		.loc 1 160 0 discriminator 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 10
+
+
+ 341 00b2 20B2     		sxth	r0, r4
+ 342 00b4 FFF7FEFF 		bl	__aeabi_i2d
+ 343              	.LVL36:
+ 344 00b8 064B     		ldr	r3, .L21+4
+ 345 00ba 054A     		ldr	r2, .L21
+ 346 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 347              	.LVL37:
+ 348 00c0 FFF7FEFF 		bl	__aeabi_d2iz
+ 349              	.LVL38:
+ 350 00c4 094B     		ldr	r3, .L21+28
+ 351 00c6 1880     		strh	r0, [r3]
+ 352              		.loc 1 161 0 discriminator 3
+ 353 00c8 38BD     		pop	{r3, r4, r5, pc}
+ 354              	.L22:
+ 355 00ca C046C046 		.align	3
+ 355      C046
+ 356              	.L21:
+ 357 00d0 EC51B81E 		.word	515396076
+ 358 00d4 85EB813F 		.word	1065479045
+ 359 00d8 00000000 		.word	.LANCHOR0
+ 360 00dc 64000740 		.word	1074200676
+ 361 00e0 68000740 		.word	1074200680
+ 362 00e4 00000000 		.word	turn_rate_p
+ 363 00e8 00000000 		.word	turn_rate_q
+ 364 00ec 00000000 		.word	turn_rate_r
+ 365              		.cfi_endproc
+ 366              	.LFE36:
+ 367              		.size	gyro_read, .-gyro_read
+ 368              		.section	.text.write_acc_registry,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	write_acc_registry
+ 371              		.code	16
+ 372              		.thumb_func
+ 373              		.type	write_acc_registry, %function
+ 374              	write_acc_registry:
+ 375              	.LFB37:
+ 162:.\IMU.c       **** 
+ 163:.\IMU.c       **** /* ================================= */
+ 164:.\IMU.c       **** /* ACC & MAG FUNCTIONS					*/
+ 165:.\IMU.c       **** /* ================================= */
+ 166:.\IMU.c       **** 
+ 167:.\IMU.c       **** /*  ACCELEROMETER FUNCTIONS */
+ 168:.\IMU.c       **** 
+ 169:.\IMU.c       **** void write_acc_registry(char registry, char data)
+ 170:.\IMU.c       **** {
+ 376              		.loc 1 170 0
+ 377              		.cfi_startproc
+ 378              	.LVL39:
+ 379 0000 38B5     		push	{r3, r4, r5, lr}
+ 380              		.cfi_def_cfa_offset 16
+ 381              		.cfi_offset 3, -16
+ 382              		.cfi_offset 4, -12
+ 383              		.cfi_offset 5, -8
+ 384              		.cfi_offset 14, -4
+ 385              		.loc 1 170 0
+ 386 0002 051C     		mov	r5, r0
+ 387 0004 0C1C     		mov	r4, r1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 11
+
+
+ 171:.\IMU.c       **** 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
+ 388              		.loc 1 171 0
+ 389 0006 1D20     		mov	r0, #29
+ 390              	.LVL40:
+ 391 0008 0021     		mov	r1, #0
+ 392              	.LVL41:
+ 393 000a FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 394              	.LVL42:
+ 172:.\IMU.c       **** 	UART_1_UartPutString("ACC W Add Ok");
+ 395              		.loc 1 172 0
+ 396 000e 0D48     		ldr	r0, .L27
+ 397 0010 FFF7FEFF 		bl	UART_1_UartPutString
+ 398              	.LVL43:
+ 173:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(registry);
+ 399              		.loc 1 173 0
+ 400 0014 281C     		mov	r0, r5
+ 401 0016 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 402              	.LVL44:
+ 174:.\IMU.c       ****     UART_1_UartPutString("ACC W Reg Ok");
+ 403              		.loc 1 174 0
+ 404 001a 0B48     		ldr	r0, .L27+4
+ 405 001c FFF7FEFF 		bl	UART_1_UartPutString
+ 406              	.LVL45:
+ 175:.\IMU.c       ****     I2CM_I2CMasterWriteByte(data);
+ 407              		.loc 1 175 0
+ 408 0020 201C     		mov	r0, r4
+ 409 0022 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 410              	.LVL46:
+ 176:.\IMU.c       ****     UART_1_UartPutString("ACC W Dat Ok");
+ 411              		.loc 1 176 0
+ 412 0026 0948     		ldr	r0, .L27+8
+ 413 0028 FFF7FEFF 		bl	UART_1_UartPutString
+ 414              	.LVL47:
+ 177:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 415              		.loc 1 177 0
+ 416 002c 084B     		ldr	r3, .L27+12
+ 417 002e 1A68     		ldr	r2, [r3]
+ 418 0030 1023     		mov	r3, #16
+ 419 0032 9106     		lsl	r1, r2, #26
+ 420 0034 00D5     		bpl	.L24
+ 421 0036 1823     		mov	r3, #24
+ 422              	.L24:
+ 423              		.loc 1 177 0 is_stmt 0 discriminator 3
+ 424 0038 064A     		ldr	r2, .L27+16
+ 178:.\IMU.c       ****     UART_1_UartPutString("ACC W Stop Ok"); 
+ 425              		.loc 1 178 0 is_stmt 1 discriminator 3
+ 426 003a 0748     		ldr	r0, .L27+20
+ 177:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 427              		.loc 1 177 0 discriminator 3
+ 428 003c 1360     		str	r3, [r2]
+ 429              		.loc 1 178 0 discriminator 3
+ 430 003e FFF7FEFF 		bl	UART_1_UartPutString
+ 431              	.LVL48:
+ 179:.\IMU.c       **** }
+ 432              		.loc 1 179 0 discriminator 3
+ 433              		@ sp needed
+ 434 0042 38BD     		pop	{r3, r4, r5, pc}
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 12
+
+
+ 435              	.L28:
+ 436              		.align	2
+ 437              	.L27:
+ 438 0044 4C000000 		.word	.LC21
+ 439 0048 59000000 		.word	.LC23
+ 440 004c 66000000 		.word	.LC25
+ 441 0050 64000740 		.word	1074200676
+ 442 0054 68000740 		.word	1074200680
+ 443 0058 73000000 		.word	.LC27
+ 444              		.cfi_endproc
+ 445              	.LFE37:
+ 446              		.size	write_acc_registry, .-write_acc_registry
+ 447              		.section	.text.acc_start,"ax",%progbits
+ 448              		.align	1
+ 449              		.global	acc_start
+ 450              		.code	16
+ 451              		.thumb_func
+ 452              		.type	acc_start, %function
+ 453              	acc_start:
+ 454              	.LFB38:
+ 180:.\IMU.c       **** void acc_start(void)
+ 181:.\IMU.c       **** {
+ 455              		.loc 1 181 0
+ 456              		.cfi_startproc
+ 457 0000 08B5     		push	{r3, lr}
+ 458              		.cfi_def_cfa_offset 8
+ 459              		.cfi_offset 3, -8
+ 460              		.cfi_offset 14, -4
+ 182:.\IMU.c       **** 	// CTRL REG 1
+ 183:.\IMU.c       **** 	write_acc_registry(LSM303_CTRL_REG1, 0x67);		// Enabling all axes read out and Power On -> 100 Hz 
+ 461              		.loc 1 183 0
+ 462 0002 2020     		mov	r0, #32
+ 463 0004 6721     		mov	r1, #103
+ 464 0006 FFF7FEFF 		bl	write_acc_registry
+ 465              	.LVL49:
+ 184:.\IMU.c       ****     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG1));
+ 185:.\IMU.c       ****     // CTRL REG 2
+ 186:.\IMU.c       **** 	
+ 187:.\IMU.c       ****     //write_mag_registry(LSM303_CTRL_REG6, 0x20);		// Magnetometer FS +-4Gauss
+ 188:.\IMU.c       ****     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG2));
+ 189:.\IMU.c       ****     UART_1_UartPutString("Acc started\r\n");
+ 466              		.loc 1 189 0
+ 467 000a 0248     		ldr	r0, .L30
+ 468 000c FFF7FEFF 		bl	UART_1_UartPutString
+ 469              	.LVL50:
+ 190:.\IMU.c       **** }
+ 470              		.loc 1 190 0
+ 471              		@ sp needed
+ 472 0010 08BD     		pop	{r3, pc}
+ 473              	.L31:
+ 474 0012 C046     		.align	2
+ 475              	.L30:
+ 476 0014 81000000 		.word	.LC29
+ 477              		.cfi_endproc
+ 478              	.LFE38:
+ 479              		.size	acc_start, .-acc_start
+ 480              		.section	.text.acc_read,"ax",%progbits
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 13
+
+
+ 481              		.align	1
+ 482              		.global	acc_read
+ 483              		.code	16
+ 484              		.thumb_func
+ 485              		.type	acc_read, %function
+ 486              	acc_read:
+ 487              	.LFB39:
+ 191:.\IMU.c       **** 
+ 192:.\IMU.c       **** void acc_read(void)
+ 193:.\IMU.c       **** {
+ 488              		.loc 1 193 0
+ 489              		.cfi_startproc
+ 490 0000 38B5     		push	{r3, r4, r5, lr}
+ 491              		.cfi_def_cfa_offset 16
+ 492              		.cfi_offset 3, -16
+ 493              		.cfi_offset 4, -12
+ 494              		.cfi_offset 5, -8
+ 495              		.cfi_offset 14, -4
+ 194:.\IMU.c       **** 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
+ 496              		.loc 1 194 0
+ 497 0002 0021     		mov	r1, #0
+ 498 0004 1D20     		mov	r0, #29
+ 499 0006 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 500              	.LVL51:
+ 195:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(LSM303_ACC_OUT_X_L + 0b10000000); // add MSB to activate auto increment
+ 501              		.loc 1 195 0
+ 502 000a A820     		mov	r0, #168
+ 503 000c FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 504              	.LVL52:
+ 196:.\IMU.c       **** 	I2CM_I2CMasterSendRestart(LSM303_ADDRESS, READ);
+ 505              		.loc 1 196 0
+ 506 0010 0121     		mov	r1, #1
+ 507 0012 1D20     		mov	r0, #29
+ 508 0014 FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+ 509              	.LVL53:
+ 197:.\IMU.c       **** 	acc_x_l = I2CM_I2CMasterReadByte(ACK);
+ 510              		.loc 1 197 0
+ 511 0018 0020     		mov	r0, #0
+ 512 001a FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 513              	.LVL54:
+ 514 001e 2E4D     		ldr	r5, .L36+8
+ 515 0020 2873     		strb	r0, [r5, #12]
+ 198:.\IMU.c       **** 	acc_x_h = I2CM_I2CMasterReadByte(ACK);
+ 516              		.loc 1 198 0
+ 517 0022 0020     		mov	r0, #0
+ 518 0024 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 519              	.LVL55:
+ 520 0028 6873     		strb	r0, [r5, #13]
+ 199:.\IMU.c       ****     acc_y_l = I2CM_I2CMasterReadByte(ACK);
+ 521              		.loc 1 199 0
+ 522 002a 0020     		mov	r0, #0
+ 523 002c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 524              	.LVL56:
+ 525 0030 A873     		strb	r0, [r5, #14]
+ 200:.\IMU.c       **** 	acc_y_h = I2CM_I2CMasterReadByte(ACK);
+ 526              		.loc 1 200 0
+ 527 0032 0020     		mov	r0, #0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 14
+
+
+ 528 0034 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 529              	.LVL57:
+ 530 0038 E873     		strb	r0, [r5, #15]
+ 201:.\IMU.c       **** 	acc_z_l = I2CM_I2CMasterReadByte(ACK);
+ 531              		.loc 1 201 0
+ 532 003a 0020     		mov	r0, #0
+ 533 003c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 534              	.LVL58:
+ 535 0040 2874     		strb	r0, [r5, #16]
+ 202:.\IMU.c       **** 	acc_z_h = I2CM_I2CMasterReadByte(NACK);
+ 536              		.loc 1 202 0
+ 537 0042 0120     		mov	r0, #1
+ 538 0044 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 539              	.LVL59:
+ 203:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 540              		.loc 1 203 0
+ 541 0048 244B     		ldr	r3, .L36+12
+ 202:.\IMU.c       **** 	acc_z_h = I2CM_I2CMasterReadByte(NACK);
+ 542              		.loc 1 202 0
+ 543 004a C0B2     		uxtb	r0, r0
+ 544 004c 6874     		strb	r0, [r5, #17]
+ 545              		.loc 1 203 0
+ 546 004e 1968     		ldr	r1, [r3]
+ 547 0050 1022     		mov	r2, #16
+ 548 0052 2B1C     		mov	r3, r5
+ 549 0054 8C06     		lsl	r4, r1, #26
+ 550 0056 00D5     		bpl	.L33
+ 551 0058 1822     		mov	r2, #24
+ 552              	.L33:
+ 553              		.loc 1 203 0 is_stmt 0 discriminator 3
+ 554 005a 2149     		ldr	r1, .L36+16
+ 204:.\IMU.c       ****     acc_x = (acc_x_h<<8) | (acc_x_l);
+ 205:.\IMU.c       **** 	acc_y = (acc_y_h<<8) | (acc_y_l);
+ 555              		.loc 1 205 0 is_stmt 1 discriminator 3
+ 556 005c 0F25     		mov	r5, #15
+ 203:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 557              		.loc 1 203 0 discriminator 3
+ 558 005e 0A60     		str	r2, [r1]
+ 204:.\IMU.c       ****     acc_x = (acc_x_h<<8) | (acc_x_l);
+ 559              		.loc 1 204 0 discriminator 3
+ 560 0060 0D22     		mov	r2, #13
+ 561 0062 9A56     		ldrsb	r2, [r3, r2]
+ 562 0064 197B     		ldrb	r1, [r3, #12]
+ 563 0066 1202     		lsl	r2, r2, #8
+ 564 0068 0A43     		orr	r2, r1
+ 565 006a 92B2     		uxth	r2, r2
+ 566 006c 5A82     		strh	r2, [r3, #18]
+ 567              		.loc 1 205 0 discriminator 3
+ 568 006e 5D57     		ldrsb	r5, [r3, r5]
+ 569 0070 997B     		ldrb	r1, [r3, #14]
+ 206:.\IMU.c       **** 	acc_z = (acc_z_h<<8) | (acc_z_l);
+ 570              		.loc 1 206 0 discriminator 3
+ 571 0072 1C7C     		ldrb	r4, [r3, #16]
+ 572 0074 40B2     		sxtb	r0, r0
+ 573 0076 0002     		lsl	r0, r0, #8
+ 205:.\IMU.c       **** 	acc_y = (acc_y_h<<8) | (acc_y_l);
+ 574              		.loc 1 205 0 discriminator 3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 15
+
+
+ 575 0078 2D02     		lsl	r5, r5, #8
+ 576 007a 0D43     		orr	r5, r1
+ 577              		.loc 1 206 0 discriminator 3
+ 578 007c 0443     		orr	r4, r0
+ 205:.\IMU.c       **** 	acc_y = (acc_y_h<<8) | (acc_y_l);
+ 579              		.loc 1 205 0 discriminator 3
+ 580 007e ADB2     		uxth	r5, r5
+ 581              		.loc 1 206 0 discriminator 3
+ 582 0080 A4B2     		uxth	r4, r4
+ 205:.\IMU.c       **** 	acc_y = (acc_y_h<<8) | (acc_y_l);
+ 583              		.loc 1 205 0 discriminator 3
+ 584 0082 9D82     		strh	r5, [r3, #20]
+ 585              		.loc 1 206 0 discriminator 3
+ 586 0084 DC82     		strh	r4, [r3, #22]
+ 207:.\IMU.c       ****     acc_x_g = acc_x * 0.122;	// milli G										
+ 587              		.loc 1 207 0 discriminator 3
+ 588 0086 10B2     		sxth	r0, r2
+ 589 0088 FFF7FEFF 		bl	__aeabi_i2d
+ 590              	.LVL60:
+ 591 008c 114B     		ldr	r3, .L36+4
+ 592 008e 104A     		ldr	r2, .L36
+ 593 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 594              	.LVL61:
+ 595 0094 FFF7FEFF 		bl	__aeabi_d2iz
+ 596              	.LVL62:
+ 597 0098 124B     		ldr	r3, .L36+20
+ 208:.\IMU.c       **** 	acc_y_g = acc_y * 0.122;	// milli G					// Linear Acceleration at 4G gives 0.122mg/bit
+ 209:.\IMU.c       **** 	acc_z_g = acc_z * 0.122;	// milli G					// see ACC datasheet page 10  
+ 210:.\IMU.c       **** }
+ 598              		.loc 1 210 0 discriminator 3
+ 599              		@ sp needed
+ 207:.\IMU.c       ****     acc_x_g = acc_x * 0.122;	// milli G										
+ 600              		.loc 1 207 0 discriminator 3
+ 601 009a 1880     		strh	r0, [r3]
+ 208:.\IMU.c       **** 	acc_y_g = acc_y * 0.122;	// milli G					// Linear Acceleration at 4G gives 0.122mg/bit
+ 602              		.loc 1 208 0 discriminator 3
+ 603 009c 28B2     		sxth	r0, r5
+ 604 009e FFF7FEFF 		bl	__aeabi_i2d
+ 605              	.LVL63:
+ 606 00a2 0C4B     		ldr	r3, .L36+4
+ 607 00a4 0A4A     		ldr	r2, .L36
+ 608 00a6 FFF7FEFF 		bl	__aeabi_dmul
+ 609              	.LVL64:
+ 610 00aa FFF7FEFF 		bl	__aeabi_d2iz
+ 611              	.LVL65:
+ 612 00ae 0E4B     		ldr	r3, .L36+24
+ 613 00b0 1880     		strh	r0, [r3]
+ 209:.\IMU.c       **** 	acc_z_g = acc_z * 0.122;	// milli G					// see ACC datasheet page 10  
+ 614              		.loc 1 209 0 discriminator 3
+ 615 00b2 20B2     		sxth	r0, r4
+ 616 00b4 FFF7FEFF 		bl	__aeabi_i2d
+ 617              	.LVL66:
+ 618 00b8 064B     		ldr	r3, .L36+4
+ 619 00ba 054A     		ldr	r2, .L36
+ 620 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 621              	.LVL67:
+ 622 00c0 FFF7FEFF 		bl	__aeabi_d2iz
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 16
+
+
+ 623              	.LVL68:
+ 624 00c4 094B     		ldr	r3, .L36+28
+ 625 00c6 1880     		strh	r0, [r3]
+ 626              		.loc 1 210 0 discriminator 3
+ 627 00c8 38BD     		pop	{r3, r4, r5, pc}
+ 628              	.L37:
+ 629 00ca C046C046 		.align	3
+ 629      C046
+ 630              	.L36:
+ 631 00d0 08AC1C5A 		.word	1511828488
+ 632 00d4 643BBF3F 		.word	1069497188
+ 633 00d8 00000000 		.word	.LANCHOR0
+ 634 00dc 64000740 		.word	1074200676
+ 635 00e0 68000740 		.word	1074200680
+ 636 00e4 00000000 		.word	acc_x_g
+ 637 00e8 00000000 		.word	acc_y_g
+ 638 00ec 00000000 		.word	acc_z_g
+ 639              		.cfi_endproc
+ 640              	.LFE39:
+ 641              		.size	acc_read, .-acc_read
+ 642              		.section	.text.write_mag_registry,"ax",%progbits
+ 643              		.align	1
+ 644              		.global	write_mag_registry
+ 645              		.code	16
+ 646              		.thumb_func
+ 647              		.type	write_mag_registry, %function
+ 648              	write_mag_registry:
+ 649              	.LFB40:
+ 211:.\IMU.c       **** 
+ 212:.\IMU.c       **** /*  MAGNETOMETER FUNCTIONS */
+ 213:.\IMU.c       **** 
+ 214:.\IMU.c       **** void write_mag_registry(char registry, char data)
+ 215:.\IMU.c       **** {
+ 650              		.loc 1 215 0
+ 651              		.cfi_startproc
+ 652              	.LVL69:
+ 653 0000 38B5     		push	{r3, r4, r5, lr}
+ 654              		.cfi_def_cfa_offset 16
+ 655              		.cfi_offset 3, -16
+ 656              		.cfi_offset 4, -12
+ 657              		.cfi_offset 5, -8
+ 658              		.cfi_offset 14, -4
+ 659              		.loc 1 215 0
+ 660 0002 051C     		mov	r5, r0
+ 661 0004 0C1C     		mov	r4, r1
+ 216:.\IMU.c       **** 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
+ 662              		.loc 1 216 0
+ 663 0006 1D20     		mov	r0, #29
+ 664              	.LVL70:
+ 665 0008 0021     		mov	r1, #0
+ 666              	.LVL71:
+ 667 000a FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 668              	.LVL72:
+ 217:.\IMU.c       **** 	UART_1_UartPutString("W Add Ok");
+ 669              		.loc 1 217 0
+ 670 000e 0D48     		ldr	r0, .L42
+ 671 0010 FFF7FEFF 		bl	UART_1_UartPutString
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 17
+
+
+ 672              	.LVL73:
+ 218:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(registry);
+ 673              		.loc 1 218 0
+ 674 0014 281C     		mov	r0, r5
+ 675 0016 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 676              	.LVL74:
+ 219:.\IMU.c       ****     UART_1_UartPutString("W Reg Ok");
+ 677              		.loc 1 219 0
+ 678 001a 0B48     		ldr	r0, .L42+4
+ 679 001c FFF7FEFF 		bl	UART_1_UartPutString
+ 680              	.LVL75:
+ 220:.\IMU.c       ****     I2CM_I2CMasterWriteByte(data);
+ 681              		.loc 1 220 0
+ 682 0020 201C     		mov	r0, r4
+ 683 0022 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 684              	.LVL76:
+ 221:.\IMU.c       ****     UART_1_UartPutString("W Dat Ok");
+ 685              		.loc 1 221 0
+ 686 0026 0948     		ldr	r0, .L42+8
+ 687 0028 FFF7FEFF 		bl	UART_1_UartPutString
+ 688              	.LVL77:
+ 222:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 689              		.loc 1 222 0
+ 690 002c 084B     		ldr	r3, .L42+12
+ 691 002e 1A68     		ldr	r2, [r3]
+ 692 0030 1023     		mov	r3, #16
+ 693 0032 9106     		lsl	r1, r2, #26
+ 694 0034 00D5     		bpl	.L39
+ 695 0036 1823     		mov	r3, #24
+ 696              	.L39:
+ 697              		.loc 1 222 0 is_stmt 0 discriminator 3
+ 698 0038 064A     		ldr	r2, .L42+16
+ 223:.\IMU.c       ****     UART_1_UartPutString("W Stop Ok"); 
+ 699              		.loc 1 223 0 is_stmt 1 discriminator 3
+ 700 003a 0748     		ldr	r0, .L42+20
+ 222:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 701              		.loc 1 222 0 discriminator 3
+ 702 003c 1360     		str	r3, [r2]
+ 703              		.loc 1 223 0 discriminator 3
+ 704 003e FFF7FEFF 		bl	UART_1_UartPutString
+ 705              	.LVL78:
+ 224:.\IMU.c       **** }
+ 706              		.loc 1 224 0 discriminator 3
+ 707              		@ sp needed
+ 708 0042 38BD     		pop	{r3, r4, r5, pc}
+ 709              	.L43:
+ 710              		.align	2
+ 711              	.L42:
+ 712 0044 8F000000 		.word	.LC43
+ 713 0048 98000000 		.word	.LC45
+ 714 004c A1000000 		.word	.LC47
+ 715 0050 64000740 		.word	1074200676
+ 716 0054 68000740 		.word	1074200680
+ 717 0058 AA000000 		.word	.LC49
+ 718              		.cfi_endproc
+ 719              	.LFE40:
+ 720              		.size	write_mag_registry, .-write_mag_registry
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 18
+
+
+ 721              		.section	.text.mag_start,"ax",%progbits
+ 722              		.align	1
+ 723              		.global	mag_start
+ 724              		.code	16
+ 725              		.thumb_func
+ 726              		.type	mag_start, %function
+ 727              	mag_start:
+ 728              	.LFB41:
+ 225:.\IMU.c       **** 
+ 226:.\IMU.c       **** void mag_start(void)
+ 227:.\IMU.c       **** {
+ 729              		.loc 1 227 0
+ 730              		.cfi_startproc
+ 731 0000 08B5     		push	{r3, lr}
+ 732              		.cfi_def_cfa_offset 8
+ 733              		.cfi_offset 3, -8
+ 734              		.cfi_offset 14, -4
+ 228:.\IMU.c       **** 	// CTRL REG 1
+ 229:.\IMU.c       **** 	write_mag_registry(LSM303_CTRL_REG6, 0x20);		// Magnetometer FS +-4Gauss
+ 735              		.loc 1 229 0
+ 736 0002 2520     		mov	r0, #37
+ 737 0004 2021     		mov	r1, #32
+ 738 0006 FFF7FEFF 		bl	write_mag_registry
+ 739              	.LVL79:
+ 230:.\IMU.c       ****     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG1));
+ 231:.\IMU.c       ****     // CTRL REG 2
+ 232:.\IMU.c       **** 	write_mag_registry(LSM303_CTRL_REG7, 0x00);		// Putting Magnetometer into Continuous Conversion Mo
+ 740              		.loc 1 232 0
+ 741 000a 2620     		mov	r0, #38
+ 742 000c 0021     		mov	r1, #0
+ 743 000e FFF7FEFF 		bl	write_mag_registry
+ 744              	.LVL80:
+ 233:.\IMU.c       ****     //UART_1_UartPutNum(read_acc_registry(LSM303_CTRL_REG2));
+ 234:.\IMU.c       ****     UART_1_UartPutString("Mag started\r\n");
+ 745              		.loc 1 234 0
+ 746 0012 0248     		ldr	r0, .L45
+ 747 0014 FFF7FEFF 		bl	UART_1_UartPutString
+ 748              	.LVL81:
+ 235:.\IMU.c       **** }
+ 749              		.loc 1 235 0
+ 750              		@ sp needed
+ 751 0018 08BD     		pop	{r3, pc}
+ 752              	.L46:
+ 753 001a C046     		.align	2
+ 754              	.L45:
+ 755 001c B4000000 		.word	.LC51
+ 756              		.cfi_endproc
+ 757              	.LFE41:
+ 758              		.size	mag_start, .-mag_start
+ 759              		.section	.text.mag_read,"ax",%progbits
+ 760              		.align	1
+ 761              		.global	mag_read
+ 762              		.code	16
+ 763              		.thumb_func
+ 764              		.type	mag_read, %function
+ 765              	mag_read:
+ 766              	.LFB42:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 19
+
+
+ 236:.\IMU.c       **** 
+ 237:.\IMU.c       **** void mag_read(void)
+ 238:.\IMU.c       **** {
+ 767              		.loc 1 238 0
+ 768              		.cfi_startproc
+ 769 0000 38B5     		push	{r3, r4, r5, lr}
+ 770              		.cfi_def_cfa_offset 16
+ 771              		.cfi_offset 3, -16
+ 772              		.cfi_offset 4, -12
+ 773              		.cfi_offset 5, -8
+ 774              		.cfi_offset 14, -4
+ 239:.\IMU.c       **** 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
+ 775              		.loc 1 239 0
+ 776 0002 0021     		mov	r1, #0
+ 777 0004 1D20     		mov	r0, #29
+ 778 0006 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 779              	.LVL82:
+ 240:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(LSM303_MAG_OUT_X_L + 0b10000000); // add MSB to activate auto increment
+ 780              		.loc 1 240 0
+ 781 000a 8820     		mov	r0, #136
+ 782 000c FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 783              	.LVL83:
+ 241:.\IMU.c       **** 	I2CM_I2CMasterSendRestart(LSM303_ADDRESS, READ);
+ 784              		.loc 1 241 0
+ 785 0010 0121     		mov	r1, #1
+ 786 0012 1D20     		mov	r0, #29
+ 787 0014 FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+ 788              	.LVL84:
+ 242:.\IMU.c       **** 	mag_x_l = I2CM_I2CMasterReadByte(ACK);
+ 789              		.loc 1 242 0
+ 790 0018 0020     		mov	r0, #0
+ 791 001a FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 792              	.LVL85:
+ 793 001e 2E4D     		ldr	r5, .L51+8
+ 794 0020 2876     		strb	r0, [r5, #24]
+ 243:.\IMU.c       **** 	mag_x_h = I2CM_I2CMasterReadByte(ACK);
+ 795              		.loc 1 243 0
+ 796 0022 0020     		mov	r0, #0
+ 797 0024 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 798              	.LVL86:
+ 799 0028 6876     		strb	r0, [r5, #25]
+ 244:.\IMU.c       ****     mag_y_l = I2CM_I2CMasterReadByte(ACK);
+ 800              		.loc 1 244 0
+ 801 002a 0020     		mov	r0, #0
+ 802 002c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 803              	.LVL87:
+ 804 0030 A876     		strb	r0, [r5, #26]
+ 245:.\IMU.c       **** 	mag_y_h = I2CM_I2CMasterReadByte(ACK);
+ 805              		.loc 1 245 0
+ 806 0032 0020     		mov	r0, #0
+ 807 0034 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 808              	.LVL88:
+ 809 0038 E876     		strb	r0, [r5, #27]
+ 246:.\IMU.c       **** 	mag_z_l = I2CM_I2CMasterReadByte(ACK);
+ 810              		.loc 1 246 0
+ 811 003a 0020     		mov	r0, #0
+ 812 003c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 20
+
+
+ 813              	.LVL89:
+ 814 0040 2877     		strb	r0, [r5, #28]
+ 247:.\IMU.c       **** 	mag_z_h = I2CM_I2CMasterReadByte(NACK);
+ 815              		.loc 1 247 0
+ 816 0042 0120     		mov	r0, #1
+ 817 0044 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 818              	.LVL90:
+ 248:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 819              		.loc 1 248 0
+ 820 0048 244B     		ldr	r3, .L51+12
+ 247:.\IMU.c       **** 	mag_z_h = I2CM_I2CMasterReadByte(NACK);
+ 821              		.loc 1 247 0
+ 822 004a C0B2     		uxtb	r0, r0
+ 823 004c 6877     		strb	r0, [r5, #29]
+ 824              		.loc 1 248 0
+ 825 004e 1968     		ldr	r1, [r3]
+ 826 0050 1022     		mov	r2, #16
+ 827 0052 2B1C     		mov	r3, r5
+ 828 0054 8C06     		lsl	r4, r1, #26
+ 829 0056 00D5     		bpl	.L48
+ 830 0058 1822     		mov	r2, #24
+ 831              	.L48:
+ 832              		.loc 1 248 0 is_stmt 0 discriminator 3
+ 833 005a 2149     		ldr	r1, .L51+16
+ 249:.\IMU.c       ****     mag_x = (mag_x_h<<8) | (mag_x_l);
+ 250:.\IMU.c       **** 	mag_y = (mag_y_h<<8) | (mag_y_l);
+ 834              		.loc 1 250 0 is_stmt 1 discriminator 3
+ 835 005c 1B25     		mov	r5, #27
+ 248:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 836              		.loc 1 248 0 discriminator 3
+ 837 005e 0A60     		str	r2, [r1]
+ 249:.\IMU.c       ****     mag_x = (mag_x_h<<8) | (mag_x_l);
+ 838              		.loc 1 249 0 discriminator 3
+ 839 0060 1922     		mov	r2, #25
+ 840 0062 9A56     		ldrsb	r2, [r3, r2]
+ 841 0064 197E     		ldrb	r1, [r3, #24]
+ 842 0066 1202     		lsl	r2, r2, #8
+ 843 0068 0A43     		orr	r2, r1
+ 844 006a 92B2     		uxth	r2, r2
+ 845 006c DA83     		strh	r2, [r3, #30]
+ 846              		.loc 1 250 0 discriminator 3
+ 847 006e 5D57     		ldrsb	r5, [r3, r5]
+ 848 0070 997E     		ldrb	r1, [r3, #26]
+ 251:.\IMU.c       **** 	mag_z = (mag_z_h<<8) | (mag_z_l);
+ 849              		.loc 1 251 0 discriminator 3
+ 850 0072 1C7F     		ldrb	r4, [r3, #28]
+ 851 0074 40B2     		sxtb	r0, r0
+ 852 0076 0002     		lsl	r0, r0, #8
+ 250:.\IMU.c       **** 	mag_y = (mag_y_h<<8) | (mag_y_l);
+ 853              		.loc 1 250 0 discriminator 3
+ 854 0078 2D02     		lsl	r5, r5, #8
+ 855 007a 0D43     		orr	r5, r1
+ 856              		.loc 1 251 0 discriminator 3
+ 857 007c 0443     		orr	r4, r0
+ 250:.\IMU.c       **** 	mag_y = (mag_y_h<<8) | (mag_y_l);
+ 858              		.loc 1 250 0 discriminator 3
+ 859 007e ADB2     		uxth	r5, r5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 21
+
+
+ 860              		.loc 1 251 0 discriminator 3
+ 861 0080 A4B2     		uxth	r4, r4
+ 250:.\IMU.c       **** 	mag_y = (mag_y_h<<8) | (mag_y_l);
+ 862              		.loc 1 250 0 discriminator 3
+ 863 0082 1D84     		strh	r5, [r3, #32]
+ 864              		.loc 1 251 0 discriminator 3
+ 865 0084 5C84     		strh	r4, [r3, #34]
+ 252:.\IMU.c       ****     mag_x_g = mag_x * 0.16;	// milli Gauss		    // bla					
+ 866              		.loc 1 252 0 discriminator 3
+ 867 0086 10B2     		sxth	r0, r2
+ 868 0088 FFF7FEFF 		bl	__aeabi_i2d
+ 869              	.LVL91:
+ 870 008c 114B     		ldr	r3, .L51+4
+ 871 008e 104A     		ldr	r2, .L51
+ 872 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 873              	.LVL92:
+ 874 0094 FFF7FEFF 		bl	__aeabi_d2iz
+ 875              	.LVL93:
+ 876 0098 124B     		ldr	r3, .L51+20
+ 253:.\IMU.c       **** 	mag_y_g = mag_y * 0.16;	// milli Gauss			// Magnetic sensitivity at 4Gauss gives 0.16 mgauss/bit
+ 254:.\IMU.c       **** 	mag_z_g = mag_z * 0.16;	// milli Gauss			// see Mag datasheet page 10  
+ 255:.\IMU.c       **** }
+ 877              		.loc 1 255 0 discriminator 3
+ 878              		@ sp needed
+ 252:.\IMU.c       ****     mag_x_g = mag_x * 0.16;	// milli Gauss		    // bla					
+ 879              		.loc 1 252 0 discriminator 3
+ 880 009a 1880     		strh	r0, [r3]
+ 253:.\IMU.c       **** 	mag_y_g = mag_y * 0.16;	// milli Gauss			// Magnetic sensitivity at 4Gauss gives 0.16 mgauss/bit
+ 881              		.loc 1 253 0 discriminator 3
+ 882 009c 28B2     		sxth	r0, r5
+ 883 009e FFF7FEFF 		bl	__aeabi_i2d
+ 884              	.LVL94:
+ 885 00a2 0C4B     		ldr	r3, .L51+4
+ 886 00a4 0A4A     		ldr	r2, .L51
+ 887 00a6 FFF7FEFF 		bl	__aeabi_dmul
+ 888              	.LVL95:
+ 889 00aa FFF7FEFF 		bl	__aeabi_d2iz
+ 890              	.LVL96:
+ 891 00ae 0E4B     		ldr	r3, .L51+24
+ 892 00b0 1880     		strh	r0, [r3]
+ 254:.\IMU.c       **** 	mag_z_g = mag_z * 0.16;	// milli Gauss			// see Mag datasheet page 10  
+ 893              		.loc 1 254 0 discriminator 3
+ 894 00b2 20B2     		sxth	r0, r4
+ 895 00b4 FFF7FEFF 		bl	__aeabi_i2d
+ 896              	.LVL97:
+ 897 00b8 064B     		ldr	r3, .L51+4
+ 898 00ba 054A     		ldr	r2, .L51
+ 899 00bc FFF7FEFF 		bl	__aeabi_dmul
+ 900              	.LVL98:
+ 901 00c0 FFF7FEFF 		bl	__aeabi_d2iz
+ 902              	.LVL99:
+ 903 00c4 094B     		ldr	r3, .L51+28
+ 904 00c6 1880     		strh	r0, [r3]
+ 905              		.loc 1 255 0 discriminator 3
+ 906 00c8 38BD     		pop	{r3, r4, r5, pc}
+ 907              	.L52:
+ 908 00ca C046C046 		.align	3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 22
+
+
+ 908      C046
+ 909              	.L51:
+ 910 00d0 7B14AE47 		.word	1202590843
+ 911 00d4 E17AC43F 		.word	1069841121
+ 912 00d8 00000000 		.word	.LANCHOR0
+ 913 00dc 64000740 		.word	1074200676
+ 914 00e0 68000740 		.word	1074200680
+ 915 00e4 00000000 		.word	mag_x_g
+ 916 00e8 00000000 		.word	mag_y_g
+ 917 00ec 00000000 		.word	mag_z_g
+ 918              		.cfi_endproc
+ 919              	.LFE42:
+ 920              		.size	mag_read, .-mag_read
+ 921              		.section	.text.write_baro_registry,"ax",%progbits
+ 922              		.align	1
+ 923              		.global	write_baro_registry
+ 924              		.code	16
+ 925              		.thumb_func
+ 926              		.type	write_baro_registry, %function
+ 927              	write_baro_registry:
+ 928              	.LFB43:
+ 256:.\IMU.c       **** 
+ 257:.\IMU.c       **** /* ================================= */
+ 258:.\IMU.c       **** /* BAROMETER FUNCTIONS				 */
+ 259:.\IMU.c       **** /* ================================= */
+ 260:.\IMU.c       **** 
+ 261:.\IMU.c       **** void write_baro_registry(char registry, char data)
+ 262:.\IMU.c       **** {
+ 929              		.loc 1 262 0
+ 930              		.cfi_startproc
+ 931              	.LVL100:
+ 932 0000 38B5     		push	{r3, r4, r5, lr}
+ 933              		.cfi_def_cfa_offset 16
+ 934              		.cfi_offset 3, -16
+ 935              		.cfi_offset 4, -12
+ 936              		.cfi_offset 5, -8
+ 937              		.cfi_offset 14, -4
+ 938              		.loc 1 262 0
+ 939 0002 051C     		mov	r5, r0
+ 940 0004 0C1C     		mov	r4, r1
+ 263:.\IMU.c       ****     I2CM_I2CMasterSendStart(LPS25H_ADDRESS, WRITE);
+ 941              		.loc 1 263 0
+ 942 0006 5D20     		mov	r0, #93
+ 943              	.LVL101:
+ 944 0008 0021     		mov	r1, #0
+ 945              	.LVL102:
+ 946 000a FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 947              	.LVL103:
+ 264:.\IMU.c       **** 	//UART_1_UartPutString("B W Add Ok");
+ 265:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(registry);
+ 948              		.loc 1 265 0
+ 949 000e 281C     		mov	r0, r5
+ 950 0010 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 951              	.LVL104:
+ 266:.\IMU.c       ****     //UART_1_UartPutString("B W Reg Ok");
+ 267:.\IMU.c       ****     I2CM_I2CMasterWriteByte(data);
+ 952              		.loc 1 267 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 23
+
+
+ 953 0014 201C     		mov	r0, r4
+ 954 0016 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 955              	.LVL105:
+ 268:.\IMU.c       ****     //UART_1_UartPutString("B W Dat Ok");
+ 269:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 956              		.loc 1 269 0
+ 957 001a 044B     		ldr	r3, .L57
+ 958 001c 1A68     		ldr	r2, [r3]
+ 959 001e 1023     		mov	r3, #16
+ 960 0020 9106     		lsl	r1, r2, #26
+ 961 0022 00D5     		bpl	.L54
+ 962 0024 1823     		mov	r3, #24
+ 963              	.L54:
+ 964              		.loc 1 269 0 is_stmt 0 discriminator 3
+ 965 0026 024A     		ldr	r2, .L57+4
+ 270:.\IMU.c       ****     //UART_1_UartPutString("B W Stop Ok"); 
+ 271:.\IMU.c       **** }
+ 966              		.loc 1 271 0 is_stmt 1 discriminator 3
+ 967              		@ sp needed
+ 269:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 968              		.loc 1 269 0 discriminator 3
+ 969 0028 1360     		str	r3, [r2]
+ 970              		.loc 1 271 0 discriminator 3
+ 971 002a 38BD     		pop	{r3, r4, r5, pc}
+ 972              	.L58:
+ 973              		.align	2
+ 974              	.L57:
+ 975 002c 64000740 		.word	1074200676
+ 976 0030 68000740 		.word	1074200680
+ 977              		.cfi_endproc
+ 978              	.LFE43:
+ 979              		.size	write_baro_registry, .-write_baro_registry
+ 980              		.section	.text.baro_start,"ax",%progbits
+ 981              		.align	1
+ 982              		.global	baro_start
+ 983              		.code	16
+ 984              		.thumb_func
+ 985              		.type	baro_start, %function
+ 986              	baro_start:
+ 987              	.LFB44:
+ 272:.\IMU.c       **** 
+ 273:.\IMU.c       **** void baro_start(void)
+ 274:.\IMU.c       **** {
+ 988              		.loc 1 274 0
+ 989              		.cfi_startproc
+ 990 0000 08B5     		push	{r3, lr}
+ 991              		.cfi_def_cfa_offset 8
+ 992              		.cfi_offset 3, -8
+ 993              		.cfi_offset 14, -4
+ 275:.\IMU.c       ****     write_baro_registry(LPS25H_CTRL_REG1,0xC6);         // Enabling the Baro, 25Hz output, enable B
+ 994              		.loc 1 275 0
+ 995 0002 2020     		mov	r0, #32
+ 996 0004 C621     		mov	r1, #198
+ 997 0006 FFF7FEFF 		bl	write_baro_registry
+ 998              	.LVL106:
+ 276:.\IMU.c       ****     UART_1_UartPutString("Baro Started");
+ 999              		.loc 1 276 0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 24
+
+
+ 1000 000a 0248     		ldr	r0, .L60
+ 1001 000c FFF7FEFF 		bl	UART_1_UartPutString
+ 1002              	.LVL107:
+ 277:.\IMU.c       **** }
+ 1003              		.loc 1 277 0
+ 1004              		@ sp needed
+ 1005 0010 08BD     		pop	{r3, pc}
+ 1006              	.L61:
+ 1007 0012 C046     		.align	2
+ 1008              	.L60:
+ 1009 0014 C2000000 		.word	.LC65
+ 1010              		.cfi_endproc
+ 1011              	.LFE44:
+ 1012              		.size	baro_start, .-baro_start
+ 1013              		.section	.text.baro_read,"ax",%progbits
+ 1014              		.align	1
+ 1015              		.global	baro_read
+ 1016              		.code	16
+ 1017              		.thumb_func
+ 1018              		.type	baro_read, %function
+ 1019              	baro_read:
+ 1020              	.LFB45:
+ 278:.\IMU.c       **** 
+ 279:.\IMU.c       **** void baro_read(void)
+ 280:.\IMU.c       **** {
+ 1021              		.loc 1 280 0
+ 1022              		.cfi_startproc
+ 1023 0000 10B5     		push	{r4, lr}
+ 1024              		.cfi_def_cfa_offset 8
+ 1025              		.cfi_offset 4, -8
+ 1026              		.cfi_offset 14, -4
+ 281:.\IMU.c       ****     I2CM_I2CMasterSendStart(LPS25H_ADDRESS, WRITE);
+ 1027              		.loc 1 281 0
+ 1028 0002 0021     		mov	r1, #0
+ 1029 0004 5D20     		mov	r0, #93
+ 1030 0006 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 1031              	.LVL108:
+ 282:.\IMU.c       **** 	I2CM_I2CMasterWriteByte(LPS25H_P_OUT_XL + 0b10000000); // add MSB to activate auto increment
+ 1032              		.loc 1 282 0
+ 1033 000a A820     		mov	r0, #168
+ 1034 000c FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 1035              	.LVL109:
+ 283:.\IMU.c       **** 	I2CM_I2CMasterSendRestart(LSM303_ADDRESS, READ);
+ 1036              		.loc 1 283 0
+ 1037 0010 0121     		mov	r1, #1
+ 1038 0012 1D20     		mov	r0, #29
+ 1039 0014 FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+ 1040              	.LVL110:
+ 284:.\IMU.c       **** 	bar_xl = I2CM_I2CMasterReadByte(ACK);
+ 1041              		.loc 1 284 0
+ 1042 0018 0020     		mov	r0, #0
+ 1043 001a FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 1044              	.LVL111:
+ 1045 001e 0F4C     		ldr	r4, .L66
+ 1046 0020 631D     		add	r3, r4, #5
+ 1047 0022 D877     		strb	r0, [r3, #31]
+ 285:.\IMU.c       **** 	bar_l = I2CM_I2CMasterReadByte(ACK);
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 25
+
+
+ 1048              		.loc 1 285 0
+ 1049 0024 0020     		mov	r0, #0
+ 1050 0026 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 1051              	.LVL112:
+ 1052 002a A31D     		add	r3, r4, #6
+ 1053 002c D877     		strb	r0, [r3, #31]
+ 286:.\IMU.c       ****     bar_h = I2CM_I2CMasterReadByte(NACK);
+ 1054              		.loc 1 286 0
+ 1055 002e 0120     		mov	r0, #1
+ 1056 0030 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+ 1057              	.LVL113:
+ 1058 0034 E31D     		add	r3, r4, #7
+ 1059 0036 D877     		strb	r0, [r3, #31]
+ 287:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 1060              		.loc 1 287 0
+ 1061 0038 094B     		ldr	r3, .L66+4
+ 1062 003a 1A68     		ldr	r2, [r3]
+ 1063 003c 1023     		mov	r3, #16
+ 1064 003e 9106     		lsl	r1, r2, #26
+ 1065 0040 00D5     		bpl	.L63
+ 1066 0042 1823     		mov	r3, #24
+ 1067              	.L63:
+ 1068              		.loc 1 287 0 is_stmt 0 discriminator 3
+ 1069 0044 074A     		ldr	r2, .L66+8
+ 288:.\IMU.c       ****     uint32_t press_temp = (bar_l<<8) | (bar_xl);
+ 1070              		.loc 1 288 0 is_stmt 1 discriminator 3
+ 1071 0046 0634     		add	r4, r4, #6
+ 287:.\IMU.c       ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 1072              		.loc 1 287 0 discriminator 3
+ 1073 0048 1360     		str	r3, [r2]
+ 1074              		.loc 1 288 0 discriminator 3
+ 1075 004a E37F     		ldrb	r3, [r4, #31]
+ 1076 004c C0B2     		uxtb	r0, r0
+ 1077 004e 1B02     		lsl	r3, r3, #8
+ 289:.\IMU.c       ****     press_temp = (bar_h << 16) | press_temp;
+ 1078              		.loc 1 289 0 discriminator 3
+ 1079 0050 0004     		lsl	r0, r0, #16
+ 1080 0052 1843     		orr	r0, r3
+ 290:.\IMU.c       ****     
+ 291:.\IMU.c       ****     Bar_press = press_temp / 4096;      // 4096 bit / hPa = 4096 bit / mbar
+ 1081              		.loc 1 291 0 discriminator 3
+ 1082 0054 044B     		ldr	r3, .L66+12
+ 1083 0056 000B     		lsr	r0, r0, #12
+ 1084 0058 1860     		str	r0, [r3]
+ 292:.\IMU.c       ****     
+ 293:.\IMU.c       **** }
+ 1085              		.loc 1 293 0 discriminator 3
+ 1086              		@ sp needed
+ 1087 005a 10BD     		pop	{r4, pc}
+ 1088              	.L67:
+ 1089              		.align	2
+ 1090              	.L66:
+ 1091 005c 00000000 		.word	.LANCHOR0
+ 1092 0060 64000740 		.word	1074200676
+ 1093 0064 68000740 		.word	1074200680
+ 1094 0068 00000000 		.word	Bar_press
+ 1095              		.cfi_endproc
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 26
+
+
+ 1096              	.LFE45:
+ 1097              		.size	baro_read, .-baro_read
+ 1098              		.global	bar_xl
+ 1099              		.global	bar_l
+ 1100              		.global	bar_h
+ 1101              		.global	mag_z
+ 1102              		.global	mag_z_l
+ 1103              		.global	mag_z_h
+ 1104              		.global	mag_y
+ 1105              		.global	mag_y_l
+ 1106              		.global	mag_y_h
+ 1107              		.global	mag_x
+ 1108              		.global	mag_x_l
+ 1109              		.global	mag_x_h
+ 1110              		.global	acc_z
+ 1111              		.global	acc_z_l
+ 1112              		.global	acc_z_h
+ 1113              		.global	acc_y
+ 1114              		.global	acc_y_l
+ 1115              		.global	acc_y_h
+ 1116              		.global	acc_x
+ 1117              		.global	acc_x_l
+ 1118              		.global	acc_x_h
+ 1119              		.global	error_stat
+ 1120              		.global	gyro_r_offset
+ 1121              		.global	gyro_q_offset
+ 1122              		.global	gyro_p_offset
+ 1123              		.global	temperature_0
+ 1124              		.global	temperature
+ 1125              		.global	gyro_r
+ 1126              		.global	gyro_z
+ 1127              		.global	gyro_z_l
+ 1128              		.global	gyro_z_h
+ 1129              		.global	gyro_q
+ 1130              		.global	gyro_y
+ 1131              		.global	gyro_y_l
+ 1132              		.global	gyro_y_h
+ 1133              		.global	gyro_p
+ 1134              		.global	gyro_x
+ 1135              		.global	gyro_x_l
+ 1136              		.global	gyro_x_h
+ 1137              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 1138              	.LC0:
+ 1139 0000 47595220 		.ascii	"GYR W Add Ok\015\012\000"
+ 1139      57204164 
+ 1139      64204F6B 
+ 1139      0D0A00
+ 1140              	.LC2:
+ 1141 000f 47595220 		.ascii	"GYR W Reg Ok\015\012\000"
+ 1141      57205265 
+ 1141      67204F6B 
+ 1141      0D0A00
+ 1142              	.LC4:
+ 1143 001e 47595220 		.ascii	"GYR W Dat Ok\015\012\000"
+ 1143      57204461 
+ 1143      74204F6B 
+ 1143      0D0A00
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 27
+
+
+ 1144              	.LC6:
+ 1145 002d 47595220 		.ascii	"GYR W Stop Ok\015\012\000"
+ 1145      57205374 
+ 1145      6F70204F 
+ 1145      6B0D0A00 
+ 1146              	.LC8:
+ 1147 003d 4779726F 		.ascii	"Gyro started\015\012\000"
+ 1147      20737461 
+ 1147      72746564 
+ 1147      0D0A00
+ 1148              	.LC21:
+ 1149 004c 41434320 		.ascii	"ACC W Add Ok\000"
+ 1149      57204164 
+ 1149      64204F6B 
+ 1149      00
+ 1150              	.LC23:
+ 1151 0059 41434320 		.ascii	"ACC W Reg Ok\000"
+ 1151      57205265 
+ 1151      67204F6B 
+ 1151      00
+ 1152              	.LC25:
+ 1153 0066 41434320 		.ascii	"ACC W Dat Ok\000"
+ 1153      57204461 
+ 1153      74204F6B 
+ 1153      00
+ 1154              	.LC27:
+ 1155 0073 41434320 		.ascii	"ACC W Stop Ok\000"
+ 1155      57205374 
+ 1155      6F70204F 
+ 1155      6B00
+ 1156              	.LC29:
+ 1157 0081 41636320 		.ascii	"Acc started\015\012\000"
+ 1157      73746172 
+ 1157      7465640D 
+ 1157      0A00
+ 1158              	.LC43:
+ 1159 008f 57204164 		.ascii	"W Add Ok\000"
+ 1159      64204F6B 
+ 1159      00
+ 1160              	.LC45:
+ 1161 0098 57205265 		.ascii	"W Reg Ok\000"
+ 1161      67204F6B 
+ 1161      00
+ 1162              	.LC47:
+ 1163 00a1 57204461 		.ascii	"W Dat Ok\000"
+ 1163      74204F6B 
+ 1163      00
+ 1164              	.LC49:
+ 1165 00aa 57205374 		.ascii	"W Stop Ok\000"
+ 1165      6F70204F 
+ 1165      6B00
+ 1166              	.LC51:
+ 1167 00b4 4D616720 		.ascii	"Mag started\015\012\000"
+ 1167      73746172 
+ 1167      7465640D 
+ 1167      0A00
+ 1168              	.LC65:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 28
+
+
+ 1169 00c2 4261726F 		.ascii	"Baro Started\000"
+ 1169      20537461 
+ 1169      72746564 
+ 1169      00
+ 1170              		.data
+ 1171              		.type	temperature_0, %object
+ 1172              		.size	temperature_0, 1
+ 1173              	temperature_0:
+ 1174 0000 32       		.byte	50
+ 1175              		.bss
+ 1176              		.align	1
+ 1177              		.set	.LANCHOR0,. + 0
+ 1178              		.type	gyro_x_l, %object
+ 1179              		.size	gyro_x_l, 1
+ 1180              	gyro_x_l:
+ 1181 0000 00       		.space	1
+ 1182              		.type	gyro_x_h, %object
+ 1183              		.size	gyro_x_h, 1
+ 1184              	gyro_x_h:
+ 1185 0001 00       		.space	1
+ 1186              		.type	gyro_y_l, %object
+ 1187              		.size	gyro_y_l, 1
+ 1188              	gyro_y_l:
+ 1189 0002 00       		.space	1
+ 1190              		.type	gyro_y_h, %object
+ 1191              		.size	gyro_y_h, 1
+ 1192              	gyro_y_h:
+ 1193 0003 00       		.space	1
+ 1194              		.type	gyro_z_l, %object
+ 1195              		.size	gyro_z_l, 1
+ 1196              	gyro_z_l:
+ 1197 0004 00       		.space	1
+ 1198              		.type	gyro_z_h, %object
+ 1199              		.size	gyro_z_h, 1
+ 1200              	gyro_z_h:
+ 1201 0005 00       		.space	1
+ 1202              		.type	gyro_x, %object
+ 1203              		.size	gyro_x, 2
+ 1204              	gyro_x:
+ 1205 0006 0000     		.space	2
+ 1206              		.type	gyro_y, %object
+ 1207              		.size	gyro_y, 2
+ 1208              	gyro_y:
+ 1209 0008 0000     		.space	2
+ 1210              		.type	gyro_z, %object
+ 1211              		.size	gyro_z, 2
+ 1212              	gyro_z:
+ 1213 000a 0000     		.space	2
+ 1214              		.type	acc_x_l, %object
+ 1215              		.size	acc_x_l, 1
+ 1216              	acc_x_l:
+ 1217 000c 00       		.space	1
+ 1218              		.type	acc_x_h, %object
+ 1219              		.size	acc_x_h, 1
+ 1220              	acc_x_h:
+ 1221 000d 00       		.space	1
+ 1222              		.type	acc_y_l, %object
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 29
+
+
+ 1223              		.size	acc_y_l, 1
+ 1224              	acc_y_l:
+ 1225 000e 00       		.space	1
+ 1226              		.type	acc_y_h, %object
+ 1227              		.size	acc_y_h, 1
+ 1228              	acc_y_h:
+ 1229 000f 00       		.space	1
+ 1230              		.type	acc_z_l, %object
+ 1231              		.size	acc_z_l, 1
+ 1232              	acc_z_l:
+ 1233 0010 00       		.space	1
+ 1234              		.type	acc_z_h, %object
+ 1235              		.size	acc_z_h, 1
+ 1236              	acc_z_h:
+ 1237 0011 00       		.space	1
+ 1238              		.type	acc_x, %object
+ 1239              		.size	acc_x, 2
+ 1240              	acc_x:
+ 1241 0012 0000     		.space	2
+ 1242              		.type	acc_y, %object
+ 1243              		.size	acc_y, 2
+ 1244              	acc_y:
+ 1245 0014 0000     		.space	2
+ 1246              		.type	acc_z, %object
+ 1247              		.size	acc_z, 2
+ 1248              	acc_z:
+ 1249 0016 0000     		.space	2
+ 1250              		.type	mag_x_l, %object
+ 1251              		.size	mag_x_l, 1
+ 1252              	mag_x_l:
+ 1253 0018 00       		.space	1
+ 1254              		.type	mag_x_h, %object
+ 1255              		.size	mag_x_h, 1
+ 1256              	mag_x_h:
+ 1257 0019 00       		.space	1
+ 1258              		.type	mag_y_l, %object
+ 1259              		.size	mag_y_l, 1
+ 1260              	mag_y_l:
+ 1261 001a 00       		.space	1
+ 1262              		.type	mag_y_h, %object
+ 1263              		.size	mag_y_h, 1
+ 1264              	mag_y_h:
+ 1265 001b 00       		.space	1
+ 1266              		.type	mag_z_l, %object
+ 1267              		.size	mag_z_l, 1
+ 1268              	mag_z_l:
+ 1269 001c 00       		.space	1
+ 1270              		.type	mag_z_h, %object
+ 1271              		.size	mag_z_h, 1
+ 1272              	mag_z_h:
+ 1273 001d 00       		.space	1
+ 1274              		.type	mag_x, %object
+ 1275              		.size	mag_x, 2
+ 1276              	mag_x:
+ 1277 001e 0000     		.space	2
+ 1278              		.type	mag_y, %object
+ 1279              		.size	mag_y, 2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 30
+
+
+ 1280              	mag_y:
+ 1281 0020 0000     		.space	2
+ 1282              		.type	mag_z, %object
+ 1283              		.size	mag_z, 2
+ 1284              	mag_z:
+ 1285 0022 0000     		.space	2
+ 1286              		.type	bar_xl, %object
+ 1287              		.size	bar_xl, 1
+ 1288              	bar_xl:
+ 1289 0024 00       		.space	1
+ 1290              		.type	bar_l, %object
+ 1291              		.size	bar_l, 1
+ 1292              	bar_l:
+ 1293 0025 00       		.space	1
+ 1294              		.type	bar_h, %object
+ 1295              		.size	bar_h, 1
+ 1296              	bar_h:
+ 1297 0026 00       		.space	1
+ 1298              		.type	error_stat, %object
+ 1299              		.size	error_stat, 1
+ 1300              	error_stat:
+ 1301 0027 00       		.space	1
+ 1302              		.type	gyro_r_offset, %object
+ 1303              		.size	gyro_r_offset, 2
+ 1304              	gyro_r_offset:
+ 1305 0028 0000     		.space	2
+ 1306              		.type	gyro_q_offset, %object
+ 1307              		.size	gyro_q_offset, 2
+ 1308              	gyro_q_offset:
+ 1309 002a 0000     		.space	2
+ 1310              		.type	gyro_p_offset, %object
+ 1311              		.size	gyro_p_offset, 2
+ 1312              	gyro_p_offset:
+ 1313 002c 0000     		.space	2
+ 1314              		.type	temperature, %object
+ 1315              		.size	temperature, 1
+ 1316              	temperature:
+ 1317 002e 00       		.space	1
+ 1318 002f 00       		.space	1
+ 1319              		.type	gyro_r, %object
+ 1320              		.size	gyro_r, 2
+ 1321              	gyro_r:
+ 1322 0030 0000     		.space	2
+ 1323              		.type	gyro_q, %object
+ 1324              		.size	gyro_q, 2
+ 1325              	gyro_q:
+ 1326 0032 0000     		.space	2
+ 1327              		.type	gyro_p, %object
+ 1328              		.size	gyro_p, 2
+ 1329              	gyro_p:
+ 1330 0034 0000     		.space	2
+ 1331              		.text
+ 1332              	.Letext0:
+ 1333              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
+ 1334              		.file 3 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
+ 1335              		.file 4 ".\\Generated_Source\\PSoC4/cytypes.h"
+ 1336              		.file 5 ".\\Generated_Source\\PSoC4/I2CM_I2C.h"
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 31
+
+
+ 1337              		.file 6 ".\\Generated_Source\\PSoC4/UART_1_SPI_UART.h"
+ 1338              		.section	.debug_info,"",%progbits
+ 1339              	.Ldebug_info0:
+ 1340 0000 340C0000 		.4byte	0xc34
+ 1341 0004 0400     		.2byte	0x4
+ 1342 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1343 000a 04       		.byte	0x4
+ 1344 000b 01       		.uleb128 0x1
+ 1345 000c 85020000 		.4byte	.LASF92
+ 1346 0010 01       		.byte	0x1
+ 1347 0011 2B030000 		.4byte	.LASF93
+ 1348 0015 2E040000 		.4byte	.LASF94
+ 1349 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1350 001d 00000000 		.4byte	0
+ 1351 0021 00000000 		.4byte	.Ldebug_line0
+ 1352 0025 02       		.uleb128 0x2
+ 1353 0026 52020000 		.4byte	.LASF0
+ 1354 002a 02       		.byte	0x2
+ 1355 002b 1B       		.byte	0x1b
+ 1356 002c 30000000 		.4byte	0x30
+ 1357 0030 03       		.uleb128 0x3
+ 1358 0031 01       		.byte	0x1
+ 1359 0032 06       		.byte	0x6
+ 1360 0033 D3030000 		.4byte	.LASF2
+ 1361 0037 02       		.uleb128 0x2
+ 1362 0038 73010000 		.4byte	.LASF1
+ 1363 003c 02       		.byte	0x2
+ 1364 003d 1C       		.byte	0x1c
+ 1365 003e 42000000 		.4byte	0x42
+ 1366 0042 03       		.uleb128 0x3
+ 1367 0043 01       		.byte	0x1
+ 1368 0044 08       		.byte	0x8
+ 1369 0045 91010000 		.4byte	.LASF3
+ 1370 0049 02       		.uleb128 0x2
+ 1371 004a DF030000 		.4byte	.LASF4
+ 1372 004e 02       		.byte	0x2
+ 1373 004f 25       		.byte	0x25
+ 1374 0050 54000000 		.4byte	0x54
+ 1375 0054 03       		.uleb128 0x3
+ 1376 0055 02       		.byte	0x2
+ 1377 0056 05       		.byte	0x5
+ 1378 0057 56000000 		.4byte	.LASF5
+ 1379 005b 03       		.uleb128 0x3
+ 1380 005c 02       		.byte	0x2
+ 1381 005d 07       		.byte	0x7
+ 1382 005e 3F020000 		.4byte	.LASF6
+ 1383 0062 03       		.uleb128 0x3
+ 1384 0063 04       		.byte	0x4
+ 1385 0064 05       		.byte	0x5
+ 1386 0065 6A010000 		.4byte	.LASF7
+ 1387 0069 02       		.uleb128 0x2
+ 1388 006a AA000000 		.4byte	.LASF8
+ 1389 006e 02       		.byte	0x2
+ 1390 006f 38       		.byte	0x38
+ 1391 0070 74000000 		.4byte	0x74
+ 1392 0074 03       		.uleb128 0x3
+ 1393 0075 04       		.byte	0x4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 32
+
+
+ 1394 0076 07       		.byte	0x7
+ 1395 0077 33030000 		.4byte	.LASF9
+ 1396 007b 03       		.uleb128 0x3
+ 1397 007c 08       		.byte	0x8
+ 1398 007d 05       		.byte	0x5
+ 1399 007e 9C000000 		.4byte	.LASF10
+ 1400 0082 03       		.uleb128 0x3
+ 1401 0083 08       		.byte	0x8
+ 1402 0084 07       		.byte	0x7
+ 1403 0085 A8010000 		.4byte	.LASF11
+ 1404 0089 04       		.uleb128 0x4
+ 1405 008a 04       		.byte	0x4
+ 1406 008b 05       		.byte	0x5
+ 1407 008c 696E7400 		.ascii	"int\000"
+ 1408 0090 03       		.uleb128 0x3
+ 1409 0091 04       		.byte	0x4
+ 1410 0092 07       		.byte	0x7
+ 1411 0093 F5010000 		.4byte	.LASF12
+ 1412 0097 02       		.uleb128 0x2
+ 1413 0098 37000000 		.4byte	.LASF13
+ 1414 009c 03       		.byte	0x3
+ 1415 009d 29       		.byte	0x29
+ 1416 009e 25000000 		.4byte	0x25
+ 1417 00a2 02       		.uleb128 0x2
+ 1418 00a3 04010000 		.4byte	.LASF14
+ 1419 00a7 03       		.byte	0x3
+ 1420 00a8 2A       		.byte	0x2a
+ 1421 00a9 37000000 		.4byte	0x37
+ 1422 00ad 02       		.uleb128 0x2
+ 1423 00ae 7D020000 		.4byte	.LASF15
+ 1424 00b2 03       		.byte	0x3
+ 1425 00b3 35       		.byte	0x35
+ 1426 00b4 49000000 		.4byte	0x49
+ 1427 00b8 02       		.uleb128 0x2
+ 1428 00b9 BF010000 		.4byte	.LASF16
+ 1429 00bd 03       		.byte	0x3
+ 1430 00be 42       		.byte	0x42
+ 1431 00bf 69000000 		.4byte	0x69
+ 1432 00c3 02       		.uleb128 0x2
+ 1433 00c4 24030000 		.4byte	.LASF17
+ 1434 00c8 04       		.byte	0x4
+ 1435 00c9 A3       		.byte	0xa3
+ 1436 00ca 74000000 		.4byte	0x74
+ 1437 00ce 03       		.uleb128 0x3
+ 1438 00cf 04       		.byte	0x4
+ 1439 00d0 04       		.byte	0x4
+ 1440 00d1 44010000 		.4byte	.LASF18
+ 1441 00d5 03       		.uleb128 0x3
+ 1442 00d6 08       		.byte	0x8
+ 1443 00d7 04       		.byte	0x4
+ 1444 00d8 59030000 		.4byte	.LASF19
+ 1445 00dc 02       		.uleb128 0x2
+ 1446 00dd 82000000 		.4byte	.LASF20
+ 1447 00e1 04       		.byte	0x4
+ 1448 00e2 B2       		.byte	0xb2
+ 1449 00e3 E7000000 		.4byte	0xe7
+ 1450 00e7 03       		.uleb128 0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 33
+
+
+ 1451 00e8 01       		.byte	0x1
+ 1452 00e9 08       		.byte	0x8
+ 1453 00ea 66020000 		.4byte	.LASF21
+ 1454 00ee 05       		.uleb128 0x5
+ 1455 00ef 39020000 		.4byte	.LASF22
+ 1456 00f3 04       		.byte	0x4
+ 1457 00f4 4D01     		.2byte	0x14d
+ 1458 00f6 FA000000 		.4byte	0xfa
+ 1459 00fa 06       		.uleb128 0x6
+ 1460 00fb C3000000 		.4byte	0xc3
+ 1461 00ff 03       		.uleb128 0x3
+ 1462 0100 04       		.byte	0x4
+ 1463 0101 07       		.byte	0x7
+ 1464 0102 F4030000 		.4byte	.LASF23
+ 1465 0106 07       		.uleb128 0x7
+ 1466 0107 7D010000 		.4byte	.LASF26
+ 1467 010b 01       		.byte	0x1
+ 1468 010c 69       		.byte	0x69
+ 1469 010d 00000000 		.4byte	.LFB33
+ 1470 0111 5C000000 		.4byte	.LFE33-.LFB33
+ 1471 0115 01       		.uleb128 0x1
+ 1472 0116 9C       		.byte	0x9c
+ 1473 0117 D3010000 		.4byte	0x1d3
+ 1474 011b 08       		.uleb128 0x8
+ 1475 011c FB000000 		.4byte	.LASF24
+ 1476 0120 01       		.byte	0x1
+ 1477 0121 69       		.byte	0x69
+ 1478 0122 A2000000 		.4byte	0xa2
+ 1479 0126 00000000 		.4byte	.LLST0
+ 1480 012a 08       		.uleb128 0x8
+ 1481 012b 1F030000 		.4byte	.LASF25
+ 1482 012f 01       		.byte	0x1
+ 1483 0130 69       		.byte	0x69
+ 1484 0131 A2000000 		.4byte	0xa2
+ 1485 0135 21000000 		.4byte	.LLST1
+ 1486 0139 09       		.uleb128 0x9
+ 1487 013a 0E000000 		.4byte	.LVL3
+ 1488 013e C00B0000 		.4byte	0xbc0
+ 1489 0142 52010000 		.4byte	0x152
+ 1490 0146 0A       		.uleb128 0xa
+ 1491 0147 01       		.uleb128 0x1
+ 1492 0148 51       		.byte	0x51
+ 1493 0149 01       		.uleb128 0x1
+ 1494 014a 30       		.byte	0x30
+ 1495 014b 0A       		.uleb128 0xa
+ 1496 014c 01       		.uleb128 0x1
+ 1497 014d 50       		.byte	0x50
+ 1498 014e 02       		.uleb128 0x2
+ 1499 014f 08       		.byte	0x8
+ 1500 0150 6B       		.byte	0x6b
+ 1501 0151 00       		.byte	0
+ 1502 0152 09       		.uleb128 0x9
+ 1503 0153 14000000 		.4byte	.LVL4
+ 1504 0157 DA0B0000 		.4byte	0xbda
+ 1505 015b 69010000 		.4byte	0x169
+ 1506 015f 0A       		.uleb128 0xa
+ 1507 0160 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 34
+
+
+ 1508 0161 50       		.byte	0x50
+ 1509 0162 05       		.uleb128 0x5
+ 1510 0163 03       		.byte	0x3
+ 1511 0164 00000000 		.4byte	.LC0
+ 1512 0168 00       		.byte	0
+ 1513 0169 09       		.uleb128 0x9
+ 1514 016a 1A000000 		.4byte	.LVL5
+ 1515 016e F70B0000 		.4byte	0xbf7
+ 1516 0172 7D010000 		.4byte	0x17d
+ 1517 0176 0A       		.uleb128 0xa
+ 1518 0177 01       		.uleb128 0x1
+ 1519 0178 50       		.byte	0x50
+ 1520 0179 02       		.uleb128 0x2
+ 1521 017a 75       		.byte	0x75
+ 1522 017b 00       		.sleb128 0
+ 1523 017c 00       		.byte	0
+ 1524 017d 09       		.uleb128 0x9
+ 1525 017e 20000000 		.4byte	.LVL6
+ 1526 0182 DA0B0000 		.4byte	0xbda
+ 1527 0186 94010000 		.4byte	0x194
+ 1528 018a 0A       		.uleb128 0xa
+ 1529 018b 01       		.uleb128 0x1
+ 1530 018c 50       		.byte	0x50
+ 1531 018d 05       		.uleb128 0x5
+ 1532 018e 03       		.byte	0x3
+ 1533 018f 0F000000 		.4byte	.LC2
+ 1534 0193 00       		.byte	0
+ 1535 0194 09       		.uleb128 0x9
+ 1536 0195 26000000 		.4byte	.LVL7
+ 1537 0199 F70B0000 		.4byte	0xbf7
+ 1538 019d A8010000 		.4byte	0x1a8
+ 1539 01a1 0A       		.uleb128 0xa
+ 1540 01a2 01       		.uleb128 0x1
+ 1541 01a3 50       		.byte	0x50
+ 1542 01a4 02       		.uleb128 0x2
+ 1543 01a5 74       		.byte	0x74
+ 1544 01a6 00       		.sleb128 0
+ 1545 01a7 00       		.byte	0
+ 1546 01a8 09       		.uleb128 0x9
+ 1547 01a9 2C000000 		.4byte	.LVL8
+ 1548 01ad DA0B0000 		.4byte	0xbda
+ 1549 01b1 BF010000 		.4byte	0x1bf
+ 1550 01b5 0A       		.uleb128 0xa
+ 1551 01b6 01       		.uleb128 0x1
+ 1552 01b7 50       		.byte	0x50
+ 1553 01b8 05       		.uleb128 0x5
+ 1554 01b9 03       		.byte	0x3
+ 1555 01ba 1E000000 		.4byte	.LC4
+ 1556 01be 00       		.byte	0
+ 1557 01bf 0B       		.uleb128 0xb
+ 1558 01c0 42000000 		.4byte	.LVL9
+ 1559 01c4 DA0B0000 		.4byte	0xbda
+ 1560 01c8 0A       		.uleb128 0xa
+ 1561 01c9 01       		.uleb128 0x1
+ 1562 01ca 50       		.byte	0x50
+ 1563 01cb 05       		.uleb128 0x5
+ 1564 01cc 03       		.byte	0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 35
+
+
+ 1565 01cd 2D000000 		.4byte	.LC6
+ 1566 01d1 00       		.byte	0
+ 1567 01d2 00       		.byte	0
+ 1568 01d3 0C       		.uleb128 0xc
+ 1569 01d4 AC040000 		.4byte	.LASF95
+ 1570 01d8 01       		.byte	0x1
+ 1571 01d9 75       		.byte	0x75
+ 1572 01da 97000000 		.4byte	0x97
+ 1573 01de 00000000 		.4byte	.LFB34
+ 1574 01e2 3C000000 		.4byte	.LFE34-.LFB34
+ 1575 01e6 01       		.uleb128 0x1
+ 1576 01e7 9C       		.byte	0x9c
+ 1577 01e8 60020000 		.4byte	0x260
+ 1578 01ec 08       		.uleb128 0x8
+ 1579 01ed FB000000 		.4byte	.LASF24
+ 1580 01f1 01       		.byte	0x1
+ 1581 01f2 75       		.byte	0x75
+ 1582 01f3 A2000000 		.4byte	0xa2
+ 1583 01f7 42000000 		.4byte	.LLST2
+ 1584 01fb 0D       		.uleb128 0xd
+ 1585 01fc 1F030000 		.4byte	.LASF25
+ 1586 0200 01       		.byte	0x1
+ 1587 0201 77       		.byte	0x77
+ 1588 0202 A2000000 		.4byte	0xa2
+ 1589 0206 63000000 		.4byte	.LLST3
+ 1590 020a 09       		.uleb128 0x9
+ 1591 020b 0C000000 		.4byte	.LVL12
+ 1592 020f C00B0000 		.4byte	0xbc0
+ 1593 0213 23020000 		.4byte	0x223
+ 1594 0217 0A       		.uleb128 0xa
+ 1595 0218 01       		.uleb128 0x1
+ 1596 0219 51       		.byte	0x51
+ 1597 021a 01       		.uleb128 0x1
+ 1598 021b 30       		.byte	0x30
+ 1599 021c 0A       		.uleb128 0xa
+ 1600 021d 01       		.uleb128 0x1
+ 1601 021e 50       		.byte	0x50
+ 1602 021f 02       		.uleb128 0x2
+ 1603 0220 08       		.byte	0x8
+ 1604 0221 6B       		.byte	0x6b
+ 1605 0222 00       		.byte	0
+ 1606 0223 09       		.uleb128 0x9
+ 1607 0224 12000000 		.4byte	.LVL13
+ 1608 0228 F70B0000 		.4byte	0xbf7
+ 1609 022c 37020000 		.4byte	0x237
+ 1610 0230 0A       		.uleb128 0xa
+ 1611 0231 01       		.uleb128 0x1
+ 1612 0232 50       		.byte	0x50
+ 1613 0233 02       		.uleb128 0x2
+ 1614 0234 74       		.byte	0x74
+ 1615 0235 00       		.sleb128 0
+ 1616 0236 00       		.byte	0
+ 1617 0237 09       		.uleb128 0x9
+ 1618 0238 1A000000 		.4byte	.LVL14
+ 1619 023c 0C0C0000 		.4byte	0xc0c
+ 1620 0240 50020000 		.4byte	0x250
+ 1621 0244 0A       		.uleb128 0xa
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 36
+
+
+ 1622 0245 01       		.uleb128 0x1
+ 1623 0246 51       		.byte	0x51
+ 1624 0247 01       		.uleb128 0x1
+ 1625 0248 31       		.byte	0x31
+ 1626 0249 0A       		.uleb128 0xa
+ 1627 024a 01       		.uleb128 0x1
+ 1628 024b 50       		.byte	0x50
+ 1629 024c 02       		.uleb128 0x2
+ 1630 024d 08       		.byte	0x8
+ 1631 024e 6B       		.byte	0x6b
+ 1632 024f 00       		.byte	0
+ 1633 0250 0B       		.uleb128 0xb
+ 1634 0251 20000000 		.4byte	.LVL15
+ 1635 0255 260C0000 		.4byte	0xc26
+ 1636 0259 0A       		.uleb128 0xa
+ 1637 025a 01       		.uleb128 0x1
+ 1638 025b 50       		.byte	0x50
+ 1639 025c 01       		.uleb128 0x1
+ 1640 025d 31       		.byte	0x31
+ 1641 025e 00       		.byte	0
+ 1642 025f 00       		.byte	0
+ 1643 0260 07       		.uleb128 0x7
+ 1644 0261 45030000 		.4byte	.LASF27
+ 1645 0265 01       		.byte	0x1
+ 1646 0266 80       		.byte	0x80
+ 1647 0267 00000000 		.4byte	.LFB35
+ 1648 026b 28000000 		.4byte	.LFE35-.LFB35
+ 1649 026f 01       		.uleb128 0x1
+ 1650 0270 9C       		.byte	0x9c
+ 1651 0271 D5020000 		.4byte	0x2d5
+ 1652 0275 09       		.uleb128 0x9
+ 1653 0276 0A000000 		.4byte	.LVL17
+ 1654 027a 06010000 		.4byte	0x106
+ 1655 027e 8E020000 		.4byte	0x28e
+ 1656 0282 0A       		.uleb128 0xa
+ 1657 0283 01       		.uleb128 0x1
+ 1658 0284 51       		.byte	0x51
+ 1659 0285 01       		.uleb128 0x1
+ 1660 0286 3F       		.byte	0x3f
+ 1661 0287 0A       		.uleb128 0xa
+ 1662 0288 01       		.uleb128 0x1
+ 1663 0289 50       		.byte	0x50
+ 1664 028a 02       		.uleb128 0x2
+ 1665 028b 08       		.byte	0x8
+ 1666 028c 20       		.byte	0x20
+ 1667 028d 00       		.byte	0
+ 1668 028e 09       		.uleb128 0x9
+ 1669 028f 12000000 		.4byte	.LVL18
+ 1670 0293 06010000 		.4byte	0x106
+ 1671 0297 A8020000 		.4byte	0x2a8
+ 1672 029b 0A       		.uleb128 0xa
+ 1673 029c 01       		.uleb128 0x1
+ 1674 029d 51       		.byte	0x51
+ 1675 029e 02       		.uleb128 0x2
+ 1676 029f 08       		.byte	0x8
+ 1677 02a0 20       		.byte	0x20
+ 1678 02a1 0A       		.uleb128 0xa
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 37
+
+
+ 1679 02a2 01       		.uleb128 0x1
+ 1680 02a3 50       		.byte	0x50
+ 1681 02a4 02       		.uleb128 0x2
+ 1682 02a5 08       		.byte	0x8
+ 1683 02a6 21       		.byte	0x21
+ 1684 02a7 00       		.byte	0
+ 1685 02a8 09       		.uleb128 0x9
+ 1686 02a9 1A000000 		.4byte	.LVL19
+ 1687 02ad 06010000 		.4byte	0x106
+ 1688 02b1 C1020000 		.4byte	0x2c1
+ 1689 02b5 0A       		.uleb128 0xa
+ 1690 02b6 01       		.uleb128 0x1
+ 1691 02b7 51       		.byte	0x51
+ 1692 02b8 01       		.uleb128 0x1
+ 1693 02b9 40       		.byte	0x40
+ 1694 02ba 0A       		.uleb128 0xa
+ 1695 02bb 01       		.uleb128 0x1
+ 1696 02bc 50       		.byte	0x50
+ 1697 02bd 02       		.uleb128 0x2
+ 1698 02be 08       		.byte	0x8
+ 1699 02bf 24       		.byte	0x24
+ 1700 02c0 00       		.byte	0
+ 1701 02c1 0B       		.uleb128 0xb
+ 1702 02c2 20000000 		.4byte	.LVL20
+ 1703 02c6 DA0B0000 		.4byte	0xbda
+ 1704 02ca 0A       		.uleb128 0xa
+ 1705 02cb 01       		.uleb128 0x1
+ 1706 02cc 50       		.byte	0x50
+ 1707 02cd 05       		.uleb128 0x5
+ 1708 02ce 03       		.byte	0x3
+ 1709 02cf 3D000000 		.4byte	.LC8
+ 1710 02d3 00       		.byte	0
+ 1711 02d4 00       		.byte	0
+ 1712 02d5 0E       		.uleb128 0xe
+ 1713 02d6 8A040000 		.4byte	.LASF28
+ 1714 02da 01       		.byte	0x1
+ 1715 02db 8F       		.byte	0x8f
+ 1716 02dc 00000000 		.4byte	.LFB36
+ 1717 02e0 F0000000 		.4byte	.LFE36-.LFB36
+ 1718 02e4 01       		.uleb128 0x1
+ 1719 02e5 9C       		.byte	0x9c
+ 1720 02e6 9F030000 		.4byte	0x39f
+ 1721 02ea 09       		.uleb128 0x9
+ 1722 02eb 0A000000 		.4byte	.LVL21
+ 1723 02ef C00B0000 		.4byte	0xbc0
+ 1724 02f3 03030000 		.4byte	0x303
+ 1725 02f7 0A       		.uleb128 0xa
+ 1726 02f8 01       		.uleb128 0x1
+ 1727 02f9 51       		.byte	0x51
+ 1728 02fa 01       		.uleb128 0x1
+ 1729 02fb 30       		.byte	0x30
+ 1730 02fc 0A       		.uleb128 0xa
+ 1731 02fd 01       		.uleb128 0x1
+ 1732 02fe 50       		.byte	0x50
+ 1733 02ff 02       		.uleb128 0x2
+ 1734 0300 08       		.byte	0x8
+ 1735 0301 6B       		.byte	0x6b
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 38
+
+
+ 1736 0302 00       		.byte	0
+ 1737 0303 09       		.uleb128 0x9
+ 1738 0304 10000000 		.4byte	.LVL22
+ 1739 0308 F70B0000 		.4byte	0xbf7
+ 1740 030c 17030000 		.4byte	0x317
+ 1741 0310 0A       		.uleb128 0xa
+ 1742 0311 01       		.uleb128 0x1
+ 1743 0312 50       		.byte	0x50
+ 1744 0313 02       		.uleb128 0x2
+ 1745 0314 08       		.byte	0x8
+ 1746 0315 A8       		.byte	0xa8
+ 1747 0316 00       		.byte	0
+ 1748 0317 09       		.uleb128 0x9
+ 1749 0318 18000000 		.4byte	.LVL23
+ 1750 031c 0C0C0000 		.4byte	0xc0c
+ 1751 0320 30030000 		.4byte	0x330
+ 1752 0324 0A       		.uleb128 0xa
+ 1753 0325 01       		.uleb128 0x1
+ 1754 0326 51       		.byte	0x51
+ 1755 0327 01       		.uleb128 0x1
+ 1756 0328 31       		.byte	0x31
+ 1757 0329 0A       		.uleb128 0xa
+ 1758 032a 01       		.uleb128 0x1
+ 1759 032b 50       		.byte	0x50
+ 1760 032c 02       		.uleb128 0x2
+ 1761 032d 08       		.byte	0x8
+ 1762 032e 6B       		.byte	0x6b
+ 1763 032f 00       		.byte	0
+ 1764 0330 09       		.uleb128 0x9
+ 1765 0331 1E000000 		.4byte	.LVL24
+ 1766 0335 260C0000 		.4byte	0xc26
+ 1767 0339 43030000 		.4byte	0x343
+ 1768 033d 0A       		.uleb128 0xa
+ 1769 033e 01       		.uleb128 0x1
+ 1770 033f 50       		.byte	0x50
+ 1771 0340 01       		.uleb128 0x1
+ 1772 0341 30       		.byte	0x30
+ 1773 0342 00       		.byte	0
+ 1774 0343 09       		.uleb128 0x9
+ 1775 0344 28000000 		.4byte	.LVL25
+ 1776 0348 260C0000 		.4byte	0xc26
+ 1777 034c 56030000 		.4byte	0x356
+ 1778 0350 0A       		.uleb128 0xa
+ 1779 0351 01       		.uleb128 0x1
+ 1780 0352 50       		.byte	0x50
+ 1781 0353 01       		.uleb128 0x1
+ 1782 0354 30       		.byte	0x30
+ 1783 0355 00       		.byte	0
+ 1784 0356 09       		.uleb128 0x9
+ 1785 0357 30000000 		.4byte	.LVL26
+ 1786 035b 260C0000 		.4byte	0xc26
+ 1787 035f 69030000 		.4byte	0x369
+ 1788 0363 0A       		.uleb128 0xa
+ 1789 0364 01       		.uleb128 0x1
+ 1790 0365 50       		.byte	0x50
+ 1791 0366 01       		.uleb128 0x1
+ 1792 0367 30       		.byte	0x30
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 39
+
+
+ 1793 0368 00       		.byte	0
+ 1794 0369 09       		.uleb128 0x9
+ 1795 036a 38000000 		.4byte	.LVL27
+ 1796 036e 260C0000 		.4byte	0xc26
+ 1797 0372 7C030000 		.4byte	0x37c
+ 1798 0376 0A       		.uleb128 0xa
+ 1799 0377 01       		.uleb128 0x1
+ 1800 0378 50       		.byte	0x50
+ 1801 0379 01       		.uleb128 0x1
+ 1802 037a 30       		.byte	0x30
+ 1803 037b 00       		.byte	0
+ 1804 037c 09       		.uleb128 0x9
+ 1805 037d 40000000 		.4byte	.LVL28
+ 1806 0381 260C0000 		.4byte	0xc26
+ 1807 0385 8F030000 		.4byte	0x38f
+ 1808 0389 0A       		.uleb128 0xa
+ 1809 038a 01       		.uleb128 0x1
+ 1810 038b 50       		.byte	0x50
+ 1811 038c 01       		.uleb128 0x1
+ 1812 038d 30       		.byte	0x30
+ 1813 038e 00       		.byte	0
+ 1814 038f 0B       		.uleb128 0xb
+ 1815 0390 48000000 		.4byte	.LVL29
+ 1816 0394 260C0000 		.4byte	0xc26
+ 1817 0398 0A       		.uleb128 0xa
+ 1818 0399 01       		.uleb128 0x1
+ 1819 039a 50       		.byte	0x50
+ 1820 039b 01       		.uleb128 0x1
+ 1821 039c 31       		.byte	0x31
+ 1822 039d 00       		.byte	0
+ 1823 039e 00       		.byte	0
+ 1824 039f 07       		.uleb128 0x7
+ 1825 03a0 C0030000 		.4byte	.LASF29
+ 1826 03a4 01       		.byte	0x1
+ 1827 03a5 A9       		.byte	0xa9
+ 1828 03a6 00000000 		.4byte	.LFB37
+ 1829 03aa 5C000000 		.4byte	.LFE37-.LFB37
+ 1830 03ae 01       		.uleb128 0x1
+ 1831 03af 9C       		.byte	0x9c
+ 1832 03b0 6B040000 		.4byte	0x46b
+ 1833 03b4 08       		.uleb128 0x8
+ 1834 03b5 FB000000 		.4byte	.LASF24
+ 1835 03b9 01       		.byte	0x1
+ 1836 03ba A9       		.byte	0xa9
+ 1837 03bb E7000000 		.4byte	0xe7
+ 1838 03bf 76000000 		.4byte	.LLST4
+ 1839 03c3 08       		.uleb128 0x8
+ 1840 03c4 1F030000 		.4byte	.LASF25
+ 1841 03c8 01       		.byte	0x1
+ 1842 03c9 A9       		.byte	0xa9
+ 1843 03ca E7000000 		.4byte	0xe7
+ 1844 03ce 97000000 		.4byte	.LLST5
+ 1845 03d2 09       		.uleb128 0x9
+ 1846 03d3 0E000000 		.4byte	.LVL42
+ 1847 03d7 C00B0000 		.4byte	0xbc0
+ 1848 03db EA030000 		.4byte	0x3ea
+ 1849 03df 0A       		.uleb128 0xa
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 40
+
+
+ 1850 03e0 01       		.uleb128 0x1
+ 1851 03e1 51       		.byte	0x51
+ 1852 03e2 01       		.uleb128 0x1
+ 1853 03e3 30       		.byte	0x30
+ 1854 03e4 0A       		.uleb128 0xa
+ 1855 03e5 01       		.uleb128 0x1
+ 1856 03e6 50       		.byte	0x50
+ 1857 03e7 01       		.uleb128 0x1
+ 1858 03e8 4D       		.byte	0x4d
+ 1859 03e9 00       		.byte	0
+ 1860 03ea 09       		.uleb128 0x9
+ 1861 03eb 14000000 		.4byte	.LVL43
+ 1862 03ef DA0B0000 		.4byte	0xbda
+ 1863 03f3 01040000 		.4byte	0x401
+ 1864 03f7 0A       		.uleb128 0xa
+ 1865 03f8 01       		.uleb128 0x1
+ 1866 03f9 50       		.byte	0x50
+ 1867 03fa 05       		.uleb128 0x5
+ 1868 03fb 03       		.byte	0x3
+ 1869 03fc 4C000000 		.4byte	.LC21
+ 1870 0400 00       		.byte	0
+ 1871 0401 09       		.uleb128 0x9
+ 1872 0402 1A000000 		.4byte	.LVL44
+ 1873 0406 F70B0000 		.4byte	0xbf7
+ 1874 040a 15040000 		.4byte	0x415
+ 1875 040e 0A       		.uleb128 0xa
+ 1876 040f 01       		.uleb128 0x1
+ 1877 0410 50       		.byte	0x50
+ 1878 0411 02       		.uleb128 0x2
+ 1879 0412 75       		.byte	0x75
+ 1880 0413 00       		.sleb128 0
+ 1881 0414 00       		.byte	0
+ 1882 0415 09       		.uleb128 0x9
+ 1883 0416 20000000 		.4byte	.LVL45
+ 1884 041a DA0B0000 		.4byte	0xbda
+ 1885 041e 2C040000 		.4byte	0x42c
+ 1886 0422 0A       		.uleb128 0xa
+ 1887 0423 01       		.uleb128 0x1
+ 1888 0424 50       		.byte	0x50
+ 1889 0425 05       		.uleb128 0x5
+ 1890 0426 03       		.byte	0x3
+ 1891 0427 59000000 		.4byte	.LC23
+ 1892 042b 00       		.byte	0
+ 1893 042c 09       		.uleb128 0x9
+ 1894 042d 26000000 		.4byte	.LVL46
+ 1895 0431 F70B0000 		.4byte	0xbf7
+ 1896 0435 40040000 		.4byte	0x440
+ 1897 0439 0A       		.uleb128 0xa
+ 1898 043a 01       		.uleb128 0x1
+ 1899 043b 50       		.byte	0x50
+ 1900 043c 02       		.uleb128 0x2
+ 1901 043d 74       		.byte	0x74
+ 1902 043e 00       		.sleb128 0
+ 1903 043f 00       		.byte	0
+ 1904 0440 09       		.uleb128 0x9
+ 1905 0441 2C000000 		.4byte	.LVL47
+ 1906 0445 DA0B0000 		.4byte	0xbda
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 41
+
+
+ 1907 0449 57040000 		.4byte	0x457
+ 1908 044d 0A       		.uleb128 0xa
+ 1909 044e 01       		.uleb128 0x1
+ 1910 044f 50       		.byte	0x50
+ 1911 0450 05       		.uleb128 0x5
+ 1912 0451 03       		.byte	0x3
+ 1913 0452 66000000 		.4byte	.LC25
+ 1914 0456 00       		.byte	0
+ 1915 0457 0B       		.uleb128 0xb
+ 1916 0458 42000000 		.4byte	.LVL48
+ 1917 045c DA0B0000 		.4byte	0xbda
+ 1918 0460 0A       		.uleb128 0xa
+ 1919 0461 01       		.uleb128 0x1
+ 1920 0462 50       		.byte	0x50
+ 1921 0463 05       		.uleb128 0x5
+ 1922 0464 03       		.byte	0x3
+ 1923 0465 73000000 		.4byte	.LC27
+ 1924 0469 00       		.byte	0
+ 1925 046a 00       		.byte	0
+ 1926 046b 07       		.uleb128 0x7
+ 1927 046c 0C010000 		.4byte	.LASF30
+ 1928 0470 01       		.byte	0x1
+ 1929 0471 B4       		.byte	0xb4
+ 1930 0472 00000000 		.4byte	.LFB38
+ 1931 0476 18000000 		.4byte	.LFE38-.LFB38
+ 1932 047a 01       		.uleb128 0x1
+ 1933 047b 9C       		.byte	0x9c
+ 1934 047c AE040000 		.4byte	0x4ae
+ 1935 0480 09       		.uleb128 0x9
+ 1936 0481 0A000000 		.4byte	.LVL49
+ 1937 0485 9F030000 		.4byte	0x39f
+ 1938 0489 9A040000 		.4byte	0x49a
+ 1939 048d 0A       		.uleb128 0xa
+ 1940 048e 01       		.uleb128 0x1
+ 1941 048f 51       		.byte	0x51
+ 1942 0490 02       		.uleb128 0x2
+ 1943 0491 08       		.byte	0x8
+ 1944 0492 67       		.byte	0x67
+ 1945 0493 0A       		.uleb128 0xa
+ 1946 0494 01       		.uleb128 0x1
+ 1947 0495 50       		.byte	0x50
+ 1948 0496 02       		.uleb128 0x2
+ 1949 0497 08       		.byte	0x8
+ 1950 0498 20       		.byte	0x20
+ 1951 0499 00       		.byte	0
+ 1952 049a 0B       		.uleb128 0xb
+ 1953 049b 10000000 		.4byte	.LVL50
+ 1954 049f DA0B0000 		.4byte	0xbda
+ 1955 04a3 0A       		.uleb128 0xa
+ 1956 04a4 01       		.uleb128 0x1
+ 1957 04a5 50       		.byte	0x50
+ 1958 04a6 05       		.uleb128 0x5
+ 1959 04a7 03       		.byte	0x3
+ 1960 04a8 81000000 		.4byte	.LC29
+ 1961 04ac 00       		.byte	0
+ 1962 04ad 00       		.byte	0
+ 1963 04ae 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 42
+
+
+ 1964 04af 08000000 		.4byte	.LASF31
+ 1965 04b3 01       		.byte	0x1
+ 1966 04b4 C0       		.byte	0xc0
+ 1967 04b5 00000000 		.4byte	.LFB39
+ 1968 04b9 F0000000 		.4byte	.LFE39-.LFB39
+ 1969 04bd 01       		.uleb128 0x1
+ 1970 04be 9C       		.byte	0x9c
+ 1971 04bf 76050000 		.4byte	0x576
+ 1972 04c3 09       		.uleb128 0x9
+ 1973 04c4 0A000000 		.4byte	.LVL51
+ 1974 04c8 C00B0000 		.4byte	0xbc0
+ 1975 04cc DB040000 		.4byte	0x4db
+ 1976 04d0 0A       		.uleb128 0xa
+ 1977 04d1 01       		.uleb128 0x1
+ 1978 04d2 51       		.byte	0x51
+ 1979 04d3 01       		.uleb128 0x1
+ 1980 04d4 30       		.byte	0x30
+ 1981 04d5 0A       		.uleb128 0xa
+ 1982 04d6 01       		.uleb128 0x1
+ 1983 04d7 50       		.byte	0x50
+ 1984 04d8 01       		.uleb128 0x1
+ 1985 04d9 4D       		.byte	0x4d
+ 1986 04da 00       		.byte	0
+ 1987 04db 09       		.uleb128 0x9
+ 1988 04dc 10000000 		.4byte	.LVL52
+ 1989 04e0 F70B0000 		.4byte	0xbf7
+ 1990 04e4 EF040000 		.4byte	0x4ef
+ 1991 04e8 0A       		.uleb128 0xa
+ 1992 04e9 01       		.uleb128 0x1
+ 1993 04ea 50       		.byte	0x50
+ 1994 04eb 02       		.uleb128 0x2
+ 1995 04ec 08       		.byte	0x8
+ 1996 04ed A8       		.byte	0xa8
+ 1997 04ee 00       		.byte	0
+ 1998 04ef 09       		.uleb128 0x9
+ 1999 04f0 18000000 		.4byte	.LVL53
+ 2000 04f4 0C0C0000 		.4byte	0xc0c
+ 2001 04f8 07050000 		.4byte	0x507
+ 2002 04fc 0A       		.uleb128 0xa
+ 2003 04fd 01       		.uleb128 0x1
+ 2004 04fe 51       		.byte	0x51
+ 2005 04ff 01       		.uleb128 0x1
+ 2006 0500 31       		.byte	0x31
+ 2007 0501 0A       		.uleb128 0xa
+ 2008 0502 01       		.uleb128 0x1
+ 2009 0503 50       		.byte	0x50
+ 2010 0504 01       		.uleb128 0x1
+ 2011 0505 4D       		.byte	0x4d
+ 2012 0506 00       		.byte	0
+ 2013 0507 09       		.uleb128 0x9
+ 2014 0508 1E000000 		.4byte	.LVL54
+ 2015 050c 260C0000 		.4byte	0xc26
+ 2016 0510 1A050000 		.4byte	0x51a
+ 2017 0514 0A       		.uleb128 0xa
+ 2018 0515 01       		.uleb128 0x1
+ 2019 0516 50       		.byte	0x50
+ 2020 0517 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 43
+
+
+ 2021 0518 30       		.byte	0x30
+ 2022 0519 00       		.byte	0
+ 2023 051a 09       		.uleb128 0x9
+ 2024 051b 28000000 		.4byte	.LVL55
+ 2025 051f 260C0000 		.4byte	0xc26
+ 2026 0523 2D050000 		.4byte	0x52d
+ 2027 0527 0A       		.uleb128 0xa
+ 2028 0528 01       		.uleb128 0x1
+ 2029 0529 50       		.byte	0x50
+ 2030 052a 01       		.uleb128 0x1
+ 2031 052b 30       		.byte	0x30
+ 2032 052c 00       		.byte	0
+ 2033 052d 09       		.uleb128 0x9
+ 2034 052e 30000000 		.4byte	.LVL56
+ 2035 0532 260C0000 		.4byte	0xc26
+ 2036 0536 40050000 		.4byte	0x540
+ 2037 053a 0A       		.uleb128 0xa
+ 2038 053b 01       		.uleb128 0x1
+ 2039 053c 50       		.byte	0x50
+ 2040 053d 01       		.uleb128 0x1
+ 2041 053e 30       		.byte	0x30
+ 2042 053f 00       		.byte	0
+ 2043 0540 09       		.uleb128 0x9
+ 2044 0541 38000000 		.4byte	.LVL57
+ 2045 0545 260C0000 		.4byte	0xc26
+ 2046 0549 53050000 		.4byte	0x553
+ 2047 054d 0A       		.uleb128 0xa
+ 2048 054e 01       		.uleb128 0x1
+ 2049 054f 50       		.byte	0x50
+ 2050 0550 01       		.uleb128 0x1
+ 2051 0551 30       		.byte	0x30
+ 2052 0552 00       		.byte	0
+ 2053 0553 09       		.uleb128 0x9
+ 2054 0554 40000000 		.4byte	.LVL58
+ 2055 0558 260C0000 		.4byte	0xc26
+ 2056 055c 66050000 		.4byte	0x566
+ 2057 0560 0A       		.uleb128 0xa
+ 2058 0561 01       		.uleb128 0x1
+ 2059 0562 50       		.byte	0x50
+ 2060 0563 01       		.uleb128 0x1
+ 2061 0564 30       		.byte	0x30
+ 2062 0565 00       		.byte	0
+ 2063 0566 0B       		.uleb128 0xb
+ 2064 0567 48000000 		.4byte	.LVL59
+ 2065 056b 260C0000 		.4byte	0xc26
+ 2066 056f 0A       		.uleb128 0xa
+ 2067 0570 01       		.uleb128 0x1
+ 2068 0571 50       		.byte	0x50
+ 2069 0572 01       		.uleb128 0x1
+ 2070 0573 31       		.byte	0x31
+ 2071 0574 00       		.byte	0
+ 2072 0575 00       		.byte	0
+ 2073 0576 07       		.uleb128 0x7
+ 2074 0577 E2010000 		.4byte	.LASF32
+ 2075 057b 01       		.byte	0x1
+ 2076 057c D6       		.byte	0xd6
+ 2077 057d 00000000 		.4byte	.LFB40
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 44
+
+
+ 2078 0581 5C000000 		.4byte	.LFE40-.LFB40
+ 2079 0585 01       		.uleb128 0x1
+ 2080 0586 9C       		.byte	0x9c
+ 2081 0587 42060000 		.4byte	0x642
+ 2082 058b 08       		.uleb128 0x8
+ 2083 058c FB000000 		.4byte	.LASF24
+ 2084 0590 01       		.byte	0x1
+ 2085 0591 D6       		.byte	0xd6
+ 2086 0592 E7000000 		.4byte	0xe7
+ 2087 0596 B8000000 		.4byte	.LLST6
+ 2088 059a 08       		.uleb128 0x8
+ 2089 059b 1F030000 		.4byte	.LASF25
+ 2090 059f 01       		.byte	0x1
+ 2091 05a0 D6       		.byte	0xd6
+ 2092 05a1 E7000000 		.4byte	0xe7
+ 2093 05a5 D9000000 		.4byte	.LLST7
+ 2094 05a9 09       		.uleb128 0x9
+ 2095 05aa 0E000000 		.4byte	.LVL72
+ 2096 05ae C00B0000 		.4byte	0xbc0
+ 2097 05b2 C1050000 		.4byte	0x5c1
+ 2098 05b6 0A       		.uleb128 0xa
+ 2099 05b7 01       		.uleb128 0x1
+ 2100 05b8 51       		.byte	0x51
+ 2101 05b9 01       		.uleb128 0x1
+ 2102 05ba 30       		.byte	0x30
+ 2103 05bb 0A       		.uleb128 0xa
+ 2104 05bc 01       		.uleb128 0x1
+ 2105 05bd 50       		.byte	0x50
+ 2106 05be 01       		.uleb128 0x1
+ 2107 05bf 4D       		.byte	0x4d
+ 2108 05c0 00       		.byte	0
+ 2109 05c1 09       		.uleb128 0x9
+ 2110 05c2 14000000 		.4byte	.LVL73
+ 2111 05c6 DA0B0000 		.4byte	0xbda
+ 2112 05ca D8050000 		.4byte	0x5d8
+ 2113 05ce 0A       		.uleb128 0xa
+ 2114 05cf 01       		.uleb128 0x1
+ 2115 05d0 50       		.byte	0x50
+ 2116 05d1 05       		.uleb128 0x5
+ 2117 05d2 03       		.byte	0x3
+ 2118 05d3 8F000000 		.4byte	.LC43
+ 2119 05d7 00       		.byte	0
+ 2120 05d8 09       		.uleb128 0x9
+ 2121 05d9 1A000000 		.4byte	.LVL74
+ 2122 05dd F70B0000 		.4byte	0xbf7
+ 2123 05e1 EC050000 		.4byte	0x5ec
+ 2124 05e5 0A       		.uleb128 0xa
+ 2125 05e6 01       		.uleb128 0x1
+ 2126 05e7 50       		.byte	0x50
+ 2127 05e8 02       		.uleb128 0x2
+ 2128 05e9 75       		.byte	0x75
+ 2129 05ea 00       		.sleb128 0
+ 2130 05eb 00       		.byte	0
+ 2131 05ec 09       		.uleb128 0x9
+ 2132 05ed 20000000 		.4byte	.LVL75
+ 2133 05f1 DA0B0000 		.4byte	0xbda
+ 2134 05f5 03060000 		.4byte	0x603
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 45
+
+
+ 2135 05f9 0A       		.uleb128 0xa
+ 2136 05fa 01       		.uleb128 0x1
+ 2137 05fb 50       		.byte	0x50
+ 2138 05fc 05       		.uleb128 0x5
+ 2139 05fd 03       		.byte	0x3
+ 2140 05fe 98000000 		.4byte	.LC45
+ 2141 0602 00       		.byte	0
+ 2142 0603 09       		.uleb128 0x9
+ 2143 0604 26000000 		.4byte	.LVL76
+ 2144 0608 F70B0000 		.4byte	0xbf7
+ 2145 060c 17060000 		.4byte	0x617
+ 2146 0610 0A       		.uleb128 0xa
+ 2147 0611 01       		.uleb128 0x1
+ 2148 0612 50       		.byte	0x50
+ 2149 0613 02       		.uleb128 0x2
+ 2150 0614 74       		.byte	0x74
+ 2151 0615 00       		.sleb128 0
+ 2152 0616 00       		.byte	0
+ 2153 0617 09       		.uleb128 0x9
+ 2154 0618 2C000000 		.4byte	.LVL77
+ 2155 061c DA0B0000 		.4byte	0xbda
+ 2156 0620 2E060000 		.4byte	0x62e
+ 2157 0624 0A       		.uleb128 0xa
+ 2158 0625 01       		.uleb128 0x1
+ 2159 0626 50       		.byte	0x50
+ 2160 0627 05       		.uleb128 0x5
+ 2161 0628 03       		.byte	0x3
+ 2162 0629 A1000000 		.4byte	.LC47
+ 2163 062d 00       		.byte	0
+ 2164 062e 0B       		.uleb128 0xb
+ 2165 062f 42000000 		.4byte	.LVL78
+ 2166 0633 DA0B0000 		.4byte	0xbda
+ 2167 0637 0A       		.uleb128 0xa
+ 2168 0638 01       		.uleb128 0x1
+ 2169 0639 50       		.byte	0x50
+ 2170 063a 05       		.uleb128 0x5
+ 2171 063b 03       		.byte	0x3
+ 2172 063c AA000000 		.4byte	.LC49
+ 2173 0640 00       		.byte	0
+ 2174 0641 00       		.byte	0
+ 2175 0642 07       		.uleb128 0x7
+ 2176 0643 16010000 		.4byte	.LASF33
+ 2177 0647 01       		.byte	0x1
+ 2178 0648 E2       		.byte	0xe2
+ 2179 0649 00000000 		.4byte	.LFB41
+ 2180 064d 20000000 		.4byte	.LFE41-.LFB41
+ 2181 0651 01       		.uleb128 0x1
+ 2182 0652 9C       		.byte	0x9c
+ 2183 0653 9E060000 		.4byte	0x69e
+ 2184 0657 09       		.uleb128 0x9
+ 2185 0658 0A000000 		.4byte	.LVL79
+ 2186 065c 76050000 		.4byte	0x576
+ 2187 0660 71060000 		.4byte	0x671
+ 2188 0664 0A       		.uleb128 0xa
+ 2189 0665 01       		.uleb128 0x1
+ 2190 0666 51       		.byte	0x51
+ 2191 0667 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 46
+
+
+ 2192 0668 08       		.byte	0x8
+ 2193 0669 20       		.byte	0x20
+ 2194 066a 0A       		.uleb128 0xa
+ 2195 066b 01       		.uleb128 0x1
+ 2196 066c 50       		.byte	0x50
+ 2197 066d 02       		.uleb128 0x2
+ 2198 066e 08       		.byte	0x8
+ 2199 066f 25       		.byte	0x25
+ 2200 0670 00       		.byte	0
+ 2201 0671 09       		.uleb128 0x9
+ 2202 0672 12000000 		.4byte	.LVL80
+ 2203 0676 76050000 		.4byte	0x576
+ 2204 067a 8A060000 		.4byte	0x68a
+ 2205 067e 0A       		.uleb128 0xa
+ 2206 067f 01       		.uleb128 0x1
+ 2207 0680 51       		.byte	0x51
+ 2208 0681 01       		.uleb128 0x1
+ 2209 0682 30       		.byte	0x30
+ 2210 0683 0A       		.uleb128 0xa
+ 2211 0684 01       		.uleb128 0x1
+ 2212 0685 50       		.byte	0x50
+ 2213 0686 02       		.uleb128 0x2
+ 2214 0687 08       		.byte	0x8
+ 2215 0688 26       		.byte	0x26
+ 2216 0689 00       		.byte	0
+ 2217 068a 0B       		.uleb128 0xb
+ 2218 068b 18000000 		.4byte	.LVL81
+ 2219 068f DA0B0000 		.4byte	0xbda
+ 2220 0693 0A       		.uleb128 0xa
+ 2221 0694 01       		.uleb128 0x1
+ 2222 0695 50       		.byte	0x50
+ 2223 0696 05       		.uleb128 0x5
+ 2224 0697 03       		.byte	0x3
+ 2225 0698 B4000000 		.4byte	.LC51
+ 2226 069c 00       		.byte	0
+ 2227 069d 00       		.byte	0
+ 2228 069e 0E       		.uleb128 0xe
+ 2229 069f 9F010000 		.4byte	.LASF34
+ 2230 06a3 01       		.byte	0x1
+ 2231 06a4 ED       		.byte	0xed
+ 2232 06a5 00000000 		.4byte	.LFB42
+ 2233 06a9 F0000000 		.4byte	.LFE42-.LFB42
+ 2234 06ad 01       		.uleb128 0x1
+ 2235 06ae 9C       		.byte	0x9c
+ 2236 06af 66070000 		.4byte	0x766
+ 2237 06b3 09       		.uleb128 0x9
+ 2238 06b4 0A000000 		.4byte	.LVL82
+ 2239 06b8 C00B0000 		.4byte	0xbc0
+ 2240 06bc CB060000 		.4byte	0x6cb
+ 2241 06c0 0A       		.uleb128 0xa
+ 2242 06c1 01       		.uleb128 0x1
+ 2243 06c2 51       		.byte	0x51
+ 2244 06c3 01       		.uleb128 0x1
+ 2245 06c4 30       		.byte	0x30
+ 2246 06c5 0A       		.uleb128 0xa
+ 2247 06c6 01       		.uleb128 0x1
+ 2248 06c7 50       		.byte	0x50
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 47
+
+
+ 2249 06c8 01       		.uleb128 0x1
+ 2250 06c9 4D       		.byte	0x4d
+ 2251 06ca 00       		.byte	0
+ 2252 06cb 09       		.uleb128 0x9
+ 2253 06cc 10000000 		.4byte	.LVL83
+ 2254 06d0 F70B0000 		.4byte	0xbf7
+ 2255 06d4 DF060000 		.4byte	0x6df
+ 2256 06d8 0A       		.uleb128 0xa
+ 2257 06d9 01       		.uleb128 0x1
+ 2258 06da 50       		.byte	0x50
+ 2259 06db 02       		.uleb128 0x2
+ 2260 06dc 08       		.byte	0x8
+ 2261 06dd 88       		.byte	0x88
+ 2262 06de 00       		.byte	0
+ 2263 06df 09       		.uleb128 0x9
+ 2264 06e0 18000000 		.4byte	.LVL84
+ 2265 06e4 0C0C0000 		.4byte	0xc0c
+ 2266 06e8 F7060000 		.4byte	0x6f7
+ 2267 06ec 0A       		.uleb128 0xa
+ 2268 06ed 01       		.uleb128 0x1
+ 2269 06ee 51       		.byte	0x51
+ 2270 06ef 01       		.uleb128 0x1
+ 2271 06f0 31       		.byte	0x31
+ 2272 06f1 0A       		.uleb128 0xa
+ 2273 06f2 01       		.uleb128 0x1
+ 2274 06f3 50       		.byte	0x50
+ 2275 06f4 01       		.uleb128 0x1
+ 2276 06f5 4D       		.byte	0x4d
+ 2277 06f6 00       		.byte	0
+ 2278 06f7 09       		.uleb128 0x9
+ 2279 06f8 1E000000 		.4byte	.LVL85
+ 2280 06fc 260C0000 		.4byte	0xc26
+ 2281 0700 0A070000 		.4byte	0x70a
+ 2282 0704 0A       		.uleb128 0xa
+ 2283 0705 01       		.uleb128 0x1
+ 2284 0706 50       		.byte	0x50
+ 2285 0707 01       		.uleb128 0x1
+ 2286 0708 30       		.byte	0x30
+ 2287 0709 00       		.byte	0
+ 2288 070a 09       		.uleb128 0x9
+ 2289 070b 28000000 		.4byte	.LVL86
+ 2290 070f 260C0000 		.4byte	0xc26
+ 2291 0713 1D070000 		.4byte	0x71d
+ 2292 0717 0A       		.uleb128 0xa
+ 2293 0718 01       		.uleb128 0x1
+ 2294 0719 50       		.byte	0x50
+ 2295 071a 01       		.uleb128 0x1
+ 2296 071b 30       		.byte	0x30
+ 2297 071c 00       		.byte	0
+ 2298 071d 09       		.uleb128 0x9
+ 2299 071e 30000000 		.4byte	.LVL87
+ 2300 0722 260C0000 		.4byte	0xc26
+ 2301 0726 30070000 		.4byte	0x730
+ 2302 072a 0A       		.uleb128 0xa
+ 2303 072b 01       		.uleb128 0x1
+ 2304 072c 50       		.byte	0x50
+ 2305 072d 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 48
+
+
+ 2306 072e 30       		.byte	0x30
+ 2307 072f 00       		.byte	0
+ 2308 0730 09       		.uleb128 0x9
+ 2309 0731 38000000 		.4byte	.LVL88
+ 2310 0735 260C0000 		.4byte	0xc26
+ 2311 0739 43070000 		.4byte	0x743
+ 2312 073d 0A       		.uleb128 0xa
+ 2313 073e 01       		.uleb128 0x1
+ 2314 073f 50       		.byte	0x50
+ 2315 0740 01       		.uleb128 0x1
+ 2316 0741 30       		.byte	0x30
+ 2317 0742 00       		.byte	0
+ 2318 0743 09       		.uleb128 0x9
+ 2319 0744 40000000 		.4byte	.LVL89
+ 2320 0748 260C0000 		.4byte	0xc26
+ 2321 074c 56070000 		.4byte	0x756
+ 2322 0750 0A       		.uleb128 0xa
+ 2323 0751 01       		.uleb128 0x1
+ 2324 0752 50       		.byte	0x50
+ 2325 0753 01       		.uleb128 0x1
+ 2326 0754 30       		.byte	0x30
+ 2327 0755 00       		.byte	0
+ 2328 0756 0B       		.uleb128 0xb
+ 2329 0757 48000000 		.4byte	.LVL90
+ 2330 075b 260C0000 		.4byte	0xc26
+ 2331 075f 0A       		.uleb128 0xa
+ 2332 0760 01       		.uleb128 0x1
+ 2333 0761 50       		.byte	0x50
+ 2334 0762 01       		.uleb128 0x1
+ 2335 0763 31       		.byte	0x31
+ 2336 0764 00       		.byte	0
+ 2337 0765 00       		.byte	0
+ 2338 0766 0F       		.uleb128 0xf
+ 2339 0767 09020000 		.4byte	.LASF35
+ 2340 076b 01       		.byte	0x1
+ 2341 076c 0501     		.2byte	0x105
+ 2342 076e 00000000 		.4byte	.LFB43
+ 2343 0772 34000000 		.4byte	.LFE43-.LFB43
+ 2344 0776 01       		.uleb128 0x1
+ 2345 0777 9C       		.byte	0x9c
+ 2346 0778 DA070000 		.4byte	0x7da
+ 2347 077c 10       		.uleb128 0x10
+ 2348 077d FB000000 		.4byte	.LASF24
+ 2349 0781 01       		.byte	0x1
+ 2350 0782 0501     		.2byte	0x105
+ 2351 0784 E7000000 		.4byte	0xe7
+ 2352 0788 FA000000 		.4byte	.LLST8
+ 2353 078c 10       		.uleb128 0x10
+ 2354 078d 1F030000 		.4byte	.LASF25
+ 2355 0791 01       		.byte	0x1
+ 2356 0792 0501     		.2byte	0x105
+ 2357 0794 E7000000 		.4byte	0xe7
+ 2358 0798 1B010000 		.4byte	.LLST9
+ 2359 079c 09       		.uleb128 0x9
+ 2360 079d 0E000000 		.4byte	.LVL103
+ 2361 07a1 C00B0000 		.4byte	0xbc0
+ 2362 07a5 B5070000 		.4byte	0x7b5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 49
+
+
+ 2363 07a9 0A       		.uleb128 0xa
+ 2364 07aa 01       		.uleb128 0x1
+ 2365 07ab 51       		.byte	0x51
+ 2366 07ac 01       		.uleb128 0x1
+ 2367 07ad 30       		.byte	0x30
+ 2368 07ae 0A       		.uleb128 0xa
+ 2369 07af 01       		.uleb128 0x1
+ 2370 07b0 50       		.byte	0x50
+ 2371 07b1 02       		.uleb128 0x2
+ 2372 07b2 08       		.byte	0x8
+ 2373 07b3 5D       		.byte	0x5d
+ 2374 07b4 00       		.byte	0
+ 2375 07b5 09       		.uleb128 0x9
+ 2376 07b6 14000000 		.4byte	.LVL104
+ 2377 07ba F70B0000 		.4byte	0xbf7
+ 2378 07be C9070000 		.4byte	0x7c9
+ 2379 07c2 0A       		.uleb128 0xa
+ 2380 07c3 01       		.uleb128 0x1
+ 2381 07c4 50       		.byte	0x50
+ 2382 07c5 02       		.uleb128 0x2
+ 2383 07c6 75       		.byte	0x75
+ 2384 07c7 00       		.sleb128 0
+ 2385 07c8 00       		.byte	0
+ 2386 07c9 0B       		.uleb128 0xb
+ 2387 07ca 1A000000 		.4byte	.LVL105
+ 2388 07ce F70B0000 		.4byte	0xbf7
+ 2389 07d2 0A       		.uleb128 0xa
+ 2390 07d3 01       		.uleb128 0x1
+ 2391 07d4 50       		.byte	0x50
+ 2392 07d5 02       		.uleb128 0x2
+ 2393 07d6 74       		.byte	0x74
+ 2394 07d7 00       		.sleb128 0
+ 2395 07d8 00       		.byte	0
+ 2396 07d9 00       		.byte	0
+ 2397 07da 0F       		.uleb128 0xf
+ 2398 07db 5B020000 		.4byte	.LASF36
+ 2399 07df 01       		.byte	0x1
+ 2400 07e0 1101     		.2byte	0x111
+ 2401 07e2 00000000 		.4byte	.LFB44
+ 2402 07e6 18000000 		.4byte	.LFE44-.LFB44
+ 2403 07ea 01       		.uleb128 0x1
+ 2404 07eb 9C       		.byte	0x9c
+ 2405 07ec 1E080000 		.4byte	0x81e
+ 2406 07f0 09       		.uleb128 0x9
+ 2407 07f1 0A000000 		.4byte	.LVL106
+ 2408 07f5 66070000 		.4byte	0x766
+ 2409 07f9 0A080000 		.4byte	0x80a
+ 2410 07fd 0A       		.uleb128 0xa
+ 2411 07fe 01       		.uleb128 0x1
+ 2412 07ff 51       		.byte	0x51
+ 2413 0800 02       		.uleb128 0x2
+ 2414 0801 09       		.byte	0x9
+ 2415 0802 C6       		.byte	0xc6
+ 2416 0803 0A       		.uleb128 0xa
+ 2417 0804 01       		.uleb128 0x1
+ 2418 0805 50       		.byte	0x50
+ 2419 0806 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 50
+
+
+ 2420 0807 08       		.byte	0x8
+ 2421 0808 20       		.byte	0x20
+ 2422 0809 00       		.byte	0
+ 2423 080a 0B       		.uleb128 0xb
+ 2424 080b 10000000 		.4byte	.LVL107
+ 2425 080f DA0B0000 		.4byte	0xbda
+ 2426 0813 0A       		.uleb128 0xa
+ 2427 0814 01       		.uleb128 0x1
+ 2428 0815 50       		.byte	0x50
+ 2429 0816 05       		.uleb128 0x5
+ 2430 0817 03       		.byte	0x3
+ 2431 0818 C2000000 		.4byte	.LC65
+ 2432 081c 00       		.byte	0
+ 2433 081d 00       		.byte	0
+ 2434 081e 0F       		.uleb128 0xf
+ 2435 081f 2D000000 		.4byte	.LASF37
+ 2436 0823 01       		.byte	0x1
+ 2437 0824 1701     		.2byte	0x117
+ 2438 0826 00000000 		.4byte	.LFB45
+ 2439 082a 6C000000 		.4byte	.LFE45-.LFB45
+ 2440 082e 01       		.uleb128 0x1
+ 2441 082f 9C       		.byte	0x9c
+ 2442 0830 BB080000 		.4byte	0x8bb
+ 2443 0834 11       		.uleb128 0x11
+ 2444 0835 E9030000 		.4byte	.LASF96
+ 2445 0839 01       		.byte	0x1
+ 2446 083a 2001     		.2byte	0x120
+ 2447 083c B8000000 		.4byte	0xb8
+ 2448 0840 09       		.uleb128 0x9
+ 2449 0841 0A000000 		.4byte	.LVL108
+ 2450 0845 C00B0000 		.4byte	0xbc0
+ 2451 0849 59080000 		.4byte	0x859
+ 2452 084d 0A       		.uleb128 0xa
+ 2453 084e 01       		.uleb128 0x1
+ 2454 084f 51       		.byte	0x51
+ 2455 0850 01       		.uleb128 0x1
+ 2456 0851 30       		.byte	0x30
+ 2457 0852 0A       		.uleb128 0xa
+ 2458 0853 01       		.uleb128 0x1
+ 2459 0854 50       		.byte	0x50
+ 2460 0855 02       		.uleb128 0x2
+ 2461 0856 08       		.byte	0x8
+ 2462 0857 5D       		.byte	0x5d
+ 2463 0858 00       		.byte	0
+ 2464 0859 09       		.uleb128 0x9
+ 2465 085a 10000000 		.4byte	.LVL109
+ 2466 085e F70B0000 		.4byte	0xbf7
+ 2467 0862 6D080000 		.4byte	0x86d
+ 2468 0866 0A       		.uleb128 0xa
+ 2469 0867 01       		.uleb128 0x1
+ 2470 0868 50       		.byte	0x50
+ 2471 0869 02       		.uleb128 0x2
+ 2472 086a 08       		.byte	0x8
+ 2473 086b A8       		.byte	0xa8
+ 2474 086c 00       		.byte	0
+ 2475 086d 09       		.uleb128 0x9
+ 2476 086e 18000000 		.4byte	.LVL110
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 51
+
+
+ 2477 0872 0C0C0000 		.4byte	0xc0c
+ 2478 0876 85080000 		.4byte	0x885
+ 2479 087a 0A       		.uleb128 0xa
+ 2480 087b 01       		.uleb128 0x1
+ 2481 087c 51       		.byte	0x51
+ 2482 087d 01       		.uleb128 0x1
+ 2483 087e 31       		.byte	0x31
+ 2484 087f 0A       		.uleb128 0xa
+ 2485 0880 01       		.uleb128 0x1
+ 2486 0881 50       		.byte	0x50
+ 2487 0882 01       		.uleb128 0x1
+ 2488 0883 4D       		.byte	0x4d
+ 2489 0884 00       		.byte	0
+ 2490 0885 09       		.uleb128 0x9
+ 2491 0886 1E000000 		.4byte	.LVL111
+ 2492 088a 260C0000 		.4byte	0xc26
+ 2493 088e 98080000 		.4byte	0x898
+ 2494 0892 0A       		.uleb128 0xa
+ 2495 0893 01       		.uleb128 0x1
+ 2496 0894 50       		.byte	0x50
+ 2497 0895 01       		.uleb128 0x1
+ 2498 0896 30       		.byte	0x30
+ 2499 0897 00       		.byte	0
+ 2500 0898 09       		.uleb128 0x9
+ 2501 0899 2A000000 		.4byte	.LVL112
+ 2502 089d 260C0000 		.4byte	0xc26
+ 2503 08a1 AB080000 		.4byte	0x8ab
+ 2504 08a5 0A       		.uleb128 0xa
+ 2505 08a6 01       		.uleb128 0x1
+ 2506 08a7 50       		.byte	0x50
+ 2507 08a8 01       		.uleb128 0x1
+ 2508 08a9 30       		.byte	0x30
+ 2509 08aa 00       		.byte	0
+ 2510 08ab 0B       		.uleb128 0xb
+ 2511 08ac 34000000 		.4byte	.LVL113
+ 2512 08b0 260C0000 		.4byte	0xc26
+ 2513 08b4 0A       		.uleb128 0xa
+ 2514 08b5 01       		.uleb128 0x1
+ 2515 08b6 50       		.byte	0x50
+ 2516 08b7 01       		.uleb128 0x1
+ 2517 08b8 31       		.byte	0x31
+ 2518 08b9 00       		.byte	0
+ 2519 08ba 00       		.byte	0
+ 2520 08bb 12       		.uleb128 0x12
+ 2521 08bc FD030000 		.4byte	.LASF38
+ 2522 08c0 01       		.byte	0x1
+ 2523 08c1 1C       		.byte	0x1c
+ 2524 08c2 97000000 		.4byte	0x97
+ 2525 08c6 05       		.uleb128 0x5
+ 2526 08c7 03       		.byte	0x3
+ 2527 08c8 00000000 		.4byte	gyro_x_h
+ 2528 08cc 12       		.uleb128 0x12
+ 2529 08cd 16040000 		.4byte	.LASF39
+ 2530 08d1 01       		.byte	0x1
+ 2531 08d2 1D       		.byte	0x1d
+ 2532 08d3 A2000000 		.4byte	0xa2
+ 2533 08d7 05       		.uleb128 0x5
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 52
+
+
+ 2534 08d8 03       		.byte	0x3
+ 2535 08d9 00000000 		.4byte	gyro_x_l
+ 2536 08dd 12       		.uleb128 0x12
+ 2537 08de 1D020000 		.4byte	.LASF40
+ 2538 08e2 01       		.byte	0x1
+ 2539 08e3 1E       		.byte	0x1e
+ 2540 08e4 AD000000 		.4byte	0xad
+ 2541 08e8 05       		.uleb128 0x5
+ 2542 08e9 03       		.byte	0x3
+ 2543 08ea 00000000 		.4byte	gyro_x
+ 2544 08ee 13       		.uleb128 0x13
+ 2545 08ef 20010000 		.4byte	.LASF41
+ 2546 08f3 01       		.byte	0x1
+ 2547 08f4 1F       		.byte	0x1f
+ 2548 08f5 AD000000 		.4byte	0xad
+ 2549 08f9 12       		.uleb128 0x12
+ 2550 08fa B2030000 		.4byte	.LASF42
+ 2551 08fe 01       		.byte	0x1
+ 2552 08ff 20       		.byte	0x20
+ 2553 0900 AD000000 		.4byte	0xad
+ 2554 0904 05       		.uleb128 0x5
+ 2555 0905 03       		.byte	0x3
+ 2556 0906 00000000 		.4byte	gyro_p
+ 2557 090a 12       		.uleb128 0x12
+ 2558 090b 50030000 		.4byte	.LASF43
+ 2559 090f 01       		.byte	0x1
+ 2560 0910 23       		.byte	0x23
+ 2561 0911 97000000 		.4byte	0x97
+ 2562 0915 05       		.uleb128 0x5
+ 2563 0916 03       		.byte	0x3
+ 2564 0917 00000000 		.4byte	gyro_y_h
+ 2565 091b 12       		.uleb128 0x12
+ 2566 091c 75030000 		.4byte	.LASF44
+ 2567 0920 01       		.byte	0x1
+ 2568 0921 24       		.byte	0x24
+ 2569 0922 A2000000 		.4byte	0xa2
+ 2570 0926 05       		.uleb128 0x5
+ 2571 0927 03       		.byte	0x3
+ 2572 0928 00000000 		.4byte	gyro_y_l
+ 2573 092c 12       		.uleb128 0x12
+ 2574 092d 1F040000 		.4byte	.LASF45
+ 2575 0931 01       		.byte	0x1
+ 2576 0932 25       		.byte	0x25
+ 2577 0933 AD000000 		.4byte	0xad
+ 2578 0937 05       		.uleb128 0x5
+ 2579 0938 03       		.byte	0x3
+ 2580 0939 00000000 		.4byte	gyro_y
+ 2581 093d 12       		.uleb128 0x12
+ 2582 093e B9030000 		.4byte	.LASF46
+ 2583 0942 01       		.byte	0x1
+ 2584 0943 26       		.byte	0x26
+ 2585 0944 AD000000 		.4byte	0xad
+ 2586 0948 05       		.uleb128 0x5
+ 2587 0949 03       		.byte	0x3
+ 2588 094a 00000000 		.4byte	gyro_q
+ 2589 094e 13       		.uleb128 0x13
+ 2590 094f 2C010000 		.4byte	.LASF47
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 53
+
+
+ 2591 0953 01       		.byte	0x1
+ 2592 0954 27       		.byte	0x27
+ 2593 0955 AD000000 		.4byte	0xad
+ 2594 0959 12       		.uleb128 0x12
+ 2595 095a 6B020000 		.4byte	.LASF48
+ 2596 095e 01       		.byte	0x1
+ 2597 095f 2A       		.byte	0x2a
+ 2598 0960 97000000 		.4byte	0x97
+ 2599 0964 05       		.uleb128 0x5
+ 2600 0965 03       		.byte	0x3
+ 2601 0966 00000000 		.4byte	gyro_z_h
+ 2602 096a 12       		.uleb128 0x12
+ 2603 096b 74020000 		.4byte	.LASF49
+ 2604 096f 01       		.byte	0x1
+ 2605 0970 2B       		.byte	0x2b
+ 2606 0971 A2000000 		.4byte	0xa2
+ 2607 0975 05       		.uleb128 0x5
+ 2608 0976 03       		.byte	0x3
+ 2609 0977 00000000 		.4byte	gyro_z_l
+ 2610 097b 12       		.uleb128 0x12
+ 2611 097c 32020000 		.4byte	.LASF50
+ 2612 0980 01       		.byte	0x1
+ 2613 0981 2C       		.byte	0x2c
+ 2614 0982 AD000000 		.4byte	0xad
+ 2615 0986 05       		.uleb128 0x5
+ 2616 0987 03       		.byte	0x3
+ 2617 0988 00000000 		.4byte	gyro_z
+ 2618 098c 12       		.uleb128 0x12
+ 2619 098d 02020000 		.4byte	.LASF51
+ 2620 0991 01       		.byte	0x1
+ 2621 0992 2D       		.byte	0x2d
+ 2622 0993 AD000000 		.4byte	0xad
+ 2623 0997 05       		.uleb128 0x5
+ 2624 0998 03       		.byte	0x3
+ 2625 0999 00000000 		.4byte	gyro_r
+ 2626 099d 13       		.uleb128 0x13
+ 2627 099e 38010000 		.4byte	.LASF52
+ 2628 09a2 01       		.byte	0x1
+ 2629 09a3 2E       		.byte	0x2e
+ 2630 09a4 AD000000 		.4byte	0xad
+ 2631 09a8 12       		.uleb128 0x12
+ 2632 09a9 A6030000 		.4byte	.LASF53
+ 2633 09ad 01       		.byte	0x1
+ 2634 09ae 31       		.byte	0x31
+ 2635 09af 97000000 		.4byte	0x97
+ 2636 09b3 05       		.uleb128 0x5
+ 2637 09b4 03       		.byte	0x3
+ 2638 09b5 00000000 		.4byte	temperature
+ 2639 09b9 12       		.uleb128 0x12
+ 2640 09ba 24020000 		.4byte	.LASF54
+ 2641 09be 01       		.byte	0x1
+ 2642 09bf 32       		.byte	0x32
+ 2643 09c0 A2000000 		.4byte	0xa2
+ 2644 09c4 05       		.uleb128 0x5
+ 2645 09c5 03       		.byte	0x3
+ 2646 09c6 00000000 		.4byte	temperature_0
+ 2647 09ca 12       		.uleb128 0x12
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 54
+
+
+ 2648 09cb 5C010000 		.4byte	.LASF55
+ 2649 09cf 01       		.byte	0x1
+ 2650 09d0 37       		.byte	0x37
+ 2651 09d1 AD000000 		.4byte	0xad
+ 2652 09d5 05       		.uleb128 0x5
+ 2653 09d6 03       		.byte	0x3
+ 2654 09d7 00000000 		.4byte	gyro_p_offset
+ 2655 09db 12       		.uleb128 0x12
+ 2656 09dc 8E000000 		.4byte	.LASF56
+ 2657 09e0 01       		.byte	0x1
+ 2658 09e1 38       		.byte	0x38
+ 2659 09e2 AD000000 		.4byte	0xad
+ 2660 09e6 05       		.uleb128 0x5
+ 2661 09e7 03       		.byte	0x3
+ 2662 09e8 00000000 		.4byte	gyro_q_offset
+ 2663 09ec 12       		.uleb128 0x12
+ 2664 09ed 1F000000 		.4byte	.LASF57
+ 2665 09f1 01       		.byte	0x1
+ 2666 09f2 39       		.byte	0x39
+ 2667 09f3 AD000000 		.4byte	0xad
+ 2668 09f7 05       		.uleb128 0x5
+ 2669 09f8 03       		.byte	0x3
+ 2670 09f9 00000000 		.4byte	gyro_r_offset
+ 2671 09fd 12       		.uleb128 0x12
+ 2672 09fe 14030000 		.4byte	.LASF58
+ 2673 0a02 01       		.byte	0x1
+ 2674 0a03 3B       		.byte	0x3b
+ 2675 0a04 A2000000 		.4byte	0xa2
+ 2676 0a08 05       		.uleb128 0x5
+ 2677 0a09 03       		.byte	0x3
+ 2678 0a0a 00000000 		.4byte	error_stat
+ 2679 0a0e 12       		.uleb128 0x12
+ 2680 0a0f A4040000 		.4byte	.LASF59
+ 2681 0a13 01       		.byte	0x1
+ 2682 0a14 41       		.byte	0x41
+ 2683 0a15 97000000 		.4byte	0x97
+ 2684 0a19 05       		.uleb128 0x5
+ 2685 0a1a 03       		.byte	0x3
+ 2686 0a1b 00000000 		.4byte	acc_x_h
+ 2687 0a1f 12       		.uleb128 0x12
+ 2688 0a20 EC000000 		.4byte	.LASF60
+ 2689 0a24 01       		.byte	0x1
+ 2690 0a25 42       		.byte	0x42
+ 2691 0a26 A2000000 		.4byte	0xa2
+ 2692 0a2a 05       		.uleb128 0x5
+ 2693 0a2b 03       		.byte	0x3
+ 2694 0a2c 00000000 		.4byte	acc_x_l
+ 2695 0a30 12       		.uleb128 0x12
+ 2696 0a31 11000000 		.4byte	.LASF61
+ 2697 0a35 01       		.byte	0x1
+ 2698 0a36 43       		.byte	0x43
+ 2699 0a37 AD000000 		.4byte	0xad
+ 2700 0a3b 05       		.uleb128 0x5
+ 2701 0a3c 03       		.byte	0x3
+ 2702 0a3d 00000000 		.4byte	acc_x
+ 2703 0a41 13       		.uleb128 0x13
+ 2704 0a42 CD000000 		.4byte	.LASF62
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 55
+
+
+ 2705 0a46 01       		.byte	0x1
+ 2706 0a47 44       		.byte	0x44
+ 2707 0a48 AD000000 		.4byte	0xad
+ 2708 0a4c 12       		.uleb128 0x12
+ 2709 0a4d 46000000 		.4byte	.LASF63
+ 2710 0a51 01       		.byte	0x1
+ 2711 0a52 46       		.byte	0x46
+ 2712 0a53 97000000 		.4byte	0x97
+ 2713 0a57 05       		.uleb128 0x5
+ 2714 0a58 03       		.byte	0x3
+ 2715 0a59 00000000 		.4byte	acc_y_h
+ 2716 0a5d 12       		.uleb128 0x12
+ 2717 0a5e 4E000000 		.4byte	.LASF64
+ 2718 0a62 01       		.byte	0x1
+ 2719 0a63 47       		.byte	0x47
+ 2720 0a64 A2000000 		.4byte	0xa2
+ 2721 0a68 05       		.uleb128 0x5
+ 2722 0a69 03       		.byte	0x3
+ 2723 0a6a 00000000 		.4byte	acc_y_l
+ 2724 0a6e 12       		.uleb128 0x12
+ 2725 0a6f 60000000 		.4byte	.LASF65
+ 2726 0a73 01       		.byte	0x1
+ 2727 0a74 48       		.byte	0x48
+ 2728 0a75 AD000000 		.4byte	0xad
+ 2729 0a79 05       		.uleb128 0x5
+ 2730 0a7a 03       		.byte	0x3
+ 2731 0a7b 00000000 		.4byte	acc_y
+ 2732 0a7f 13       		.uleb128 0x13
+ 2733 0a80 3E000000 		.4byte	.LASF66
+ 2734 0a84 01       		.byte	0x1
+ 2735 0a85 49       		.byte	0x49
+ 2736 0a86 AD000000 		.4byte	0xad
+ 2737 0a8a 12       		.uleb128 0x12
+ 2738 0a8b 94040000 		.4byte	.LASF67
+ 2739 0a8f 01       		.byte	0x1
+ 2740 0a90 4B       		.byte	0x4b
+ 2741 0a91 97000000 		.4byte	0x97
+ 2742 0a95 05       		.uleb128 0x5
+ 2743 0a96 03       		.byte	0x3
+ 2744 0a97 00000000 		.4byte	acc_z_h
+ 2745 0a9b 12       		.uleb128 0x12
+ 2746 0a9c 9C040000 		.4byte	.LASF68
+ 2747 0aa0 01       		.byte	0x1
+ 2748 0aa1 4C       		.byte	0x4c
+ 2749 0aa2 A2000000 		.4byte	0xa2
+ 2750 0aa6 05       		.uleb128 0x5
+ 2751 0aa7 03       		.byte	0x3
+ 2752 0aa8 00000000 		.4byte	acc_z_l
+ 2753 0aac 12       		.uleb128 0x12
+ 2754 0aad 66000000 		.4byte	.LASF69
+ 2755 0ab1 01       		.byte	0x1
+ 2756 0ab2 4D       		.byte	0x4d
+ 2757 0ab3 AD000000 		.4byte	0xad
+ 2758 0ab7 05       		.uleb128 0x5
+ 2759 0ab8 03       		.byte	0x3
+ 2760 0ab9 00000000 		.4byte	acc_z
+ 2761 0abd 13       		.uleb128 0x13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 56
+
+
+ 2762 0abe 86030000 		.4byte	.LASF70
+ 2763 0ac2 01       		.byte	0x1
+ 2764 0ac3 4E       		.byte	0x4e
+ 2765 0ac4 AD000000 		.4byte	0xad
+ 2766 0ac8 12       		.uleb128 0x12
+ 2767 0ac9 74000000 		.4byte	.LASF71
+ 2768 0acd 01       		.byte	0x1
+ 2769 0ace 50       		.byte	0x50
+ 2770 0acf 97000000 		.4byte	0x97
+ 2771 0ad3 05       		.uleb128 0x5
+ 2772 0ad4 03       		.byte	0x3
+ 2773 0ad5 00000000 		.4byte	mag_x_h
+ 2774 0ad9 12       		.uleb128 0x12
+ 2775 0ada 7E030000 		.4byte	.LASF72
+ 2776 0ade 01       		.byte	0x1
+ 2777 0adf 51       		.byte	0x51
+ 2778 0ae0 A2000000 		.4byte	0xa2
+ 2779 0ae4 05       		.uleb128 0x5
+ 2780 0ae5 03       		.byte	0x3
+ 2781 0ae6 00000000 		.4byte	mag_x_l
+ 2782 0aea 12       		.uleb128 0x12
+ 2783 0aeb 4A010000 		.4byte	.LASF73
+ 2784 0aef 01       		.byte	0x1
+ 2785 0af0 52       		.byte	0x52
+ 2786 0af1 AD000000 		.4byte	0xad
+ 2787 0af5 05       		.uleb128 0x5
+ 2788 0af6 03       		.byte	0x3
+ 2789 0af7 00000000 		.4byte	mag_x
+ 2790 0afb 13       		.uleb128 0x13
+ 2791 0afc 6C000000 		.4byte	.LASF74
+ 2792 0b00 01       		.byte	0x1
+ 2793 0b01 53       		.byte	0x53
+ 2794 0b02 AD000000 		.4byte	0xad
+ 2795 0b06 12       		.uleb128 0x12
+ 2796 0b07 00000000 		.4byte	.LASF75
+ 2797 0b0b 01       		.byte	0x1
+ 2798 0b0c 55       		.byte	0x55
+ 2799 0b0d 97000000 		.4byte	0x97
+ 2800 0b11 05       		.uleb128 0x5
+ 2801 0b12 03       		.byte	0x3
+ 2802 0b13 00000000 		.4byte	mag_y_h
+ 2803 0b17 12       		.uleb128 0x12
+ 2804 0b18 17000000 		.4byte	.LASF76
+ 2805 0b1c 01       		.byte	0x1
+ 2806 0b1d 56       		.byte	0x56
+ 2807 0b1e A2000000 		.4byte	0xa2
+ 2808 0b22 05       		.uleb128 0x5
+ 2809 0b23 03       		.byte	0x3
+ 2810 0b24 00000000 		.4byte	mag_y_l
+ 2811 0b28 12       		.uleb128 0x12
+ 2812 0b29 50010000 		.4byte	.LASF77
+ 2813 0b2d 01       		.byte	0x1
+ 2814 0b2e 57       		.byte	0x57
+ 2815 0b2f AD000000 		.4byte	0xad
+ 2816 0b33 05       		.uleb128 0x5
+ 2817 0b34 03       		.byte	0x3
+ 2818 0b35 00000000 		.4byte	mag_y
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 57
+
+
+ 2819 0b39 13       		.uleb128 0x13
+ 2820 0b3a BF040000 		.4byte	.LASF78
+ 2821 0b3e 01       		.byte	0x1
+ 2822 0b3f 58       		.byte	0x58
+ 2823 0b40 AD000000 		.4byte	0xad
+ 2824 0b44 12       		.uleb128 0x12
+ 2825 0b45 0E040000 		.4byte	.LASF79
+ 2826 0b49 01       		.byte	0x1
+ 2827 0b4a 5A       		.byte	0x5a
+ 2828 0b4b 97000000 		.4byte	0x97
+ 2829 0b4f 05       		.uleb128 0x5
+ 2830 0b50 03       		.byte	0x3
+ 2831 0b51 00000000 		.4byte	mag_z_h
+ 2832 0b55 12       		.uleb128 0x12
+ 2833 0b56 26040000 		.4byte	.LASF80
+ 2834 0b5a 01       		.byte	0x1
+ 2835 0b5b 5B       		.byte	0x5b
+ 2836 0b5c A2000000 		.4byte	0xa2
+ 2837 0b60 05       		.uleb128 0x5
+ 2838 0b61 03       		.byte	0x3
+ 2839 0b62 00000000 		.4byte	mag_z_l
+ 2840 0b66 12       		.uleb128 0x12
+ 2841 0b67 56010000 		.4byte	.LASF81
+ 2842 0b6b 01       		.byte	0x1
+ 2843 0b6c 5C       		.byte	0x5c
+ 2844 0b6d AD000000 		.4byte	0xad
+ 2845 0b71 05       		.uleb128 0x5
+ 2846 0b72 03       		.byte	0x3
+ 2847 0b73 00000000 		.4byte	mag_z
+ 2848 0b77 13       		.uleb128 0x13
+ 2849 0b78 06040000 		.4byte	.LASF82
+ 2850 0b7c 01       		.byte	0x1
+ 2851 0b7d 5D       		.byte	0x5d
+ 2852 0b7e AD000000 		.4byte	0xad
+ 2853 0b82 12       		.uleb128 0x12
+ 2854 0b83 7C000000 		.4byte	.LASF83
+ 2855 0b87 01       		.byte	0x1
+ 2856 0b88 62       		.byte	0x62
+ 2857 0b89 A2000000 		.4byte	0xa2
+ 2858 0b8d 05       		.uleb128 0x5
+ 2859 0b8e 03       		.byte	0x3
+ 2860 0b8f 00000000 		.4byte	bar_h
+ 2861 0b93 12       		.uleb128 0x12
+ 2862 0b94 88000000 		.4byte	.LASF84
+ 2863 0b98 01       		.byte	0x1
+ 2864 0b99 63       		.byte	0x63
+ 2865 0b9a A2000000 		.4byte	0xa2
+ 2866 0b9e 05       		.uleb128 0x5
+ 2867 0b9f 03       		.byte	0x3
+ 2868 0ba0 00000000 		.4byte	bar_l
+ 2869 0ba4 12       		.uleb128 0x12
+ 2870 0ba5 F4000000 		.4byte	.LASF85
+ 2871 0ba9 01       		.byte	0x1
+ 2872 0baa 64       		.byte	0x64
+ 2873 0bab A2000000 		.4byte	0xa2
+ 2874 0baf 05       		.uleb128 0x5
+ 2875 0bb0 03       		.byte	0x3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 58
+
+
+ 2876 0bb1 00000000 		.4byte	bar_xl
+ 2877 0bb5 13       		.uleb128 0x13
+ 2878 0bb6 80040000 		.4byte	.LASF86
+ 2879 0bba 01       		.byte	0x1
+ 2880 0bbb 65       		.byte	0x65
+ 2881 0bbc B8000000 		.4byte	0xb8
+ 2882 0bc0 14       		.uleb128 0x14
+ 2883 0bc1 8E030000 		.4byte	.LASF87
+ 2884 0bc5 05       		.byte	0x5
+ 2885 0bc6 BB       		.byte	0xbb
+ 2886 0bc7 C3000000 		.4byte	0xc3
+ 2887 0bcb DA0B0000 		.4byte	0xbda
+ 2888 0bcf 15       		.uleb128 0x15
+ 2889 0bd0 C3000000 		.4byte	0xc3
+ 2890 0bd4 15       		.uleb128 0x15
+ 2891 0bd5 C3000000 		.4byte	0xc3
+ 2892 0bd9 00       		.byte	0
+ 2893 0bda 16       		.uleb128 0x16
+ 2894 0bdb 60030000 		.4byte	.LASF90
+ 2895 0bdf 06       		.byte	0x6
+ 2896 0be0 6801     		.2byte	0x168
+ 2897 0be2 EC0B0000 		.4byte	0xbec
+ 2898 0be6 15       		.uleb128 0x15
+ 2899 0be7 EC0B0000 		.4byte	0xbec
+ 2900 0beb 00       		.byte	0
+ 2901 0bec 17       		.uleb128 0x17
+ 2902 0bed 04       		.byte	0x4
+ 2903 0bee F20B0000 		.4byte	0xbf2
+ 2904 0bf2 18       		.uleb128 0x18
+ 2905 0bf3 DC000000 		.4byte	0xdc
+ 2906 0bf7 14       		.uleb128 0x14
+ 2907 0bf8 B5000000 		.4byte	.LASF88
+ 2908 0bfc 05       		.byte	0x5
+ 2909 0bfd BE       		.byte	0xbe
+ 2910 0bfe C3000000 		.4byte	0xc3
+ 2911 0c02 0C0C0000 		.4byte	0xc0c
+ 2912 0c06 15       		.uleb128 0x15
+ 2913 0c07 C3000000 		.4byte	0xc3
+ 2914 0c0b 00       		.byte	0
+ 2915 0c0c 14       		.uleb128 0x14
+ 2916 0c0d C8010000 		.4byte	.LASF89
+ 2917 0c11 05       		.byte	0x5
+ 2918 0c12 BC       		.byte	0xbc
+ 2919 0c13 C3000000 		.4byte	0xc3
+ 2920 0c17 260C0000 		.4byte	0xc26
+ 2921 0c1b 15       		.uleb128 0x15
+ 2922 0c1c C3000000 		.4byte	0xc3
+ 2923 0c20 15       		.uleb128 0x15
+ 2924 0c21 C3000000 		.4byte	0xc3
+ 2925 0c25 00       		.byte	0
+ 2926 0c26 19       		.uleb128 0x19
+ 2927 0c27 D5000000 		.4byte	.LASF91
+ 2928 0c2b 05       		.byte	0x5
+ 2929 0c2c BF       		.byte	0xbf
+ 2930 0c2d C3000000 		.4byte	0xc3
+ 2931 0c31 15       		.uleb128 0x15
+ 2932 0c32 C3000000 		.4byte	0xc3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 59
+
+
+ 2933 0c36 00       		.byte	0
+ 2934 0c37 00       		.byte	0
+ 2935              		.section	.debug_abbrev,"",%progbits
+ 2936              	.Ldebug_abbrev0:
+ 2937 0000 01       		.uleb128 0x1
+ 2938 0001 11       		.uleb128 0x11
+ 2939 0002 01       		.byte	0x1
+ 2940 0003 25       		.uleb128 0x25
+ 2941 0004 0E       		.uleb128 0xe
+ 2942 0005 13       		.uleb128 0x13
+ 2943 0006 0B       		.uleb128 0xb
+ 2944 0007 03       		.uleb128 0x3
+ 2945 0008 0E       		.uleb128 0xe
+ 2946 0009 1B       		.uleb128 0x1b
+ 2947 000a 0E       		.uleb128 0xe
+ 2948 000b 55       		.uleb128 0x55
+ 2949 000c 17       		.uleb128 0x17
+ 2950 000d 11       		.uleb128 0x11
+ 2951 000e 01       		.uleb128 0x1
+ 2952 000f 10       		.uleb128 0x10
+ 2953 0010 17       		.uleb128 0x17
+ 2954 0011 00       		.byte	0
+ 2955 0012 00       		.byte	0
+ 2956 0013 02       		.uleb128 0x2
+ 2957 0014 16       		.uleb128 0x16
+ 2958 0015 00       		.byte	0
+ 2959 0016 03       		.uleb128 0x3
+ 2960 0017 0E       		.uleb128 0xe
+ 2961 0018 3A       		.uleb128 0x3a
+ 2962 0019 0B       		.uleb128 0xb
+ 2963 001a 3B       		.uleb128 0x3b
+ 2964 001b 0B       		.uleb128 0xb
+ 2965 001c 49       		.uleb128 0x49
+ 2966 001d 13       		.uleb128 0x13
+ 2967 001e 00       		.byte	0
+ 2968 001f 00       		.byte	0
+ 2969 0020 03       		.uleb128 0x3
+ 2970 0021 24       		.uleb128 0x24
+ 2971 0022 00       		.byte	0
+ 2972 0023 0B       		.uleb128 0xb
+ 2973 0024 0B       		.uleb128 0xb
+ 2974 0025 3E       		.uleb128 0x3e
+ 2975 0026 0B       		.uleb128 0xb
+ 2976 0027 03       		.uleb128 0x3
+ 2977 0028 0E       		.uleb128 0xe
+ 2978 0029 00       		.byte	0
+ 2979 002a 00       		.byte	0
+ 2980 002b 04       		.uleb128 0x4
+ 2981 002c 24       		.uleb128 0x24
+ 2982 002d 00       		.byte	0
+ 2983 002e 0B       		.uleb128 0xb
+ 2984 002f 0B       		.uleb128 0xb
+ 2985 0030 3E       		.uleb128 0x3e
+ 2986 0031 0B       		.uleb128 0xb
+ 2987 0032 03       		.uleb128 0x3
+ 2988 0033 08       		.uleb128 0x8
+ 2989 0034 00       		.byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 60
+
+
+ 2990 0035 00       		.byte	0
+ 2991 0036 05       		.uleb128 0x5
+ 2992 0037 16       		.uleb128 0x16
+ 2993 0038 00       		.byte	0
+ 2994 0039 03       		.uleb128 0x3
+ 2995 003a 0E       		.uleb128 0xe
+ 2996 003b 3A       		.uleb128 0x3a
+ 2997 003c 0B       		.uleb128 0xb
+ 2998 003d 3B       		.uleb128 0x3b
+ 2999 003e 05       		.uleb128 0x5
+ 3000 003f 49       		.uleb128 0x49
+ 3001 0040 13       		.uleb128 0x13
+ 3002 0041 00       		.byte	0
+ 3003 0042 00       		.byte	0
+ 3004 0043 06       		.uleb128 0x6
+ 3005 0044 35       		.uleb128 0x35
+ 3006 0045 00       		.byte	0
+ 3007 0046 49       		.uleb128 0x49
+ 3008 0047 13       		.uleb128 0x13
+ 3009 0048 00       		.byte	0
+ 3010 0049 00       		.byte	0
+ 3011 004a 07       		.uleb128 0x7
+ 3012 004b 2E       		.uleb128 0x2e
+ 3013 004c 01       		.byte	0x1
+ 3014 004d 3F       		.uleb128 0x3f
+ 3015 004e 19       		.uleb128 0x19
+ 3016 004f 03       		.uleb128 0x3
+ 3017 0050 0E       		.uleb128 0xe
+ 3018 0051 3A       		.uleb128 0x3a
+ 3019 0052 0B       		.uleb128 0xb
+ 3020 0053 3B       		.uleb128 0x3b
+ 3021 0054 0B       		.uleb128 0xb
+ 3022 0055 27       		.uleb128 0x27
+ 3023 0056 19       		.uleb128 0x19
+ 3024 0057 11       		.uleb128 0x11
+ 3025 0058 01       		.uleb128 0x1
+ 3026 0059 12       		.uleb128 0x12
+ 3027 005a 06       		.uleb128 0x6
+ 3028 005b 40       		.uleb128 0x40
+ 3029 005c 18       		.uleb128 0x18
+ 3030 005d 9742     		.uleb128 0x2117
+ 3031 005f 19       		.uleb128 0x19
+ 3032 0060 01       		.uleb128 0x1
+ 3033 0061 13       		.uleb128 0x13
+ 3034 0062 00       		.byte	0
+ 3035 0063 00       		.byte	0
+ 3036 0064 08       		.uleb128 0x8
+ 3037 0065 05       		.uleb128 0x5
+ 3038 0066 00       		.byte	0
+ 3039 0067 03       		.uleb128 0x3
+ 3040 0068 0E       		.uleb128 0xe
+ 3041 0069 3A       		.uleb128 0x3a
+ 3042 006a 0B       		.uleb128 0xb
+ 3043 006b 3B       		.uleb128 0x3b
+ 3044 006c 0B       		.uleb128 0xb
+ 3045 006d 49       		.uleb128 0x49
+ 3046 006e 13       		.uleb128 0x13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 61
+
+
+ 3047 006f 02       		.uleb128 0x2
+ 3048 0070 17       		.uleb128 0x17
+ 3049 0071 00       		.byte	0
+ 3050 0072 00       		.byte	0
+ 3051 0073 09       		.uleb128 0x9
+ 3052 0074 898201   		.uleb128 0x4109
+ 3053 0077 01       		.byte	0x1
+ 3054 0078 11       		.uleb128 0x11
+ 3055 0079 01       		.uleb128 0x1
+ 3056 007a 31       		.uleb128 0x31
+ 3057 007b 13       		.uleb128 0x13
+ 3058 007c 01       		.uleb128 0x1
+ 3059 007d 13       		.uleb128 0x13
+ 3060 007e 00       		.byte	0
+ 3061 007f 00       		.byte	0
+ 3062 0080 0A       		.uleb128 0xa
+ 3063 0081 8A8201   		.uleb128 0x410a
+ 3064 0084 00       		.byte	0
+ 3065 0085 02       		.uleb128 0x2
+ 3066 0086 18       		.uleb128 0x18
+ 3067 0087 9142     		.uleb128 0x2111
+ 3068 0089 18       		.uleb128 0x18
+ 3069 008a 00       		.byte	0
+ 3070 008b 00       		.byte	0
+ 3071 008c 0B       		.uleb128 0xb
+ 3072 008d 898201   		.uleb128 0x4109
+ 3073 0090 01       		.byte	0x1
+ 3074 0091 11       		.uleb128 0x11
+ 3075 0092 01       		.uleb128 0x1
+ 3076 0093 31       		.uleb128 0x31
+ 3077 0094 13       		.uleb128 0x13
+ 3078 0095 00       		.byte	0
+ 3079 0096 00       		.byte	0
+ 3080 0097 0C       		.uleb128 0xc
+ 3081 0098 2E       		.uleb128 0x2e
+ 3082 0099 01       		.byte	0x1
+ 3083 009a 3F       		.uleb128 0x3f
+ 3084 009b 19       		.uleb128 0x19
+ 3085 009c 03       		.uleb128 0x3
+ 3086 009d 0E       		.uleb128 0xe
+ 3087 009e 3A       		.uleb128 0x3a
+ 3088 009f 0B       		.uleb128 0xb
+ 3089 00a0 3B       		.uleb128 0x3b
+ 3090 00a1 0B       		.uleb128 0xb
+ 3091 00a2 27       		.uleb128 0x27
+ 3092 00a3 19       		.uleb128 0x19
+ 3093 00a4 49       		.uleb128 0x49
+ 3094 00a5 13       		.uleb128 0x13
+ 3095 00a6 11       		.uleb128 0x11
+ 3096 00a7 01       		.uleb128 0x1
+ 3097 00a8 12       		.uleb128 0x12
+ 3098 00a9 06       		.uleb128 0x6
+ 3099 00aa 40       		.uleb128 0x40
+ 3100 00ab 18       		.uleb128 0x18
+ 3101 00ac 9742     		.uleb128 0x2117
+ 3102 00ae 19       		.uleb128 0x19
+ 3103 00af 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 62
+
+
+ 3104 00b0 13       		.uleb128 0x13
+ 3105 00b1 00       		.byte	0
+ 3106 00b2 00       		.byte	0
+ 3107 00b3 0D       		.uleb128 0xd
+ 3108 00b4 34       		.uleb128 0x34
+ 3109 00b5 00       		.byte	0
+ 3110 00b6 03       		.uleb128 0x3
+ 3111 00b7 0E       		.uleb128 0xe
+ 3112 00b8 3A       		.uleb128 0x3a
+ 3113 00b9 0B       		.uleb128 0xb
+ 3114 00ba 3B       		.uleb128 0x3b
+ 3115 00bb 0B       		.uleb128 0xb
+ 3116 00bc 49       		.uleb128 0x49
+ 3117 00bd 13       		.uleb128 0x13
+ 3118 00be 02       		.uleb128 0x2
+ 3119 00bf 17       		.uleb128 0x17
+ 3120 00c0 00       		.byte	0
+ 3121 00c1 00       		.byte	0
+ 3122 00c2 0E       		.uleb128 0xe
+ 3123 00c3 2E       		.uleb128 0x2e
+ 3124 00c4 01       		.byte	0x1
+ 3125 00c5 3F       		.uleb128 0x3f
+ 3126 00c6 19       		.uleb128 0x19
+ 3127 00c7 03       		.uleb128 0x3
+ 3128 00c8 0E       		.uleb128 0xe
+ 3129 00c9 3A       		.uleb128 0x3a
+ 3130 00ca 0B       		.uleb128 0xb
+ 3131 00cb 3B       		.uleb128 0x3b
+ 3132 00cc 0B       		.uleb128 0xb
+ 3133 00cd 27       		.uleb128 0x27
+ 3134 00ce 19       		.uleb128 0x19
+ 3135 00cf 11       		.uleb128 0x11
+ 3136 00d0 01       		.uleb128 0x1
+ 3137 00d1 12       		.uleb128 0x12
+ 3138 00d2 06       		.uleb128 0x6
+ 3139 00d3 40       		.uleb128 0x40
+ 3140 00d4 18       		.uleb128 0x18
+ 3141 00d5 9642     		.uleb128 0x2116
+ 3142 00d7 19       		.uleb128 0x19
+ 3143 00d8 01       		.uleb128 0x1
+ 3144 00d9 13       		.uleb128 0x13
+ 3145 00da 00       		.byte	0
+ 3146 00db 00       		.byte	0
+ 3147 00dc 0F       		.uleb128 0xf
+ 3148 00dd 2E       		.uleb128 0x2e
+ 3149 00de 01       		.byte	0x1
+ 3150 00df 3F       		.uleb128 0x3f
+ 3151 00e0 19       		.uleb128 0x19
+ 3152 00e1 03       		.uleb128 0x3
+ 3153 00e2 0E       		.uleb128 0xe
+ 3154 00e3 3A       		.uleb128 0x3a
+ 3155 00e4 0B       		.uleb128 0xb
+ 3156 00e5 3B       		.uleb128 0x3b
+ 3157 00e6 05       		.uleb128 0x5
+ 3158 00e7 27       		.uleb128 0x27
+ 3159 00e8 19       		.uleb128 0x19
+ 3160 00e9 11       		.uleb128 0x11
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 63
+
+
+ 3161 00ea 01       		.uleb128 0x1
+ 3162 00eb 12       		.uleb128 0x12
+ 3163 00ec 06       		.uleb128 0x6
+ 3164 00ed 40       		.uleb128 0x40
+ 3165 00ee 18       		.uleb128 0x18
+ 3166 00ef 9742     		.uleb128 0x2117
+ 3167 00f1 19       		.uleb128 0x19
+ 3168 00f2 01       		.uleb128 0x1
+ 3169 00f3 13       		.uleb128 0x13
+ 3170 00f4 00       		.byte	0
+ 3171 00f5 00       		.byte	0
+ 3172 00f6 10       		.uleb128 0x10
+ 3173 00f7 05       		.uleb128 0x5
+ 3174 00f8 00       		.byte	0
+ 3175 00f9 03       		.uleb128 0x3
+ 3176 00fa 0E       		.uleb128 0xe
+ 3177 00fb 3A       		.uleb128 0x3a
+ 3178 00fc 0B       		.uleb128 0xb
+ 3179 00fd 3B       		.uleb128 0x3b
+ 3180 00fe 05       		.uleb128 0x5
+ 3181 00ff 49       		.uleb128 0x49
+ 3182 0100 13       		.uleb128 0x13
+ 3183 0101 02       		.uleb128 0x2
+ 3184 0102 17       		.uleb128 0x17
+ 3185 0103 00       		.byte	0
+ 3186 0104 00       		.byte	0
+ 3187 0105 11       		.uleb128 0x11
+ 3188 0106 34       		.uleb128 0x34
+ 3189 0107 00       		.byte	0
+ 3190 0108 03       		.uleb128 0x3
+ 3191 0109 0E       		.uleb128 0xe
+ 3192 010a 3A       		.uleb128 0x3a
+ 3193 010b 0B       		.uleb128 0xb
+ 3194 010c 3B       		.uleb128 0x3b
+ 3195 010d 05       		.uleb128 0x5
+ 3196 010e 49       		.uleb128 0x49
+ 3197 010f 13       		.uleb128 0x13
+ 3198 0110 00       		.byte	0
+ 3199 0111 00       		.byte	0
+ 3200 0112 12       		.uleb128 0x12
+ 3201 0113 34       		.uleb128 0x34
+ 3202 0114 00       		.byte	0
+ 3203 0115 03       		.uleb128 0x3
+ 3204 0116 0E       		.uleb128 0xe
+ 3205 0117 3A       		.uleb128 0x3a
+ 3206 0118 0B       		.uleb128 0xb
+ 3207 0119 3B       		.uleb128 0x3b
+ 3208 011a 0B       		.uleb128 0xb
+ 3209 011b 49       		.uleb128 0x49
+ 3210 011c 13       		.uleb128 0x13
+ 3211 011d 3F       		.uleb128 0x3f
+ 3212 011e 19       		.uleb128 0x19
+ 3213 011f 02       		.uleb128 0x2
+ 3214 0120 18       		.uleb128 0x18
+ 3215 0121 00       		.byte	0
+ 3216 0122 00       		.byte	0
+ 3217 0123 13       		.uleb128 0x13
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 64
+
+
+ 3218 0124 34       		.uleb128 0x34
+ 3219 0125 00       		.byte	0
+ 3220 0126 03       		.uleb128 0x3
+ 3221 0127 0E       		.uleb128 0xe
+ 3222 0128 3A       		.uleb128 0x3a
+ 3223 0129 0B       		.uleb128 0xb
+ 3224 012a 3B       		.uleb128 0x3b
+ 3225 012b 0B       		.uleb128 0xb
+ 3226 012c 49       		.uleb128 0x49
+ 3227 012d 13       		.uleb128 0x13
+ 3228 012e 3F       		.uleb128 0x3f
+ 3229 012f 19       		.uleb128 0x19
+ 3230 0130 3C       		.uleb128 0x3c
+ 3231 0131 19       		.uleb128 0x19
+ 3232 0132 00       		.byte	0
+ 3233 0133 00       		.byte	0
+ 3234 0134 14       		.uleb128 0x14
+ 3235 0135 2E       		.uleb128 0x2e
+ 3236 0136 01       		.byte	0x1
+ 3237 0137 3F       		.uleb128 0x3f
+ 3238 0138 19       		.uleb128 0x19
+ 3239 0139 03       		.uleb128 0x3
+ 3240 013a 0E       		.uleb128 0xe
+ 3241 013b 3A       		.uleb128 0x3a
+ 3242 013c 0B       		.uleb128 0xb
+ 3243 013d 3B       		.uleb128 0x3b
+ 3244 013e 0B       		.uleb128 0xb
+ 3245 013f 27       		.uleb128 0x27
+ 3246 0140 19       		.uleb128 0x19
+ 3247 0141 49       		.uleb128 0x49
+ 3248 0142 13       		.uleb128 0x13
+ 3249 0143 3C       		.uleb128 0x3c
+ 3250 0144 19       		.uleb128 0x19
+ 3251 0145 01       		.uleb128 0x1
+ 3252 0146 13       		.uleb128 0x13
+ 3253 0147 00       		.byte	0
+ 3254 0148 00       		.byte	0
+ 3255 0149 15       		.uleb128 0x15
+ 3256 014a 05       		.uleb128 0x5
+ 3257 014b 00       		.byte	0
+ 3258 014c 49       		.uleb128 0x49
+ 3259 014d 13       		.uleb128 0x13
+ 3260 014e 00       		.byte	0
+ 3261 014f 00       		.byte	0
+ 3262 0150 16       		.uleb128 0x16
+ 3263 0151 2E       		.uleb128 0x2e
+ 3264 0152 01       		.byte	0x1
+ 3265 0153 3F       		.uleb128 0x3f
+ 3266 0154 19       		.uleb128 0x19
+ 3267 0155 03       		.uleb128 0x3
+ 3268 0156 0E       		.uleb128 0xe
+ 3269 0157 3A       		.uleb128 0x3a
+ 3270 0158 0B       		.uleb128 0xb
+ 3271 0159 3B       		.uleb128 0x3b
+ 3272 015a 05       		.uleb128 0x5
+ 3273 015b 27       		.uleb128 0x27
+ 3274 015c 19       		.uleb128 0x19
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 65
+
+
+ 3275 015d 3C       		.uleb128 0x3c
+ 3276 015e 19       		.uleb128 0x19
+ 3277 015f 01       		.uleb128 0x1
+ 3278 0160 13       		.uleb128 0x13
+ 3279 0161 00       		.byte	0
+ 3280 0162 00       		.byte	0
+ 3281 0163 17       		.uleb128 0x17
+ 3282 0164 0F       		.uleb128 0xf
+ 3283 0165 00       		.byte	0
+ 3284 0166 0B       		.uleb128 0xb
+ 3285 0167 0B       		.uleb128 0xb
+ 3286 0168 49       		.uleb128 0x49
+ 3287 0169 13       		.uleb128 0x13
+ 3288 016a 00       		.byte	0
+ 3289 016b 00       		.byte	0
+ 3290 016c 18       		.uleb128 0x18
+ 3291 016d 26       		.uleb128 0x26
+ 3292 016e 00       		.byte	0
+ 3293 016f 49       		.uleb128 0x49
+ 3294 0170 13       		.uleb128 0x13
+ 3295 0171 00       		.byte	0
+ 3296 0172 00       		.byte	0
+ 3297 0173 19       		.uleb128 0x19
+ 3298 0174 2E       		.uleb128 0x2e
+ 3299 0175 01       		.byte	0x1
+ 3300 0176 3F       		.uleb128 0x3f
+ 3301 0177 19       		.uleb128 0x19
+ 3302 0178 03       		.uleb128 0x3
+ 3303 0179 0E       		.uleb128 0xe
+ 3304 017a 3A       		.uleb128 0x3a
+ 3305 017b 0B       		.uleb128 0xb
+ 3306 017c 3B       		.uleb128 0x3b
+ 3307 017d 0B       		.uleb128 0xb
+ 3308 017e 27       		.uleb128 0x27
+ 3309 017f 19       		.uleb128 0x19
+ 3310 0180 49       		.uleb128 0x49
+ 3311 0181 13       		.uleb128 0x13
+ 3312 0182 3C       		.uleb128 0x3c
+ 3313 0183 19       		.uleb128 0x19
+ 3314 0184 00       		.byte	0
+ 3315 0185 00       		.byte	0
+ 3316 0186 00       		.byte	0
+ 3317              		.section	.debug_loc,"",%progbits
+ 3318              	.Ldebug_loc0:
+ 3319              	.LLST0:
+ 3320 0000 00000000 		.4byte	.LVL0
+ 3321 0004 08000000 		.4byte	.LVL1
+ 3322 0008 0100     		.2byte	0x1
+ 3323 000a 50       		.byte	0x50
+ 3324 000b 08000000 		.4byte	.LVL1
+ 3325 000f 5C000000 		.4byte	.LFE33
+ 3326 0013 0400     		.2byte	0x4
+ 3327 0015 F3       		.byte	0xf3
+ 3328 0016 01       		.uleb128 0x1
+ 3329 0017 50       		.byte	0x50
+ 3330 0018 9F       		.byte	0x9f
+ 3331 0019 00000000 		.4byte	0
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 66
+
+
+ 3332 001d 00000000 		.4byte	0
+ 3333              	.LLST1:
+ 3334 0021 00000000 		.4byte	.LVL0
+ 3335 0025 0A000000 		.4byte	.LVL2
+ 3336 0029 0100     		.2byte	0x1
+ 3337 002b 51       		.byte	0x51
+ 3338 002c 0A000000 		.4byte	.LVL2
+ 3339 0030 5C000000 		.4byte	.LFE33
+ 3340 0034 0400     		.2byte	0x4
+ 3341 0036 F3       		.byte	0xf3
+ 3342 0037 01       		.uleb128 0x1
+ 3343 0038 51       		.byte	0x51
+ 3344 0039 9F       		.byte	0x9f
+ 3345 003a 00000000 		.4byte	0
+ 3346 003e 00000000 		.4byte	0
+ 3347              	.LLST2:
+ 3348 0042 00000000 		.4byte	.LVL10
+ 3349 0046 08000000 		.4byte	.LVL11
+ 3350 004a 0100     		.2byte	0x1
+ 3351 004c 50       		.byte	0x50
+ 3352 004d 08000000 		.4byte	.LVL11
+ 3353 0051 3C000000 		.4byte	.LFE34
+ 3354 0055 0400     		.2byte	0x4
+ 3355 0057 F3       		.byte	0xf3
+ 3356 0058 01       		.uleb128 0x1
+ 3357 0059 50       		.byte	0x50
+ 3358 005a 9F       		.byte	0x9f
+ 3359 005b 00000000 		.4byte	0
+ 3360 005f 00000000 		.4byte	0
+ 3361              	.LLST3:
+ 3362 0063 20000000 		.4byte	.LVL15
+ 3363 0067 30000000 		.4byte	.LVL16
+ 3364 006b 0100     		.2byte	0x1
+ 3365 006d 50       		.byte	0x50
+ 3366 006e 00000000 		.4byte	0
+ 3367 0072 00000000 		.4byte	0
+ 3368              	.LLST4:
+ 3369 0076 00000000 		.4byte	.LVL39
+ 3370 007a 08000000 		.4byte	.LVL40
+ 3371 007e 0100     		.2byte	0x1
+ 3372 0080 50       		.byte	0x50
+ 3373 0081 08000000 		.4byte	.LVL40
+ 3374 0085 5C000000 		.4byte	.LFE37
+ 3375 0089 0400     		.2byte	0x4
+ 3376 008b F3       		.byte	0xf3
+ 3377 008c 01       		.uleb128 0x1
+ 3378 008d 50       		.byte	0x50
+ 3379 008e 9F       		.byte	0x9f
+ 3380 008f 00000000 		.4byte	0
+ 3381 0093 00000000 		.4byte	0
+ 3382              	.LLST5:
+ 3383 0097 00000000 		.4byte	.LVL39
+ 3384 009b 0A000000 		.4byte	.LVL41
+ 3385 009f 0100     		.2byte	0x1
+ 3386 00a1 51       		.byte	0x51
+ 3387 00a2 0A000000 		.4byte	.LVL41
+ 3388 00a6 5C000000 		.4byte	.LFE37
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 67
+
+
+ 3389 00aa 0400     		.2byte	0x4
+ 3390 00ac F3       		.byte	0xf3
+ 3391 00ad 01       		.uleb128 0x1
+ 3392 00ae 51       		.byte	0x51
+ 3393 00af 9F       		.byte	0x9f
+ 3394 00b0 00000000 		.4byte	0
+ 3395 00b4 00000000 		.4byte	0
+ 3396              	.LLST6:
+ 3397 00b8 00000000 		.4byte	.LVL69
+ 3398 00bc 08000000 		.4byte	.LVL70
+ 3399 00c0 0100     		.2byte	0x1
+ 3400 00c2 50       		.byte	0x50
+ 3401 00c3 08000000 		.4byte	.LVL70
+ 3402 00c7 5C000000 		.4byte	.LFE40
+ 3403 00cb 0400     		.2byte	0x4
+ 3404 00cd F3       		.byte	0xf3
+ 3405 00ce 01       		.uleb128 0x1
+ 3406 00cf 50       		.byte	0x50
+ 3407 00d0 9F       		.byte	0x9f
+ 3408 00d1 00000000 		.4byte	0
+ 3409 00d5 00000000 		.4byte	0
+ 3410              	.LLST7:
+ 3411 00d9 00000000 		.4byte	.LVL69
+ 3412 00dd 0A000000 		.4byte	.LVL71
+ 3413 00e1 0100     		.2byte	0x1
+ 3414 00e3 51       		.byte	0x51
+ 3415 00e4 0A000000 		.4byte	.LVL71
+ 3416 00e8 5C000000 		.4byte	.LFE40
+ 3417 00ec 0400     		.2byte	0x4
+ 3418 00ee F3       		.byte	0xf3
+ 3419 00ef 01       		.uleb128 0x1
+ 3420 00f0 51       		.byte	0x51
+ 3421 00f1 9F       		.byte	0x9f
+ 3422 00f2 00000000 		.4byte	0
+ 3423 00f6 00000000 		.4byte	0
+ 3424              	.LLST8:
+ 3425 00fa 00000000 		.4byte	.LVL100
+ 3426 00fe 08000000 		.4byte	.LVL101
+ 3427 0102 0100     		.2byte	0x1
+ 3428 0104 50       		.byte	0x50
+ 3429 0105 08000000 		.4byte	.LVL101
+ 3430 0109 34000000 		.4byte	.LFE43
+ 3431 010d 0400     		.2byte	0x4
+ 3432 010f F3       		.byte	0xf3
+ 3433 0110 01       		.uleb128 0x1
+ 3434 0111 50       		.byte	0x50
+ 3435 0112 9F       		.byte	0x9f
+ 3436 0113 00000000 		.4byte	0
+ 3437 0117 00000000 		.4byte	0
+ 3438              	.LLST9:
+ 3439 011b 00000000 		.4byte	.LVL100
+ 3440 011f 0A000000 		.4byte	.LVL102
+ 3441 0123 0100     		.2byte	0x1
+ 3442 0125 51       		.byte	0x51
+ 3443 0126 0A000000 		.4byte	.LVL102
+ 3444 012a 34000000 		.4byte	.LFE43
+ 3445 012e 0400     		.2byte	0x4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 68
+
+
+ 3446 0130 F3       		.byte	0xf3
+ 3447 0131 01       		.uleb128 0x1
+ 3448 0132 51       		.byte	0x51
+ 3449 0133 9F       		.byte	0x9f
+ 3450 0134 00000000 		.4byte	0
+ 3451 0138 00000000 		.4byte	0
+ 3452              		.section	.debug_aranges,"",%progbits
+ 3453 0000 7C000000 		.4byte	0x7c
+ 3454 0004 0200     		.2byte	0x2
+ 3455 0006 00000000 		.4byte	.Ldebug_info0
+ 3456 000a 04       		.byte	0x4
+ 3457 000b 00       		.byte	0
+ 3458 000c 0000     		.2byte	0
+ 3459 000e 0000     		.2byte	0
+ 3460 0010 00000000 		.4byte	.LFB33
+ 3461 0014 5C000000 		.4byte	.LFE33-.LFB33
+ 3462 0018 00000000 		.4byte	.LFB34
+ 3463 001c 3C000000 		.4byte	.LFE34-.LFB34
+ 3464 0020 00000000 		.4byte	.LFB35
+ 3465 0024 28000000 		.4byte	.LFE35-.LFB35
+ 3466 0028 00000000 		.4byte	.LFB36
+ 3467 002c F0000000 		.4byte	.LFE36-.LFB36
+ 3468 0030 00000000 		.4byte	.LFB37
+ 3469 0034 5C000000 		.4byte	.LFE37-.LFB37
+ 3470 0038 00000000 		.4byte	.LFB38
+ 3471 003c 18000000 		.4byte	.LFE38-.LFB38
+ 3472 0040 00000000 		.4byte	.LFB39
+ 3473 0044 F0000000 		.4byte	.LFE39-.LFB39
+ 3474 0048 00000000 		.4byte	.LFB40
+ 3475 004c 5C000000 		.4byte	.LFE40-.LFB40
+ 3476 0050 00000000 		.4byte	.LFB41
+ 3477 0054 20000000 		.4byte	.LFE41-.LFB41
+ 3478 0058 00000000 		.4byte	.LFB42
+ 3479 005c F0000000 		.4byte	.LFE42-.LFB42
+ 3480 0060 00000000 		.4byte	.LFB43
+ 3481 0064 34000000 		.4byte	.LFE43-.LFB43
+ 3482 0068 00000000 		.4byte	.LFB44
+ 3483 006c 18000000 		.4byte	.LFE44-.LFB44
+ 3484 0070 00000000 		.4byte	.LFB45
+ 3485 0074 6C000000 		.4byte	.LFE45-.LFB45
+ 3486 0078 00000000 		.4byte	0
+ 3487 007c 00000000 		.4byte	0
+ 3488              		.section	.debug_ranges,"",%progbits
+ 3489              	.Ldebug_ranges0:
+ 3490 0000 00000000 		.4byte	.LFB33
+ 3491 0004 5C000000 		.4byte	.LFE33
+ 3492 0008 00000000 		.4byte	.LFB34
+ 3493 000c 3C000000 		.4byte	.LFE34
+ 3494 0010 00000000 		.4byte	.LFB35
+ 3495 0014 28000000 		.4byte	.LFE35
+ 3496 0018 00000000 		.4byte	.LFB36
+ 3497 001c F0000000 		.4byte	.LFE36
+ 3498 0020 00000000 		.4byte	.LFB37
+ 3499 0024 5C000000 		.4byte	.LFE37
+ 3500 0028 00000000 		.4byte	.LFB38
+ 3501 002c 18000000 		.4byte	.LFE38
+ 3502 0030 00000000 		.4byte	.LFB39
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 69
+
+
+ 3503 0034 F0000000 		.4byte	.LFE39
+ 3504 0038 00000000 		.4byte	.LFB40
+ 3505 003c 5C000000 		.4byte	.LFE40
+ 3506 0040 00000000 		.4byte	.LFB41
+ 3507 0044 20000000 		.4byte	.LFE41
+ 3508 0048 00000000 		.4byte	.LFB42
+ 3509 004c F0000000 		.4byte	.LFE42
+ 3510 0050 00000000 		.4byte	.LFB43
+ 3511 0054 34000000 		.4byte	.LFE43
+ 3512 0058 00000000 		.4byte	.LFB44
+ 3513 005c 18000000 		.4byte	.LFE44
+ 3514 0060 00000000 		.4byte	.LFB45
+ 3515 0064 6C000000 		.4byte	.LFE45
+ 3516 0068 00000000 		.4byte	0
+ 3517 006c 00000000 		.4byte	0
+ 3518              		.section	.debug_line,"",%progbits
+ 3519              	.Ldebug_line0:
+ 3520 0000 43040000 		.section	.debug_str,"MS",%progbits,1
+ 3520      02005901 
+ 3520      00000201 
+ 3520      FB0E0D00 
+ 3520      01010101 
+ 3521              	.LASF75:
+ 3522 0000 6D61675F 		.ascii	"mag_y_h\000"
+ 3522      795F6800 
+ 3523              	.LASF31:
+ 3524 0008 6163635F 		.ascii	"acc_read\000"
+ 3524      72656164 
+ 3524      00
+ 3525              	.LASF61:
+ 3526 0011 6163635F 		.ascii	"acc_x\000"
+ 3526      7800
+ 3527              	.LASF76:
+ 3528 0017 6D61675F 		.ascii	"mag_y_l\000"
+ 3528      795F6C00 
+ 3529              	.LASF57:
+ 3530 001f 6779726F 		.ascii	"gyro_r_offset\000"
+ 3530      5F725F6F 
+ 3530      66667365 
+ 3530      7400
+ 3531              	.LASF37:
+ 3532 002d 6261726F 		.ascii	"baro_read\000"
+ 3532      5F726561 
+ 3532      6400
+ 3533              	.LASF13:
+ 3534 0037 696E7438 		.ascii	"int8_t\000"
+ 3534      5F7400
+ 3535              	.LASF66:
+ 3536 003e 6163635F 		.ascii	"acc_y_g\000"
+ 3536      795F6700 
+ 3537              	.LASF63:
+ 3538 0046 6163635F 		.ascii	"acc_y_h\000"
+ 3538      795F6800 
+ 3539              	.LASF64:
+ 3540 004e 6163635F 		.ascii	"acc_y_l\000"
+ 3540      795F6C00 
+ 3541              	.LASF5:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 70
+
+
+ 3542 0056 73686F72 		.ascii	"short int\000"
+ 3542      7420696E 
+ 3542      7400
+ 3543              	.LASF65:
+ 3544 0060 6163635F 		.ascii	"acc_y\000"
+ 3544      7900
+ 3545              	.LASF69:
+ 3546 0066 6163635F 		.ascii	"acc_z\000"
+ 3546      7A00
+ 3547              	.LASF74:
+ 3548 006c 6D61675F 		.ascii	"mag_x_g\000"
+ 3548      785F6700 
+ 3549              	.LASF71:
+ 3550 0074 6D61675F 		.ascii	"mag_x_h\000"
+ 3550      785F6800 
+ 3551              	.LASF83:
+ 3552 007c 6261725F 		.ascii	"bar_h\000"
+ 3552      6800
+ 3553              	.LASF20:
+ 3554 0082 63686172 		.ascii	"char8\000"
+ 3554      3800
+ 3555              	.LASF84:
+ 3556 0088 6261725F 		.ascii	"bar_l\000"
+ 3556      6C00
+ 3557              	.LASF56:
+ 3558 008e 6779726F 		.ascii	"gyro_q_offset\000"
+ 3558      5F715F6F 
+ 3558      66667365 
+ 3558      7400
+ 3559              	.LASF10:
+ 3560 009c 6C6F6E67 		.ascii	"long long int\000"
+ 3560      206C6F6E 
+ 3560      6720696E 
+ 3560      7400
+ 3561              	.LASF8:
+ 3562 00aa 5F5F7569 		.ascii	"__uint32_t\000"
+ 3562      6E743332 
+ 3562      5F7400
+ 3563              	.LASF88:
+ 3564 00b5 4932434D 		.ascii	"I2CM_I2CMasterWriteByte\000"
+ 3564      5F493243 
+ 3564      4D617374 
+ 3564      65725772 
+ 3564      69746542 
+ 3565              	.LASF62:
+ 3566 00cd 6163635F 		.ascii	"acc_x_g\000"
+ 3566      785F6700 
+ 3567              	.LASF91:
+ 3568 00d5 4932434D 		.ascii	"I2CM_I2CMasterReadByte\000"
+ 3568      5F493243 
+ 3568      4D617374 
+ 3568      65725265 
+ 3568      61644279 
+ 3569              	.LASF60:
+ 3570 00ec 6163635F 		.ascii	"acc_x_l\000"
+ 3570      785F6C00 
+ 3571              	.LASF85:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 71
+
+
+ 3572 00f4 6261725F 		.ascii	"bar_xl\000"
+ 3572      786C00
+ 3573              	.LASF24:
+ 3574 00fb 72656769 		.ascii	"registry\000"
+ 3574      73747279 
+ 3574      00
+ 3575              	.LASF14:
+ 3576 0104 75696E74 		.ascii	"uint8_t\000"
+ 3576      385F7400 
+ 3577              	.LASF30:
+ 3578 010c 6163635F 		.ascii	"acc_start\000"
+ 3578      73746172 
+ 3578      7400
+ 3579              	.LASF33:
+ 3580 0116 6D61675F 		.ascii	"mag_start\000"
+ 3580      73746172 
+ 3580      7400
+ 3581              	.LASF41:
+ 3582 0120 7475726E 		.ascii	"turn_rate_p\000"
+ 3582      5F726174 
+ 3582      655F7000 
+ 3583              	.LASF47:
+ 3584 012c 7475726E 		.ascii	"turn_rate_q\000"
+ 3584      5F726174 
+ 3584      655F7100 
+ 3585              	.LASF52:
+ 3586 0138 7475726E 		.ascii	"turn_rate_r\000"
+ 3586      5F726174 
+ 3586      655F7200 
+ 3587              	.LASF18:
+ 3588 0144 666C6F61 		.ascii	"float\000"
+ 3588      7400
+ 3589              	.LASF73:
+ 3590 014a 6D61675F 		.ascii	"mag_x\000"
+ 3590      7800
+ 3591              	.LASF77:
+ 3592 0150 6D61675F 		.ascii	"mag_y\000"
+ 3592      7900
+ 3593              	.LASF81:
+ 3594 0156 6D61675F 		.ascii	"mag_z\000"
+ 3594      7A00
+ 3595              	.LASF55:
+ 3596 015c 6779726F 		.ascii	"gyro_p_offset\000"
+ 3596      5F705F6F 
+ 3596      66667365 
+ 3596      7400
+ 3597              	.LASF7:
+ 3598 016a 6C6F6E67 		.ascii	"long int\000"
+ 3598      20696E74 
+ 3598      00
+ 3599              	.LASF1:
+ 3600 0173 5F5F7569 		.ascii	"__uint8_t\000"
+ 3600      6E74385F 
+ 3600      7400
+ 3601              	.LASF26:
+ 3602 017d 77726974 		.ascii	"write_gyro_registry\000"
+ 3602      655F6779 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 72
+
+
+ 3602      726F5F72 
+ 3602      65676973 
+ 3602      74727900 
+ 3603              	.LASF3:
+ 3604 0191 756E7369 		.ascii	"unsigned char\000"
+ 3604      676E6564 
+ 3604      20636861 
+ 3604      7200
+ 3605              	.LASF34:
+ 3606 019f 6D61675F 		.ascii	"mag_read\000"
+ 3606      72656164 
+ 3606      00
+ 3607              	.LASF11:
+ 3608 01a8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3608      206C6F6E 
+ 3608      6720756E 
+ 3608      7369676E 
+ 3608      65642069 
+ 3609              	.LASF16:
+ 3610 01bf 75696E74 		.ascii	"uint32_t\000"
+ 3610      33325F74 
+ 3610      00
+ 3611              	.LASF89:
+ 3612 01c8 4932434D 		.ascii	"I2CM_I2CMasterSendRestart\000"
+ 3612      5F493243 
+ 3612      4D617374 
+ 3612      65725365 
+ 3612      6E645265 
+ 3613              	.LASF32:
+ 3614 01e2 77726974 		.ascii	"write_mag_registry\000"
+ 3614      655F6D61 
+ 3614      675F7265 
+ 3614      67697374 
+ 3614      727900
+ 3615              	.LASF12:
+ 3616 01f5 756E7369 		.ascii	"unsigned int\000"
+ 3616      676E6564 
+ 3616      20696E74 
+ 3616      00
+ 3617              	.LASF51:
+ 3618 0202 6779726F 		.ascii	"gyro_r\000"
+ 3618      5F7200
+ 3619              	.LASF35:
+ 3620 0209 77726974 		.ascii	"write_baro_registry\000"
+ 3620      655F6261 
+ 3620      726F5F72 
+ 3620      65676973 
+ 3620      74727900 
+ 3621              	.LASF40:
+ 3622 021d 6779726F 		.ascii	"gyro_x\000"
+ 3622      5F7800
+ 3623              	.LASF54:
+ 3624 0224 74656D70 		.ascii	"temperature_0\000"
+ 3624      65726174 
+ 3624      7572655F 
+ 3624      3000
+ 3625              	.LASF50:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 73
+
+
+ 3626 0232 6779726F 		.ascii	"gyro_z\000"
+ 3626      5F7A00
+ 3627              	.LASF22:
+ 3628 0239 72656733 		.ascii	"reg32\000"
+ 3628      3200
+ 3629              	.LASF6:
+ 3630 023f 73686F72 		.ascii	"short unsigned int\000"
+ 3630      7420756E 
+ 3630      7369676E 
+ 3630      65642069 
+ 3630      6E7400
+ 3631              	.LASF0:
+ 3632 0252 5F5F696E 		.ascii	"__int8_t\000"
+ 3632      74385F74 
+ 3632      00
+ 3633              	.LASF36:
+ 3634 025b 6261726F 		.ascii	"baro_start\000"
+ 3634      5F737461 
+ 3634      727400
+ 3635              	.LASF21:
+ 3636 0266 63686172 		.ascii	"char\000"
+ 3636      00
+ 3637              	.LASF48:
+ 3638 026b 6779726F 		.ascii	"gyro_z_h\000"
+ 3638      5F7A5F68 
+ 3638      00
+ 3639              	.LASF49:
+ 3640 0274 6779726F 		.ascii	"gyro_z_l\000"
+ 3640      5F7A5F6C 
+ 3640      00
+ 3641              	.LASF15:
+ 3642 027d 696E7431 		.ascii	"int16_t\000"
+ 3642      365F7400 
+ 3643              	.LASF92:
+ 3644 0285 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3644      4320342E 
+ 3644      382E3420 
+ 3644      32303134 
+ 3644      30353236 
+ 3645 02b8 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 3645      20726576 
+ 3645      6973696F 
+ 3645      6E203231 
+ 3645      31333538 
+ 3646 02eb 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 3646      66756E63 
+ 3646      74696F6E 
+ 3646      2D736563 
+ 3646      74696F6E 
+ 3647              	.LASF58:
+ 3648 0314 6572726F 		.ascii	"error_stat\000"
+ 3648      725F7374 
+ 3648      617400
+ 3649              	.LASF25:
+ 3650 031f 64617461 		.ascii	"data\000"
+ 3650      00
+ 3651              	.LASF17:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 74
+
+
+ 3652 0324 75696E74 		.ascii	"uint32\000"
+ 3652      333200
+ 3653              	.LASF93:
+ 3654 032b 2E5C494D 		.ascii	".\\IMU.c\000"
+ 3654      552E6300 
+ 3655              	.LASF9:
+ 3656 0333 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3656      20756E73 
+ 3656      69676E65 
+ 3656      6420696E 
+ 3656      7400
+ 3657              	.LASF27:
+ 3658 0345 6779726F 		.ascii	"gyro_start\000"
+ 3658      5F737461 
+ 3658      727400
+ 3659              	.LASF43:
+ 3660 0350 6779726F 		.ascii	"gyro_y_h\000"
+ 3660      5F795F68 
+ 3660      00
+ 3661              	.LASF19:
+ 3662 0359 646F7562 		.ascii	"double\000"
+ 3662      6C6500
+ 3663              	.LASF90:
+ 3664 0360 55415254 		.ascii	"UART_1_UartPutString\000"
+ 3664      5F315F55 
+ 3664      61727450 
+ 3664      75745374 
+ 3664      72696E67 
+ 3665              	.LASF44:
+ 3666 0375 6779726F 		.ascii	"gyro_y_l\000"
+ 3666      5F795F6C 
+ 3666      00
+ 3667              	.LASF72:
+ 3668 037e 6D61675F 		.ascii	"mag_x_l\000"
+ 3668      785F6C00 
+ 3669              	.LASF70:
+ 3670 0386 6163635F 		.ascii	"acc_z_g\000"
+ 3670      7A5F6700 
+ 3671              	.LASF87:
+ 3672 038e 4932434D 		.ascii	"I2CM_I2CMasterSendStart\000"
+ 3672      5F493243 
+ 3672      4D617374 
+ 3672      65725365 
+ 3672      6E645374 
+ 3673              	.LASF53:
+ 3674 03a6 74656D70 		.ascii	"temperature\000"
+ 3674      65726174 
+ 3674      75726500 
+ 3675              	.LASF42:
+ 3676 03b2 6779726F 		.ascii	"gyro_p\000"
+ 3676      5F7000
+ 3677              	.LASF46:
+ 3678 03b9 6779726F 		.ascii	"gyro_q\000"
+ 3678      5F7100
+ 3679              	.LASF29:
+ 3680 03c0 77726974 		.ascii	"write_acc_registry\000"
+ 3680      655F6163 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 75
+
+
+ 3680      635F7265 
+ 3680      67697374 
+ 3680      727900
+ 3681              	.LASF2:
+ 3682 03d3 7369676E 		.ascii	"signed char\000"
+ 3682      65642063 
+ 3682      68617200 
+ 3683              	.LASF4:
+ 3684 03df 5F5F696E 		.ascii	"__int16_t\000"
+ 3684      7431365F 
+ 3684      7400
+ 3685              	.LASF96:
+ 3686 03e9 70726573 		.ascii	"press_temp\000"
+ 3686      735F7465 
+ 3686      6D7000
+ 3687              	.LASF23:
+ 3688 03f4 73697A65 		.ascii	"sizetype\000"
+ 3688      74797065 
+ 3688      00
+ 3689              	.LASF38:
+ 3690 03fd 6779726F 		.ascii	"gyro_x_h\000"
+ 3690      5F785F68 
+ 3690      00
+ 3691              	.LASF82:
+ 3692 0406 6D61675F 		.ascii	"mag_z_g\000"
+ 3692      7A5F6700 
+ 3693              	.LASF79:
+ 3694 040e 6D61675F 		.ascii	"mag_z_h\000"
+ 3694      7A5F6800 
+ 3695              	.LASF39:
+ 3696 0416 6779726F 		.ascii	"gyro_x_l\000"
+ 3696      5F785F6C 
+ 3696      00
+ 3697              	.LASF45:
+ 3698 041f 6779726F 		.ascii	"gyro_y\000"
+ 3698      5F7900
+ 3699              	.LASF80:
+ 3700 0426 6D61675F 		.ascii	"mag_z_l\000"
+ 3700      7A5F6C00 
+ 3701              	.LASF94:
+ 3702 042e 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 3702      73657273 
+ 3702      5C534E46 
+ 3702      555C446F 
+ 3702      63756D65 
+ 3703 045c 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 3703      542D3530 
+ 3703      5F50726F 
+ 3703      6A656374 
+ 3703      5C542D35 
+ 3704              	.LASF86:
+ 3705 0480 4261725F 		.ascii	"Bar_press\000"
+ 3705      70726573 
+ 3705      7300
+ 3706              	.LASF28:
+ 3707 048a 6779726F 		.ascii	"gyro_read\000"
+ 3707      5F726561 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccbLarma.s 			page 76
+
+
+ 3707      6400
+ 3708              	.LASF67:
+ 3709 0494 6163635F 		.ascii	"acc_z_h\000"
+ 3709      7A5F6800 
+ 3710              	.LASF68:
+ 3711 049c 6163635F 		.ascii	"acc_z_l\000"
+ 3711      7A5F6C00 
+ 3712              	.LASF59:
+ 3713 04a4 6163635F 		.ascii	"acc_x_h\000"
+ 3713      785F6800 
+ 3714              	.LASF95:
+ 3715 04ac 72656164 		.ascii	"read_gyro_registry\000"
+ 3715      5F677972 
+ 3715      6F5F7265 
+ 3715      67697374 
+ 3715      727900
+ 3716              	.LASF78:
+ 3717 04bf 6D61675F 		.ascii	"mag_y_g\000"
+ 3717      795F6700 
+ 3718              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

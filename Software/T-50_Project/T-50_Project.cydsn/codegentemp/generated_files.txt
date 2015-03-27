@@ -34,6 +34,7 @@
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_PINS.h" value="NONE;UART_1" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_SPI_UART_PVT.h" value="NONE;UART_1" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_PVT.h" value="NONE;UART_1" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_BOOT.h" value="NONE;UART_1" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\TaskTimer.c" value="ARM_C_FILE;TaskTimer" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\TaskTimer.h" value="NONE;TaskTimer" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\TaskTimer_PM.c" value="ARM_C_FILE;TaskTimer" />
@@ -141,6 +142,9 @@
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_PINS.h" value="NONE;I2CM" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_I2C_PVT.h" value="NONE;I2CM" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_PVT.h" value="NONE;I2CM" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_BOOT.h" value="NONE;I2CM" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_SCBCLK.c" value="ARM_C_FILE;UART_1_SCBCLK" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_SCBCLK.h" value="NONE;UART_1_SCBCLK" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_tx.c" value="ARM_C_FILE;UART_1_tx" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_tx.h" value="NONE;UART_1_tx" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_tx_aliases.h" value="NONE;UART_1_tx" />
@@ -149,12 +153,16 @@
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\UART_1_rx_aliases.h" value="NONE;UART_1_rx" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\TelemUART_IntClock.c" value="ARM_C_FILE;TelemUART_IntClock" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\TelemUART_IntClock.h" value="NONE;TelemUART_IntClock" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_SCBCLK.c" value="ARM_C_FILE;I2CM_SCBCLK" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_SCBCLK.h" value="NONE;I2CM_SCBCLK" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_sda.c" value="ARM_C_FILE;I2CM_sda" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_sda.h" value="NONE;I2CM_sda" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_sda_aliases.h" value="NONE;I2CM_sda" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_scl.c" value="ARM_C_FILE;I2CM_scl" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_scl.h" value="NONE;I2CM_scl" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_scl_aliases.h" value="NONE;I2CM_scl" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_SCB_IRQ.c" value="ARM_C_FILE;I2CM_SCB_IRQ" />
+  <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\I2CM_SCB_IRQ.h" value="NONE;I2CM_SCB_IRQ" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\cm0gcc.ld" value="NONE;cy_boot" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\Cm0RealView.scat" value="NONE;cy_boot" />
   <file name="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\codegentemp\Cm0Start.c" value="ARM_C_FILE;cy_boot" />

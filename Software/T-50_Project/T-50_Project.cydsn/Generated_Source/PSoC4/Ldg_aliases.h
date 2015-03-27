@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: Ldg.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define Ldg_0		Ldg__0__PC
+#define Ldg_0		(Ldg__0__PC)
+#define Ldg_0_PS		(Ldg__0__PS)
+#define Ldg_0_PC		(Ldg__0__PC)
+#define Ldg_0_DR		(Ldg__0__DR)
+#define Ldg_0_SHIFT	(Ldg__0__SHIFT)
+
 
 #endif /* End Pins Ldg_ALIASES_H */
 

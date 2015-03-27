@@ -1,9 +1,10 @@
 /*******************************************************************************
 * File Name: NavB.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
-*  This file containts Control Register function prototypes and register defines
+*  This file contains the Alias definitions for Per-Pin APIs in cypins.h. 
+*  Information on using these APIs can be found in the System Reference Guide.
 *
 * Note:
 *
@@ -19,12 +20,18 @@
 
 #include "cytypes.h"
 #include "cyfitter.h"
+#include "cypins.h"
 
 
 /***************************************
 *              Constants        
 ***************************************/
-#define NavB_0		NavB__0__PC
+#define NavB_0		(NavB__0__PC)
+#define NavB_0_PS		(NavB__0__PS)
+#define NavB_0_PC		(NavB__0__PC)
+#define NavB_0_DR		(NavB__0__DR)
+#define NavB_0_SHIFT	(NavB__0__SHIFT)
+
 
 #endif /* End Pins NavB_ALIASES_H */
 

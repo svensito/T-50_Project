@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: NavLightPWM.c
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides the source code to the API for the NavLightPWM
@@ -17,7 +17,6 @@
 *******************************************************************************/
 
 #include "NavLightPWM.h"
-#include "CyLib.h"
 
 uint8 NavLightPWM_initVar = 0u;
 
@@ -41,95 +40,31 @@ void NavLightPWM_Init(void)
 
     /* Set values from customizer to CTRL */
     #if (NavLightPWM__QUAD == NavLightPWM_CONFIG)
-        NavLightPWM_CONTROL_REG =
-        (((uint32)(NavLightPWM_QUAD_ENCODING_MODES     << NavLightPWM_QUAD_MODE_SHIFT))       |
-         ((uint32)(NavLightPWM_CONFIG                  << NavLightPWM_MODE_SHIFT)));
-    #endif  /* (NavLightPWM__QUAD == NavLightPWM_CONFIG) */
+        NavLightPWM_CONTROL_REG = NavLightPWM_CTRL_QUAD_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        NavLightPWM_TRIG_CONTROL1_REG  = NavLightPWM_QUAD_SIGNALS_MODES;
 
-    #if (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG)
-        NavLightPWM_CONTROL_REG =
-        (((uint32)(NavLightPWM_PWM_STOP_EVENT          << NavLightPWM_PWM_STOP_KILL_SHIFT))    |
-         ((uint32)(NavLightPWM_PWM_OUT_INVERT          << NavLightPWM_INV_OUT_SHIFT))         |
-         ((uint32)(NavLightPWM_PWM_OUT_N_INVERT        << NavLightPWM_INV_COMPL_OUT_SHIFT))     |
-         ((uint32)(NavLightPWM_PWM_MODE                << NavLightPWM_MODE_SHIFT)));
-
-        #if (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE)
-            NavLightPWM_CONTROL_REG |=
-            ((uint32)(NavLightPWM_PWM_RUN_MODE         << NavLightPWM_ONESHOT_SHIFT));
-
-            NavLightPWM_WriteCounter(NavLightPWM_PWM_PR_INIT_VALUE);
-        #else
-            NavLightPWM_CONTROL_REG |=
-            (((uint32)(NavLightPWM_PWM_ALIGN           << NavLightPWM_UPDOWN_SHIFT))          |
-             ((uint32)(NavLightPWM_PWM_KILL_EVENT      << NavLightPWM_PWM_SYNC_KILL_SHIFT)));
-        #endif  /* (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE) */
-
-        #if (NavLightPWM__PWM_DT == NavLightPWM_PWM_MODE)
-            NavLightPWM_CONTROL_REG |=
-            ((uint32)(NavLightPWM_PWM_DEAD_TIME_CYCLE  << NavLightPWM_PRESCALER_SHIFT));
-        #endif  /* (NavLightPWM__PWM_DT == NavLightPWM_PWM_MODE) */
-
-        #if (NavLightPWM__PWM == NavLightPWM_PWM_MODE)
-            NavLightPWM_CONTROL_REG |=
-            ((uint32)NavLightPWM_PWM_PRESCALER         << NavLightPWM_PRESCALER_SHIFT);
-        #endif  /* (NavLightPWM__PWM == NavLightPWM_PWM_MODE) */
-    #endif  /* (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG) */
-
-    #if (NavLightPWM__TIMER == NavLightPWM_CONFIG)
-        NavLightPWM_CONTROL_REG =
-        (((uint32)(NavLightPWM_TC_PRESCALER            << NavLightPWM_PRESCALER_SHIFT))   |
-         ((uint32)(NavLightPWM_TC_COUNTER_MODE         << NavLightPWM_UPDOWN_SHIFT))      |
-         ((uint32)(NavLightPWM_TC_RUN_MODE             << NavLightPWM_ONESHOT_SHIFT))     |
-         ((uint32)(NavLightPWM_TC_COMP_CAP_MODE        << NavLightPWM_MODE_SHIFT)));
-    #endif  /* (NavLightPWM__TIMER == NavLightPWM_CONFIG) */
-
-    /* Set values from customizer to CTRL1 */
-    #if (NavLightPWM__QUAD == NavLightPWM_CONFIG)
-        NavLightPWM_TRIG_CONTROL1_REG  =
-        (((uint32)(NavLightPWM_QUAD_PHIA_SIGNAL_MODE   << NavLightPWM_COUNT_SHIFT))       |
-         ((uint32)(NavLightPWM_QUAD_INDEX_SIGNAL_MODE  << NavLightPWM_RELOAD_SHIFT))      |
-         ((uint32)(NavLightPWM_QUAD_STOP_SIGNAL_MODE   << NavLightPWM_STOP_SHIFT))        |
-         ((uint32)(NavLightPWM_QUAD_PHIB_SIGNAL_MODE   << NavLightPWM_START_SHIFT)));
-    #endif  /* (NavLightPWM__QUAD == NavLightPWM_CONFIG) */
-
-    #if (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG)
-        NavLightPWM_TRIG_CONTROL1_REG  =
-        (((uint32)(NavLightPWM_PWM_SWITCH_SIGNAL_MODE  << NavLightPWM_CAPTURE_SHIFT))     |
-         ((uint32)(NavLightPWM_PWM_COUNT_SIGNAL_MODE   << NavLightPWM_COUNT_SHIFT))       |
-         ((uint32)(NavLightPWM_PWM_RELOAD_SIGNAL_MODE  << NavLightPWM_RELOAD_SHIFT))      |
-         ((uint32)(NavLightPWM_PWM_STOP_SIGNAL_MODE    << NavLightPWM_STOP_SHIFT))        |
-         ((uint32)(NavLightPWM_PWM_START_SIGNAL_MODE   << NavLightPWM_START_SHIFT)));
-    #endif  /* (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG) */
-
-    #if (NavLightPWM__TIMER == NavLightPWM_CONFIG)
-        NavLightPWM_TRIG_CONTROL1_REG  =
-        (((uint32)(NavLightPWM_TC_CAPTURE_SIGNAL_MODE  << NavLightPWM_CAPTURE_SHIFT))     |
-         ((uint32)(NavLightPWM_TC_COUNT_SIGNAL_MODE    << NavLightPWM_COUNT_SHIFT))       |
-         ((uint32)(NavLightPWM_TC_RELOAD_SIGNAL_MODE   << NavLightPWM_RELOAD_SHIFT))      |
-         ((uint32)(NavLightPWM_TC_STOP_SIGNAL_MODE     << NavLightPWM_STOP_SHIFT))        |
-         ((uint32)(NavLightPWM_TC_START_SIGNAL_MODE    << NavLightPWM_START_SHIFT)));
-    #endif  /* (NavLightPWM__TIMER == NavLightPWM_CONFIG) */
-
-    /* Set values from customizer to INTR */
-    #if (NavLightPWM__QUAD == NavLightPWM_CONFIG)
+        /* Set values from customizer to INTR */
         NavLightPWM_SetInterruptMode(NavLightPWM_QUAD_INTERRUPT_MASK);
+        
+         /* Set other values */
+        NavLightPWM_SetCounterMode(NavLightPWM_COUNT_DOWN);
+        NavLightPWM_WritePeriod(NavLightPWM_QUAD_PERIOD_INIT_VALUE);
+        NavLightPWM_WriteCounter(NavLightPWM_QUAD_PERIOD_INIT_VALUE);
     #endif  /* (NavLightPWM__QUAD == NavLightPWM_CONFIG) */
 
-    #if (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG)
-        NavLightPWM_SetInterruptMode(NavLightPWM_PWM_INTERRUPT_MASK);
-    #endif  /* (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG) */
-
     #if (NavLightPWM__TIMER == NavLightPWM_CONFIG)
+        NavLightPWM_CONTROL_REG = NavLightPWM_CTRL_TIMER_BASE_CONFIG;
+        
+        /* Set values from customizer to CTRL1 */
+        NavLightPWM_TRIG_CONTROL1_REG  = NavLightPWM_TIMER_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
         NavLightPWM_SetInterruptMode(NavLightPWM_TC_INTERRUPT_MASK);
-    #endif  /* (NavLightPWM__TIMER == NavLightPWM_CONFIG) */
-
-    /* Set other values from customizer */
-    #if (NavLightPWM__TIMER == NavLightPWM_CONFIG)
+        
+        /* Set other values from customizer */
         NavLightPWM_WritePeriod(NavLightPWM_TC_PERIOD_VALUE );
-
-        #if (NavLightPWM__COUNT_DOWN == NavLightPWM_TC_COUNTER_MODE)
-            NavLightPWM_WriteCounter(NavLightPWM_TC_PERIOD_VALUE );
-        #endif  /* (NavLightPWM__COUNT_DOWN == NavLightPWM_TC_COUNTER_MODE) */
 
         #if (NavLightPWM__COMPARE == NavLightPWM_TC_COMP_CAP_MODE)
             NavLightPWM_WriteCompare(NavLightPWM_TC_COMPARE_VALUE);
@@ -139,21 +74,49 @@ void NavLightPWM_Init(void)
                 NavLightPWM_WriteCompareBuf(NavLightPWM_TC_COMPARE_BUF_VALUE);
             #endif  /* (1u == NavLightPWM_TC_COMPARE_SWAP) */
         #endif  /* (NavLightPWM__COMPARE == NavLightPWM_TC_COMP_CAP_MODE) */
+
+        /* Initialize counter value */
+        #if (NavLightPWM_CY_TCPWM_V2 && NavLightPWM_TIMER_UPDOWN_CNT_USED && !NavLightPWM_CY_TCPWM_4000)
+            NavLightPWM_WriteCounter(1u);
+        #elif(NavLightPWM__COUNT_DOWN == NavLightPWM_TC_COUNTER_MODE)
+            NavLightPWM_WriteCounter(NavLightPWM_TC_PERIOD_VALUE);
+        #else
+            NavLightPWM_WriteCounter(0u);
+        #endif /* (NavLightPWM_CY_TCPWM_V2 && NavLightPWM_TIMER_UPDOWN_CNT_USED && !NavLightPWM_CY_TCPWM_4000) */
     #endif  /* (NavLightPWM__TIMER == NavLightPWM_CONFIG) */
 
     #if (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG)
-        NavLightPWM_WritePeriod(NavLightPWM_PWM_PERIOD_VALUE );
-        NavLightPWM_WriteCompare(NavLightPWM_PWM_COMPARE_VALUE);
+        NavLightPWM_CONTROL_REG = NavLightPWM_CTRL_PWM_BASE_CONFIG;
 
-        #if (1u == NavLightPWM_PWM_COMPARE_SWAP)
-            NavLightPWM_SetCompareSwap(1u);
-            NavLightPWM_WriteCompareBuf(NavLightPWM_PWM_COMPARE_BUF_VALUE);
-        #endif  /* (1u == NavLightPWM_PWM_COMPARE_SWAP) */
+        #if (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE)
+            NavLightPWM_CONTROL_REG |= NavLightPWM_CTRL_PWM_RUN_MODE;
+            NavLightPWM_WriteCounter(NavLightPWM_PWM_PR_INIT_VALUE);
+        #else
+            NavLightPWM_CONTROL_REG |= NavLightPWM_CTRL_PWM_ALIGN | NavLightPWM_CTRL_PWM_KILL_EVENT;
+            
+            /* Initialize counter value */
+            #if (NavLightPWM_CY_TCPWM_V2 && NavLightPWM_PWM_UPDOWN_CNT_USED && !NavLightPWM_CY_TCPWM_4000)
+                NavLightPWM_WriteCounter(1u);
+            #elif (NavLightPWM__RIGHT == NavLightPWM_PWM_ALIGN)
+                NavLightPWM_WriteCounter(NavLightPWM_PWM_PERIOD_VALUE);
+            #else 
+                NavLightPWM_WriteCounter(0u);
+            #endif  /* (NavLightPWM_CY_TCPWM_V2 && NavLightPWM_PWM_UPDOWN_CNT_USED && !NavLightPWM_CY_TCPWM_4000) */
+        #endif  /* (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE) */
 
-        #if (1u == NavLightPWM_PWM_PERIOD_SWAP)
-            NavLightPWM_SetPeriodSwap(1u);
-            NavLightPWM_WritePeriodBuf(NavLightPWM_PWM_PERIOD_BUF_VALUE);
-        #endif  /* (1u == NavLightPWM_PWM_PERIOD_SWAP) */
+        #if (NavLightPWM__PWM_DT == NavLightPWM_PWM_MODE)
+            NavLightPWM_CONTROL_REG |= NavLightPWM_CTRL_PWM_DEAD_TIME_CYCLE;
+        #endif  /* (NavLightPWM__PWM_DT == NavLightPWM_PWM_MODE) */
+
+        #if (NavLightPWM__PWM == NavLightPWM_PWM_MODE)
+            NavLightPWM_CONTROL_REG |= NavLightPWM_CTRL_PWM_PRESCALER;
+        #endif  /* (NavLightPWM__PWM == NavLightPWM_PWM_MODE) */
+
+        /* Set values from customizer to CTRL1 */
+        NavLightPWM_TRIG_CONTROL1_REG  = NavLightPWM_PWM_SIGNALS_MODES;
+    
+        /* Set values from customizer to INTR */
+        NavLightPWM_SetInterruptMode(NavLightPWM_PWM_INTERRUPT_MASK);
 
         /* Set values from customizer to CTRL2 */
         #if (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE)
@@ -167,7 +130,6 @@ void NavLightPWM_Init(void)
             #endif  /* ( NavLightPWM_PWM_LEFT == NavLightPWM_PWM_ALIGN) */
 
             #if (NavLightPWM__RIGHT == NavLightPWM_PWM_ALIGN)
-                NavLightPWM_WriteCounter(NavLightPWM_PWM_PERIOD_VALUE);
                 NavLightPWM_TRIG_CONTROL2_REG = NavLightPWM_PWM_MODE_RIGHT;
             #endif  /* ( NavLightPWM_PWM_RIGHT == NavLightPWM_PWM_ALIGN) */
 
@@ -179,7 +141,22 @@ void NavLightPWM_Init(void)
                 NavLightPWM_TRIG_CONTROL2_REG = NavLightPWM_PWM_MODE_ASYM;
             #endif  /* (NavLightPWM__ASYMMETRIC == NavLightPWM_PWM_ALIGN) */
         #endif  /* (NavLightPWM__PWM_PR == NavLightPWM_PWM_MODE) */
+
+        /* Set other values from customizer */
+        NavLightPWM_WritePeriod(NavLightPWM_PWM_PERIOD_VALUE );
+        NavLightPWM_WriteCompare(NavLightPWM_PWM_COMPARE_VALUE);
+
+        #if (1u == NavLightPWM_PWM_COMPARE_SWAP)
+            NavLightPWM_SetCompareSwap(1u);
+            NavLightPWM_WriteCompareBuf(NavLightPWM_PWM_COMPARE_BUF_VALUE);
+        #endif  /* (1u == NavLightPWM_PWM_COMPARE_SWAP) */
+
+        #if (1u == NavLightPWM_PWM_PERIOD_SWAP)
+            NavLightPWM_SetPeriodSwap(1u);
+            NavLightPWM_WritePeriodBuf(NavLightPWM_PWM_PERIOD_BUF_VALUE);
+        #endif  /* (1u == NavLightPWM_PWM_PERIOD_SWAP) */
     #endif  /* (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG) */
+    
 }
 
 
@@ -857,28 +834,29 @@ void NavLightPWM_SetPeriodSwap(uint32 swapEnable)
 *******************************************************************************/
 void NavLightPWM_WriteCompare(uint32 compare)
 {
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         currentMode = ((NavLightPWM_CONTROL_REG & NavLightPWM_UPDOWN_MASK) >> NavLightPWM_UPDOWN_SHIFT);
 
-        if (NavLightPWM__COUNT_DOWN == currentMode)
+        if (((uint32)NavLightPWM__COUNT_DOWN == currentMode) && (0xFFFFu != compare))
         {
-            NavLightPWM_COMP_CAP_REG = ((compare + 1u) & NavLightPWM_16BIT_MASK);
+            compare++;
         }
-        else if (NavLightPWM__COUNT_UP == currentMode)
+        else if (((uint32)NavLightPWM__COUNT_UP == currentMode) && (0u != compare))
         {
-            NavLightPWM_COMP_CAP_REG = ((compare - 1u) & NavLightPWM_16BIT_MASK);
+            compare--;
         }
         else
         {
-            NavLightPWM_COMP_CAP_REG = (compare & NavLightPWM_16BIT_MASK);
         }
-    #else
-        NavLightPWM_COMP_CAP_REG = (compare & NavLightPWM_16BIT_MASK);
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+        
+    
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
+    
+    NavLightPWM_COMP_CAP_REG = (compare & NavLightPWM_16BIT_MASK);
 }
 
 
@@ -899,30 +877,32 @@ void NavLightPWM_WriteCompare(uint32 compare)
 *******************************************************************************/
 uint32 NavLightPWM_ReadCompare(void)
 {
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         currentMode = ((NavLightPWM_CONTROL_REG & NavLightPWM_UPDOWN_MASK) >> NavLightPWM_UPDOWN_SHIFT);
-
-        if (NavLightPWM__COUNT_DOWN == currentMode)
+        
+        regVal = NavLightPWM_COMP_CAP_REG;
+        
+        if (((uint32)NavLightPWM__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((NavLightPWM_COMP_CAP_REG - 1u) & NavLightPWM_16BIT_MASK);
+            regVal--;
         }
-        else if (NavLightPWM__COUNT_UP == currentMode)
+        else if (((uint32)NavLightPWM__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((NavLightPWM_COMP_CAP_REG + 1u) & NavLightPWM_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (NavLightPWM_COMP_CAP_REG & NavLightPWM_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & NavLightPWM_16BIT_MASK);
     #else
         return (NavLightPWM_COMP_CAP_REG & NavLightPWM_16BIT_MASK);
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 }
 
 
@@ -943,28 +923,27 @@ uint32 NavLightPWM_ReadCompare(void)
 *******************************************************************************/
 void NavLightPWM_WriteCompareBuf(uint32 compareBuf)
 {
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         uint32 currentMode;
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         currentMode = ((NavLightPWM_CONTROL_REG & NavLightPWM_UPDOWN_MASK) >> NavLightPWM_UPDOWN_SHIFT);
 
-        if (NavLightPWM__COUNT_DOWN == currentMode)
+        if (((uint32)NavLightPWM__COUNT_DOWN == currentMode) && (0xFFFFu != compareBuf))
         {
-            NavLightPWM_COMP_CAP_BUF_REG = ((compareBuf + 1u) & NavLightPWM_16BIT_MASK);
+            compareBuf++;
         }
-        else if (NavLightPWM__COUNT_UP == currentMode)
+        else if (((uint32)NavLightPWM__COUNT_UP == currentMode) && (0u != compareBuf))
         {
-            NavLightPWM_COMP_CAP_BUF_REG = ((compareBuf - 1u) & NavLightPWM_16BIT_MASK);
+            compareBuf --;
         }
         else
         {
-            NavLightPWM_COMP_CAP_BUF_REG = (compareBuf & NavLightPWM_16BIT_MASK);
         }
-    #else
-        NavLightPWM_COMP_CAP_BUF_REG = (compareBuf & NavLightPWM_16BIT_MASK);
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
+    
+    NavLightPWM_COMP_CAP_BUF_REG = (compareBuf & NavLightPWM_16BIT_MASK);
 }
 
 
@@ -985,30 +964,32 @@ void NavLightPWM_WriteCompareBuf(uint32 compareBuf)
 *******************************************************************************/
 uint32 NavLightPWM_ReadCompareBuf(void)
 {
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         uint32 currentMode;
         uint32 regVal;
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 
-    #if (NavLightPWM_CY_TCPWM_V2)
+    #if (NavLightPWM_CY_TCPWM_4000)
         currentMode = ((NavLightPWM_CONTROL_REG & NavLightPWM_UPDOWN_MASK) >> NavLightPWM_UPDOWN_SHIFT);
 
-        if (NavLightPWM__COUNT_DOWN == currentMode)
+        regVal = NavLightPWM_COMP_CAP_BUF_REG;
+        
+        if (((uint32)NavLightPWM__COUNT_DOWN == currentMode) && (0u != regVal))
         {
-            regVal = ((NavLightPWM_COMP_CAP_BUF_REG - 1u) & NavLightPWM_16BIT_MASK);
+            regVal--;
         }
-        else if (NavLightPWM__COUNT_UP == currentMode)
+        else if (((uint32)NavLightPWM__COUNT_UP == currentMode) && (0xFFFFu != regVal))
         {
-            regVal = ((NavLightPWM_COMP_CAP_BUF_REG + 1u) & NavLightPWM_16BIT_MASK);
+            regVal++;
         }
         else
         {
-            regVal = (NavLightPWM_COMP_CAP_BUF_REG & NavLightPWM_16BIT_MASK);
         }
-        return (regVal);
+
+        return (regVal & NavLightPWM_16BIT_MASK);
     #else
         return (NavLightPWM_COMP_CAP_BUF_REG & NavLightPWM_16BIT_MASK);
-    #endif /* (NavLightPWM_CY_TCPWM_V2) */
+    #endif /* (NavLightPWM_CY_TCPWM_4000) */
 }
 
 

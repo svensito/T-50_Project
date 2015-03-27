@@ -1,0 +1,855 @@
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"TaskTimer_PM.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TaskTimer_SaveConfig,"ax",%progbits
+  18              		.align	1
+  19              		.global	TaskTimer_SaveConfig
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	TaskTimer_SaveConfig, %function
+  23              	TaskTimer_SaveConfig:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\TaskTimer_PM.c"
+   1:.\Generated_Source\PSoC4/TaskTimer_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * File Name: TaskTimer_PM.c
+   3:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Version 2.0
+   4:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+   5:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Description:
+   6:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  This file contains the setup, control, and status commands to support
+   7:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  the component operations in the low power mode.
+   8:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+   9:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Note:
+  10:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  11:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  12:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Copyright 2013-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  19:.\Generated_Source\PSoC4/TaskTimer_PM.c **** #include "TaskTimer.h"
+  20:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  21:.\Generated_Source\PSoC4/TaskTimer_PM.c **** static TaskTimer_BACKUP_STRUCT TaskTimer_backup;
+  22:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  23:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  24:.\Generated_Source\PSoC4/TaskTimer_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Function Name: TaskTimer_SaveConfig
+  26:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  28:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
+  29:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  All configuration registers are retention. Nothing to save here.
+  30:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  31:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Parameters:
+  32:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  34:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Return:
+  35:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  36:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  37:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *******************************************************************************/
+  38:.\Generated_Source\PSoC4/TaskTimer_PM.c **** void TaskTimer_SaveConfig(void)
+  39:.\Generated_Source\PSoC4/TaskTimer_PM.c **** {
+  26              		.loc 1 39 0
+  27              		.cfi_startproc
+  40:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  41:.\Generated_Source\PSoC4/TaskTimer_PM.c **** }
+  28              		.loc 1 41 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE0:
+  33              		.size	TaskTimer_SaveConfig, .-TaskTimer_SaveConfig
+  34              		.section	.text.TaskTimer_Sleep,"ax",%progbits
+  35              		.align	1
+  36              		.global	TaskTimer_Sleep
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	TaskTimer_Sleep, %function
+  40              	TaskTimer_Sleep:
+  41              	.LFB1:
+  42:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  43:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  44:.\Generated_Source\PSoC4/TaskTimer_PM.c **** /*******************************************************************************
+  45:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Function Name: TaskTimer_Sleep
+  46:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
+  47:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  48:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
+  49:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  Stops the component operation and saves the user configuration.
+  50:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  51:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Parameters:
+  52:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  53:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  54:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Return:
+  55:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  56:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  57:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *******************************************************************************/
+  58:.\Generated_Source\PSoC4/TaskTimer_PM.c **** void TaskTimer_Sleep(void)
+  59:.\Generated_Source\PSoC4/TaskTimer_PM.c **** {
+  42              		.loc 1 59 0
+  43              		.cfi_startproc
+  44 0000 08B5     		push	{r3, lr}
+  45              		.cfi_def_cfa_offset 8
+  46              		.cfi_offset 3, -8
+  47              		.cfi_offset 14, -4
+  60:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     if(0u != (TaskTimer_BLOCK_CONTROL_REG & TaskTimer_MASK))
+  48              		.loc 1 60 0
+  49 0002 064B     		ldr	r3, .L6
+  50 0004 0121     		mov	r1, #1
+  51 0006 1A68     		ldr	r2, [r3]
+  52 0008 054B     		ldr	r3, .L6+4
+  53 000a 0A40     		and	r2, r1
+  54 000c 01D0     		beq	.L3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 3
+
+
+  61:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     {
+  62:.\Generated_Source\PSoC4/TaskTimer_PM.c ****         TaskTimer_backup.enableState = 1u;
+  55              		.loc 1 62 0
+  56 000e 1970     		strb	r1, [r3]
+  57 0010 00E0     		b	.L4
+  58              	.L3:
+  63:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     }
+  64:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     else
+  65:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     {
+  66:.\Generated_Source\PSoC4/TaskTimer_PM.c ****         TaskTimer_backup.enableState = 0u;
+  59              		.loc 1 66 0
+  60 0012 1A70     		strb	r2, [r3]
+  61              	.L4:
+  67:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     }
+  68:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  69:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     TaskTimer_Stop();
+  62              		.loc 1 69 0
+  63 0014 FFF7FEFF 		bl	TaskTimer_Stop
+  64              	.LVL0:
+  70:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     TaskTimer_SaveConfig();
+  71:.\Generated_Source\PSoC4/TaskTimer_PM.c **** }
+  65              		.loc 1 71 0
+  66              		@ sp needed
+  67 0018 08BD     		pop	{r3, pc}
+  68              	.L7:
+  69 001a C046     		.align	2
+  70              	.L6:
+  71 001c 00000540 		.word	1074069504
+  72 0020 00000000 		.word	.LANCHOR0
+  73              		.cfi_endproc
+  74              	.LFE1:
+  75              		.size	TaskTimer_Sleep, .-TaskTimer_Sleep
+  76              		.section	.text.TaskTimer_RestoreConfig,"ax",%progbits
+  77              		.align	1
+  78              		.global	TaskTimer_RestoreConfig
+  79              		.code	16
+  80              		.thumb_func
+  81              		.type	TaskTimer_RestoreConfig, %function
+  82              	TaskTimer_RestoreConfig:
+  83              	.LFB2:
+  72:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  73:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  74:.\Generated_Source\PSoC4/TaskTimer_PM.c **** /*******************************************************************************
+  75:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Function Name: TaskTimer_RestoreConfig
+  76:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
+  77:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  78:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
+  79:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  All configuration registers are retention. Nothing to restore here.
+  80:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  81:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Parameters:
+  82:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  83:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  84:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Return:
+  85:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+  86:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  87:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *******************************************************************************/
+  88:.\Generated_Source\PSoC4/TaskTimer_PM.c **** void TaskTimer_RestoreConfig(void)
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 4
+
+
+  89:.\Generated_Source\PSoC4/TaskTimer_PM.c **** {
+  84              		.loc 1 89 0
+  85              		.cfi_startproc
+  90:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  91:.\Generated_Source\PSoC4/TaskTimer_PM.c **** }
+  86              		.loc 1 91 0
+  87              		@ sp needed
+  88 0000 7047     		bx	lr
+  89              		.cfi_endproc
+  90              	.LFE2:
+  91              		.size	TaskTimer_RestoreConfig, .-TaskTimer_RestoreConfig
+  92              		.section	.text.TaskTimer_Wakeup,"ax",%progbits
+  93              		.align	1
+  94              		.global	TaskTimer_Wakeup
+  95              		.code	16
+  96              		.thumb_func
+  97              		.type	TaskTimer_Wakeup, %function
+  98              	TaskTimer_Wakeup:
+  99              	.LFB3:
+  92:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  93:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+  94:.\Generated_Source\PSoC4/TaskTimer_PM.c **** /*******************************************************************************
+  95:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Function Name: TaskTimer_Wakeup
+  96:.\Generated_Source\PSoC4/TaskTimer_PM.c **** ********************************************************************************
+  97:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+  98:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Summary:
+  99:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  Restores the user configuration and restores the enable state.
+ 100:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+ 101:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Parameters:
+ 102:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+ 103:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+ 104:.\Generated_Source\PSoC4/TaskTimer_PM.c **** * Return:
+ 105:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *  None
+ 106:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *
+ 107:.\Generated_Source\PSoC4/TaskTimer_PM.c **** *******************************************************************************/
+ 108:.\Generated_Source\PSoC4/TaskTimer_PM.c **** void TaskTimer_Wakeup(void)
+ 109:.\Generated_Source\PSoC4/TaskTimer_PM.c **** {
+ 100              		.loc 1 109 0
+ 101              		.cfi_startproc
+ 102 0000 08B5     		push	{r3, lr}
+ 103              		.cfi_def_cfa_offset 8
+ 104              		.cfi_offset 3, -8
+ 105              		.cfi_offset 14, -4
+ 110:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     TaskTimer_RestoreConfig();
+ 111:.\Generated_Source\PSoC4/TaskTimer_PM.c **** 
+ 112:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     if(0u != TaskTimer_backup.enableState)
+ 106              		.loc 1 112 0
+ 107 0002 034B     		ldr	r3, .L14
+ 108 0004 1B78     		ldrb	r3, [r3]
+ 109 0006 002B     		cmp	r3, #0
+ 110 0008 01D0     		beq	.L9
+ 113:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     {
+ 114:.\Generated_Source\PSoC4/TaskTimer_PM.c ****         TaskTimer_Enable();
+ 111              		.loc 1 114 0
+ 112 000a FFF7FEFF 		bl	TaskTimer_Enable
+ 113              	.LVL1:
+ 114              	.L9:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 5
+
+
+ 115:.\Generated_Source\PSoC4/TaskTimer_PM.c ****     }
+ 116:.\Generated_Source\PSoC4/TaskTimer_PM.c **** }
+ 115              		.loc 1 116 0
+ 116              		@ sp needed
+ 117 000e 08BD     		pop	{r3, pc}
+ 118              	.L15:
+ 119              		.align	2
+ 120              	.L14:
+ 121 0010 00000000 		.word	.LANCHOR0
+ 122              		.cfi_endproc
+ 123              	.LFE3:
+ 124              		.size	TaskTimer_Wakeup, .-TaskTimer_Wakeup
+ 125              		.bss
+ 126              		.set	.LANCHOR0,. + 0
+ 127              		.type	TaskTimer_backup, %object
+ 128              		.size	TaskTimer_backup, 1
+ 129              	TaskTimer_backup:
+ 130 0000 00       		.space	1
+ 131              		.text
+ 132              	.Letext0:
+ 133              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 134              		.file 3 ".\\Generated_Source\\PSoC4\\TaskTimer.h"
+ 135              		.section	.debug_info,"",%progbits
+ 136              	.Ldebug_info0:
+ 137 0000 58010000 		.4byte	0x158
+ 138 0004 0400     		.2byte	0x4
+ 139 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 140 000a 04       		.byte	0x4
+ 141 000b 01       		.uleb128 0x1
+ 142 000c 19010000 		.4byte	.LASF23
+ 143 0010 01       		.byte	0x1
+ 144 0011 47000000 		.4byte	.LASF24
+ 145 0015 C7000000 		.4byte	.LASF25
+ 146 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 147 001d 00000000 		.4byte	0
+ 148 0021 00000000 		.4byte	.Ldebug_line0
+ 149 0025 02       		.uleb128 0x2
+ 150 0026 01       		.byte	0x1
+ 151 0027 06       		.byte	0x6
+ 152 0028 0D020000 		.4byte	.LASF0
+ 153 002c 02       		.uleb128 0x2
+ 154 002d 01       		.byte	0x1
+ 155 002e 08       		.byte	0x8
+ 156 002f C0010000 		.4byte	.LASF1
+ 157 0033 02       		.uleb128 0x2
+ 158 0034 02       		.byte	0x2
+ 159 0035 05       		.byte	0x5
+ 160 0036 2F020000 		.4byte	.LASF2
+ 161 003a 02       		.uleb128 0x2
+ 162 003b 02       		.byte	0x2
+ 163 003c 07       		.byte	0x7
+ 164 003d FA010000 		.4byte	.LASF3
+ 165 0041 02       		.uleb128 0x2
+ 166 0042 04       		.byte	0x4
+ 167 0043 05       		.byte	0x5
+ 168 0044 D3010000 		.4byte	.LASF4
+ 169 0048 02       		.uleb128 0x2
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 6
+
+
+ 170 0049 04       		.byte	0x4
+ 171 004a 07       		.byte	0x7
+ 172 004b 75000000 		.4byte	.LASF5
+ 173 004f 02       		.uleb128 0x2
+ 174 0050 08       		.byte	0x8
+ 175 0051 05       		.byte	0x5
+ 176 0052 00000000 		.4byte	.LASF6
+ 177 0056 02       		.uleb128 0x2
+ 178 0057 08       		.byte	0x8
+ 179 0058 07       		.byte	0x7
+ 180 0059 9F000000 		.4byte	.LASF7
+ 181 005d 03       		.uleb128 0x3
+ 182 005e 04       		.byte	0x4
+ 183 005f 05       		.byte	0x5
+ 184 0060 696E7400 		.ascii	"int\000"
+ 185 0064 02       		.uleb128 0x2
+ 186 0065 04       		.byte	0x4
+ 187 0066 07       		.byte	0x7
+ 188 0067 48020000 		.4byte	.LASF8
+ 189 006b 04       		.uleb128 0x4
+ 190 006c 6F000000 		.4byte	.LASF9
+ 191 0070 02       		.byte	0x2
+ 192 0071 A1       		.byte	0xa1
+ 193 0072 2C000000 		.4byte	0x2c
+ 194 0076 04       		.uleb128 0x4
+ 195 0077 0E000000 		.4byte	.LASF10
+ 196 007b 02       		.byte	0x2
+ 197 007c A3       		.byte	0xa3
+ 198 007d 48000000 		.4byte	0x48
+ 199 0081 02       		.uleb128 0x2
+ 200 0082 04       		.byte	0x4
+ 201 0083 04       		.byte	0x4
+ 202 0084 29020000 		.4byte	.LASF11
+ 203 0088 02       		.uleb128 0x2
+ 204 0089 08       		.byte	0x8
+ 205 008a 04       		.byte	0x4
+ 206 008b DC010000 		.4byte	.LASF12
+ 207 008f 02       		.uleb128 0x2
+ 208 0090 01       		.byte	0x1
+ 209 0091 08       		.byte	0x8
+ 210 0092 CE010000 		.4byte	.LASF13
+ 211 0096 05       		.uleb128 0x5
+ 212 0097 E3010000 		.4byte	.LASF14
+ 213 009b 02       		.byte	0x2
+ 214 009c 4D01     		.2byte	0x14d
+ 215 009e A2000000 		.4byte	0xa2
+ 216 00a2 06       		.uleb128 0x6
+ 217 00a3 76000000 		.4byte	0x76
+ 218 00a7 02       		.uleb128 0x2
+ 219 00a8 04       		.byte	0x4
+ 220 00a9 07       		.byte	0x7
+ 221 00aa 55020000 		.4byte	.LASF15
+ 222 00ae 07       		.uleb128 0x7
+ 223 00af 01       		.byte	0x1
+ 224 00b0 03       		.byte	0x3
+ 225 00b1 21       		.byte	0x21
+ 226 00b2 C3000000 		.4byte	0xc3
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 7
+
+
+ 227 00b6 08       		.uleb128 0x8
+ 228 00b7 15000000 		.4byte	.LASF26
+ 229 00bb 03       		.byte	0x3
+ 230 00bc 23       		.byte	0x23
+ 231 00bd 6B000000 		.4byte	0x6b
+ 232 00c1 00       		.byte	0
+ 233 00c2 00       		.byte	0
+ 234 00c3 04       		.uleb128 0x4
+ 235 00c4 A8010000 		.4byte	.LASF16
+ 236 00c8 03       		.byte	0x3
+ 237 00c9 24       		.byte	0x24
+ 238 00ca AE000000 		.4byte	0xae
+ 239 00ce 09       		.uleb128 0x9
+ 240 00cf 32000000 		.4byte	.LASF17
+ 241 00d3 01       		.byte	0x1
+ 242 00d4 26       		.byte	0x26
+ 243 00d5 01       		.byte	0x1
+ 244 00d6 09       		.uleb128 0x9
+ 245 00d7 87000000 		.4byte	.LASF18
+ 246 00db 01       		.byte	0x1
+ 247 00dc 58       		.byte	0x58
+ 248 00dd 01       		.byte	0x1
+ 249 00de 0A       		.uleb128 0xa
+ 250 00df CE000000 		.4byte	0xce
+ 251 00e3 00000000 		.4byte	.LFB0
+ 252 00e7 02000000 		.4byte	.LFE0-.LFB0
+ 253 00eb 01       		.uleb128 0x1
+ 254 00ec 9C       		.byte	0x9c
+ 255 00ed 0B       		.uleb128 0xb
+ 256 00ee 19020000 		.4byte	.LASF19
+ 257 00f2 01       		.byte	0x1
+ 258 00f3 3A       		.byte	0x3a
+ 259 00f4 00000000 		.4byte	.LFB1
+ 260 00f8 24000000 		.4byte	.LFE1-.LFB1
+ 261 00fc 01       		.uleb128 0x1
+ 262 00fd 9C       		.byte	0x9c
+ 263 00fe 0C010000 		.4byte	0x10c
+ 264 0102 0C       		.uleb128 0xc
+ 265 0103 18000000 		.4byte	.LVL0
+ 266 0107 4B010000 		.4byte	0x14b
+ 267 010b 00       		.byte	0
+ 268 010c 0A       		.uleb128 0xa
+ 269 010d D6000000 		.4byte	0xd6
+ 270 0111 00000000 		.4byte	.LFB2
+ 271 0115 02000000 		.4byte	.LFE2-.LFB2
+ 272 0119 01       		.uleb128 0x1
+ 273 011a 9C       		.byte	0x9c
+ 274 011b 0B       		.uleb128 0xb
+ 275 011c B6000000 		.4byte	.LASF20
+ 276 0120 01       		.byte	0x1
+ 277 0121 6C       		.byte	0x6c
+ 278 0122 00000000 		.4byte	.LFB3
+ 279 0126 14000000 		.4byte	.LFE3-.LFB3
+ 280 012a 01       		.uleb128 0x1
+ 281 012b 9C       		.byte	0x9c
+ 282 012c 3A010000 		.4byte	0x13a
+ 283 0130 0C       		.uleb128 0xc
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 8
+
+
+ 284 0131 0E000000 		.4byte	.LVL1
+ 285 0135 53010000 		.4byte	0x153
+ 286 0139 00       		.byte	0
+ 287 013a 0D       		.uleb128 0xd
+ 288 013b E9010000 		.4byte	.LASF27
+ 289 013f 01       		.byte	0x1
+ 290 0140 15       		.byte	0x15
+ 291 0141 C3000000 		.4byte	0xc3
+ 292 0145 05       		.uleb128 0x5
+ 293 0146 03       		.byte	0x3
+ 294 0147 00000000 		.4byte	TaskTimer_backup
+ 295 014b 0E       		.uleb128 0xe
+ 296 014c 39020000 		.4byte	.LASF21
+ 297 0150 03       		.byte	0x3
+ 298 0151 3201     		.2byte	0x132
+ 299 0153 0E       		.uleb128 0xe
+ 300 0154 21000000 		.4byte	.LASF22
+ 301 0158 03       		.byte	0x3
+ 302 0159 3001     		.2byte	0x130
+ 303 015b 00       		.byte	0
+ 304              		.section	.debug_abbrev,"",%progbits
+ 305              	.Ldebug_abbrev0:
+ 306 0000 01       		.uleb128 0x1
+ 307 0001 11       		.uleb128 0x11
+ 308 0002 01       		.byte	0x1
+ 309 0003 25       		.uleb128 0x25
+ 310 0004 0E       		.uleb128 0xe
+ 311 0005 13       		.uleb128 0x13
+ 312 0006 0B       		.uleb128 0xb
+ 313 0007 03       		.uleb128 0x3
+ 314 0008 0E       		.uleb128 0xe
+ 315 0009 1B       		.uleb128 0x1b
+ 316 000a 0E       		.uleb128 0xe
+ 317 000b 55       		.uleb128 0x55
+ 318 000c 17       		.uleb128 0x17
+ 319 000d 11       		.uleb128 0x11
+ 320 000e 01       		.uleb128 0x1
+ 321 000f 10       		.uleb128 0x10
+ 322 0010 17       		.uleb128 0x17
+ 323 0011 00       		.byte	0
+ 324 0012 00       		.byte	0
+ 325 0013 02       		.uleb128 0x2
+ 326 0014 24       		.uleb128 0x24
+ 327 0015 00       		.byte	0
+ 328 0016 0B       		.uleb128 0xb
+ 329 0017 0B       		.uleb128 0xb
+ 330 0018 3E       		.uleb128 0x3e
+ 331 0019 0B       		.uleb128 0xb
+ 332 001a 03       		.uleb128 0x3
+ 333 001b 0E       		.uleb128 0xe
+ 334 001c 00       		.byte	0
+ 335 001d 00       		.byte	0
+ 336 001e 03       		.uleb128 0x3
+ 337 001f 24       		.uleb128 0x24
+ 338 0020 00       		.byte	0
+ 339 0021 0B       		.uleb128 0xb
+ 340 0022 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 9
+
+
+ 341 0023 3E       		.uleb128 0x3e
+ 342 0024 0B       		.uleb128 0xb
+ 343 0025 03       		.uleb128 0x3
+ 344 0026 08       		.uleb128 0x8
+ 345 0027 00       		.byte	0
+ 346 0028 00       		.byte	0
+ 347 0029 04       		.uleb128 0x4
+ 348 002a 16       		.uleb128 0x16
+ 349 002b 00       		.byte	0
+ 350 002c 03       		.uleb128 0x3
+ 351 002d 0E       		.uleb128 0xe
+ 352 002e 3A       		.uleb128 0x3a
+ 353 002f 0B       		.uleb128 0xb
+ 354 0030 3B       		.uleb128 0x3b
+ 355 0031 0B       		.uleb128 0xb
+ 356 0032 49       		.uleb128 0x49
+ 357 0033 13       		.uleb128 0x13
+ 358 0034 00       		.byte	0
+ 359 0035 00       		.byte	0
+ 360 0036 05       		.uleb128 0x5
+ 361 0037 16       		.uleb128 0x16
+ 362 0038 00       		.byte	0
+ 363 0039 03       		.uleb128 0x3
+ 364 003a 0E       		.uleb128 0xe
+ 365 003b 3A       		.uleb128 0x3a
+ 366 003c 0B       		.uleb128 0xb
+ 367 003d 3B       		.uleb128 0x3b
+ 368 003e 05       		.uleb128 0x5
+ 369 003f 49       		.uleb128 0x49
+ 370 0040 13       		.uleb128 0x13
+ 371 0041 00       		.byte	0
+ 372 0042 00       		.byte	0
+ 373 0043 06       		.uleb128 0x6
+ 374 0044 35       		.uleb128 0x35
+ 375 0045 00       		.byte	0
+ 376 0046 49       		.uleb128 0x49
+ 377 0047 13       		.uleb128 0x13
+ 378 0048 00       		.byte	0
+ 379 0049 00       		.byte	0
+ 380 004a 07       		.uleb128 0x7
+ 381 004b 13       		.uleb128 0x13
+ 382 004c 01       		.byte	0x1
+ 383 004d 0B       		.uleb128 0xb
+ 384 004e 0B       		.uleb128 0xb
+ 385 004f 3A       		.uleb128 0x3a
+ 386 0050 0B       		.uleb128 0xb
+ 387 0051 3B       		.uleb128 0x3b
+ 388 0052 0B       		.uleb128 0xb
+ 389 0053 01       		.uleb128 0x1
+ 390 0054 13       		.uleb128 0x13
+ 391 0055 00       		.byte	0
+ 392 0056 00       		.byte	0
+ 393 0057 08       		.uleb128 0x8
+ 394 0058 0D       		.uleb128 0xd
+ 395 0059 00       		.byte	0
+ 396 005a 03       		.uleb128 0x3
+ 397 005b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 10
+
+
+ 398 005c 3A       		.uleb128 0x3a
+ 399 005d 0B       		.uleb128 0xb
+ 400 005e 3B       		.uleb128 0x3b
+ 401 005f 0B       		.uleb128 0xb
+ 402 0060 49       		.uleb128 0x49
+ 403 0061 13       		.uleb128 0x13
+ 404 0062 38       		.uleb128 0x38
+ 405 0063 0B       		.uleb128 0xb
+ 406 0064 00       		.byte	0
+ 407 0065 00       		.byte	0
+ 408 0066 09       		.uleb128 0x9
+ 409 0067 2E       		.uleb128 0x2e
+ 410 0068 00       		.byte	0
+ 411 0069 3F       		.uleb128 0x3f
+ 412 006a 19       		.uleb128 0x19
+ 413 006b 03       		.uleb128 0x3
+ 414 006c 0E       		.uleb128 0xe
+ 415 006d 3A       		.uleb128 0x3a
+ 416 006e 0B       		.uleb128 0xb
+ 417 006f 3B       		.uleb128 0x3b
+ 418 0070 0B       		.uleb128 0xb
+ 419 0071 27       		.uleb128 0x27
+ 420 0072 19       		.uleb128 0x19
+ 421 0073 20       		.uleb128 0x20
+ 422 0074 0B       		.uleb128 0xb
+ 423 0075 00       		.byte	0
+ 424 0076 00       		.byte	0
+ 425 0077 0A       		.uleb128 0xa
+ 426 0078 2E       		.uleb128 0x2e
+ 427 0079 00       		.byte	0
+ 428 007a 31       		.uleb128 0x31
+ 429 007b 13       		.uleb128 0x13
+ 430 007c 11       		.uleb128 0x11
+ 431 007d 01       		.uleb128 0x1
+ 432 007e 12       		.uleb128 0x12
+ 433 007f 06       		.uleb128 0x6
+ 434 0080 40       		.uleb128 0x40
+ 435 0081 18       		.uleb128 0x18
+ 436 0082 9742     		.uleb128 0x2117
+ 437 0084 19       		.uleb128 0x19
+ 438 0085 00       		.byte	0
+ 439 0086 00       		.byte	0
+ 440 0087 0B       		.uleb128 0xb
+ 441 0088 2E       		.uleb128 0x2e
+ 442 0089 01       		.byte	0x1
+ 443 008a 3F       		.uleb128 0x3f
+ 444 008b 19       		.uleb128 0x19
+ 445 008c 03       		.uleb128 0x3
+ 446 008d 0E       		.uleb128 0xe
+ 447 008e 3A       		.uleb128 0x3a
+ 448 008f 0B       		.uleb128 0xb
+ 449 0090 3B       		.uleb128 0x3b
+ 450 0091 0B       		.uleb128 0xb
+ 451 0092 27       		.uleb128 0x27
+ 452 0093 19       		.uleb128 0x19
+ 453 0094 11       		.uleb128 0x11
+ 454 0095 01       		.uleb128 0x1
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 11
+
+
+ 455 0096 12       		.uleb128 0x12
+ 456 0097 06       		.uleb128 0x6
+ 457 0098 40       		.uleb128 0x40
+ 458 0099 18       		.uleb128 0x18
+ 459 009a 9742     		.uleb128 0x2117
+ 460 009c 19       		.uleb128 0x19
+ 461 009d 01       		.uleb128 0x1
+ 462 009e 13       		.uleb128 0x13
+ 463 009f 00       		.byte	0
+ 464 00a0 00       		.byte	0
+ 465 00a1 0C       		.uleb128 0xc
+ 466 00a2 898201   		.uleb128 0x4109
+ 467 00a5 00       		.byte	0
+ 468 00a6 11       		.uleb128 0x11
+ 469 00a7 01       		.uleb128 0x1
+ 470 00a8 31       		.uleb128 0x31
+ 471 00a9 13       		.uleb128 0x13
+ 472 00aa 00       		.byte	0
+ 473 00ab 00       		.byte	0
+ 474 00ac 0D       		.uleb128 0xd
+ 475 00ad 34       		.uleb128 0x34
+ 476 00ae 00       		.byte	0
+ 477 00af 03       		.uleb128 0x3
+ 478 00b0 0E       		.uleb128 0xe
+ 479 00b1 3A       		.uleb128 0x3a
+ 480 00b2 0B       		.uleb128 0xb
+ 481 00b3 3B       		.uleb128 0x3b
+ 482 00b4 0B       		.uleb128 0xb
+ 483 00b5 49       		.uleb128 0x49
+ 484 00b6 13       		.uleb128 0x13
+ 485 00b7 02       		.uleb128 0x2
+ 486 00b8 18       		.uleb128 0x18
+ 487 00b9 00       		.byte	0
+ 488 00ba 00       		.byte	0
+ 489 00bb 0E       		.uleb128 0xe
+ 490 00bc 2E       		.uleb128 0x2e
+ 491 00bd 00       		.byte	0
+ 492 00be 3F       		.uleb128 0x3f
+ 493 00bf 19       		.uleb128 0x19
+ 494 00c0 03       		.uleb128 0x3
+ 495 00c1 0E       		.uleb128 0xe
+ 496 00c2 3A       		.uleb128 0x3a
+ 497 00c3 0B       		.uleb128 0xb
+ 498 00c4 3B       		.uleb128 0x3b
+ 499 00c5 05       		.uleb128 0x5
+ 500 00c6 27       		.uleb128 0x27
+ 501 00c7 19       		.uleb128 0x19
+ 502 00c8 3C       		.uleb128 0x3c
+ 503 00c9 19       		.uleb128 0x19
+ 504 00ca 00       		.byte	0
+ 505 00cb 00       		.byte	0
+ 506 00cc 00       		.byte	0
+ 507              		.section	.debug_aranges,"",%progbits
+ 508 0000 34000000 		.4byte	0x34
+ 509 0004 0200     		.2byte	0x2
+ 510 0006 00000000 		.4byte	.Ldebug_info0
+ 511 000a 04       		.byte	0x4
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 12
+
+
+ 512 000b 00       		.byte	0
+ 513 000c 0000     		.2byte	0
+ 514 000e 0000     		.2byte	0
+ 515 0010 00000000 		.4byte	.LFB0
+ 516 0014 02000000 		.4byte	.LFE0-.LFB0
+ 517 0018 00000000 		.4byte	.LFB1
+ 518 001c 24000000 		.4byte	.LFE1-.LFB1
+ 519 0020 00000000 		.4byte	.LFB2
+ 520 0024 02000000 		.4byte	.LFE2-.LFB2
+ 521 0028 00000000 		.4byte	.LFB3
+ 522 002c 14000000 		.4byte	.LFE3-.LFB3
+ 523 0030 00000000 		.4byte	0
+ 524 0034 00000000 		.4byte	0
+ 525              		.section	.debug_ranges,"",%progbits
+ 526              	.Ldebug_ranges0:
+ 527 0000 00000000 		.4byte	.LFB0
+ 528 0004 02000000 		.4byte	.LFE0
+ 529 0008 00000000 		.4byte	.LFB1
+ 530 000c 24000000 		.4byte	.LFE1
+ 531 0010 00000000 		.4byte	.LFB2
+ 532 0014 02000000 		.4byte	.LFE2
+ 533 0018 00000000 		.4byte	.LFB3
+ 534 001c 14000000 		.4byte	.LFE3
+ 535 0020 00000000 		.4byte	0
+ 536 0024 00000000 		.4byte	0
+ 537              		.section	.debug_line,"",%progbits
+ 538              	.Ldebug_line0:
+ 539 0000 A8000000 		.section	.debug_str,"MS",%progbits,1
+ 539      02005A00 
+ 539      00000201 
+ 539      FB0E0D00 
+ 539      01010101 
+ 540              	.LASF6:
+ 541 0000 6C6F6E67 		.ascii	"long long int\000"
+ 541      206C6F6E 
+ 541      6720696E 
+ 541      7400
+ 542              	.LASF10:
+ 543 000e 75696E74 		.ascii	"uint32\000"
+ 543      333200
+ 544              	.LASF26:
+ 545 0015 656E6162 		.ascii	"enableState\000"
+ 545      6C655374 
+ 545      61746500 
+ 546              	.LASF22:
+ 547 0021 5461736B 		.ascii	"TaskTimer_Enable\000"
+ 547      54696D65 
+ 547      725F456E 
+ 547      61626C65 
+ 547      00
+ 548              	.LASF17:
+ 549 0032 5461736B 		.ascii	"TaskTimer_SaveConfig\000"
+ 549      54696D65 
+ 549      725F5361 
+ 549      7665436F 
+ 549      6E666967 
+ 550              	.LASF24:
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 13
+
+
+ 551 0047 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\TaskTimer_PM.c\000"
+ 551      6E657261 
+ 551      7465645F 
+ 551      536F7572 
+ 551      63655C50 
+ 552              	.LASF9:
+ 553 006f 75696E74 		.ascii	"uint8\000"
+ 553      3800
+ 554              	.LASF5:
+ 555 0075 6C6F6E67 		.ascii	"long unsigned int\000"
+ 555      20756E73 
+ 555      69676E65 
+ 555      6420696E 
+ 555      7400
+ 556              	.LASF18:
+ 557 0087 5461736B 		.ascii	"TaskTimer_RestoreConfig\000"
+ 557      54696D65 
+ 557      725F5265 
+ 557      73746F72 
+ 557      65436F6E 
+ 558              	.LASF7:
+ 559 009f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 559      206C6F6E 
+ 559      6720756E 
+ 559      7369676E 
+ 559      65642069 
+ 560              	.LASF20:
+ 561 00b6 5461736B 		.ascii	"TaskTimer_Wakeup\000"
+ 561      54696D65 
+ 561      725F5761 
+ 561      6B657570 
+ 561      00
+ 562              	.LASF25:
+ 563 00c7 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
+ 563      73657273 
+ 563      5C534E46 
+ 563      555C446F 
+ 563      63756D65 
+ 564 00f5 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
+ 564      542D3530 
+ 564      5F50726F 
+ 564      6A656374 
+ 564      5C542D35 
+ 565              	.LASF23:
+ 566 0119 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 566      4320342E 
+ 566      382E3420 
+ 566      32303134 
+ 566      30353236 
+ 567 014c 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 567      20726576 
+ 567      6973696F 
+ 567      6E203231 
+ 567      31333538 
+ 568 017f 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 568      66756E63 
+ 568      74696F6E 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 14
+
+
+ 568      2D736563 
+ 568      74696F6E 
+ 569              	.LASF16:
+ 570 01a8 5461736B 		.ascii	"TaskTimer_BACKUP_STRUCT\000"
+ 570      54696D65 
+ 570      725F4241 
+ 570      434B5550 
+ 570      5F535452 
+ 571              	.LASF1:
+ 572 01c0 756E7369 		.ascii	"unsigned char\000"
+ 572      676E6564 
+ 572      20636861 
+ 572      7200
+ 573              	.LASF13:
+ 574 01ce 63686172 		.ascii	"char\000"
+ 574      00
+ 575              	.LASF4:
+ 576 01d3 6C6F6E67 		.ascii	"long int\000"
+ 576      20696E74 
+ 576      00
+ 577              	.LASF12:
+ 578 01dc 646F7562 		.ascii	"double\000"
+ 578      6C6500
+ 579              	.LASF14:
+ 580 01e3 72656733 		.ascii	"reg32\000"
+ 580      3200
+ 581              	.LASF27:
+ 582 01e9 5461736B 		.ascii	"TaskTimer_backup\000"
+ 582      54696D65 
+ 582      725F6261 
+ 582      636B7570 
+ 582      00
+ 583              	.LASF3:
+ 584 01fa 73686F72 		.ascii	"short unsigned int\000"
+ 584      7420756E 
+ 584      7369676E 
+ 584      65642069 
+ 584      6E7400
+ 585              	.LASF0:
+ 586 020d 7369676E 		.ascii	"signed char\000"
+ 586      65642063 
+ 586      68617200 
+ 587              	.LASF19:
+ 588 0219 5461736B 		.ascii	"TaskTimer_Sleep\000"
+ 588      54696D65 
+ 588      725F536C 
+ 588      65657000 
+ 589              	.LASF11:
+ 590 0229 666C6F61 		.ascii	"float\000"
+ 590      7400
+ 591              	.LASF2:
+ 592 022f 73686F72 		.ascii	"short int\000"
+ 592      7420696E 
+ 592      7400
+ 593              	.LASF21:
+ 594 0239 5461736B 		.ascii	"TaskTimer_Stop\000"
+ 594      54696D65 
+ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cccRU4mC.s 			page 15
+
+
+ 594      725F5374 
+ 594      6F7000
+ 595              	.LASF8:
+ 596 0248 756E7369 		.ascii	"unsigned int\000"
+ 596      676E6564 
+ 596      20696E74 
+ 596      00
+ 597              	.LASF15:
+ 598 0255 73697A65 		.ascii	"sizetype\000"
+ 598      74797065 
+ 598      00
+ 599              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

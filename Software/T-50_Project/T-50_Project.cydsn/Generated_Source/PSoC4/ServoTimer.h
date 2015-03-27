@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: ServoTimer.h
-* Version 1.10
+* Version 2.0
 *
 * Description:
 *  This file provides constants and parameter values for the ServoTimer
@@ -19,6 +19,8 @@
 #if !defined(CY_TCPWM_ServoTimer_H)
 #define CY_TCPWM_ServoTimer_H
 
+
+#include "CyLib.h"
 #include "cytypes.h"
 #include "cyfitter.h"
 
@@ -45,6 +47,7 @@ extern uint8  ServoTimer_initVar;
 ****************************************/
 
 #define ServoTimer_CY_TCPWM_V2                    (CYIPBLOCK_m0s8tcpwm_VERSION == 2u)
+#define ServoTimer_CY_TCPWM_4000                  (CY_PSOC4_4000)
 
 /* TCPWM Configuration */
 #define ServoTimer_CONFIG                         (1lu)
@@ -262,12 +265,25 @@ extern uint8  ServoTimer_initVar;
 #define ServoTimer_PWM_MODE_RIGHT                 (ServoTimer_CC_MATCH_SET          |   \
                                                          ServoTimer_OVERLOW_NO_CHANGE     |   \
                                                          ServoTimer_UNDERFLOW_CLEAR)
-#define ServoTimer_PWM_MODE_CENTER                (ServoTimer_CC_MATCH_INVERT       |   \
-                                                         ServoTimer_OVERLOW_NO_CHANGE     |   \
-                                                         ServoTimer_UNDERFLOW_CLEAR)
-#define ServoTimer_PWM_MODE_ASYM                  (ServoTimer_CC_MATCH_NO_CHANGE    |   \
+#define ServoTimer_PWM_MODE_ASYM                  (ServoTimer_CC_MATCH_INVERT       |   \
                                                          ServoTimer_OVERLOW_SET           |   \
-                                                         ServoTimer_UNDERFLOW_CLEAR )
+                                                         ServoTimer_UNDERFLOW_CLEAR)
+
+#if (ServoTimer_CY_TCPWM_V2)
+    #if(ServoTimer_CY_TCPWM_4000)
+        #define ServoTimer_PWM_MODE_CENTER                (ServoTimer_CC_MATCH_INVERT       |   \
+                                                                 ServoTimer_OVERLOW_NO_CHANGE     |   \
+                                                                 ServoTimer_UNDERFLOW_CLEAR)
+    #else
+        #define ServoTimer_PWM_MODE_CENTER                (ServoTimer_CC_MATCH_INVERT       |   \
+                                                                 ServoTimer_OVERLOW_SET           |   \
+                                                                 ServoTimer_UNDERFLOW_CLEAR)
+    #endif /* (ServoTimer_CY_TCPWM_4000) */
+#else
+    #define ServoTimer_PWM_MODE_CENTER                (ServoTimer_CC_MATCH_INVERT       |   \
+                                                             ServoTimer_OVERLOW_NO_CHANGE     |   \
+                                                             ServoTimer_UNDERFLOW_CLEAR)
+#endif /* (ServoTimer_CY_TCPWM_NEW) */
 
 /* Command operations without condition */
 #define ServoTimer_CMD_CAPTURE                    (0u)
@@ -458,7 +474,69 @@ void   ServoTimer_Wakeup(void);
 *    Initial Constants
 ***************************************/
 
+#define ServoTimer_CTRL_QUAD_BASE_CONFIG                                                          \
+        (((uint32)(ServoTimer_QUAD_ENCODING_MODES     << ServoTimer_QUAD_MODE_SHIFT))       |\
+         ((uint32)(ServoTimer_CONFIG                  << ServoTimer_MODE_SHIFT)))
+
+#define ServoTimer_CTRL_PWM_BASE_CONFIG                                                           \
+        (((uint32)(ServoTimer_PWM_STOP_EVENT          << ServoTimer_PWM_STOP_KILL_SHIFT))   |\
+         ((uint32)(ServoTimer_PWM_OUT_INVERT          << ServoTimer_INV_OUT_SHIFT))         |\
+         ((uint32)(ServoTimer_PWM_OUT_N_INVERT        << ServoTimer_INV_COMPL_OUT_SHIFT))   |\
+         ((uint32)(ServoTimer_PWM_MODE                << ServoTimer_MODE_SHIFT)))
+
+#define ServoTimer_CTRL_PWM_RUN_MODE                                                              \
+            ((uint32)(ServoTimer_PWM_RUN_MODE         << ServoTimer_ONESHOT_SHIFT))
+            
+#define ServoTimer_CTRL_PWM_ALIGN                                                                 \
+            ((uint32)(ServoTimer_PWM_ALIGN            << ServoTimer_UPDOWN_SHIFT))
+
+#define ServoTimer_CTRL_PWM_KILL_EVENT                                                            \
+             ((uint32)(ServoTimer_PWM_KILL_EVENT      << ServoTimer_PWM_SYNC_KILL_SHIFT))
+
+#define ServoTimer_CTRL_PWM_DEAD_TIME_CYCLE                                                       \
+            ((uint32)(ServoTimer_PWM_DEAD_TIME_CYCLE  << ServoTimer_PRESCALER_SHIFT))
+
+#define ServoTimer_CTRL_PWM_PRESCALER                                                             \
+            ((uint32)(ServoTimer_PWM_PRESCALER        << ServoTimer_PRESCALER_SHIFT))
+
+#define ServoTimer_CTRL_TIMER_BASE_CONFIG                                                         \
+        (((uint32)(ServoTimer_TC_PRESCALER            << ServoTimer_PRESCALER_SHIFT))       |\
+         ((uint32)(ServoTimer_TC_COUNTER_MODE         << ServoTimer_UPDOWN_SHIFT))          |\
+         ((uint32)(ServoTimer_TC_RUN_MODE             << ServoTimer_ONESHOT_SHIFT))         |\
+         ((uint32)(ServoTimer_TC_COMP_CAP_MODE        << ServoTimer_MODE_SHIFT)))
+        
+#define ServoTimer_QUAD_SIGNALS_MODES                                                             \
+        (((uint32)(ServoTimer_QUAD_PHIA_SIGNAL_MODE   << ServoTimer_COUNT_SHIFT))           |\
+         ((uint32)(ServoTimer_QUAD_INDEX_SIGNAL_MODE  << ServoTimer_RELOAD_SHIFT))          |\
+         ((uint32)(ServoTimer_QUAD_STOP_SIGNAL_MODE   << ServoTimer_STOP_SHIFT))            |\
+         ((uint32)(ServoTimer_QUAD_PHIB_SIGNAL_MODE   << ServoTimer_START_SHIFT)))
+
+#define ServoTimer_PWM_SIGNALS_MODES                                                              \
+        (((uint32)(ServoTimer_PWM_SWITCH_SIGNAL_MODE  << ServoTimer_CAPTURE_SHIFT))         |\
+         ((uint32)(ServoTimer_PWM_COUNT_SIGNAL_MODE   << ServoTimer_COUNT_SHIFT))           |\
+         ((uint32)(ServoTimer_PWM_RELOAD_SIGNAL_MODE  << ServoTimer_RELOAD_SHIFT))          |\
+         ((uint32)(ServoTimer_PWM_STOP_SIGNAL_MODE    << ServoTimer_STOP_SHIFT))            |\
+         ((uint32)(ServoTimer_PWM_START_SIGNAL_MODE   << ServoTimer_START_SHIFT)))
+
+#define ServoTimer_TIMER_SIGNALS_MODES                                                            \
+        (((uint32)(ServoTimer_TC_CAPTURE_SIGNAL_MODE  << ServoTimer_CAPTURE_SHIFT))         |\
+         ((uint32)(ServoTimer_TC_COUNT_SIGNAL_MODE    << ServoTimer_COUNT_SHIFT))           |\
+         ((uint32)(ServoTimer_TC_RELOAD_SIGNAL_MODE   << ServoTimer_RELOAD_SHIFT))          |\
+         ((uint32)(ServoTimer_TC_STOP_SIGNAL_MODE     << ServoTimer_STOP_SHIFT))            |\
+         ((uint32)(ServoTimer_TC_START_SIGNAL_MODE    << ServoTimer_START_SHIFT)))
+        
+#define ServoTimer_TIMER_UPDOWN_CNT_USED                                                          \
+                ((ServoTimer__COUNT_UPDOWN0 == ServoTimer_TC_COUNTER_MODE)                  ||\
+                 (ServoTimer__COUNT_UPDOWN1 == ServoTimer_TC_COUNTER_MODE))
+
+#define ServoTimer_PWM_UPDOWN_CNT_USED                                                            \
+                ((ServoTimer__CENTER == ServoTimer_PWM_ALIGN)                               ||\
+                 (ServoTimer__ASYMMETRIC == ServoTimer_PWM_ALIGN))               
+        
 #define ServoTimer_PWM_PR_INIT_VALUE              (1u)
+#define ServoTimer_QUAD_PERIOD_INIT_VALUE         (0x8000u)
+
+
 
 #endif /* End CY_TCPWM_ServoTimer_H */
 

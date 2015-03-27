@@ -1,6 +1,6 @@
 /*******************************************************************************
 * File Name: SpareLight.h  
-* Version 2.5
+* Version 2.10
 *
 * Description:
 *  This file containts Control Register function prototypes and register defines
@@ -40,17 +40,15 @@ uint8   SpareLight_ClearInterrupt(void) ;
 /* Drive Modes */
 #define SpareLight_DRIVE_MODE_BITS        (3)
 #define SpareLight_DRIVE_MODE_IND_MASK    (0xFFFFFFFFu >> (32 - SpareLight_DRIVE_MODE_BITS))
-#define SpareLight_DRIVE_MODE_SHIFT       (0x00u)
-#define SpareLight_DRIVE_MODE_MASK        (0x07u << SpareLight_DRIVE_MODE_SHIFT)
 
-#define SpareLight_DM_ALG_HIZ         (0x00u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_DIG_HIZ         (0x01u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_RES_UP          (0x02u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_RES_DWN         (0x03u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_OD_LO           (0x04u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_OD_HI           (0x05u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_STRONG          (0x06u << SpareLight_DRIVE_MODE_SHIFT)
-#define SpareLight_DM_RES_UPDWN       (0x07u << SpareLight_DRIVE_MODE_SHIFT)
+#define SpareLight_DM_ALG_HIZ         (0x00u)
+#define SpareLight_DM_DIG_HIZ         (0x01u)
+#define SpareLight_DM_RES_UP          (0x02u)
+#define SpareLight_DM_RES_DWN         (0x03u)
+#define SpareLight_DM_OD_LO           (0x04u)
+#define SpareLight_DM_OD_HI           (0x05u)
+#define SpareLight_DM_STRONG          (0x06u)
+#define SpareLight_DM_RES_UPDWN       (0x07u)
 
 /* Digital Port Constants */
 #define SpareLight_MASK               SpareLight__MASK
@@ -78,6 +76,16 @@ uint8   SpareLight_ClearInterrupt(void) ;
     #define SpareLight_INTSTAT                (* (reg32 *) SpareLight__INTSTAT)
 
 #endif /* Interrupt Registers */
+
+
+/***************************************
+* The following code is DEPRECATED and 
+* must not be used.
+***************************************/
+
+#define SpareLight_DRIVE_MODE_SHIFT       (0x00u)
+#define SpareLight_DRIVE_MODE_MASK        (0x07u << SpareLight_DRIVE_MODE_SHIFT)
+
 
 #endif /* End Pins SpareLight_H */
 
