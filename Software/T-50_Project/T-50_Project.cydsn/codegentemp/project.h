@@ -88,6 +88,9 @@
 #include <I2CM_I2C_PVT.h>
 #include <I2CM_PVT.h>
 #include <I2CM_BOOT.h>
+#include <ADC.h>
+#include <In_Speed.h>
+#include <In_Speed_aliases.h>
 #include <UART_1_SCBCLK.h>
 #include <UART_1_tx.h>
 #include <UART_1_tx_aliases.h>
@@ -100,6 +103,8 @@
 #include <I2CM_scl.h>
 #include <I2CM_scl_aliases.h>
 #include <I2CM_SCB_IRQ.h>
+#include <ADC_IRQ.h>
+#include <ADC_intClock.h>
 #include <core_cm0_psoc4.h>
 #include <core_cm0.h>
 #include <CyFlash.h>

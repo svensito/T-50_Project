@@ -1,19 +1,20 @@
 dont_use_io iocell 3 2
 dont_use_io iocell 3 3
+set_location "\TelemUART:BUART:tx_bitclk\" macrocell 0 0 0 1
 set_location "\TelemUART:BUART:sTX:TxSts\" statusicell 1 0 4 
-set_location "\TelemUART:BUART:tx_state_1\" macrocell 0 0 1 3
+set_location "\TelemUART:BUART:tx_state_2\" macrocell 1 0 0 1
+set_location "\TelemUART:BUART:tx_bitclk_enable_pre\" macrocell 0 0 0 2
+set_location "\TelemUART:BUART:tx_state_1\" macrocell 0 0 1 0
 set_location "Net_206" macrocell 0 0 1 2
-set_location "\TelemUART:BUART:tx_status_2\" macrocell 1 0 1 0
+set_location "\TelemUART:BUART:counter_load_not\" macrocell 0 0 1 1
 set_location "\TelemUART:BUART:sTX:TxShifter:u0\" datapathcell 1 0 2 
-set_location "\TelemUART:BUART:tx_state_2\" macrocell 0 0 0 1
-set_location "\TelemUART:BUART:tx_bitclk\" macrocell 1 0 0 1
-set_location "\TelemUART:BUART:counter_load_not\" macrocell 0 0 0 2
-set_location "\TelemUART:BUART:tx_bitclk_enable_pre\" macrocell 1 0 0 0
+set_location "\TelemUART:BUART:tx_status_2\" macrocell 1 0 0 0
 set_location "\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\" datapathcell 0 0 2 
-set_location "\TelemUART:BUART:tx_status_0\" macrocell 1 0 0 2
-set_location "\TelemUART:BUART:txn\" macrocell 1 0 1 3
-set_location "\TelemUART:BUART:tx_state_0\" macrocell 0 0 1 1
+set_location "\TelemUART:BUART:tx_status_0\" macrocell 1 0 1 0
+set_location "\TelemUART:BUART:txn\" macrocell 0 0 0 0
+set_location "\TelemUART:BUART:tx_state_0\" macrocell 1 0 0 3
 set_io "NavB(0)" iocell 2 2
+set_location "ClockBlock" m0s8clockblockcell -1 -1 0
 set_location "\TaskTimer:cy_m0s8_tcpwm_1\" m0s8tcpwmcell -1 -1 0
 set_location "SW1" logicalport -1 -1 0
 set_io "\UART_1:tx(0)\" iocell 4 1
@@ -22,32 +23,34 @@ set_io "NavLR(0)" iocell 2 1
 set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
 set_io "SW1(0)" iocell 0 7
 set_io "\I2CM:sda(0)\" iocell 3 1
+set_location "\ADC:cy_psoc4_sar\" p4sarcell -1 -1 0
 set_location "\NavLightPWM:cy_m0s8_tcpwm_1\" m0s8tcpwmcell -1 -1 2
 set_io "Tx_Telemetry(0)" iocell 3 4
 set_io "\I2CM:scl(0)\" iocell 3 0
 set_location "\PPMCounter:cy_m0s8_tcpwm_1\" m0s8tcpwmcell -1 -1 3
-set_location "ClockBlock" m0s8clockblockcell -1 -1 0
+set_location "\ADC:IRQ\" interrupt -1 -1 14
 set_location "PPMISR" interrupt -1 -1 19
+set_location "TaskISR" interrupt -1 -1 16
 set_location "\I2CM:SCB_IRQ\" interrupt -1 -1 11
 set_location "ServoISR" interrupt -1 -1 17
-set_location "TaskISR" interrupt -1 -1 16
 set_location "BootISR" interrupt -1 -1 0
 set_location "\UART_1:SCB\" m0s8scbcell -1 -1 0
 set_io "Collis(0)" iocell 2 3
+set_io "In_Speed(0)" iocell 2 7
 set_io "Ldg(0)" iocell 2 4
 set_io "Out_Fl1_Pin(0)" iocell 0 4
 set_io "Out_Ge1_Pin(0)" iocell 3 5
+set_io "Out_Sp1_Pin(0)" iocell 0 6
 set_io "Out_Ail1_Pin(0)" iocell 4 3
 set_io "Out_Ele1_Pin(0)" iocell 0 1
 set_io "Out_Fl2_Pin(0)" iocell 0 5
 set_io "Out_Ge2_Pin(0)" iocell 3 6
+set_io "Out_Sp2_Pin(0)" iocell 1 0
 set_io "Out_Ail2_Pin(0)" iocell 0 0
 set_io "Out_Ele2_Pin(0)" iocell 0 2
 set_io "Out_Ge3_Pin(0)" iocell 3 7
 set_io "Out_Mot_Pin(0)" iocell 4 2
 set_io "Out_Rud_Pin(0)" iocell 0 3
-set_io "Out_Sp1_Pin(0)" iocell 0 6
-set_io "Out_Sp2_Pin(0)" iocell 1 0
 set_io "SpareLight(0)" iocell 2 5
 set_io "Strobes(0)" iocell 2 0
 set_location "\I2CM:SCB\" m0s8scbcell -1 -1 1

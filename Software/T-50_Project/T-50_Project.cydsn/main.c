@@ -114,8 +114,14 @@ int32_t Mag_Heading = 0;
 float Mag_x, Mag_y = 0;    
 
 /* Barometer Reading*/
-uint32_t Bar_press = 0;
+int32_t Bar_press = 0;
 uint8_t cnt_baro  = 0;
+
+/*=============================*/
+/* Speed conversion			*/
+/*=============================*/
+#define SPEED_TASK  TRUE
+int16_t speed = 0;
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -179,6 +185,15 @@ void UART_1_UartSendMavlink(uint8_t buf[], uint16_t len)
 	}  
 }
 
+// Read speed
+int16_t ADC_read_speed(void)
+{
+    ADC_StartConvert();
+    int16_t speed = ADC_GetResult16(0); // channel 0 is the first channel
+    ADC_StopConvert();
+    return(speed);
+}
+
 int main()
 {
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
@@ -186,6 +201,7 @@ int main()
 
     UART_1_Start();     /* Enabling the UART */
     I2CM_Start();
+    ADC_Start();
     CyDelay(500);
     TaskTimer_Start();
     NavLightPWM_Start();
@@ -304,8 +320,12 @@ int main()
                 if(cnt_baro == 10)
                 {
                     cnt_baro = 0;
-                    baro_read();
+                    Bar_press = baro_read();
                 }
+            }
+            if(SPEED_TASK == TRUE)
+            {
+                speed = ADC_read_speed();
             }
             
             /* Theta and Phi out of acceleration data*/

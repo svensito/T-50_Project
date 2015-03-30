@@ -18,7 +18,9 @@
 ##################################################################### 
                     1::Clock Frequency Summary
 ===================================================================== 
-Number of clocks: 17
+Number of clocks: 19
+Clock: ADC_intClock        | N/A                   | Target: 2.00 MHz   | 
+Clock: ADC_intClock(FFB)   | N/A                   | Target: 2.00 MHz   | 
 Clock: Clock_1             | N/A                   | Target: 1.00 MHz   | 
 Clock: Clock_1(FFB)        | N/A                   | Target: 1.00 MHz   | 
 Clock: Clock_2             | N/A                   | Target: 1.00 MHz   | 
@@ -33,7 +35,7 @@ Clock: CyRouted1           | N/A                   | Target: 24.00 MHz  |
 Clock: CySYSCLK            | N/A                   | Target: 24.00 MHz  | 
 Clock: I2CM_SCBCLK         | N/A                   | Target: 6.00 MHz   | 
 Clock: I2CM_SCBCLK(FFB)    | N/A                   | Target: 6.00 MHz   | 
-Clock: TelemUART_IntClock  | Frequency: 45.54 MHz  | Target: 0.08 MHz   | 
+Clock: TelemUART_IntClock  | Frequency: 44.76 MHz  | Target: 0.08 MHz   | 
 Clock: UART_1_SCBCLK       | N/A                   | Target: 0.69 MHz   | 
 Clock: UART_1_SCBCLK(FFB)  | N/A                   | Target: 0.69 MHz   | 
 
@@ -48,7 +50,7 @@ Clock: UART_1_SCBCLK(FFB)  | N/A                   | Target: 0.69 MHz   |
 
 Launch Clock        Capture Clock       Constraint(R-R)  Slack(R-R)  Constraint(R-F)  Slack(R-F)  Constraint(F-F)  Slack(F-F)  Constraint(F-R)  Slack(F-R)  
 ------------------  ------------------  ---------------  ----------  ---------------  ----------  ---------------  ----------  ---------------  ----------  
-TelemUART_IntClock  TelemUART_IntClock  1.30417e+007     13019708    N/A              N/A         N/A              N/A         N/A              N/A         
+TelemUART_IntClock  TelemUART_IntClock  1.30417e+007     13019326    N/A              N/A         N/A              N/A         N/A              N/A         
 
  =====================================================================
                     End of Clock Relationship Summary
@@ -76,7 +78,7 @@ Port Name            Clock to Out  Clock Name:Phase
 NavB(0)_PAD          21033         Clock_3(FFB):R        
 NavLR(0)_PAD         20993         Clock_3(FFB):R        
 OnBoardLED(0)_PAD    22117         Clock_3(FFB):R        
-Tx_Telemetry(0)_PAD  30675         TelemUART_IntClock:R  
+Tx_Telemetry(0)_PAD  30705         TelemUART_IntClock:R  
 
 
                          3.3::Pad to Pad
@@ -94,14 +96,14 @@ Port Name (Source)  Port Name (Destination)  Delay
 4.1::Critical Path Report for TelemUART_IntClock
 ************************************************
 Clock: TelemUART_IntClock
-Frequency: 45.54 MHz | Target: 0.08 MHz
+Frequency: 44.76 MHz | Target: 0.08 MHz
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_1\/q
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
 Path End       : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0
 Capture Clock  : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/clock
-Path slack     : 13019708p
+Path slack     : 13019326p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -112,9 +114,9 @@ End-of-path required time (ps)                                       13030147
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       10439
++ Data path delay                       10821
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           10439
+End-of-path arrival time (ps)           10821
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -122,15 +124,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
 
 Data path
 pin name                                            model name     delay     AT     slack  edge  Fanout
 --------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q                      macrocell6      1250   1250  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/main_0           macrocell2      3607   4857  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8207  13019708  RISE       1
-\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2231  10439  13019708  RISE       1
+\TelemUART:BUART:tx_state_0\/q                      macrocell5      1250   1250  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/main_1           macrocell2      3990   5240  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8590  13019326  RISE       1
+\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2230  10821  13019326  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -156,10 +158,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_1\/q
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
 Path End       : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0
 Capture Clock  : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/clock
-Path slack     : 13019708p
+Path slack     : 13019326p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -170,9 +172,9 @@ End-of-path required time (ps)                                       13030147
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       10439
++ Data path delay                       10821
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           10439
+End-of-path arrival time (ps)           10821
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -180,15 +182,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
 
 Data path
 pin name                                            model name     delay     AT     slack  edge  Fanout
 --------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q                      macrocell6      1250   1250  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/main_0           macrocell2      3607   4857  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8207  13019708  RISE       1
-\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2231  10439  13019708  RISE       1
+\TelemUART:BUART:tx_state_0\/q                      macrocell5      1250   1250  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/main_1           macrocell2      3990   5240  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8590  13019326  RISE       1
+\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2230  10821  13019326  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -210,10 +212,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_1\/q
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
 Path End       : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0
 Capture Clock  : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/clock
-Path slack     : 13019708p
+Path slack     : 13019326p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -224,9 +226,9 @@ End-of-path required time (ps)                                       13030147
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       10439
++ Data path delay                       10821
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           10439
+End-of-path arrival time (ps)           10821
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -234,15 +236,15 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
 
 Data path
 pin name                                            model name     delay     AT     slack  edge  Fanout
 --------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q                      macrocell6      1250   1250  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/main_0           macrocell2      3607   4857  13019708  RISE       1
-\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8207  13019708  RISE       1
-\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2231  10439  13019708  RISE       1
+\TelemUART:BUART:tx_state_0\/q                      macrocell5      1250   1250  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/main_1           macrocell2      3990   5240  13019326  RISE       1
+\TelemUART:BUART:counter_load_not\/q                macrocell2      3350   8590  13019326  RISE       1
+\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cs_addr_0  datapathcell2   2230  10821  13019326  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -259,7 +261,7 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Path Begin     : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb
 Path End       : \TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_0
 Capture Clock  : \TelemUART:BUART:sTX:TxShifter:u0\/clock
-Path slack     : 13021843p
+Path slack     : 13021851p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -270,9 +272,9 @@ End-of-path required time (ps)                                       13035377
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       13533
++ Data path delay                       13526
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           13533
+End-of-path arrival time (ps)           13526
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -285,10 +287,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                           model name     delay     AT     slack  edge  Fanout
 -------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb  datapathcell2   5680   5680  13021843  RISE       1
-\TelemUART:BUART:tx_bitclk_enable_pre\/main_0      macrocell4      2247   7927  13021843  RISE       1
-\TelemUART:BUART:tx_bitclk_enable_pre\/q           macrocell4      3350  11277  13021843  RISE       1
-\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_0       datapathcell1   2256  13533  13021843  RISE       1
+\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb  datapathcell2   5680   5680  13021851  RISE       1
+\TelemUART:BUART:tx_bitclk_enable_pre\/main_0      macrocell4      2240   7920  13021851  RISE       1
+\TelemUART:BUART:tx_bitclk_enable_pre\/q           macrocell4      3350  11270  13021851  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_0       datapathcell1   2255  13526  13021851  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -305,7 +307,7 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Path Begin     : \TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb
 Path End       : \TelemUART:BUART:sTX:TxSts\/status_0
 Capture Clock  : \TelemUART:BUART:sTX:TxSts\/clock
-Path slack     : 13026973p
+Path slack     : 13025341p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -316,9 +318,9 @@ End-of-path required time (ps)                                       13040097
 
 Launch Clock Arrival Time                       0
 + Clock path delay                          0
-+ Data path delay                       13123
++ Data path delay                       14756
 -------------------------------------   ----- 
-End-of-path arrival time (ps)           13123
+End-of-path arrival time (ps)           14756
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -331,10 +333,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                             model name     delay     AT     slack  edge  Fanout
 ---------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb  datapathcell1   5280   5280  13026973  RISE       1
-\TelemUART:BUART:tx_status_0\/main_2                 macrocell8      2241   7521  13026973  RISE       1
-\TelemUART:BUART:tx_status_0\/q                      macrocell8      3350  10871  13026973  RISE       1
-\TelemUART:BUART:sTX:TxSts\/status_0                 statusicell1    2252  13123  13026973  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb  datapathcell1   5280   5280  13025341  RISE       1
+\TelemUART:BUART:tx_status_0\/main_2                 macrocell8      3890   9170  13025341  RISE       1
+\TelemUART:BUART:tx_status_0\/q                      macrocell8      3350  12520  13025341  RISE       1
+\TelemUART:BUART:sTX:TxSts\/status_0                 statusicell1    2236  14756  13025341  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -351,7 +353,7 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Path Begin     : \TelemUART:BUART:sTX:TxShifter:u0\/so_comb
 Path End       : \TelemUART:BUART:txn\/main_3
 Capture Clock  : \TelemUART:BUART:txn\/clock_0
-Path slack     : 13028641p
+Path slack     : 13028619p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -362,9 +364,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       9516
++ Data path delay                       9538
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           9516
+End-of-path arrival time (ps)           9538
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -377,8 +379,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                    model name     delay     AT     slack  edge  Fanout
 ------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:sTX:TxShifter:u0\/so_comb  datapathcell1   7280   7280  13028641  RISE       1
-\TelemUART:BUART:txn\/main_3                macrocell10     2236   9516  13028641  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/so_comb  datapathcell1   7280   7280  13028619  RISE       1
+\TelemUART:BUART:txn\/main_3                macrocell10     2258   9538  13028619  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -392,10 +394,54 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 5 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
+Path End       : \TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_1
+Capture Clock  : \TelemUART:BUART:sTX:TxShifter:u0\/clock
+Path slack     : 13028958p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -6290
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13035377
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6418
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6418
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+Data path
+pin name                                      model name     delay     AT     slack  edge  Fanout
+--------------------------------------------  -------------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_0\/q                macrocell5      1250   1250  13019326  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_1  datapathcell1   5168   6418  13028958  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/clock                  datapathcell1              0      0  RISE       1
+
+
+
+++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
 Path Begin     : \TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb
 Path End       : \TelemUART:BUART:tx_state_0\/main_2
 Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
-Path slack     : 13029742p
+Path slack     : 13028975p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -406,9 +452,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       8415
++ Data path delay                       9181
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           8415
+End-of-path arrival time (ps)           9181
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -421,8 +467,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                             model name     delay     AT     slack  edge  Fanout
 ---------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb  datapathcell1   5280   5280  13026973  RISE       1
-\TelemUART:BUART:tx_state_0\/main_2                  macrocell5      3135   8415  13029742  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/f0_blk_stat_comb  datapathcell1   5280   5280  13025341  RISE       1
+\TelemUART:BUART:tx_state_0\/main_2                  macrocell5      3901   9181  13028975  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -434,12 +480,12 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 6 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb
 Path End       : \TelemUART:BUART:tx_bitclk\/main_0
 Capture Clock  : \TelemUART:BUART:tx_bitclk\/clock_0
-Path slack     : 13030230p
+Path slack     : 13030236p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -450,9 +496,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       7927
++ Data path delay                       7920
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           7927
+End-of-path arrival time (ps)           7920
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -465,8 +511,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                           model name     delay     AT     slack  edge  Fanout
 -------------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb  datapathcell2   5680   5680  13021843  RISE       1
-\TelemUART:BUART:tx_bitclk\/main_0                 macrocell3      2247   7927  13030230  RISE       1
+\TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\/cl0_comb  datapathcell2   5680   5680  13021851  RISE       1
+\TelemUART:BUART:tx_bitclk\/main_0                 macrocell3      2240   7920  13030236  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -478,12 +524,12 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 7 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \TelemUART:BUART:tx_state_1\/q
 Path End       : \TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_2
 Capture Clock  : \TelemUART:BUART:sTX:TxShifter:u0\/clock
-Path slack     : 13030510p
+Path slack     : 13030511p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -494,9 +540,9 @@ End-of-path required time (ps)                                       13035377
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4867
++ Data path delay                       4866
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4867
+End-of-path arrival time (ps)           4866
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -509,52 +555,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                                      model name     delay     AT     slack  edge  Fanout
 --------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q                macrocell6      1250   1250  13019708  RISE       1
-\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_2  datapathcell1   3617   4867  13030510  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:sTX:TxShifter:u0\/clock                  datapathcell1              0      0  RISE       1
-
-
-
-++++ Path 8 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_0\/q
-Path End       : \TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_1
-Capture Clock  : \TelemUART:BUART:sTX:TxShifter:u0\/clock
-Path slack     : 13030782p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -6290
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13035377
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4595
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4595
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-Data path
-pin name                                      model name     delay     AT     slack  edge  Fanout
---------------------------------------------  -------------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_0\/q                macrocell5      1250   1250  13019853  RISE       1
-\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_1  datapathcell1   3345   4595  13030782  RISE       1
+\TelemUART:BUART:tx_state_1\/q                macrocell6      1250   1250  13020142  RISE       1
+\TelemUART:BUART:sTX:TxShifter:u0\/cs_addr_2  datapathcell1   3616   4866  13030511  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -567,6 +569,182 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 ++++ Path 9 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
+Path End       : \TelemUART:BUART:txn\/main_2
+Capture Clock  : \TelemUART:BUART:txn\/clock_0
+Path slack     : 13031737p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       6420
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           6420
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+Data path
+pin name                        model name   delay     AT     slack  edge  Fanout
+------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_0\/q  macrocell5    1250   1250  13019326  RISE       1
+\TelemUART:BUART:txn\/main_2    macrocell10   5170   6420  13031737  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:txn\/clock_0                             macrocell10                0      0  RISE       1
+
+
+
+++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
+Path End       : \TelemUART:BUART:tx_state_1\/main_1
+Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
+Path slack     : 13032917p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       5240
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           5240
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019326  RISE       1
+\TelemUART:BUART:tx_state_1\/main_1  macrocell6    3990   5240  13032917  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+
+
+
+++++ Path 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
+Path End       : \TelemUART:BUART:tx_state_0\/main_1
+Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
+Path slack     : 13032932p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       5225
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           5225
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019326  RISE       1
+\TelemUART:BUART:tx_state_0\/main_1  macrocell5    3975   5225  13032932  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+
+
+++++ Path 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_state_0\/q
+Path End       : \TelemUART:BUART:tx_state_2\/main_1
+Capture Clock  : \TelemUART:BUART:tx_state_2\/clock_0
+Path slack     : 13032932p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       5225
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           5225
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019326  RISE       1
+\TelemUART:BUART:tx_state_2\/main_1  macrocell7    3975   5225  13032932  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
+
+
+
+++++ Path 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \TelemUART:BUART:tx_state_1\/q
 Path End       : \TelemUART:BUART:txn\/main_1
@@ -582,9 +760,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4861
++ Data path delay                       4862
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4861
+End-of-path arrival time (ps)           4862
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -597,8 +775,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                        model name   delay     AT     slack  edge  Fanout
 ------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q  macrocell6    1250   1250  13019708  RISE       1
-\TelemUART:BUART:txn\/main_1    macrocell10   3611   4861  13033295  RISE       1
+\TelemUART:BUART:tx_state_1\/q  macrocell6    1250   1250  13020142  RISE       1
+\TelemUART:BUART:txn\/main_1    macrocell10   3612   4862  13033295  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -610,7 +788,51 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 10 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 14 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_state_1\/q
+Path End       : \TelemUART:BUART:tx_state_0\/main_0
+Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
+Path slack     : 13033299p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4858
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4858
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13020142  RISE       1
+\TelemUART:BUART:tx_state_0\/main_0  macrocell5    3608   4858  13033299  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
+
+
+
+++++ Path 15 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \TelemUART:BUART:tx_state_1\/q
 Path End       : \TelemUART:BUART:tx_state_2\/main_0
@@ -626,9 +848,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4857
++ Data path delay                       4858
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4857
+End-of-path arrival time (ps)           4858
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -641,8 +863,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13019708  RISE       1
-\TelemUART:BUART:tx_state_2\/main_0  macrocell7    3607   4857  13033299  RISE       1
+\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13020142  RISE       1
+\TelemUART:BUART:tx_state_2\/main_0  macrocell7    3608   4858  13033299  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -651,235 +873,15 @@ ClockBlock/udb_div_0                                      m0s8clockblockcell    
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
 \TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
-
-
-
-++++ Path 11 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_0\/q
-Path End       : \TelemUART:BUART:tx_state_0\/main_1
-Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
-Path slack     : 13033439p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4718
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4718
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019853  RISE       1
-\TelemUART:BUART:tx_state_0\/main_1  macrocell5    3468   4718  13033439  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-
-
-++++ Path 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_0\/q
-Path End       : \TelemUART:BUART:tx_state_1\/main_1
-Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
-Path slack     : 13033439p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4718
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4718
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019853  RISE       1
-\TelemUART:BUART:tx_state_1\/main_1  macrocell6    3468   4718  13033439  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
-
-
-
-++++ Path 13 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_0\/q
-Path End       : \TelemUART:BUART:txn\/main_2
-Capture Clock  : \TelemUART:BUART:txn\/clock_0
-Path slack     : 13033439p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4717
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4717
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-Data path
-pin name                        model name   delay     AT     slack  edge  Fanout
-------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_0\/q  macrocell5    1250   1250  13019853  RISE       1
-\TelemUART:BUART:txn\/main_2    macrocell10   3467   4717  13033439  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:txn\/clock_0                             macrocell10                0      0  RISE       1
-
-
-
-++++ Path 14 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_0\/q
-Path End       : \TelemUART:BUART:tx_state_2\/main_1
-Capture Clock  : \TelemUART:BUART:tx_state_2\/clock_0
-Path slack     : 13033444p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4713
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4713
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
-
-Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_0\/q       macrocell5    1250   1250  13019853  RISE       1
-\TelemUART:BUART:tx_state_2\/main_1  macrocell7    3463   4713  13033444  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
-
-
-
-++++ Path 15 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_state_1\/q
-Path End       : \TelemUART:BUART:tx_state_0\/main_0
-Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
-Path slack     : 13033721p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4436
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4436
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
-
-Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13019708  RISE       1
-\TelemUART:BUART:tx_state_0\/main_0  macrocell5    3186   4436  13033721  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_0\/clock_0                      macrocell5                 0      0  RISE       1
 
 
 
 ++++ Path 16 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_1\/q
-Path End       : \TelemUART:BUART:tx_state_1\/main_0
+Path Begin     : \TelemUART:BUART:tx_state_2\/q
+Path End       : \TelemUART:BUART:tx_state_1\/main_2
 Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
-Path slack     : 13033721p
+Path slack     : 13033730p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -890,9 +892,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4436
++ Data path delay                       4427
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4436
+End-of-path arrival time (ps)           4427
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -900,13 +902,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13019708  RISE       1
-\TelemUART:BUART:tx_state_1\/main_0  macrocell6    3186   4436  13033721  RISE       1
+\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020139  RISE       1
+\TelemUART:BUART:tx_state_1\/main_2  macrocell6    3177   4427  13033730  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -920,10 +922,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 17 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_bitclk\/q
-Path End       : \TelemUART:BUART:txn\/main_5
-Capture Clock  : \TelemUART:BUART:txn\/clock_0
-Path slack     : 13033748p
+Path Begin     : \TelemUART:BUART:tx_state_1\/q
+Path End       : \TelemUART:BUART:tx_state_1\/main_0
+Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
+Path slack     : 13033732p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -934,9 +936,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4409
++ Data path delay                       4425
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4409
+End-of-path arrival time (ps)           4425
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -944,13 +946,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
+\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
 
 Data path
-pin name                       model name   delay     AT     slack  edge  Fanout
------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_bitclk\/q  macrocell3    1250   1250  13020159  RISE       1
-\TelemUART:BUART:txn\/main_5   macrocell10   3159   4409  13033748  RISE       1
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_state_1\/q       macrocell6    1250   1250  13020142  RISE       1
+\TelemUART:BUART:tx_state_1\/main_0  macrocell6    3175   4425  13033732  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -958,16 +960,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:txn\/clock_0                             macrocell10                0      0  RISE       1
+\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
 
 
 
 ++++ Path 18 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_bitclk\/q
-Path End       : \TelemUART:BUART:tx_state_0\/main_4
+Path Begin     : \TelemUART:BUART:tx_state_2\/q
+Path End       : \TelemUART:BUART:tx_state_0\/main_3
 Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
-Path slack     : 13033749p
+Path slack     : 13033738p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -978,9 +980,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4408
++ Data path delay                       4419
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4408
+End-of-path arrival time (ps)           4419
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -988,13 +990,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
+\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020159  RISE       1
-\TelemUART:BUART:tx_state_0\/main_4  macrocell5    3158   4408  13033749  RISE       1
+\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020139  RISE       1
+\TelemUART:BUART:tx_state_0\/main_3  macrocell5    3169   4419  13033738  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1008,54 +1010,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 19 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_bitclk\/q
-Path End       : \TelemUART:BUART:tx_state_1\/main_3
-Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
-Path slack     : 13033749p
-
-Capture Clock Arrival Time                                                  0
-+ Clock path delay                                                          0
-+ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
-- Setup time                                                            -3510
-------------------------------------------------------------------   -------- 
-End-of-path required time (ps)                                       13038157
-
-Launch Clock Arrival Time                      0
-+ Clock path delay                         0
-+ Data path delay                       4408
--------------------------------------   ---- 
-End-of-path arrival time (ps)           4408
- 
-Launch Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
-
-Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020159  RISE       1
-\TelemUART:BUART:tx_state_1\/main_3  macrocell6    3158   4408  13033749  RISE       1
-
-Capture Clock Path
-pin name                                                  model name             delay     AT  edge  Fanout
---------------------------------------------------------  ---------------------  -----  -----  ----  ------
-ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
-ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
-ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
-
-
-
-++++ Path 20 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
-Path Begin     : \TelemUART:BUART:tx_bitclk\/q
-Path End       : \TelemUART:BUART:tx_state_2\/main_3
+Path Begin     : \TelemUART:BUART:tx_state_2\/q
+Path End       : \TelemUART:BUART:tx_state_2\/main_2
 Capture Clock  : \TelemUART:BUART:tx_state_2\/clock_0
-Path slack     : 13033751p
+Path slack     : 13033738p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1066,9 +1024,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4406
++ Data path delay                       4419
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4406
+End-of-path arrival time (ps)           4419
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1076,13 +1034,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
+\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020159  RISE       1
-\TelemUART:BUART:tx_state_2\/main_3  macrocell7    3156   4406  13033751  RISE       1
+\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020139  RISE       1
+\TelemUART:BUART:tx_state_2\/main_2  macrocell7    3169   4419  13033738  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1094,12 +1052,12 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 21 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 20 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 Path Begin     : \TelemUART:BUART:tx_state_2\/q
 Path End       : \TelemUART:BUART:txn\/main_4
 Capture Clock  : \TelemUART:BUART:txn\/clock_0
-Path slack     : 13033785p
+Path slack     : 13033739p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1110,9 +1068,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4372
++ Data path delay                       4418
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4372
+End-of-path arrival time (ps)           4418
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1125,8 +1083,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                        model name   delay     AT     slack  edge  Fanout
 ------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_2\/q  macrocell7    1250   1250  13020206  RISE       1
-\TelemUART:BUART:txn\/main_4    macrocell10   3122   4372  13033785  RISE       1
+\TelemUART:BUART:tx_state_2\/q  macrocell7    1250   1250  13020139  RISE       1
+\TelemUART:BUART:txn\/main_4    macrocell10   3168   4418  13033739  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1138,12 +1096,12 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 
 
-++++ Path 22 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+++++ Path 21 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_2\/q
-Path End       : \TelemUART:BUART:tx_state_0\/main_3
-Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
-Path slack     : 13033789p
+Path Begin     : \TelemUART:BUART:tx_bitclk\/q
+Path End       : \TelemUART:BUART:tx_state_1\/main_3
+Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
+Path slack     : 13033761p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1154,9 +1112,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4367
++ Data path delay                       4396
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4367
+End-of-path arrival time (ps)           4396
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1164,13 +1122,57 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
+\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020206  RISE       1
-\TelemUART:BUART:tx_state_0\/main_3  macrocell5    3117   4367  13033789  RISE       1
+\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020170  RISE       1
+\TelemUART:BUART:tx_state_1\/main_3  macrocell6    3146   4396  13033761  RISE       1
+
+Capture Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+
+
+
+++++ Path 22 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+Path Begin     : \TelemUART:BUART:tx_bitclk\/q
+Path End       : \TelemUART:BUART:tx_state_0\/main_4
+Capture Clock  : \TelemUART:BUART:tx_state_0\/clock_0
+Path slack     : 13033761p
+
+Capture Clock Arrival Time                                                  0
++ Clock path delay                                                          0
++ Cycle adjust (TelemUART_IntClock:R#1 vs. TelemUART_IntClock:R#2)   13041667
+- Setup time                                                            -3510
+------------------------------------------------------------------   -------- 
+End-of-path required time (ps)                                       13038157
+
+Launch Clock Arrival Time                      0
++ Clock path delay                         0
++ Data path delay                       4395
+-------------------------------------   ---- 
+End-of-path arrival time (ps)           4395
+ 
+Launch Clock Path
+pin name                                                  model name             delay     AT  edge  Fanout
+--------------------------------------------------------  ---------------------  -----  -----  ----  ------
+ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
+ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
+ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
+\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
+
+Data path
+pin name                             model name   delay     AT     slack  edge  Fanout
+-----------------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020170  RISE       1
+\TelemUART:BUART:tx_state_0\/main_4  macrocell5    3145   4395  13033761  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1184,10 +1186,10 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 
 ++++ Path 23 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_2\/q
-Path End       : \TelemUART:BUART:tx_state_1\/main_2
-Capture Clock  : \TelemUART:BUART:tx_state_1\/clock_0
-Path slack     : 13033789p
+Path Begin     : \TelemUART:BUART:tx_bitclk\/q
+Path End       : \TelemUART:BUART:tx_state_2\/main_3
+Capture Clock  : \TelemUART:BUART:tx_state_2\/clock_0
+Path slack     : 13033761p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1198,9 +1200,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4367
++ Data path delay                       4395
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4367
+End-of-path arrival time (ps)           4395
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1208,13 +1210,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
+\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
 
 Data path
 pin name                             model name   delay     AT     slack  edge  Fanout
 -----------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020206  RISE       1
-\TelemUART:BUART:tx_state_1\/main_2  macrocell6    3117   4367  13033789  RISE       1
+\TelemUART:BUART:tx_bitclk\/q        macrocell3    1250   1250  13020170  RISE       1
+\TelemUART:BUART:tx_state_2\/main_3  macrocell7    3145   4395  13033761  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1222,16 +1224,16 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_1\/clock_0                      macrocell6                 0      0  RISE       1
+\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
 
 
 
 ++++ Path 24 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-Path Begin     : \TelemUART:BUART:tx_state_2\/q
-Path End       : \TelemUART:BUART:tx_state_2\/main_2
-Capture Clock  : \TelemUART:BUART:tx_state_2\/clock_0
-Path slack     : 13033797p
+Path Begin     : \TelemUART:BUART:tx_bitclk\/q
+Path End       : \TelemUART:BUART:txn\/main_5
+Capture Clock  : \TelemUART:BUART:txn\/clock_0
+Path slack     : 13033763p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1242,9 +1244,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       4359
++ Data path delay                       4393
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           4359
+End-of-path arrival time (ps)           4393
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1252,13 +1254,13 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
+\TelemUART:BUART:tx_bitclk\/clock_0                       macrocell3                 0      0  RISE       1
 
 Data path
-pin name                             model name   delay     AT     slack  edge  Fanout
------------------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:tx_state_2\/q       macrocell7    1250   1250  13020206  RISE       1
-\TelemUART:BUART:tx_state_2\/main_2  macrocell7    3109   4359  13033797  RISE       1
+pin name                       model name   delay     AT     slack  edge  Fanout
+-----------------------------  -----------  -----  -----  --------  ----  ------
+\TelemUART:BUART:tx_bitclk\/q  macrocell3    1250   1250  13020170  RISE       1
+\TelemUART:BUART:txn\/main_5   macrocell10   3143   4393  13033763  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1266,7 +1268,7 @@ pin name                                                  model name            
 ClockBlock/udb_div_0                                      m0s8clockblockcell         0      0  RISE       1
 ClockGenBlock/gen_clk_in_0                                m0s8clockgenblockcell      0      0  RISE       1
 ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell      0      0  RISE       1
-\TelemUART:BUART:tx_state_2\/clock_0                      macrocell7                 0      0  RISE       1
+\TelemUART:BUART:txn\/clock_0                             macrocell10                0      0  RISE       1
 
 
 
@@ -1275,7 +1277,7 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Path Begin     : \TelemUART:BUART:txn\/q
 Path End       : \TelemUART:BUART:txn\/main_0
 Capture Clock  : \TelemUART:BUART:txn\/clock_0
-Path slack     : 13034238p
+Path slack     : 13034210p
 
 Capture Clock Arrival Time                                                  0
 + Clock path delay                                                          0
@@ -1286,9 +1288,9 @@ End-of-path required time (ps)                                       13038157
 
 Launch Clock Arrival Time                      0
 + Clock path delay                         0
-+ Data path delay                       3918
++ Data path delay                       3947
 -------------------------------------   ---- 
-End-of-path arrival time (ps)           3918
+End-of-path arrival time (ps)           3947
  
 Launch Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout
@@ -1301,8 +1303,8 @@ ClockGenBlock/gen_clk_out_0                               m0s8clockgenblockcell 
 Data path
 pin name                      model name   delay     AT     slack  edge  Fanout
 ----------------------------  -----------  -----  -----  --------  ----  ------
-\TelemUART:BUART:txn\/q       macrocell10   1250   1250  13034238  RISE       1
-\TelemUART:BUART:txn\/main_0  macrocell10   2668   3918  13034238  RISE       1
+\TelemUART:BUART:txn\/q       macrocell10   1250   1250  13034210  RISE       1
+\TelemUART:BUART:txn\/main_0  macrocell10   2697   3947  13034210  RISE       1
 
 Capture Clock Path
 pin name                                                  model name             delay     AT  edge  Fanout

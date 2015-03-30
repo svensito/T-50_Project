@@ -128,7 +128,7 @@ void mag_read(void);
 // Function prototypes
 void write_baro_registry(char registry, char data);
 void baro_start(void);
-void baro_read(void);
+int32_t baro_read(void);
 void baro_calibration(void);
 
 

@@ -1,5 +1,5 @@
 -- Project:   T-50_Project
--- Generated: 03/25/2015 22:18:42
+-- Generated: 03/30/2015 16:41:35
 -- PSoC Creator  3.1 SP1
 
 ENTITY \T-50_Project\ IS
@@ -45,6 +45,7 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     SIGNAL ClockBlock_Routed1 : bit;
     SIGNAL ClockBlock_SYSCLK : bit;
     SIGNAL Collis(0)__PA : bit;
+    SIGNAL In_Speed(0)__PA : bit;
     SIGNAL Ldg(0)__PA : bit;
     SIGNAL NavB(0)__PA : bit;
     SIGNAL NavLR(0)__PA : bit;
@@ -78,6 +79,8 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     SIGNAL Net_317 : bit;
     SIGNAL Net_46_ff9 : bit;
     ATTRIBUTE global_signal OF Net_46_ff9 : SIGNAL IS true;
+    SIGNAL Net_515 : bit;
+    SIGNAL Net_516 : bit;
     SIGNAL Net_68 : bit;
     SIGNAL Net_69 : bit;
     SIGNAL Net_70 : bit;
@@ -104,6 +107,27 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     SIGNAL SpareLight(0)__PA : bit;
     SIGNAL Strobes(0)__PA : bit;
     SIGNAL Tx_Telemetry(0)__PA : bit;
+    SIGNAL \ADC:Net_1845_ff7\ : bit;
+    ATTRIBUTE global_signal OF \ADC:Net_1845_ff7\ : SIGNAL IS true;
+    SIGNAL \ADC:Net_3108\ : bit;
+    SIGNAL \ADC:Net_3109_0\ : bit;
+    SIGNAL \ADC:Net_3109_1\ : bit;
+    SIGNAL \ADC:Net_3109_2\ : bit;
+    SIGNAL \ADC:Net_3109_3\ : bit;
+    SIGNAL \ADC:Net_3110\ : bit;
+    SIGNAL \ADC:Net_3111_0\ : bit;
+    SIGNAL \ADC:Net_3111_10\ : bit;
+    SIGNAL \ADC:Net_3111_11\ : bit;
+    SIGNAL \ADC:Net_3111_1\ : bit;
+    SIGNAL \ADC:Net_3111_2\ : bit;
+    SIGNAL \ADC:Net_3111_3\ : bit;
+    SIGNAL \ADC:Net_3111_4\ : bit;
+    SIGNAL \ADC:Net_3111_5\ : bit;
+    SIGNAL \ADC:Net_3111_6\ : bit;
+    SIGNAL \ADC:Net_3111_7\ : bit;
+    SIGNAL \ADC:Net_3111_8\ : bit;
+    SIGNAL \ADC:Net_3111_9\ : bit;
+    SIGNAL \ADC:Net_3112\ : bit;
     SIGNAL \I2CM:Net_580\ : bit;
     SIGNAL \I2CM:Net_581\ : bit;
     SIGNAL \I2CM:Net_656\ : bit;
@@ -165,31 +189,34 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     ATTRIBUTE Location OF ClockGenBlock : LABEL IS "F(CLK_GEN,0)";
     ATTRIBUTE lib_model OF Collis(0) : LABEL IS "iocell1";
-    ATTRIBUTE lib_model OF Ldg(0) : LABEL IS "iocell2";
-    ATTRIBUTE lib_model OF NavB(0) : LABEL IS "iocell3";
-    ATTRIBUTE lib_model OF NavLR(0) : LABEL IS "iocell4";
+    ATTRIBUTE lib_model OF In_Speed(0) : LABEL IS "iocell2";
+    ATTRIBUTE Location OF In_Speed(0) : LABEL IS "P2[7]";
+    ATTRIBUTE lib_model OF Ldg(0) : LABEL IS "iocell3";
+    ATTRIBUTE lib_model OF NavB(0) : LABEL IS "iocell4";
+    ATTRIBUTE lib_model OF NavLR(0) : LABEL IS "iocell5";
     ATTRIBUTE lib_model OF Net_206 : LABEL IS "macrocell1";
-    ATTRIBUTE lib_model OF OnBoardLED(0) : LABEL IS "iocell5";
-    ATTRIBUTE lib_model OF Out_Ail1_Pin(0) : LABEL IS "iocell6";
-    ATTRIBUTE lib_model OF Out_Ail2_Pin(0) : LABEL IS "iocell7";
-    ATTRIBUTE lib_model OF Out_Ele1_Pin(0) : LABEL IS "iocell8";
-    ATTRIBUTE lib_model OF Out_Ele2_Pin(0) : LABEL IS "iocell9";
-    ATTRIBUTE lib_model OF Out_Fl1_Pin(0) : LABEL IS "iocell10";
-    ATTRIBUTE lib_model OF Out_Fl2_Pin(0) : LABEL IS "iocell11";
-    ATTRIBUTE lib_model OF Out_Ge1_Pin(0) : LABEL IS "iocell12";
-    ATTRIBUTE lib_model OF Out_Ge2_Pin(0) : LABEL IS "iocell13";
-    ATTRIBUTE lib_model OF Out_Ge3_Pin(0) : LABEL IS "iocell14";
-    ATTRIBUTE lib_model OF Out_Mot_Pin(0) : LABEL IS "iocell15";
-    ATTRIBUTE lib_model OF Out_Rud_Pin(0) : LABEL IS "iocell16";
-    ATTRIBUTE lib_model OF Out_Sp1_Pin(0) : LABEL IS "iocell17";
-    ATTRIBUTE lib_model OF Out_Sp2_Pin(0) : LABEL IS "iocell18";
-    ATTRIBUTE lib_model OF PPMIN(0) : LABEL IS "iocell19";
-    ATTRIBUTE lib_model OF SW1(0) : LABEL IS "iocell20";
-    ATTRIBUTE lib_model OF SpareLight(0) : LABEL IS "iocell21";
-    ATTRIBUTE lib_model OF Strobes(0) : LABEL IS "iocell22";
-    ATTRIBUTE lib_model OF Tx_Telemetry(0) : LABEL IS "iocell23";
-    ATTRIBUTE lib_model OF \I2CM:scl(0)\ : LABEL IS "iocell24";
-    ATTRIBUTE lib_model OF \I2CM:sda(0)\ : LABEL IS "iocell25";
+    ATTRIBUTE lib_model OF OnBoardLED(0) : LABEL IS "iocell6";
+    ATTRIBUTE lib_model OF Out_Ail1_Pin(0) : LABEL IS "iocell7";
+    ATTRIBUTE lib_model OF Out_Ail2_Pin(0) : LABEL IS "iocell8";
+    ATTRIBUTE lib_model OF Out_Ele1_Pin(0) : LABEL IS "iocell9";
+    ATTRIBUTE lib_model OF Out_Ele2_Pin(0) : LABEL IS "iocell10";
+    ATTRIBUTE lib_model OF Out_Fl1_Pin(0) : LABEL IS "iocell11";
+    ATTRIBUTE lib_model OF Out_Fl2_Pin(0) : LABEL IS "iocell12";
+    ATTRIBUTE lib_model OF Out_Ge1_Pin(0) : LABEL IS "iocell13";
+    ATTRIBUTE lib_model OF Out_Ge2_Pin(0) : LABEL IS "iocell14";
+    ATTRIBUTE lib_model OF Out_Ge3_Pin(0) : LABEL IS "iocell15";
+    ATTRIBUTE lib_model OF Out_Mot_Pin(0) : LABEL IS "iocell16";
+    ATTRIBUTE lib_model OF Out_Rud_Pin(0) : LABEL IS "iocell17";
+    ATTRIBUTE lib_model OF Out_Sp1_Pin(0) : LABEL IS "iocell18";
+    ATTRIBUTE lib_model OF Out_Sp2_Pin(0) : LABEL IS "iocell19";
+    ATTRIBUTE lib_model OF PPMIN(0) : LABEL IS "iocell20";
+    ATTRIBUTE lib_model OF SW1(0) : LABEL IS "iocell21";
+    ATTRIBUTE lib_model OF SpareLight(0) : LABEL IS "iocell22";
+    ATTRIBUTE lib_model OF Strobes(0) : LABEL IS "iocell23";
+    ATTRIBUTE lib_model OF Tx_Telemetry(0) : LABEL IS "iocell24";
+    ATTRIBUTE Location OF \ADC:cy_psoc4_sar\ : LABEL IS "F(SARADC,0)";
+    ATTRIBUTE lib_model OF \I2CM:scl(0)\ : LABEL IS "iocell25";
+    ATTRIBUTE lib_model OF \I2CM:sda(0)\ : LABEL IS "iocell26";
     ATTRIBUTE lib_model OF \TelemUART:BUART:counter_load_not\ : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \TelemUART:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE lib_model OF \TelemUART:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
@@ -202,8 +229,8 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_status_0\ : LABEL IS "macrocell8";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_status_2\ : LABEL IS "macrocell9";
     ATTRIBUTE lib_model OF \TelemUART:BUART:txn\ : LABEL IS "macrocell10";
-    ATTRIBUTE lib_model OF \UART_1:rx(0)\ : LABEL IS "iocell26";
-    ATTRIBUTE lib_model OF \UART_1:tx(0)\ : LABEL IS "iocell27";
+    ATTRIBUTE lib_model OF \UART_1:rx(0)\ : LABEL IS "iocell27";
+    ATTRIBUTE lib_model OF \UART_1:tx(0)\ : LABEL IS "iocell28";
     COMPONENT datapathcell
         PORT (
             clock : IN std_ulogic;
@@ -508,6 +535,42 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     ATTRIBUTE udb_chain OF macrocell : COMPONENT IS "cin,cout";
     ATTRIBUTE chain_lsb OF macrocell : COMPONENT IS "cin";
     ATTRIBUTE chain_msb OF macrocell : COMPONENT IS "cout";
+    COMPONENT p4sarcell
+        PORT (
+            clock : IN std_ulogic;
+            sample_done : OUT std_ulogic;
+            chan_id_valid : OUT std_ulogic;
+            chan_id_0 : OUT std_ulogic;
+            chan_id_1 : OUT std_ulogic;
+            chan_id_2 : OUT std_ulogic;
+            chan_id_3 : OUT std_ulogic;
+            data_valid : OUT std_ulogic;
+            data_0 : OUT std_ulogic;
+            data_1 : OUT std_ulogic;
+            data_2 : OUT std_ulogic;
+            data_3 : OUT std_ulogic;
+            data_4 : OUT std_ulogic;
+            data_5 : OUT std_ulogic;
+            data_6 : OUT std_ulogic;
+            data_7 : OUT std_ulogic;
+            data_8 : OUT std_ulogic;
+            data_9 : OUT std_ulogic;
+            data_10 : OUT std_ulogic;
+            data_11 : OUT std_ulogic;
+            eos_intr : OUT std_ulogic;
+            tr_sar_out : OUT std_ulogic;
+            irq : OUT std_ulogic;
+            sw_negvref : IN std_ulogic;
+            cfg_st_sel_0 : IN std_ulogic;
+            cfg_st_sel_1 : IN std_ulogic;
+            cfg_average : IN std_ulogic;
+            cfg_resolution : IN std_ulogic;
+            cfg_differential : IN std_ulogic;
+            trigger : IN std_ulogic;
+            data_hilo_sel : IN std_ulogic;
+            swctrl0 : IN std_ulogic;
+            swctrl1 : IN std_ulogic);
+    END COMPONENT;
     COMPONENT statusicell
         PORT (
             status_0 : IN std_ulogic;
@@ -544,6 +607,7 @@ BEGIN
             imo => ClockBlock_IMO,
             hfclk => ClockBlock_HFCLK,
             ff_div_2 => \I2CM:Net_847_ff2\,
+            ff_div_7 => \ADC:Net_1845_ff7\,
             ff_div_8 => Net_105_ff8,
             ff_div_9 => Net_46_ff9,
             ff_div_10 => Net_172_ff10,
@@ -638,6 +702,94 @@ BEGIN
             pa_out => Collis(0)__PA,
             oe => open,
             pad_in => Collis(0)_PAD,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    In_Speed:logicalport
+        GENERIC MAP(
+            drive_mode => "111",
+            ibuf_enabled => "0",
+            id => "77715107-f8d5-47e5-a629-0fb83101ac6b",
+            init_dr_st => "1",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "A",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    In_Speed(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "In_Speed",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
+        PORT MAP(
+            pa_out => In_Speed(0)__PA,
+            oe => open,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
@@ -2649,6 +2801,48 @@ BEGIN
             out_clock => open,
             out_clock_en => '1',
             out_reset => '0');
+
+    \ADC:IRQ\:interrupt
+        GENERIC MAP(
+            int_type => "10")
+        PORT MAP(
+            interrupt => \ADC:Net_3112\,
+            clock => ClockBlock_HFCLK);
+
+    \ADC:cy_psoc4_sar\:p4sarcell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ADC:Net_1845_ff7\,
+            sample_done => Net_515,
+            chan_id_valid => \ADC:Net_3108\,
+            chan_id_3 => \ADC:Net_3109_3\,
+            chan_id_2 => \ADC:Net_3109_2\,
+            chan_id_1 => \ADC:Net_3109_1\,
+            chan_id_0 => \ADC:Net_3109_0\,
+            data_valid => \ADC:Net_3110\,
+            data_11 => \ADC:Net_3111_11\,
+            data_10 => \ADC:Net_3111_10\,
+            data_9 => \ADC:Net_3111_9\,
+            data_8 => \ADC:Net_3111_8\,
+            data_7 => \ADC:Net_3111_7\,
+            data_6 => \ADC:Net_3111_6\,
+            data_5 => \ADC:Net_3111_5\,
+            data_4 => \ADC:Net_3111_4\,
+            data_3 => \ADC:Net_3111_3\,
+            data_2 => \ADC:Net_3111_2\,
+            data_1 => \ADC:Net_3111_1\,
+            data_0 => \ADC:Net_3111_0\,
+            eos_intr => Net_516,
+            irq => \ADC:Net_3112\,
+            sw_negvref => open,
+            cfg_st_sel_1 => open,
+            cfg_st_sel_0 => open,
+            cfg_average => open,
+            cfg_resolution => open,
+            cfg_differential => open,
+            trigger => open,
+            data_hilo_sel => open);
 
     \I2CM:SCB\:m0s8scbcell
         GENERIC MAP(

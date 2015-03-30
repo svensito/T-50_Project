@@ -95,10 +95,10 @@ extern int16_t	mag_z_g;		// the geodetic reference frame value of y
 /* ================================= */
 /* BAROMETER VARIABLES				 */
 /* ================================= */
-uint8_t bar_h    = 0;    // high byte
-uint8_t bar_l   = 0;    // middle byte
-uint8_t bar_xl  = 0;    // lowest byte
-extern uint32_t Bar_press;   // Barometric Pressure
+//uint8_t bar_h    = 0;    // high byte
+//uint8_t bar_l   = 0;    // middle byte
+//uint8_t bar_xl  = 0;    // lowest byte
+//extern uint32_t Bar_press;   // Barometric Pressure
 /* ================================= */
 /* GYRO FUNCTIONS					*/
 /* ================================= */
@@ -272,24 +272,22 @@ void write_baro_registry(char registry, char data)
 
 void baro_start(void)
 {
-    write_baro_registry(LPS25H_CTRL_REG1,0xC6);         // Enabling the Baro, 25Hz output, enable Block Data Update
+    write_baro_registry(LPS25H_CTRL_REG1,0xC0);         // Enabling the Baro, 25Hz output, enable Block Data Update
     UART_1_UartPutString("Baro Started");
 }
 
-void baro_read(void)
+int32_t baro_read(void)
 {
     I2CM_I2CMasterSendStart(LPS25H_ADDRESS, WRITE);
 	I2CM_I2CMasterWriteByte(LPS25H_P_OUT_XL + 0b10000000); // add MSB to activate auto increment
 	I2CM_I2CMasterSendRestart(LSM303_ADDRESS, READ);
-	bar_xl = I2CM_I2CMasterReadByte(ACK);
-	bar_l = I2CM_I2CMasterReadByte(ACK);
-    bar_h = I2CM_I2CMasterReadByte(NACK);
+	uint8_t bar_xl = I2CM_I2CMasterReadByte(ACK);
+	uint8_t bar_l = I2CM_I2CMasterReadByte(ACK);
+    uint8_t bar_h = I2CM_I2CMasterReadByte(NACK);
     I2CM_I2C_MASTER_GENERATE_STOP;
-    uint32_t press_temp = (bar_l<<8) | (bar_xl);
-    press_temp = (bar_h << 16) | press_temp;
-    
-    Bar_press = press_temp / 4096;      // 4096 bit / hPa = 4096 bit / mbar
-    
+    int32_t press_temp = (int8_t)(bar_h << 16) |(uint16_t)(bar_l<<8) | (bar_xl);    
+    //Bar_press = press_temp / 4096;      // 4096 bit / hPa = 4096 bit / mbar
+    return(press_temp/4096);
 }
 
 /* [] END OF FILE */

@@ -2,6 +2,45 @@
 #define INCLUDED_CYFITTER_H
 #include <cydevice_trm.h>
 
+/* ADC_cy_psoc4_sar */
+#define ADC_cy_psoc4_sar__SAR_CTRL CYREG_SAR_CTRL
+#define ADC_cy_psoc4_sar__SAR_INTR CYREG_SAR_INTR
+#define ADC_cy_psoc4_sar__SAR_INTR_CAUSE CYREG_SAR_INTR_CAUSE
+#define ADC_cy_psoc4_sar__SAR_INTR_MASK CYREG_SAR_INTR_MASK
+#define ADC_cy_psoc4_sar__SAR_INTR_MASKED CYREG_SAR_INTR_MASKED
+#define ADC_cy_psoc4_sar__SAR_INTR_SET CYREG_SAR_INTR_SET
+#define ADC_cy_psoc4_sar__SAR_NUMBER 0u
+#define ADC_cy_psoc4_sar__SAR_RANGE_COND CYREG_SAR_RANGE_COND
+#define ADC_cy_psoc4_sar__SAR_RANGE_INTR_MASK CYREG_SAR_RANGE_INTR_MASK
+#define ADC_cy_psoc4_sar__SAR_RANGE_INTR_MASKED CYREG_SAR_RANGE_INTR_MASKED
+#define ADC_cy_psoc4_sar__SAR_RANGE_INTR_SET CYREG_SAR_RANGE_INTR_SET
+#define ADC_cy_psoc4_sar__SAR_RANGE_THRES CYREG_SAR_RANGE_THRES
+#define ADC_cy_psoc4_sar__SAR_SAMPLE_CTRL CYREG_SAR_SAMPLE_CTRL
+#define ADC_cy_psoc4_sar__SAR_SAMPLE_TIME01 CYREG_SAR_SAMPLE_TIME01
+#define ADC_cy_psoc4_sar__SAR_SAMPLE_TIME23 CYREG_SAR_SAMPLE_TIME23
+#define ADC_cy_psoc4_sar__SAR_SATURATE_INTR_MASK CYREG_SAR_SATURATE_INTR_MASK
+#define ADC_cy_psoc4_sar__SAR_SATURATE_INTR_MASKED CYREG_SAR_SATURATE_INTR_MASKED
+#define ADC_cy_psoc4_sar__SAR_SATURATE_INTR_SET CYREG_SAR_SATURATE_INTR_SET
+#define ADC_cy_psoc4_sar__SAR_STATUS CYREG_SAR_STATUS
+
+/* ADC_intClock */
+#define ADC_intClock__DIVIDER_MASK 0x0000FFFFu
+#define ADC_intClock__ENABLE CYREG_CLK_DIVIDER_B00
+#define ADC_intClock__ENABLE_MASK 0x80000000u
+#define ADC_intClock__MASK 0x80000000u
+#define ADC_intClock__REGISTER CYREG_CLK_DIVIDER_B00
+
+/* ADC_IRQ */
+#define ADC_IRQ__INTC_CLR_EN_REG CYREG_CM0_ICER
+#define ADC_IRQ__INTC_CLR_PD_REG CYREG_CM0_ICPR
+#define ADC_IRQ__INTC_MASK 0x4000u
+#define ADC_IRQ__INTC_NUMBER 14u
+#define ADC_IRQ__INTC_PRIOR_MASK 0xC00000u
+#define ADC_IRQ__INTC_PRIOR_NUM 3u
+#define ADC_IRQ__INTC_PRIOR_REG CYREG_CM0_IPR3
+#define ADC_IRQ__INTC_SET_EN_REG CYREG_CM0_ISER
+#define ADC_IRQ__INTC_SET_PD_REG CYREG_CM0_ISPR
+
 /* Ldg */
 #define Ldg__0__DM__MASK 0x7000u
 #define Ldg__0__DM__SHIFT 12
@@ -677,10 +716,10 @@
 
 /* UART_1_SCBCLK */
 #define UART_1_SCBCLK__DIVIDER_MASK 0x0000FFFFu
-#define UART_1_SCBCLK__ENABLE CYREG_CLK_DIVIDER_B01
+#define UART_1_SCBCLK__ENABLE CYREG_CLK_DIVIDER_C01
 #define UART_1_SCBCLK__ENABLE_MASK 0x80000000u
 #define UART_1_SCBCLK__MASK 0x80000000u
-#define UART_1_SCBCLK__REGISTER CYREG_CLK_DIVIDER_B01
+#define UART_1_SCBCLK__REGISTER CYREG_CLK_DIVIDER_C01
 
 /* UART_1_tx */
 #define UART_1_tx__0__DM__MASK 0x38u
@@ -720,24 +759,24 @@
 
 /* Clock_1 */
 #define Clock_1__DIVIDER_MASK 0x0000FFFFu
-#define Clock_1__ENABLE CYREG_CLK_DIVIDER_C00
+#define Clock_1__ENABLE CYREG_CLK_DIVIDER_A01
 #define Clock_1__ENABLE_MASK 0x80000000u
 #define Clock_1__MASK 0x80000000u
-#define Clock_1__REGISTER CYREG_CLK_DIVIDER_C00
+#define Clock_1__REGISTER CYREG_CLK_DIVIDER_A01
 
 /* Clock_2 */
 #define Clock_2__DIVIDER_MASK 0x0000FFFFu
-#define Clock_2__ENABLE CYREG_CLK_DIVIDER_B00
+#define Clock_2__ENABLE CYREG_CLK_DIVIDER_C00
 #define Clock_2__ENABLE_MASK 0x80000000u
 #define Clock_2__MASK 0x80000000u
-#define Clock_2__REGISTER CYREG_CLK_DIVIDER_B00
+#define Clock_2__REGISTER CYREG_CLK_DIVIDER_C00
 
 /* Clock_3 */
 #define Clock_3__DIVIDER_MASK 0x0000FFFFu
-#define Clock_3__ENABLE CYREG_CLK_DIVIDER_A01
+#define Clock_3__ENABLE CYREG_CLK_DIVIDER_B01
 #define Clock_3__ENABLE_MASK 0x80000000u
 #define Clock_3__MASK 0x80000000u
-#define Clock_3__REGISTER CYREG_CLK_DIVIDER_A01
+#define Clock_3__REGISTER CYREG_CLK_DIVIDER_B01
 
 /* Strobes */
 #define Strobes__0__DM__MASK 0x07u
@@ -804,6 +843,61 @@
 #define TaskISR__INTC_PRIOR_REG CYREG_CM0_IPR4
 #define TaskISR__INTC_SET_EN_REG CYREG_CM0_ISER
 #define TaskISR__INTC_SET_PD_REG CYREG_CM0_ISPR
+
+/* In_Speed */
+#define In_Speed__0__DM__MASK 0xE00000u
+#define In_Speed__0__DM__SHIFT 21
+#define In_Speed__0__DR CYREG_PRT2_DR
+#define In_Speed__0__HSIOM CYREG_HSIOM_PORT_SEL2
+#define In_Speed__0__HSIOM_MASK 0xF0000000u
+#define In_Speed__0__HSIOM_SHIFT 28u
+#define In_Speed__0__INTCFG CYREG_PRT2_INTCFG
+#define In_Speed__0__INTSTAT CYREG_PRT2_INTSTAT
+#define In_Speed__0__MASK 0x80u
+#define In_Speed__0__PA__CFG0 CYREG_UDB_PA2_CFG0
+#define In_Speed__0__PA__CFG1 CYREG_UDB_PA2_CFG1
+#define In_Speed__0__PA__CFG10 CYREG_UDB_PA2_CFG10
+#define In_Speed__0__PA__CFG11 CYREG_UDB_PA2_CFG11
+#define In_Speed__0__PA__CFG12 CYREG_UDB_PA2_CFG12
+#define In_Speed__0__PA__CFG13 CYREG_UDB_PA2_CFG13
+#define In_Speed__0__PA__CFG14 CYREG_UDB_PA2_CFG14
+#define In_Speed__0__PA__CFG2 CYREG_UDB_PA2_CFG2
+#define In_Speed__0__PA__CFG3 CYREG_UDB_PA2_CFG3
+#define In_Speed__0__PA__CFG4 CYREG_UDB_PA2_CFG4
+#define In_Speed__0__PA__CFG5 CYREG_UDB_PA2_CFG5
+#define In_Speed__0__PA__CFG6 CYREG_UDB_PA2_CFG6
+#define In_Speed__0__PA__CFG7 CYREG_UDB_PA2_CFG7
+#define In_Speed__0__PA__CFG8 CYREG_UDB_PA2_CFG8
+#define In_Speed__0__PA__CFG9 CYREG_UDB_PA2_CFG9
+#define In_Speed__0__PC CYREG_PRT2_PC
+#define In_Speed__0__PC2 CYREG_PRT2_PC2
+#define In_Speed__0__PORT 2u
+#define In_Speed__0__PS CYREG_PRT2_PS
+#define In_Speed__0__SHIFT 7
+#define In_Speed__DR CYREG_PRT2_DR
+#define In_Speed__INTCFG CYREG_PRT2_INTCFG
+#define In_Speed__INTSTAT CYREG_PRT2_INTSTAT
+#define In_Speed__MASK 0x80u
+#define In_Speed__PA__CFG0 CYREG_UDB_PA2_CFG0
+#define In_Speed__PA__CFG1 CYREG_UDB_PA2_CFG1
+#define In_Speed__PA__CFG10 CYREG_UDB_PA2_CFG10
+#define In_Speed__PA__CFG11 CYREG_UDB_PA2_CFG11
+#define In_Speed__PA__CFG12 CYREG_UDB_PA2_CFG12
+#define In_Speed__PA__CFG13 CYREG_UDB_PA2_CFG13
+#define In_Speed__PA__CFG14 CYREG_UDB_PA2_CFG14
+#define In_Speed__PA__CFG2 CYREG_UDB_PA2_CFG2
+#define In_Speed__PA__CFG3 CYREG_UDB_PA2_CFG3
+#define In_Speed__PA__CFG4 CYREG_UDB_PA2_CFG4
+#define In_Speed__PA__CFG5 CYREG_UDB_PA2_CFG5
+#define In_Speed__PA__CFG6 CYREG_UDB_PA2_CFG6
+#define In_Speed__PA__CFG7 CYREG_UDB_PA2_CFG7
+#define In_Speed__PA__CFG8 CYREG_UDB_PA2_CFG8
+#define In_Speed__PA__CFG9 CYREG_UDB_PA2_CFG9
+#define In_Speed__PC CYREG_PRT2_PC
+#define In_Speed__PC2 CYREG_PRT2_PC2
+#define In_Speed__PORT 2u
+#define In_Speed__PS CYREG_PRT2_PS
+#define In_Speed__SHIFT 7
 
 /* ServoISR */
 #define ServoISR__INTC_CLR_EN_REG CYREG_CM0_ICER
@@ -904,10 +998,10 @@
 
 /* TelemUART_IntClock */
 #define TelemUART_IntClock__DIVIDER_MASK 0x0000FFFFu
-#define TelemUART_IntClock__ENABLE CYREG_CLK_DIVIDER_C01
+#define TelemUART_IntClock__ENABLE CYREG_CLK_DIVIDER_A02
 #define TelemUART_IntClock__ENABLE_MASK 0x80000000u
 #define TelemUART_IntClock__MASK 0x80000000u
-#define TelemUART_IntClock__REGISTER CYREG_CLK_DIVIDER_C01
+#define TelemUART_IntClock__REGISTER CYREG_CLK_DIVIDER_A02
 
 /* OnBoardLED */
 #define OnBoardLED__0__DM__MASK 0x1C0000u
