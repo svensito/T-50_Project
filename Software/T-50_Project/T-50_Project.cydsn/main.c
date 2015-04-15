@@ -46,9 +46,9 @@ enum e_in{   // Input Control Enum - 8 Channels
     in_ail,
     in_ele,
     in_rud,
-    in_fl,
-    in_ge,
-    in_sp1,
+    in_gear,
+    in_can,
+    in_mod,
     in_sp2
 };
 
@@ -197,8 +197,9 @@ int16_t ADC_read_speed(void)
 int main()
 {
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+    
+    CyDelay(500); // Wait before initialization happens. -> gives time for receiver to send PPM signal
     CyGlobalIntEnable; 
-
     UART_1_Start();     /* Enabling the UART */
     I2CM_Start();
     ADC_Start();
@@ -281,6 +282,7 @@ int main()
                     NavLightCompare-=NavLightStep;
                     NavLightPWM_WriteCompare(NavLightCompare);
                 }
+                // Strobe Light Control
                 if(cnt_StrobeLight == 200) Strobes_Write(0xFF); // Setting Output High
                 if(cnt_StrobeLight == 205)  // (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe
                 {
@@ -288,13 +290,19 @@ int main()
                     Strobes_Write(0x00);    // Setting output Low
                 }
                 cnt_StrobeLight++;
-                //UART_1_UartPutNum(cnt_StrobeLight);UART_1_UartPutString("\r\n");
+                // Landing Light Control
+                if(ctrl_in[in_gear] < 1100)
+                {
+                    Ldg_Write(0xFF);
+                }
+                else Ldg_Write(0x00);
             }
             else
             {
                 /* Lights disabled*/
                 NavLightPWM_WriteCompare(0);    // Nav Lights set to 0
-                
+                Strobes_Write(0x00);    // Setting output Low
+                Ldg_Write(0x00);
             }
             
             /*=======================================
@@ -410,10 +418,10 @@ int main()
 //
             //Mag_x = mag_x_g*cos(Theta);//+ mag_y_g*sin(Phi)*sin(Theta)+ mag_z_g*cos(Phi)*sin(Theta);
             //Mag_y = mag_y_g*cos(Phi);// - mag_z_g*sin(Phi);
-            Mag_Heading = atan2(-(mag_y_g),(mag_x_g))*180/PI;
+            //Mag_Heading = atan2(-(mag_y_g),(mag_x_g))*180/PI;
             //UART_1_UartPutNum(Mag_Heading);
-            UART_1_UartPutNum(Bar_press);   //Print Baro Press
-            UART_1_UartPutString(";\r\n");
+            //UART_1_UartPutNum(Bar_press);   //Print Baro Press
+            //UART_1_UartPutString(";\r\n");
             
 			/* Calculating the attitude by using Kalman Filtering END*/
 			/*=======================================================*/
@@ -449,21 +457,21 @@ int main()
             /*=======================================
                 Output Control
               =======================================*/
-        uint8_t debug = 1;
+        uint8_t debug = 0;
             if(debug == 0)
             {
-                ctrl_out[out_mot] = ctrl_in[in_mot];    
-                ctrl_out[out_ail1] = ctrl_in[in_ail];    
+                ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
                 ctrl_out[out_ail2] = ctrl_in[in_ail];
-                ctrl_out[out_ele1] = ctrl_in[in_ele];
+                ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
                 ctrl_out[out_ele2] = ctrl_in[in_ele];
-                ctrl_out[out_rud] = ctrl_in[in_rud];
-                ctrl_out[out_fl1] = ctrl_in[in_fl];
-                ctrl_out[out_fl2] = ctrl_in[in_fl];
-                ctrl_out[out_ge1] = ctrl_in[in_ge];
-                ctrl_out[out_ge2] = ctrl_in[in_ge];
-                ctrl_out[out_ge3] = ctrl_in[in_ge];
-                ctrl_out[out_sp1] = ctrl_in[in_sp1];
+                ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+                ctrl_out[out_fl1] = ctrl_in[in_gear];            // gear:   down: 1000  retracted: 2000
+                ctrl_out[out_fl2] = ctrl_in[in_gear];
+                ctrl_out[out_ge1] = ctrl_in[in_can];             // canopy: open: 1000  closed: 2000
+                ctrl_out[out_ge2] = ctrl_in[in_can];
+                ctrl_out[out_ge3] = ctrl_in[in_can];
+                ctrl_out[out_sp1] = ctrl_in[in_mod];            // down: 2000 mid: 1500 up: 1000
                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
             }
             else
@@ -487,24 +495,24 @@ int main()
             /*=======================================
                 Data Logging
               =======================================*/
-            /*    
-            UART_1_UartPutNum(ctrl_out[out_mot]);
+                
+                UART_1_UartPutNum(ctrl_in[in_mot]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_out[out_ail1]);
+                UART_1_UartPutNum(ctrl_in[in_ail]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[2]);
+                UART_1_UartPutNum(ctrl_in[in_ele]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[3]);
+                UART_1_UartPutNum(ctrl_in[in_rud]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[4]);
+                UART_1_UartPutNum(ctrl_in[in_gear]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[5]);
+                UART_1_UartPutNum(ctrl_in[in_can]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[6]);
+                UART_1_UartPutNum(ctrl_in[in_mod]);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_in[7]);
                 UART_1_UartPutString("\r\n");
-            */
+            
         }
 
     }
