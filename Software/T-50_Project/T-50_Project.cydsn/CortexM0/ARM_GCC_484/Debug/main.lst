@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
   30:.\main.c      **** 
   31:.\main.c      **** /*=============================*/
   32:.\main.c      **** /* TASK Flags*/
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 2
 
 
   33:.\main.c      **** /*=============================*/
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
   87:.\main.c      **** /*IMU variables*/
   88:.\main.c      **** /*=============================*/
   89:.\main.c      **** #define GYRO_TASK   TRUE
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 3
 
 
   90:.\main.c      **** #define ACC_TASK    TRUE
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  144:.\main.c      **** /*=============================*/
  145:.\main.c      **** /* MAVLINK			*/
  146:.\main.c      **** /*=============================*/
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 4
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 4
 
 
  147:.\main.c      **** #define MAVLINK_TASK    FALSE
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
   52              	.L2:
   53 0018 00000000 		.word	.LC0
   54              		.cfi_endproc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 5
 
 
   55              	.LFE1489:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
   97 0016 305D     		ldrb	r0, [r6, r4]
   98 0018 FFF7FEFF 		bl	UART_1_SpiUartWriteTxData
   99              	.LVL10:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 6
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 6
 
 
  100 001c F7E7     		b	.L5
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  142              		.cfi_endproc
  143              	.LFE1491:
  144              		.size	ADC_read_speed, .-ADC_read_speed
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 7
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 7
 
 
  145              		.global	__aeabi_i2d
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  189 0012 FFF7FEFF 		bl	I2CM_Start
  190              	.LVL20:
  205:.\main.c      ****     ADC_Start();
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 8
 
 
  191              		.loc 1 205 0
@@ -470,15 +470,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  217:.\main.c      ****     // Mavlink Initialization
  218:.\main.c      ****     mavlink_system.sysid = 58;     ///< ID 25 for this airplane
  226              		.loc 1 218 0
- 227 0046 B44B     		ldr	r3, .L27+40
+ 227 0046 B04B     		ldr	r3, .L27+40
  228 0048 3A22     		mov	r2, #58
  219:.\main.c      ****     mavlink_system.compid = 58;     ///< The component ID
  220:.\main.c      ****     
  221:.\main.c      ****     UART_1_UartPutString("UART OK\r\n");
  229              		.loc 1 221 0
- 230 004a B448     		ldr	r0, .L27+44
+ 230 004a B048     		ldr	r0, .L27+44
  218:.\main.c      ****     mavlink_system.sysid = 58;     ///< ID 25 for this airplane
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 9
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 9
 
 
  231              		.loc 1 218 0
@@ -508,7 +508,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  249              	.LVL36:
  227:.\main.c      ****     UART_1_UartPutString("Started OK\r\n");
  250              		.loc 1 227 0
- 251 0064 AE48     		ldr	r0, .L27+48
+ 251 0064 AA48     		ldr	r0, .L27+48
  252              	.L24:
  253 0066 FFF7FEFF 		bl	UART_1_UartPutString
  254              	.LVL37:
@@ -520,7 +520,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  232:.\main.c      ****         
  233:.\main.c      ****         if(task_flag == TRUE)
  256              		.loc 1 233 0
- 257 006a AE4E     		ldr	r6, .L27+52
+ 257 006a AA4E     		ldr	r6, .L27+52
  258 006c 3378     		ldrb	r3, [r6]
  259 006e 371C     		mov	r7, r6
  260 0070 012B     		cmp	r3, #1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  243:.\main.c      **** //                blink_cnt = 0;   
  244:.\main.c      **** //       
  245:.\main.c      **** //            }
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 10
 
 
  246:.\main.c      **** //            if(blink_cnt == 100)
@@ -560,7 +560,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  262:.\main.c      ****             
  263:.\main.c      ****             if(flag_LightsEnabled == TRUE)
  263              		.loc 1 263 0
- 264 0074 AC4A     		ldr	r2, .L27+56
+ 264 0074 A84A     		ldr	r2, .L27+56
  238:.\main.c      ****             task_flag = FALSE;
  265              		.loc 1 238 0
  266 0076 0024     		mov	r4, #0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  287              		.loc 1 273 0
  288 0092 3471     		strb	r4, [r6, #4]
  289              	.L15:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 11
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 11
 
 
  274:.\main.c      ****                 }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  326 00c0 FFF7FEFF 		bl	Strobes_Write
  327              	.LVL40:
  328              	.L19:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 12
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 12
 
 
  291:.\main.c      ****                 }
@@ -678,7 +678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  294:.\main.c      ****                 if(ctrl_in[in_gear] < 1100)
  336              		.loc 1 294 0
  337 00cc 7A8A     		ldrh	r2, [r7, #18]
- 338 00ce 974B     		ldr	r3, .L27+60
+ 338 00ce 934B     		ldr	r3, .L27+60
  339 00d0 9A42     		cmp	r2, r3
  340 00d2 08D9     		bls	.L26
  297:.\main.c      ****                 }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  314:.\main.c      ****             {
  315:.\main.c      ****                 gyro_read();
  358              		.loc 1 315 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 13
 
 
  359 00ea FFF7FEFF 		bl	gyro_read
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  388 0112 2223     		mov	r3, #34
  389 0114 F05E     		ldrsh	r0, [r6, r3]
  390 0116 FFF7FEFF 		bl	__aeabi_i2d
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 14
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 14
 
 
  391              	.LVL49:
@@ -795,12 +795,12 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  402 012e 291C     		mov	r1, r5
  403 0130 FFF7FEFF 		bl	atan2
  404              	.LVL51:
- 405 0134 6F4B     		ldr	r3, .L27+4
- 406 0136 6E4A     		ldr	r2, .L27
+ 405 0134 6B4B     		ldr	r3, .L27+4
+ 406 0136 6A4A     		ldr	r2, .L27
  407 0138 FFF7FEFF 		bl	__aeabi_dmul
  408              	.LVL52:
- 409 013c 6E4A     		ldr	r2, .L27+8
- 410 013e 6F4B     		ldr	r3, .L27+12
+ 409 013c 6A4A     		ldr	r2, .L27+8
+ 410 013e 6B4B     		ldr	r3, .L27+12
  411 0140 FFF7FEFF 		bl	__aeabi_ddiv
  412              	.LVL53:
  413 0144 FFF7FEFF 		bl	__aeabi_d2f
@@ -826,19 +826,19 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  432 0168 291C     		mov	r1, r5
  433 016a FFF7FEFF 		bl	atan2
  434              	.LVL57:
- 435 016e 614B     		ldr	r3, .L27+4
- 436 0170 5F4A     		ldr	r2, .L27
+ 435 016e 5D4B     		ldr	r3, .L27+4
+ 436 0170 5B4A     		ldr	r2, .L27
  437 0172 FFF7FEFF 		bl	__aeabi_dmul
  438              	.LVL58:
- 439 0176 604A     		ldr	r2, .L27+8
- 440 0178 604B     		ldr	r3, .L27+12
+ 439 0176 5C4A     		ldr	r2, .L27+8
+ 440 0178 5C4B     		ldr	r3, .L27+12
  441 017a FFF7FEFF 		bl	__aeabi_ddiv
  442              	.LVL59:
  443 017e FFF7FEFF 		bl	__aeabi_d2f
  444              	.LVL60:
  342:.\main.c      ****             //Psi_acc = (atan2(-acc_y_g,-acc_x_g))*180/PI;
  343:.\main.c      **** 			/*=========================================================*/
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 15
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 15
 
 
  344:.\main.c      **** 			/* Calculating the attitude by using Kalman Filtering START*/
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  398:.\main.c      **** //			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
  399:.\main.c      **** //			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
  400:.\main.c      **** 		
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 16
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 16
 
 
  401:.\main.c      **** 			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
@@ -906,8 +906,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  403:.\main.c      ****             // it is not clear why the 8 in the end is required, but it gives useable results
  404:.\main.c      ****             Theta = (0.90* (Theta + turn_rate_q*sample_time) + 0.10*Theta_acc)*PI/180*8;
  445              		.loc 1 404 0
- 446 0182 694B     		ldr	r3, .L27+56
- 447 0184 6A4D     		ldr	r5, .L27+64
+ 446 0182 654B     		ldr	r3, .L27+56
+ 447 0184 664D     		ldr	r5, .L27+64
  448 0186 9C68     		ldr	r4, [r3, #8]
  341:.\main.c      **** 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
  449              		.loc 1 341 0
@@ -926,8 +926,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  462              	.LVL63:
  463 01a0 FFF7FEFF 		bl	__aeabi_f2d
  464              	.LVL64:
- 465 01a4 564A     		ldr	r2, .L27+16
- 466 01a6 574B     		ldr	r3, .L27+20
+ 465 01a4 524A     		ldr	r2, .L27+16
+ 466 01a6 534B     		ldr	r3, .L27+20
  467 01a8 FFF7FEFF 		bl	__aeabi_dmul
  468              	.LVL65:
  469 01ac 0290     		str	r0, [sp, #8]
@@ -935,8 +935,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  471 01b0 B06A     		ldr	r0, [r6, #40]
  472 01b2 FFF7FEFF 		bl	__aeabi_f2d
  473              	.LVL66:
- 474 01b6 544A     		ldr	r2, .L27+24
- 475 01b8 544B     		ldr	r3, .L27+28
+ 474 01b6 504A     		ldr	r2, .L27+24
+ 475 01b8 504B     		ldr	r3, .L27+28
  476 01ba FFF7FEFF 		bl	__aeabi_dmul
  477              	.LVL67:
  478 01be 021C     		mov	r2, r0
@@ -945,20 +945,20 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  481 01c4 0399     		ldr	r1, [sp, #12]
  482 01c6 FFF7FEFF 		bl	__aeabi_dadd
  483              	.LVL68:
- 484 01ca 4B4A     		ldr	r2, .L27+8
- 485 01cc 4B4B     		ldr	r3, .L27+12
+ 484 01ca 474A     		ldr	r2, .L27+8
+ 485 01cc 474B     		ldr	r3, .L27+12
  486 01ce FFF7FEFF 		bl	__aeabi_dmul
  487              	.LVL69:
- 488 01d2 484B     		ldr	r3, .L27+4
- 489 01d4 464A     		ldr	r2, .L27
+ 488 01d2 444B     		ldr	r3, .L27+4
+ 489 01d4 424A     		ldr	r2, .L27
  490 01d6 FFF7FEFF 		bl	__aeabi_ddiv
  491              	.LVL70:
- 492 01da 4D4A     		ldr	r2, .L27+32
- 493 01dc 4D4B     		ldr	r3, .L27+36
+ 492 01da 494A     		ldr	r2, .L27+32
+ 493 01dc 494B     		ldr	r3, .L27+36
  494 01de FFF7FEFF 		bl	__aeabi_dmul
  495              	.LVL71:
  496 01e2 FFF7FEFF 		bl	__aeabi_d2f
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 17
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 17
 
 
  497              	.LVL72:
@@ -972,14 +972,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  504 01f0 211C     		add	r1, r4, #0
  505 01f2 FFF7FEFF 		bl	__aeabi_fmul
  506              	.LVL74:
- 507 01f6 4F4B     		ldr	r3, .L27+68
+ 507 01f6 4B4B     		ldr	r3, .L27+68
  508 01f8 1968     		ldr	r1, [r3]
  509 01fa FFF7FEFF 		bl	__aeabi_fadd
  510              	.LVL75:
  511 01fe FFF7FEFF 		bl	__aeabi_f2d
  512              	.LVL76:
- 513 0202 3F4A     		ldr	r2, .L27+16
- 514 0204 3F4B     		ldr	r3, .L27+20
+ 513 0202 3B4A     		ldr	r2, .L27+16
+ 514 0204 3B4B     		ldr	r3, .L27+20
  515 0206 FFF7FEFF 		bl	__aeabi_dmul
  516              	.LVL77:
  517 020a 041C     		mov	r4, r0
@@ -987,8 +987,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  519 020e 0D1C     		mov	r5, r1
  520 0210 FFF7FEFF 		bl	__aeabi_f2d
  521              	.LVL78:
- 522 0214 3C4A     		ldr	r2, .L27+24
- 523 0216 3D4B     		ldr	r3, .L27+28
+ 522 0214 384A     		ldr	r2, .L27+24
+ 523 0216 394B     		ldr	r3, .L27+28
  524 0218 FFF7FEFF 		bl	__aeabi_dmul
  525              	.LVL79:
  526 021c 021C     		mov	r2, r0
@@ -997,28 +997,28 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  529 0222 291C     		mov	r1, r5
  530 0224 FFF7FEFF 		bl	__aeabi_dadd
  531              	.LVL80:
- 532 0228 334A     		ldr	r2, .L27+8
- 533 022a 344B     		ldr	r3, .L27+12
+ 532 0228 2F4A     		ldr	r2, .L27+8
+ 533 022a 304B     		ldr	r3, .L27+12
  534 022c FFF7FEFF 		bl	__aeabi_dmul
  535              	.LVL81:
- 536 0230 304B     		ldr	r3, .L27+4
- 537 0232 2F4A     		ldr	r2, .L27
+ 536 0230 2C4B     		ldr	r3, .L27+4
+ 537 0232 2B4A     		ldr	r2, .L27
  538 0234 FFF7FEFF 		bl	__aeabi_ddiv
  539              	.LVL82:
- 540 0238 354A     		ldr	r2, .L27+32
- 541 023a 364B     		ldr	r3, .L27+36
+ 540 0238 314A     		ldr	r2, .L27+32
+ 541 023a 324B     		ldr	r3, .L27+36
  542 023c FFF7FEFF 		bl	__aeabi_dmul
  543              	.LVL83:
  544 0240 FFF7FEFF 		bl	__aeabi_d2f
  545              	.LVL84:
- 546 0244 3B4B     		ldr	r3, .L27+68
+ 546 0244 374B     		ldr	r3, .L27+68
  406:.\main.c      **** 
  407:.\main.c      ****             
  408:.\main.c      ****              // Tilt compensated Magnetic filed X:
  409:.\main.c      ****             //  MAG_X = c_magnetom_x*cos_pitch+c_magnetom_y*sin_roll*sin_pitch+c_magnetom_z*cos_rol
  410:.\main.c      ****             //  // Tilt compensated Magnetic filed Y:
  411:.\main.c      ****             //  MAG_Y = c_magnetom_y*cos_roll-c_magnetom_z*sin_roll;
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 18
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 18
 
 
  412:.\main.c      ****             //  // Magnetic Heading
@@ -1073,14 +1073,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  461:.\main.c      ****             if(debug == 0)
  462:.\main.c      ****             {
  463:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
- 464:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
- 465:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
- 466:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
- 467:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
- 547              		.loc 1 467 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 19
+ 464:.\main.c      ****                 //ctrl_out[out_mot] = 800;
+ 465:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
+ 466:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
+ 467:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
+ 468:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 19
 
 
+ 547              		.loc 1 468 0
  548 0246 BA1C     		add	r2, r7, #2
  405:.\main.c      ****             Phi = (0.90 * (Phi + turn_rate_p*sample_time) + 0.10*Phi_acc)*PI/180*8;
  549              		.loc 1 405 0
@@ -1089,199 +1090,207 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  463:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
  552              		.loc 1 463 0
  553 024a 7089     		ldrh	r0, [r6, #10]
- 554 024c 3C1C     		mov	r4, r7
- 555 024e 3087     		strh	r0, [r6, #56]
- 464:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
- 556              		.loc 1 464 0
- 557 0250 BB89     		ldrh	r3, [r7, #12]
- 558 0252 7387     		strh	r3, [r6, #58]
- 465:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
- 559              		.loc 1 465 0
- 560 0254 B387     		strh	r3, [r6, #60]
- 466:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
- 561              		.loc 1 466 0
- 562 0256 FB89     		ldrh	r3, [r7, #14]
- 563              		.loc 1 467 0
- 564 0258 D387     		strh	r3, [r2, #62]
- 466:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
- 565              		.loc 1 466 0
- 566 025a F387     		strh	r3, [r6, #62]
- 468:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
- 567              		.loc 1 468 0
- 568 025c 3A8A     		ldrh	r2, [r7, #16]
- 569 025e 3B1D     		add	r3, r7, #4
- 570 0260 DA87     		strh	r2, [r3, #62]
- 469:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_gear];            // gear:   down: 1000  retracted: 
- 571              		.loc 1 469 0
- 572 0262 7B8A     		ldrh	r3, [r7, #18]
- 573 0264 BA1D     		add	r2, r7, #6
- 574 0266 D387     		strh	r3, [r2, #62]
- 470:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_gear];
- 575              		.loc 1 470 0
- 576 0268 3A1C     		mov	r2, r7
- 577 026a 0832     		add	r2, r2, #8
- 578 026c D387     		strh	r3, [r2, #62]
- 471:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_can];             // canopy: open: 1000  closed: 200
- 579              		.loc 1 471 0
- 580 026e BB8A     		ldrh	r3, [r7, #20]
- 581 0270 3A1C     		mov	r2, r7
- 582 0272 4832     		add	r2, r2, #72
- 583 0274 1380     		strh	r3, [r2]
- 472:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_can];
- 584              		.loc 1 472 0
- 585 0276 3A1C     		mov	r2, r7
- 586 0278 4A32     		add	r2, r2, #74
- 587 027a 1380     		strh	r3, [r2]
- 473:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_can];
- 588              		.loc 1 473 0
- 589 027c 3A1C     		mov	r2, r7
- 590 027e 4C32     		add	r2, r2, #76
- 591 0280 1380     		strh	r3, [r2]
- 474:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mod];            // down: 2000 mid: 1500 up: 1000
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 20
+ 469:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+ 470:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2
+ 471:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_gear];
+ 554              		.loc 1 471 0
+ 555 024c 391C     		mov	r1, r7
+ 463:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+ 556              		.loc 1 463 0
+ 557 024e 3087     		strh	r0, [r6, #56]
+ 465:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
+ 558              		.loc 1 465 0
+ 559 0250 BB89     		ldrh	r3, [r7, #12]
+ 560              		.loc 1 471 0
+ 561 0252 4A31     		add	r1, r1, #74
+ 465:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
+ 562              		.loc 1 465 0
+ 563 0254 7387     		strh	r3, [r6, #58]
+ 466:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_ail];
+ 564              		.loc 1 466 0
+ 565 0256 B387     		strh	r3, [r6, #60]
+ 467:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
+ 566              		.loc 1 467 0
+ 567 0258 FB89     		ldrh	r3, [r7, #14]
+ 463:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+ 568              		.loc 1 463 0
+ 569 025a 3C1C     		mov	r4, r7
+ 468:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_ele];
+ 570              		.loc 1 468 0
+ 571 025c D387     		strh	r3, [r2, #62]
+ 467:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
+ 572              		.loc 1 467 0
+ 573 025e F387     		strh	r3, [r6, #62]
+ 469:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+ 574              		.loc 1 469 0
+ 575 0260 3A8A     		ldrh	r2, [r7, #16]
+ 576 0262 3B1D     		add	r3, r7, #4
+ 577 0264 DA87     		strh	r2, [r3, #62]
+ 470:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2
+ 578              		.loc 1 470 0
+ 579 0266 3B1C     		mov	r3, r7
+ 580 0268 4833     		add	r3, r3, #72
+ 581 026a 1880     		strh	r0, [r3]
+ 582              		.loc 1 471 0
+ 583 026c 7B8A     		ldrh	r3, [r7, #18]
+ 470:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2
+ 584              		.loc 1 470 0
+ 585 026e 3A1C     		mov	r2, r7
+ 586              		.loc 1 471 0
+ 587 0270 0B80     		strh	r3, [r1]
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 20
 
 
- 592              		.loc 1 474 0
- 593 0282 FA8A     		ldrh	r2, [r7, #22]
- 594 0284 3B1C     		mov	r3, r7
- 595 0286 4E33     		add	r3, r3, #78
- 596 0288 1A80     		strh	r2, [r3]
- 475:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_sp2];
- 597              		.loc 1 475 0
- 598 028a 238B     		ldrh	r3, [r4, #24]
- 599 028c 5037     		add	r7, r7, #80
- 600 028e 3B80     		strh	r3, [r7]
- 476:.\main.c      ****             }
- 477:.\main.c      ****             else
- 478:.\main.c      ****             {
- 479:.\main.c      ****                 ctrl_in[in_mot] = 1000;
- 480:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
- 481:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
- 482:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
- 483:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
- 484:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
- 485:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
- 486:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
- 487:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
- 488:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
- 489:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
- 490:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
- 491:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
- 492:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
- 493:.\main.c      ****             }
- 494:.\main.c      ****             
- 495:.\main.c      ****             /*=======================================
- 496:.\main.c      ****                 Data Logging
- 497:.\main.c      ****               =======================================*/
- 498:.\main.c      ****                 
- 499:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_mot]);
- 601              		.loc 1 499 0
- 602 0290 FFF7FEFF 		bl	UART_1_UartPutNum
+ 472:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_gear];             
+ 588              		.loc 1 472 0
+ 589 0272 391C     		mov	r1, r7
+ 590 0274 4C31     		add	r1, r1, #76
+ 591 0276 0B80     		strh	r3, [r1]
+ 473:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 200
+ 592              		.loc 1 473 0
+ 593 0278 BB8A     		ldrh	r3, [r7, #20]
+ 470:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2
+ 594              		.loc 1 470 0
+ 595 027a 0832     		add	r2, r2, #8
+ 596              		.loc 1 473 0
+ 597 027c 0637     		add	r7, r7, #6
+ 598 027e FB87     		strh	r3, [r7, #62]
+ 474:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_can];
+ 599              		.loc 1 474 0
+ 600 0280 D387     		strh	r3, [r2, #62]
+ 475:.\main.c      ****                 //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 
+ 476:.\main.c      ****                 //ctrl_out[out_sp2] = ctrl_in[in_sp2];
+ 477:.\main.c      ****             }
+ 478:.\main.c      ****             else
+ 479:.\main.c      ****             {
+ 480:.\main.c      ****                 ctrl_in[in_mot] = 1000;
+ 481:.\main.c      ****                 ctrl_out[out_mot] = ctrl_in[in_mot];    
+ 482:.\main.c      ****                 ctrl_out[out_ail1] = ctrl_in[in_mot];    
+ 483:.\main.c      ****                 ctrl_out[out_ail2] = ctrl_in[in_mot];
+ 484:.\main.c      ****                 ctrl_out[out_ele1] = ctrl_in[in_mot];
+ 485:.\main.c      ****                 ctrl_out[out_ele2] = ctrl_in[in_mot];
+ 486:.\main.c      ****                 ctrl_out[out_rud] = ctrl_in[in_mot];
+ 487:.\main.c      ****                 ctrl_out[out_fl1] = ctrl_in[in_mot];
+ 488:.\main.c      ****                 ctrl_out[out_fl2] = ctrl_in[in_mot];
+ 489:.\main.c      ****                 ctrl_out[out_ge1] = ctrl_in[in_mot];
+ 490:.\main.c      ****                 ctrl_out[out_ge2] = ctrl_in[in_mot];
+ 491:.\main.c      ****                 ctrl_out[out_ge3] = ctrl_in[in_mot];
+ 492:.\main.c      ****                 ctrl_out[out_sp1] = ctrl_in[in_mot];
+ 493:.\main.c      ****                 ctrl_out[out_sp2] = ctrl_in[in_mot];
+ 494:.\main.c      ****             }
+ 495:.\main.c      ****             
+ 496:.\main.c      ****             /*=======================================
+ 497:.\main.c      ****                 Data Logging
+ 498:.\main.c      ****               =======================================*/
+ 499:.\main.c      ****                 
+ 500:.\main.c      ****                 UART_1_UartPutNum(ctrl_out[out_mot]);
+ 601              		.loc 1 500 0
+ 602 0282 FFF7FEFF 		bl	UART_1_UartPutNum
  603              	.LVL86:
- 500:.\main.c      ****                 UART_1_UartPutString(";");
- 604              		.loc 1 500 0
- 605 0294 284D     		ldr	r5, .L27+72
- 606 0296 281C     		mov	r0, r5
- 607 0298 FFF7FEFF 		bl	UART_1_UartPutString
+ 501:.\main.c      ****                 UART_1_UartPutString(";");
+ 604              		.loc 1 501 0
+ 605 0286 284D     		ldr	r5, .L27+72
+ 606 0288 281C     		mov	r0, r5
+ 607 028a FFF7FEFF 		bl	UART_1_UartPutString
  608              	.LVL87:
- 501:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_ail]);
- 609              		.loc 1 501 0
- 610 029c A089     		ldrh	r0, [r4, #12]
- 611 029e FFF7FEFF 		bl	UART_1_UartPutNum
+ 502:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_ail]);
+ 609              		.loc 1 502 0
+ 610 028e A089     		ldrh	r0, [r4, #12]
+ 611 0290 FFF7FEFF 		bl	UART_1_UartPutNum
  612              	.LVL88:
- 502:.\main.c      ****                 UART_1_UartPutString(";");
- 613              		.loc 1 502 0
- 614 02a2 281C     		mov	r0, r5
- 615 02a4 FFF7FEFF 		bl	UART_1_UartPutString
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 21
+
+
+ 503:.\main.c      ****                 UART_1_UartPutString(";");
+ 613              		.loc 1 503 0
+ 614 0294 281C     		mov	r0, r5
+ 615 0296 FFF7FEFF 		bl	UART_1_UartPutString
  616              	.LVL89:
- 503:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_ele]);
- 617              		.loc 1 503 0
- 618 02a8 E089     		ldrh	r0, [r4, #14]
- 619 02aa FFF7FEFF 		bl	UART_1_UartPutNum
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 21
-
-
+ 504:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_ele]);
+ 617              		.loc 1 504 0
+ 618 029a E089     		ldrh	r0, [r4, #14]
+ 619 029c FFF7FEFF 		bl	UART_1_UartPutNum
  620              	.LVL90:
- 504:.\main.c      ****                 UART_1_UartPutString(";");
- 621              		.loc 1 504 0
- 622 02ae 281C     		mov	r0, r5
- 623 02b0 FFF7FEFF 		bl	UART_1_UartPutString
+ 505:.\main.c      ****                 UART_1_UartPutString(";");
+ 621              		.loc 1 505 0
+ 622 02a0 281C     		mov	r0, r5
+ 623 02a2 FFF7FEFF 		bl	UART_1_UartPutString
  624              	.LVL91:
- 505:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_rud]);
- 625              		.loc 1 505 0
- 626 02b4 208A     		ldrh	r0, [r4, #16]
- 627 02b6 FFF7FEFF 		bl	UART_1_UartPutNum
+ 506:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_rud]);
+ 625              		.loc 1 506 0
+ 626 02a6 208A     		ldrh	r0, [r4, #16]
+ 627 02a8 FFF7FEFF 		bl	UART_1_UartPutNum
  628              	.LVL92:
- 506:.\main.c      ****                 UART_1_UartPutString(";");
- 629              		.loc 1 506 0
- 630 02ba 281C     		mov	r0, r5
- 631 02bc FFF7FEFF 		bl	UART_1_UartPutString
+ 507:.\main.c      ****                 UART_1_UartPutString(";");
+ 629              		.loc 1 507 0
+ 630 02ac 281C     		mov	r0, r5
+ 631 02ae FFF7FEFF 		bl	UART_1_UartPutString
  632              	.LVL93:
- 507:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_gear]);
- 633              		.loc 1 507 0
- 634 02c0 608A     		ldrh	r0, [r4, #18]
- 635 02c2 FFF7FEFF 		bl	UART_1_UartPutNum
+ 508:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_gear]);
+ 633              		.loc 1 508 0
+ 634 02b2 608A     		ldrh	r0, [r4, #18]
+ 635 02b4 FFF7FEFF 		bl	UART_1_UartPutNum
  636              	.LVL94:
- 508:.\main.c      ****                 UART_1_UartPutString(";");
- 637              		.loc 1 508 0
- 638 02c6 281C     		mov	r0, r5
- 639 02c8 FFF7FEFF 		bl	UART_1_UartPutString
+ 509:.\main.c      ****                 UART_1_UartPutString(";");
+ 637              		.loc 1 509 0
+ 638 02b8 281C     		mov	r0, r5
+ 639 02ba FFF7FEFF 		bl	UART_1_UartPutString
  640              	.LVL95:
- 509:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_can]);
- 641              		.loc 1 509 0
- 642 02cc A08A     		ldrh	r0, [r4, #20]
- 643 02ce FFF7FEFF 		bl	UART_1_UartPutNum
+ 510:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_can]);
+ 641              		.loc 1 510 0
+ 642 02be A08A     		ldrh	r0, [r4, #20]
+ 643 02c0 FFF7FEFF 		bl	UART_1_UartPutNum
  644              	.LVL96:
- 510:.\main.c      ****                 UART_1_UartPutString(";");
- 645              		.loc 1 510 0
- 646 02d2 281C     		mov	r0, r5
- 647 02d4 FFF7FEFF 		bl	UART_1_UartPutString
+ 511:.\main.c      ****                 UART_1_UartPutString(";");
+ 645              		.loc 1 511 0
+ 646 02c4 281C     		mov	r0, r5
+ 647 02c6 FFF7FEFF 		bl	UART_1_UartPutString
  648              	.LVL97:
- 511:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_mod]);
- 649              		.loc 1 511 0
- 650 02d8 E08A     		ldrh	r0, [r4, #22]
- 651 02da FFF7FEFF 		bl	UART_1_UartPutNum
+ 512:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[in_mod]);
+ 649              		.loc 1 512 0
+ 650 02ca E08A     		ldrh	r0, [r4, #22]
+ 651 02cc FFF7FEFF 		bl	UART_1_UartPutNum
  652              	.LVL98:
- 512:.\main.c      ****                 UART_1_UartPutString(";");
- 653              		.loc 1 512 0
- 654 02de 281C     		mov	r0, r5
- 655 02e0 FFF7FEFF 		bl	UART_1_UartPutString
+ 513:.\main.c      ****                 UART_1_UartPutString(";");
+ 653              		.loc 1 513 0
+ 654 02d0 281C     		mov	r0, r5
+ 655 02d2 FFF7FEFF 		bl	UART_1_UartPutString
  656              	.LVL99:
- 513:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[7]);
- 657              		.loc 1 513 0
- 658 02e4 208B     		ldrh	r0, [r4, #24]
- 659 02e6 FFF7FEFF 		bl	UART_1_UartPutNum
+ 514:.\main.c      ****                 UART_1_UartPutNum(ctrl_in[7]);
+ 657              		.loc 1 514 0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 22
+
+
+ 658 02d6 208B     		ldrh	r0, [r4, #24]
+ 659 02d8 FFF7FEFF 		bl	UART_1_UartPutNum
  660              	.LVL100:
- 514:.\main.c      ****                 UART_1_UartPutString("\r\n");
- 661              		.loc 1 514 0
- 662 02ea 1448     		ldr	r0, .L27+76
- 663 02ec BBE6     		b	.L24
+ 515:.\main.c      ****                 UART_1_UartPutString("\r\n");
+ 661              		.loc 1 515 0
+ 662 02dc 1348     		ldr	r0, .L27+76
+ 663 02de C2E6     		b	.L24
  664              	.L28:
- 665 02ee C046     		.align	3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 22
-
-
+ 665              		.align	3
  666              	.L27:
- 667 02f0 00000000 		.word	0
- 668 02f4 00806640 		.word	1080459264
- 669 02f8 182D4454 		.word	1413754136
- 670 02fc FB210940 		.word	1074340347
- 671 0300 CDCCCCCC 		.word	-858993459
- 672 0304 CCCCEC3F 		.word	1072483532
- 673 0308 9A999999 		.word	-1717986918
- 674 030c 9999B93F 		.word	1069128089
- 675 0310 00000000 		.word	0
- 676 0314 00002040 		.word	1075838976
- 677 0318 00000000 		.word	mavlink_system
- 678 031c 03000000 		.word	.LC3
- 679 0320 0D000000 		.word	.LC5
- 680 0324 00000000 		.word	.LANCHOR0
- 681 0328 00000000 		.word	.LANCHOR1
- 682 032c 4B040000 		.word	1099
- 683 0330 00000000 		.word	Theta
- 684 0334 00000000 		.word	Phi
- 685 0338 1A000000 		.word	.LC11
- 686 033c 1C000000 		.word	.LC13
+ 667 02e0 00000000 		.word	0
+ 668 02e4 00806640 		.word	1080459264
+ 669 02e8 182D4454 		.word	1413754136
+ 670 02ec FB210940 		.word	1074340347
+ 671 02f0 CDCCCCCC 		.word	-858993459
+ 672 02f4 CCCCEC3F 		.word	1072483532
+ 673 02f8 9A999999 		.word	-1717986918
+ 674 02fc 9999B93F 		.word	1069128089
+ 675 0300 00000000 		.word	0
+ 676 0304 00002040 		.word	1075838976
+ 677 0308 00000000 		.word	mavlink_system
+ 678 030c 03000000 		.word	.LC3
+ 679 0310 0D000000 		.word	.LC5
+ 680 0314 00000000 		.word	.LANCHOR0
+ 681 0318 00000000 		.word	.LANCHOR1
+ 682 031c 4B040000 		.word	1099
+ 683 0320 00000000 		.word	Theta
+ 684 0324 00000000 		.word	Phi
+ 685 0328 1A000000 		.word	.LC11
+ 686 032c 1C000000 		.word	.LC13
  687              	.LBE2:
  688              		.cfi_endproc
  689              	.LFE1492:
@@ -1309,6 +1318,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  711              		.global	P_Theta
  712              		.global	q_bias
  713              		.global	R_angle
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 23
+
+
  714              		.global	Q_gyro
  715              		.global	Q_angle
  716              		.global	speed
@@ -1318,9 +1330,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  720              		.comm	Mag_x,4,4
  721              		.global	Mag_Heading
  722              		.global	Psi_acc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 23
-
-
  723              		.comm	Psi,4,4
  724              		.global	Phi_acc
  725              		.comm	Phi,4,4
@@ -1369,6 +1378,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  763              		.set	.LANCHOR1,. + 0
  764              		.type	flag_LightsEnabled, %object
  765              		.size	flag_LightsEnabled, 1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 24
+
+
  766              	flag_LightsEnabled:
  767 0000 01       		.byte	1
  768 0001 00       		.space	1
@@ -1378,9 +1390,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  772 0002 6400     		.short	100
  773              		.type	NavLightStep, %object
  774              		.size	NavLightStep, 2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 24
-
-
  775              	NavLightStep:
  776 0004 0100     		.short	1
  777 0006 0000     		.space	2
@@ -1429,6 +1438,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  820              		.type	NavLightDim, %object
  821              		.size	NavLightDim, 2
  822              	NavLightDim:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 25
+
+
  823 0006 0000     		.space	2
  824              		.type	cnt_StrobeLight, %object
  825              		.size	cnt_StrobeLight, 1
@@ -1438,9 +1450,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  829              		.type	ctrl_in, %object
  830              		.size	ctrl_in, 16
  831              	ctrl_in:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 25
-
-
  832 000a 00000000 		.space	16
  832      00000000 
  832      00000000 
@@ -1489,6 +1498,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  874              	turn_rate_p:
  875 0036 0000     		.space	2
  876              		.type	ctrl_out, %object
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 26
+
+
  877              		.size	ctrl_out, 26
  878              	ctrl_out:
  879 0038 00000000 		.space	26
@@ -1498,9 +1510,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  879      00000000 
  880              		.type	cnt_ML_ATTITUDE_send, %object
  881              		.size	cnt_ML_ATTITUDE_send, 1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 26
-
-
  882              	cnt_ML_ATTITUDE_send:
  883 0052 00       		.space	1
  884              		.type	cnt_ML_HEARTBEAT_send, %object
@@ -1549,6 +1558,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  921              		.type	q_bias, %object
  922              		.size	q_bias, 4
  923              	q_bias:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 27
+
+
  924 0088 00000000 		.space	4
  925              		.type	Mag_y, %object
  926              		.size	Mag_y, 4
@@ -1558,9 +1570,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  930              		.size	Mag_Heading, 4
  931              	Mag_Heading:
  932 0090 00000000 		.space	4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 27
-
-
  933              		.type	Psi_acc, %object
  934              		.size	Psi_acc, 4
  935              	Psi_acc:
@@ -1591,24 +1600,27 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  960 00a1 00       		.space	1
  961 00a2 0000     		.text
  962              	.Letext0:
- 963              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
- 964              		.file 3 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
+ 963              		.file 2 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 964              		.file 3 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
  965              		.file 4 ".\\Generated_Source\\PSoC4/cytypes.h"
  966              		.file 5 ".\\MAVLINK\\common/../mavlink_types.h"
  967              		.file 6 ".\\MAVLINK\\common/common.h"
  968              		.file 7 ".\\Generated_Source\\PSoC4/UART_1_SPI_UART.h"
- 969              		.file 8 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
+ 969              		.file 8 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
  970              		.file 9 ".\\Generated_Source\\PSoC4/ADC.h"
  971              		.file 10 ".\\Generated_Source\\PSoC4/NavLightPWM.h"
  972              		.file 11 ".\\Generated_Source\\PSoC4/Strobes.h"
  973              		.file 12 ".\\Generated_Source\\PSoC4/Ldg.h"
  974              		.file 13 "./IMU.h"
- 975              		.file 14 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\
+ 975              		.file 14 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\
  976              		.file 15 ".\\Generated_Source\\PSoC4/CyLib.h"
  977              		.file 16 ".\\Generated_Source\\PSoC4/UART_1.h"
  978              		.file 17 ".\\Generated_Source\\PSoC4/I2CM.h"
  979              		.file 18 ".\\Generated_Source\\PSoC4/TaskTimer.h"
  980              		.file 19 ".\\Generated_Source\\PSoC4/PPMCounter.h"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 28
+
+
  981              		.file 20 ".\\Generated_Source\\PSoC4/ServoTimer.h"
  982              		.file 21 ".\\Generated_Source\\PSoC4/PPMISR.h"
  983              		.file 22 ".\\Generated_Source\\PSoC4/PPMRstISR.h"
@@ -1618,17 +1630,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  987              		.section	.debug_info,"",%progbits
  988              	.Ldebug_info0:
  989 0000 B60D0000 		.4byte	0xdb6
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 28
-
-
  990 0004 0400     		.2byte	0x4
  991 0006 00000000 		.4byte	.Ldebug_abbrev0
  992 000a 04       		.byte	0x4
  993 000b 01       		.uleb128 0x1
- 994 000c C80B0000 		.4byte	.LASF224
+ 994 000c C00B0000 		.4byte	.LASF224
  995 0010 01       		.byte	0x1
  996 0011 33020000 		.4byte	.LASF225
- 997 0015 3C020000 		.4byte	.LASF226
+ 997 0015 41060000 		.4byte	.LASF226
  998 0019 00000000 		.4byte	.Ldebug_ranges0+0
  999 001d 00000000 		.4byte	0
  1000 0021 00000000 		.4byte	.Ldebug_line0
@@ -1644,9 +1653,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1010 0037 02       		.uleb128 0x2
  1011 0038 01       		.byte	0x1
  1012 0039 08       		.byte	0x8
- 1013 003a 8E080000 		.4byte	.LASF1
+ 1013 003a 7C080000 		.4byte	.LASF1
  1014 003e 03       		.uleb128 0x3
- 1015 003f 7A040000 		.4byte	.LASF3
+ 1015 003f 28040000 		.4byte	.LASF3
  1016 0043 02       		.byte	0x2
  1017 0044 25       		.byte	0x25
  1018 0045 49000000 		.4byte	0x49
@@ -1655,41 +1664,41 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1021 004b 05       		.byte	0x5
  1022 004c 11000000 		.4byte	.LASF4
  1023 0050 03       		.uleb128 0x3
- 1024 0051 7E0A0000 		.4byte	.LASF5
+ 1024 0051 6C0A0000 		.4byte	.LASF5
  1025 0055 02       		.byte	0x2
  1026 0056 26       		.byte	0x26
  1027 0057 5B000000 		.4byte	0x5b
  1028 005b 02       		.uleb128 0x2
  1029 005c 02       		.byte	0x2
  1030 005d 07       		.byte	0x7
- 1031 005e F3050000 		.4byte	.LASF6
+ 1031 005e A5050000 		.4byte	.LASF6
  1032 0062 03       		.uleb128 0x3
- 1033 0063 B70A0000 		.4byte	.LASF7
+ 1033 0063 A50A0000 		.4byte	.LASF7
  1034 0067 02       		.byte	0x2
  1035 0068 37       		.byte	0x37
  1036 0069 6D000000 		.4byte	0x6d
  1037 006d 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 29
+
+
  1038 006e 04       		.byte	0x4
  1039 006f 05       		.byte	0x5
- 1040 0070 3C030000 		.4byte	.LASF8
+ 1040 0070 EA020000 		.4byte	.LASF8
  1041 0074 03       		.uleb128 0x3
- 1042 0075 6F040000 		.4byte	.LASF9
+ 1042 0075 1D040000 		.4byte	.LASF9
  1043 0079 02       		.byte	0x2
  1044 007a 38       		.byte	0x38
  1045 007b 7F000000 		.4byte	0x7f
  1046 007f 02       		.uleb128 0x2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 29
-
-
  1047 0080 04       		.byte	0x4
  1048 0081 07       		.byte	0x7
- 1049 0082 59050000 		.4byte	.LASF10
+ 1049 0082 07050000 		.4byte	.LASF10
  1050 0086 02       		.uleb128 0x2
  1051 0087 08       		.byte	0x8
  1052 0088 05       		.byte	0x5
  1053 0089 EC010000 		.4byte	.LASF11
  1054 008d 03       		.uleb128 0x3
- 1055 008e C2070000 		.4byte	.LASF12
+ 1055 008e B0070000 		.4byte	.LASF12
  1056 0092 02       		.byte	0x2
  1057 0093 4E       		.byte	0x4e
  1058 0094 98000000 		.4byte	0x98
@@ -1704,9 +1713,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1067 00a6 02       		.uleb128 0x2
  1068 00a7 04       		.byte	0x4
  1069 00a8 07       		.byte	0x7
- 1070 00a9 F7040000 		.4byte	.LASF14
+ 1070 00a9 A5040000 		.4byte	.LASF14
  1071 00ad 03       		.uleb128 0x3
- 1072 00ae 570C0000 		.4byte	.LASF15
+ 1072 00ae 4F0C0000 		.4byte	.LASF15
  1073 00b2 03       		.byte	0x3
  1074 00b3 2A       		.byte	0x2a
  1075 00b4 2C000000 		.4byte	0x2c
@@ -1716,19 +1725,22 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1079 00be 35       		.byte	0x35
  1080 00bf 3E000000 		.4byte	0x3e
  1081 00c3 03       		.uleb128 0x3
- 1082 00c4 3B050000 		.4byte	.LASF17
+ 1082 00c4 E9040000 		.4byte	.LASF17
  1083 00c8 03       		.byte	0x3
  1084 00c9 36       		.byte	0x36
  1085 00ca 50000000 		.4byte	0x50
  1086 00ce 03       		.uleb128 0x3
- 1087 00cf 86080000 		.4byte	.LASF18
+ 1087 00cf 74080000 		.4byte	.LASF18
  1088 00d3 03       		.byte	0x3
  1089 00d4 41       		.byte	0x41
  1090 00d5 62000000 		.4byte	0x62
  1091 00d9 03       		.uleb128 0x3
- 1092 00da 6E0B0000 		.4byte	.LASF19
+ 1092 00da 660B0000 		.4byte	.LASF19
  1093 00de 03       		.byte	0x3
  1094 00df 42       		.byte	0x42
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 30
+
+
  1095 00e0 74000000 		.4byte	0x74
  1096 00e4 03       		.uleb128 0x3
  1097 00e5 BC000000 		.4byte	.LASF20
@@ -1736,44 +1748,41 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1099 00ea 4E       		.byte	0x4e
  1100 00eb 8D000000 		.4byte	0x8d
  1101 00ef 03       		.uleb128 0x3
- 1102 00f0 B1030000 		.4byte	.LASF21
+ 1102 00f0 5F030000 		.4byte	.LASF21
  1103 00f4 04       		.byte	0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 30
-
-
  1104 00f5 A1       		.byte	0xa1
  1105 00f6 37000000 		.4byte	0x37
  1106 00fa 03       		.uleb128 0x3
- 1107 00fb 62040000 		.4byte	.LASF22
+ 1107 00fb 10040000 		.4byte	.LASF22
  1108 00ff 04       		.byte	0x4
  1109 0100 A3       		.byte	0xa3
  1110 0101 7F000000 		.4byte	0x7f
  1111 0105 03       		.uleb128 0x3
- 1112 0106 870C0000 		.4byte	.LASF23
+ 1112 0106 7F0C0000 		.4byte	.LASF23
  1113 010a 04       		.byte	0x4
  1114 010b A5       		.byte	0xa5
  1115 010c 49000000 		.4byte	0x49
  1116 0110 02       		.uleb128 0x2
  1117 0111 04       		.byte	0x4
  1118 0112 04       		.byte	0x4
- 1119 0113 CD070000 		.4byte	.LASF24
+ 1119 0113 BB070000 		.4byte	.LASF24
  1120 0117 02       		.uleb128 0x2
  1121 0118 08       		.byte	0x8
  1122 0119 04       		.byte	0x4
- 1123 011a C0090000 		.4byte	.LASF25
+ 1123 011a AE090000 		.4byte	.LASF25
  1124 011e 03       		.uleb128 0x3
- 1125 011f C10A0000 		.4byte	.LASF26
+ 1125 011f AF0A0000 		.4byte	.LASF26
  1126 0123 04       		.byte	0x4
  1127 0124 B2       		.byte	0xb2
  1128 0125 29010000 		.4byte	0x129
  1129 0129 02       		.uleb128 0x2
  1130 012a 01       		.byte	0x1
  1131 012b 08       		.byte	0x8
- 1132 012c 1A0A0000 		.4byte	.LASF27
+ 1132 012c 080A0000 		.4byte	.LASF27
  1133 0130 02       		.uleb128 0x2
  1134 0131 04       		.byte	0x4
  1135 0132 07       		.byte	0x7
- 1136 0133 11070000 		.4byte	.LASF28
+ 1136 0133 F7060000 		.4byte	.LASF28
  1137 0137 05       		.uleb128 0x5
  1138 0138 04       		.byte	0x4
  1139 0139 29010000 		.4byte	0x129
@@ -1785,22 +1794,22 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1145 0148 02       		.uleb128 0x2
  1146 0149 08       		.byte	0x8
  1147 014a 04       		.byte	0x4
- 1148 014b 0E0A0000 		.4byte	.LASF29
+ 1148 014b FC090000 		.4byte	.LASF29
  1149 014f 07       		.uleb128 0x7
- 1150 0150 5A070000 		.4byte	.LASF33
+ 1150 0150 48070000 		.4byte	.LASF33
  1151 0154 02       		.byte	0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 31
+
+
  1152 0155 05       		.byte	0x5
  1153 0156 6A       		.byte	0x6a
  1154 0157 74010000 		.4byte	0x174
  1155 015b 08       		.uleb128 0x8
- 1156 015c 9D0C0000 		.4byte	.LASF30
+ 1156 015c 950C0000 		.4byte	.LASF30
  1157 0160 05       		.byte	0x5
  1158 0161 6A       		.byte	0x6a
  1159 0162 AD000000 		.4byte	0xad
  1160 0166 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 31
-
-
  1161 0167 08       		.uleb128 0x8
  1162 0168 02010000 		.4byte	.LASF31
  1163 016c 05       		.byte	0x5
@@ -1809,7 +1818,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1166 0172 01       		.byte	0x1
  1167 0173 00       		.byte	0
  1168 0174 03       		.uleb128 0x3
- 1169 0175 890A0000 		.4byte	.LASF32
+ 1169 0175 770A0000 		.4byte	.LASF32
  1170 0179 05       		.byte	0x5
  1171 017a 6E       		.byte	0x6e
  1172 017b 4F010000 		.4byte	0x14f
@@ -1826,7 +1835,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1183 0193 C3000000 		.4byte	0xc3
  1184 0197 00       		.byte	0
  1185 0198 08       		.uleb128 0x8
- 1186 0199 00090000 		.4byte	.LASF36
+ 1186 0199 EE080000 		.4byte	.LASF36
  1187 019d 05       		.byte	0x5
  1188 019e 70       		.byte	0x70
  1189 019f AD000000 		.4byte	0xad
@@ -1844,11 +1853,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1201 01b7 AD000000 		.4byte	0xad
  1202 01bb 04       		.byte	0x4
  1203 01bc 08       		.uleb128 0x8
- 1204 01bd 9D0C0000 		.4byte	.LASF30
+ 1204 01bd 950C0000 		.4byte	.LASF30
  1205 01c1 05       		.byte	0x5
  1206 01c2 70       		.byte	0x70
  1207 01c3 AD000000 		.4byte	0xad
  1208 01c7 05       		.byte	0x5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 32
+
+
  1209 01c8 08       		.uleb128 0x8
  1210 01c9 02010000 		.4byte	.LASF31
  1211 01cd 05       		.byte	0x5
@@ -1856,16 +1868,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1213 01cf AD000000 		.4byte	0xad
  1214 01d3 06       		.byte	0x6
  1215 01d4 08       		.uleb128 0x8
- 1216 01d5 4F090000 		.4byte	.LASF37
+ 1216 01d5 3D090000 		.4byte	.LASF37
  1217 01d9 05       		.byte	0x5
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 32
-
-
  1218 01da 70       		.byte	0x70
  1219 01db AD000000 		.4byte	0xad
  1220 01df 07       		.byte	0x7
  1221 01e0 08       		.uleb128 0x8
- 1222 01e1 58040000 		.4byte	.LASF38
+ 1222 01e1 06040000 		.4byte	.LASF38
  1223 01e5 05       		.byte	0x5
  1224 01e6 70       		.byte	0x70
  1225 01e7 ED010000 		.4byte	0x1ed
@@ -1884,244 +1893,244 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1238 0203 7A       		.byte	0x7a
  1239 0204 7F010000 		.4byte	0x17f
  1240 0208 0D       		.uleb128 0xd
- 1241 0209 92070000 		.4byte	.LASF59
+ 1241 0209 80070000 		.4byte	.LASF59
  1242 020d 01       		.byte	0x1
  1243 020e 06       		.byte	0x6
  1244 020f 28       		.byte	0x28
  1245 0210 87020000 		.4byte	0x287
  1246 0214 0E       		.uleb128 0xe
- 1247 0215 9A050000 		.4byte	.LASF40
+ 1247 0215 4C050000 		.4byte	.LASF40
  1248 0219 00       		.sleb128 0
  1249 021a 0E       		.uleb128 0xe
- 1250 021b 39090000 		.4byte	.LASF41
+ 1250 021b 27090000 		.4byte	.LASF41
  1251 021f 01       		.sleb128 1
  1252 0220 0E       		.uleb128 0xe
- 1253 0221 17030000 		.4byte	.LASF42
+ 1253 0221 C5020000 		.4byte	.LASF42
  1254 0225 02       		.sleb128 2
  1255 0226 0E       		.uleb128 0xe
- 1256 0227 470D0000 		.4byte	.LASF43
+ 1256 0227 3F0D0000 		.4byte	.LASF43
  1257 022b 03       		.sleb128 3
  1258 022c 0E       		.uleb128 0xe
- 1259 022d 55080000 		.4byte	.LASF44
+ 1259 022d 43080000 		.4byte	.LASF44
  1260 0231 04       		.sleb128 4
  1261 0232 0E       		.uleb128 0xe
- 1262 0233 AF080000 		.4byte	.LASF45
+ 1262 0233 9D080000 		.4byte	.LASF45
  1263 0237 05       		.sleb128 5
  1264 0238 0E       		.uleb128 0xe
  1265 0239 41000000 		.4byte	.LASF46
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 33
+
+
  1266 023d 06       		.sleb128 6
  1267 023e 0E       		.uleb128 0xe
- 1268 023f 04050000 		.4byte	.LASF47
+ 1268 023f B2040000 		.4byte	.LASF47
  1269 0243 07       		.sleb128 7
  1270 0244 0E       		.uleb128 0xe
- 1271 0245 F10C0000 		.4byte	.LASF48
+ 1271 0245 E90C0000 		.4byte	.LASF48
  1272 0249 08       		.sleb128 8
  1273 024a 0E       		.uleb128 0xe
- 1274 024b 50060000 		.4byte	.LASF49
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 33
-
-
+ 1274 024b 02060000 		.4byte	.LASF49
  1275 024f 09       		.sleb128 9
  1276 0250 0E       		.uleb128 0xe
- 1277 0251 8E0B0000 		.4byte	.LASF50
+ 1277 0251 860B0000 		.4byte	.LASF50
  1278 0255 0A       		.sleb128 10
  1279 0256 0E       		.uleb128 0xe
- 1280 0257 0B040000 		.4byte	.LASF51
+ 1280 0257 B9030000 		.4byte	.LASF51
  1281 025b 0B       		.sleb128 11
  1282 025c 0E       		.uleb128 0xe
- 1283 025d 080B0000 		.4byte	.LASF52
+ 1283 025d F60A0000 		.4byte	.LASF52
  1284 0261 0C       		.sleb128 12
  1285 0262 0E       		.uleb128 0xe
  1286 0263 AC010000 		.4byte	.LASF53
  1287 0267 0D       		.sleb128 13
  1288 0268 0E       		.uleb128 0xe
- 1289 0269 A00A0000 		.4byte	.LASF54
+ 1289 0269 8E0A0000 		.4byte	.LASF54
  1290 026d 0E       		.sleb128 14
  1291 026e 0E       		.uleb128 0xe
- 1292 026f 05080000 		.4byte	.LASF55
+ 1292 026f F3070000 		.4byte	.LASF55
  1293 0273 0F       		.sleb128 15
  1294 0274 0E       		.uleb128 0xe
- 1295 0275 84090000 		.4byte	.LASF56
+ 1295 0275 72090000 		.4byte	.LASF56
  1296 0279 10       		.sleb128 16
  1297 027a 0E       		.uleb128 0xe
- 1298 027b 44050000 		.4byte	.LASF57
+ 1298 027b F2040000 		.4byte	.LASF57
  1299 027f 11       		.sleb128 17
  1300 0280 0E       		.uleb128 0xe
- 1301 0281 45030000 		.4byte	.LASF58
+ 1301 0281 F3020000 		.4byte	.LASF58
  1302 0285 12       		.sleb128 18
  1303 0286 00       		.byte	0
  1304 0287 0D       		.uleb128 0xd
- 1305 0288 440B0000 		.4byte	.LASF60
+ 1305 0288 3C0B0000 		.4byte	.LASF60
  1306 028c 01       		.byte	0x1
  1307 028d 06       		.byte	0x6
  1308 028e 43       		.byte	0x43
  1309 028f 3C030000 		.4byte	0x33c
  1310 0293 0E       		.uleb128 0xe
- 1311 0294 98090000 		.4byte	.LASF61
+ 1311 0294 86090000 		.4byte	.LASF61
  1312 0298 00       		.sleb128 0
  1313 0299 0E       		.uleb128 0xe
- 1314 029a 80030000 		.4byte	.LASF62
+ 1314 029a 2E030000 		.4byte	.LASF62
  1315 029e 01       		.sleb128 1
  1316 029f 0E       		.uleb128 0xe
- 1317 02a0 AB040000 		.4byte	.LASF63
+ 1317 02a0 59040000 		.4byte	.LASF63
  1318 02a4 02       		.sleb128 2
  1319 02a5 0E       		.uleb128 0xe
  1320 02a6 60010000 		.4byte	.LASF64
  1321 02aa 03       		.sleb128 3
  1322 02ab 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 34
+
+
  1323 02ac 06020000 		.4byte	.LASF65
  1324 02b0 04       		.sleb128 4
  1325 02b1 0E       		.uleb128 0xe
- 1326 02b2 6B090000 		.4byte	.LASF66
+ 1326 02b2 59090000 		.4byte	.LASF66
  1327 02b6 05       		.sleb128 5
  1328 02b7 0E       		.uleb128 0xe
- 1329 02b8 06060000 		.4byte	.LASF67
+ 1329 02b8 B8050000 		.4byte	.LASF67
  1330 02bc 06       		.sleb128 6
  1331 02bd 0E       		.uleb128 0xe
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 34
-
-
- 1332 02be 2B030000 		.4byte	.LASF68
+ 1332 02be D9020000 		.4byte	.LASF68
  1333 02c2 07       		.sleb128 7
  1334 02c3 0E       		.uleb128 0xe
- 1335 02c4 1F0A0000 		.4byte	.LASF69
+ 1335 02c4 0D0A0000 		.4byte	.LASF69
  1336 02c8 08       		.sleb128 8
  1337 02c9 0E       		.uleb128 0xe
- 1338 02ca A0070000 		.4byte	.LASF70
+ 1338 02ca 8E070000 		.4byte	.LASF70
  1339 02ce 09       		.sleb128 9
  1340 02cf 0E       		.uleb128 0xe
- 1341 02d0 AF060000 		.4byte	.LASF71
+ 1341 02d0 95060000 		.4byte	.LASF71
  1342 02d4 0A       		.sleb128 10
  1343 02d5 0E       		.uleb128 0xe
- 1344 02d6 F8090000 		.4byte	.LASF72
+ 1344 02d6 E6090000 		.4byte	.LASF72
  1345 02da 0B       		.sleb128 11
  1346 02db 0E       		.uleb128 0xe
- 1347 02dc 6D080000 		.4byte	.LASF73
+ 1347 02dc 5B080000 		.4byte	.LASF73
  1348 02e0 0C       		.sleb128 12
  1349 02e1 0E       		.uleb128 0xe
- 1350 02e2 0E090000 		.4byte	.LASF74
+ 1350 02e2 FC080000 		.4byte	.LASF74
  1351 02e6 0D       		.sleb128 13
  1352 02e7 0E       		.uleb128 0xe
- 1353 02e8 D7090000 		.4byte	.LASF75
+ 1353 02e8 C5090000 		.4byte	.LASF75
  1354 02ec 0E       		.sleb128 14
  1355 02ed 0E       		.uleb128 0xe
  1356 02ee C5000000 		.4byte	.LASF76
  1357 02f2 0F       		.sleb128 15
  1358 02f3 0E       		.uleb128 0xe
- 1359 02f4 B7030000 		.4byte	.LASF77
+ 1359 02f4 65030000 		.4byte	.LASF77
  1360 02f8 10       		.sleb128 16
  1361 02f9 0E       		.uleb128 0xe
- 1362 02fa E5050000 		.4byte	.LASF78
+ 1362 02fa 97050000 		.4byte	.LASF78
  1363 02fe 11       		.sleb128 17
  1364 02ff 0E       		.uleb128 0xe
- 1365 0300 BE040000 		.4byte	.LASF79
+ 1365 0300 6C040000 		.4byte	.LASF79
  1366 0304 12       		.sleb128 18
  1367 0305 0E       		.uleb128 0xe
- 1368 0306 B10B0000 		.4byte	.LASF80
+ 1368 0306 A90B0000 		.4byte	.LASF80
  1369 030a 13       		.sleb128 19
  1370 030b 0E       		.uleb128 0xe
- 1371 030c E8080000 		.4byte	.LASF81
+ 1371 030c D6080000 		.4byte	.LASF81
  1372 0310 14       		.sleb128 20
  1373 0311 0E       		.uleb128 0xe
- 1374 0312 8E020000 		.4byte	.LASF82
+ 1374 0312 3C020000 		.4byte	.LASF82
  1375 0316 15       		.sleb128 21
  1376 0317 0E       		.uleb128 0xe
- 1377 0318 DA030000 		.4byte	.LASF83
+ 1377 0318 88030000 		.4byte	.LASF83
  1378 031c 16       		.sleb128 22
  1379 031d 0E       		.uleb128 0xe
- 1380 031e B3020000 		.4byte	.LASF84
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 35
+
+
+ 1380 031e 61020000 		.4byte	.LASF84
  1381 0322 17       		.sleb128 23
  1382 0323 0E       		.uleb128 0xe
- 1383 0324 CB020000 		.4byte	.LASF85
+ 1383 0324 79020000 		.4byte	.LASF85
  1384 0328 18       		.sleb128 24
  1385 0329 0E       		.uleb128 0xe
- 1386 032a E3020000 		.4byte	.LASF86
+ 1386 032a 91020000 		.4byte	.LASF86
  1387 032e 19       		.sleb128 25
  1388 032f 0E       		.uleb128 0xe
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 35
-
-
- 1389 0330 6B070000 		.4byte	.LASF87
+ 1389 0330 59070000 		.4byte	.LASF87
  1390 0334 1A       		.sleb128 26
  1391 0335 0E       		.uleb128 0xe
- 1392 0336 6B050000 		.4byte	.LASF88
+ 1392 0336 190B0000 		.4byte	.LASF88
  1393 033a 1B       		.sleb128 27
  1394 033b 00       		.byte	0
  1395 033c 0D       		.uleb128 0xd
- 1396 033d 3B0B0000 		.4byte	.LASF89
+ 1396 033d 330B0000 		.4byte	.LASF89
  1397 0341 01       		.byte	0x1
  1398 0342 06       		.byte	0x6
  1399 0343 97       		.byte	0x97
  1400 0344 9C030000 		.4byte	0x39c
  1401 0348 0E       		.uleb128 0xe
- 1402 0349 7D050000 		.4byte	.LASF90
+ 1402 0349 2F050000 		.4byte	.LASF90
  1403 034d 00       		.sleb128 0
  1404 034e 0E       		.uleb128 0xe
  1405 034f 1A020000 		.4byte	.LASF91
  1406 0353 C000     		.sleb128 64
  1407 0355 0E       		.uleb128 0xe
- 1408 0356 770B0000 		.4byte	.LASF92
+ 1408 0356 6F0B0000 		.4byte	.LASF92
  1409 035a C200     		.sleb128 66
  1410 035c 0E       		.uleb128 0xe
- 1411 035d E9070000 		.4byte	.LASF93
+ 1411 035d D7070000 		.4byte	.LASF93
  1412 0361 D000     		.sleb128 80
  1413 0363 0E       		.uleb128 0xe
- 1414 0364 24070000 		.4byte	.LASF94
+ 1414 0364 0A070000 		.4byte	.LASF94
  1415 0368 D800     		.sleb128 88
  1416 036a 0E       		.uleb128 0xe
- 1417 036b A9090000 		.4byte	.LASF95
+ 1417 036b 97090000 		.4byte	.LASF95
  1418 036f DC00     		.sleb128 92
  1419 0371 0E       		.uleb128 0xe
- 1420 0372 A30C0000 		.4byte	.LASF96
+ 1420 0372 9B0C0000 		.4byte	.LASF96
  1421 0376 C001     		.sleb128 192
  1422 0378 0E       		.uleb128 0xe
- 1423 0379 D4080000 		.4byte	.LASF97
+ 1423 0379 C2080000 		.4byte	.LASF97
  1424 037d C201     		.sleb128 194
  1425 037f 0E       		.uleb128 0xe
- 1426 0380 F2030000 		.4byte	.LASF98
+ 1426 0380 A0030000 		.4byte	.LASF98
  1427 0384 D001     		.sleb128 208
  1428 0386 0E       		.uleb128 0xe
- 1429 0387 3B040000 		.4byte	.LASF99
+ 1429 0387 E9030000 		.4byte	.LASF99
  1430 038b D801     		.sleb128 216
  1431 038d 0E       		.uleb128 0xe
- 1432 038e 13060000 		.4byte	.LASF100
+ 1432 038e C5050000 		.4byte	.LASF100
  1433 0392 DC01     		.sleb128 220
  1434 0394 0E       		.uleb128 0xe
  1435 0395 27010000 		.4byte	.LASF101
  1436 0399 DD01     		.sleb128 221
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 36
+
+
  1437 039b 00       		.byte	0
  1438 039c 0D       		.uleb128 0xd
- 1439 039d 8D0C0000 		.4byte	.LASF102
+ 1439 039d 850C0000 		.4byte	.LASF102
  1440 03a1 01       		.byte	0x1
  1441 03a2 06       		.byte	0x6
  1442 03a3 AB       		.byte	0xab
  1443 03a4 DF030000 		.4byte	0x3df
  1444 03a8 0E       		.uleb128 0xe
- 1445 03a9 28090000 		.4byte	.LASF103
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 36
-
-
+ 1445 03a9 16090000 		.4byte	.LASF103
  1446 03ad 00       		.sleb128 0
  1447 03ae 0E       		.uleb128 0xe
- 1448 03af 08030000 		.4byte	.LASF104
+ 1448 03af B6020000 		.4byte	.LASF104
  1449 03b3 01       		.sleb128 1
  1450 03b4 0E       		.uleb128 0xe
- 1451 03b5 350A0000 		.4byte	.LASF105
+ 1451 03b5 230A0000 		.4byte	.LASF105
  1452 03b9 02       		.sleb128 2
  1453 03ba 0E       		.uleb128 0xe
- 1454 03bb D3050000 		.4byte	.LASF106
+ 1454 03bb 85050000 		.4byte	.LASF106
  1455 03bf 03       		.sleb128 3
  1456 03c0 0E       		.uleb128 0xe
- 1457 03c1 A00B0000 		.4byte	.LASF107
+ 1457 03c1 980B0000 		.4byte	.LASF107
  1458 03c5 04       		.sleb128 4
  1459 03c6 0E       		.uleb128 0xe
- 1460 03c7 6B0A0000 		.4byte	.LASF108
+ 1460 03c7 590A0000 		.4byte	.LASF108
  1461 03cb 05       		.sleb128 5
  1462 03cc 0E       		.uleb128 0xe
- 1463 03cd 27050000 		.4byte	.LASF109
+ 1463 03cd D5040000 		.4byte	.LASF109
  1464 03d1 06       		.sleb128 6
  1465 03d2 0E       		.uleb128 0xe
- 1466 03d3 740C0000 		.4byte	.LASF110
+ 1466 03d3 6C0C0000 		.4byte	.LASF110
  1467 03d7 07       		.sleb128 7
  1468 03d8 0E       		.uleb128 0xe
  1469 03d9 09010000 		.4byte	.LASF111
@@ -2134,33 +2143,33 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1476 03e6 2C       		.byte	0x2c
  1477 03e7 1C040000 		.4byte	0x41c
  1478 03eb 0E       		.uleb128 0xe
- 1479 03ec 21090000 		.4byte	.LASF113
+ 1479 03ec 0F090000 		.4byte	.LASF113
  1480 03f0 00       		.sleb128 0
  1481 03f1 0E       		.uleb128 0xe
  1482 03f2 B5000000 		.4byte	.LASF114
  1483 03f6 01       		.sleb128 1
  1484 03f7 0E       		.uleb128 0xe
- 1485 03f8 64090000 		.4byte	.LASF115
+ 1485 03f8 52090000 		.4byte	.LASF115
  1486 03fc 02       		.sleb128 2
  1487 03fd 0E       		.uleb128 0xe
- 1488 03fe EA0C0000 		.4byte	.LASF116
+ 1488 03fe E20C0000 		.4byte	.LASF116
  1489 0402 03       		.sleb128 3
  1490 0403 0E       		.uleb128 0xe
- 1491 0404 E6060000 		.4byte	.LASF117
+ 1491 0404 CC060000 		.4byte	.LASF117
  1492 0408 04       		.sleb128 4
  1493 0409 0E       		.uleb128 0xe
- 1494 040a 3E080000 		.4byte	.LASF118
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 37
+
+
+ 1494 040a 2C080000 		.4byte	.LASF118
  1495 040e 05       		.sleb128 5
  1496 040f 0E       		.uleb128 0xe
- 1497 0410 9C080000 		.4byte	.LASF119
+ 1497 0410 8A080000 		.4byte	.LASF119
  1498 0414 06       		.sleb128 6
  1499 0415 0E       		.uleb128 0xe
- 1500 0416 D3070000 		.4byte	.LASF120
+ 1500 0416 C1070000 		.4byte	.LASF120
  1501 041a 07       		.sleb128 7
  1502 041b 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 37
-
-
  1503 041c 0D       		.uleb128 0xd
  1504 041d 8E000000 		.4byte	.LASF121
  1505 0421 01       		.byte	0x1
@@ -2174,41 +2183,44 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1513 042f C6010000 		.4byte	.LASF123
  1514 0433 01       		.sleb128 1
  1515 0434 0E       		.uleb128 0xe
- 1516 0435 5B090000 		.4byte	.LASF124
+ 1516 0435 49090000 		.4byte	.LASF124
  1517 0439 02       		.sleb128 2
  1518 043a 0E       		.uleb128 0xe
- 1519 043b 1C040000 		.4byte	.LASF125
+ 1519 043b CA030000 		.4byte	.LASF125
  1520 043f 03       		.sleb128 3
  1521 0440 0E       		.uleb128 0xe
- 1522 0441 25040000 		.4byte	.LASF126
+ 1522 0441 D3030000 		.4byte	.LASF126
  1523 0445 04       		.sleb128 4
  1524 0446 0E       		.uleb128 0xe
- 1525 0447 C10C0000 		.4byte	.LASF127
+ 1525 0447 B90C0000 		.4byte	.LASF127
  1526 044b 05       		.sleb128 5
  1527 044c 0E       		.uleb128 0xe
- 1528 044d 2B0B0000 		.4byte	.LASF128
+ 1528 044d 23070000 		.4byte	.LASF128
  1529 0451 06       		.sleb128 6
  1530 0452 0E       		.uleb128 0xe
- 1531 0453 330B0000 		.4byte	.LASF129
+ 1531 0453 2B0B0000 		.4byte	.LASF129
  1532 0457 07       		.sleb128 7
  1533 0458 0E       		.uleb128 0xe
- 1534 0459 09070000 		.4byte	.LASF130
+ 1534 0459 EF060000 		.4byte	.LASF130
  1535 045d 08       		.sleb128 8
  1536 045e 0E       		.uleb128 0xe
- 1537 045f C7090000 		.4byte	.LASF131
+ 1537 045f B5090000 		.4byte	.LASF131
  1538 0463 09       		.sleb128 9
  1539 0464 0E       		.uleb128 0xe
- 1540 0465 CF090000 		.4byte	.LASF132
+ 1540 0465 BD090000 		.4byte	.LASF132
  1541 0469 0A       		.sleb128 10
  1542 046a 0E       		.uleb128 0xe
  1543 046b 1B000000 		.4byte	.LASF133
  1544 046f 0B       		.sleb128 11
  1545 0470 0E       		.uleb128 0xe
- 1546 0471 01070000 		.4byte	.LASF134
+ 1546 0471 E7060000 		.4byte	.LASF134
  1547 0475 0C       		.sleb128 12
  1548 0476 00       		.byte	0
  1549 0477 0F       		.uleb128 0xf
- 1550 0478 590A0000 		.4byte	.LASF135
+ 1550 0478 470A0000 		.4byte	.LASF135
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 38
+
+
  1551 047c 01       		.byte	0x1
  1552 047d A9       		.byte	0xa9
  1553 047e 00000000 		.4byte	.LFB1489
@@ -2218,9 +2230,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1557 0488 DC040000 		.4byte	0x4dc
  1558 048c 10       		.uleb128 0x10
  1559 048d 6E756D00 		.ascii	"num\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 38
-
-
  1560 0491 01       		.byte	0x1
  1561 0492 A9       		.byte	0xa9
  1562 0493 CE000000 		.4byte	0xce
@@ -2269,6 +2278,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1605 04da 00       		.byte	0
  1606 04db 00       		.byte	0
  1607 04dc 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 39
+
+
  1608 04dd 29010000 		.4byte	0x129
  1609 04e1 EC040000 		.4byte	0x4ec
  1610 04e5 0C       		.uleb128 0xc
@@ -2276,11 +2288,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1612 04ea 1E       		.byte	0x1e
  1613 04eb 00       		.byte	0
  1614 04ec 0F       		.uleb128 0xf
- 1615 04ed 78060000 		.4byte	.LASF136
+ 1615 04ed 2A060000 		.4byte	.LASF136
  1616 04f1 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 39
-
-
  1617 04f2 B1       		.byte	0xb1
  1618 04f3 00000000 		.4byte	.LFB1490
  1619 04f7 20000000 		.4byte	.LFE1490-.LFB1490
@@ -2329,18 +2338,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1662 0556 BD       		.byte	0xbd
  1663 0557 B8000000 		.4byte	0xb8
  1664 055b 00000000 		.4byte	.LFB1491
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 40
+
+
  1665 055f 16000000 		.4byte	.LFE1491-.LFB1491
  1666 0563 01       		.uleb128 0x1
  1667 0564 9C       		.byte	0x9c
  1668 0565 9E050000 		.4byte	0x59e
  1669 0569 18       		.uleb128 0x18
- 1670 056a 970C0000 		.4byte	.LASF137
+ 1670 056a 8F0C0000 		.4byte	.LASF137
  1671 056e 01       		.byte	0x1
  1672 056f C0       		.byte	0xc0
  1673 0570 B8000000 		.4byte	0xb8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 40
-
-
  1674 0574 B0000000 		.4byte	.LLST4
  1675 0578 16       		.uleb128 0x16
  1676 0579 06000000 		.4byte	.LVL13
@@ -2360,18 +2369,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1690 0599 BF0C0000 		.4byte	0xcbf
  1691 059d 00       		.byte	0
  1692 059e 19       		.uleb128 0x19
- 1693 059f 110D0000 		.4byte	.LASF138
+ 1693 059f 090D0000 		.4byte	.LASF138
  1694 05a3 01       		.byte	0x1
  1695 05a4 C5       		.byte	0xc5
  1696 05a5 9F000000 		.4byte	0x9f
  1697 05a9 00000000 		.4byte	.LFB1492
- 1698 05ad 40030000 		.4byte	.LFE1492-.LFB1492
+ 1698 05ad 30030000 		.4byte	.LFE1492-.LFB1492
  1699 05b1 01       		.uleb128 0x1
  1700 05b2 9C       		.byte	0x9c
  1701 05b3 22080000 		.4byte	0x822
  1702 05b7 1A       		.uleb128 0x1a
  1703 05b8 74000000 		.4byte	.LBB2
- 1704 05bc CC020000 		.4byte	.LBE2-.LBB2
+ 1704 05bc BC020000 		.4byte	.LBE2-.LBB2
  1705 05c0 47070000 		.4byte	0x747
  1706 05c4 1B       		.uleb128 0x1b
  1707 05c5 EC000000 		.4byte	.LASF139
@@ -2389,6 +2398,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1719 05e7 13       		.uleb128 0x13
  1720 05e8 01       		.uleb128 0x1
  1721 05e9 50       		.byte	0x50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 41
+
+
  1722 05ea 02       		.uleb128 0x2
  1723 05eb 09       		.byte	0x9
  1724 05ec FF       		.byte	0xff
@@ -2398,9 +2410,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1728 05f3 D80C0000 		.4byte	0xcd8
  1729 05f7 02060000 		.4byte	0x602
  1730 05fb 13       		.uleb128 0x13
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 41
-
-
  1731 05fc 01       		.uleb128 0x1
  1732 05fd 50       		.byte	0x50
  1733 05fe 02       		.uleb128 0x2
@@ -2449,18 +2458,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1776 065c 50050000 		.4byte	0x550
  1777 0660 16       		.uleb128 0x16
  1778 0661 34010000 		.4byte	.LVL51
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 42
+
+
  1779 0665 1A0D0000 		.4byte	0xd1a
  1780 0669 16       		.uleb128 0x16
  1781 066a 6E010000 		.4byte	.LVL57
  1782 066e 1A0D0000 		.4byte	0xd1a
  1783 0672 16       		.uleb128 0x16
- 1784 0673 94020000 		.4byte	.LVL86
+ 1784 0673 86020000 		.4byte	.LVL86
  1785 0677 77040000 		.4byte	0x477
  1786 067b 12       		.uleb128 0x12
- 1787 067c 9C020000 		.4byte	.LVL87
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 42
-
-
+ 1787 067c 8E020000 		.4byte	.LVL87
  1788 0680 740C0000 		.4byte	0xc74
  1789 0684 8F060000 		.4byte	0x68f
  1790 0688 13       		.uleb128 0x13
@@ -2471,10 +2480,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1795 068d 00       		.sleb128 0
  1796 068e 00       		.byte	0
  1797 068f 16       		.uleb128 0x16
- 1798 0690 A2020000 		.4byte	.LVL88
+ 1798 0690 94020000 		.4byte	.LVL88
  1799 0694 77040000 		.4byte	0x477
  1800 0698 12       		.uleb128 0x12
- 1801 0699 A8020000 		.4byte	.LVL89
+ 1801 0699 9A020000 		.4byte	.LVL89
  1802 069d 740C0000 		.4byte	0xc74
  1803 06a1 AC060000 		.4byte	0x6ac
  1804 06a5 13       		.uleb128 0x13
@@ -2485,10 +2494,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1809 06aa 00       		.sleb128 0
  1810 06ab 00       		.byte	0
  1811 06ac 16       		.uleb128 0x16
- 1812 06ad AE020000 		.4byte	.LVL90
+ 1812 06ad A0020000 		.4byte	.LVL90
  1813 06b1 77040000 		.4byte	0x477
  1814 06b5 12       		.uleb128 0x12
- 1815 06b6 B4020000 		.4byte	.LVL91
+ 1815 06b6 A6020000 		.4byte	.LVL91
  1816 06ba 740C0000 		.4byte	0xc74
  1817 06be C9060000 		.4byte	0x6c9
  1818 06c2 13       		.uleb128 0x13
@@ -2499,28 +2508,28 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1823 06c7 00       		.sleb128 0
  1824 06c8 00       		.byte	0
  1825 06c9 16       		.uleb128 0x16
- 1826 06ca BA020000 		.4byte	.LVL92
+ 1826 06ca AC020000 		.4byte	.LVL92
  1827 06ce 77040000 		.4byte	0x477
  1828 06d2 12       		.uleb128 0x12
- 1829 06d3 C0020000 		.4byte	.LVL93
+ 1829 06d3 B2020000 		.4byte	.LVL93
  1830 06d7 740C0000 		.4byte	0xc74
  1831 06db E6060000 		.4byte	0x6e6
  1832 06df 13       		.uleb128 0x13
  1833 06e0 01       		.uleb128 0x1
  1834 06e1 50       		.byte	0x50
  1835 06e2 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 43
+
+
  1836 06e3 75       		.byte	0x75
  1837 06e4 00       		.sleb128 0
  1838 06e5 00       		.byte	0
  1839 06e6 16       		.uleb128 0x16
- 1840 06e7 C6020000 		.4byte	.LVL94
+ 1840 06e7 B8020000 		.4byte	.LVL94
  1841 06eb 77040000 		.4byte	0x477
  1842 06ef 12       		.uleb128 0x12
- 1843 06f0 CC020000 		.4byte	.LVL95
+ 1843 06f0 BE020000 		.4byte	.LVL95
  1844 06f4 740C0000 		.4byte	0xc74
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 43
-
-
  1845 06f8 03070000 		.4byte	0x703
  1846 06fc 13       		.uleb128 0x13
  1847 06fd 01       		.uleb128 0x1
@@ -2530,10 +2539,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1851 0701 00       		.sleb128 0
  1852 0702 00       		.byte	0
  1853 0703 16       		.uleb128 0x16
- 1854 0704 D2020000 		.4byte	.LVL96
+ 1854 0704 C4020000 		.4byte	.LVL96
  1855 0708 77040000 		.4byte	0x477
  1856 070c 12       		.uleb128 0x12
- 1857 070d D8020000 		.4byte	.LVL97
+ 1857 070d CA020000 		.4byte	.LVL97
  1858 0711 740C0000 		.4byte	0xc74
  1859 0715 20070000 		.4byte	0x720
  1860 0719 13       		.uleb128 0x13
@@ -2544,10 +2553,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1865 071e 00       		.sleb128 0
  1866 071f 00       		.byte	0
  1867 0720 16       		.uleb128 0x16
- 1868 0721 DE020000 		.4byte	.LVL98
+ 1868 0721 D0020000 		.4byte	.LVL98
  1869 0725 77040000 		.4byte	0x477
  1870 0729 12       		.uleb128 0x12
- 1871 072a E4020000 		.4byte	.LVL99
+ 1871 072a D6020000 		.4byte	.LVL99
  1872 072e 740C0000 		.4byte	0xc74
  1873 0732 3D070000 		.4byte	0x73d
  1874 0736 13       		.uleb128 0x13
@@ -2558,7 +2567,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1879 073b 00       		.sleb128 0
  1880 073c 00       		.byte	0
  1881 073d 16       		.uleb128 0x16
- 1882 073e EA020000 		.4byte	.LVL100
+ 1882 073e DC020000 		.4byte	.LVL100
  1883 0742 77040000 		.4byte	0x477
  1884 0746 00       		.byte	0
  1885 0747 12       		.uleb128 0x12
@@ -2569,6 +2578,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1890 0755 01       		.uleb128 0x1
  1891 0756 50       		.byte	0x50
  1892 0757 03       		.uleb128 0x3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 44
+
+
  1893 0758 0A       		.byte	0xa
  1894 0759 F401     		.2byte	0x1f4
  1895 075b 00       		.byte	0
@@ -2578,9 +2590,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1899 0765 16       		.uleb128 0x16
  1900 0766 16000000 		.4byte	.LVL20
  1901 076a 4C0D0000 		.4byte	0xd4c
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 44
-
-
  1902 076e 16       		.uleb128 0x16
  1903 076f 1A000000 		.4byte	.LVL21
  1904 0773 530D0000 		.4byte	0xd53
@@ -2629,6 +2638,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1947 07ea 13       		.uleb128 0x13
  1948 07eb 01       		.uleb128 0x1
  1949 07ec 50       		.byte	0x50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 45
+
+
  1950 07ed 05       		.uleb128 0x5
  1951 07ee 03       		.byte	0x3
  1952 07ef 03000000 		.4byte	.LC3
@@ -2638,9 +2650,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1956 07f9 9D0D0000 		.4byte	0xd9d
  1957 07fd 16       		.uleb128 0x16
  1958 07fe 5C000000 		.4byte	.LVL34
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 45
-
-
  1959 0802 A40D0000 		.4byte	0xda4
  1960 0806 16       		.uleb128 0x16
  1961 0807 60000000 		.4byte	.LVL35
@@ -2663,7 +2672,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1978 0833 1D       		.uleb128 0x1d
  1979 0834 AD000000 		.4byte	0xad
  1980 0838 1C       		.uleb128 0x1c
- 1981 0839 76030000 		.4byte	.LASF141
+ 1981 0839 24030000 		.4byte	.LASF141
  1982 083d 01       		.byte	0x1
  1983 083e 1C       		.byte	0x1c
  1984 083f 33080000 		.4byte	0x833
@@ -2671,7 +2680,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1986 0844 03       		.byte	0x3
  1987 0845 00000000 		.4byte	blink_cnt
  1988 0849 1C       		.uleb128 0x1c
- 1989 084a 4D0B0000 		.4byte	.LASF142
+ 1989 084a 450B0000 		.4byte	.LASF142
  1990 084e 01       		.byte	0x1
  1991 084f 1D       		.byte	0x1d
  1992 0850 10010000 		.4byte	0x110
@@ -2679,7 +2688,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  1994 0855 03       		.byte	0x3
  1995 0856 00000000 		.4byte	sample_time
  1996 085a 1C       		.uleb128 0x1c
- 1997 085b 62060000 		.4byte	.LASF143
+ 1997 085b 14060000 		.4byte	.LASF143
  1998 085f 01       		.byte	0x1
  1999 0860 28       		.byte	0x28
  2000 0861 AD000000 		.4byte	0xad
@@ -2689,18 +2698,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2004 086b 0B       		.uleb128 0xb
  2005 086c C3000000 		.4byte	0xc3
  2006 0870 7B080000 		.4byte	0x87b
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 46
+
+
  2007 0874 0C       		.uleb128 0xc
  2008 0875 30010000 		.4byte	0x130
  2009 0879 07       		.byte	0x7
  2010 087a 00       		.byte	0
  2011 087b 1C       		.uleb128 0x1c
- 2012 087c 52070000 		.4byte	.LASF144
+ 2012 087c 40070000 		.4byte	.LASF144
  2013 0880 01       		.byte	0x1
  2014 0881 29       		.byte	0x29
  2015 0882 6B080000 		.4byte	0x86b
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 46
-
-
  2016 0886 05       		.uleb128 0x5
  2017 0887 03       		.byte	0x3
  2018 0888 00000000 		.4byte	ctrl_in
@@ -2712,7 +2721,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2024 089a 0C       		.byte	0xc
  2025 089b 00       		.byte	0
  2026 089c 1C       		.uleb128 0x1c
- 2027 089d C90C0000 		.4byte	.LASF145
+ 2027 089d C10C0000 		.4byte	.LASF145
  2028 08a1 01       		.byte	0x1
  2029 08a2 2A       		.byte	0x2a
  2030 08a3 8C080000 		.4byte	0x88c
@@ -2720,7 +2729,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2032 08a8 03       		.byte	0x3
  2033 08a9 00000000 		.4byte	ctrl_out
  2034 08ad 1C       		.uleb128 0x1c
- 2035 08ae 340D0000 		.4byte	.LASF146
+ 2035 08ae 2C0D0000 		.4byte	.LASF146
  2036 08b2 01       		.byte	0x1
  2037 08b3 4A       		.byte	0x4a
  2038 08b4 AD000000 		.4byte	0xad
@@ -2728,7 +2737,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2040 08b9 03       		.byte	0x3
  2041 08ba 00000000 		.4byte	flag_LightsEnabled
  2042 08be 1C       		.uleb128 0x1c
- 2043 08bf 8E040000 		.4byte	.LASF147
+ 2043 08bf 3C040000 		.4byte	.LASF147
  2044 08c3 01       		.byte	0x1
  2045 08c4 4D       		.byte	0x4d
  2046 08c5 AD000000 		.4byte	0xad
@@ -2744,26 +2753,26 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2056 08db 03       		.byte	0x3
  2057 08dc 00000000 		.4byte	NavLightBright
  2058 08e0 1C       		.uleb128 0x1c
- 2059 08e1 A3080000 		.4byte	.LASF149
+ 2059 08e1 91080000 		.4byte	.LASF149
  2060 08e5 01       		.byte	0x1
  2061 08e6 4F       		.byte	0x4f
  2062 08e7 C3000000 		.4byte	0xc3
  2063 08eb 05       		.uleb128 0x5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 47
+
+
  2064 08ec 03       		.byte	0x3
  2065 08ed 00000000 		.4byte	NavLightDim
  2066 08f1 1C       		.uleb128 0x1c
- 2067 08f2 A6020000 		.4byte	.LASF150
+ 2067 08f2 54020000 		.4byte	.LASF150
  2068 08f6 01       		.byte	0x1
  2069 08f7 50       		.byte	0x50
  2070 08f8 C3000000 		.4byte	0xc3
  2071 08fc 05       		.uleb128 0x5
  2072 08fd 03       		.byte	0x3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 47
-
-
  2073 08fe 00000000 		.4byte	NavLightStep
  2074 0902 1C       		.uleb128 0x1c
- 2075 0903 D6060000 		.4byte	.LASF151
+ 2075 0903 BC060000 		.4byte	.LASF151
  2076 0907 01       		.byte	0x1
  2077 0908 51       		.byte	0x51
  2078 0909 C3000000 		.4byte	0xc3
@@ -2771,7 +2780,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2080 090e 03       		.byte	0x3
  2081 090f 00000000 		.4byte	NavLightCompare
  2082 0913 1C       		.uleb128 0x1c
- 2083 0914 A1030000 		.4byte	.LASF152
+ 2083 0914 4F030000 		.4byte	.LASF152
  2084 0918 01       		.byte	0x1
  2085 0919 53       		.byte	0x53
  2086 091a AD000000 		.4byte	0xad
@@ -2779,7 +2788,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2088 091f 03       		.byte	0x3
  2089 0920 00000000 		.4byte	cnt_StrobeLight
  2090 0924 1C       		.uleb128 0x1c
- 2091 0925 B6070000 		.4byte	.LASF153
+ 2091 0925 A4070000 		.4byte	.LASF153
  2092 0929 01       		.byte	0x1
  2093 092a 5F       		.byte	0x5f
  2094 092b B8000000 		.4byte	0xb8
@@ -2787,7 +2796,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2096 0930 03       		.byte	0x3
  2097 0931 00000000 		.4byte	turn_rate_p
  2098 0935 1C       		.uleb128 0x1c
- 2099 0936 C7050000 		.4byte	.LASF154
+ 2099 0936 79050000 		.4byte	.LASF154
  2100 093a 01       		.byte	0x1
  2101 093b 60       		.byte	0x60
  2102 093c B8000000 		.4byte	0xb8
@@ -2795,7 +2804,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2104 0941 03       		.byte	0x3
  2105 0942 00000000 		.4byte	turn_rate_q
  2106 0946 1C       		.uleb128 0x1c
- 2107 0947 CE030000 		.4byte	.LASF155
+ 2107 0947 7C030000 		.4byte	.LASF155
  2108 094b 01       		.byte	0x1
  2109 094c 61       		.byte	0x61
  2110 094d B8000000 		.4byte	0xb8
@@ -2803,26 +2812,26 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2112 0952 03       		.byte	0x3
  2113 0953 00000000 		.4byte	turn_rate_r
  2114 0957 1C       		.uleb128 0x1c
- 2115 0958 BF050000 		.4byte	.LASF156
+ 2115 0958 71050000 		.4byte	.LASF156
  2116 095c 01       		.byte	0x1
  2117 095d 63       		.byte	0x63
  2118 095e B8000000 		.4byte	0xb8
  2119 0962 05       		.uleb128 0x5
  2120 0963 03       		.byte	0x3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 48
+
+
  2121 0964 00000000 		.4byte	acc_x_g
  2122 0968 1C       		.uleb128 0x1c
- 2123 0969 3D070000 		.4byte	.LASF157
+ 2123 0969 2B070000 		.4byte	.LASF157
  2124 096d 01       		.byte	0x1
  2125 096e 64       		.byte	0x64
  2126 096f B8000000 		.4byte	0xb8
  2127 0973 05       		.uleb128 0x5
  2128 0974 03       		.byte	0x3
  2129 0975 00000000 		.4byte	acc_y_g
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 48
-
-
  2130 0979 1C       		.uleb128 0x1c
- 2131 097a 2F060000 		.4byte	.LASF158
+ 2131 097a E1050000 		.4byte	.LASF158
  2132 097e 01       		.byte	0x1
  2133 097f 65       		.byte	0x65
  2134 0980 B8000000 		.4byte	0xb8
@@ -2830,7 +2839,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2136 0985 03       		.byte	0x3
  2137 0986 00000000 		.4byte	acc_z_g
  2138 098a 1C       		.uleb128 0x1c
- 2139 098b EE060000 		.4byte	.LASF159
+ 2139 098b D4060000 		.4byte	.LASF159
  2140 098f 01       		.byte	0x1
  2141 0990 67       		.byte	0x67
  2142 0991 B8000000 		.4byte	0xb8
@@ -2846,7 +2855,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2152 09a7 03       		.byte	0x3
  2153 09a8 00000000 		.4byte	mag_y_g
  2154 09ac 1C       		.uleb128 0x1c
- 2155 09ad DF0A0000 		.4byte	.LASF161
+ 2155 09ad CD0A0000 		.4byte	.LASF161
  2156 09b1 01       		.byte	0x1
  2157 09b2 69       		.byte	0x69
  2158 09b3 B8000000 		.4byte	0xb8
@@ -2854,7 +2863,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2160 09b8 03       		.byte	0x3
  2161 09b9 00000000 		.4byte	mag_z_g
  2162 09bd 1C       		.uleb128 0x1c
- 2163 09be 9A0A0000 		.4byte	.LASF162
+ 2163 09be 880A0000 		.4byte	.LASF162
  2164 09c2 01       		.byte	0x1
  2165 09c3 6C       		.byte	0x6c
  2166 09c4 10010000 		.4byte	0x110
@@ -2862,13 +2871,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2168 09c9 03       		.byte	0x3
  2169 09ca 00000000 		.4byte	Theta
  2170 09ce 1C       		.uleb128 0x1c
- 2171 09cf A1040000 		.4byte	.LASF163
+ 2171 09cf 4F040000 		.4byte	.LASF163
  2172 09d3 01       		.byte	0x1
  2173 09d4 6C       		.byte	0x6c
  2174 09d5 10010000 		.4byte	0x110
  2175 09d9 05       		.uleb128 0x5
  2176 09da 03       		.byte	0x3
  2177 09db 00000000 		.4byte	Theta_acc
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 49
+
+
  2178 09df 1E       		.uleb128 0x1e
  2179 09e0 50686900 		.ascii	"Phi\000"
  2180 09e4 01       		.byte	0x1
@@ -2878,10 +2890,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2184 09eb 03       		.byte	0x3
  2185 09ec 00000000 		.4byte	Phi
  2186 09f0 1C       		.uleb128 0x1c
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 49
-
-
- 2187 09f1 B7050000 		.4byte	.LASF164
+ 2187 09f1 69050000 		.4byte	.LASF164
  2188 09f5 01       		.byte	0x1
  2189 09f6 6D       		.byte	0x6d
  2190 09f7 10010000 		.4byte	0x110
@@ -2897,7 +2906,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2200 0a0d 03       		.byte	0x3
  2201 0a0e 00000000 		.4byte	Psi
  2202 0a12 1C       		.uleb128 0x1c
- 2203 0a13 1C080000 		.4byte	.LASF165
+ 2203 0a13 0A080000 		.4byte	.LASF165
  2204 0a17 01       		.byte	0x1
  2205 0a18 6E       		.byte	0x6e
  2206 0a19 10010000 		.4byte	0x110
@@ -2905,7 +2914,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2208 0a1e 03       		.byte	0x3
  2209 0a1f 00000000 		.4byte	Psi_acc
  2210 0a23 1C       		.uleb128 0x1c
- 2211 0a24 590B0000 		.4byte	.LASF166
+ 2211 0a24 510B0000 		.4byte	.LASF166
  2212 0a28 01       		.byte	0x1
  2213 0a29 71       		.byte	0x71
  2214 0a2a CE000000 		.4byte	0xce
@@ -2913,7 +2922,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2216 0a2f 03       		.byte	0x3
  2217 0a30 00000000 		.4byte	Mag_Heading
  2218 0a34 1C       		.uleb128 0x1c
- 2219 0a35 69040000 		.4byte	.LASF167
+ 2219 0a35 17040000 		.4byte	.LASF167
  2220 0a39 01       		.byte	0x1
  2221 0a3a 72       		.byte	0x72
  2222 0a3b 10010000 		.4byte	0x110
@@ -2921,7 +2930,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2224 0a40 03       		.byte	0x3
  2225 0a41 00000000 		.4byte	Mag_x
  2226 0a45 1C       		.uleb128 0x1c
- 2227 0a46 80080000 		.4byte	.LASF168
+ 2227 0a46 6E080000 		.4byte	.LASF168
  2228 0a4a 01       		.byte	0x1
  2229 0a4b 72       		.byte	0x72
  2230 0a4c 10010000 		.4byte	0x110
@@ -2929,7 +2938,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2232 0a51 03       		.byte	0x3
  2233 0a52 00000000 		.4byte	Mag_y
  2234 0a56 1C       		.uleb128 0x1c
- 2235 0a57 6E060000 		.4byte	.LASF169
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 50
+
+
+ 2235 0a57 20060000 		.4byte	.LASF169
  2236 0a5b 01       		.byte	0x1
  2237 0a5c 75       		.byte	0x75
  2238 0a5d CE000000 		.4byte	0xce
@@ -2937,10 +2949,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2240 0a62 03       		.byte	0x3
  2241 0a63 00000000 		.4byte	Bar_press
  2242 0a67 1C       		.uleb128 0x1c
- 2243 0a68 220B0000 		.4byte	.LASF170
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 50
-
-
+ 2243 0a68 100B0000 		.4byte	.LASF170
  2244 0a6c 01       		.byte	0x1
  2245 0a6d 76       		.byte	0x76
  2246 0a6e AD000000 		.4byte	0xad
@@ -2948,7 +2957,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2248 0a73 03       		.byte	0x3
  2249 0a74 00000000 		.4byte	cnt_baro
  2250 0a78 1C       		.uleb128 0x1c
- 2251 0a79 970C0000 		.4byte	.LASF137
+ 2251 0a79 8F0C0000 		.4byte	.LASF137
  2252 0a7d 01       		.byte	0x1
  2253 0a7e 7C       		.byte	0x7c
  2254 0a7f B8000000 		.4byte	0xb8
@@ -2956,7 +2965,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2256 0a84 03       		.byte	0x3
  2257 0a85 00000000 		.4byte	speed
  2258 0a89 1C       		.uleb128 0x1c
- 2259 0a8a DA040000 		.4byte	.LASF171
+ 2259 0a8a 88040000 		.4byte	.LASF171
  2260 0a8e 01       		.byte	0x1
  2261 0a8f 82       		.byte	0x82
  2262 0a90 10010000 		.4byte	0x110
@@ -2964,7 +2973,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2264 0a95 03       		.byte	0x3
  2265 0a96 00000000 		.4byte	Q_angle
  2266 0a9a 1C       		.uleb128 0x1c
- 2267 0a9b 34040000 		.4byte	.LASF172
+ 2267 0a9b E2030000 		.4byte	.LASF172
  2268 0a9f 01       		.byte	0x1
  2269 0aa0 83       		.byte	0x83
  2270 0aa1 10010000 		.4byte	0x110
@@ -2972,7 +2981,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2272 0aa6 03       		.byte	0x3
  2273 0aa7 00000000 		.4byte	Q_gyro
  2274 0aab 1C       		.uleb128 0x1c
- 2275 0aac 1A0B0000 		.4byte	.LASF173
+ 2275 0aac 080B0000 		.4byte	.LASF173
  2276 0ab0 01       		.byte	0x1
  2277 0ab1 84       		.byte	0x84
  2278 0ab2 10010000 		.4byte	0x110
@@ -2980,7 +2989,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2280 0ab7 03       		.byte	0x3
  2281 0ab8 00000000 		.4byte	R_angle
  2282 0abc 1C       		.uleb128 0x1c
- 2283 0abd B0050000 		.4byte	.LASF174
+ 2283 0abd 62050000 		.4byte	.LASF174
  2284 0ac1 01       		.byte	0x1
  2285 0ac2 86       		.byte	0x86
  2286 0ac3 10010000 		.4byte	0x110
@@ -2989,6 +2998,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2289 0ac9 00000000 		.4byte	q_bias
  2290 0acd 0B       		.uleb128 0xb
  2291 0ace 10010000 		.4byte	0x110
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 51
+
+
  2292 0ad2 E30A0000 		.4byte	0xae3
  2293 0ad6 0C       		.uleb128 0xc
  2294 0ad7 30010000 		.4byte	0x130
@@ -2998,10 +3010,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2298 0ae1 01       		.byte	0x1
  2299 0ae2 00       		.byte	0
  2300 0ae3 1C       		.uleb128 0x1c
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 51
-
-
- 2301 0ae4 B90C0000 		.4byte	.LASF175
+ 2301 0ae4 B10C0000 		.4byte	.LASF175
  2302 0ae8 01       		.byte	0x1
  2303 0ae9 88       		.byte	0x88
  2304 0aea CD0A0000 		.4byte	0xacd
@@ -3009,7 +3018,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2306 0aef 03       		.byte	0x3
  2307 0af0 00000000 		.4byte	P_Theta
  2308 0af4 1C       		.uleb128 0x1c
- 2309 0af5 7B070000 		.4byte	.LASF176
+ 2309 0af5 69070000 		.4byte	.LASF176
  2310 0af9 01       		.byte	0x1
  2311 0afa 89       		.byte	0x89
  2312 0afb 10010000 		.4byte	0x110
@@ -3017,7 +3026,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2314 0b00 03       		.byte	0x3
  2315 0b01 00000000 		.4byte	Theta_temp
  2316 0b05 1C       		.uleb128 0x1c
- 2317 0b06 06090000 		.4byte	.LASF177
+ 2317 0b06 F4080000 		.4byte	.LASF177
  2318 0b0a 01       		.byte	0x1
  2319 0b0b 89       		.byte	0x89
  2320 0b0c 10010000 		.4byte	0x110
@@ -3025,7 +3034,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2322 0b11 03       		.byte	0x3
  2323 0b12 00000000 		.4byte	S_Theta
  2324 0b16 1C       		.uleb128 0x1c
- 2325 0b17 A5060000 		.4byte	.LASF178
+ 2325 0b17 8B060000 		.4byte	.LASF178
  2326 0b1b 01       		.byte	0x1
  2327 0b1c 89       		.byte	0x89
  2328 0b1d 10010000 		.4byte	0x110
@@ -3033,7 +3042,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2330 0b22 03       		.byte	0x3
  2331 0b23 00000000 		.4byte	K_0_Theta
  2332 0b27 1C       		.uleb128 0x1c
- 2333 0b28 84040000 		.4byte	.LASF179
+ 2333 0b28 32040000 		.4byte	.LASF179
  2334 0b2c 01       		.byte	0x1
  2335 0b2d 89       		.byte	0x89
  2336 0b2e 10010000 		.4byte	0x110
@@ -3041,7 +3050,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2338 0b33 03       		.byte	0x3
  2339 0b34 00000000 		.4byte	K_1_Theta
  2340 0b38 1C       		.uleb128 0x1c
- 2341 0b39 51040000 		.4byte	.LASF180
+ 2341 0b39 FF030000 		.4byte	.LASF180
  2342 0b3d 01       		.byte	0x1
  2343 0b3e 8B       		.byte	0x8b
  2344 0b3f 10010000 		.4byte	0x110
@@ -3049,7 +3058,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2346 0b44 03       		.byte	0x3
  2347 0b45 00000000 		.4byte	p_bias
  2348 0b49 1C       		.uleb128 0x1c
- 2349 0b4a 55090000 		.4byte	.LASF181
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 52
+
+
+ 2349 0b4a 43090000 		.4byte	.LASF181
  2350 0b4e 01       		.byte	0x1
  2351 0b4f 8D       		.byte	0x8d
  2352 0b50 CD0A0000 		.4byte	0xacd
@@ -3057,10 +3069,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2354 0b55 03       		.byte	0x3
  2355 0b56 00000000 		.4byte	P_Phi
  2356 0b5a 1C       		.uleb128 0x1c
- 2357 0b5b D20C0000 		.4byte	.LASF182
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 52
-
-
+ 2357 0b5b CA0C0000 		.4byte	.LASF182
  2358 0b5f 01       		.byte	0x1
  2359 0b60 8E       		.byte	0x8e
  2360 0b61 10010000 		.4byte	0x110
@@ -3068,7 +3077,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2362 0b66 03       		.byte	0x3
  2363 0b67 00000000 		.4byte	Phi_temp
  2364 0b6b 1C       		.uleb128 0x1c
- 2365 0b6c B0070000 		.4byte	.LASF183
+ 2365 0b6c 9E070000 		.4byte	.LASF183
  2366 0b70 01       		.byte	0x1
  2367 0b71 8E       		.byte	0x8e
  2368 0b72 10010000 		.4byte	0x110
@@ -3076,7 +3085,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2370 0b77 03       		.byte	0x3
  2371 0b78 00000000 		.4byte	S_Phi
  2372 0b7c 1C       		.uleb128 0x1c
- 2373 0b7d 27060000 		.4byte	.LASF184
+ 2373 0b7d D9050000 		.4byte	.LASF184
  2374 0b81 01       		.byte	0x1
  2375 0b82 8E       		.byte	0x8e
  2376 0b83 10010000 		.4byte	0x110
@@ -3092,7 +3101,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2386 0b99 03       		.byte	0x3
  2387 0b9a 00000000 		.4byte	K_1_Phi
  2388 0b9e 1C       		.uleb128 0x1c
- 2389 0b9f F90A0000 		.4byte	.LASF186
+ 2389 0b9f E70A0000 		.4byte	.LASF186
  2390 0ba3 01       		.byte	0x1
  2391 0ba4 95       		.byte	0x95
  2392 0ba5 74010000 		.4byte	0x174
@@ -3100,7 +3109,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2394 0baa 03       		.byte	0x3
  2395 0bab 00000000 		.4byte	mavlink_system
  2396 0baf 1C       		.uleb128 0x1c
- 2397 0bb0 D30A0000 		.4byte	.LASF187
+ 2397 0bb0 C10A0000 		.4byte	.LASF187
  2398 0bb4 01       		.byte	0x1
  2399 0bb5 97       		.byte	0x97
  2400 0bb6 AD000000 		.4byte	0xad
@@ -3108,7 +3117,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2402 0bbb 03       		.byte	0x3
  2403 0bbc 00000000 		.4byte	system_type
  2404 0bc0 1C       		.uleb128 0x1c
- 2405 0bc1 DB0C0000 		.4byte	.LASF188
+ 2405 0bc1 D30C0000 		.4byte	.LASF188
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 53
+
+
  2406 0bc5 01       		.byte	0x1
  2407 0bc6 98       		.byte	0x98
  2408 0bc7 AD000000 		.4byte	0xad
@@ -3116,18 +3128,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2410 0bcc 03       		.byte	0x3
  2411 0bcd 00000000 		.4byte	autopilot_type
  2412 0bd1 1C       		.uleb128 0x1c
- 2413 0bd2 C70A0000 		.4byte	.LASF189
+ 2413 0bd2 B50A0000 		.4byte	.LASF189
  2414 0bd6 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 53
-
-
  2415 0bd7 9A       		.byte	0x9a
  2416 0bd8 AD000000 		.4byte	0xad
  2417 0bdc 05       		.uleb128 0x5
  2418 0bdd 03       		.byte	0x3
  2419 0bde 00000000 		.4byte	system_mode
  2420 0be2 1C       		.uleb128 0x1c
- 2421 0be3 86070000 		.4byte	.LASF190
+ 2421 0be3 74070000 		.4byte	.LASF190
  2422 0be7 01       		.byte	0x1
  2423 0be8 9B       		.byte	0x9b
  2424 0be9 D9000000 		.4byte	0xd9
@@ -3135,7 +3144,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2426 0bee 03       		.byte	0x3
  2427 0bef 00000000 		.4byte	custom_mode
  2428 0bf3 1C       		.uleb128 0x1c
- 2429 0bf4 45070000 		.4byte	.LASF191
+ 2429 0bf4 33070000 		.4byte	.LASF191
  2430 0bf8 01       		.byte	0x1
  2431 0bf9 9C       		.byte	0x9c
  2432 0bfa AD000000 		.4byte	0xad
@@ -3166,21 +3175,21 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2457 0c32 03       		.byte	0x3
  2458 0c33 00000000 		.4byte	buf
  2459 0c37 1C       		.uleb128 0x1c
- 2460 0c38 8F060000 		.4byte	.LASF192
+ 2460 0c38 19050000 		.4byte	.LASF192
  2461 0c3c 01       		.byte	0x1
  2462 0c3d A2       		.byte	0xa2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 54
+
+
  2463 0c3e AD000000 		.4byte	0xad
  2464 0c42 05       		.uleb128 0x5
  2465 0c43 03       		.byte	0x3
  2466 0c44 00000000 		.4byte	cnt_ML_HEARTBEAT_send
  2467 0c48 1C       		.uleb128 0x1c
- 2468 0c49 5F0C0000 		.4byte	.LASF193
+ 2468 0c49 570C0000 		.4byte	.LASF193
  2469 0c4d 01       		.byte	0x1
  2470 0c4e A3       		.byte	0xa3
  2471 0c4f AD000000 		.4byte	0xad
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 54
-
-
  2472 0c53 05       		.uleb128 0x5
  2473 0c54 03       		.byte	0x3
  2474 0c55 00000000 		.4byte	cnt_ML_ATTITUDE_send
@@ -3197,7 +3206,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2485 0c72 22       		.uleb128 0x22
  2486 0c73 00       		.byte	0
  2487 0c74 23       		.uleb128 0x23
- 2488 0c75 E2040000 		.4byte	.LASF194
+ 2488 0c75 90040000 		.4byte	.LASF194
  2489 0c79 07       		.byte	0x7
  2490 0c7a 6801     		.2byte	0x168
  2491 0c7c 860C0000 		.4byte	0xc86
@@ -3210,7 +3219,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2498 0c8c 06       		.uleb128 0x6
  2499 0c8d 1E010000 		.4byte	0x11e
  2500 0c91 23       		.uleb128 0x23
- 2501 0c92 24080000 		.4byte	.LASF195
+ 2501 0c92 12080000 		.4byte	.LASF195
  2502 0c96 07       		.byte	0x7
  2503 0c97 7D01     		.2byte	0x17d
  2504 0c99 A30C0000 		.4byte	0xca3
@@ -3222,31 +3231,31 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2510 0ca8 09       		.byte	0x9
  2511 0ca9 9C       		.byte	0x9c
  2512 0caa 20       		.uleb128 0x20
- 2513 0cab 240D0000 		.4byte	.LASF197
+ 2513 0cab 1C0D0000 		.4byte	.LASF197
  2514 0caf 09       		.byte	0x9
  2515 0cb0 9F       		.byte	0x9f
  2516 0cb1 05010000 		.4byte	0x105
  2517 0cb5 BF0C0000 		.4byte	0xcbf
  2518 0cb9 21       		.uleb128 0x21
  2519 0cba FA000000 		.4byte	0xfa
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 55
+
+
  2520 0cbe 00       		.byte	0
  2521 0cbf 24       		.uleb128 0x24
- 2522 0cc0 5C030000 		.4byte	.LASF199
+ 2522 0cc0 0A030000 		.4byte	.LASF199
  2523 0cc4 09       		.byte	0x9
  2524 0cc5 9D       		.byte	0x9d
  2525 0cc6 23       		.uleb128 0x23
- 2526 0cc7 37060000 		.4byte	.LASF200
+ 2526 0cc7 E9050000 		.4byte	.LASF200
  2527 0ccb 0A       		.byte	0xa
  2528 0ccc 5401     		.2byte	0x154
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 55
-
-
  2529 0cce D80C0000 		.4byte	0xcd8
  2530 0cd2 21       		.uleb128 0x21
  2531 0cd3 FA000000 		.4byte	0xfa
  2532 0cd7 00       		.byte	0
  2533 0cd8 25       		.uleb128 0x25
- 2534 0cd9 160D0000 		.4byte	.LASF201
+ 2534 0cd9 0E0D0000 		.4byte	.LASF201
  2535 0cdd 0B       		.byte	0xb
  2536 0cde 1D       		.byte	0x1d
  2537 0cdf E90C0000 		.4byte	0xce9
@@ -3262,7 +3271,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2547 0cf5 EF000000 		.4byte	0xef
  2548 0cf9 00       		.byte	0
  2549 0cfa 24       		.uleb128 0x24
- 2550 0cfb 070D0000 		.4byte	.LASF203
+ 2550 0cfb FF0C0000 		.4byte	.LASF203
  2551 0cff 0D       		.byte	0xd
  2552 0d00 33       		.byte	0x33
  2553 0d01 24       		.uleb128 0x24
@@ -3270,16 +3279,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2555 0d06 0D       		.byte	0xd
  2556 0d07 66       		.byte	0x66
  2557 0d08 24       		.uleb128 0x24
- 2558 0d09 650B0000 		.4byte	.LASF205
+ 2558 0d09 5D0B0000 		.4byte	.LASF205
  2559 0d0d 0D       		.byte	0xd
  2560 0d0e 6A       		.byte	0x6a
  2561 0d0f 26       		.uleb128 0x26
- 2562 0d10 6C030000 		.4byte	.LASF228
+ 2562 0d10 1A030000 		.4byte	.LASF228
  2563 0d14 0D       		.byte	0xd
  2564 0d15 83       		.byte	0x83
  2565 0d16 CE000000 		.4byte	0xce
  2566 0d1a 20       		.uleb128 0x20
- 2567 0d1b 2E040000 		.4byte	.LASF206
+ 2567 0d1b DC030000 		.4byte	.LASF206
  2568 0d1f 0E       		.byte	0xe
  2569 0d20 7E       		.byte	0x7e
  2570 0d21 17010000 		.4byte	0x117
@@ -3289,6 +3298,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2574 0d2e 21       		.uleb128 0x21
  2575 0d2f 17010000 		.4byte	0x117
  2576 0d33 00       		.byte	0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 56
+
+
  2577 0d34 25       		.uleb128 0x25
  2578 0d35 39010000 		.4byte	.LASF207
  2579 0d39 0F       		.byte	0xf
@@ -3298,10 +3310,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2583 0d40 FA000000 		.4byte	0xfa
  2584 0d44 00       		.byte	0
  2585 0d45 24       		.uleb128 0x24
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 56
-
-
- 2586 0d46 94030000 		.4byte	.LASF208
+ 2586 0d46 42030000 		.4byte	.LASF208
  2587 0d4a 10       		.byte	0x10
  2588 0d4b 65       		.byte	0x65
  2589 0d4c 24       		.uleb128 0x24
@@ -3309,19 +3318,19 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2591 0d51 11       		.byte	0x11
  2592 0d52 65       		.byte	0x65
  2593 0d53 24       		.uleb128 0x24
- 2594 0d54 1A070000 		.4byte	.LASF210
+ 2594 0d54 00070000 		.4byte	.LASF210
  2595 0d58 09       		.byte	0x9
  2596 0d59 98       		.byte	0x98
  2597 0d5a 27       		.uleb128 0x27
- 2598 0d5b 45080000 		.4byte	.LASF211
+ 2598 0d5b 33080000 		.4byte	.LASF211
  2599 0d5f 12       		.byte	0x12
  2600 0d60 3101     		.2byte	0x131
  2601 0d62 27       		.uleb128 0x27
- 2602 0d63 E70A0000 		.4byte	.LASF212
+ 2602 0d63 D50A0000 		.4byte	.LASF212
  2603 0d67 0A       		.byte	0xa
  2604 0d68 3101     		.2byte	0x131
  2605 0d6a 27       		.uleb128 0x27
- 2606 0d6b C5060000 		.4byte	.LASF213
+ 2606 0d6b AB060000 		.4byte	.LASF213
  2607 0d6f 13       		.byte	0x13
  2608 0d70 3101     		.2byte	0x131
  2609 0d72 27       		.uleb128 0x27
@@ -3329,7 +3338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2611 0d77 14       		.byte	0x14
  2612 0d78 3101     		.2byte	0x131
  2613 0d7a 24       		.uleb128 0x24
- 2614 0d7b FB020000 		.4byte	.LASF215
+ 2614 0d7b A9020000 		.4byte	.LASF215
  2615 0d7f 15       		.byte	0x15
  2616 0d80 17       		.byte	0x17
  2617 0d81 24       		.uleb128 0x24
@@ -3337,34 +3346,34 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2619 0d86 16       		.byte	0x16
  2620 0d87 17       		.byte	0x17
  2621 0d88 24       		.uleb128 0x24
- 2622 0d89 DA070000 		.4byte	.LASF217
+ 2622 0d89 C8070000 		.4byte	.LASF217
  2623 0d8d 17       		.byte	0x17
  2624 0d8e 17       		.byte	0x17
  2625 0d8f 24       		.uleb128 0x24
- 2626 0d90 EA090000 		.4byte	.LASF218
+ 2626 0d90 D8090000 		.4byte	.LASF218
  2627 0d94 18       		.byte	0x18
  2628 0d95 17       		.byte	0x17
  2629 0d96 24       		.uleb128 0x24
- 2630 0d97 4B0A0000 		.4byte	.LASF219
+ 2630 0d97 390A0000 		.4byte	.LASF219
  2631 0d9b 19       		.byte	0x19
  2632 0d9c 17       		.byte	0x17
  2633 0d9d 24       		.uleb128 0x24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 57
+
+
  2634 0d9e 1C010000 		.4byte	.LASF220
  2635 0da2 0D       		.byte	0xd
  2636 0da3 2F       		.byte	0x2f
  2637 0da4 24       		.uleb128 0x24
- 2638 0da5 90050000 		.4byte	.LASF221
+ 2638 0da5 42050000 		.4byte	.LASF221
  2639 0da9 0D       		.byte	0xd
  2640 0daa 65       		.byte	0x65
  2641 0dab 24       		.uleb128 0x24
  2642 0dac CF010000 		.4byte	.LASF222
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 57
-
-
  2643 0db0 0D       		.byte	0xd
  2644 0db1 69       		.byte	0x69
  2645 0db2 24       		.uleb128 0x24
- 2646 0db3 F6060000 		.4byte	.LASF223
+ 2646 0db3 DC060000 		.4byte	.LASF223
  2647 0db7 0D       		.byte	0xd
  2648 0db8 82       		.byte	0x82
  2649 0db9 00       		.byte	0
@@ -3409,6 +3418,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2688 0024 0B       		.uleb128 0xb
  2689 0025 3B       		.uleb128 0x3b
  2690 0026 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 58
+
+
  2691 0027 49       		.uleb128 0x49
  2692 0028 13       		.uleb128 0x13
  2693 0029 00       		.byte	0
@@ -3418,9 +3430,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2697 002d 00       		.byte	0
  2698 002e 0B       		.uleb128 0xb
  2699 002f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 58
-
-
  2700 0030 3E       		.uleb128 0x3e
  2701 0031 0B       		.uleb128 0xb
  2702 0032 03       		.uleb128 0x3
@@ -3469,6 +3478,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2745 005d 0B       		.uleb128 0xb
  2746 005e 49       		.uleb128 0x49
  2747 005f 13       		.uleb128 0x13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 59
+
+
  2748 0060 38       		.uleb128 0x38
  2749 0061 0B       		.uleb128 0xb
  2750 0062 00       		.byte	0
@@ -3478,9 +3490,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2754 0066 01       		.byte	0x1
  2755 0067 03       		.uleb128 0x3
  2756 0068 0E       		.uleb128 0xe
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 59
-
-
  2757 0069 0B       		.uleb128 0xb
  2758 006a 05       		.uleb128 0x5
  2759 006b 3A       		.uleb128 0x3a
@@ -3529,6 +3538,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2802 0096 01       		.byte	0x1
  2803 0097 03       		.uleb128 0x3
  2804 0098 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 60
+
+
  2805 0099 0B       		.uleb128 0xb
  2806 009a 0B       		.uleb128 0xb
  2807 009b 3A       		.uleb128 0x3a
@@ -3538,9 +3550,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2811 009f 01       		.uleb128 0x1
  2812 00a0 13       		.uleb128 0x13
  2813 00a1 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 60
-
-
  2814 00a2 00       		.byte	0
  2815 00a3 0E       		.uleb128 0xe
  2816 00a4 28       		.uleb128 0x28
@@ -3589,6 +3598,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2859 00d0 13       		.uleb128 0x13
  2860 00d1 02       		.uleb128 0x2
  2861 00d2 17       		.uleb128 0x17
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 61
+
+
  2862 00d3 00       		.byte	0
  2863 00d4 00       		.byte	0
  2864 00d5 11       		.uleb128 0x11
@@ -3598,9 +3610,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2868 00d9 08       		.uleb128 0x8
  2869 00da 3A       		.uleb128 0x3a
  2870 00db 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 61
-
-
  2871 00dc 3B       		.uleb128 0x3b
  2872 00dd 0B       		.uleb128 0xb
  2873 00de 49       		.uleb128 0x49
@@ -3649,6 +3658,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2916 0110 0B       		.uleb128 0xb
  2917 0111 49       		.uleb128 0x49
  2918 0112 13       		.uleb128 0x13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 62
+
+
  2919 0113 02       		.uleb128 0x2
  2920 0114 17       		.uleb128 0x17
  2921 0115 00       		.byte	0
@@ -3658,9 +3670,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2925 011b 00       		.byte	0
  2926 011c 11       		.uleb128 0x11
  2927 011d 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 62
-
-
  2928 011e 31       		.uleb128 0x31
  2929 011f 13       		.uleb128 0x13
  2930 0120 00       		.byte	0
@@ -3709,6 +3718,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2973 014c 00       		.byte	0
  2974 014d 19       		.uleb128 0x19
  2975 014e 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 63
+
+
  2976 014f 01       		.byte	0x1
  2977 0150 3F       		.uleb128 0x3f
  2978 0151 19       		.uleb128 0x19
@@ -3718,9 +3730,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  2982 0155 0B       		.uleb128 0xb
  2983 0156 3B       		.uleb128 0x3b
  2984 0157 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 63
-
-
  2985 0158 49       		.uleb128 0x49
  2986 0159 13       		.uleb128 0x13
  2987 015a 11       		.uleb128 0x11
@@ -3769,6 +3778,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3030 0186 3A       		.uleb128 0x3a
  3031 0187 0B       		.uleb128 0xb
  3032 0188 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 64
+
+
  3033 0189 0B       		.uleb128 0xb
  3034 018a 49       		.uleb128 0x49
  3035 018b 13       		.uleb128 0x13
@@ -3778,9 +3790,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3039 018f 18       		.uleb128 0x18
  3040 0190 00       		.byte	0
  3041 0191 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 64
-
-
  3042 0192 1D       		.uleb128 0x1d
  3043 0193 35       		.uleb128 0x35
  3044 0194 00       		.byte	0
@@ -3829,6 +3838,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3087 01bf 19       		.uleb128 0x19
  3088 01c0 49       		.uleb128 0x49
  3089 01c1 13       		.uleb128 0x13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 65
+
+
  3090 01c2 3C       		.uleb128 0x3c
  3091 01c3 19       		.uleb128 0x19
  3092 01c4 01       		.uleb128 0x1
@@ -3838,9 +3850,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3096 01c8 21       		.uleb128 0x21
  3097 01c9 05       		.uleb128 0x5
  3098 01ca 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 65
-
-
  3099 01cb 49       		.uleb128 0x49
  3100 01cc 13       		.uleb128 0x13
  3101 01cd 00       		.byte	0
@@ -3889,6 +3898,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3144 01f8 25       		.uleb128 0x25
  3145 01f9 2E       		.uleb128 0x2e
  3146 01fa 01       		.byte	0x1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 66
+
+
  3147 01fb 3F       		.uleb128 0x3f
  3148 01fc 19       		.uleb128 0x19
  3149 01fd 03       		.uleb128 0x3
@@ -3898,9 +3910,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3153 0201 3B       		.uleb128 0x3b
  3154 0202 0B       		.uleb128 0xb
  3155 0203 27       		.uleb128 0x27
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 66
-
-
  3156 0204 19       		.uleb128 0x19
  3157 0205 3C       		.uleb128 0x3c
  3158 0206 19       		.uleb128 0x19
@@ -3949,6 +3958,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3201              	.Ldebug_loc0:
  3202              	.LLST0:
  3203 0000 00000000 		.4byte	.LVL0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 67
+
+
  3204 0004 0A000000 		.4byte	.LVL1
  3205 0008 0100     		.2byte	0x1
  3206 000a 50       		.byte	0x50
@@ -3958,9 +3970,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3210 0015 52       		.byte	0x52
  3211 0016 0D000000 		.4byte	.LVL2-1
  3212 001a 1C000000 		.4byte	.LFE1489
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 67
-
-
  3213 001e 0400     		.2byte	0x4
  3214 0020 F3       		.byte	0xf3
  3215 0021 01       		.uleb128 0x1
@@ -4009,6 +4018,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3258 0085 0E000000 		.4byte	.LVL7
  3259 0089 14000000 		.4byte	.LVL8
  3260 008d 0100     		.2byte	0x1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 68
+
+
  3261 008f 54       		.byte	0x54
  3262 0090 14000000 		.4byte	.LVL8
  3263 0094 16000000 		.4byte	.LVL9
@@ -4018,9 +4030,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3267 009c 9F       		.byte	0x9f
  3268 009d 16000000 		.4byte	.LVL9
  3269 00a1 1E000000 		.4byte	.LVL11
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 68
-
-
  3270 00a5 0100     		.2byte	0x1
  3271 00a7 54       		.byte	0x54
  3272 00a8 00000000 		.4byte	0
@@ -4055,7 +4064,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3301 0020 00000000 		.4byte	.LFB1491
  3302 0024 16000000 		.4byte	.LFE1491-.LFB1491
  3303 0028 00000000 		.4byte	.LFB1492
- 3304 002c 40030000 		.4byte	.LFE1492-.LFB1492
+ 3304 002c 30030000 		.4byte	.LFE1492-.LFB1492
  3305 0030 00000000 		.4byte	0
  3306 0034 00000000 		.4byte	0
  3307              		.section	.debug_ranges,"",%progbits
@@ -4067,20 +4076,20 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3313 0010 00000000 		.4byte	.LFB1491
  3314 0014 16000000 		.4byte	.LFE1491
  3315 0018 00000000 		.4byte	.LFB1492
- 3316 001c 40030000 		.4byte	.LFE1492
+ 3316 001c 30030000 		.4byte	.LFE1492
  3317 0020 00000000 		.4byte	0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 69
+
+
  3318 0024 00000000 		.4byte	0
  3319              		.section	.debug_line,"",%progbits
  3320              	.Ldebug_line0:
- 3321 0000 5B030000 		.section	.debug_str,"MS",%progbits,1
- 3321      02007302 
+ 3321 0000 72030000 		.section	.debug_str,"MS",%progbits,1
+ 3321      02007F02 
  3321      00000201 
  3321      FB0E0D00 
  3321      01010101 
  3322              	.LASF214:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 69
-
-
  3323 0000 53657276 		.ascii	"ServoTimer_Start\000"
  3323      6F54696D 
  3323      65725F53 
@@ -4129,6 +4138,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3344 009c 4B5F315F 		.ascii	"K_1_Phi\000"
  3344      50686900 
  3345              	.LASF160:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 70
+
+
  3346 00a4 6D61675F 		.ascii	"mag_y_g\000"
  3346      795F6700 
  3347              	.LASF35:
@@ -4138,9 +4150,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3349              	.LASF114:
  3350 00b5 696E5F61 		.ascii	"in_ail\000"
  3350      696C00
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 70
-
-
  3351              	.LASF20:
  3352 00bc 75696E74 		.ascii	"uint64_t\000"
  3352      36345F74 
@@ -4189,6 +4198,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3371              	.LASF207:
  3372 0139 43794465 		.ascii	"CyDelay\000"
  3372      6C617900 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 71
+
+
  3373              	.LASF13:
  3374 0141 6C6F6E67 		.ascii	"long long unsigned int\000"
  3374      206C6F6E 
@@ -4198,9 +4210,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3375              	.LASF122:
  3376 0158 6F75745F 		.ascii	"out_mot\000"
  3376      6D6F7400 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 71
-
-
  3377              	.LASF64:
  3378 0160 4D41565F 		.ascii	"MAV_TYPE_COAXIAL\000"
  3378      54595045 
@@ -4249,6 +4258,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3396 01e1 4932434D 		.ascii	"I2CM_Start\000"
  3396      5F537461 
  3396      727400
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 72
+
+
  3397              	.LASF11:
  3398 01ec 6C6F6E67 		.ascii	"long long int\000"
  3398      206C6F6E 
@@ -4258,9 +4270,6 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3400 01fa 7369676E 		.ascii	"signed char\000"
  3400      65642063 
  3400      68617200 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 72
-
-
  3401              	.LASF65:
  3402 0206 4D41565F 		.ascii	"MAV_TYPE_HELICOPTER\000"
  3402      54595045 
@@ -4277,927 +4286,927 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 1
  3406 0233 2E5C6D61 		.ascii	".\\main.c\000"
  3406      696E2E63 
  3406      00
- 3407              	.LASF226:
- 3408 023c 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 3408      73657273 
- 3408      5C534E46 
- 3408      555C446F 
- 3408      63756D65 
- 3409 026a 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 3409      542D3530 
- 3409      5F50726F 
- 3409      6A656374 
- 3409      5C542D35 
- 3410              	.LASF82:
- 3411 028e 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED1\000"
- 3411      54595045 
- 3411      5F56544F 
- 3411      4C5F5245 
- 3411      53455256 
- 3412              	.LASF150:
- 3413 02a6 4E61764C 		.ascii	"NavLightStep\000"
- 3413      69676874 
- 3413      53746570 
- 3413      00
- 3414              	.LASF84:
- 3415 02b3 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED3\000"
- 3415      54595045 
- 3415      5F56544F 
- 3415      4C5F5245 
- 3415      53455256 
- 3416              	.LASF85:
- 3417 02cb 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED4\000"
- 3417      54595045 
- 3417      5F56544F 
- 3417      4C5F5245 
- 3417      53455256 
- 3418              	.LASF86:
- 3419 02e3 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED5\000"
- 3419      54595045 
- 3419      5F56544F 
- 3419      4C5F5245 
- 3419      53455256 
- 3420              	.LASF215:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 73
+ 3407              	.LASF82:
+ 3408 023c 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED1\000"
+ 3408      54595045 
+ 3408      5F56544F 
+ 3408      4C5F5245 
+ 3408      53455256 
+ 3409              	.LASF150:
+ 3410 0254 4E61764C 		.ascii	"NavLightStep\000"
+ 3410      69676874 
+ 3410      53746570 
+ 3410      00
+ 3411              	.LASF84:
+ 3412 0261 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED3\000"
+ 3412      54595045 
+ 3412      5F56544F 
+ 3412      4C5F5245 
+ 3412      53455256 
+ 3413              	.LASF85:
+ 3414 0279 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED4\000"
+ 3414      54595045 
+ 3414      5F56544F 
+ 3414      4C5F5245 
+ 3414      53455256 
+ 3415              	.LASF86:
+ 3416 0291 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED5\000"
+ 3416      54595045 
+ 3416      5F56544F 
+ 3416      4C5F5245 
+ 3416      53455256 
+ 3417              	.LASF215:
+ 3418 02a9 50504D49 		.ascii	"PPMISR_Start\000"
+ 3418      53525F53 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 73
 
 
- 3421 02fb 50504D49 		.ascii	"PPMISR_Start\000"
- 3421      53525F53 
- 3421      74617274 
- 3421      00
- 3422              	.LASF104:
- 3423 0308 4D41565F 		.ascii	"MAV_STATE_BOOT\000"
- 3423      53544154 
- 3423      455F424F 
- 3423      4F5400
- 3424              	.LASF42:
- 3425 0317 4D41565F 		.ascii	"MAV_AUTOPILOT_SLUGS\000"
- 3425      4155544F 
- 3425      50494C4F 
- 3425      545F534C 
- 3425      55475300 
- 3426              	.LASF68:
- 3427 032b 4D41565F 		.ascii	"MAV_TYPE_AIRSHIP\000"
- 3427      54595045 
- 3427      5F414952 
- 3427      53484950 
- 3427      00
- 3428              	.LASF8:
- 3429 033c 6C6F6E67 		.ascii	"long int\000"
- 3429      20696E74 
- 3429      00
- 3430              	.LASF58:
- 3431 0345 4D41565F 		.ascii	"MAV_AUTOPILOT_ENUM_END\000"
- 3431      4155544F 
- 3431      50494C4F 
- 3431      545F454E 
- 3431      554D5F45 
- 3432              	.LASF199:
- 3433 035c 4144435F 		.ascii	"ADC_StopConvert\000"
- 3433      53746F70 
- 3433      436F6E76 
- 3433      65727400 
- 3434              	.LASF228:
- 3435 036c 6261726F 		.ascii	"baro_read\000"
- 3435      5F726561 
- 3435      6400
- 3436              	.LASF141:
- 3437 0376 626C696E 		.ascii	"blink_cnt\000"
- 3437      6B5F636E 
- 3437      7400
- 3438              	.LASF62:
- 3439 0380 4D41565F 		.ascii	"MAV_TYPE_FIXED_WING\000"
- 3439      54595045 
- 3439      5F464958 
- 3439      45445F57 
- 3439      494E4700 
- 3440              	.LASF208:
- 3441 0394 55415254 		.ascii	"UART_1_Start\000"
- 3441      5F315F53 
- 3441      74617274 
- 3441      00
- 3442              	.LASF152:
- 3443 03a1 636E745F 		.ascii	"cnt_StrobeLight\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 74
+ 3418      74617274 
+ 3418      00
+ 3419              	.LASF104:
+ 3420 02b6 4D41565F 		.ascii	"MAV_STATE_BOOT\000"
+ 3420      53544154 
+ 3420      455F424F 
+ 3420      4F5400
+ 3421              	.LASF42:
+ 3422 02c5 4D41565F 		.ascii	"MAV_AUTOPILOT_SLUGS\000"
+ 3422      4155544F 
+ 3422      50494C4F 
+ 3422      545F534C 
+ 3422      55475300 
+ 3423              	.LASF68:
+ 3424 02d9 4D41565F 		.ascii	"MAV_TYPE_AIRSHIP\000"
+ 3424      54595045 
+ 3424      5F414952 
+ 3424      53484950 
+ 3424      00
+ 3425              	.LASF8:
+ 3426 02ea 6C6F6E67 		.ascii	"long int\000"
+ 3426      20696E74 
+ 3426      00
+ 3427              	.LASF58:
+ 3428 02f3 4D41565F 		.ascii	"MAV_AUTOPILOT_ENUM_END\000"
+ 3428      4155544F 
+ 3428      50494C4F 
+ 3428      545F454E 
+ 3428      554D5F45 
+ 3429              	.LASF199:
+ 3430 030a 4144435F 		.ascii	"ADC_StopConvert\000"
+ 3430      53746F70 
+ 3430      436F6E76 
+ 3430      65727400 
+ 3431              	.LASF228:
+ 3432 031a 6261726F 		.ascii	"baro_read\000"
+ 3432      5F726561 
+ 3432      6400
+ 3433              	.LASF141:
+ 3434 0324 626C696E 		.ascii	"blink_cnt\000"
+ 3434      6B5F636E 
+ 3434      7400
+ 3435              	.LASF62:
+ 3436 032e 4D41565F 		.ascii	"MAV_TYPE_FIXED_WING\000"
+ 3436      54595045 
+ 3436      5F464958 
+ 3436      45445F57 
+ 3436      494E4700 
+ 3437              	.LASF208:
+ 3438 0342 55415254 		.ascii	"UART_1_Start\000"
+ 3438      5F315F53 
+ 3438      74617274 
+ 3438      00
+ 3439              	.LASF152:
+ 3440 034f 636E745F 		.ascii	"cnt_StrobeLight\000"
+ 3440      5374726F 
+ 3440      62654C69 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 74
 
 
- 3443      5374726F 
- 3443      62654C69 
- 3443      67687400 
- 3444              	.LASF21:
- 3445 03b1 75696E74 		.ascii	"uint8\000"
- 3445      3800
- 3446              	.LASF77:
- 3447 03b7 4D41565F 		.ascii	"MAV_TYPE_FLAPPING_WING\000"
- 3447      54595045 
- 3447      5F464C41 
- 3447      5050494E 
- 3447      475F5749 
- 3448              	.LASF155:
- 3449 03ce 7475726E 		.ascii	"turn_rate_r\000"
- 3449      5F726174 
- 3449      655F7200 
- 3450              	.LASF83:
- 3451 03da 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED2\000"
- 3451      54595045 
- 3451      5F56544F 
- 3451      4C5F5245 
- 3451      53455256 
- 3452              	.LASF98:
- 3453 03f2 4D41565F 		.ascii	"MAV_MODE_STABILIZE_ARMED\000"
- 3453      4D4F4445 
- 3453      5F535441 
- 3453      42494C49 
- 3453      5A455F41 
- 3454              	.LASF51:
- 3455 040b 4D41565F 		.ascii	"MAV_AUTOPILOT_FP\000"
- 3455      4155544F 
- 3455      50494C4F 
- 3455      545F4650 
- 3455      00
- 3456              	.LASF125:
- 3457 041c 6F75745F 		.ascii	"out_ele1\000"
- 3457      656C6531 
- 3457      00
- 3458              	.LASF126:
- 3459 0425 6F75745F 		.ascii	"out_ele2\000"
- 3459      656C6532 
- 3459      00
- 3460              	.LASF206:
- 3461 042e 6174616E 		.ascii	"atan2\000"
- 3461      3200
- 3462              	.LASF172:
- 3463 0434 515F6779 		.ascii	"Q_gyro\000"
- 3463      726F00
- 3464              	.LASF99:
- 3465 043b 4D41565F 		.ascii	"MAV_MODE_GUIDED_ARMED\000"
- 3465      4D4F4445 
- 3465      5F475549 
- 3465      4445445F 
- 3465      41524D45 
- 3466              	.LASF180:
- 3467 0451 705F6269 		.ascii	"p_bias\000"
- 3467      617300
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 75
+ 3440      67687400 
+ 3441              	.LASF21:
+ 3442 035f 75696E74 		.ascii	"uint8\000"
+ 3442      3800
+ 3443              	.LASF77:
+ 3444 0365 4D41565F 		.ascii	"MAV_TYPE_FLAPPING_WING\000"
+ 3444      54595045 
+ 3444      5F464C41 
+ 3444      5050494E 
+ 3444      475F5749 
+ 3445              	.LASF155:
+ 3446 037c 7475726E 		.ascii	"turn_rate_r\000"
+ 3446      5F726174 
+ 3446      655F7200 
+ 3447              	.LASF83:
+ 3448 0388 4D41565F 		.ascii	"MAV_TYPE_VTOL_RESERVED2\000"
+ 3448      54595045 
+ 3448      5F56544F 
+ 3448      4C5F5245 
+ 3448      53455256 
+ 3449              	.LASF98:
+ 3450 03a0 4D41565F 		.ascii	"MAV_MODE_STABILIZE_ARMED\000"
+ 3450      4D4F4445 
+ 3450      5F535441 
+ 3450      42494C49 
+ 3450      5A455F41 
+ 3451              	.LASF51:
+ 3452 03b9 4D41565F 		.ascii	"MAV_AUTOPILOT_FP\000"
+ 3452      4155544F 
+ 3452      50494C4F 
+ 3452      545F4650 
+ 3452      00
+ 3453              	.LASF125:
+ 3454 03ca 6F75745F 		.ascii	"out_ele1\000"
+ 3454      656C6531 
+ 3454      00
+ 3455              	.LASF126:
+ 3456 03d3 6F75745F 		.ascii	"out_ele2\000"
+ 3456      656C6532 
+ 3456      00
+ 3457              	.LASF206:
+ 3458 03dc 6174616E 		.ascii	"atan2\000"
+ 3458      3200
+ 3459              	.LASF172:
+ 3460 03e2 515F6779 		.ascii	"Q_gyro\000"
+ 3460      726F00
+ 3461              	.LASF99:
+ 3462 03e9 4D41565F 		.ascii	"MAV_MODE_GUIDED_ARMED\000"
+ 3462      4D4F4445 
+ 3462      5F475549 
+ 3462      4445445F 
+ 3462      41524D45 
+ 3463              	.LASF180:
+ 3464 03ff 705F6269 		.ascii	"p_bias\000"
+ 3464      617300
+ 3465              	.LASF38:
+ 3466 0406 7061796C 		.ascii	"payload64\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 75
 
 
- 3468              	.LASF38:
- 3469 0458 7061796C 		.ascii	"payload64\000"
- 3469      6F616436 
- 3469      3400
- 3470              	.LASF22:
- 3471 0462 75696E74 		.ascii	"uint32\000"
- 3471      333200
- 3472              	.LASF167:
- 3473 0469 4D61675F 		.ascii	"Mag_x\000"
- 3473      7800
- 3474              	.LASF9:
- 3475 046f 5F5F7569 		.ascii	"__uint32_t\000"
- 3475      6E743332 
- 3475      5F7400
- 3476              	.LASF3:
- 3477 047a 5F5F696E 		.ascii	"__int16_t\000"
- 3477      7431365F 
- 3477      7400
- 3478              	.LASF179:
- 3479 0484 4B5F315F 		.ascii	"K_1_Theta\000"
- 3479      54686574 
- 3479      6100
- 3480              	.LASF147:
- 3481 048e 666C6167 		.ascii	"flag_NavLightPulse\000"
- 3481      5F4E6176 
- 3481      4C696768 
- 3481      7450756C 
- 3481      736500
- 3482              	.LASF163:
- 3483 04a1 54686574 		.ascii	"Theta_acc\000"
- 3483      615F6163 
- 3483      6300
- 3484              	.LASF63:
- 3485 04ab 4D41565F 		.ascii	"MAV_TYPE_QUADROTOR\000"
- 3485      54595045 
- 3485      5F515541 
- 3485      44524F54 
- 3485      4F5200
- 3486              	.LASF79:
- 3487 04be 4D41565F 		.ascii	"MAV_TYPE_ONBOARD_CONTROLLER\000"
- 3487      54595045 
- 3487      5F4F4E42 
- 3487      4F415244 
- 3487      5F434F4E 
- 3488              	.LASF171:
- 3489 04da 515F616E 		.ascii	"Q_angle\000"
- 3489      676C6500 
- 3490              	.LASF194:
- 3491 04e2 55415254 		.ascii	"UART_1_UartPutString\000"
- 3491      5F315F55 
- 3491      61727450 
- 3491      75745374 
- 3491      72696E67 
- 3492              	.LASF14:
- 3493 04f7 756E7369 		.ascii	"unsigned int\000"
- 3493      676E6564 
- 3493      20696E74 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 76
+ 3466      6F616436 
+ 3466      3400
+ 3467              	.LASF22:
+ 3468 0410 75696E74 		.ascii	"uint32\000"
+ 3468      333200
+ 3469              	.LASF167:
+ 3470 0417 4D61675F 		.ascii	"Mag_x\000"
+ 3470      7800
+ 3471              	.LASF9:
+ 3472 041d 5F5F7569 		.ascii	"__uint32_t\000"
+ 3472      6E743332 
+ 3472      5F7400
+ 3473              	.LASF3:
+ 3474 0428 5F5F696E 		.ascii	"__int16_t\000"
+ 3474      7431365F 
+ 3474      7400
+ 3475              	.LASF179:
+ 3476 0432 4B5F315F 		.ascii	"K_1_Theta\000"
+ 3476      54686574 
+ 3476      6100
+ 3477              	.LASF147:
+ 3478 043c 666C6167 		.ascii	"flag_NavLightPulse\000"
+ 3478      5F4E6176 
+ 3478      4C696768 
+ 3478      7450756C 
+ 3478      736500
+ 3479              	.LASF163:
+ 3480 044f 54686574 		.ascii	"Theta_acc\000"
+ 3480      615F6163 
+ 3480      6300
+ 3481              	.LASF63:
+ 3482 0459 4D41565F 		.ascii	"MAV_TYPE_QUADROTOR\000"
+ 3482      54595045 
+ 3482      5F515541 
+ 3482      44524F54 
+ 3482      4F5200
+ 3483              	.LASF79:
+ 3484 046c 4D41565F 		.ascii	"MAV_TYPE_ONBOARD_CONTROLLER\000"
+ 3484      54595045 
+ 3484      5F4F4E42 
+ 3484      4F415244 
+ 3484      5F434F4E 
+ 3485              	.LASF171:
+ 3486 0488 515F616E 		.ascii	"Q_angle\000"
+ 3486      676C6500 
+ 3487              	.LASF194:
+ 3488 0490 55415254 		.ascii	"UART_1_UartPutString\000"
+ 3488      5F315F55 
+ 3488      61727450 
+ 3488      75745374 
+ 3488      72696E67 
+ 3489              	.LASF14:
+ 3490 04a5 756E7369 		.ascii	"unsigned int\000"
+ 3490      676E6564 
+ 3490      20696E74 
+ 3490      00
+ 3491              	.LASF47:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 76
 
 
- 3493      00
- 3494              	.LASF47:
- 3495 0504 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC_MISSION_FULL\000"
- 3495      4155544F 
- 3495      50494C4F 
- 3495      545F4745 
- 3495      4E455249 
- 3496              	.LASF109:
- 3497 0527 4D41565F 		.ascii	"MAV_STATE_EMERGENCY\000"
- 3497      53544154 
- 3497      455F454D 
- 3497      45524745 
- 3497      4E435900 
- 3498              	.LASF17:
- 3499 053b 75696E74 		.ascii	"uint16_t\000"
- 3499      31365F74 
- 3499      00
- 3500              	.LASF57:
- 3501 0544 4D41565F 		.ascii	"MAV_AUTOPILOT_ASLUAV\000"
- 3501      4155544F 
- 3501      50494C4F 
- 3501      545F4153 
- 3501      4C554156 
- 3502              	.LASF10:
- 3503 0559 6C6F6E67 		.ascii	"long unsigned int\000"
- 3503      20756E73 
- 3503      69676E65 
- 3503      6420696E 
- 3503      7400
- 3504              	.LASF88:
- 3505 056b 4D41565F 		.ascii	"MAV_TYPE_ENUM_END\000"
- 3505      54595045 
- 3505      5F454E55 
- 3505      4D5F454E 
- 3505      4400
- 3506              	.LASF90:
- 3507 057d 4D41565F 		.ascii	"MAV_MODE_PREFLIGHT\000"
- 3507      4D4F4445 
- 3507      5F505245 
- 3507      464C4947 
- 3507      485400
- 3508              	.LASF221:
- 3509 0590 6163635F 		.ascii	"acc_start\000"
- 3509      73746172 
- 3509      7400
- 3510              	.LASF40:
- 3511 059a 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC\000"
- 3511      4155544F 
- 3511      50494C4F 
- 3511      545F4745 
- 3511      4E455249 
- 3512              	.LASF174:
- 3513 05b0 715F6269 		.ascii	"q_bias\000"
- 3513      617300
- 3514              	.LASF164:
- 3515 05b7 5068695F 		.ascii	"Phi_acc\000"
- 3515      61636300 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 77
+ 3492 04b2 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC_MISSION_FULL\000"
+ 3492      4155544F 
+ 3492      50494C4F 
+ 3492      545F4745 
+ 3492      4E455249 
+ 3493              	.LASF109:
+ 3494 04d5 4D41565F 		.ascii	"MAV_STATE_EMERGENCY\000"
+ 3494      53544154 
+ 3494      455F454D 
+ 3494      45524745 
+ 3494      4E435900 
+ 3495              	.LASF17:
+ 3496 04e9 75696E74 		.ascii	"uint16_t\000"
+ 3496      31365F74 
+ 3496      00
+ 3497              	.LASF57:
+ 3498 04f2 4D41565F 		.ascii	"MAV_AUTOPILOT_ASLUAV\000"
+ 3498      4155544F 
+ 3498      50494C4F 
+ 3498      545F4153 
+ 3498      4C554156 
+ 3499              	.LASF10:
+ 3500 0507 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3500      20756E73 
+ 3500      69676E65 
+ 3500      6420696E 
+ 3500      7400
+ 3501              	.LASF192:
+ 3502 0519 636E745F 		.ascii	"cnt_ML_HEARTBEAT_send\000"
+ 3502      4D4C5F48 
+ 3502      45415254 
+ 3502      42454154 
+ 3502      5F73656E 
+ 3503              	.LASF90:
+ 3504 052f 4D41565F 		.ascii	"MAV_MODE_PREFLIGHT\000"
+ 3504      4D4F4445 
+ 3504      5F505245 
+ 3504      464C4947 
+ 3504      485400
+ 3505              	.LASF221:
+ 3506 0542 6163635F 		.ascii	"acc_start\000"
+ 3506      73746172 
+ 3506      7400
+ 3507              	.LASF40:
+ 3508 054c 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC\000"
+ 3508      4155544F 
+ 3508      50494C4F 
+ 3508      545F4745 
+ 3508      4E455249 
+ 3509              	.LASF174:
+ 3510 0562 715F6269 		.ascii	"q_bias\000"
+ 3510      617300
+ 3511              	.LASF164:
+ 3512 0569 5068695F 		.ascii	"Phi_acc\000"
+ 3512      61636300 
+ 3513              	.LASF156:
+ 3514 0571 6163635F 		.ascii	"acc_x_g\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 77
 
 
- 3516              	.LASF156:
- 3517 05bf 6163635F 		.ascii	"acc_x_g\000"
- 3517      785F6700 
- 3518              	.LASF154:
- 3519 05c7 7475726E 		.ascii	"turn_rate_q\000"
- 3519      5F726174 
- 3519      655F7100 
- 3520              	.LASF106:
- 3521 05d3 4D41565F 		.ascii	"MAV_STATE_STANDBY\000"
- 3521      53544154 
- 3521      455F5354 
- 3521      414E4442 
- 3521      5900
- 3522              	.LASF78:
- 3523 05e5 4D41565F 		.ascii	"MAV_TYPE_KITE\000"
- 3523      54595045 
- 3523      5F4B4954 
- 3523      4500
- 3524              	.LASF6:
- 3525 05f3 73686F72 		.ascii	"short unsigned int\000"
- 3525      7420756E 
- 3525      7369676E 
- 3525      65642069 
- 3525      6E7400
- 3526              	.LASF67:
- 3527 0606 4D41565F 		.ascii	"MAV_TYPE_GCS\000"
- 3527      54595045 
- 3527      5F474353 
- 3527      00
- 3528              	.LASF100:
- 3529 0613 4D41565F 		.ascii	"MAV_MODE_AUTO_ARMED\000"
- 3529      4D4F4445 
- 3529      5F415554 
- 3529      4F5F4152 
- 3529      4D454400 
- 3530              	.LASF184:
- 3531 0627 4B5F305F 		.ascii	"K_0_Phi\000"
- 3531      50686900 
- 3532              	.LASF158:
- 3533 062f 6163635F 		.ascii	"acc_z_g\000"
- 3533      7A5F6700 
- 3534              	.LASF200:
- 3535 0637 4E61764C 		.ascii	"NavLightPWM_WriteCompare\000"
- 3535      69676874 
- 3535      50574D5F 
- 3535      57726974 
- 3535      65436F6D 
- 3536              	.LASF49:
- 3537 0650 4D41565F 		.ascii	"MAV_AUTOPILOT_PPZ\000"
- 3537      4155544F 
- 3537      50494C4F 
- 3537      545F5050 
- 3537      5A00
- 3538              	.LASF143:
- 3539 0662 50504D5F 		.ascii	"PPM_channel\000"
- 3539      6368616E 
- 3539      6E656C00 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 78
+ 3514      785F6700 
+ 3515              	.LASF154:
+ 3516 0579 7475726E 		.ascii	"turn_rate_q\000"
+ 3516      5F726174 
+ 3516      655F7100 
+ 3517              	.LASF106:
+ 3518 0585 4D41565F 		.ascii	"MAV_STATE_STANDBY\000"
+ 3518      53544154 
+ 3518      455F5354 
+ 3518      414E4442 
+ 3518      5900
+ 3519              	.LASF78:
+ 3520 0597 4D41565F 		.ascii	"MAV_TYPE_KITE\000"
+ 3520      54595045 
+ 3520      5F4B4954 
+ 3520      4500
+ 3521              	.LASF6:
+ 3522 05a5 73686F72 		.ascii	"short unsigned int\000"
+ 3522      7420756E 
+ 3522      7369676E 
+ 3522      65642069 
+ 3522      6E7400
+ 3523              	.LASF67:
+ 3524 05b8 4D41565F 		.ascii	"MAV_TYPE_GCS\000"
+ 3524      54595045 
+ 3524      5F474353 
+ 3524      00
+ 3525              	.LASF100:
+ 3526 05c5 4D41565F 		.ascii	"MAV_MODE_AUTO_ARMED\000"
+ 3526      4D4F4445 
+ 3526      5F415554 
+ 3526      4F5F4152 
+ 3526      4D454400 
+ 3527              	.LASF184:
+ 3528 05d9 4B5F305F 		.ascii	"K_0_Phi\000"
+ 3528      50686900 
+ 3529              	.LASF158:
+ 3530 05e1 6163635F 		.ascii	"acc_z_g\000"
+ 3530      7A5F6700 
+ 3531              	.LASF200:
+ 3532 05e9 4E61764C 		.ascii	"NavLightPWM_WriteCompare\000"
+ 3532      69676874 
+ 3532      50574D5F 
+ 3532      57726974 
+ 3532      65436F6D 
+ 3533              	.LASF49:
+ 3534 0602 4D41565F 		.ascii	"MAV_AUTOPILOT_PPZ\000"
+ 3534      4155544F 
+ 3534      50494C4F 
+ 3534      545F5050 
+ 3534      5A00
+ 3535              	.LASF143:
+ 3536 0614 50504D5F 		.ascii	"PPM_channel\000"
+ 3536      6368616E 
+ 3536      6E656C00 
+ 3537              	.LASF169:
+ 3538 0620 4261725F 		.ascii	"Bar_press\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 78
 
 
- 3540              	.LASF169:
- 3541 066e 4261725F 		.ascii	"Bar_press\000"
- 3541      70726573 
- 3541      7300
- 3542              	.LASF136:
- 3543 0678 55415254 		.ascii	"UART_1_UartSendMavlink\000"
- 3543      5F315F55 
- 3543      61727453 
- 3543      656E644D 
- 3543      61766C69 
- 3544              	.LASF192:
- 3545 068f 636E745F 		.ascii	"cnt_ML_HEARTBEAT_send\000"
- 3545      4D4C5F48 
- 3545      45415254 
- 3545      42454154 
- 3545      5F73656E 
- 3546              	.LASF178:
- 3547 06a5 4B5F305F 		.ascii	"K_0_Theta\000"
- 3547      54686574 
- 3547      6100
- 3548              	.LASF71:
- 3549 06af 4D41565F 		.ascii	"MAV_TYPE_GROUND_ROVER\000"
- 3549      54595045 
- 3549      5F47524F 
- 3549      554E445F 
- 3549      524F5645 
- 3550              	.LASF213:
- 3551 06c5 50504D43 		.ascii	"PPMCounter_Start\000"
- 3551      6F756E74 
- 3551      65725F53 
- 3551      74617274 
- 3551      00
- 3552              	.LASF151:
- 3553 06d6 4E61764C 		.ascii	"NavLightCompare\000"
- 3553      69676874 
- 3553      436F6D70 
- 3553      61726500 
- 3554              	.LASF117:
- 3555 06e6 696E5F67 		.ascii	"in_gear\000"
- 3555      65617200 
- 3556              	.LASF159:
- 3557 06ee 6D61675F 		.ascii	"mag_x_g\000"
- 3557      785F6700 
- 3558              	.LASF223:
- 3559 06f6 6261726F 		.ascii	"baro_start\000"
- 3559      5F737461 
- 3559      727400
- 3560              	.LASF134:
- 3561 0701 6F75745F 		.ascii	"out_sp2\000"
- 3561      73703200 
- 3562              	.LASF130:
- 3563 0709 6F75745F 		.ascii	"out_ge1\000"
- 3563      67653100 
- 3564              	.LASF28:
- 3565 0711 73697A65 		.ascii	"sizetype\000"
- 3565      74797065 
- 3565      00
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 79
+ 3538      70726573 
+ 3538      7300
+ 3539              	.LASF136:
+ 3540 062a 55415254 		.ascii	"UART_1_UartSendMavlink\000"
+ 3540      5F315F55 
+ 3540      61727453 
+ 3540      656E644D 
+ 3540      61766C69 
+ 3541              	.LASF226:
+ 3542 0641 453A5C44 		.ascii	"E:\\Dokumente\\GitHub\\T-50_Project\\Software\\T-50"
+ 3542      6F6B756D 
+ 3542      656E7465 
+ 3542      5C476974 
+ 3542      4875625C 
+ 3543 066f 5F50726F 		.ascii	"_Project\\T-50_Project.cydsn\000"
+ 3543      6A656374 
+ 3543      5C542D35 
+ 3543      305F5072 
+ 3543      6F6A6563 
+ 3544              	.LASF178:
+ 3545 068b 4B5F305F 		.ascii	"K_0_Theta\000"
+ 3545      54686574 
+ 3545      6100
+ 3546              	.LASF71:
+ 3547 0695 4D41565F 		.ascii	"MAV_TYPE_GROUND_ROVER\000"
+ 3547      54595045 
+ 3547      5F47524F 
+ 3547      554E445F 
+ 3547      524F5645 
+ 3548              	.LASF213:
+ 3549 06ab 50504D43 		.ascii	"PPMCounter_Start\000"
+ 3549      6F756E74 
+ 3549      65725F53 
+ 3549      74617274 
+ 3549      00
+ 3550              	.LASF151:
+ 3551 06bc 4E61764C 		.ascii	"NavLightCompare\000"
+ 3551      69676874 
+ 3551      436F6D70 
+ 3551      61726500 
+ 3552              	.LASF117:
+ 3553 06cc 696E5F67 		.ascii	"in_gear\000"
+ 3553      65617200 
+ 3554              	.LASF159:
+ 3555 06d4 6D61675F 		.ascii	"mag_x_g\000"
+ 3555      785F6700 
+ 3556              	.LASF223:
+ 3557 06dc 6261726F 		.ascii	"baro_start\000"
+ 3557      5F737461 
+ 3557      727400
+ 3558              	.LASF134:
+ 3559 06e7 6F75745F 		.ascii	"out_sp2\000"
+ 3559      73703200 
+ 3560              	.LASF130:
+ 3561 06ef 6F75745F 		.ascii	"out_ge1\000"
+ 3561      67653100 
+ 3562              	.LASF28:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 79
 
 
- 3566              	.LASF210:
- 3567 071a 4144435F 		.ascii	"ADC_Start\000"
- 3567      53746172 
- 3567      7400
- 3568              	.LASF94:
- 3569 0724 4D41565F 		.ascii	"MAV_MODE_GUIDED_DISARMED\000"
- 3569      4D4F4445 
- 3569      5F475549 
- 3569      4445445F 
- 3569      44495341 
+ 3563 06f7 73697A65 		.ascii	"sizetype\000"
+ 3563      74797065 
+ 3563      00
+ 3564              	.LASF210:
+ 3565 0700 4144435F 		.ascii	"ADC_Start\000"
+ 3565      53746172 
+ 3565      7400
+ 3566              	.LASF94:
+ 3567 070a 4D41565F 		.ascii	"MAV_MODE_GUIDED_DISARMED\000"
+ 3567      4D4F4445 
+ 3567      5F475549 
+ 3567      4445445F 
+ 3567      44495341 
+ 3568              	.LASF128:
+ 3569 0723 6F75745F 		.ascii	"out_fl1\000"
+ 3569      666C3100 
  3570              	.LASF157:
- 3571 073d 6163635F 		.ascii	"acc_y_g\000"
+ 3571 072b 6163635F 		.ascii	"acc_y_g\000"
  3571      795F6700 
  3572              	.LASF191:
- 3573 0745 73797374 		.ascii	"system_state\000"
+ 3573 0733 73797374 		.ascii	"system_state\000"
  3573      656D5F73 
  3573      74617465 
  3573      00
  3574              	.LASF144:
- 3575 0752 6374726C 		.ascii	"ctrl_in\000"
+ 3575 0740 6374726C 		.ascii	"ctrl_in\000"
  3575      5F696E00 
  3576              	.LASF33:
- 3577 075a 5F5F6D61 		.ascii	"__mavlink_system\000"
+ 3577 0748 5F5F6D61 		.ascii	"__mavlink_system\000"
  3577      766C696E 
  3577      6B5F7379 
  3577      7374656D 
  3577      00
  3578              	.LASF87:
- 3579 076b 4D41565F 		.ascii	"MAV_TYPE_GIMBAL\000"
+ 3579 0759 4D41565F 		.ascii	"MAV_TYPE_GIMBAL\000"
  3579      54595045 
  3579      5F47494D 
  3579      42414C00 
  3580              	.LASF176:
- 3581 077b 54686574 		.ascii	"Theta_temp\000"
+ 3581 0769 54686574 		.ascii	"Theta_temp\000"
  3581      615F7465 
  3581      6D7000
  3582              	.LASF190:
- 3583 0786 63757374 		.ascii	"custom_mode\000"
+ 3583 0774 63757374 		.ascii	"custom_mode\000"
  3583      6F6D5F6D 
  3583      6F646500 
  3584              	.LASF59:
- 3585 0792 4D41565F 		.ascii	"MAV_AUTOPILOT\000"
+ 3585 0780 4D41565F 		.ascii	"MAV_AUTOPILOT\000"
  3585      4155544F 
  3585      50494C4F 
  3585      5400
  3586              	.LASF70:
- 3587 07a0 4D41565F 		.ascii	"MAV_TYPE_ROCKET\000"
+ 3587 078e 4D41565F 		.ascii	"MAV_TYPE_ROCKET\000"
  3587      54595045 
  3587      5F524F43 
  3587      4B455400 
  3588              	.LASF183:
- 3589 07b0 535F5068 		.ascii	"S_Phi\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 80
+
+
+ 3589 079e 535F5068 		.ascii	"S_Phi\000"
  3589      6900
  3590              	.LASF153:
- 3591 07b6 7475726E 		.ascii	"turn_rate_p\000"
+ 3591 07a4 7475726E 		.ascii	"turn_rate_p\000"
  3591      5F726174 
  3591      655F7000 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 80
-
-
  3592              	.LASF12:
- 3593 07c2 5F5F7569 		.ascii	"__uint64_t\000"
+ 3593 07b0 5F5F7569 		.ascii	"__uint64_t\000"
  3593      6E743634 
  3593      5F7400
  3594              	.LASF24:
- 3595 07cd 666C6F61 		.ascii	"float\000"
+ 3595 07bb 666C6F61 		.ascii	"float\000"
  3595      7400
  3596              	.LASF120:
- 3597 07d3 696E5F73 		.ascii	"in_sp2\000"
+ 3597 07c1 696E5F73 		.ascii	"in_sp2\000"
  3597      703200
  3598              	.LASF217:
- 3599 07da 53657276 		.ascii	"ServoISR_Start\000"
+ 3599 07c8 53657276 		.ascii	"ServoISR_Start\000"
  3599      6F495352 
  3599      5F537461 
  3599      727400
  3600              	.LASF93:
- 3601 07e9 4D41565F 		.ascii	"MAV_MODE_STABILIZE_DISARMED\000"
+ 3601 07d7 4D41565F 		.ascii	"MAV_MODE_STABILIZE_DISARMED\000"
  3601      4D4F4445 
  3601      5F535441 
  3601      42494C49 
  3601      5A455F44 
  3602              	.LASF55:
- 3603 0805 4D41565F 		.ascii	"MAV_AUTOPILOT_ARMAZILA\000"
+ 3603 07f3 4D41565F 		.ascii	"MAV_AUTOPILOT_ARMAZILA\000"
  3603      4155544F 
  3603      50494C4F 
  3603      545F4152 
  3603      4D415A49 
  3604              	.LASF165:
- 3605 081c 5073695F 		.ascii	"Psi_acc\000"
+ 3605 080a 5073695F 		.ascii	"Psi_acc\000"
  3605      61636300 
  3606              	.LASF195:
- 3607 0824 55415254 		.ascii	"UART_1_SpiUartWriteTxData\000"
+ 3607 0812 55415254 		.ascii	"UART_1_SpiUartWriteTxData\000"
  3607      5F315F53 
  3607      70695561 
  3607      72745772 
  3607      69746554 
  3608              	.LASF118:
- 3609 083e 696E5F63 		.ascii	"in_can\000"
+ 3609 082c 696E5F63 		.ascii	"in_can\000"
  3609      616E00
  3610              	.LASF211:
- 3611 0845 5461736B 		.ascii	"TaskTimer_Start\000"
+ 3611 0833 5461736B 		.ascii	"TaskTimer_Start\000"
  3611      54696D65 
  3611      725F5374 
  3611      61727400 
  3612              	.LASF44:
- 3613 0855 4D41565F 		.ascii	"MAV_AUTOPILOT_OPENPILOT\000"
+ 3613 0843 4D41565F 		.ascii	"MAV_AUTOPILOT_OPENPILOT\000"
  3613      4155544F 
  3613      50494C4F 
  3613      545F4F50 
  3613      454E5049 
  3614              	.LASF73:
- 3615 086d 4D41565F 		.ascii	"MAV_TYPE_SUBMARINE\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 81
+
+
+ 3615 085b 4D41565F 		.ascii	"MAV_TYPE_SUBMARINE\000"
  3615      54595045 
  3615      5F535542 
  3615      4D415249 
  3615      4E4500
  3616              	.LASF168:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 81
-
-
- 3617 0880 4D61675F 		.ascii	"Mag_y\000"
+ 3617 086e 4D61675F 		.ascii	"Mag_y\000"
  3617      7900
  3618              	.LASF18:
- 3619 0886 696E7433 		.ascii	"int32_t\000"
+ 3619 0874 696E7433 		.ascii	"int32_t\000"
  3619      325F7400 
  3620              	.LASF1:
- 3621 088e 756E7369 		.ascii	"unsigned char\000"
+ 3621 087c 756E7369 		.ascii	"unsigned char\000"
  3621      676E6564 
  3621      20636861 
  3621      7200
  3622              	.LASF119:
- 3623 089c 696E5F6D 		.ascii	"in_mod\000"
+ 3623 088a 696E5F6D 		.ascii	"in_mod\000"
  3623      6F6400
  3624              	.LASF149:
- 3625 08a3 4E61764C 		.ascii	"NavLightDim\000"
+ 3625 0891 4E61764C 		.ascii	"NavLightDim\000"
  3625      69676874 
  3625      44696D00 
  3626              	.LASF45:
- 3627 08af 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY\000"
+ 3627 089d 4D41565F 		.ascii	"MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY\000"
  3627      4155544F 
  3627      50494C4F 
  3627      545F4745 
  3627      4E455249 
  3628              	.LASF97:
- 3629 08d4 4D41565F 		.ascii	"MAV_MODE_TEST_ARMED\000"
+ 3629 08c2 4D41565F 		.ascii	"MAV_MODE_TEST_ARMED\000"
  3629      4D4F4445 
  3629      5F544553 
  3629      545F4152 
  3629      4D454400 
  3630              	.LASF81:
- 3631 08e8 4D41565F 		.ascii	"MAV_TYPE_VTOL_QUADROTOR\000"
+ 3631 08d6 4D41565F 		.ascii	"MAV_TYPE_VTOL_QUADROTOR\000"
  3631      54595045 
  3631      5F56544F 
  3631      4C5F5155 
  3631      4144524F 
  3632              	.LASF36:
- 3633 0900 6D616769 		.ascii	"magic\000"
+ 3633 08ee 6D616769 		.ascii	"magic\000"
  3633      6300
  3634              	.LASF177:
- 3635 0906 535F5468 		.ascii	"S_Theta\000"
+ 3635 08f4 535F5468 		.ascii	"S_Theta\000"
  3635      65746100 
  3636              	.LASF74:
- 3637 090e 4D41565F 		.ascii	"MAV_TYPE_HEXAROTOR\000"
+ 3637 08fc 4D41565F 		.ascii	"MAV_TYPE_HEXAROTOR\000"
  3637      54595045 
  3637      5F484558 
  3637      41524F54 
  3637      4F5200
  3638              	.LASF113:
- 3639 0921 696E5F6D 		.ascii	"in_mot\000"
+ 3639 090f 696E5F6D 		.ascii	"in_mot\000"
  3639      6F7400
  3640              	.LASF103:
- 3641 0928 4D41565F 		.ascii	"MAV_STATE_UNINIT\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 82
+
+
+ 3641 0916 4D41565F 		.ascii	"MAV_STATE_UNINIT\000"
  3641      53544154 
  3641      455F554E 
  3641      494E4954 
  3641      00
  3642              	.LASF41:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 82
-
-
- 3643 0939 4D41565F 		.ascii	"MAV_AUTOPILOT_PIXHAWK\000"
+ 3643 0927 4D41565F 		.ascii	"MAV_AUTOPILOT_PIXHAWK\000"
  3643      4155544F 
  3643      50494C4F 
  3643      545F5049 
  3643      58484157 
  3644              	.LASF37:
- 3645 094f 6D736769 		.ascii	"msgid\000"
+ 3645 093d 6D736769 		.ascii	"msgid\000"
  3645      6400
  3646              	.LASF181:
- 3647 0955 505F5068 		.ascii	"P_Phi\000"
+ 3647 0943 505F5068 		.ascii	"P_Phi\000"
  3647      6900
  3648              	.LASF124:
- 3649 095b 6F75745F 		.ascii	"out_ail2\000"
+ 3649 0949 6F75745F 		.ascii	"out_ail2\000"
  3649      61696C32 
  3649      00
  3650              	.LASF115:
- 3651 0964 696E5F65 		.ascii	"in_ele\000"
+ 3651 0952 696E5F65 		.ascii	"in_ele\000"
  3651      6C6500
  3652              	.LASF66:
- 3653 096b 4D41565F 		.ascii	"MAV_TYPE_ANTENNA_TRACKER\000"
+ 3653 0959 4D41565F 		.ascii	"MAV_TYPE_ANTENNA_TRACKER\000"
  3653      54595045 
  3653      5F414E54 
  3653      454E4E41 
  3653      5F545241 
  3654              	.LASF56:
- 3655 0984 4D41565F 		.ascii	"MAV_AUTOPILOT_AEROB\000"
+ 3655 0972 4D41565F 		.ascii	"MAV_AUTOPILOT_AEROB\000"
  3655      4155544F 
  3655      50494C4F 
  3655      545F4145 
  3655      524F4200 
  3656              	.LASF61:
- 3657 0998 4D41565F 		.ascii	"MAV_TYPE_GENERIC\000"
+ 3657 0986 4D41565F 		.ascii	"MAV_TYPE_GENERIC\000"
  3657      54595045 
  3657      5F47454E 
  3657      45524943 
  3657      00
  3658              	.LASF95:
- 3659 09a9 4D41565F 		.ascii	"MAV_MODE_AUTO_DISARMED\000"
+ 3659 0997 4D41565F 		.ascii	"MAV_MODE_AUTO_DISARMED\000"
  3659      4D4F4445 
  3659      5F415554 
  3659      4F5F4449 
  3659      5341524D 
  3660              	.LASF25:
- 3661 09c0 646F7562 		.ascii	"double\000"
+ 3661 09ae 646F7562 		.ascii	"double\000"
  3661      6C6500
  3662              	.LASF131:
- 3663 09c7 6F75745F 		.ascii	"out_ge2\000"
+ 3663 09b5 6F75745F 		.ascii	"out_ge2\000"
  3663      67653200 
  3664              	.LASF132:
- 3665 09cf 6F75745F 		.ascii	"out_ge3\000"
+ 3665 09bd 6F75745F 		.ascii	"out_ge3\000"
  3665      67653300 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 83
+
+
  3666              	.LASF75:
- 3667 09d7 4D41565F 		.ascii	"MAV_TYPE_OCTOROTOR\000"
+ 3667 09c5 4D41565F 		.ascii	"MAV_TYPE_OCTOROTOR\000"
  3667      54595045 
  3667      5F4F4354 
  3667      4F524F54 
  3667      4F5200
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 83
-
-
  3668              	.LASF218:
- 3669 09ea 5461736B 		.ascii	"TaskISR_Start\000"
+ 3669 09d8 5461736B 		.ascii	"TaskISR_Start\000"
  3669      4953525F 
  3669      53746172 
  3669      7400
  3670              	.LASF72:
- 3671 09f8 4D41565F 		.ascii	"MAV_TYPE_SURFACE_BOAT\000"
+ 3671 09e6 4D41565F 		.ascii	"MAV_TYPE_SURFACE_BOAT\000"
  3671      54595045 
  3671      5F535552 
  3671      46414345 
  3671      5F424F41 
  3672              	.LASF29:
- 3673 0a0e 6C6F6E67 		.ascii	"long double\000"
+ 3673 09fc 6C6F6E67 		.ascii	"long double\000"
  3673      20646F75 
  3673      626C6500 
  3674              	.LASF27:
- 3675 0a1a 63686172 		.ascii	"char\000"
+ 3675 0a08 63686172 		.ascii	"char\000"
  3675      00
  3676              	.LASF69:
- 3677 0a1f 4D41565F 		.ascii	"MAV_TYPE_FREE_BALLOON\000"
+ 3677 0a0d 4D41565F 		.ascii	"MAV_TYPE_FREE_BALLOON\000"
  3677      54595045 
  3677      5F465245 
  3677      455F4241 
  3677      4C4C4F4F 
  3678              	.LASF105:
- 3679 0a35 4D41565F 		.ascii	"MAV_STATE_CALIBRATING\000"
+ 3679 0a23 4D41565F 		.ascii	"MAV_STATE_CALIBRATING\000"
  3679      53544154 
  3679      455F4341 
  3679      4C494252 
  3679      4154494E 
  3680              	.LASF219:
- 3681 0a4b 426F6F74 		.ascii	"BootISR_Start\000"
+ 3681 0a39 426F6F74 		.ascii	"BootISR_Start\000"
  3681      4953525F 
  3681      53746172 
  3681      7400
  3682              	.LASF135:
- 3683 0a59 55415254 		.ascii	"UART_1_UartPutNum\000"
+ 3683 0a47 55415254 		.ascii	"UART_1_UartPutNum\000"
  3683      5F315F55 
  3683      61727450 
  3683      75744E75 
  3683      6D00
  3684              	.LASF108:
- 3685 0a6b 4D41565F 		.ascii	"MAV_STATE_CRITICAL\000"
+ 3685 0a59 4D41565F 		.ascii	"MAV_STATE_CRITICAL\000"
  3685      53544154 
  3685      455F4352 
  3685      49544943 
  3685      414C00
  3686              	.LASF5:
- 3687 0a7e 5F5F7569 		.ascii	"__uint16_t\000"
+ 3687 0a6c 5F5F7569 		.ascii	"__uint16_t\000"
  3687      6E743136 
  3687      5F7400
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 84
+
+
  3688              	.LASF32:
- 3689 0a89 6D61766C 		.ascii	"mavlink_system_t\000"
+ 3689 0a77 6D61766C 		.ascii	"mavlink_system_t\000"
  3689      696E6B5F 
  3689      73797374 
  3689      656D5F74 
  3689      00
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 84
-
-
  3690              	.LASF162:
- 3691 0a9a 54686574 		.ascii	"Theta\000"
+ 3691 0a88 54686574 		.ascii	"Theta\000"
  3691      6100
  3692              	.LASF54:
- 3693 0aa0 4D41565F 		.ascii	"MAV_AUTOPILOT_AUTOQUAD\000"
+ 3693 0a8e 4D41565F 		.ascii	"MAV_AUTOPILOT_AUTOQUAD\000"
  3693      4155544F 
  3693      50494C4F 
  3693      545F4155 
  3693      544F5155 
  3694              	.LASF7:
- 3695 0ab7 5F5F696E 		.ascii	"__int32_t\000"
+ 3695 0aa5 5F5F696E 		.ascii	"__int32_t\000"
  3695      7433325F 
  3695      7400
  3696              	.LASF26:
- 3697 0ac1 63686172 		.ascii	"char8\000"
+ 3697 0aaf 63686172 		.ascii	"char8\000"
  3697      3800
  3698              	.LASF189:
- 3699 0ac7 73797374 		.ascii	"system_mode\000"
+ 3699 0ab5 73797374 		.ascii	"system_mode\000"
  3699      656D5F6D 
  3699      6F646500 
  3700              	.LASF187:
- 3701 0ad3 73797374 		.ascii	"system_type\000"
+ 3701 0ac1 73797374 		.ascii	"system_type\000"
  3701      656D5F74 
  3701      79706500 
  3702              	.LASF161:
- 3703 0adf 6D61675F 		.ascii	"mag_z_g\000"
+ 3703 0acd 6D61675F 		.ascii	"mag_z_g\000"
  3703      7A5F6700 
  3704              	.LASF212:
- 3705 0ae7 4E61764C 		.ascii	"NavLightPWM_Start\000"
+ 3705 0ad5 4E61764C 		.ascii	"NavLightPWM_Start\000"
  3705      69676874 
  3705      50574D5F 
  3705      53746172 
  3705      7400
  3706              	.LASF186:
- 3707 0af9 6D61766C 		.ascii	"mavlink_system\000"
+ 3707 0ae7 6D61766C 		.ascii	"mavlink_system\000"
  3707      696E6B5F 
  3707      73797374 
  3707      656D00
  3708              	.LASF52:
- 3709 0b08 4D41565F 		.ascii	"MAV_AUTOPILOT_PX4\000"
+ 3709 0af6 4D41565F 		.ascii	"MAV_AUTOPILOT_PX4\000"
  3709      4155544F 
  3709      50494C4F 
  3709      545F5058 
  3709      3400
  3710              	.LASF173:
- 3711 0b1a 525F616E 		.ascii	"R_angle\000"
+ 3711 0b08 525F616E 		.ascii	"R_angle\000"
  3711      676C6500 
  3712              	.LASF170:
- 3713 0b22 636E745F 		.ascii	"cnt_baro\000"
+ 3713 0b10 636E745F 		.ascii	"cnt_baro\000"
  3713      6261726F 
  3713      00
- 3714              	.LASF128:
- 3715 0b2b 6F75745F 		.ascii	"out_fl1\000"
- 3715      666C3100 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 85
+
+
+ 3714              	.LASF88:
+ 3715 0b19 4D41565F 		.ascii	"MAV_TYPE_ENUM_END\000"
+ 3715      54595045 
+ 3715      5F454E55 
+ 3715      4D5F454E 
+ 3715      4400
  3716              	.LASF129:
- 3717 0b33 6F75745F 		.ascii	"out_fl2\000"
+ 3717 0b2b 6F75745F 		.ascii	"out_fl2\000"
  3717      666C3200 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 85
-
-
  3718              	.LASF89:
- 3719 0b3b 4D41565F 		.ascii	"MAV_MODE\000"
+ 3719 0b33 4D41565F 		.ascii	"MAV_MODE\000"
  3719      4D4F4445 
  3719      00
  3720              	.LASF60:
- 3721 0b44 4D41565F 		.ascii	"MAV_TYPE\000"
+ 3721 0b3c 4D41565F 		.ascii	"MAV_TYPE\000"
  3721      54595045 
  3721      00
  3722              	.LASF142:
- 3723 0b4d 73616D70 		.ascii	"sample_time\000"
+ 3723 0b45 73616D70 		.ascii	"sample_time\000"
  3723      6C655F74 
  3723      696D6500 
  3724              	.LASF166:
- 3725 0b59 4D61675F 		.ascii	"Mag_Heading\000"
+ 3725 0b51 4D61675F 		.ascii	"Mag_Heading\000"
  3725      48656164 
  3725      696E6700 
  3726              	.LASF205:
- 3727 0b65 6D61675F 		.ascii	"mag_read\000"
+ 3727 0b5d 6D61675F 		.ascii	"mag_read\000"
  3727      72656164 
  3727      00
  3728              	.LASF19:
- 3729 0b6e 75696E74 		.ascii	"uint32_t\000"
+ 3729 0b66 75696E74 		.ascii	"uint32_t\000"
  3729      33325F74 
  3729      00
  3730              	.LASF92:
- 3731 0b77 4D41565F 		.ascii	"MAV_MODE_TEST_DISARMED\000"
+ 3731 0b6f 4D41565F 		.ascii	"MAV_MODE_TEST_DISARMED\000"
  3731      4D4F4445 
  3731      5F544553 
  3731      545F4449 
  3731      5341524D 
  3732              	.LASF50:
- 3733 0b8e 4D41565F 		.ascii	"MAV_AUTOPILOT_UDB\000"
+ 3733 0b86 4D41565F 		.ascii	"MAV_AUTOPILOT_UDB\000"
  3733      4155544F 
  3733      50494C4F 
  3733      545F5544 
  3733      4200
  3734              	.LASF107:
- 3735 0ba0 4D41565F 		.ascii	"MAV_STATE_ACTIVE\000"
+ 3735 0b98 4D41565F 		.ascii	"MAV_STATE_ACTIVE\000"
  3735      53544154 
  3735      455F4143 
  3735      54495645 
  3735      00
  3736              	.LASF80:
- 3737 0bb1 4D41565F 		.ascii	"MAV_TYPE_VTOL_DUOROTOR\000"
+ 3737 0ba9 4D41565F 		.ascii	"MAV_TYPE_VTOL_DUOROTOR\000"
  3737      54595045 
  3737      5F56544F 
  3737      4C5F4455 
  3737      4F524F54 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 86
+
+
  3738              	.LASF224:
- 3739 0bc8 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3739 0bc0 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
  3739      4320342E 
  3739      382E3420 
  3739      32303134 
  3739      30353236 
- 3740 0bfb 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 3740 0bf3 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
  3740      20726576 
  3740      6973696F 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 86
-
-
  3740      6E203231 
  3740      31333538 
- 3741 0c2e 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 3741 0c26 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
  3741      66756E63 
  3741      74696F6E 
  3741      2D736563 
  3741      74696F6E 
  3742              	.LASF15:
- 3743 0c57 75696E74 		.ascii	"uint8_t\000"
+ 3743 0c4f 75696E74 		.ascii	"uint8_t\000"
  3743      385F7400 
  3744              	.LASF193:
- 3745 0c5f 636E745F 		.ascii	"cnt_ML_ATTITUDE_send\000"
+ 3745 0c57 636E745F 		.ascii	"cnt_ML_ATTITUDE_send\000"
  3745      4D4C5F41 
  3745      54544954 
  3745      5544455F 
  3745      73656E64 
  3746              	.LASF110:
- 3747 0c74 4D41565F 		.ascii	"MAV_STATE_POWEROFF\000"
+ 3747 0c6c 4D41565F 		.ascii	"MAV_STATE_POWEROFF\000"
  3747      53544154 
  3747      455F504F 
  3747      5745524F 
  3747      464600
  3748              	.LASF23:
- 3749 0c87 696E7431 		.ascii	"int16\000"
+ 3749 0c7f 696E7431 		.ascii	"int16\000"
  3749      3600
  3750              	.LASF102:
- 3751 0c8d 4D41565F 		.ascii	"MAV_STATE\000"
+ 3751 0c85 4D41565F 		.ascii	"MAV_STATE\000"
  3751      53544154 
  3751      4500
  3752              	.LASF137:
- 3753 0c97 73706565 		.ascii	"speed\000"
+ 3753 0c8f 73706565 		.ascii	"speed\000"
  3753      6400
  3754              	.LASF30:
- 3755 0c9d 73797369 		.ascii	"sysid\000"
+ 3755 0c95 73797369 		.ascii	"sysid\000"
  3755      6400
  3756              	.LASF96:
- 3757 0ca3 4D41565F 		.ascii	"MAV_MODE_MANUAL_ARMED\000"
+ 3757 0c9b 4D41565F 		.ascii	"MAV_MODE_MANUAL_ARMED\000"
  3757      4D4F4445 
  3757      5F4D414E 
  3757      55414C5F 
  3757      41524D45 
  3758              	.LASF175:
- 3759 0cb9 505F5468 		.ascii	"P_Theta\000"
+ 3759 0cb1 505F5468 		.ascii	"P_Theta\000"
  3759      65746100 
  3760              	.LASF127:
- 3761 0cc1 6F75745F 		.ascii	"out_rud\000"
+ 3761 0cb9 6F75745F 		.ascii	"out_rud\000"
  3761      72756400 
  3762              	.LASF145:
- 3763 0cc9 6374726C 		.ascii	"ctrl_out\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cc5MUGwG.s 			page 87
+
+
+ 3763 0cc1 6374726C 		.ascii	"ctrl_out\000"
  3763      5F6F7574 
  3763      00
  3764              	.LASF182:
- 3765 0cd2 5068695F 		.ascii	"Phi_temp\000"
+ 3765 0cca 5068695F 		.ascii	"Phi_temp\000"
  3765      74656D70 
  3765      00
  3766              	.LASF188:
- 3767 0cdb 6175746F 		.ascii	"autopilot_type\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccMT9V1c.s 			page 87
-
-
+ 3767 0cd3 6175746F 		.ascii	"autopilot_type\000"
  3767      70696C6F 
  3767      745F7479 
  3767      706500
  3768              	.LASF116:
- 3769 0cea 696E5F72 		.ascii	"in_rud\000"
+ 3769 0ce2 696E5F72 		.ascii	"in_rud\000"
  3769      756400
  3770              	.LASF48:
- 3771 0cf1 4D41565F 		.ascii	"MAV_AUTOPILOT_INVALID\000"
+ 3771 0ce9 4D41565F 		.ascii	"MAV_AUTOPILOT_INVALID\000"
  3771      4155544F 
  3771      50494C4F 
  3771      545F494E 
  3771      56414C49 
  3772              	.LASF203:
- 3773 0d07 6779726F 		.ascii	"gyro_read\000"
+ 3773 0cff 6779726F 		.ascii	"gyro_read\000"
  3773      5F726561 
  3773      6400
  3774              	.LASF138:
- 3775 0d11 6D61696E 		.ascii	"main\000"
+ 3775 0d09 6D61696E 		.ascii	"main\000"
  3775      00
  3776              	.LASF201:
- 3777 0d16 5374726F 		.ascii	"Strobes_Write\000"
+ 3777 0d0e 5374726F 		.ascii	"Strobes_Write\000"
  3777      6265735F 
  3777      57726974 
  3777      6500
  3778              	.LASF197:
- 3779 0d24 4144435F 		.ascii	"ADC_GetResult16\000"
+ 3779 0d1c 4144435F 		.ascii	"ADC_GetResult16\000"
  3779      47657452 
  3779      6573756C 
  3779      74313600 
  3780              	.LASF146:
- 3781 0d34 666C6167 		.ascii	"flag_LightsEnabled\000"
+ 3781 0d2c 666C6167 		.ascii	"flag_LightsEnabled\000"
  3781      5F4C6967 
  3781      68747345 
  3781      6E61626C 
  3781      656400
  3782              	.LASF43:
- 3783 0d47 4D41565F 		.ascii	"MAV_AUTOPILOT_ARDUPILOTMEGA\000"
+ 3783 0d3f 4D41565F 		.ascii	"MAV_AUTOPILOT_ARDUPILOTMEGA\000"
  3783      4155544F 
  3783      50494C4F 
  3783      545F4152 

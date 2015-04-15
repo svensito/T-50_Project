@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
   30:.\Generated_Source\PSoC4/NavLightPWM.c **** *
   31:.\Generated_Source\PSoC4/NavLightPWM.c **** * Parameters:
   32:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/NavLightPWM.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
   85:.\Generated_Source\PSoC4/NavLightPWM.c ****         #endif /* (NavLightPWM_CY_TCPWM_V2 && NavLightPWM_TIMER_UPDOWN_CNT_USED && !NavLightPWM_CY_
   86:.\Generated_Source\PSoC4/NavLightPWM.c ****     #endif  /* (NavLightPWM__TIMER == NavLightPWM_CONFIG) */
   87:.\Generated_Source\PSoC4/NavLightPWM.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 3
 
 
   88:.\Generated_Source\PSoC4/NavLightPWM.c ****     #if (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG)
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  133:.\Generated_Source\PSoC4/NavLightPWM.c ****                 NavLightPWM_TRIG_CONTROL2_REG = NavLightPWM_PWM_MODE_RIGHT;
  134:.\Generated_Source\PSoC4/NavLightPWM.c ****             #endif  /* ( NavLightPWM_PWM_RIGHT == NavLightPWM_PWM_ALIGN) */
  135:.\Generated_Source\PSoC4/NavLightPWM.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 4
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 4
 
 
  136:.\Generated_Source\PSoC4/NavLightPWM.c ****             #if (NavLightPWM__CENTER == NavLightPWM_PWM_ALIGN)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  190:.\Generated_Source\PSoC4/NavLightPWM.c ****     #endif /* (NavLightPWM__PWM_SEL == NavLightPWM_CONFIG) */
  191:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  192:.\Generated_Source\PSoC4/NavLightPWM.c ****     #if (NavLightPWM__TIMER == NavLightPWM_CONFIG)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 5
 
 
  193:.\Generated_Source\PSoC4/NavLightPWM.c ****         #if (0u == NavLightPWM_TC_START_SIGNAL_PRESENT)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  247:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
  248:.\Generated_Source\PSoC4/NavLightPWM.c **** *
  249:.\Generated_Source\PSoC4/NavLightPWM.c **** *******************************************************************************/
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 6
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 6
 
 
  250:.\Generated_Source\PSoC4/NavLightPWM.c **** void NavLightPWM_Stop(void)
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  304:.\Generated_Source\PSoC4/NavLightPWM.c **** * Summary:
  305:.\Generated_Source\PSoC4/NavLightPWM.c **** *  Sets the the Quadrature Decoder to one of the 3 supported modes.
  306:.\Generated_Source\PSoC4/NavLightPWM.c **** *  Its functionality is only applicable to Quadrature Decoder operation.
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 7
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 7
 
 
  307:.\Generated_Source\PSoC4/NavLightPWM.c **** *
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  361:.\Generated_Source\PSoC4/NavLightPWM.c ****     enableInterrupts = CyEnterCriticalSection();
  362:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  363:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_CONTROL_REG &= (uint32)~NavLightPWM_PRESCALER_MASK;
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 8
 
 
  364:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_CONTROL_REG |= prescaler;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  418:.\Generated_Source\PSoC4/NavLightPWM.c **** *     - CC_MATCH_SET        - Set on comparison match
  419:.\Generated_Source\PSoC4/NavLightPWM.c **** *     - CC_MATCH_CLEAR      - Clear on comparison match
  420:.\Generated_Source\PSoC4/NavLightPWM.c **** *     - CC_MATCH_INVERT     - Invert on comparison match
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 9
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 9
 
 
  421:.\Generated_Source\PSoC4/NavLightPWM.c **** *     - CC_MATCH_NO_CHANGE  - No change on comparison match
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  475:.\Generated_Source\PSoC4/NavLightPWM.c **** * Return:
  476:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
  477:.\Generated_Source\PSoC4/NavLightPWM.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 10
 
 
  478:.\Generated_Source\PSoC4/NavLightPWM.c **** *******************************************************************************/
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  532:.\Generated_Source\PSoC4/NavLightPWM.c **** *  Writes the dead time control value.  This value delays the rising edge of
  533:.\Generated_Source\PSoC4/NavLightPWM.c **** *  both the line and line_n signals the designated number of cycles resulting
  534:.\Generated_Source\PSoC4/NavLightPWM.c **** *  in both signals being inactive for that many cycles.  This functionality is
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 11
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 11
 
 
  535:.\Generated_Source\PSoC4/NavLightPWM.c **** *  only applicable to the PWM in the dead time mode.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  589:.\Generated_Source\PSoC4/NavLightPWM.c **** }
  590:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  591:.\Generated_Source\PSoC4/NavLightPWM.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 12
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 12
 
 
  592:.\Generated_Source\PSoC4/NavLightPWM.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  614:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  615:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
  616:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_ReadCounter
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 13
 
 
  617:.\Generated_Source\PSoC4/NavLightPWM.c **** ********************************************************************************
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  671:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
  672:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_WritePeriod
  673:.\Generated_Source\PSoC4/NavLightPWM.c **** ********************************************************************************
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 14
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 14
 
 
  674:.\Generated_Source\PSoC4/NavLightPWM.c **** *
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  728:.\Generated_Source\PSoC4/NavLightPWM.c **** *
  729:.\Generated_Source\PSoC4/NavLightPWM.c **** * Return:
  730:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 15
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 15
 
 
  731:.\Generated_Source\PSoC4/NavLightPWM.c **** *
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  785:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  786:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
  787:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_SetPeriodSwap
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 16
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 16
 
 
  788:.\Generated_Source\PSoC4/NavLightPWM.c **** ********************************************************************************
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  842:.\Generated_Source\PSoC4/NavLightPWM.c ****         currentMode = ((NavLightPWM_CONTROL_REG & NavLightPWM_UPDOWN_MASK) >> NavLightPWM_UPDOWN_SH
  843:.\Generated_Source\PSoC4/NavLightPWM.c **** 
  844:.\Generated_Source\PSoC4/NavLightPWM.c ****         if (((uint32)NavLightPWM__COUNT_DOWN == currentMode) && (0xFFFFu != compare))
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 17
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 17
 
 
  845:.\Generated_Source\PSoC4/NavLightPWM.c ****         {
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  899:.\Generated_Source\PSoC4/NavLightPWM.c ****         {
  900:.\Generated_Source\PSoC4/NavLightPWM.c ****         }
  901:.\Generated_Source\PSoC4/NavLightPWM.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 18
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 18
 
 
  902:.\Generated_Source\PSoC4/NavLightPWM.c ****         return (regVal & NavLightPWM_16BIT_MASK);
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  956:.\Generated_Source\PSoC4/NavLightPWM.c **** *  Capture or in Quadrature Decoder modes.
  957:.\Generated_Source\PSoC4/NavLightPWM.c **** *
  958:.\Generated_Source\PSoC4/NavLightPWM.c **** * Parameters:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 19
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 19
 
 
  959:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1013:.\Generated_Source\PSoC4/NavLightPWM.c ****     return (NavLightPWM_COMP_CAP_REG & NavLightPWM_16BIT_MASK);
 1014:.\Generated_Source\PSoC4/NavLightPWM.c **** }
 1015:.\Generated_Source\PSoC4/NavLightPWM.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 20
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 20
 
 
 1016:.\Generated_Source\PSoC4/NavLightPWM.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1070:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1071:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1072:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 21
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 21
 
 
 1073:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_SetReloadMode
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1127:.\Generated_Source\PSoC4/NavLightPWM.c ****     uint8 enableInterrupts;
 1128:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1129:.\Generated_Source\PSoC4/NavLightPWM.c ****     enableInterrupts = CyEnterCriticalSection();
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 22
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 22
 
 
 1130:.\Generated_Source\PSoC4/NavLightPWM.c **** 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1184:.\Generated_Source\PSoC4/NavLightPWM.c **** *     - NavLightPWM_TRIG_BOTH      - Both rising and falling edge
 1185:.\Generated_Source\PSoC4/NavLightPWM.c **** *
 1186:.\Generated_Source\PSoC4/NavLightPWM.c **** * Return:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 23
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 23
 
 
 1187:.\Generated_Source\PSoC4/NavLightPWM.c **** *  None
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1241:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1242:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
 1243:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_ReadStatus
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 24
 
 
 1244:.\Generated_Source\PSoC4/NavLightPWM.c **** ********************************************************************************
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
   74              	.LBB16:
   75              	.LBB17:
  689:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_PERIOD_REG = (period & NavLightPWM_16BIT_MASK);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 25
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 25
 
 
   76              		.loc 1 689 0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  125 0008 0421     		mov	r1, #4
  126 000a 1A68     		ldr	r2, [r3]
  259:.\Generated_Source\PSoC4/NavLightPWM.c **** }
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 26
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 26
 
 
  127              		.loc 1 259 0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  172 0010 1A60     		str	r2, [r3]
  294:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_CONTROL_REG |= mode;
  173              		.loc 1 294 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 27
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 27
 
 
  174 0012 1A68     		ldr	r2, [r3]
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  327:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_CONTROL_REG |= qdMode;
  220              		.loc 1 327 0
  221 0012 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 28
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 28
 
 
  222 0014 1443     		orr	r4, r2
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  267              		.loc 1 364 0
  268 0012 1A68     		ldr	r2, [r3]
  269 0014 1443     		orr	r4, r2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 29
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 29
 
 
  270              	.LVL16:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  315 0012 0121     		mov	r1, #1
  316 0014 1A68     		ldr	r2, [r3]
  317 0016 0C40     		and	r4, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 30
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 30
 
 
  318              	.LVL20:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  365              		.align	1
  366              		.global	NavLightPWM_SetPWMSyncKill
  367              		.code	16
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 31
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 31
 
 
  368              		.thumb_func
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  413              		.section	.text.NavLightPWM_SetPWMStopOnKill,"ax",%progbits
  414              		.align	1
  415              		.global	NavLightPWM_SetPWMStopOnKill
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 32
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 32
 
 
  416              		.code	16
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  461              		.size	NavLightPWM_SetPWMStopOnKill, .-NavLightPWM_SetPWMStopOnKill
  462              		.section	.text.NavLightPWM_SetPWMDeadTime,"ax",%progbits
  463              		.align	1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 33
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 33
 
 
  464              		.global	NavLightPWM_SetPWMDeadTime
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  509              	.LFE11:
  510              		.size	NavLightPWM_SetPWMDeadTime, .-NavLightPWM_SetPWMDeadTime
  511              		.section	.text.NavLightPWM_SetPWMInvert,"ax",%progbits
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 34
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 34
 
 
  512              		.align	1
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  557              		.size	NavLightPWM_SetPWMInvert, .-NavLightPWM_SetPWMInvert
  558              		.section	.text.NavLightPWM_WriteCounter,"ax",%progbits
  559              		.align	1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 35
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 35
 
 
  560              		.global	NavLightPWM_WriteCounter
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  606 0008 88010540 		.word	1074069896
  607              		.cfi_endproc
  608              	.LFE14:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 36
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 36
 
 
  609              		.size	NavLightPWM_ReadCounter, .-NavLightPWM_ReadCounter
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  654              		.cfi_endproc
  655              	.LFE15:
  656              		.size	NavLightPWM_SetCounterMode, .-NavLightPWM_SetCounterMode
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 37
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 37
 
 
  657              		.section	.text.NavLightPWM_WritePeriod,"ax",%progbits
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  703              		.align	2
  704              	.L47:
  705 0008 94010540 		.word	1074069908
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 38
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 38
 
 
  706              		.cfi_endproc
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  751              	.L50:
  752 0020 80010540 		.word	1074069888
  753              		.cfi_endproc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 39
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 39
 
 
  754              	.LFE18:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  800 0006 7047     		bx	lr
  801              	.L57:
  802              		.align	2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 40
 
 
  803              	.L56:
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  848              		.loc 1 817 0
  849 0022 10BD     		pop	{r4, pc}
  850              	.L60:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 41
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 41
 
 
  851              		.align	2
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  898 0002 1868     		ldr	r0, [r3]
  899 0004 80B2     		uxth	r0, r0
  906:.\Generated_Source\PSoC4/NavLightPWM.c **** }
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 42
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 42
 
 
  900              		.loc 1 906 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  948              		@ sp needed
  991:.\Generated_Source\PSoC4/NavLightPWM.c ****         return (NavLightPWM_COMP_CAP_BUF_REG & NavLightPWM_16BIT_MASK);
  949              		.loc 1 991 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 43
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 43
 
 
  950 0002 1868     		ldr	r0, [r3]
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1034:.\Generated_Source\PSoC4/NavLightPWM.c ****     return (NavLightPWM_COMP_CAP_BUF_REG & NavLightPWM_16BIT_MASK);
  997              		.loc 1 1034 0
  998 0000 014B     		ldr	r3, .L77
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 44
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 44
 
 
 1035:.\Generated_Source\PSoC4/NavLightPWM.c **** }
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1043 0012 1A68     		ldr	r2, [r3]
  1044 0014 1443     		orr	r4, r2
  1045              	.LVL64:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 45
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 45
 
 
  1046 0016 1C60     		str	r4, [r3]
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1102:.\Generated_Source\PSoC4/NavLightPWM.c **** }
  1091              		.loc 1 1102 0
  1092              		@ sp needed
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 46
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 46
 
 
 1099:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_TRIG_CONTROL1_REG |= ((uint32)(triggerMode << NavLightPWM_RELOAD_SHIFT));
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1132:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_TRIG_CONTROL1_REG |= ((uint32)(triggerMode << NavLightPWM_START_SHIFT));
  1138              		.loc 1 1132 0
  1139 0014 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 47
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 47
 
 
 1135:.\Generated_Source\PSoC4/NavLightPWM.c **** }
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1163:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_TRIG_CONTROL1_REG &= (uint32)~NavLightPWM_STOP_MASK;
  1185              		.loc 1 1163 0
  1186 0010 8A43     		bic	r2, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 48
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 48
 
 
  1187 0012 1A60     		str	r2, [r3]
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1231              		.loc 1 1197 0
  1232 000e A400     		lsl	r4, r4, #2
  1233              	.LVL80:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 49
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 49
 
 
 1196:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_TRIG_CONTROL1_REG &= (uint32)~NavLightPWM_COUNT_MASK;
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1236:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_COMMAND_REG = ((uint32)(mask << command));
  1279              		.loc 1 1236 0
  1280 000a 034B     		ldr	r3, .L95
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 50
 
 
  1281 000c A540     		lsl	r5, r5, r4
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  188:.\Generated_Source\PSoC4/NavLightPWM.c ****             NavLightPWM_TriggerCommand(NavLightPWM_MASK, NavLightPWM_CMD_START);
  1327              		.loc 1 188 0
  1328 0014 201C     		mov	r0, r4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 51
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 51
 
 
  1329 0016 1821     		mov	r1, #24
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1376 0018 00000000 		.word	.LANCHOR0
  1377              		.cfi_endproc
  1378              	.LFE2:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 52
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 52
 
 
  1379              		.size	NavLightPWM_Start, .-NavLightPWM_Start
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1287:.\Generated_Source\PSoC4/NavLightPWM.c **** }
  1425              		.loc 1 1287 0
  1426              		@ sp needed
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 53
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 53
 
 
 1286:.\Generated_Source\PSoC4/NavLightPWM.c ****     NavLightPWM_INTERRUPT_MASK_REG =  interruptMask;
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1456              	.L113:
  1457 0006 C046     		.align	2
  1458              	.L112:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 54
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 54
 
 
  1459 0008 BC010540 		.word	1074069948
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1489              		.align	1
  1490              		.global	NavLightPWM_ClearInterrupt
  1491              		.code	16
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 55
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 55
 
 
  1492              		.thumb_func
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
 1357:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1358:.\Generated_Source\PSoC4/NavLightPWM.c **** 
 1359:.\Generated_Source\PSoC4/NavLightPWM.c **** /*******************************************************************************
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 56
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 56
 
 
 1360:.\Generated_Source\PSoC4/NavLightPWM.c **** * Function Name: NavLightPWM_SetInterrupt
@@ -3358,13 +3358,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1555 0006 00000000 		.4byte	.Ldebug_abbrev0
  1556 000a 04       		.byte	0x4
  1557 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 57
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 57
 
 
- 1558 000c 2B040000 		.4byte	.LASF76
+ 1558 000c 23040000 		.4byte	.LASF76
  1559 0010 01       		.byte	0x1
- 1560 0011 FE040000 		.4byte	.LASF77
- 1561 0015 26010000 		.4byte	.LASF78
+ 1560 0011 F6040000 		.4byte	.LASF77
+ 1561 0015 2F030000 		.4byte	.LASF78
  1562 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
  1563 001d 00000000 		.4byte	0
  1564 0021 00000000 		.4byte	.Ldebug_line0
@@ -3375,23 +3375,23 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1569 002c 02       		.uleb128 0x2
  1570 002d 01       		.byte	0x1
  1571 002e 08       		.byte	0x8
- 1572 002f BA040000 		.4byte	.LASF1
+ 1572 002f B2040000 		.4byte	.LASF1
  1573 0033 02       		.uleb128 0x2
  1574 0034 02       		.byte	0x2
  1575 0035 05       		.byte	0x5
- 1576 0036 F4040000 		.4byte	.LASF2
+ 1576 0036 EC040000 		.4byte	.LASF2
  1577 003a 02       		.uleb128 0x2
  1578 003b 02       		.byte	0x2
  1579 003c 07       		.byte	0x7
- 1580 003d 05030000 		.4byte	.LASF3
+ 1580 003d B3020000 		.4byte	.LASF3
  1581 0041 02       		.uleb128 0x2
  1582 0042 04       		.byte	0x4
  1583 0043 05       		.byte	0x5
- 1584 0044 B6010000 		.4byte	.LASF4
+ 1584 0044 64010000 		.4byte	.LASF4
  1585 0048 02       		.uleb128 0x2
  1586 0049 04       		.byte	0x4
  1587 004a 07       		.byte	0x7
- 1588 004b A5020000 		.4byte	.LASF5
+ 1588 004b 53020000 		.4byte	.LASF5
  1589 004f 02       		.uleb128 0x2
  1590 0050 08       		.byte	0x8
  1591 0051 05       		.byte	0x5
@@ -3407,34 +3407,34 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1601 0064 02       		.uleb128 0x2
  1602 0065 04       		.byte	0x4
  1603 0066 07       		.byte	0x7
- 1604 0067 74020000 		.4byte	.LASF8
+ 1604 0067 22020000 		.4byte	.LASF8
  1605 006b 04       		.uleb128 0x4
- 1606 006c D9010000 		.4byte	.LASF9
+ 1606 006c 87010000 		.4byte	.LASF9
  1607 0070 02       		.byte	0x2
  1608 0071 A1       		.byte	0xa1
  1609 0072 2C000000 		.4byte	0x2c
  1610 0076 04       		.uleb128 0x4
- 1611 0077 FD010000 		.4byte	.LASF10
+ 1611 0077 AB010000 		.4byte	.LASF10
  1612 007b 02       		.byte	0x2
  1613 007c A3       		.byte	0xa3
  1614 007d 48000000 		.4byte	0x48
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 58
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 58
 
 
  1615 0081 02       		.uleb128 0x2
  1616 0082 04       		.byte	0x4
  1617 0083 04       		.byte	0x4
- 1618 0084 1B040000 		.4byte	.LASF11
+ 1618 0084 13040000 		.4byte	.LASF11
  1619 0088 02       		.uleb128 0x2
  1620 0089 08       		.byte	0x8
  1621 008a 04       		.byte	0x4
- 1622 008b DF010000 		.4byte	.LASF12
+ 1622 008b 8D010000 		.4byte	.LASF12
  1623 008f 02       		.uleb128 0x2
  1624 0090 01       		.byte	0x1
  1625 0091 08       		.byte	0x8
- 1626 0092 8A050000 		.4byte	.LASF13
+ 1626 0092 82050000 		.4byte	.LASF13
  1627 0096 05       		.uleb128 0x5
- 1628 0097 9B030000 		.4byte	.LASF14
+ 1628 0097 93030000 		.4byte	.LASF14
  1629 009b 02       		.byte	0x2
  1630 009c 4D01     		.2byte	0x14d
  1631 009e A2000000 		.4byte	0xa2
@@ -3443,7 +3443,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1634 00a7 02       		.uleb128 0x2
  1635 00a8 04       		.byte	0x4
  1636 00a9 07       		.byte	0x7
- 1637 00aa AD030000 		.4byte	.LASF15
+ 1637 00aa A5030000 		.4byte	.LASF15
  1638 00ae 07       		.uleb128 0x7
  1639 00af 34000000 		.4byte	.LASF16
  1640 00b3 01       		.byte	0x1
@@ -3457,13 +3457,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1648 00c3 76000000 		.4byte	0x76
  1649 00c7 00       		.byte	0
  1650 00c8 07       		.uleb128 0x7
- 1651 00c9 C0020000 		.4byte	.LASF17
+ 1651 00c9 6E020000 		.4byte	.LASF17
  1652 00cd 01       		.byte	0x1
  1653 00ce 0405     		.2byte	0x504
  1654 00d0 01       		.byte	0x1
  1655 00d1 E2000000 		.4byte	0xe2
  1656 00d5 08       		.uleb128 0x8
- 1657 00d6 3E050000 		.4byte	.LASF19
+ 1657 00d6 36050000 		.4byte	.LASF19
  1658 00da 01       		.byte	0x1
  1659 00db 0405     		.2byte	0x504
  1660 00dd 76000000 		.4byte	0x76
@@ -3478,25 +3478,25 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1669 00f0 7A000000 		.4byte	.LASF21
  1670 00f4 01       		.byte	0x1
  1671 00f5 AF02     		.2byte	0x2af
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 59
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 59
 
 
  1672 00f7 76000000 		.4byte	0x76
  1673 00fb 00       		.byte	0
  1674 00fc 07       		.uleb128 0x7
- 1675 00fd 40060000 		.4byte	.LASF22
+ 1675 00fd 38060000 		.4byte	.LASF22
  1676 0101 01       		.byte	0x1
  1677 0102 4303     		.2byte	0x343
  1678 0104 01       		.byte	0x1
  1679 0105 16010000 		.4byte	0x116
  1680 0109 08       		.uleb128 0x8
- 1681 010a E0030000 		.4byte	.LASF23
+ 1681 010a D8030000 		.4byte	.LASF23
  1682 010e 01       		.byte	0x1
  1683 010f 4303     		.2byte	0x343
  1684 0111 76000000 		.4byte	0x76
  1685 0115 00       		.byte	0
  1686 0116 09       		.uleb128 0x9
- 1687 0117 AF050000 		.4byte	.LASF24
+ 1687 0117 A7050000 		.4byte	.LASF24
  1688 011b 01       		.byte	0x1
  1689 011c 26       		.byte	0x26
  1690 011d 00000000 		.4byte	.LFB0
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1726 0177 64       		.byte	0x64
  1727 0178 00       		.byte	0
  1728 0179 0D       		.uleb128 0xd
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 60
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 60
 
 
  1729 017a FC000000 		.4byte	0xfc
@@ -3552,7 +3552,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1737 018e 00       		.byte	0
  1738 018f 00       		.byte	0
  1739 0190 09       		.uleb128 0x9
- 1740 0191 F4020000 		.4byte	.LASF25
+ 1740 0191 A2020000 		.4byte	.LASF25
  1741 0195 01       		.byte	0x1
  1742 0196 FA       		.byte	0xfa
  1743 0197 00000000 		.4byte	.LFB3
@@ -3561,7 +3561,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1746 01a0 9C       		.byte	0x9c
  1747 01a1 C7010000 		.4byte	0x1c7
  1748 01a5 0E       		.uleb128 0xe
- 1749 01a6 14060000 		.4byte	.LASF27
+ 1749 01a6 0C060000 		.4byte	.LASF27
  1750 01aa 01       		.byte	0x1
  1751 01ab FC       		.byte	0xfc
  1752 01ac 6B000000 		.4byte	0x6b
@@ -3574,7 +3574,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1759 01c2 4D090000 		.4byte	0x94d
  1760 01c6 00       		.byte	0
  1761 01c7 10       		.uleb128 0x10
- 1762 01c8 60020000 		.4byte	.LASF26
+ 1762 01c8 0E020000 		.4byte	.LASF26
  1763 01cc 01       		.byte	0x1
  1764 01cd 1F01     		.2byte	0x11f
  1765 01cf 00000000 		.4byte	.LFB4
@@ -3583,13 +3583,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1768 01d8 9C       		.byte	0x9c
  1769 01d9 10020000 		.4byte	0x210
  1770 01dd 11       		.uleb128 0x11
- 1771 01de 8F050000 		.4byte	.LASF29
+ 1771 01de 87050000 		.4byte	.LASF29
  1772 01e2 01       		.byte	0x1
  1773 01e3 1F01     		.2byte	0x11f
  1774 01e5 76000000 		.4byte	0x76
  1775 01e9 13000000 		.4byte	.LLST1
  1776 01ed 12       		.uleb128 0x12
- 1777 01ee 14060000 		.4byte	.LASF27
+ 1777 01ee 0C060000 		.4byte	.LASF27
  1778 01f2 01       		.byte	0x1
  1779 01f3 2101     		.2byte	0x121
  1780 01f5 6B000000 		.4byte	0x6b
@@ -3598,14 +3598,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1783 01fe 08000000 		.4byte	.LVL7
  1784 0202 42090000 		.4byte	0x942
  1785 0206 0F       		.uleb128 0xf
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 61
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 61
 
 
  1786 0207 1C000000 		.4byte	.LVL9
  1787 020b 4D090000 		.4byte	0x94d
  1788 020f 00       		.byte	0
  1789 0210 10       		.uleb128 0x10
- 1790 0211 33030000 		.4byte	.LASF28
+ 1790 0211 E1020000 		.4byte	.LASF28
  1791 0215 01       		.byte	0x1
  1792 0216 4001     		.2byte	0x140
  1793 0218 00000000 		.4byte	.LFB5
@@ -3620,7 +3620,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1802 022e 76000000 		.4byte	0x76
  1803 0232 52000000 		.4byte	.LLST3
  1804 0236 12       		.uleb128 0x12
- 1805 0237 14060000 		.4byte	.LASF27
+ 1805 0237 0C060000 		.4byte	.LASF27
  1806 023b 01       		.byte	0x1
  1807 023c 4201     		.2byte	0x142
  1808 023e 6B000000 		.4byte	0x6b
@@ -3633,7 +3633,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1815 0254 4D090000 		.4byte	0x94d
  1816 0258 00       		.byte	0
  1817 0259 10       		.uleb128 0x10
- 1818 025a 1E020000 		.4byte	.LASF31
+ 1818 025a CC010000 		.4byte	.LASF31
  1819 025e 01       		.byte	0x1
  1820 025f 6501     		.2byte	0x165
  1821 0261 00000000 		.4byte	.LFB6
@@ -3642,13 +3642,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1824 026a 9C       		.byte	0x9c
  1825 026b A2020000 		.4byte	0x2a2
  1826 026f 11       		.uleb128 0x11
- 1827 0270 21040000 		.4byte	.LASF32
+ 1827 0270 19040000 		.4byte	.LASF32
  1828 0274 01       		.byte	0x1
  1829 0275 6501     		.2byte	0x165
  1830 0277 76000000 		.4byte	0x76
  1831 027b 91000000 		.4byte	.LLST5
  1832 027f 12       		.uleb128 0x12
- 1833 0280 14060000 		.4byte	.LASF27
+ 1833 0280 0C060000 		.4byte	.LASF27
  1834 0284 01       		.byte	0x1
  1835 0285 6701     		.2byte	0x167
  1836 0287 6B000000 		.4byte	0x6b
@@ -3658,13 +3658,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1840 0294 42090000 		.4byte	0x942
  1841 0298 0F       		.uleb128 0xf
  1842 0299 1C000000 		.4byte	.LVL17
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 62
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 62
 
 
  1843 029d 4D090000 		.4byte	0x94d
  1844 02a1 00       		.byte	0
  1845 02a2 10       		.uleb128 0x10
- 1846 02a3 E6010000 		.4byte	.LASF33
+ 1846 02a3 94010000 		.4byte	.LASF33
  1847 02a7 01       		.byte	0x1
  1848 02a8 8501     		.2byte	0x185
  1849 02aa 00000000 		.4byte	.LFB7
@@ -3673,13 +3673,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1852 02b3 9C       		.byte	0x9c
  1853 02b4 EB020000 		.4byte	0x2eb
  1854 02b8 11       		.uleb128 0x11
- 1855 02b9 60030000 		.4byte	.LASF34
+ 1855 02b9 0E030000 		.4byte	.LASF34
  1856 02bd 01       		.byte	0x1
  1857 02be 8501     		.2byte	0x185
  1858 02c0 76000000 		.4byte	0x76
  1859 02c4 D0000000 		.4byte	.LLST7
  1860 02c8 12       		.uleb128 0x12
- 1861 02c9 14060000 		.4byte	.LASF27
+ 1861 02c9 0C060000 		.4byte	.LASF27
  1862 02cd 01       		.byte	0x1
  1863 02ce 8701     		.2byte	0x187
  1864 02d0 6B000000 		.4byte	0x6b
@@ -3692,7 +3692,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1871 02e6 4D090000 		.4byte	0x94d
  1872 02ea 00       		.byte	0
  1873 02eb 10       		.uleb128 0x10
- 1874 02ec DD020000 		.4byte	.LASF35
+ 1874 02ec 8B020000 		.4byte	.LASF35
  1875 02f0 01       		.byte	0x1
  1876 02f1 BB01     		.2byte	0x1bb
  1877 02f3 00000000 		.4byte	.LFB8
@@ -3701,14 +3701,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1880 02fc 9C       		.byte	0x9c
  1881 02fd 12030000 		.4byte	0x312
  1882 0301 11       		.uleb128 0x11
- 1883 0302 B7020000 		.4byte	.LASF36
+ 1883 0302 65020000 		.4byte	.LASF36
  1884 0306 01       		.byte	0x1
  1885 0307 BB01     		.2byte	0x1bb
  1886 0309 76000000 		.4byte	0x76
  1887 030d 0F010000 		.4byte	.LLST9
  1888 0311 00       		.byte	0
  1889 0312 10       		.uleb128 0x10
- 1890 0313 00040000 		.4byte	.LASF37
+ 1890 0313 F8030000 		.4byte	.LASF37
  1891 0317 01       		.byte	0x1
  1892 0318 DF01     		.2byte	0x1df
  1893 031a 00000000 		.4byte	.LFB9
@@ -3717,8 +3717,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1896 0323 9C       		.byte	0x9c
  1897 0324 5B030000 		.4byte	0x35b
  1898 0328 11       		.uleb128 0x11
- 1899 0329 B6030000 		.4byte	.LASF38
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 63
+ 1899 0329 AE030000 		.4byte	.LASF38
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 63
 
 
  1900 032d 01       		.byte	0x1
@@ -3726,7 +3726,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1902 0330 76000000 		.4byte	0x76
  1903 0334 30010000 		.4byte	.LLST10
  1904 0338 12       		.uleb128 0x12
- 1905 0339 14060000 		.4byte	.LASF27
+ 1905 0339 0C060000 		.4byte	.LASF27
  1906 033d 01       		.byte	0x1
  1907 033e E101     		.2byte	0x1e1
  1908 0340 6B000000 		.4byte	0x6b
@@ -3748,13 +3748,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1924 036c 9C       		.byte	0x9c
  1925 036d A4030000 		.4byte	0x3a4
  1926 0371 11       		.uleb128 0x11
- 1927 0372 E3040000 		.4byte	.LASF40
+ 1927 0372 DB040000 		.4byte	.LASF40
  1928 0376 01       		.byte	0x1
  1929 0377 0102     		.2byte	0x201
  1930 0379 76000000 		.4byte	0x76
  1931 037d 6F010000 		.4byte	.LLST12
  1932 0381 12       		.uleb128 0x12
- 1933 0382 14060000 		.4byte	.LASF27
+ 1933 0382 0C060000 		.4byte	.LASF27
  1934 0386 01       		.byte	0x1
  1935 0387 0302     		.2byte	0x203
  1936 0389 6B000000 		.4byte	0x6b
@@ -3767,7 +3767,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1943 039f 4D090000 		.4byte	0x94d
  1944 03a3 00       		.byte	0
  1945 03a4 10       		.uleb128 0x10
- 1946 03a5 25060000 		.4byte	.LASF41
+ 1946 03a5 1D060000 		.4byte	.LASF41
  1947 03a9 01       		.byte	0x1
  1948 03aa 2202     		.2byte	0x222
  1949 03ac 00000000 		.4byte	.LFB11
@@ -3776,16 +3776,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1952 03b5 9C       		.byte	0x9c
  1953 03b6 ED030000 		.4byte	0x3ed
  1954 03ba 11       		.uleb128 0x11
- 1955 03bb 57020000 		.4byte	.LASF42
+ 1955 03bb 05020000 		.4byte	.LASF42
  1956 03bf 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 64
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 64
 
 
  1957 03c0 2202     		.2byte	0x222
  1958 03c2 76000000 		.4byte	0x76
  1959 03c6 AE010000 		.4byte	.LLST14
  1960 03ca 12       		.uleb128 0x12
- 1961 03cb 14060000 		.4byte	.LASF27
+ 1961 03cb 0C060000 		.4byte	.LASF27
  1962 03cf 01       		.byte	0x1
  1963 03d0 2402     		.2byte	0x224
  1964 03d2 6B000000 		.4byte	0x6b
@@ -3807,13 +3807,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  1980 03fe 9C       		.byte	0x9c
  1981 03ff 36040000 		.4byte	0x436
  1982 0403 11       		.uleb128 0x11
- 1983 0404 37020000 		.4byte	.LASF44
+ 1983 0404 E5010000 		.4byte	.LASF44
  1984 0408 01       		.byte	0x1
  1985 0409 4302     		.2byte	0x243
  1986 040b 76000000 		.4byte	0x76
  1987 040f ED010000 		.4byte	.LLST16
  1988 0413 12       		.uleb128 0x12
- 1989 0414 14060000 		.4byte	.LASF27
+ 1989 0414 0C060000 		.4byte	.LASF27
  1990 0418 01       		.byte	0x1
  1991 0419 4502     		.2byte	0x245
  1992 041b 6B000000 		.4byte	0x6b
@@ -3837,8 +3837,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2010 044e 2C020000 		.4byte	.LLST18
  2011 0452 00       		.byte	0
  2012 0453 15       		.uleb128 0x15
- 2013 0454 C0050000 		.4byte	.LASF47
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 65
+ 2013 0454 B8050000 		.4byte	.LASF47
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 65
 
 
  2014 0458 01       		.byte	0x1
@@ -3849,7 +3849,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2019 0467 01       		.uleb128 0x1
  2020 0468 9C       		.byte	0x9c
  2021 0469 10       		.uleb128 0x10
- 2022 046a C5030000 		.4byte	.LASF45
+ 2022 046a BD030000 		.4byte	.LASF45
  2023 046e 01       		.byte	0x1
  2024 046f 9202     		.2byte	0x292
  2025 0471 00000000 		.4byte	.LFB15
@@ -3858,13 +3858,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2028 047a 9C       		.byte	0x9c
  2029 047b B2040000 		.4byte	0x4b2
  2030 047f 11       		.uleb128 0x11
- 2031 0480 A1030000 		.4byte	.LASF46
+ 2031 0480 99030000 		.4byte	.LASF46
  2032 0484 01       		.byte	0x1
  2033 0485 9202     		.2byte	0x292
  2034 0487 76000000 		.4byte	0x76
  2035 048b 4D020000 		.4byte	.LLST19
  2036 048f 12       		.uleb128 0x12
- 2037 0490 14060000 		.4byte	.LASF27
+ 2037 0490 0C060000 		.4byte	.LASF27
  2038 0494 01       		.byte	0x1
  2039 0495 9402     		.2byte	0x294
  2040 0497 6B000000 		.4byte	0x6b
@@ -3888,7 +3888,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2058 04ca 8C020000 		.4byte	.LLST21
  2059 04ce 00       		.byte	0
  2060 04cf 15       		.uleb128 0x15
- 2061 04d0 73050000 		.4byte	.LASF48
+ 2061 04d0 6B050000 		.4byte	.LASF48
  2062 04d4 01       		.byte	0x1
  2063 04d5 C302     		.2byte	0x2c3
  2064 04d7 76000000 		.4byte	0x76
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2068 04e4 9C       		.byte	0x9c
  2069 04e5 10       		.uleb128 0x10
  2070 04e6 4D000000 		.4byte	.LASF49
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 66
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 66
 
 
  2071 04ea 01       		.byte	0x1
@@ -3909,13 +3909,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2076 04f6 9C       		.byte	0x9c
  2077 04f7 2E050000 		.4byte	0x52e
  2078 04fb 11       		.uleb128 0x11
- 2079 04fc 6D060000 		.4byte	.LASF50
+ 2079 04fc 65060000 		.4byte	.LASF50
  2080 0500 01       		.byte	0x1
  2081 0501 DD02     		.2byte	0x2dd
  2082 0503 76000000 		.4byte	0x76
  2083 0507 AD020000 		.4byte	.LLST22
  2084 050b 12       		.uleb128 0x12
- 2085 050c 14060000 		.4byte	.LASF27
+ 2085 050c 0C060000 		.4byte	.LASF27
  2086 0510 01       		.byte	0x1
  2087 0511 DF02     		.2byte	0x2df
  2088 0513 6B000000 		.4byte	0x6b
@@ -3928,7 +3928,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2095 0529 4D090000 		.4byte	0x94d
  2096 052d 00       		.byte	0
  2097 052e 10       		.uleb128 0x10
- 2098 052f 3C020000 		.4byte	.LASF51
+ 2098 052f EA010000 		.4byte	.LASF51
  2099 0533 01       		.byte	0x1
  2100 0534 F802     		.2byte	0x2f8
  2101 0536 00000000 		.4byte	.LFB19
@@ -3937,14 +3937,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2104 053f 9C       		.byte	0x9c
  2105 0540 55050000 		.4byte	0x555
  2106 0544 11       		.uleb128 0x11
- 2107 0545 78060000 		.4byte	.LASF52
+ 2107 0545 70060000 		.4byte	.LASF52
  2108 0549 01       		.byte	0x1
  2109 054a F802     		.2byte	0x2f8
  2110 054c 76000000 		.4byte	0x76
  2111 0550 EC020000 		.4byte	.LLST24
  2112 0554 00       		.byte	0
  2113 0555 15       		.uleb128 0x15
- 2114 0556 BF010000 		.4byte	.LASF53
+ 2114 0556 6D010000 		.4byte	.LASF53
  2115 055a 01       		.byte	0x1
  2116 055b 0C03     		.2byte	0x30c
  2117 055d 76000000 		.4byte	0x76
@@ -3953,25 +3953,25 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2120 0569 01       		.uleb128 0x1
  2121 056a 9C       		.byte	0x9c
  2122 056b 10       		.uleb128 0x10
- 2123 056c 04020000 		.4byte	.LASF54
+ 2123 056c B2010000 		.4byte	.LASF54
  2124 0570 01       		.byte	0x1
  2125 0571 2603     		.2byte	0x326
  2126 0573 00000000 		.4byte	.LFB21
  2127 0577 28000000 		.4byte	.LFE21-.LFB21
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 67
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 67
 
 
  2128 057b 01       		.uleb128 0x1
  2129 057c 9C       		.byte	0x9c
  2130 057d B4050000 		.4byte	0x5b4
  2131 0581 11       		.uleb128 0x11
- 2132 0582 6D060000 		.4byte	.LASF50
+ 2132 0582 65060000 		.4byte	.LASF50
  2133 0586 01       		.byte	0x1
  2134 0587 2603     		.2byte	0x326
  2135 0589 76000000 		.4byte	0x76
  2136 058d 0D030000 		.4byte	.LLST25
  2137 0591 12       		.uleb128 0x12
- 2138 0592 14060000 		.4byte	.LASF27
+ 2138 0592 0C060000 		.4byte	.LASF27
  2139 0596 01       		.byte	0x1
  2140 0597 2803     		.2byte	0x328
  2141 0599 6B000000 		.4byte	0x6b
@@ -3995,7 +3995,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2159 05cc 4C030000 		.4byte	.LLST27
  2160 05d0 00       		.byte	0
  2161 05d1 15       		.uleb128 0x15
- 2162 05d2 E8030000 		.4byte	.LASF55
+ 2162 05d2 E0030000 		.4byte	.LASF55
  2163 05d6 01       		.byte	0x1
  2164 05d7 6E03     		.2byte	0x36e
  2165 05d9 76000000 		.4byte	0x76
@@ -4004,7 +4004,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2168 05e5 01       		.uleb128 0x1
  2169 05e6 9C       		.byte	0x9c
  2170 05e7 10       		.uleb128 0x10
- 2171 05e8 89020000 		.4byte	.LASF56
+ 2171 05e8 37020000 		.4byte	.LASF56
  2172 05ec 01       		.byte	0x1
  2173 05ed 9C03     		.2byte	0x39c
  2174 05ef 00000000 		.4byte	.LFB24
@@ -4013,17 +4013,17 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2177 05f8 9C       		.byte	0x9c
  2178 05f9 0E060000 		.4byte	0x60e
  2179 05fd 11       		.uleb128 0x11
- 2180 05fe D8050000 		.4byte	.LASF57
+ 2180 05fe D0050000 		.4byte	.LASF57
  2181 0602 01       		.byte	0x1
  2182 0603 9C03     		.2byte	0x39c
  2183 0605 76000000 		.4byte	0x76
  2184 0609 6D030000 		.4byte	.LLST28
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 68
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 68
 
 
  2185 060d 00       		.byte	0
  2186 060e 15       		.uleb128 0x15
- 2187 060f 94050000 		.4byte	.LASF58
+ 2187 060f 8C050000 		.4byte	.LASF58
  2188 0613 01       		.byte	0x1
  2189 0614 C503     		.2byte	0x3c5
  2190 0616 76000000 		.4byte	0x76
@@ -4041,7 +4041,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2202 0638 01       		.uleb128 0x1
  2203 0639 9C       		.byte	0x9c
  2204 063a 15       		.uleb128 0x15
- 2205 063b 18030000 		.4byte	.LASF60
+ 2205 063b C6020000 		.4byte	.LASF60
  2206 063f 01       		.byte	0x1
  2207 0640 0804     		.2byte	0x408
  2208 0642 76000000 		.4byte	0x76
@@ -4050,7 +4050,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2211 064e 01       		.uleb128 0x1
  2212 064f 9C       		.byte	0x9c
  2213 0650 10       		.uleb128 0x10
- 2214 0651 C8040000 		.4byte	.LASF61
+ 2214 0651 C0040000 		.4byte	.LASF61
  2215 0655 01       		.byte	0x1
  2216 0656 2304     		.2byte	0x423
  2217 0658 00000000 		.4byte	.LFB28
@@ -4059,13 +4059,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2220 0661 9C       		.byte	0x9c
  2221 0662 99060000 		.4byte	0x699
  2222 0666 11       		.uleb128 0x11
- 2223 0667 67050000 		.4byte	.LASF62
+ 2223 0667 5F050000 		.4byte	.LASF62
  2224 066b 01       		.byte	0x1
  2225 066c 2304     		.2byte	0x423
  2226 066e 76000000 		.4byte	0x76
  2227 0672 8E030000 		.4byte	.LLST29
  2228 0676 12       		.uleb128 0x12
- 2229 0677 14060000 		.4byte	.LASF27
+ 2229 0677 0C060000 		.4byte	.LASF27
  2230 067b 01       		.byte	0x1
  2231 067c 2504     		.2byte	0x425
  2232 067e 6B000000 		.4byte	0x6b
@@ -4078,10 +4078,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2239 0694 4D090000 		.4byte	0x94d
  2240 0698 00       		.byte	0
  2241 0699 10       		.uleb128 0x10
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 69
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 69
 
 
- 2242 069a 81030000 		.4byte	.LASF63
+ 2242 069a 79030000 		.4byte	.LASF63
  2243 069e 01       		.byte	0x1
  2244 069f 4404     		.2byte	0x444
  2245 06a1 00000000 		.4byte	.LFB29
@@ -4090,13 +4090,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2248 06aa 9C       		.byte	0x9c
  2249 06ab E2060000 		.4byte	0x6e2
  2250 06af 11       		.uleb128 0x11
- 2251 06b0 67050000 		.4byte	.LASF62
+ 2251 06b0 5F050000 		.4byte	.LASF62
  2252 06b4 01       		.byte	0x1
  2253 06b5 4404     		.2byte	0x444
  2254 06b7 76000000 		.4byte	0x76
  2255 06bb CD030000 		.4byte	.LLST31
  2256 06bf 12       		.uleb128 0x12
- 2257 06c0 14060000 		.4byte	.LASF27
+ 2257 06c0 0C060000 		.4byte	.LASF27
  2258 06c4 01       		.byte	0x1
  2259 06c5 4604     		.2byte	0x446
  2260 06c7 6B000000 		.4byte	0x6b
@@ -4109,7 +4109,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2267 06dd 4D090000 		.4byte	0x94d
  2268 06e1 00       		.byte	0
  2269 06e2 10       		.uleb128 0x10
- 2270 06e3 78010000 		.4byte	.LASF64
+ 2270 06e3 26010000 		.4byte	.LASF64
  2271 06e7 01       		.byte	0x1
  2272 06e8 6504     		.2byte	0x465
  2273 06ea 00000000 		.4byte	.LFB30
@@ -4118,13 +4118,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2276 06f3 9C       		.byte	0x9c
  2277 06f4 2B070000 		.4byte	0x72b
  2278 06f8 11       		.uleb128 0x11
- 2279 06f9 67050000 		.4byte	.LASF62
+ 2279 06f9 5F050000 		.4byte	.LASF62
  2280 06fd 01       		.byte	0x1
  2281 06fe 6504     		.2byte	0x465
  2282 0700 76000000 		.4byte	0x76
  2283 0704 0C040000 		.4byte	.LLST33
  2284 0708 12       		.uleb128 0x12
- 2285 0709 14060000 		.4byte	.LASF27
+ 2285 0709 0C060000 		.4byte	.LASF27
  2286 070d 01       		.byte	0x1
  2287 070e 6704     		.2byte	0x467
  2288 0710 6B000000 		.4byte	0x6b
@@ -4137,8 +4137,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2295 0726 4D090000 		.4byte	0x94d
  2296 072a 00       		.byte	0
  2297 072b 10       		.uleb128 0x10
- 2298 072c E3050000 		.4byte	.LASF65
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 70
+ 2298 072c DB050000 		.4byte	.LASF65
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 70
 
 
  2299 0730 01       		.byte	0x1
@@ -4149,13 +4149,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2304 073c 9C       		.byte	0x9c
  2305 073d 74070000 		.4byte	0x774
  2306 0741 11       		.uleb128 0x11
- 2307 0742 67050000 		.4byte	.LASF62
+ 2307 0742 5F050000 		.4byte	.LASF62
  2308 0746 01       		.byte	0x1
  2309 0747 8504     		.2byte	0x485
  2310 0749 76000000 		.4byte	0x76
  2311 074d 4B040000 		.4byte	.LLST35
  2312 0751 12       		.uleb128 0x12
- 2313 0752 14060000 		.4byte	.LASF27
+ 2313 0752 0C060000 		.4byte	.LASF27
  2314 0756 01       		.byte	0x1
  2315 0757 8704     		.2byte	0x487
  2316 0759 6B000000 		.4byte	0x6b
@@ -4168,7 +4168,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2323 076f 4D090000 		.4byte	0x94d
  2324 0773 00       		.byte	0
  2325 0774 10       		.uleb128 0x10
- 2326 0775 FB050000 		.4byte	.LASF66
+ 2326 0775 F3050000 		.4byte	.LASF66
  2327 0779 01       		.byte	0x1
  2328 077a A604     		.2byte	0x4a6
  2329 077c 00000000 		.4byte	.LFB32
@@ -4177,13 +4177,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2332 0785 9C       		.byte	0x9c
  2333 0786 BD070000 		.4byte	0x7bd
  2334 078a 11       		.uleb128 0x11
- 2335 078b 67050000 		.4byte	.LASF62
+ 2335 078b 5F050000 		.4byte	.LASF62
  2336 078f 01       		.byte	0x1
  2337 0790 A604     		.2byte	0x4a6
  2338 0792 76000000 		.4byte	0x76
  2339 0796 8A040000 		.4byte	.LLST37
  2340 079a 12       		.uleb128 0x12
- 2341 079b 14060000 		.4byte	.LASF27
+ 2341 079b 0C060000 		.4byte	.LASF27
  2342 079f 01       		.byte	0x1
  2343 07a0 A804     		.2byte	0x4a8
  2344 07a2 6B000000 		.4byte	0x6b
@@ -4196,9 +4196,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2351 07b8 4D090000 		.4byte	0x94d
  2352 07bc 00       		.byte	0
  2353 07bd 10       		.uleb128 0x10
- 2354 07be 82060000 		.4byte	.LASF67
+ 2354 07be 7A060000 		.4byte	.LASF67
  2355 07c2 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 71
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 71
 
 
  2356 07c3 CE04     		.2byte	0x4ce
@@ -4208,19 +4208,19 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2360 07ce 9C       		.byte	0x9c
  2361 07cf 16080000 		.4byte	0x816
  2362 07d3 11       		.uleb128 0x11
- 2363 07d4 37020000 		.4byte	.LASF44
+ 2363 07d4 E5010000 		.4byte	.LASF44
  2364 07d8 01       		.byte	0x1
  2365 07d9 CE04     		.2byte	0x4ce
  2366 07db 76000000 		.4byte	0x76
  2367 07df C9040000 		.4byte	.LLST39
  2368 07e3 11       		.uleb128 0x11
- 2369 07e4 81020000 		.4byte	.LASF68
+ 2369 07e4 2F020000 		.4byte	.LASF68
  2370 07e8 01       		.byte	0x1
  2371 07e9 CE04     		.2byte	0x4ce
  2372 07eb 76000000 		.4byte	0x76
  2373 07ef F5040000 		.4byte	.LLST40
  2374 07f3 12       		.uleb128 0x12
- 2375 07f4 14060000 		.4byte	.LASF27
+ 2375 07f4 0C060000 		.4byte	.LASF27
  2376 07f8 01       		.byte	0x1
  2377 07f9 D004     		.2byte	0x4d0
  2378 07fb 6B000000 		.4byte	0x6b
@@ -4233,7 +4233,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2385 0811 4D090000 		.4byte	0x94d
  2386 0815 00       		.byte	0
  2387 0816 09       		.uleb128 0x9
- 2388 0817 6E030000 		.4byte	.LASF69
+ 2388 0817 1C030000 		.4byte	.LASF69
  2389 081b 01       		.byte	0x1
  2390 081c B1       		.byte	0xb1
  2391 081d 00000000 		.4byte	.LFB1
@@ -4242,7 +4242,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2394 0826 9C       		.byte	0x9c
  2395 0827 62080000 		.4byte	0x862
  2396 082b 0E       		.uleb128 0xe
- 2397 082c 14060000 		.4byte	.LASF27
+ 2397 082c 0C060000 		.4byte	.LASF27
  2398 0830 01       		.byte	0x1
  2399 0831 B3       		.byte	0xb3
  2400 0832 6B000000 		.4byte	0x6b
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2410 0851 BD070000 		.4byte	0x7bd
  2411 0855 17       		.uleb128 0x17
  2412 0856 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 72
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 72
 
 
  2413 0857 51       		.byte	0x51
@@ -4289,7 +4289,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2438 0885 16080000 		.4byte	0x816
  2439 0889 00       		.byte	0
  2440 088a 15       		.uleb128 0x15
- 2441 088b 9D060000 		.4byte	.LASF71
+ 2441 088b 95060000 		.4byte	.LASF71
  2442 088f 01       		.byte	0x1
  2443 0890 EB04     		.2byte	0x4eb
  2444 0892 76000000 		.4byte	0x76
@@ -4310,7 +4310,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2459 08b9 50       		.byte	0x50
  2460 08ba 00       		.byte	0
  2461 08bb 15       		.uleb128 0x15
- 2462 08bc 91010000 		.4byte	.LASF72
+ 2462 08bc 3F010000 		.4byte	.LASF72
  2463 08c0 01       		.byte	0x1
  2464 08c1 1B05     		.2byte	0x51b
  2465 08c3 76000000 		.4byte	0x76
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2467 08cb 0C000000 		.4byte	.LFE36-.LFB36
  2468 08cf 01       		.uleb128 0x1
  2469 08d0 9C       		.byte	0x9c
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 73
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 73
 
 
  2470 08d1 15       		.uleb128 0x15
@@ -4331,7 +4331,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2477 08e5 01       		.uleb128 0x1
  2478 08e6 9C       		.byte	0x9c
  2479 08e7 10       		.uleb128 0x10
- 2480 08e8 4C050000 		.4byte	.LASF74
+ 2480 08e8 44050000 		.4byte	.LASF74
  2481 08ec 01       		.byte	0x1
  2482 08ed 4905     		.2byte	0x549
  2483 08ef 00000000 		.4byte	.LFB38
@@ -4340,7 +4340,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2486 08f8 9C       		.byte	0x9c
  2487 08f9 0C090000 		.4byte	0x90c
  2488 08fd 19       		.uleb128 0x19
- 2489 08fe 3E050000 		.4byte	.LASF19
+ 2489 08fe 36050000 		.4byte	.LASF19
  2490 0902 01       		.byte	0x1
  2491 0903 4905     		.2byte	0x549
  2492 0905 76000000 		.4byte	0x76
@@ -4348,7 +4348,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2494 090a 50       		.byte	0x50
  2495 090b 00       		.byte	0
  2496 090c 10       		.uleb128 0x10
- 2497 090d 25050000 		.4byte	.LASF75
+ 2497 090d 1D050000 		.4byte	.LASF75
  2498 0911 01       		.byte	0x1
  2499 0912 6005     		.2byte	0x560
  2500 0914 00000000 		.4byte	.LFB39
@@ -4357,7 +4357,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2503 091d 9C       		.byte	0x9c
  2504 091e 31090000 		.4byte	0x931
  2505 0922 19       		.uleb128 0x19
- 2506 0923 3E050000 		.4byte	.LASF19
+ 2506 0923 36050000 		.4byte	.LASF19
  2507 0927 01       		.byte	0x1
  2508 0928 6005     		.2byte	0x560
  2509 092a 76000000 		.4byte	0x76
@@ -4365,7 +4365,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2511 092f 50       		.byte	0x50
  2512 0930 00       		.byte	0
  2513 0931 1A       		.uleb128 0x1a
- 2514 0932 59060000 		.4byte	.LASF79
+ 2514 0932 51060000 		.4byte	.LASF79
  2515 0936 01       		.byte	0x1
  2516 0937 15       		.byte	0x15
  2517 0938 6B000000 		.4byte	0x6b
@@ -4373,12 +4373,12 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2519 093d 03       		.byte	0x3
  2520 093e 00000000 		.4byte	NavLightPWM_initVar
  2521 0942 1B       		.uleb128 0x1b
- 2522 0943 49030000 		.4byte	.LASF80
+ 2522 0943 F7020000 		.4byte	.LASF80
  2523 0947 03       		.byte	0x3
  2524 0948 82       		.byte	0x82
  2525 0949 6B000000 		.4byte	0x6b
  2526 094d 1C       		.uleb128 0x1c
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 74
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 74
 
 
  2527 094e 1E000000 		.4byte	.LASF81
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2581 002d 0E       		.uleb128 0xe
  2582 002e 3A       		.uleb128 0x3a
  2583 002f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 75
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 75
 
 
  2584 0030 3B       		.uleb128 0x3b
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2638 0066 49       		.uleb128 0x49
  2639 0067 13       		.uleb128 0x13
  2640 0068 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 76
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 76
 
 
  2641 0069 00       		.byte	0
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2695 00a0 01       		.byte	0x1
  2696 00a1 31       		.uleb128 0x31
  2697 00a2 13       		.uleb128 0x13
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 77
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 77
 
 
  2698 00a3 11       		.uleb128 0x11
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2752 00db 3F       		.uleb128 0x3f
  2753 00dc 19       		.uleb128 0x19
  2754 00dd 03       		.uleb128 0x3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 78
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 78
 
 
  2755 00de 0E       		.uleb128 0xe
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2809 0115 11       		.uleb128 0x11
  2810 0116 01       		.uleb128 0x1
  2811 0117 12       		.uleb128 0x12
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 79
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 79
 
 
  2812 0118 06       		.uleb128 0x6
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2866 0154 00       		.byte	0
  2867 0155 02       		.uleb128 0x2
  2868 0156 18       		.uleb128 0x18
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 80
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 80
 
 
  2869 0157 9142     		.uleb128 0x2111
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2923 018e 3B       		.uleb128 0x3b
  2924 018f 0B       		.uleb128 0xb
  2925 0190 27       		.uleb128 0x27
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 81
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 81
 
 
  2926 0191 19       		.uleb128 0x19
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  2980 0034 01       		.uleb128 0x1
  2981 0035 50       		.byte	0x50
  2982 0036 9F       		.byte	0x9f
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 82
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 82
 
 
  2983 0037 00000000 		.4byte	0
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3037 00c1 1B000000 		.4byte	.LVL17-1
  3038 00c5 0100     		.2byte	0x1
  3039 00c7 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 83
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 83
 
 
  3040 00c8 00000000 		.4byte	0
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3094 0151 01       		.uleb128 0x1
  3095 0152 50       		.byte	0x50
  3096 0153 9F       		.byte	0x9f
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 84
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 84
 
 
  3097 0154 00000000 		.4byte	0
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3151 01de 1F000000 		.4byte	.LVL35-1
  3152 01e2 0100     		.2byte	0x1
  3153 01e4 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 85
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 85
 
 
  3154 01e5 00000000 		.4byte	0
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3208 026e 01       		.uleb128 0x1
  3209 026f 50       		.byte	0x50
  3210 0270 9F       		.byte	0x9f
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 86
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 86
 
 
  3211 0271 00000000 		.4byte	0
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3265 02fb 0C000000 		.4byte	.LFE19
  3266 02ff 0400     		.2byte	0x4
  3267 0301 F3       		.byte	0xf3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 87
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 87
 
 
  3268 0302 01       		.uleb128 0x1
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3322 0384 50       		.byte	0x50
  3323 0385 9F       		.byte	0x9f
  3324 0386 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 88
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 88
 
 
  3325 038a 00000000 		.4byte	0
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3379 0414 0100     		.2byte	0x1
  3380 0416 50       		.byte	0x50
  3381 0417 07000000 		.4byte	.LVL71-1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 89
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 89
 
 
  3382 041b 10000000 		.4byte	.LVL72
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3436 04a4 24000000 		.4byte	.LFE32
  3437 04a8 0400     		.2byte	0x4
  3438 04aa F3       		.byte	0xf3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 90
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 90
 
 
  3439 04ab 01       		.uleb128 0x1
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3493 0530 00000000 		.4byte	0
  3494              	.LLST42:
  3495 0534 06000000 		.4byte	.LVL87
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 91
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 91
 
 
  3496 0538 13000000 		.4byte	.LVL88-1
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3550 00b4 0C000000 		.4byte	.LFE22-.LFB22
  3551 00b8 00000000 		.4byte	.LFB23
  3552 00bc 0C000000 		.4byte	.LFE23-.LFB23
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 92
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 92
 
 
  3553 00c0 00000000 		.4byte	.LFB24
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3607 0038 00000000 		.4byte	.LFB6
  3608 003c 28000000 		.4byte	.LFE6
  3609 0040 00000000 		.4byte	.LFB7
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 93
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 93
 
 
  3610 0044 2C000000 		.4byte	.LFE7
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3664 011c 24000000 		.4byte	.LFE1
  3665 0120 00000000 		.4byte	.LFB2
  3666 0124 1C000000 		.4byte	.LFE2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 94
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 94
 
 
  3667 0128 00000000 		.4byte	.LFB34
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3696              	.LASF21:
  3697 007a 70657269 		.ascii	"period\000"
  3697      6F6400
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 95
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 95
 
 
  3698              	.LASF7:
@@ -5683,382 +5683,382 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 1
  3713      50574D5F 
  3713      53657450 
  3713      574D496E 
- 3714              	.LASF78:
- 3715 0126 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 3715      73657273 
- 3715      5C534E46 
- 3715      555C446F 
- 3715      63756D65 
- 3716 0154 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 3716      542D3530 
- 3716      5F50726F 
- 3716      6A656374 
- 3716      5C542D35 
- 3717              	.LASF64:
- 3718 0178 4E61764C 		.ascii	"NavLightPWM_SetStartMode\000"
- 3718      69676874 
- 3718      50574D5F 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 96
+ 3714              	.LASF64:
+ 3715 0126 4E61764C 		.ascii	"NavLightPWM_SetStartMode\000"
+ 3715      69676874 
+ 3715      50574D5F 
+ 3715      53657453 
+ 3715      74617274 
+ 3716              	.LASF72:
+ 3717 013f 4E61764C 		.ascii	"NavLightPWM_GetInterruptSourceMasked\000"
+ 3717      69676874 
+ 3717      50574D5F 
+ 3717      47657449 
+ 3717      6E746572 
+ 3718              	.LASF4:
+ 3719 0164 6C6F6E67 		.ascii	"long int\000"
+ 3719      20696E74 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 96
 
 
- 3718      53657453 
- 3718      74617274 
- 3719              	.LASF72:
- 3720 0191 4E61764C 		.ascii	"NavLightPWM_GetInterruptSourceMasked\000"
- 3720      69676874 
- 3720      50574D5F 
- 3720      47657449 
- 3720      6E746572 
- 3721              	.LASF4:
- 3722 01b6 6C6F6E67 		.ascii	"long int\000"
- 3722      20696E74 
- 3722      00
- 3723              	.LASF53:
- 3724 01bf 4E61764C 		.ascii	"NavLightPWM_ReadPeriodBuf\000"
- 3724      69676874 
- 3724      50574D5F 
- 3724      52656164 
- 3724      50657269 
- 3725              	.LASF9:
- 3726 01d9 75696E74 		.ascii	"uint8\000"
- 3726      3800
- 3727              	.LASF12:
- 3728 01df 646F7562 		.ascii	"double\000"
- 3728      6C6500
- 3729              	.LASF33:
- 3730 01e6 4E61764C 		.ascii	"NavLightPWM_SetOneShot\000"
- 3730      69676874 
- 3730      50574D5F 
- 3730      5365744F 
- 3730      6E655368 
- 3731              	.LASF10:
- 3732 01fd 75696E74 		.ascii	"uint32\000"
- 3732      333200
- 3733              	.LASF54:
- 3734 0204 4E61764C 		.ascii	"NavLightPWM_SetPeriodSwap\000"
- 3734      69676874 
- 3734      50574D5F 
- 3734      53657450 
- 3734      6572696F 
- 3735              	.LASF31:
- 3736 021e 4E61764C 		.ascii	"NavLightPWM_SetPrescaler\000"
- 3736      69676874 
- 3736      50574D5F 
- 3736      53657450 
- 3736      72657363 
- 3737              	.LASF44:
- 3738 0237 6D61736B 		.ascii	"mask\000"
- 3738      00
- 3739              	.LASF51:
- 3740 023c 4E61764C 		.ascii	"NavLightPWM_WritePeriodBuf\000"
- 3740      69676874 
- 3740      50574D5F 
- 3740      57726974 
- 3740      65506572 
- 3741              	.LASF42:
- 3742 0257 64656164 		.ascii	"deadTime\000"
- 3742      54696D65 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 97
+ 3719      00
+ 3720              	.LASF53:
+ 3721 016d 4E61764C 		.ascii	"NavLightPWM_ReadPeriodBuf\000"
+ 3721      69676874 
+ 3721      50574D5F 
+ 3721      52656164 
+ 3721      50657269 
+ 3722              	.LASF9:
+ 3723 0187 75696E74 		.ascii	"uint8\000"
+ 3723      3800
+ 3724              	.LASF12:
+ 3725 018d 646F7562 		.ascii	"double\000"
+ 3725      6C6500
+ 3726              	.LASF33:
+ 3727 0194 4E61764C 		.ascii	"NavLightPWM_SetOneShot\000"
+ 3727      69676874 
+ 3727      50574D5F 
+ 3727      5365744F 
+ 3727      6E655368 
+ 3728              	.LASF10:
+ 3729 01ab 75696E74 		.ascii	"uint32\000"
+ 3729      333200
+ 3730              	.LASF54:
+ 3731 01b2 4E61764C 		.ascii	"NavLightPWM_SetPeriodSwap\000"
+ 3731      69676874 
+ 3731      50574D5F 
+ 3731      53657450 
+ 3731      6572696F 
+ 3732              	.LASF31:
+ 3733 01cc 4E61764C 		.ascii	"NavLightPWM_SetPrescaler\000"
+ 3733      69676874 
+ 3733      50574D5F 
+ 3733      53657450 
+ 3733      72657363 
+ 3734              	.LASF44:
+ 3735 01e5 6D61736B 		.ascii	"mask\000"
+ 3735      00
+ 3736              	.LASF51:
+ 3737 01ea 4E61764C 		.ascii	"NavLightPWM_WritePeriodBuf\000"
+ 3737      69676874 
+ 3737      50574D5F 
+ 3737      57726974 
+ 3737      65506572 
+ 3738              	.LASF42:
+ 3739 0205 64656164 		.ascii	"deadTime\000"
+ 3739      54696D65 
+ 3739      00
+ 3740              	.LASF26:
+ 3741 020e 4E61764C 		.ascii	"NavLightPWM_SetMode\000"
+ 3741      69676874 
+ 3741      50574D5F 
+ 3741      5365744D 
+ 3741      6F646500 
+ 3742              	.LASF8:
+ 3743 0222 756E7369 		.ascii	"unsigned int\000"
+ 3743      676E6564 
+ 3743      20696E74 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 97
 
 
- 3742      00
- 3743              	.LASF26:
- 3744 0260 4E61764C 		.ascii	"NavLightPWM_SetMode\000"
- 3744      69676874 
- 3744      50574D5F 
- 3744      5365744D 
- 3744      6F646500 
- 3745              	.LASF8:
- 3746 0274 756E7369 		.ascii	"unsigned int\000"
- 3746      676E6564 
- 3746      20696E74 
- 3746      00
- 3747              	.LASF68:
- 3748 0281 636F6D6D 		.ascii	"command\000"
- 3748      616E6400 
- 3749              	.LASF56:
- 3750 0289 4E61764C 		.ascii	"NavLightPWM_WriteCompareBuf\000"
- 3750      69676874 
- 3750      50574D5F 
- 3750      57726974 
- 3750      65436F6D 
- 3751              	.LASF5:
- 3752 02a5 6C6F6E67 		.ascii	"long unsigned int\000"
- 3752      20756E73 
- 3752      69676E65 
- 3752      6420696E 
- 3752      7400
- 3753              	.LASF36:
- 3754 02b7 6D6F6465 		.ascii	"modeMask\000"
- 3754      4D61736B 
- 3754      00
- 3755              	.LASF17:
- 3756 02c0 4E61764C 		.ascii	"NavLightPWM_SetInterruptMode\000"
- 3756      69676874 
- 3756      50574D5F 
- 3756      53657449 
- 3756      6E746572 
- 3757              	.LASF35:
- 3758 02dd 4E61764C 		.ascii	"NavLightPWM_SetPWMMode\000"
- 3758      69676874 
- 3758      50574D5F 
- 3758      53657450 
- 3758      574D4D6F 
- 3759              	.LASF25:
- 3760 02f4 4E61764C 		.ascii	"NavLightPWM_Stop\000"
- 3760      69676874 
- 3760      50574D5F 
- 3760      53746F70 
- 3760      00
- 3761              	.LASF3:
- 3762 0305 73686F72 		.ascii	"short unsigned int\000"
- 3762      7420756E 
- 3762      7369676E 
- 3762      65642069 
- 3762      6E7400
- 3763              	.LASF60:
- 3764 0318 4E61764C 		.ascii	"NavLightPWM_ReadCaptureBuf\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 98
+ 3743      00
+ 3744              	.LASF68:
+ 3745 022f 636F6D6D 		.ascii	"command\000"
+ 3745      616E6400 
+ 3746              	.LASF56:
+ 3747 0237 4E61764C 		.ascii	"NavLightPWM_WriteCompareBuf\000"
+ 3747      69676874 
+ 3747      50574D5F 
+ 3747      57726974 
+ 3747      65436F6D 
+ 3748              	.LASF5:
+ 3749 0253 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3749      20756E73 
+ 3749      69676E65 
+ 3749      6420696E 
+ 3749      7400
+ 3750              	.LASF36:
+ 3751 0265 6D6F6465 		.ascii	"modeMask\000"
+ 3751      4D61736B 
+ 3751      00
+ 3752              	.LASF17:
+ 3753 026e 4E61764C 		.ascii	"NavLightPWM_SetInterruptMode\000"
+ 3753      69676874 
+ 3753      50574D5F 
+ 3753      53657449 
+ 3753      6E746572 
+ 3754              	.LASF35:
+ 3755 028b 4E61764C 		.ascii	"NavLightPWM_SetPWMMode\000"
+ 3755      69676874 
+ 3755      50574D5F 
+ 3755      53657450 
+ 3755      574D4D6F 
+ 3756              	.LASF25:
+ 3757 02a2 4E61764C 		.ascii	"NavLightPWM_Stop\000"
+ 3757      69676874 
+ 3757      50574D5F 
+ 3757      53746F70 
+ 3757      00
+ 3758              	.LASF3:
+ 3759 02b3 73686F72 		.ascii	"short unsigned int\000"
+ 3759      7420756E 
+ 3759      7369676E 
+ 3759      65642069 
+ 3759      6E7400
+ 3760              	.LASF60:
+ 3761 02c6 4E61764C 		.ascii	"NavLightPWM_ReadCaptureBuf\000"
+ 3761      69676874 
+ 3761      50574D5F 
+ 3761      52656164 
+ 3761      43617074 
+ 3762              	.LASF28:
+ 3763 02e1 4E61764C 		.ascii	"NavLightPWM_SetQDMode\000"
+ 3763      69676874 
+ 3763      50574D5F 
+ 3763      53657451 
+ 3763      444D6F64 
+ 3764              	.LASF80:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 98
 
 
- 3764      69676874 
- 3764      50574D5F 
- 3764      52656164 
- 3764      43617074 
- 3765              	.LASF28:
- 3766 0333 4E61764C 		.ascii	"NavLightPWM_SetQDMode\000"
- 3766      69676874 
- 3766      50574D5F 
- 3766      53657451 
- 3766      444D6F64 
- 3767              	.LASF80:
- 3768 0349 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 3768      74657243 
- 3768      72697469 
- 3768      63616C53 
- 3768      65637469 
- 3769              	.LASF34:
- 3770 0360 6F6E6553 		.ascii	"oneShotEnable\000"
- 3770      686F7445 
- 3770      6E61626C 
- 3770      6500
- 3771              	.LASF69:
- 3772 036e 4E61764C 		.ascii	"NavLightPWM_Enable\000"
- 3772      69676874 
- 3772      50574D5F 
- 3772      456E6162 
- 3772      6C6500
+ 3765 02f7 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 3765      74657243 
+ 3765      72697469 
+ 3765      63616C53 
+ 3765      65637469 
+ 3766              	.LASF34:
+ 3767 030e 6F6E6553 		.ascii	"oneShotEnable\000"
+ 3767      686F7445 
+ 3767      6E61626C 
+ 3767      6500
+ 3768              	.LASF69:
+ 3769 031c 4E61764C 		.ascii	"NavLightPWM_Enable\000"
+ 3769      69676874 
+ 3769      50574D5F 
+ 3769      456E6162 
+ 3769      6C6500
+ 3770              	.LASF78:
+ 3771 032f 453A5C44 		.ascii	"E:\\Dokumente\\GitHub\\T-50_Project\\Software\\T-50"
+ 3771      6F6B756D 
+ 3771      656E7465 
+ 3771      5C476974 
+ 3771      4875625C 
+ 3772 035d 5F50726F 		.ascii	"_Project\\T-50_Project.cydsn\000"
+ 3772      6A656374 
+ 3772      5C542D35 
+ 3772      305F5072 
+ 3772      6F6A6563 
  3773              	.LASF63:
- 3774 0381 4E61764C 		.ascii	"NavLightPWM_SetReloadMode\000"
+ 3774 0379 4E61764C 		.ascii	"NavLightPWM_SetReloadMode\000"
  3774      69676874 
  3774      50574D5F 
  3774      53657452 
  3774      656C6F61 
  3775              	.LASF14:
- 3776 039b 72656733 		.ascii	"reg32\000"
+ 3776 0393 72656733 		.ascii	"reg32\000"
  3776      3200
  3777              	.LASF46:
- 3778 03a1 636F756E 		.ascii	"counterMode\000"
+ 3778 0399 636F756E 		.ascii	"counterMode\000"
  3778      7465724D 
  3778      6F646500 
  3779              	.LASF15:
- 3780 03ad 73697A65 		.ascii	"sizetype\000"
+ 3780 03a5 73697A65 		.ascii	"sizetype\000"
  3780      74797065 
  3780      00
  3781              	.LASF38:
- 3782 03b6 73796E63 		.ascii	"syncKillEnable\000"
+ 3782 03ae 73796E63 		.ascii	"syncKillEnable\000"
  3782      4B696C6C 
  3782      456E6162 
  3782      6C6500
  3783              	.LASF45:
- 3784 03c5 4E61764C 		.ascii	"NavLightPWM_SetCounterMode\000"
+ 3784 03bd 4E61764C 		.ascii	"NavLightPWM_SetCounterMode\000"
  3784      69676874 
  3784      50574D5F 
  3784      53657443 
  3784      6F756E74 
  3785              	.LASF23:
- 3786 03e0 636F6D70 		.ascii	"compare\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 99
+ 3786 03d8 636F6D70 		.ascii	"compare\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 99
 
 
  3786      61726500 
  3787              	.LASF55:
- 3788 03e8 4E61764C 		.ascii	"NavLightPWM_ReadCompare\000"
+ 3788 03e0 4E61764C 		.ascii	"NavLightPWM_ReadCompare\000"
  3788      69676874 
  3788      50574D5F 
  3788      52656164 
  3788      436F6D70 
  3789              	.LASF37:
- 3790 0400 4E61764C 		.ascii	"NavLightPWM_SetPWMSyncKill\000"
+ 3790 03f8 4E61764C 		.ascii	"NavLightPWM_SetPWMSyncKill\000"
  3790      69676874 
  3790      50574D5F 
  3790      53657450 
  3790      574D5379 
  3791              	.LASF11:
- 3792 041b 666C6F61 		.ascii	"float\000"
+ 3792 0413 666C6F61 		.ascii	"float\000"
  3792      7400
  3793              	.LASF32:
- 3794 0421 70726573 		.ascii	"prescaler\000"
+ 3794 0419 70726573 		.ascii	"prescaler\000"
  3794      63616C65 
  3794      7200
  3795              	.LASF76:
- 3796 042b 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3796 0423 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
  3796      4320342E 
  3796      382E3420 
  3796      32303134 
  3796      30353236 
- 3797 045e 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 3797 0456 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
  3797      20726576 
  3797      6973696F 
  3797      6E203231 
  3797      31333538 
- 3798 0491 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 3798 0489 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
  3798      66756E63 
  3798      74696F6E 
  3798      2D736563 
  3798      74696F6E 
  3799              	.LASF1:
- 3800 04ba 756E7369 		.ascii	"unsigned char\000"
+ 3800 04b2 756E7369 		.ascii	"unsigned char\000"
  3800      676E6564 
  3800      20636861 
  3800      7200
  3801              	.LASF61:
- 3802 04c8 4E61764C 		.ascii	"NavLightPWM_SetCaptureMode\000"
+ 3802 04c0 4E61764C 		.ascii	"NavLightPWM_SetCaptureMode\000"
  3802      69676874 
  3802      50574D5F 
  3802      53657443 
  3802      61707475 
  3803              	.LASF40:
- 3804 04e3 73746F70 		.ascii	"stopOnKillEnable\000"
+ 3804 04db 73746F70 		.ascii	"stopOnKillEnable\000"
  3804      4F6E4B69 
  3804      6C6C456E 
  3804      61626C65 
  3804      00
  3805              	.LASF2:
- 3806 04f4 73686F72 		.ascii	"short int\000"
+ 3806 04ec 73686F72 		.ascii	"short int\000"
  3806      7420696E 
  3806      7400
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 100
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 100
 
 
  3807              	.LASF77:
- 3808 04fe 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\NavLightPWM.c\000"
+ 3808 04f6 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\NavLightPWM.c\000"
  3808      6E657261 
  3808      7465645F 
  3808      536F7572 
  3808      63655C50 
  3809              	.LASF75:
- 3810 0525 4E61764C 		.ascii	"NavLightPWM_SetInterrupt\000"
+ 3810 051d 4E61764C 		.ascii	"NavLightPWM_SetInterrupt\000"
  3810      69676874 
  3810      50574D5F 
  3810      53657449 
  3810      6E746572 
  3811              	.LASF19:
- 3812 053e 696E7465 		.ascii	"interruptMask\000"
+ 3812 0536 696E7465 		.ascii	"interruptMask\000"
  3812      72727570 
  3812      744D6173 
  3812      6B00
  3813              	.LASF74:
- 3814 054c 4E61764C 		.ascii	"NavLightPWM_ClearInterrupt\000"
+ 3814 0544 4E61764C 		.ascii	"NavLightPWM_ClearInterrupt\000"
  3814      69676874 
  3814      50574D5F 
  3814      436C6561 
  3814      72496E74 
  3815              	.LASF62:
- 3816 0567 74726967 		.ascii	"triggerMode\000"
+ 3816 055f 74726967 		.ascii	"triggerMode\000"
  3816      6765724D 
  3816      6F646500 
  3817              	.LASF48:
- 3818 0573 4E61764C 		.ascii	"NavLightPWM_ReadPeriod\000"
+ 3818 056b 4E61764C 		.ascii	"NavLightPWM_ReadPeriod\000"
  3818      69676874 
  3818      50574D5F 
  3818      52656164 
  3818      50657269 
  3819              	.LASF13:
- 3820 058a 63686172 		.ascii	"char\000"
+ 3820 0582 63686172 		.ascii	"char\000"
  3820      00
  3821              	.LASF29:
- 3822 058f 6D6F6465 		.ascii	"mode\000"
+ 3822 0587 6D6F6465 		.ascii	"mode\000"
  3822      00
  3823              	.LASF58:
- 3824 0594 4E61764C 		.ascii	"NavLightPWM_ReadCompareBuf\000"
+ 3824 058c 4E61764C 		.ascii	"NavLightPWM_ReadCompareBuf\000"
  3824      69676874 
  3824      50574D5F 
  3824      52656164 
  3824      436F6D70 
  3825              	.LASF24:
- 3826 05af 4E61764C 		.ascii	"NavLightPWM_Init\000"
+ 3826 05a7 4E61764C 		.ascii	"NavLightPWM_Init\000"
  3826      69676874 
  3826      50574D5F 
  3826      496E6974 
  3826      00
  3827              	.LASF47:
- 3828 05c0 4E61764C 		.ascii	"NavLightPWM_ReadCounter\000"
+ 3828 05b8 4E61764C 		.ascii	"NavLightPWM_ReadCounter\000"
  3828      69676874 
  3828      50574D5F 
  3828      52656164 
  3828      436F756E 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 101
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 101
 
 
  3829              	.LASF57:
- 3830 05d8 636F6D70 		.ascii	"compareBuf\000"
+ 3830 05d0 636F6D70 		.ascii	"compareBuf\000"
  3830      61726542 
  3830      756600
  3831              	.LASF65:
- 3832 05e3 4E61764C 		.ascii	"NavLightPWM_SetStopMode\000"
+ 3832 05db 4E61764C 		.ascii	"NavLightPWM_SetStopMode\000"
  3832      69676874 
  3832      50574D5F 
  3832      53657453 
  3832      746F704D 
  3833              	.LASF66:
- 3834 05fb 4E61764C 		.ascii	"NavLightPWM_SetCountMode\000"
+ 3834 05f3 4E61764C 		.ascii	"NavLightPWM_SetCountMode\000"
  3834      69676874 
  3834      50574D5F 
  3834      53657443 
  3834      6F756E74 
  3835              	.LASF27:
- 3836 0614 656E6162 		.ascii	"enableInterrupts\000"
+ 3836 060c 656E6162 		.ascii	"enableInterrupts\000"
  3836      6C65496E 
  3836      74657272 
  3836      75707473 
  3836      00
  3837              	.LASF41:
- 3838 0625 4E61764C 		.ascii	"NavLightPWM_SetPWMDeadTime\000"
+ 3838 061d 4E61764C 		.ascii	"NavLightPWM_SetPWMDeadTime\000"
  3838      69676874 
  3838      50574D5F 
  3838      53657450 
  3838      574D4465 
  3839              	.LASF22:
- 3840 0640 4E61764C 		.ascii	"NavLightPWM_WriteCompare\000"
+ 3840 0638 4E61764C 		.ascii	"NavLightPWM_WriteCompare\000"
  3840      69676874 
  3840      50574D5F 
  3840      57726974 
  3840      65436F6D 
  3841              	.LASF79:
- 3842 0659 4E61764C 		.ascii	"NavLightPWM_initVar\000"
+ 3842 0651 4E61764C 		.ascii	"NavLightPWM_initVar\000"
  3842      69676874 
  3842      50574D5F 
  3842      696E6974 
  3842      56617200 
  3843              	.LASF50:
- 3844 066d 73776170 		.ascii	"swapEnable\000"
+ 3844 0665 73776170 		.ascii	"swapEnable\000"
  3844      456E6162 
  3844      6C6500
  3845              	.LASF52:
- 3846 0678 70657269 		.ascii	"periodBuf\000"
+ 3846 0670 70657269 		.ascii	"periodBuf\000"
  3846      6F644275 
  3846      6600
  3847              	.LASF67:
- 3848 0682 4E61764C 		.ascii	"NavLightPWM_TriggerCommand\000"
+ 3848 067a 4E61764C 		.ascii	"NavLightPWM_TriggerCommand\000"
  3848      69676874 
  3848      50574D5F 
  3848      54726967 
  3848      67657243 
  3849              	.LASF71:
- 3850 069d 4E61764C 		.ascii	"NavLightPWM_ReadStatus\000"
+ 3850 0695 4E61764C 		.ascii	"NavLightPWM_ReadStatus\000"
  3850      69676874 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccp5Qitc.s 			page 102
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccslNjJF.s 			page 102
 
 
  3850      50574D5F 

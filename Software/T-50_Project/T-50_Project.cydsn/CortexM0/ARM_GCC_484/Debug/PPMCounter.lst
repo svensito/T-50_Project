@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
   30:.\Generated_Source\PSoC4/PPMCounter.c **** *
   31:.\Generated_Source\PSoC4/PPMCounter.c **** * Parameters:
   32:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/PPMCounter.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
   73:.\Generated_Source\PSoC4/PPMCounter.c ****                 PPMCounter_SetCompareSwap(1u);
   74:.\Generated_Source\PSoC4/PPMCounter.c ****                 PPMCounter_WriteCompareBuf(PPMCounter_TC_COMPARE_BUF_VALUE);
   75:.\Generated_Source\PSoC4/PPMCounter.c ****             #endif  /* (1u == PPMCounter_TC_COMPARE_SWAP) */
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 3
 
 
   76:.\Generated_Source\PSoC4/PPMCounter.c ****         #endif  /* (PPMCounter__COMPARE == PPMCounter_TC_COMP_CAP_MODE) */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  130:.\Generated_Source\PSoC4/PPMCounter.c ****             #endif  /* ( PPMCounter_PWM_LEFT == PPMCounter_PWM_ALIGN) */
  131:.\Generated_Source\PSoC4/PPMCounter.c **** 
  132:.\Generated_Source\PSoC4/PPMCounter.c ****             #if (PPMCounter__RIGHT == PPMCounter_PWM_ALIGN)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 4
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 4
 
 
  133:.\Generated_Source\PSoC4/PPMCounter.c ****                 PPMCounter_TRIG_CONTROL2_REG = PPMCounter_PWM_MODE_RIGHT;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  187:.\Generated_Source\PSoC4/PPMCounter.c ****         #if (0u == PPMCounter_PWM_START_SIGNAL_PRESENT)
  188:.\Generated_Source\PSoC4/PPMCounter.c ****             PPMCounter_TriggerCommand(PPMCounter_MASK, PPMCounter_CMD_START);
  189:.\Generated_Source\PSoC4/PPMCounter.c ****         #endif /* (0u == PPMCounter_PWM_START_SIGNAL_PRESENT) */
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 5
 
 
  190:.\Generated_Source\PSoC4/PPMCounter.c ****     #endif /* (PPMCounter__PWM_SEL == PPMCounter_CONFIG) */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  244:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
  245:.\Generated_Source\PSoC4/PPMCounter.c **** *
  246:.\Generated_Source\PSoC4/PPMCounter.c **** * Return:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 6
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 6
 
 
  247:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  301:.\Generated_Source\PSoC4/PPMCounter.c **** * Function Name: PPMCounter_SetQDMode
  302:.\Generated_Source\PSoC4/PPMCounter.c **** ********************************************************************************
  303:.\Generated_Source\PSoC4/PPMCounter.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 7
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 7
 
 
  304:.\Generated_Source\PSoC4/PPMCounter.c **** * Summary:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  358:.\Generated_Source\PSoC4/PPMCounter.c **** {
  359:.\Generated_Source\PSoC4/PPMCounter.c ****     uint8 enableInterrupts;
  360:.\Generated_Source\PSoC4/PPMCounter.c **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 8
 
 
  361:.\Generated_Source\PSoC4/PPMCounter.c ****     enableInterrupts = CyEnterCriticalSection();
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  415:.\Generated_Source\PSoC4/PPMCounter.c **** *  modeMask: A combination of three mode settings.  Mask must include a value
  416:.\Generated_Source\PSoC4/PPMCounter.c **** *  for each of the three or use one of the preconfigured PWM settings.
  417:.\Generated_Source\PSoC4/PPMCounter.c **** *   Values:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 9
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 9
 
 
  418:.\Generated_Source\PSoC4/PPMCounter.c **** *     - CC_MATCH_SET        - Set on comparison match
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  472:.\Generated_Source\PSoC4/PPMCounter.c **** *     - 0 - Asynchronous
  473:.\Generated_Source\PSoC4/PPMCounter.c **** *     - 1 - Synchronous
  474:.\Generated_Source\PSoC4/PPMCounter.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 10
 
 
  475:.\Generated_Source\PSoC4/PPMCounter.c **** * Return:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  529:.\Generated_Source\PSoC4/PPMCounter.c **** ********************************************************************************
  530:.\Generated_Source\PSoC4/PPMCounter.c **** *
  531:.\Generated_Source\PSoC4/PPMCounter.c **** * Summary:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 11
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 11
 
 
  532:.\Generated_Source\PSoC4/PPMCounter.c **** *  Writes the dead time control value.  This value delays the rising edge of
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  586:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG |= mask;
  587:.\Generated_Source\PSoC4/PPMCounter.c **** 
  588:.\Generated_Source\PSoC4/PPMCounter.c ****     CyExitCriticalSection(enableInterrupts);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 12
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 12
 
 
  589:.\Generated_Source\PSoC4/PPMCounter.c **** }
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  643:.\Generated_Source\PSoC4/PPMCounter.c **** * Parameters:
  644:.\Generated_Source\PSoC4/PPMCounter.c **** *  counterMode: Enumerated counter type values
  645:.\Generated_Source\PSoC4/PPMCounter.c **** *   Values:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 13
 
 
  646:.\Generated_Source\PSoC4/PPMCounter.c **** *     - PPMCounter_COUNT_UP       - Counts up
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  700:.\Generated_Source\PSoC4/PPMCounter.c **** * Parameters:
  701:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
  702:.\Generated_Source\PSoC4/PPMCounter.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 14
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 14
 
 
  703:.\Generated_Source\PSoC4/PPMCounter.c **** * Return:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  757:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
  758:.\Generated_Source\PSoC4/PPMCounter.c **** *
  759:.\Generated_Source\PSoC4/PPMCounter.c **** *******************************************************************************/
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 15
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 15
 
 
  760:.\Generated_Source\PSoC4/PPMCounter.c **** void PPMCounter_WritePeriodBuf(uint32 periodBuf)
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  814:.\Generated_Source\PSoC4/PPMCounter.c ****                                                             PPMCounter_RELOAD_PERIOD_SHIFT));
  815:.\Generated_Source\PSoC4/PPMCounter.c **** 
  816:.\Generated_Source\PSoC4/PPMCounter.c ****     CyExitCriticalSection(enableInterrupts);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 16
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 16
 
 
  817:.\Generated_Source\PSoC4/PPMCounter.c **** }
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  871:.\Generated_Source\PSoC4/PPMCounter.c **** * Parameters:
  872:.\Generated_Source\PSoC4/PPMCounter.c **** *  None
  873:.\Generated_Source\PSoC4/PPMCounter.c **** *
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 17
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 17
 
 
  874:.\Generated_Source\PSoC4/PPMCounter.c **** * Return:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  928:.\Generated_Source\PSoC4/PPMCounter.c ****     #endif /* (PPMCounter_CY_TCPWM_4000) */
  929:.\Generated_Source\PSoC4/PPMCounter.c **** 
  930:.\Generated_Source\PSoC4/PPMCounter.c ****     #if (PPMCounter_CY_TCPWM_4000)
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 18
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 18
 
 
  931:.\Generated_Source\PSoC4/PPMCounter.c ****         currentMode = ((PPMCounter_CONTROL_REG & PPMCounter_UPDOWN_MASK) >> PPMCounter_UPDOWN_SHIFT
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  985:.\Generated_Source\PSoC4/PPMCounter.c ****         else
  986:.\Generated_Source\PSoC4/PPMCounter.c ****         {
  987:.\Generated_Source\PSoC4/PPMCounter.c ****         }
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 19
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 19
 
 
  988:.\Generated_Source\PSoC4/PPMCounter.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1042:.\Generated_Source\PSoC4/PPMCounter.c **** * Summary:
 1043:.\Generated_Source\PSoC4/PPMCounter.c **** *  Sets the capture trigger mode. For PWM mode this is the switch input.
 1044:.\Generated_Source\PSoC4/PPMCounter.c **** *  This input is not applicable to the Timer/Counter without Capture and
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 20
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 20
 
 
 1045:.\Generated_Source\PSoC4/PPMCounter.c **** *  Quadrature Decoder modes.
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1099:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_TRIG_CONTROL1_REG |= ((uint32)(triggerMode << PPMCounter_RELOAD_SHIFT));
 1100:.\Generated_Source\PSoC4/PPMCounter.c **** 
 1101:.\Generated_Source\PSoC4/PPMCounter.c ****     CyExitCriticalSection(enableInterrupts);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 21
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 21
 
 
 1102:.\Generated_Source\PSoC4/PPMCounter.c **** }
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1156:.\Generated_Source\PSoC4/PPMCounter.c **** *******************************************************************************/
 1157:.\Generated_Source\PSoC4/PPMCounter.c **** void PPMCounter_SetStopMode(uint32 triggerMode)
 1158:.\Generated_Source\PSoC4/PPMCounter.c **** {
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 22
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 22
 
 
 1159:.\Generated_Source\PSoC4/PPMCounter.c ****     uint8 enableInterrupts;
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1213:.\Generated_Source\PSoC4/PPMCounter.c **** *  mask: A combination of mask bits for each instance of the TCPWM that the
 1214:.\Generated_Source\PSoC4/PPMCounter.c **** *        command should apply to.  This function from one instance can be used
 1215:.\Generated_Source\PSoC4/PPMCounter.c **** *        to apply the command to any of the instances in the design.
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 23
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 23
 
 
 1216:.\Generated_Source\PSoC4/PPMCounter.c **** *        The mask value for a specific instance is available with the MASK
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1270:.\Generated_Source\PSoC4/PPMCounter.c **** * Summary:
 1271:.\Generated_Source\PSoC4/PPMCounter.c **** *  Sets the interrupt mask to control which interrupt
 1272:.\Generated_Source\PSoC4/PPMCounter.c **** *  requests generate the interrupt signal.
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 24
 
 
 1273:.\Generated_Source\PSoC4/PPMCounter.c **** *
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
   77              	.LFE0:
   78              		.size	PPMCounter_Init, .-PPMCounter_Init
   79              		.section	.text.PPMCounter_Stop,"ax",%progbits
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 25
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 25
 
 
   80              		.align	1
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  126              		.cfi_startproc
  127              	.LVL5:
  128 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 26
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 26
 
 
  129              		.cfi_def_cfa_offset 8
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  174              	.LVL9:
  175 0000 10B5     		push	{r4, lr}
  176              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 27
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 27
 
 
  177              		.cfi_offset 4, -8
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  222 0000 10B5     		push	{r4, lr}
  223              		.cfi_def_cfa_offset 8
  224              		.cfi_offset 4, -8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 28
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 28
 
 
  225              		.cfi_offset 14, -4
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  270              		.cfi_def_cfa_offset 8
  271              		.cfi_offset 4, -8
  272              		.cfi_offset 14, -4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 29
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 29
 
 
  390:.\Generated_Source\PSoC4/PPMCounter.c **** {
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  318              	.LVL21:
  445:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_TRIG_CONTROL2_REG = (modeMask & PPMCounter_6BIT_MASK);
  319              		.loc 1 445 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 30
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 30
 
 
  320 0000 3F23     		mov	r3, #63
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  365 0010 1A60     		str	r2, [r3]
  486:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG |= ((uint32)((syncKillEnable & PPMCounter_1BIT_MASK)  <<
  366              		.loc 1 486 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 31
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 31
 
 
  367 0012 0121     		mov	r1, #1
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  413 000e 8A43     		bic	r2, r1
  414 0010 1A60     		str	r2, [r3]
  520:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG |= ((uint32)((stopOnKillEnable & PPMCounter_1BIT_MASK)  <<
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 32
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 32
 
 
  415              		.loc 1 520 0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  552:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG &= (uint32)~PPMCounter_PRESCALER_MASK;
  462              		.loc 1 552 0
  463 0010 0A40     		and	r2, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 33
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 33
 
 
  464 0012 1A60     		str	r2, [r3]
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  585:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG &= (uint32)~PPMCounter_INV_OUT_MASK;
  510              		.loc 1 585 0
  511 000e 0A40     		and	r2, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 34
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 34
 
 
  512 0010 1A60     		str	r2, [r3]
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  560              		.code	16
  561              		.thumb_func
  562              		.type	PPMCounter_ReadCounter, %function
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 35
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 35
 
 
  563              	PPMCounter_ReadCounter:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  607              		.loc 1 668 0
  608              		@ sp needed
  664:.\Generated_Source\PSoC4/PPMCounter.c ****     PPMCounter_CONTROL_REG &= (uint32)~PPMCounter_UPDOWN_MASK;
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 36
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 36
 
 
  609              		.loc 1 664 0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  657              		.align	1
  658              		.global	PPMCounter_ReadPeriod
  659              		.code	16
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 37
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 37
 
 
  660              		.thumb_func
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  705 000c 1968     		ldr	r1, [r3]
  743:.\Generated_Source\PSoC4/PPMCounter.c **** }
  706              		.loc 1 743 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 38
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 38
 
 
  707              		@ sp needed
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  754              		.size	PPMCounter_WritePeriodBuf, .-PPMCounter_WritePeriodBuf
  755              		.section	.text.PPMCounter_ReadPeriodBuf,"ax",%progbits
  756              		.align	1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 39
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 39
 
 
  757              		.global	PPMCounter_ReadPeriodBuf
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  802 0008 064B     		ldr	r3, .L59
  803 000a 0221     		mov	r1, #2
  804 000c 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 40
 
 
  817:.\Generated_Source\PSoC4/PPMCounter.c **** }
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  851              	.L62:
  852 0008 CC010540 		.word	1074069964
  853              		.cfi_endproc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 41
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 41
 
 
  854              	.LFE22:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  900 0006 7047     		bx	lr
  901              	.L69:
  902              		.align	2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 42
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 42
 
 
  903              	.L68:
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  948              		.loc 1 1013 0
  949 0002 1868     		ldr	r0, [r3]
  950 0004 80B2     		uxth	r0, r0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 43
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 43
 
 
 1014:.\Generated_Source\PSoC4/PPMCounter.c **** }
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  998              		.cfi_def_cfa_offset 8
  999              		.cfi_offset 4, -8
  1000              		.cfi_offset 14, -4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 44
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 44
 
 
 1060:.\Generated_Source\PSoC4/PPMCounter.c **** {
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1046              		.cfi_offset 14, -4
 1093:.\Generated_Source\PSoC4/PPMCounter.c **** {
  1047              		.loc 1 1093 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 45
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 45
 
 
  1048 0002 041C     		mov	r4, r0
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1092 0000 10B5     		push	{r4, lr}
  1093              		.cfi_def_cfa_offset 8
  1094              		.cfi_offset 4, -8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 46
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 46
 
 
  1095              		.cfi_offset 14, -4
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1158:.\Generated_Source\PSoC4/PPMCounter.c **** {
  1139              		.loc 1 1158 0
  1140              		.cfi_startproc
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 47
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 47
 
 
  1141              	.LVL73:
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1185              		.type	PPMCounter_SetCountMode, %function
  1186              	PPMCounter_SetCountMode:
  1187              	.LFB32:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 48
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 48
 
 
 1191:.\Generated_Source\PSoC4/PPMCounter.c **** {
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1231              		.global	PPMCounter_TriggerCommand
  1232              		.code	16
  1233              		.thumb_func
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 49
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 49
 
 
  1234              		.type	PPMCounter_TriggerCommand, %function
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1281 0000 10B5     		push	{r4, lr}
  1282              		.cfi_def_cfa_offset 8
  1283              		.cfi_offset 4, -8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 50
 
 
  1284              		.cfi_offset 14, -4
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1329 0002 054C     		ldr	r4, .L103
  1330 0004 2378     		ldrb	r3, [r4]
  1331 0006 002B     		cmp	r3, #0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 51
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 51
 
 
  1332 0008 03D1     		bne	.L101
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1263:.\Generated_Source\PSoC4/PPMCounter.c **** }
  1376              		.loc 1 1263 0
  1377 000e 7047     		bx	lr
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 52
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 52
 
 
  1378              	.L107:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1298:.\Generated_Source\PSoC4/PPMCounter.c **** *   None
 1299:.\Generated_Source\PSoC4/PPMCounter.c **** *
 1300:.\Generated_Source\PSoC4/PPMCounter.c **** * Return:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 53
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 53
 
 
 1301:.\Generated_Source\PSoC4/PPMCounter.c **** *  Masked interrupt source
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
 1329:.\Generated_Source\PSoC4/PPMCounter.c **** *******************************************************************************/
 1330:.\Generated_Source\PSoC4/PPMCounter.c **** uint32 PPMCounter_GetInterruptSource(void)
 1331:.\Generated_Source\PSoC4/PPMCounter.c **** {
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 54
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 54
 
 
  1444              		.loc 1 1331 0
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1473 0000 014B     		ldr	r3, .L118
 1356:.\Generated_Source\PSoC4/PPMCounter.c **** }
  1474              		.loc 1 1356 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 55
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 55
 
 
  1475              		@ sp needed
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1504              		.loc 1 1379 0
  1505 0004 7047     		bx	lr
  1506              	.L122:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 56
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 56
 
 
  1507 0006 C046     		.align	2
@@ -3325,10 +3325,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1528 0006 00000000 		.4byte	.Ldebug_abbrev0
  1529 000a 04       		.byte	0x4
  1530 000b 01       		.uleb128 0x1
- 1531 000c 54040000 		.4byte	.LASF76
+ 1531 000c 4C040000 		.4byte	.LASF76
  1532 0010 01       		.byte	0x1
  1533 0011 62000000 		.4byte	.LASF77
- 1534 0015 68010000 		.4byte	.LASF78
+ 1534 0015 DA020000 		.4byte	.LASF78
  1535 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1536 001d 00000000 		.4byte	0
  1537 0021 00000000 		.4byte	.Ldebug_line0
@@ -3339,26 +3339,26 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1542 002c 02       		.uleb128 0x2
  1543 002d 01       		.byte	0x1
  1544 002e 08       		.byte	0x8
- 1545 002f E3040000 		.4byte	.LASF1
+ 1545 002f DB040000 		.4byte	.LASF1
  1546 0033 02       		.uleb128 0x2
  1547 0034 02       		.byte	0x2
  1548 0035 05       		.byte	0x5
- 1549 0036 02050000 		.4byte	.LASF2
+ 1549 0036 FA040000 		.4byte	.LASF2
  1550 003a 02       		.uleb128 0x2
  1551 003b 02       		.byte	0x2
  1552 003c 07       		.byte	0x7
- 1553 003d DA020000 		.4byte	.LASF3
+ 1553 003d 88020000 		.4byte	.LASF3
  1554 0041 02       		.uleb128 0x2
  1555 0042 04       		.byte	0x4
  1556 0043 05       		.byte	0x5
- 1557 0044 CA010000 		.4byte	.LASF4
+ 1557 0044 78010000 		.4byte	.LASF4
  1558 0048 02       		.uleb128 0x2
  1559 0049 04       		.byte	0x4
  1560 004a 07       		.byte	0x7
- 1561 004b A8020000 		.4byte	.LASF5
+ 1561 004b 56020000 		.4byte	.LASF5
  1562 004f 02       		.uleb128 0x2
  1563 0050 08       		.byte	0x8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 57
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 57
 
 
  1564 0051 05       		.byte	0x5
@@ -3374,31 +3374,31 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1574 0064 02       		.uleb128 0x2
  1575 0065 04       		.byte	0x4
  1576 0066 07       		.byte	0x7
- 1577 0067 93020000 		.4byte	.LASF8
+ 1577 0067 41020000 		.4byte	.LASF8
  1578 006b 04       		.uleb128 0x4
- 1579 006c 20020000 		.4byte	.LASF9
+ 1579 006c CE010000 		.4byte	.LASF9
  1580 0070 02       		.byte	0x2
  1581 0071 A1       		.byte	0xa1
  1582 0072 2C000000 		.4byte	0x2c
  1583 0076 04       		.uleb128 0x4
- 1584 0077 40020000 		.4byte	.LASF10
+ 1584 0077 EE010000 		.4byte	.LASF10
  1585 007b 02       		.byte	0x2
  1586 007c A3       		.byte	0xa3
  1587 007d 48000000 		.4byte	0x48
  1588 0081 02       		.uleb128 0x2
  1589 0082 04       		.byte	0x4
  1590 0083 04       		.byte	0x4
- 1591 0084 14040000 		.4byte	.LASF11
+ 1591 0084 0C040000 		.4byte	.LASF11
  1592 0088 02       		.uleb128 0x2
  1593 0089 08       		.byte	0x8
  1594 008a 04       		.byte	0x4
- 1595 008b 39020000 		.4byte	.LASF12
+ 1595 008b E7010000 		.4byte	.LASF12
  1596 008f 02       		.uleb128 0x2
  1597 0090 01       		.byte	0x1
  1598 0091 08       		.byte	0x8
- 1599 0092 34050000 		.4byte	.LASF13
+ 1599 0092 2C050000 		.4byte	.LASF13
  1600 0096 05       		.uleb128 0x5
- 1601 0097 55030000 		.4byte	.LASF14
+ 1601 0097 4D030000 		.4byte	.LASF14
  1602 009b 02       		.byte	0x2
  1603 009c 4D01     		.2byte	0x14d
  1604 009e A2000000 		.4byte	0xa2
@@ -3407,18 +3407,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1607 00a7 02       		.uleb128 0x2
  1608 00a8 04       		.byte	0x4
  1609 00a9 07       		.byte	0x7
- 1610 00aa 70030000 		.4byte	.LASF15
+ 1610 00aa 68030000 		.4byte	.LASF15
  1611 00ae 07       		.uleb128 0x7
- 1612 00af ED010000 		.4byte	.LASF16
+ 1612 00af 9B010000 		.4byte	.LASF16
  1613 00b3 01       		.byte	0x1
  1614 00b4 0405     		.2byte	0x504
  1615 00b6 01       		.byte	0x1
  1616 00b7 C8000000 		.4byte	0xc8
  1617 00bb 08       		.uleb128 0x8
- 1618 00bc 0C050000 		.4byte	.LASF18
+ 1618 00bc 04050000 		.4byte	.LASF18
  1619 00c0 01       		.byte	0x1
  1620 00c1 0405     		.2byte	0x504
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 58
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 58
 
 
  1621 00c3 76000000 		.4byte	0x76
@@ -3448,7 +3448,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1645 00f7 76000000 		.4byte	0x76
  1646 00fb 00       		.byte	0
  1647 00fc 09       		.uleb128 0x9
- 1648 00fd 04040000 		.4byte	.LASF22
+ 1648 00fd FC030000 		.4byte	.LASF22
  1649 0101 01       		.byte	0x1
  1650 0102 26       		.byte	0x26
  1651 0103 00000000 		.4byte	.LFB0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1675 013f D5000000 		.4byte	0xd5
  1676 0143 100E     		.2byte	0xe10
  1677 0145 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 59
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 59
 
 
  1678 0146 0D       		.uleb128 0xd
@@ -3493,7 +3493,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1687 015b 00       		.byte	0
  1688 015c 00       		.byte	0
  1689 015d 09       		.uleb128 0x9
- 1690 015e BA010000 		.4byte	.LASF23
+ 1690 015e 68010000 		.4byte	.LASF23
  1691 0162 01       		.byte	0x1
  1692 0163 FA       		.byte	0xfa
  1693 0164 00000000 		.4byte	.LFB3
@@ -3502,7 +3502,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1696 016d 9C       		.byte	0x9c
  1697 016e 94010000 		.4byte	0x194
  1698 0172 0E       		.uleb128 0xe
- 1699 0173 E2050000 		.4byte	.LASF25
+ 1699 0173 DA050000 		.4byte	.LASF25
  1700 0177 01       		.byte	0x1
  1701 0178 FC       		.byte	0xfc
  1702 0179 6B000000 		.4byte	0x6b
@@ -3515,7 +3515,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1709 018f 24090000 		.4byte	0x924
  1710 0193 00       		.byte	0
  1711 0194 10       		.uleb128 0x10
- 1712 0195 26020000 		.4byte	.LASF24
+ 1712 0195 D4010000 		.4byte	.LASF24
  1713 0199 01       		.byte	0x1
  1714 019a 1F01     		.2byte	0x11f
  1715 019c 00000000 		.4byte	.LFB4
@@ -3524,13 +3524,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1718 01a5 9C       		.byte	0x9c
  1719 01a6 DD010000 		.4byte	0x1dd
  1720 01aa 11       		.uleb128 0x11
- 1721 01ab 39050000 		.4byte	.LASF27
+ 1721 01ab 31050000 		.4byte	.LASF27
  1722 01af 01       		.byte	0x1
  1723 01b0 1F01     		.2byte	0x11f
  1724 01b2 76000000 		.4byte	0x76
  1725 01b6 13000000 		.4byte	.LLST1
  1726 01ba 12       		.uleb128 0x12
- 1727 01bb E2050000 		.4byte	.LASF25
+ 1727 01bb DA050000 		.4byte	.LASF25
  1728 01bf 01       		.byte	0x1
  1729 01c0 2101     		.2byte	0x121
  1730 01c2 6B000000 		.4byte	0x6b
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1732 01ca 0F       		.uleb128 0xf
  1733 01cb 08000000 		.4byte	.LVL6
  1734 01cf 19090000 		.4byte	0x919
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 60
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 60
 
 
  1735 01d3 0F       		.uleb128 0xf
@@ -3546,7 +3546,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1737 01d8 24090000 		.4byte	0x924
  1738 01dc 00       		.byte	0
  1739 01dd 10       		.uleb128 0x10
- 1740 01de 5B030000 		.4byte	.LASF26
+ 1740 01de 53030000 		.4byte	.LASF26
  1741 01e2 01       		.byte	0x1
  1742 01e3 4001     		.2byte	0x140
  1743 01e5 00000000 		.4byte	.LFB5
@@ -3561,7 +3561,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1752 01fb 76000000 		.4byte	0x76
  1753 01ff 52000000 		.4byte	.LLST3
  1754 0203 12       		.uleb128 0x12
- 1755 0204 E2050000 		.4byte	.LASF25
+ 1755 0204 DA050000 		.4byte	.LASF25
  1756 0208 01       		.byte	0x1
  1757 0209 4201     		.2byte	0x142
  1758 020b 6B000000 		.4byte	0x6b
@@ -3574,7 +3574,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1765 0221 24090000 		.4byte	0x924
  1766 0225 00       		.byte	0
  1767 0226 10       		.uleb128 0x10
- 1768 0227 3D030000 		.4byte	.LASF29
+ 1768 0227 35030000 		.4byte	.LASF29
  1769 022b 01       		.byte	0x1
  1770 022c 6501     		.2byte	0x165
  1771 022e 00000000 		.4byte	.LFB6
@@ -3583,13 +3583,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1774 0237 9C       		.byte	0x9c
  1775 0238 6F020000 		.4byte	0x26f
  1776 023c 11       		.uleb128 0x11
- 1777 023d 1A040000 		.4byte	.LASF30
+ 1777 023d 12040000 		.4byte	.LASF30
  1778 0241 01       		.byte	0x1
  1779 0242 6501     		.2byte	0x165
  1780 0244 76000000 		.4byte	0x76
  1781 0248 91000000 		.4byte	.LLST5
  1782 024c 12       		.uleb128 0x12
- 1783 024d E2050000 		.4byte	.LASF25
+ 1783 024d DA050000 		.4byte	.LASF25
  1784 0251 01       		.byte	0x1
  1785 0252 6701     		.2byte	0x167
  1786 0254 6B000000 		.4byte	0x6b
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1789 025d 08000000 		.4byte	.LVL14
  1790 0261 19090000 		.4byte	0x919
  1791 0265 0F       		.uleb128 0xf
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 61
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 61
 
 
  1792 0266 1C000000 		.4byte	.LVL16
@@ -3614,13 +3614,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1802 0280 9C       		.byte	0x9c
  1803 0281 B8020000 		.4byte	0x2b8
  1804 0285 11       		.uleb128 0x11
- 1805 0286 07030000 		.4byte	.LASF32
+ 1805 0286 B5020000 		.4byte	.LASF32
  1806 028a 01       		.byte	0x1
  1807 028b 8501     		.2byte	0x185
  1808 028d 76000000 		.4byte	0x76
  1809 0291 D0000000 		.4byte	.LLST7
  1810 0295 12       		.uleb128 0x12
- 1811 0296 E2050000 		.4byte	.LASF25
+ 1811 0296 DA050000 		.4byte	.LASF25
  1812 029a 01       		.byte	0x1
  1813 029b 8701     		.2byte	0x187
  1814 029d 6B000000 		.4byte	0x6b
@@ -3633,7 +3633,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1821 02b3 24090000 		.4byte	0x924
  1822 02b7 00       		.byte	0
  1823 02b8 10       		.uleb128 0x10
- 1824 02b9 A2030000 		.4byte	.LASF33
+ 1824 02b9 9A030000 		.4byte	.LASF33
  1825 02bd 01       		.byte	0x1
  1826 02be BB01     		.2byte	0x1bb
  1827 02c0 00000000 		.4byte	.LFB8
@@ -3642,14 +3642,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1830 02c9 9C       		.byte	0x9c
  1831 02ca DF020000 		.4byte	0x2df
  1832 02ce 11       		.uleb128 0x11
- 1833 02cf BA020000 		.4byte	.LASF34
+ 1833 02cf 68020000 		.4byte	.LASF34
  1834 02d3 01       		.byte	0x1
  1835 02d4 BB01     		.2byte	0x1bb
  1836 02d6 76000000 		.4byte	0x76
  1837 02da 0F010000 		.4byte	.LLST9
  1838 02de 00       		.byte	0
  1839 02df 10       		.uleb128 0x10
- 1840 02e0 58020000 		.4byte	.LASF35
+ 1840 02e0 06020000 		.4byte	.LASF35
  1841 02e4 01       		.byte	0x1
  1842 02e5 DF01     		.2byte	0x1df
  1843 02e7 00000000 		.4byte	.LFB9
@@ -3658,16 +3658,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1846 02f0 9C       		.byte	0x9c
  1847 02f1 28030000 		.4byte	0x328
  1848 02f5 11       		.uleb128 0x11
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 62
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 62
 
 
- 1849 02f6 93030000 		.4byte	.LASF36
+ 1849 02f6 8B030000 		.4byte	.LASF36
  1850 02fa 01       		.byte	0x1
  1851 02fb DF01     		.2byte	0x1df
  1852 02fd 76000000 		.4byte	0x76
  1853 0301 30010000 		.4byte	.LLST10
  1854 0305 12       		.uleb128 0x12
- 1855 0306 E2050000 		.4byte	.LASF25
+ 1855 0306 DA050000 		.4byte	.LASF25
  1856 030a 01       		.byte	0x1
  1857 030b E101     		.2byte	0x1e1
  1858 030d 6B000000 		.4byte	0x6b
@@ -3680,7 +3680,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1865 0323 24090000 		.4byte	0x924
  1866 0327 00       		.byte	0
  1867 0328 10       		.uleb128 0x10
- 1868 0329 64060000 		.4byte	.LASF37
+ 1868 0329 5C060000 		.4byte	.LASF37
  1869 032d 01       		.byte	0x1
  1870 032e 0102     		.2byte	0x201
  1871 0330 00000000 		.4byte	.LFB10
@@ -3689,13 +3689,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1874 0339 9C       		.byte	0x9c
  1875 033a 71030000 		.4byte	0x371
  1876 033e 11       		.uleb128 0x11
- 1877 033f F1040000 		.4byte	.LASF38
+ 1877 033f E9040000 		.4byte	.LASF38
  1878 0343 01       		.byte	0x1
  1879 0344 0102     		.2byte	0x201
  1880 0346 76000000 		.4byte	0x76
  1881 034a 6F010000 		.4byte	.LLST12
  1882 034e 12       		.uleb128 0x12
- 1883 034f E2050000 		.4byte	.LASF25
+ 1883 034f DA050000 		.4byte	.LASF25
  1884 0353 01       		.byte	0x1
  1885 0354 0302     		.2byte	0x203
  1886 0356 6B000000 		.4byte	0x6b
@@ -3708,7 +3708,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1893 036c 24090000 		.4byte	0x924
  1894 0370 00       		.byte	0
  1895 0371 10       		.uleb128 0x10
- 1896 0372 0D060000 		.4byte	.LASF39
+ 1896 0372 05060000 		.4byte	.LASF39
  1897 0376 01       		.byte	0x1
  1898 0377 2202     		.2byte	0x222
  1899 0379 00000000 		.4byte	.LFB11
@@ -3717,8 +3717,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1902 0382 9C       		.byte	0x9c
  1903 0383 BA030000 		.4byte	0x3ba
  1904 0387 11       		.uleb128 0x11
- 1905 0388 8A020000 		.4byte	.LASF40
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 63
+ 1905 0388 38020000 		.4byte	.LASF40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 63
 
 
  1906 038c 01       		.byte	0x1
@@ -3726,7 +3726,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1908 038f 76000000 		.4byte	0x76
  1909 0393 AE010000 		.4byte	.LLST14
  1910 0397 12       		.uleb128 0x12
- 1911 0398 E2050000 		.4byte	.LASF25
+ 1911 0398 DA050000 		.4byte	.LASF25
  1912 039c 01       		.byte	0x1
  1913 039d 2402     		.2byte	0x224
  1914 039f 6B000000 		.4byte	0x6b
@@ -3739,7 +3739,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1921 03b5 24090000 		.4byte	0x924
  1922 03b9 00       		.byte	0
  1923 03ba 10       		.uleb128 0x10
- 1924 03bb 72020000 		.4byte	.LASF41
+ 1924 03bb 20020000 		.4byte	.LASF41
  1925 03bf 01       		.byte	0x1
  1926 03c0 4302     		.2byte	0x243
  1927 03c2 00000000 		.4byte	.LFB12
@@ -3748,13 +3748,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1930 03cb 9C       		.byte	0x9c
  1931 03cc 03040000 		.4byte	0x403
  1932 03d0 11       		.uleb128 0x11
- 1933 03d1 53020000 		.4byte	.LASF42
+ 1933 03d1 01020000 		.4byte	.LASF42
  1934 03d5 01       		.byte	0x1
  1935 03d6 4302     		.2byte	0x243
  1936 03d8 76000000 		.4byte	0x76
  1937 03dc ED010000 		.4byte	.LLST16
  1938 03e0 12       		.uleb128 0x12
- 1939 03e1 E2050000 		.4byte	.LASF25
+ 1939 03e1 DA050000 		.4byte	.LASF25
  1940 03e5 01       		.byte	0x1
  1941 03e6 4502     		.2byte	0x245
  1942 03e8 6B000000 		.4byte	0x6b
@@ -3778,10 +3778,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1960 041b 2C020000 		.4byte	.LLST18
  1961 041f 00       		.byte	0
  1962 0420 15       		.uleb128 0x15
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 64
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 64
 
 
- 1963 0421 15030000 		.4byte	.LASF45
+ 1963 0421 C3020000 		.4byte	.LASF45
  1964 0425 01       		.byte	0x1
  1965 0426 7502     		.2byte	0x275
  1966 0428 76000000 		.4byte	0x76
@@ -3790,7 +3790,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1969 0434 01       		.uleb128 0x1
  1970 0435 9C       		.byte	0x9c
  1971 0436 10       		.uleb128 0x10
- 1972 0437 4A060000 		.4byte	.LASF43
+ 1972 0437 42060000 		.4byte	.LASF43
  1973 043b 01       		.byte	0x1
  1974 043c 9202     		.2byte	0x292
  1975 043e 00000000 		.4byte	.LFB15
@@ -3799,13 +3799,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  1978 0447 9C       		.byte	0x9c
  1979 0448 7F040000 		.4byte	0x47f
  1980 044c 11       		.uleb128 0x11
- 1981 044d 57050000 		.4byte	.LASF44
+ 1981 044d 4F050000 		.4byte	.LASF44
  1982 0451 01       		.byte	0x1
  1983 0452 9202     		.2byte	0x292
  1984 0454 76000000 		.4byte	0x76
  1985 0458 4D020000 		.4byte	.LLST19
  1986 045c 12       		.uleb128 0x12
- 1987 045d E2050000 		.4byte	.LASF25
+ 1987 045d DA050000 		.4byte	.LASF25
  1988 0461 01       		.byte	0x1
  1989 0462 9402     		.2byte	0x294
  1990 0464 6B000000 		.4byte	0x6b
@@ -3838,10 +3838,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2017 04b0 01       		.uleb128 0x1
  2018 04b1 9C       		.byte	0x9c
  2019 04b2 10       		.uleb128 0x10
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 65
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 65
 
 
- 2020 04b3 D3010000 		.4byte	.LASF47
+ 2020 04b3 81010000 		.4byte	.LASF47
  2021 04b7 01       		.byte	0x1
  2022 04b8 DD02     		.2byte	0x2dd
  2023 04ba 00000000 		.4byte	.LFB18
@@ -3850,13 +3850,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2026 04c3 9C       		.byte	0x9c
  2027 04c4 FB040000 		.4byte	0x4fb
  2028 04c8 11       		.uleb128 0x11
- 2029 04c9 27060000 		.4byte	.LASF48
+ 2029 04c9 1F060000 		.4byte	.LASF48
  2030 04cd 01       		.byte	0x1
  2031 04ce DD02     		.2byte	0x2dd
  2032 04d0 76000000 		.4byte	0x76
  2033 04d4 AD020000 		.4byte	.LLST22
  2034 04d8 12       		.uleb128 0x12
- 2035 04d9 E2050000 		.4byte	.LASF25
+ 2035 04d9 DA050000 		.4byte	.LASF25
  2036 04dd 01       		.byte	0x1
  2037 04de DF02     		.2byte	0x2df
  2038 04e0 6B000000 		.4byte	0x6b
@@ -3869,7 +3869,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2045 04f6 24090000 		.4byte	0x924
  2046 04fa 00       		.byte	0
  2047 04fb 10       		.uleb128 0x10
- 2048 04fc 1A050000 		.4byte	.LASF49
+ 2048 04fc 12050000 		.4byte	.LASF49
  2049 0500 01       		.byte	0x1
  2050 0501 F802     		.2byte	0x2f8
  2051 0503 00000000 		.4byte	.LFB19
@@ -3878,14 +3878,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2054 050c 9C       		.byte	0x9c
  2055 050d 22050000 		.4byte	0x522
  2056 0511 11       		.uleb128 0x11
- 2057 0512 80060000 		.4byte	.LASF50
+ 2057 0512 78060000 		.4byte	.LASF50
  2058 0516 01       		.byte	0x1
  2059 0517 F802     		.2byte	0x2f8
  2060 0519 76000000 		.4byte	0x76
  2061 051d EC020000 		.4byte	.LLST24
  2062 0521 00       		.byte	0
  2063 0522 15       		.uleb128 0x15
- 2064 0523 C9050000 		.4byte	.LASF51
+ 2064 0523 C1050000 		.4byte	.LASF51
  2065 0527 01       		.byte	0x1
  2066 0528 0C03     		.2byte	0x30c
  2067 052a 76000000 		.4byte	0x76
@@ -3894,11 +3894,11 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2070 0536 01       		.uleb128 0x1
  2071 0537 9C       		.byte	0x9c
  2072 0538 10       		.uleb128 0x10
- 2073 0539 3B040000 		.4byte	.LASF52
+ 2073 0539 33040000 		.4byte	.LASF52
  2074 053d 01       		.byte	0x1
  2075 053e 2603     		.2byte	0x326
  2076 0540 00000000 		.4byte	.LFB21
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 66
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 66
 
 
  2077 0544 28000000 		.4byte	.LFE21-.LFB21
@@ -3906,13 +3906,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2079 0549 9C       		.byte	0x9c
  2080 054a 81050000 		.4byte	0x581
  2081 054e 11       		.uleb128 0x11
- 2082 054f 27060000 		.4byte	.LASF48
+ 2082 054f 1F060000 		.4byte	.LASF48
  2083 0553 01       		.byte	0x1
  2084 0554 2603     		.2byte	0x326
  2085 0556 76000000 		.4byte	0x76
  2086 055a 0D030000 		.4byte	.LLST25
  2087 055e 12       		.uleb128 0x12
- 2088 055f E2050000 		.4byte	.LASF25
+ 2088 055f DA050000 		.4byte	.LASF25
  2089 0563 01       		.byte	0x1
  2090 0564 2803     		.2byte	0x328
  2091 0566 6B000000 		.4byte	0x6b
@@ -3934,14 +3934,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2107 0592 9C       		.byte	0x9c
  2108 0593 A8050000 		.4byte	0x5a8
  2109 0597 11       		.uleb128 0x11
- 2110 0598 CA030000 		.4byte	.LASF54
+ 2110 0598 C2030000 		.4byte	.LASF54
  2111 059c 01       		.byte	0x1
  2112 059d 4303     		.2byte	0x343
  2113 059f 76000000 		.4byte	0x76
  2114 05a3 4C030000 		.4byte	.LLST27
  2115 05a7 00       		.byte	0
  2116 05a8 15       		.uleb128 0x15
- 2117 05a9 ED030000 		.4byte	.LASF55
+ 2117 05a9 E5030000 		.4byte	.LASF55
  2118 05ad 01       		.byte	0x1
  2119 05ae 6E03     		.2byte	0x36e
  2120 05b0 76000000 		.4byte	0x76
@@ -3950,7 +3950,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2123 05bc 01       		.uleb128 0x1
  2124 05bd 9C       		.byte	0x9c
  2125 05be 10       		.uleb128 0x10
- 2126 05bf D2030000 		.4byte	.LASF56
+ 2126 05bf CA030000 		.4byte	.LASF56
  2127 05c3 01       		.byte	0x1
  2128 05c4 9C03     		.2byte	0x39c
  2129 05c6 00000000 		.4byte	.LFB24
@@ -3958,18 +3958,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2131 05ce 01       		.uleb128 0x1
  2132 05cf 9C       		.byte	0x9c
  2133 05d0 E5050000 		.4byte	0x5e5
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 67
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 67
 
 
  2134 05d4 11       		.uleb128 0x11
- 2135 05d5 A8050000 		.4byte	.LASF57
+ 2135 05d5 A0050000 		.4byte	.LASF57
  2136 05d9 01       		.byte	0x1
  2137 05da 9C03     		.2byte	0x39c
  2138 05dc 76000000 		.4byte	0x76
  2139 05e0 6D030000 		.4byte	.LLST28
  2140 05e4 00       		.byte	0
  2141 05e5 15       		.uleb128 0x15
- 2142 05e6 F3050000 		.4byte	.LASF58
+ 2142 05e6 EB050000 		.4byte	.LASF58
  2143 05ea 01       		.byte	0x1
  2144 05eb C503     		.2byte	0x3c5
  2145 05ed 76000000 		.4byte	0x76
@@ -3978,7 +3978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2148 05f9 01       		.uleb128 0x1
  2149 05fa 9C       		.byte	0x9c
  2150 05fb 15       		.uleb128 0x15
- 2151 05fc 09020000 		.4byte	.LASF59
+ 2151 05fc B7010000 		.4byte	.LASF59
  2152 0600 01       		.byte	0x1
  2153 0601 F303     		.2byte	0x3f3
  2154 0603 76000000 		.4byte	0x76
@@ -3987,7 +3987,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2157 060f 01       		.uleb128 0x1
  2158 0610 9C       		.byte	0x9c
  2159 0611 15       		.uleb128 0x15
- 2160 0612 76050000 		.4byte	.LASF60
+ 2160 0612 6E050000 		.4byte	.LASF60
  2161 0616 01       		.byte	0x1
  2162 0617 0804     		.2byte	0x408
  2163 0619 76000000 		.4byte	0x76
@@ -4005,20 +4005,20 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2175 0638 9C       		.byte	0x9c
  2176 0639 70060000 		.4byte	0x670
  2177 063d 11       		.uleb128 0x11
- 2178 063e 47020000 		.4byte	.LASF62
+ 2178 063e F5010000 		.4byte	.LASF62
  2179 0642 01       		.byte	0x1
  2180 0643 2304     		.2byte	0x423
  2181 0645 76000000 		.4byte	0x76
  2182 0649 8E030000 		.4byte	.LLST29
  2183 064d 12       		.uleb128 0x12
- 2184 064e E2050000 		.4byte	.LASF25
+ 2184 064e DA050000 		.4byte	.LASF25
  2185 0652 01       		.byte	0x1
  2186 0653 2504     		.2byte	0x425
  2187 0655 6B000000 		.4byte	0x6b
  2188 0659 BA030000 		.4byte	.LLST30
  2189 065d 0F       		.uleb128 0xf
  2190 065e 08000000 		.4byte	.LVL62
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 68
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 68
 
 
  2191 0662 19090000 		.4byte	0x919
@@ -4027,7 +4027,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2194 066b 24090000 		.4byte	0x924
  2195 066f 00       		.byte	0
  2196 0670 10       		.uleb128 0x10
- 2197 0671 3E050000 		.4byte	.LASF63
+ 2197 0671 36050000 		.4byte	.LASF63
  2198 0675 01       		.byte	0x1
  2199 0676 4404     		.2byte	0x444
  2200 0678 00000000 		.4byte	.LFB29
@@ -4036,13 +4036,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2203 0681 9C       		.byte	0x9c
  2204 0682 B9060000 		.4byte	0x6b9
  2205 0686 11       		.uleb128 0x11
- 2206 0687 47020000 		.4byte	.LASF62
+ 2206 0687 F5010000 		.4byte	.LASF62
  2207 068b 01       		.byte	0x1
  2208 068c 4404     		.2byte	0x444
  2209 068e 76000000 		.4byte	0x76
  2210 0692 CD030000 		.4byte	.LLST31
  2211 0696 12       		.uleb128 0x12
- 2212 0697 E2050000 		.4byte	.LASF25
+ 2212 0697 DA050000 		.4byte	.LASF25
  2213 069b 01       		.byte	0x1
  2214 069c 4604     		.2byte	0x446
  2215 069e 6B000000 		.4byte	0x6b
@@ -4064,13 +4064,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2231 06ca 9C       		.byte	0x9c
  2232 06cb 02070000 		.4byte	0x702
  2233 06cf 11       		.uleb128 0x11
- 2234 06d0 47020000 		.4byte	.LASF62
+ 2234 06d0 F5010000 		.4byte	.LASF62
  2235 06d4 01       		.byte	0x1
  2236 06d5 6504     		.2byte	0x465
  2237 06d7 76000000 		.4byte	0x76
  2238 06db 0C040000 		.4byte	.LLST33
  2239 06df 12       		.uleb128 0x12
- 2240 06e0 E2050000 		.4byte	.LASF25
+ 2240 06e0 DA050000 		.4byte	.LASF25
  2241 06e4 01       		.byte	0x1
  2242 06e5 6704     		.2byte	0x467
  2243 06e7 6B000000 		.4byte	0x6b
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2245 06ef 0F       		.uleb128 0xf
  2246 06f0 08000000 		.4byte	.LVL70
  2247 06f4 19090000 		.4byte	0x919
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 69
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 69
 
 
  2248 06f8 0F       		.uleb128 0xf
@@ -4086,7 +4086,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2250 06fd 24090000 		.4byte	0x924
  2251 0701 00       		.byte	0
  2252 0702 10       		.uleb128 0x10
- 2253 0703 24040000 		.4byte	.LASF65
+ 2253 0703 1C040000 		.4byte	.LASF65
  2254 0707 01       		.byte	0x1
  2255 0708 8504     		.2byte	0x485
  2256 070a 00000000 		.4byte	.LFB31
@@ -4095,13 +4095,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2259 0713 9C       		.byte	0x9c
  2260 0714 4B070000 		.4byte	0x74b
  2261 0718 11       		.uleb128 0x11
- 2262 0719 47020000 		.4byte	.LASF62
+ 2262 0719 F5010000 		.4byte	.LASF62
  2263 071d 01       		.byte	0x1
  2264 071e 8504     		.2byte	0x485
  2265 0720 76000000 		.4byte	0x76
  2266 0724 4B040000 		.4byte	.LLST35
  2267 0728 12       		.uleb128 0x12
- 2268 0729 E2050000 		.4byte	.LASF25
+ 2268 0729 DA050000 		.4byte	.LASF25
  2269 072d 01       		.byte	0x1
  2270 072e 8704     		.2byte	0x487
  2271 0730 6B000000 		.4byte	0x6b
@@ -4114,7 +4114,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2278 0746 24090000 		.4byte	0x924
  2279 074a 00       		.byte	0
  2280 074b 10       		.uleb128 0x10
- 2281 074c 32060000 		.4byte	.LASF66
+ 2281 074c 2A060000 		.4byte	.LASF66
  2282 0750 01       		.byte	0x1
  2283 0751 A604     		.2byte	0x4a6
  2284 0753 00000000 		.4byte	.LFB32
@@ -4123,13 +4123,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2287 075c 9C       		.byte	0x9c
  2288 075d 94070000 		.4byte	0x794
  2289 0761 11       		.uleb128 0x11
- 2290 0762 47020000 		.4byte	.LASF62
+ 2290 0762 F5010000 		.4byte	.LASF62
  2291 0766 01       		.byte	0x1
  2292 0767 A604     		.2byte	0x4a6
  2293 0769 76000000 		.4byte	0x76
  2294 076d 8A040000 		.4byte	.LLST37
  2295 0771 12       		.uleb128 0x12
- 2296 0772 E2050000 		.4byte	.LASF25
+ 2296 0772 DA050000 		.4byte	.LASF25
  2297 0776 01       		.byte	0x1
  2298 0777 A804     		.2byte	0x4a8
  2299 0779 6B000000 		.4byte	0x6b
@@ -4138,14 +4138,14 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2302 0782 08000000 		.4byte	.LVL78
  2303 0786 19090000 		.4byte	0x919
  2304 078a 0F       		.uleb128 0xf
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 70
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 70
 
 
  2305 078b 1E000000 		.4byte	.LVL80
  2306 078f 24090000 		.4byte	0x924
  2307 0793 00       		.byte	0
  2308 0794 10       		.uleb128 0x10
- 2309 0795 ED020000 		.4byte	.LASF67
+ 2309 0795 9B020000 		.4byte	.LASF67
  2310 0799 01       		.byte	0x1
  2311 079a CE04     		.2byte	0x4ce
  2312 079c 00000000 		.4byte	.LFB33
@@ -4154,19 +4154,19 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2315 07a5 9C       		.byte	0x9c
  2316 07a6 ED070000 		.4byte	0x7ed
  2317 07aa 11       		.uleb128 0x11
- 2318 07ab 53020000 		.4byte	.LASF42
+ 2318 07ab 01020000 		.4byte	.LASF42
  2319 07af 01       		.byte	0x1
  2320 07b0 CE04     		.2byte	0x4ce
  2321 07b2 76000000 		.4byte	0x76
  2322 07b6 C9040000 		.4byte	.LLST39
  2323 07ba 11       		.uleb128 0x11
- 2324 07bb A0020000 		.4byte	.LASF68
+ 2324 07bb 4E020000 		.4byte	.LASF68
  2325 07bf 01       		.byte	0x1
  2326 07c0 CE04     		.2byte	0x4ce
  2327 07c2 76000000 		.4byte	0x76
  2328 07c6 F5040000 		.4byte	.LLST40
  2329 07ca 12       		.uleb128 0x12
- 2330 07cb E2050000 		.4byte	.LASF25
+ 2330 07cb DA050000 		.4byte	.LASF25
  2331 07cf 01       		.byte	0x1
  2332 07d0 D004     		.2byte	0x4d0
  2333 07d2 6B000000 		.4byte	0x6b
@@ -4179,7 +4179,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2340 07e8 24090000 		.4byte	0x924
  2341 07ec 00       		.byte	0
  2342 07ed 09       		.uleb128 0x9
- 2343 07ee B8030000 		.4byte	.LASF69
+ 2343 07ee B0030000 		.4byte	.LASF69
  2344 07f2 01       		.byte	0x1
  2345 07f3 B1       		.byte	0xb1
  2346 07f4 00000000 		.4byte	.LFB1
@@ -4188,7 +4188,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2349 07fd 9C       		.byte	0x9c
  2350 07fe 39080000 		.4byte	0x839
  2351 0802 0E       		.uleb128 0xe
- 2352 0803 E2050000 		.4byte	.LASF25
+ 2352 0803 DA050000 		.4byte	.LASF25
  2353 0807 01       		.byte	0x1
  2354 0808 B3       		.byte	0xb3
  2355 0809 6B000000 		.4byte	0x6b
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2359 0816 19090000 		.4byte	0x919
  2360 081a 0F       		.uleb128 0xf
  2361 081b 14000000 		.4byte	.LVL87
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 71
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 71
 
 
  2362 081f 24090000 		.4byte	0x924
@@ -4219,7 +4219,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2377 0837 00       		.byte	0
  2378 0838 00       		.byte	0
  2379 0839 09       		.uleb128 0x9
- 2380 083a 2C030000 		.4byte	.LASF70
+ 2380 083a 24030000 		.4byte	.LASF70
  2381 083e 01       		.byte	0x1
  2382 083f E0       		.byte	0xe0
  2383 0840 00000000 		.4byte	.LFB2
@@ -4235,7 +4235,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2393 085c ED070000 		.4byte	0x7ed
  2394 0860 00       		.byte	0
  2395 0861 15       		.uleb128 0x15
- 2396 0862 B3050000 		.4byte	.LASF71
+ 2396 0862 AB050000 		.4byte	.LASF71
  2397 0866 01       		.byte	0x1
  2398 0867 EB04     		.2byte	0x4eb
  2399 0869 76000000 		.4byte	0x76
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2416 0892 15       		.uleb128 0x15
  2417 0893 DA000000 		.4byte	.LASF72
  2418 0897 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 72
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 72
 
 
  2419 0898 1B05     		.2byte	0x51b
@@ -4277,7 +4277,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2432 08bc 01       		.uleb128 0x1
  2433 08bd 9C       		.byte	0x9c
  2434 08be 10       		.uleb128 0x10
- 2435 08bf 79030000 		.4byte	.LASF74
+ 2435 08bf 71030000 		.4byte	.LASF74
  2436 08c3 01       		.byte	0x1
  2437 08c4 4905     		.2byte	0x549
  2438 08c6 00000000 		.4byte	.LFB38
@@ -4286,7 +4286,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2441 08cf 9C       		.byte	0x9c
  2442 08d0 E3080000 		.4byte	0x8e3
  2443 08d4 19       		.uleb128 0x19
- 2444 08d5 0C050000 		.4byte	.LASF18
+ 2444 08d5 04050000 		.4byte	.LASF18
  2445 08d9 01       		.byte	0x1
  2446 08da 4905     		.2byte	0x549
  2447 08dc 76000000 		.4byte	0x76
@@ -4294,7 +4294,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2449 08e1 50       		.byte	0x50
  2450 08e2 00       		.byte	0
  2451 08e3 10       		.uleb128 0x10
- 2452 08e4 90050000 		.4byte	.LASF75
+ 2452 08e4 88050000 		.4byte	.LASF75
  2453 08e8 01       		.byte	0x1
  2454 08e9 6005     		.2byte	0x560
  2455 08eb 00000000 		.4byte	.LFB39
@@ -4303,7 +4303,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2458 08f4 9C       		.byte	0x9c
  2459 08f5 08090000 		.4byte	0x908
  2460 08f9 19       		.uleb128 0x19
- 2461 08fa 0C050000 		.4byte	.LASF18
+ 2461 08fa 04050000 		.4byte	.LASF18
  2462 08fe 01       		.byte	0x1
  2463 08ff 6005     		.2byte	0x560
  2464 0901 76000000 		.4byte	0x76
@@ -4311,18 +4311,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2466 0906 50       		.byte	0x50
  2467 0907 00       		.byte	0
  2468 0908 1A       		.uleb128 0x1a
- 2469 0909 63050000 		.4byte	.LASF79
+ 2469 0909 5B050000 		.4byte	.LASF79
  2470 090d 01       		.byte	0x1
  2471 090e 15       		.byte	0x15
  2472 090f 6B000000 		.4byte	0x6b
  2473 0913 05       		.uleb128 0x5
  2474 0914 03       		.byte	0x3
  2475 0915 00000000 		.4byte	PPMCounter_initVar
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 73
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 73
 
 
  2476 0919 1B       		.uleb128 0x1b
- 2477 091a C3020000 		.4byte	.LASF80
+ 2477 091a 71020000 		.4byte	.LASF80
  2478 091e 03       		.byte	0x3
  2479 091f 82       		.byte	0x82
  2480 0920 6B000000 		.4byte	0x6b
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2530 0027 00       		.byte	0
  2531 0028 00       		.byte	0
  2532 0029 04       		.uleb128 0x4
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 74
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 74
 
 
  2533 002a 16       		.uleb128 0x16
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2587 0060 03       		.uleb128 0x3
  2588 0061 0E       		.uleb128 0xe
  2589 0062 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 75
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 75
 
 
  2590 0063 0B       		.uleb128 0xb
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2644 009a 1C       		.uleb128 0x1c
  2645 009b 0B       		.uleb128 0xb
  2646 009c 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 76
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 76
 
 
  2647 009d 00       		.byte	0
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2701 00d5 03       		.uleb128 0x3
  2702 00d6 0E       		.uleb128 0xe
  2703 00d7 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 77
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 77
 
 
  2704 00d8 0B       		.uleb128 0xb
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2758 010f 12       		.uleb128 0x12
  2759 0110 06       		.uleb128 0x6
  2760 0111 40       		.uleb128 0x40
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 78
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 78
 
 
  2761 0112 18       		.uleb128 0x18
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2815 014e 18       		.uleb128 0x18
  2816 014f 9142     		.uleb128 0x2111
  2817 0151 18       		.uleb128 0x18
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 79
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 79
 
 
  2818 0152 00       		.byte	0
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2872 0188 27       		.uleb128 0x27
  2873 0189 19       		.uleb128 0x19
  2874 018a 49       		.uleb128 0x49
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 80
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 80
 
 
  2875 018b 13       		.uleb128 0x13
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2929 0036 9F       		.byte	0x9f
  2930 0037 00000000 		.4byte	0
  2931 003b 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 81
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 81
 
 
  2932              	.LLST2:
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  2986 00c7 50       		.byte	0x50
  2987 00c8 00000000 		.4byte	0
  2988 00cc 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 82
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 82
 
 
  2989              	.LLST7:
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3043 0153 9F       		.byte	0x9f
  3044 0154 00000000 		.4byte	0
  3045 0158 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 83
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 83
 
 
  3046              	.LLST11:
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3100 01e4 50       		.byte	0x50
  3101 01e5 00000000 		.4byte	0
  3102 01e9 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 84
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 84
 
 
  3103              	.LLST16:
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3157 0270 9F       		.byte	0x9f
  3158 0271 00000000 		.4byte	0
  3159 0275 00000000 		.4byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 85
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 85
 
 
  3160              	.LLST20:
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3214 0301 F3       		.byte	0xf3
  3215 0302 01       		.uleb128 0x1
  3216 0303 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 86
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 86
 
 
  3217 0304 9F       		.byte	0x9f
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3271 0386 00000000 		.4byte	0
  3272 038a 00000000 		.4byte	0
  3273              	.LLST29:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 87
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 87
 
 
  3274 038e 00000000 		.4byte	.LVL61
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3328 0417 07000000 		.4byte	.LVL70-1
  3329 041b 10000000 		.4byte	.LVL71
  3330 041f 0100     		.2byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 88
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 88
 
 
  3331 0421 54       		.byte	0x54
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3385 04aa F3       		.byte	0xf3
  3386 04ab 01       		.uleb128 0x1
  3387 04ac 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 89
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 89
 
 
  3388 04ad 9F       		.byte	0x9f
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3442 0534 06000000 		.4byte	.LVL86
  3443 0538 13000000 		.4byte	.LVL87-1
  3444 053c 0100     		.2byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 90
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 90
 
 
  3445 053e 50       		.byte	0x50
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3499 00bc 0C000000 		.4byte	.LFE23-.LFB23
  3500 00c0 00000000 		.4byte	.LFB24
  3501 00c4 0C000000 		.4byte	.LFE24-.LFB24
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 91
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 91
 
 
  3502 00c8 00000000 		.4byte	.LFB25
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3556 0040 00000000 		.4byte	.LFB10
  3557 0044 28000000 		.4byte	.LFE10
  3558 0048 00000000 		.4byte	.LFB11
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 92
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 92
 
 
  3559 004c 2C000000 		.4byte	.LFE11
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3613 0124 0C000000 		.4byte	.LFE36
  3614 0128 00000000 		.4byte	.LFB37
  3615 012c 0C000000 		.4byte	.LFE37
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 93
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 93
 
 
  3616 0130 00000000 		.4byte	.LFB38
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3640      6F6400
  3641              	.LASF7:
  3642 00a6 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 94
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 94
 
 
  3642      206C6F6E 
@@ -5627,138 +5627,138 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3658      65725F47 
  3658      6574496E 
  3658      74657272 
- 3659              	.LASF78:
- 3660 0168 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 3660      73657273 
- 3660      5C534E46 
- 3660      555C446F 
- 3660      63756D65 
- 3661 0196 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 3661      542D3530 
- 3661      5F50726F 
- 3661      6A656374 
- 3661      5C542D35 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 95
+ 3659              	.LASF23:
+ 3660 0168 50504D43 		.ascii	"PPMCounter_Stop\000"
+ 3660      6F756E74 
+ 3660      65725F53 
+ 3660      746F7000 
+ 3661              	.LASF4:
+ 3662 0178 6C6F6E67 		.ascii	"long int\000"
+ 3662      20696E74 
+ 3662      00
+ 3663              	.LASF47:
+ 3664 0181 50504D43 		.ascii	"PPMCounter_SetCompareSwap\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 95
 
 
- 3662              	.LASF23:
- 3663 01ba 50504D43 		.ascii	"PPMCounter_Stop\000"
- 3663      6F756E74 
- 3663      65725F53 
- 3663      746F7000 
- 3664              	.LASF4:
- 3665 01ca 6C6F6E67 		.ascii	"long int\000"
- 3665      20696E74 
- 3665      00
- 3666              	.LASF47:
- 3667 01d3 50504D43 		.ascii	"PPMCounter_SetCompareSwap\000"
- 3667      6F756E74 
- 3667      65725F53 
- 3667      6574436F 
- 3667      6D706172 
- 3668              	.LASF16:
- 3669 01ed 50504D43 		.ascii	"PPMCounter_SetInterruptMode\000"
- 3669      6F756E74 
- 3669      65725F53 
- 3669      6574496E 
- 3669      74657272 
- 3670              	.LASF59:
- 3671 0209 50504D43 		.ascii	"PPMCounter_ReadCapture\000"
- 3671      6F756E74 
- 3671      65725F52 
- 3671      65616443 
- 3671      61707475 
- 3672              	.LASF9:
- 3673 0220 75696E74 		.ascii	"uint8\000"
- 3673      3800
- 3674              	.LASF24:
- 3675 0226 50504D43 		.ascii	"PPMCounter_SetMode\000"
- 3675      6F756E74 
- 3675      65725F53 
- 3675      65744D6F 
- 3675      646500
- 3676              	.LASF12:
- 3677 0239 646F7562 		.ascii	"double\000"
- 3677      6C6500
- 3678              	.LASF10:
- 3679 0240 75696E74 		.ascii	"uint32\000"
- 3679      333200
- 3680              	.LASF62:
- 3681 0247 74726967 		.ascii	"triggerMode\000"
- 3681      6765724D 
- 3681      6F646500 
- 3682              	.LASF42:
- 3683 0253 6D61736B 		.ascii	"mask\000"
- 3683      00
- 3684              	.LASF35:
- 3685 0258 50504D43 		.ascii	"PPMCounter_SetPWMSyncKill\000"
- 3685      6F756E74 
- 3685      65725F53 
- 3685      65745057 
- 3685      4D53796E 
- 3686              	.LASF41:
- 3687 0272 50504D43 		.ascii	"PPMCounter_SetPWMInvert\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 96
+ 3664      6F756E74 
+ 3664      65725F53 
+ 3664      6574436F 
+ 3664      6D706172 
+ 3665              	.LASF16:
+ 3666 019b 50504D43 		.ascii	"PPMCounter_SetInterruptMode\000"
+ 3666      6F756E74 
+ 3666      65725F53 
+ 3666      6574496E 
+ 3666      74657272 
+ 3667              	.LASF59:
+ 3668 01b7 50504D43 		.ascii	"PPMCounter_ReadCapture\000"
+ 3668      6F756E74 
+ 3668      65725F52 
+ 3668      65616443 
+ 3668      61707475 
+ 3669              	.LASF9:
+ 3670 01ce 75696E74 		.ascii	"uint8\000"
+ 3670      3800
+ 3671              	.LASF24:
+ 3672 01d4 50504D43 		.ascii	"PPMCounter_SetMode\000"
+ 3672      6F756E74 
+ 3672      65725F53 
+ 3672      65744D6F 
+ 3672      646500
+ 3673              	.LASF12:
+ 3674 01e7 646F7562 		.ascii	"double\000"
+ 3674      6C6500
+ 3675              	.LASF10:
+ 3676 01ee 75696E74 		.ascii	"uint32\000"
+ 3676      333200
+ 3677              	.LASF62:
+ 3678 01f5 74726967 		.ascii	"triggerMode\000"
+ 3678      6765724D 
+ 3678      6F646500 
+ 3679              	.LASF42:
+ 3680 0201 6D61736B 		.ascii	"mask\000"
+ 3680      00
+ 3681              	.LASF35:
+ 3682 0206 50504D43 		.ascii	"PPMCounter_SetPWMSyncKill\000"
+ 3682      6F756E74 
+ 3682      65725F53 
+ 3682      65745057 
+ 3682      4D53796E 
+ 3683              	.LASF41:
+ 3684 0220 50504D43 		.ascii	"PPMCounter_SetPWMInvert\000"
+ 3684      6F756E74 
+ 3684      65725F53 
+ 3684      65745057 
+ 3684      4D496E76 
+ 3685              	.LASF40:
+ 3686 0238 64656164 		.ascii	"deadTime\000"
+ 3686      54696D65 
+ 3686      00
+ 3687              	.LASF8:
+ 3688 0241 756E7369 		.ascii	"unsigned int\000"
+ 3688      676E6564 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 96
 
 
- 3687      6F756E74 
- 3687      65725F53 
- 3687      65745057 
- 3687      4D496E76 
- 3688              	.LASF40:
- 3689 028a 64656164 		.ascii	"deadTime\000"
- 3689      54696D65 
- 3689      00
- 3690              	.LASF8:
- 3691 0293 756E7369 		.ascii	"unsigned int\000"
- 3691      676E6564 
- 3691      20696E74 
- 3691      00
- 3692              	.LASF68:
- 3693 02a0 636F6D6D 		.ascii	"command\000"
- 3693      616E6400 
- 3694              	.LASF5:
- 3695 02a8 6C6F6E67 		.ascii	"long unsigned int\000"
- 3695      20756E73 
- 3695      69676E65 
- 3695      6420696E 
- 3695      7400
- 3696              	.LASF34:
- 3697 02ba 6D6F6465 		.ascii	"modeMask\000"
- 3697      4D61736B 
- 3697      00
- 3698              	.LASF80:
- 3699 02c3 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 3699      74657243 
- 3699      72697469 
- 3699      63616C53 
- 3699      65637469 
- 3700              	.LASF3:
- 3701 02da 73686F72 		.ascii	"short unsigned int\000"
- 3701      7420756E 
- 3701      7369676E 
- 3701      65642069 
- 3701      6E7400
- 3702              	.LASF67:
- 3703 02ed 50504D43 		.ascii	"PPMCounter_TriggerCommand\000"
- 3703      6F756E74 
- 3703      65725F54 
- 3703      72696767 
- 3703      6572436F 
- 3704              	.LASF32:
- 3705 0307 6F6E6553 		.ascii	"oneShotEnable\000"
- 3705      686F7445 
- 3705      6E61626C 
- 3705      6500
- 3706              	.LASF45:
- 3707 0315 50504D43 		.ascii	"PPMCounter_ReadCounter\000"
- 3707      6F756E74 
- 3707      65725F52 
- 3707      65616443 
- 3707      6F756E74 
+ 3688      20696E74 
+ 3688      00
+ 3689              	.LASF68:
+ 3690 024e 636F6D6D 		.ascii	"command\000"
+ 3690      616E6400 
+ 3691              	.LASF5:
+ 3692 0256 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3692      20756E73 
+ 3692      69676E65 
+ 3692      6420696E 
+ 3692      7400
+ 3693              	.LASF34:
+ 3694 0268 6D6F6465 		.ascii	"modeMask\000"
+ 3694      4D61736B 
+ 3694      00
+ 3695              	.LASF80:
+ 3696 0271 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 3696      74657243 
+ 3696      72697469 
+ 3696      63616C53 
+ 3696      65637469 
+ 3697              	.LASF3:
+ 3698 0288 73686F72 		.ascii	"short unsigned int\000"
+ 3698      7420756E 
+ 3698      7369676E 
+ 3698      65642069 
+ 3698      6E7400
+ 3699              	.LASF67:
+ 3700 029b 50504D43 		.ascii	"PPMCounter_TriggerCommand\000"
+ 3700      6F756E74 
+ 3700      65725F54 
+ 3700      72696767 
+ 3700      6572436F 
+ 3701              	.LASF32:
+ 3702 02b5 6F6E6553 		.ascii	"oneShotEnable\000"
+ 3702      686F7445 
+ 3702      6E61626C 
+ 3702      6500
+ 3703              	.LASF45:
+ 3704 02c3 50504D43 		.ascii	"PPMCounter_ReadCounter\000"
+ 3704      6F756E74 
+ 3704      65725F52 
+ 3704      65616443 
+ 3704      6F756E74 
+ 3705              	.LASF78:
+ 3706 02da 453A5C44 		.ascii	"E:\\Dokumente\\GitHub\\T-50_Project\\Software\\T-50"
+ 3706      6F6B756D 
+ 3706      656E7465 
+ 3706      5C476974 
+ 3706      4875625C 
+ 3707 0308 5F50726F 		.ascii	"_Project\\T-50_Project.cydsn\000"
+ 3707      6A656374 
+ 3707      5C542D35 
+ 3707      305F5072 
+ 3707      6F6A6563 
  3708              	.LASF70:
- 3709 032c 50504D43 		.ascii	"PPMCounter_Start\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 97
+ 3709 0324 50504D43 		.ascii	"PPMCounter_Start\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 97
 
 
  3709      6F756E74 
@@ -5766,59 +5766,59 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3709      74617274 
  3709      00
  3710              	.LASF29:
- 3711 033d 50504D43 		.ascii	"PPMCounter_SetPrescaler\000"
+ 3711 0335 50504D43 		.ascii	"PPMCounter_SetPrescaler\000"
  3711      6F756E74 
  3711      65725F53 
  3711      65745072 
  3711      65736361 
  3712              	.LASF14:
- 3713 0355 72656733 		.ascii	"reg32\000"
+ 3713 034d 72656733 		.ascii	"reg32\000"
  3713      3200
  3714              	.LASF26:
- 3715 035b 50504D43 		.ascii	"PPMCounter_SetQDMode\000"
+ 3715 0353 50504D43 		.ascii	"PPMCounter_SetQDMode\000"
  3715      6F756E74 
  3715      65725F53 
  3715      65745144 
  3715      4D6F6465 
  3716              	.LASF15:
- 3717 0370 73697A65 		.ascii	"sizetype\000"
+ 3717 0368 73697A65 		.ascii	"sizetype\000"
  3717      74797065 
  3717      00
  3718              	.LASF74:
- 3719 0379 50504D43 		.ascii	"PPMCounter_ClearInterrupt\000"
+ 3719 0371 50504D43 		.ascii	"PPMCounter_ClearInterrupt\000"
  3719      6F756E74 
  3719      65725F43 
  3719      6C656172 
  3719      496E7465 
  3720              	.LASF36:
- 3721 0393 73796E63 		.ascii	"syncKillEnable\000"
+ 3721 038b 73796E63 		.ascii	"syncKillEnable\000"
  3721      4B696C6C 
  3721      456E6162 
  3721      6C6500
  3722              	.LASF33:
- 3723 03a2 50504D43 		.ascii	"PPMCounter_SetPWMMode\000"
+ 3723 039a 50504D43 		.ascii	"PPMCounter_SetPWMMode\000"
  3723      6F756E74 
  3723      65725F53 
  3723      65745057 
  3723      4D4D6F64 
  3724              	.LASF69:
- 3725 03b8 50504D43 		.ascii	"PPMCounter_Enable\000"
+ 3725 03b0 50504D43 		.ascii	"PPMCounter_Enable\000"
  3725      6F756E74 
  3725      65725F45 
  3725      6E61626C 
  3725      6500
  3726              	.LASF54:
- 3727 03ca 636F6D70 		.ascii	"compare\000"
+ 3727 03c2 636F6D70 		.ascii	"compare\000"
  3727      61726500 
  3728              	.LASF56:
- 3729 03d2 50504D43 		.ascii	"PPMCounter_WriteCompareBuf\000"
+ 3729 03ca 50504D43 		.ascii	"PPMCounter_WriteCompareBuf\000"
  3729      6F756E74 
  3729      65725F57 
  3729      72697465 
  3729      436F6D70 
  3730              	.LASF55:
- 3731 03ed 50504D43 		.ascii	"PPMCounter_ReadCompare\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 98
+ 3731 03e5 50504D43 		.ascii	"PPMCounter_ReadCompare\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 98
 
 
  3731      6F756E74 
@@ -5826,169 +5826,169 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 1
  3731      65616443 
  3731      6F6D7061 
  3732              	.LASF22:
- 3733 0404 50504D43 		.ascii	"PPMCounter_Init\000"
+ 3733 03fc 50504D43 		.ascii	"PPMCounter_Init\000"
  3733      6F756E74 
  3733      65725F49 
  3733      6E697400 
  3734              	.LASF11:
- 3735 0414 666C6F61 		.ascii	"float\000"
+ 3735 040c 666C6F61 		.ascii	"float\000"
  3735      7400
  3736              	.LASF30:
- 3737 041a 70726573 		.ascii	"prescaler\000"
+ 3737 0412 70726573 		.ascii	"prescaler\000"
  3737      63616C65 
  3737      7200
  3738              	.LASF65:
- 3739 0424 50504D43 		.ascii	"PPMCounter_SetStopMode\000"
+ 3739 041c 50504D43 		.ascii	"PPMCounter_SetStopMode\000"
  3739      6F756E74 
  3739      65725F53 
  3739      65745374 
  3739      6F704D6F 
  3740              	.LASF52:
- 3741 043b 50504D43 		.ascii	"PPMCounter_SetPeriodSwap\000"
+ 3741 0433 50504D43 		.ascii	"PPMCounter_SetPeriodSwap\000"
  3741      6F756E74 
  3741      65725F53 
  3741      65745065 
  3741      72696F64 
  3742              	.LASF76:
- 3743 0454 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3743 044c 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
  3743      4320342E 
  3743      382E3420 
  3743      32303134 
  3743      30353236 
- 3744 0487 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 3744 047f 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
  3744      20726576 
  3744      6973696F 
  3744      6E203231 
  3744      31333538 
- 3745 04ba 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 3745 04b2 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
  3745      66756E63 
  3745      74696F6E 
  3745      2D736563 
  3745      74696F6E 
  3746              	.LASF1:
- 3747 04e3 756E7369 		.ascii	"unsigned char\000"
+ 3747 04db 756E7369 		.ascii	"unsigned char\000"
  3747      676E6564 
  3747      20636861 
  3747      7200
  3748              	.LASF38:
- 3749 04f1 73746F70 		.ascii	"stopOnKillEnable\000"
+ 3749 04e9 73746F70 		.ascii	"stopOnKillEnable\000"
  3749      4F6E4B69 
  3749      6C6C456E 
  3749      61626C65 
  3749      00
  3750              	.LASF2:
- 3751 0502 73686F72 		.ascii	"short int\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 99
+ 3751 04fa 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 99
 
 
  3751      7420696E 
  3751      7400
  3752              	.LASF18:
- 3753 050c 696E7465 		.ascii	"interruptMask\000"
+ 3753 0504 696E7465 		.ascii	"interruptMask\000"
  3753      72727570 
  3753      744D6173 
  3753      6B00
  3754              	.LASF49:
- 3755 051a 50504D43 		.ascii	"PPMCounter_WritePeriodBuf\000"
+ 3755 0512 50504D43 		.ascii	"PPMCounter_WritePeriodBuf\000"
  3755      6F756E74 
  3755      65725F57 
  3755      72697465 
  3755      50657269 
  3756              	.LASF13:
- 3757 0534 63686172 		.ascii	"char\000"
+ 3757 052c 63686172 		.ascii	"char\000"
  3757      00
  3758              	.LASF27:
- 3759 0539 6D6F6465 		.ascii	"mode\000"
+ 3759 0531 6D6F6465 		.ascii	"mode\000"
  3759      00
  3760              	.LASF63:
- 3761 053e 50504D43 		.ascii	"PPMCounter_SetReloadMode\000"
+ 3761 0536 50504D43 		.ascii	"PPMCounter_SetReloadMode\000"
  3761      6F756E74 
  3761      65725F53 
  3761      65745265 
  3761      6C6F6164 
  3762              	.LASF44:
- 3763 0557 636F756E 		.ascii	"counterMode\000"
+ 3763 054f 636F756E 		.ascii	"counterMode\000"
  3763      7465724D 
  3763      6F646500 
  3764              	.LASF79:
- 3765 0563 50504D43 		.ascii	"PPMCounter_initVar\000"
+ 3765 055b 50504D43 		.ascii	"PPMCounter_initVar\000"
  3765      6F756E74 
  3765      65725F69 
  3765      6E697456 
  3765      617200
  3766              	.LASF60:
- 3767 0576 50504D43 		.ascii	"PPMCounter_ReadCaptureBuf\000"
+ 3767 056e 50504D43 		.ascii	"PPMCounter_ReadCaptureBuf\000"
  3767      6F756E74 
  3767      65725F52 
  3767      65616443 
  3767      61707475 
  3768              	.LASF75:
- 3769 0590 50504D43 		.ascii	"PPMCounter_SetInterrupt\000"
+ 3769 0588 50504D43 		.ascii	"PPMCounter_SetInterrupt\000"
  3769      6F756E74 
  3769      65725F53 
  3769      6574496E 
  3769      74657272 
  3770              	.LASF57:
- 3771 05a8 636F6D70 		.ascii	"compareBuf\000"
+ 3771 05a0 636F6D70 		.ascii	"compareBuf\000"
  3771      61726542 
  3771      756600
  3772              	.LASF71:
- 3773 05b3 50504D43 		.ascii	"PPMCounter_ReadStatus\000"
+ 3773 05ab 50504D43 		.ascii	"PPMCounter_ReadStatus\000"
  3773      6F756E74 
  3773      65725F52 
  3773      65616453 
  3773      74617475 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\ccH0Z3UI.s 			page 100
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cccm5FMZ.s 			page 100
 
 
  3774              	.LASF51:
- 3775 05c9 50504D43 		.ascii	"PPMCounter_ReadPeriodBuf\000"
+ 3775 05c1 50504D43 		.ascii	"PPMCounter_ReadPeriodBuf\000"
  3775      6F756E74 
  3775      65725F52 
  3775      65616450 
  3775      6572696F 
  3776              	.LASF25:
- 3777 05e2 656E6162 		.ascii	"enableInterrupts\000"
+ 3777 05da 656E6162 		.ascii	"enableInterrupts\000"
  3777      6C65496E 
  3777      74657272 
  3777      75707473 
  3777      00
  3778              	.LASF58:
- 3779 05f3 50504D43 		.ascii	"PPMCounter_ReadCompareBuf\000"
+ 3779 05eb 50504D43 		.ascii	"PPMCounter_ReadCompareBuf\000"
  3779      6F756E74 
  3779      65725F52 
  3779      65616443 
  3779      6F6D7061 
  3780              	.LASF39:
- 3781 060d 50504D43 		.ascii	"PPMCounter_SetPWMDeadTime\000"
+ 3781 0605 50504D43 		.ascii	"PPMCounter_SetPWMDeadTime\000"
  3781      6F756E74 
  3781      65725F53 
  3781      65745057 
  3781      4D446561 
  3782              	.LASF48:
- 3783 0627 73776170 		.ascii	"swapEnable\000"
+ 3783 061f 73776170 		.ascii	"swapEnable\000"
  3783      456E6162 
  3783      6C6500
  3784              	.LASF66:
- 3785 0632 50504D43 		.ascii	"PPMCounter_SetCountMode\000"
+ 3785 062a 50504D43 		.ascii	"PPMCounter_SetCountMode\000"
  3785      6F756E74 
  3785      65725F53 
  3785      6574436F 
  3785      756E744D 
  3786              	.LASF43:
- 3787 064a 50504D43 		.ascii	"PPMCounter_SetCounterMode\000"
+ 3787 0642 50504D43 		.ascii	"PPMCounter_SetCounterMode\000"
  3787      6F756E74 
  3787      65725F53 
  3787      6574436F 
  3787      756E7465 
  3788              	.LASF37:
- 3789 0664 50504D43 		.ascii	"PPMCounter_SetPWMStopOnKill\000"
+ 3789 065c 50504D43 		.ascii	"PPMCounter_SetPWMStopOnKill\000"
  3789      6F756E74 
  3789      65725F53 
  3789      65745057 
  3789      4D53746F 
  3790              	.LASF50:
- 3791 0680 70657269 		.ascii	"periodBuf\000"
+ 3791 0678 70657269 		.ascii	"periodBuf\000"
  3791      6F644275 
  3791      6600
  3792              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

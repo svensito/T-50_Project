@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
   30:.\IMU.c       **** int16_t gyro_x		= 0;
   31:.\IMU.c       **** extern int16_t turn_rate_p;		// from main.c file
   32:.\IMU.c       **** int16_t	gyro_p		= 0;
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 2
 
 
   33:.\IMU.c       **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
   87:.\IMU.c       **** int16_t mag_y		= 0;		// the value read on the y axis of the magnetometer
   88:.\IMU.c       **** extern int16_t	mag_y_g;		// the geodetic reference frame value of y
   89:.\IMU.c       **** 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 3
 
 
   90:.\IMU.c       **** int8_t	mag_z_h		= 0;		// high bits of mag z reading
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
   58 0020 201C     		mov	r0, r4
   59 0022 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
   60              	.LVL7:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 4
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 4
 
 
  112:.\IMU.c       ****     UART_1_UartPutString("GYR W Dat Ok\r\n");
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  107              	.LVL10:
  108 0000 10B5     		push	{r4, lr}
  109              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 5
 
 
  110              		.cfi_offset 4, -8
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  154              	.L12:
  155 0034 64000740 		.word	1074200676
  156 0038 68000740 		.word	1074200680
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 6
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 6
 
 
  157              		.cfi_endproc
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  197 0022 C046     		.align	2
  198              	.L15:
  199 0024 3D000000 		.word	.LC8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 7
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 7
 
 
  200              		.cfi_endproc
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  245              	.LVL25:
  246 0028 6870     		strb	r0, [r5, #1]
  150:.\IMU.c       ****     gyro_y_l = I2CM_I2CMasterReadByte(ACK);
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 8
 
 
  247              		.loc 1 150 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  292 006c DA80     		strh	r2, [r3, #6]
  293              		.loc 1 156 0 discriminator 3
  294 006e 5D57     		ldrsb	r5, [r3, r5]
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 9
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 9
 
 
  295 0070 9978     		ldrb	r1, [r3, #2]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  339 00b0 1880     		strh	r0, [r3]
  160:.\IMU.c       **** 	turn_rate_r = gyro_z * 0.00875;						// see gyro datasheet page 10    
  340              		.loc 1 160 0 discriminator 3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 10
 
 
  341 00b2 20B2     		sxth	r0, r4
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  385              		.loc 1 170 0
  386 0002 051C     		mov	r5, r0
  387 0004 0C1C     		mov	r4, r1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 11
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 11
 
 
  171:.\IMU.c       **** 	I2CM_I2CMasterSendStart(LSM303_ADDRESS, WRITE);
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  432              		.loc 1 179 0 discriminator 3
  433              		@ sp needed
  434 0042 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 12
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 12
 
 
  435              	.L28:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  478              	.LFE38:
  479              		.size	acc_start, .-acc_start
  480              		.section	.text.acc_read,"ax",%progbits
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 13
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 13
 
 
  481              		.align	1
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  200:.\IMU.c       **** 	acc_y_h = I2CM_I2CMasterReadByte(ACK);
  526              		.loc 1 200 0
  527 0032 0020     		mov	r0, #0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 14
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 14
 
 
  528 0034 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  573 0076 0002     		lsl	r0, r0, #8
  205:.\IMU.c       **** 	acc_y = (acc_y_h<<8) | (acc_y_l);
  574              		.loc 1 205 0 discriminator 3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 15
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 15
 
 
  575 0078 2D02     		lsl	r5, r5, #8
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  620 00bc FFF7FEFF 		bl	__aeabi_dmul
  621              	.LVL67:
  622 00c0 FFF7FEFF 		bl	__aeabi_d2iz
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 16
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 16
 
 
  623              	.LVL68:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  669              		.loc 1 217 0
  670 000e 0D48     		ldr	r0, .L42
  671 0010 FFF7FEFF 		bl	UART_1_UartPutString
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 17
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 17
 
 
  672              	.LVL73:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  718              		.cfi_endproc
  719              	.LFE40:
  720              		.size	write_mag_registry, .-write_mag_registry
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 18
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 18
 
 
  721              		.section	.text.mag_start,"ax",%progbits
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  764              		.type	mag_read, %function
  765              	mag_read:
  766              	.LFB42:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 19
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 19
 
 
  236:.\IMU.c       **** 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  810              		.loc 1 246 0
  811 003a 0020     		mov	r0, #0
  812 003c FFF7FEFF 		bl	I2CM_I2CMasterReadByte
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 20
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 20
 
 
  813              	.LVL89:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  250:.\IMU.c       **** 	mag_y = (mag_y_h<<8) | (mag_y_l);
  858              		.loc 1 250 0 discriminator 3
  859 007e ADB2     		uxth	r5, r5
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 21
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 21
 
 
  860              		.loc 1 251 0 discriminator 3
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  906 00c8 38BD     		pop	{r3, r4, r5, pc}
  907              	.L52:
  908 00ca C046C046 		.align	3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 22
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 22
 
 
  908      C046
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  266:.\IMU.c       ****     //UART_1_UartPutString("B W Reg Ok");
  267:.\IMU.c       ****     I2CM_I2CMasterWriteByte(data);
  952              		.loc 1 267 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 23
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 23
 
 
  953 0014 201C     		mov	r0, r4
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  998              	.LVL106:
  276:.\IMU.c       ****     UART_1_UartPutString("Baro Started");
  999              		.loc 1 276 0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 24
 
 
  1000 000a 0248     		ldr	r0, .L60
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1045              		.loc 1 285 0
  1046 001e 0020     		mov	r0, #0
  1047              	.LVL112:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 25
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 25
 
 
  1048 0020 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1095              		.global	acc_z_h
  1096              		.global	acc_y
  1097              		.global	acc_y_l
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 26
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 26
 
 
  1098              		.global	acc_y_h
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1134 0059 41434320 		.ascii	"ACC W Reg Ok\000"
  1134      57205265 
  1134      67204F6B 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 27
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 27
 
 
  1134      00
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1165              		.type	gyro_x_h, %object
  1166              		.size	gyro_x_h, 1
  1167              	gyro_x_h:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 28
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 28
 
 
  1168 0001 00       		.space	1
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1222              		.size	acc_x, 2
  1223              	acc_x:
  1224 0012 0000     		.space	2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 29
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 29
 
 
  1225              		.type	acc_y, %object
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1279              		.size	gyro_q_offset, 2
  1280              	gyro_q_offset:
  1281 0028 0000     		.space	2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 30
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 30
 
 
  1282              		.type	gyro_p_offset, %object
@@ -1764,8 +1764,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1302 0032 0000     		.space	2
  1303              		.text
  1304              	.Letext0:
- 1305              		.file 2 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
- 1306              		.file 3 "c:\\program files\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4.8.4\\
+ 1305              		.file 2 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 1306              		.file 3 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
  1307              		.file 4 ".\\Generated_Source\\PSoC4/cytypes.h"
  1308              		.file 5 ".\\Generated_Source\\PSoC4/I2CM_I2C.h"
  1309              		.file 6 ".\\Generated_Source\\PSoC4/UART_1_SPI_UART.h"
@@ -1776,36 +1776,36 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1314 0006 00000000 		.4byte	.Ldebug_abbrev0
  1315 000a 04       		.byte	0x4
  1316 000b 01       		.uleb128 0x1
- 1317 000c 8E020000 		.4byte	.LASF95
+ 1317 000c D8020000 		.4byte	.LASF95
  1318 0010 01       		.byte	0x1
- 1319 0011 34030000 		.4byte	.LASF96
- 1320 0015 3A040000 		.4byte	.LASF97
+ 1319 0011 7E030000 		.4byte	.LASF96
+ 1320 0015 CE000000 		.4byte	.LASF97
  1321 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1322 001d 00000000 		.4byte	0
  1323 0021 00000000 		.4byte	.Ldebug_line0
  1324 0025 02       		.uleb128 0x2
- 1325 0026 53020000 		.4byte	.LASF0
+ 1325 0026 9D020000 		.4byte	.LASF0
  1326 002a 02       		.byte	0x2
  1327 002b 1B       		.byte	0x1b
  1328 002c 30000000 		.4byte	0x30
  1329 0030 03       		.uleb128 0x3
  1330 0031 01       		.byte	0x1
  1331 0032 06       		.byte	0x6
- 1332 0033 DF030000 		.4byte	.LASF2
+ 1332 0033 29040000 		.4byte	.LASF2
  1333 0037 02       		.uleb128 0x2
- 1334 0038 74010000 		.4byte	.LASF1
+ 1334 0038 BE010000 		.4byte	.LASF1
  1335 003c 02       		.byte	0x2
  1336 003d 1C       		.byte	0x1c
  1337 003e 42000000 		.4byte	0x42
  1338 0042 03       		.uleb128 0x3
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 31
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 31
 
 
  1339 0043 01       		.byte	0x1
  1340 0044 08       		.byte	0x8
- 1341 0045 92010000 		.4byte	.LASF3
+ 1341 0045 DC010000 		.4byte	.LASF3
  1342 0049 02       		.uleb128 0x2
- 1343 004a EB030000 		.4byte	.LASF4
+ 1343 004a 35040000 		.4byte	.LASF4
  1344 004e 02       		.byte	0x2
  1345 004f 25       		.byte	0x25
  1346 0050 54000000 		.4byte	0x54
@@ -1821,20 +1821,20 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1356 0066 03       		.uleb128 0x3
  1357 0067 02       		.byte	0x2
  1358 0068 07       		.byte	0x7
- 1359 0069 40020000 		.4byte	.LASF7
+ 1359 0069 8A020000 		.4byte	.LASF7
  1360 006d 02       		.uleb128 0x2
- 1361 006e BB030000 		.4byte	.LASF8
+ 1361 006e 05040000 		.4byte	.LASF8
  1362 0072 02       		.byte	0x2
  1363 0073 37       		.byte	0x37
  1364 0074 78000000 		.4byte	0x78
  1365 0078 03       		.uleb128 0x3
  1366 0079 04       		.byte	0x4
  1367 007a 05       		.byte	0x5
- 1368 007b 6B010000 		.4byte	.LASF9
+ 1368 007b B5010000 		.4byte	.LASF9
  1369 007f 03       		.uleb128 0x3
  1370 0080 04       		.byte	0x4
  1371 0081 07       		.byte	0x7
- 1372 0082 3C030000 		.4byte	.LASF10
+ 1372 0082 86030000 		.4byte	.LASF10
  1373 0086 03       		.uleb128 0x3
  1374 0087 08       		.byte	0x8
  1375 0088 05       		.byte	0x5
@@ -1842,7 +1842,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1377 008d 03       		.uleb128 0x3
  1378 008e 08       		.byte	0x8
  1379 008f 07       		.byte	0x7
- 1380 0090 A9010000 		.4byte	.LASF12
+ 1380 0090 F3010000 		.4byte	.LASF12
  1381 0094 04       		.uleb128 0x4
  1382 0095 04       		.byte	0x4
  1383 0096 05       		.byte	0x5
@@ -1850,48 +1850,48 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1385 009b 03       		.uleb128 0x3
  1386 009c 04       		.byte	0x4
  1387 009d 07       		.byte	0x7
- 1388 009e ED010000 		.4byte	.LASF13
+ 1388 009e 37020000 		.4byte	.LASF13
  1389 00a2 02       		.uleb128 0x2
  1390 00a3 37000000 		.4byte	.LASF14
  1391 00a7 03       		.byte	0x3
  1392 00a8 29       		.byte	0x29
  1393 00a9 25000000 		.4byte	0x25
  1394 00ad 02       		.uleb128 0x2
- 1395 00ae 05010000 		.4byte	.LASF15
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 32
+ 1395 00ae 4F010000 		.4byte	.LASF15
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 32
 
 
  1396 00b2 03       		.byte	0x3
  1397 00b3 2A       		.byte	0x2a
  1398 00b4 37000000 		.4byte	0x37
  1399 00b8 02       		.uleb128 0x2
- 1400 00b9 86020000 		.4byte	.LASF16
+ 1400 00b9 D0020000 		.4byte	.LASF16
  1401 00bd 03       		.byte	0x3
  1402 00be 35       		.byte	0x35
  1403 00bf 49000000 		.4byte	0x49
  1404 00c3 02       		.uleb128 0x2
- 1405 00c4 01020000 		.4byte	.LASF17
+ 1405 00c4 4B020000 		.4byte	.LASF17
  1406 00c8 03       		.byte	0x3
  1407 00c9 36       		.byte	0x36
  1408 00ca 5B000000 		.4byte	0x5b
  1409 00ce 02       		.uleb128 0x2
- 1410 00cf 75020000 		.4byte	.LASF18
+ 1410 00cf BF020000 		.4byte	.LASF18
  1411 00d3 03       		.byte	0x3
  1412 00d4 41       		.byte	0x41
  1413 00d5 6D000000 		.4byte	0x6d
  1414 00d9 02       		.uleb128 0x2
- 1415 00da 2D030000 		.4byte	.LASF19
+ 1415 00da 77030000 		.4byte	.LASF19
  1416 00de 04       		.byte	0x4
  1417 00df A3       		.byte	0xa3
  1418 00e0 7F000000 		.4byte	0x7f
  1419 00e4 03       		.uleb128 0x3
  1420 00e5 04       		.byte	0x4
  1421 00e6 04       		.byte	0x4
- 1422 00e7 45010000 		.4byte	.LASF20
+ 1422 00e7 8F010000 		.4byte	.LASF20
  1423 00eb 03       		.uleb128 0x3
  1424 00ec 08       		.byte	0x8
  1425 00ed 04       		.byte	0x4
- 1426 00ee 62030000 		.4byte	.LASF21
+ 1426 00ee AC030000 		.4byte	.LASF21
  1427 00f2 02       		.uleb128 0x2
  1428 00f3 83000000 		.4byte	.LASF22
  1429 00f7 04       		.byte	0x4
@@ -1900,9 +1900,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1432 00fd 03       		.uleb128 0x3
  1433 00fe 01       		.byte	0x1
  1434 00ff 08       		.byte	0x8
- 1435 0100 67020000 		.4byte	.LASF23
+ 1435 0100 B1020000 		.4byte	.LASF23
  1436 0104 05       		.uleb128 0x5
- 1437 0105 3A020000 		.4byte	.LASF24
+ 1437 0105 84020000 		.4byte	.LASF24
  1438 0109 04       		.byte	0x4
  1439 010a 4D01     		.2byte	0x14d
  1440 010c 10010000 		.4byte	0x110
@@ -1911,27 +1911,27 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1443 0115 03       		.uleb128 0x3
  1444 0116 04       		.byte	0x4
  1445 0117 07       		.byte	0x7
- 1446 0118 00040000 		.4byte	.LASF25
+ 1446 0118 4A040000 		.4byte	.LASF25
  1447 011c 07       		.uleb128 0x7
- 1448 011d 7E010000 		.4byte	.LASF28
+ 1448 011d C8010000 		.4byte	.LASF28
  1449 0121 01       		.byte	0x1
  1450 0122 69       		.byte	0x69
  1451 0123 00000000 		.4byte	.LFB33
  1452 0127 5C000000 		.4byte	.LFE33-.LFB33
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 33
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 33
 
 
  1453 012b 01       		.uleb128 0x1
  1454 012c 9C       		.byte	0x9c
  1455 012d E9010000 		.4byte	0x1e9
  1456 0131 08       		.uleb128 0x8
- 1457 0132 FC000000 		.4byte	.LASF26
+ 1457 0132 46010000 		.4byte	.LASF26
  1458 0136 01       		.byte	0x1
  1459 0137 69       		.byte	0x69
  1460 0138 AD000000 		.4byte	0xad
  1461 013c 00000000 		.4byte	.LLST0
  1462 0140 08       		.uleb128 0x8
- 1463 0141 28030000 		.4byte	.LASF27
+ 1463 0141 72030000 		.4byte	.LASF27
  1464 0145 01       		.byte	0x1
  1465 0146 69       		.byte	0x69
  1466 0147 AD000000 		.4byte	0xad
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1507 0194 20000000 		.4byte	.LVL6
  1508 0198 E20B0000 		.4byte	0xbe2
  1509 019c AA010000 		.4byte	0x1aa
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 34
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 34
 
 
  1510 01a0 0A       		.uleb128 0xa
@@ -2022,7 +2022,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1548 01e7 00       		.byte	0
  1549 01e8 00       		.byte	0
  1550 01e9 0C       		.uleb128 0xc
- 1551 01ea B4040000 		.4byte	.LASF39
+ 1551 01ea AC040000 		.4byte	.LASF39
  1552 01ee 01       		.byte	0x1
  1553 01ef 75       		.byte	0x75
  1554 01f0 A2000000 		.4byte	0xa2
@@ -2032,16 +2032,16 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1558 01fd 9C       		.byte	0x9c
  1559 01fe 76020000 		.4byte	0x276
  1560 0202 08       		.uleb128 0x8
- 1561 0203 FC000000 		.4byte	.LASF26
+ 1561 0203 46010000 		.4byte	.LASF26
  1562 0207 01       		.byte	0x1
  1563 0208 75       		.byte	0x75
  1564 0209 AD000000 		.4byte	0xad
  1565 020d 42000000 		.4byte	.LLST2
  1566 0211 0D       		.uleb128 0xd
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 35
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 35
 
 
- 1567 0212 28030000 		.4byte	.LASF27
+ 1567 0212 72030000 		.4byte	.LASF27
  1568 0216 01       		.byte	0x1
  1569 0217 77       		.byte	0x77
  1570 0218 AD000000 		.4byte	0xad
@@ -2098,12 +2098,12 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1621 0272 01       		.uleb128 0x1
  1622 0273 31       		.byte	0x31
  1623 0274 00       		.byte	0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 36
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 36
 
 
  1624 0275 00       		.byte	0
  1625 0276 07       		.uleb128 0x7
- 1626 0277 4E030000 		.4byte	.LASF29
+ 1626 0277 98030000 		.4byte	.LASF29
  1627 027b 01       		.byte	0x1
  1628 027c 80       		.byte	0x80
  1629 027d 00000000 		.4byte	.LFB35
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1678 02d2 50       		.byte	0x50
  1679 02d3 02       		.uleb128 0x2
  1680 02d4 08       		.byte	0x8
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 37
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 37
 
 
  1681 02d5 24       		.byte	0x24
@@ -2175,7 +2175,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1692 02e9 00       		.byte	0
  1693 02ea 00       		.byte	0
  1694 02eb 0E       		.uleb128 0xe
- 1695 02ec 92040000 		.4byte	.LASF30
+ 1695 02ec 8A040000 		.4byte	.LASF30
  1696 02f0 01       		.byte	0x1
  1697 02f1 8F       		.byte	0x8f
  1698 02f2 00000000 		.4byte	.LFB36
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1735 033b 01       		.uleb128 0x1
  1736 033c 51       		.byte	0x51
  1737 033d 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 38
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 38
 
 
  1738 033e 31       		.byte	0x31
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1792 03a1 50       		.byte	0x50
  1793 03a2 01       		.uleb128 0x1
  1794 03a3 30       		.byte	0x30
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 39
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 39
 
 
  1795 03a4 00       		.byte	0
@@ -2293,7 +2293,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1804 03b3 00       		.byte	0
  1805 03b4 00       		.byte	0
  1806 03b5 07       		.uleb128 0x7
- 1807 03b6 CC030000 		.4byte	.LASF31
+ 1807 03b6 16040000 		.4byte	.LASF31
  1808 03ba 01       		.byte	0x1
  1809 03bb A9       		.byte	0xa9
  1810 03bc 00000000 		.4byte	.LFB37
@@ -2302,13 +2302,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1813 03c5 9C       		.byte	0x9c
  1814 03c6 81040000 		.4byte	0x481
  1815 03ca 08       		.uleb128 0x8
- 1816 03cb FC000000 		.4byte	.LASF26
+ 1816 03cb 46010000 		.4byte	.LASF26
  1817 03cf 01       		.byte	0x1
  1818 03d0 A9       		.byte	0xa9
  1819 03d1 FD000000 		.4byte	0xfd
  1820 03d5 76000000 		.4byte	.LLST4
  1821 03d9 08       		.uleb128 0x8
- 1822 03da 28030000 		.4byte	.LASF27
+ 1822 03da 72030000 		.4byte	.LASF27
  1823 03de 01       		.byte	0x1
  1824 03df A9       		.byte	0xa9
  1825 03e0 FD000000 		.4byte	0xfd
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1849 0410 05       		.uleb128 0x5
  1850 0411 03       		.byte	0x3
  1851 0412 4C000000 		.4byte	.LC21
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 40
 
 
  1852 0416 00       		.byte	0
@@ -2398,10 +2398,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1906 047f 00       		.byte	0
  1907 0480 00       		.byte	0
  1908 0481 07       		.uleb128 0x7
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 41
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 41
 
 
- 1909 0482 0D010000 		.4byte	.LASF32
+ 1909 0482 57010000 		.4byte	.LASF32
  1910 0486 01       		.byte	0x1
  1911 0487 B4       		.byte	0xb4
  1912 0488 00000000 		.4byte	.LFB38
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  1963 04eb 0A       		.uleb128 0xa
  1964 04ec 01       		.uleb128 0x1
  1965 04ed 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 42
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 42
 
 
  1966 04ee 01       		.uleb128 0x1
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2020 0551 01       		.uleb128 0x1
  2021 0552 50       		.byte	0x50
  2022 0553 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 43
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 43
 
 
  2023 0554 30       		.byte	0x30
@@ -2554,7 +2554,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2053 058a 00       		.byte	0
  2054 058b 00       		.byte	0
  2055 058c 07       		.uleb128 0x7
- 2056 058d DA010000 		.4byte	.LASF34
+ 2056 058d 24020000 		.4byte	.LASF34
  2057 0591 01       		.byte	0x1
  2058 0592 D6       		.byte	0xd6
  2059 0593 00000000 		.4byte	.LFB40
@@ -2563,13 +2563,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2062 059c 9C       		.byte	0x9c
  2063 059d 58060000 		.4byte	0x658
  2064 05a1 08       		.uleb128 0x8
- 2065 05a2 FC000000 		.4byte	.LASF26
+ 2065 05a2 46010000 		.4byte	.LASF26
  2066 05a6 01       		.byte	0x1
  2067 05a7 D6       		.byte	0xd6
  2068 05a8 FD000000 		.4byte	0xfd
  2069 05ac B8000000 		.4byte	.LLST6
  2070 05b0 08       		.uleb128 0x8
- 2071 05b1 28030000 		.4byte	.LASF27
+ 2071 05b1 72030000 		.4byte	.LASF27
  2072 05b5 01       		.byte	0x1
  2073 05b6 D6       		.byte	0xd6
  2074 05b7 FD000000 		.4byte	0xfd
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2077 05c0 0E000000 		.4byte	.LVL72
  2078 05c4 C80B0000 		.4byte	0xbc8
  2079 05c8 D7050000 		.4byte	0x5d7
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 44
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 44
 
 
  2080 05cc 0A       		.uleb128 0xa
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2134 062c 00       		.byte	0
  2135 062d 09       		.uleb128 0x9
  2136 062e 2C000000 		.4byte	.LVL77
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 45
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 45
 
 
  2137 0632 E20B0000 		.4byte	0xbe2
@@ -2662,7 +2662,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2155 0656 00       		.byte	0
  2156 0657 00       		.byte	0
  2157 0658 07       		.uleb128 0x7
- 2158 0659 17010000 		.4byte	.LASF35
+ 2158 0659 61010000 		.4byte	.LASF35
  2159 065d 01       		.byte	0x1
  2160 065e E2       		.byte	0xe2
  2161 065f 00000000 		.4byte	.LFB41
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2191 0698 30       		.byte	0x30
  2192 0699 0A       		.uleb128 0xa
  2193 069a 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 46
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 46
 
 
  2194 069b 50       		.byte	0x50
@@ -2718,7 +2718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2208 06b2 00       		.byte	0
  2209 06b3 00       		.byte	0
  2210 06b4 0E       		.uleb128 0xe
- 2211 06b5 A0010000 		.4byte	.LASF36
+ 2211 06b5 EA010000 		.4byte	.LASF36
  2212 06b9 01       		.byte	0x1
  2213 06ba ED       		.byte	0xed
  2214 06bb 00000000 		.4byte	.LFB42
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2248 06fe 0D070000 		.4byte	0x70d
  2249 0702 0A       		.uleb128 0xa
  2250 0703 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 47
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 47
 
 
  2251 0704 51       		.byte	0x51
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2305 0767 01       		.uleb128 0x1
  2306 0768 50       		.byte	0x50
  2307 0769 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 48
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 48
 
 
  2308 076a 30       		.byte	0x30
@@ -2834,7 +2834,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2318 077a 00       		.byte	0
  2319 077b 00       		.byte	0
  2320 077c 0F       		.uleb128 0xf
- 2321 077d 0A020000 		.4byte	.LASF37
+ 2321 077d 54020000 		.4byte	.LASF37
  2322 0781 01       		.byte	0x1
  2323 0782 0501     		.2byte	0x105
  2324 0784 00000000 		.4byte	.LFB43
@@ -2843,13 +2843,13 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2327 078d 9C       		.byte	0x9c
  2328 078e F0070000 		.4byte	0x7f0
  2329 0792 10       		.uleb128 0x10
- 2330 0793 FC000000 		.4byte	.LASF26
+ 2330 0793 46010000 		.4byte	.LASF26
  2331 0797 01       		.byte	0x1
  2332 0798 0501     		.2byte	0x105
  2333 079a FD000000 		.4byte	0xfd
  2334 079e FA000000 		.4byte	.LLST8
  2335 07a2 10       		.uleb128 0x10
- 2336 07a3 28030000 		.4byte	.LASF27
+ 2336 07a3 72030000 		.4byte	.LASF27
  2337 07a7 01       		.byte	0x1
  2338 07a8 0501     		.2byte	0x105
  2339 07aa FD000000 		.4byte	0xfd
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2362 07d9 01       		.uleb128 0x1
  2363 07da 50       		.byte	0x50
  2364 07db 02       		.uleb128 0x2
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 49
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 49
 
 
  2365 07dc 75       		.byte	0x75
@@ -2896,7 +2896,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2377 07ee 00       		.byte	0
  2378 07ef 00       		.byte	0
  2379 07f0 0F       		.uleb128 0xf
- 2380 07f1 5C020000 		.4byte	.LASF38
+ 2380 07f1 A6020000 		.4byte	.LASF38
  2381 07f5 01       		.byte	0x1
  2382 07f6 1101     		.2byte	0x111
  2383 07f8 00000000 		.4byte	.LFB44
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2419 083a 1701     		.2byte	0x117
  2420 083c CE000000 		.4byte	0xce
  2421 0840 00000000 		.4byte	.LFB45
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 50
 
 
  2422 0844 48000000 		.4byte	.LFE45-.LFB45
@@ -2946,7 +2946,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2424 0849 9C       		.byte	0x9c
  2425 084a 01090000 		.4byte	0x901
  2426 084e 12       		.uleb128 0x12
- 2427 084f F5000000 		.4byte	.LASF41
+ 2427 084f 3F010000 		.4byte	.LASF41
  2428 0853 01       		.byte	0x1
  2429 0854 1C01     		.2byte	0x11c
  2430 0856 AD000000 		.4byte	0xad
@@ -2963,7 +2963,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2441 0874 1E01     		.2byte	0x11e
  2442 0876 AD000000 		.4byte	0xad
  2443 087a 13       		.uleb128 0x13
- 2444 087b F5030000 		.4byte	.LASF44
+ 2444 087b 3F040000 		.4byte	.LASF44
  2445 087f 01       		.byte	0x1
  2446 0880 2001     		.2byte	0x120
  2447 0882 CE000000 		.4byte	0xce
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2476 08b4 18000000 		.4byte	.LVL110
  2477 08b8 140C0000 		.4byte	0xc14
  2478 08bc CB080000 		.4byte	0x8cb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 51
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 51
 
 
  2479 08c0 0A       		.uleb128 0xa
@@ -3043,7 +3043,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2518 08ff 00       		.byte	0
  2519 0900 00       		.byte	0
  2520 0901 14       		.uleb128 0x14
- 2521 0902 09040000 		.4byte	.LASF45
+ 2521 0902 53040000 		.4byte	.LASF45
  2522 0906 01       		.byte	0x1
  2523 0907 1C       		.byte	0x1c
  2524 0908 A2000000 		.4byte	0xa2
@@ -3051,18 +3051,18 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2526 090d 03       		.byte	0x3
  2527 090e 00000000 		.4byte	gyro_x_h
  2528 0912 14       		.uleb128 0x14
- 2529 0913 22040000 		.4byte	.LASF46
+ 2529 0913 6C040000 		.4byte	.LASF46
  2530 0917 01       		.byte	0x1
  2531 0918 1D       		.byte	0x1d
  2532 0919 AD000000 		.4byte	0xad
  2533 091d 05       		.uleb128 0x5
  2534 091e 03       		.byte	0x3
  2535 091f 00000000 		.4byte	gyro_x_l
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 52
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 52
 
 
  2536 0923 14       		.uleb128 0x14
- 2537 0924 1E020000 		.4byte	.LASF47
+ 2537 0924 68020000 		.4byte	.LASF47
  2538 0928 01       		.byte	0x1
  2539 0929 1E       		.byte	0x1e
  2540 092a B8000000 		.4byte	0xb8
@@ -3070,7 +3070,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2542 092f 03       		.byte	0x3
  2543 0930 00000000 		.4byte	gyro_x
  2544 0934 15       		.uleb128 0x15
- 2545 0935 21010000 		.4byte	.LASF48
+ 2545 0935 6B010000 		.4byte	.LASF48
  2546 0939 01       		.byte	0x1
  2547 093a 1F       		.byte	0x1f
  2548 093b B8000000 		.4byte	0xb8
@@ -3083,7 +3083,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2555 094b 03       		.byte	0x3
  2556 094c 00000000 		.4byte	gyro_p
  2557 0950 14       		.uleb128 0x14
- 2558 0951 59030000 		.4byte	.LASF50
+ 2558 0951 A3030000 		.4byte	.LASF50
  2559 0955 01       		.byte	0x1
  2560 0956 23       		.byte	0x23
  2561 0957 A2000000 		.4byte	0xa2
@@ -3091,7 +3091,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2563 095c 03       		.byte	0x3
  2564 095d 00000000 		.4byte	gyro_y_h
  2565 0961 14       		.uleb128 0x14
- 2566 0962 7E030000 		.4byte	.LASF51
+ 2566 0962 C8030000 		.4byte	.LASF51
  2567 0966 01       		.byte	0x1
  2568 0967 24       		.byte	0x24
  2569 0968 AD000000 		.4byte	0xad
@@ -3099,7 +3099,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2571 096d 03       		.byte	0x3
  2572 096e 00000000 		.4byte	gyro_y_l
  2573 0972 14       		.uleb128 0x14
- 2574 0973 2B040000 		.4byte	.LASF52
+ 2574 0973 75040000 		.4byte	.LASF52
  2575 0977 01       		.byte	0x1
  2576 0978 25       		.byte	0x25
  2577 0979 B8000000 		.4byte	0xb8
@@ -3107,7 +3107,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2579 097e 03       		.byte	0x3
  2580 097f 00000000 		.4byte	gyro_y
  2581 0983 14       		.uleb128 0x14
- 2582 0984 C5030000 		.4byte	.LASF53
+ 2582 0984 0F040000 		.4byte	.LASF53
  2583 0988 01       		.byte	0x1
  2584 0989 26       		.byte	0x26
  2585 098a B8000000 		.4byte	0xb8
@@ -3115,15 +3115,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2587 098f 03       		.byte	0x3
  2588 0990 00000000 		.4byte	gyro_q
  2589 0994 15       		.uleb128 0x15
- 2590 0995 2D010000 		.4byte	.LASF54
+ 2590 0995 77010000 		.4byte	.LASF54
  2591 0999 01       		.byte	0x1
  2592 099a 27       		.byte	0x27
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 53
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 53
 
 
  2593 099b B8000000 		.4byte	0xb8
  2594 099f 14       		.uleb128 0x14
- 2595 09a0 6C020000 		.4byte	.LASF55
+ 2595 09a0 B6020000 		.4byte	.LASF55
  2596 09a4 01       		.byte	0x1
  2597 09a5 2A       		.byte	0x2a
  2598 09a6 A2000000 		.4byte	0xa2
@@ -3131,7 +3131,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2600 09ab 03       		.byte	0x3
  2601 09ac 00000000 		.4byte	gyro_z_h
  2602 09b0 14       		.uleb128 0x14
- 2603 09b1 7D020000 		.4byte	.LASF56
+ 2603 09b1 C7020000 		.4byte	.LASF56
  2604 09b5 01       		.byte	0x1
  2605 09b6 2B       		.byte	0x2b
  2606 09b7 AD000000 		.4byte	0xad
@@ -3139,7 +3139,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2608 09bc 03       		.byte	0x3
  2609 09bd 00000000 		.4byte	gyro_z_l
  2610 09c1 14       		.uleb128 0x14
- 2611 09c2 33020000 		.4byte	.LASF57
+ 2611 09c2 7D020000 		.4byte	.LASF57
  2612 09c6 01       		.byte	0x1
  2613 09c7 2C       		.byte	0x2c
  2614 09c8 B8000000 		.4byte	0xb8
@@ -3147,7 +3147,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2616 09cd 03       		.byte	0x3
  2617 09ce 00000000 		.4byte	gyro_z
  2618 09d2 14       		.uleb128 0x14
- 2619 09d3 FA010000 		.4byte	.LASF58
+ 2619 09d3 44020000 		.4byte	.LASF58
  2620 09d7 01       		.byte	0x1
  2621 09d8 2D       		.byte	0x2d
  2622 09d9 B8000000 		.4byte	0xb8
@@ -3155,12 +3155,12 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2624 09de 03       		.byte	0x3
  2625 09df 00000000 		.4byte	gyro_r
  2626 09e3 15       		.uleb128 0x15
- 2627 09e4 39010000 		.4byte	.LASF59
+ 2627 09e4 83010000 		.4byte	.LASF59
  2628 09e8 01       		.byte	0x1
  2629 09e9 2E       		.byte	0x2e
  2630 09ea B8000000 		.4byte	0xb8
  2631 09ee 14       		.uleb128 0x14
- 2632 09ef AF030000 		.4byte	.LASF60
+ 2632 09ef F9030000 		.4byte	.LASF60
  2633 09f3 01       		.byte	0x1
  2634 09f4 31       		.byte	0x31
  2635 09f5 A2000000 		.4byte	0xa2
@@ -3168,7 +3168,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2637 09fa 03       		.byte	0x3
  2638 09fb 00000000 		.4byte	temperature
  2639 09ff 14       		.uleb128 0x14
- 2640 0a00 25020000 		.4byte	.LASF61
+ 2640 0a00 6F020000 		.4byte	.LASF61
  2641 0a04 01       		.byte	0x1
  2642 0a05 32       		.byte	0x32
  2643 0a06 AD000000 		.4byte	0xad
@@ -3176,9 +3176,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2645 0a0b 03       		.byte	0x3
  2646 0a0c 00000000 		.4byte	temperature_0
  2647 0a10 14       		.uleb128 0x14
- 2648 0a11 5D010000 		.4byte	.LASF62
+ 2648 0a11 A7010000 		.4byte	.LASF62
  2649 0a15 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 54
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 54
 
 
  2650 0a16 37       		.byte	0x37
@@ -3203,7 +3203,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2669 0a3e 03       		.byte	0x3
  2670 0a3f 00000000 		.4byte	gyro_r_offset
  2671 0a43 14       		.uleb128 0x14
- 2672 0a44 1D030000 		.4byte	.LASF65
+ 2672 0a44 67030000 		.4byte	.LASF65
  2673 0a48 01       		.byte	0x1
  2674 0a49 3B       		.byte	0x3b
  2675 0a4a AD000000 		.4byte	0xad
@@ -3211,7 +3211,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2677 0a4f 03       		.byte	0x3
  2678 0a50 00000000 		.4byte	error_stat
  2679 0a54 14       		.uleb128 0x14
- 2680 0a55 AC040000 		.4byte	.LASF66
+ 2680 0a55 A4040000 		.4byte	.LASF66
  2681 0a59 01       		.byte	0x1
  2682 0a5a 41       		.byte	0x41
  2683 0a5b A2000000 		.4byte	0xa2
@@ -3219,7 +3219,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2685 0a60 03       		.byte	0x3
  2686 0a61 00000000 		.4byte	acc_x_h
  2687 0a65 14       		.uleb128 0x14
- 2688 0a66 ED000000 		.4byte	.LASF67
+ 2688 0a66 37010000 		.4byte	.LASF67
  2689 0a6a 01       		.byte	0x1
  2690 0a6b 42       		.byte	0x42
  2691 0a6c AD000000 		.4byte	0xad
@@ -3235,10 +3235,10 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2701 0a82 03       		.byte	0x3
  2702 0a83 00000000 		.4byte	acc_x
  2703 0a87 15       		.uleb128 0x15
- 2704 0a88 CE000000 		.4byte	.LASF69
+ 2704 0a88 18010000 		.4byte	.LASF69
  2705 0a8c 01       		.byte	0x1
  2706 0a8d 44       		.byte	0x44
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 55
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 55
 
 
  2707 0a8e B8000000 		.4byte	0xb8
@@ -3272,7 +3272,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2735 0acb 49       		.byte	0x49
  2736 0acc B8000000 		.4byte	0xb8
  2737 0ad0 14       		.uleb128 0x14
- 2738 0ad1 9C040000 		.4byte	.LASF74
+ 2738 0ad1 94040000 		.4byte	.LASF74
  2739 0ad5 01       		.byte	0x1
  2740 0ad6 4B       		.byte	0x4b
  2741 0ad7 A2000000 		.4byte	0xa2
@@ -3280,7 +3280,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2743 0adc 03       		.byte	0x3
  2744 0add 00000000 		.4byte	acc_z_h
  2745 0ae1 14       		.uleb128 0x14
- 2746 0ae2 A4040000 		.4byte	.LASF75
+ 2746 0ae2 9C040000 		.4byte	.LASF75
  2747 0ae6 01       		.byte	0x1
  2748 0ae7 4C       		.byte	0x4c
  2749 0ae8 AD000000 		.4byte	0xad
@@ -3288,7 +3288,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2751 0aed 03       		.byte	0x3
  2752 0aee 00000000 		.4byte	acc_z_l
  2753 0af2 14       		.uleb128 0x14
- 2754 0af3 8C040000 		.4byte	.LASF76
+ 2754 0af3 84040000 		.4byte	.LASF76
  2755 0af7 01       		.byte	0x1
  2756 0af8 4D       		.byte	0x4d
  2757 0af9 B8000000 		.4byte	0xb8
@@ -3296,9 +3296,9 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2759 0afe 03       		.byte	0x3
  2760 0aff 00000000 		.4byte	acc_z
  2761 0b03 15       		.uleb128 0x15
- 2762 0b04 8F030000 		.4byte	.LASF77
+ 2762 0b04 D9030000 		.4byte	.LASF77
  2763 0b08 01       		.byte	0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 56
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 56
 
 
  2764 0b09 4E       		.byte	0x4e
@@ -3312,7 +3312,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2772 0b1a 03       		.byte	0x3
  2773 0b1b 00000000 		.4byte	mag_x_h
  2774 0b1f 14       		.uleb128 0x14
- 2775 0b20 87030000 		.4byte	.LASF79
+ 2775 0b20 D1030000 		.4byte	.LASF79
  2776 0b24 01       		.byte	0x1
  2777 0b25 51       		.byte	0x51
  2778 0b26 AD000000 		.4byte	0xad
@@ -3320,7 +3320,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2780 0b2b 03       		.byte	0x3
  2781 0b2c 00000000 		.4byte	mag_x_l
  2782 0b30 14       		.uleb128 0x14
- 2783 0b31 4B010000 		.4byte	.LASF80
+ 2783 0b31 95010000 		.4byte	.LASF80
  2784 0b35 01       		.byte	0x1
  2785 0b36 52       		.byte	0x52
  2786 0b37 B8000000 		.4byte	0xb8
@@ -3349,7 +3349,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2809 0b69 03       		.byte	0x3
  2810 0b6a 00000000 		.4byte	mag_y_l
  2811 0b6e 14       		.uleb128 0x14
- 2812 0b6f 51010000 		.4byte	.LASF84
+ 2812 0b6f 9B010000 		.4byte	.LASF84
  2813 0b73 01       		.byte	0x1
  2814 0b74 57       		.byte	0x57
  2815 0b75 B8000000 		.4byte	0xb8
@@ -3357,15 +3357,15 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2817 0b7a 03       		.byte	0x3
  2818 0b7b 00000000 		.4byte	mag_y
  2819 0b7f 15       		.uleb128 0x15
- 2820 0b80 C7040000 		.4byte	.LASF85
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 57
+ 2820 0b80 BF040000 		.4byte	.LASF85
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 57
 
 
  2821 0b84 01       		.byte	0x1
  2822 0b85 58       		.byte	0x58
  2823 0b86 B8000000 		.4byte	0xb8
  2824 0b8a 14       		.uleb128 0x14
- 2825 0b8b 1A040000 		.4byte	.LASF86
+ 2825 0b8b 64040000 		.4byte	.LASF86
  2826 0b8f 01       		.byte	0x1
  2827 0b90 5A       		.byte	0x5a
  2828 0b91 A2000000 		.4byte	0xa2
@@ -3373,7 +3373,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2830 0b96 03       		.byte	0x3
  2831 0b97 00000000 		.4byte	mag_z_h
  2832 0b9b 14       		.uleb128 0x14
- 2833 0b9c 32040000 		.4byte	.LASF87
+ 2833 0b9c 7C040000 		.4byte	.LASF87
  2834 0ba0 01       		.byte	0x1
  2835 0ba1 5B       		.byte	0x5b
  2836 0ba2 AD000000 		.4byte	0xad
@@ -3381,7 +3381,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2838 0ba7 03       		.byte	0x3
  2839 0ba8 00000000 		.4byte	mag_z_l
  2840 0bac 14       		.uleb128 0x14
- 2841 0bad 57010000 		.4byte	.LASF88
+ 2841 0bad A1010000 		.4byte	.LASF88
  2842 0bb1 01       		.byte	0x1
  2843 0bb2 5C       		.byte	0x5c
  2844 0bb3 B8000000 		.4byte	0xb8
@@ -3389,12 +3389,12 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2846 0bb8 03       		.byte	0x3
  2847 0bb9 00000000 		.4byte	mag_z
  2848 0bbd 15       		.uleb128 0x15
- 2849 0bbe 12040000 		.4byte	.LASF89
+ 2849 0bbe 5C040000 		.4byte	.LASF89
  2850 0bc2 01       		.byte	0x1
  2851 0bc3 5D       		.byte	0x5d
  2852 0bc4 B8000000 		.4byte	0xb8
  2853 0bc8 16       		.uleb128 0x16
- 2854 0bc9 97030000 		.4byte	.LASF90
+ 2854 0bc9 E1030000 		.4byte	.LASF90
  2855 0bcd 05       		.byte	0x5
  2856 0bce BB       		.byte	0xbb
  2857 0bcf D9000000 		.4byte	0xd9
@@ -3405,7 +3405,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2862 0bdd D9000000 		.4byte	0xd9
  2863 0be1 00       		.byte	0
  2864 0be2 18       		.uleb128 0x18
- 2865 0be3 69030000 		.4byte	.LASF93
+ 2865 0be3 B3030000 		.4byte	.LASF93
  2866 0be7 06       		.byte	0x6
  2867 0be8 6801     		.2byte	0x168
  2868 0bea F40B0000 		.4byte	0xbf4
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2875 0bfa 1A       		.uleb128 0x1a
  2876 0bfb F2000000 		.4byte	0xf2
  2877 0bff 16       		.uleb128 0x16
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 58
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 58
 
 
  2878 0c00 AB000000 		.4byte	.LASF91
@@ -3430,7 +3430,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2884 0c0f D9000000 		.4byte	0xd9
  2885 0c13 00       		.byte	0
  2886 0c14 16       		.uleb128 0x16
- 2887 0c15 C0010000 		.4byte	.LASF92
+ 2887 0c15 0A020000 		.4byte	.LASF92
  2888 0c19 05       		.byte	0x5
  2889 0c1a BC       		.byte	0xbc
  2890 0c1b D9000000 		.4byte	0xd9
@@ -3441,7 +3441,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2895 0c29 D9000000 		.4byte	0xd9
  2896 0c2d 00       		.byte	0
  2897 0c2e 1B       		.uleb128 0x1b
- 2898 0c2f D6000000 		.4byte	.LASF94
+ 2898 0c2f 20010000 		.4byte	.LASF94
  2899 0c33 05       		.byte	0x5
  2900 0c34 BF       		.byte	0xbf
  2901 0c35 D9000000 		.4byte	0xd9
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2932 0018 3A       		.uleb128 0x3a
  2933 0019 0B       		.uleb128 0xb
  2934 001a 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 59
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 59
 
 
  2935 001b 0B       		.uleb128 0xb
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  2989 0051 3A       		.uleb128 0x3a
  2990 0052 0B       		.uleb128 0xb
  2991 0053 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 60
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 60
 
 
  2992 0054 0B       		.uleb128 0xb
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3046 0092 01       		.uleb128 0x1
  3047 0093 31       		.uleb128 0x31
  3048 0094 13       		.uleb128 0x13
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 61
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 61
 
 
  3049 0095 00       		.byte	0
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3103 00cc 0B       		.uleb128 0xb
  3104 00cd 27       		.uleb128 0x27
  3105 00ce 19       		.uleb128 0x19
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 62
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 62
 
 
  3106 00cf 11       		.uleb128 0x11
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3160 0107 01       		.byte	0x1
  3161 0108 3F       		.uleb128 0x3f
  3162 0109 19       		.uleb128 0x19
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 63
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 63
 
 
  3163 010a 03       		.uleb128 0x3
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3217 0141 0E       		.uleb128 0xe
  3218 0142 3A       		.uleb128 0x3a
  3219 0143 0B       		.uleb128 0xb
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 64
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 64
 
 
  3220 0144 3B       		.uleb128 0x3b
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3274 017a 00       		.byte	0
  3275 017b 18       		.uleb128 0x18
  3276 017c 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 65
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 65
 
 
  3277 017d 01       		.byte	0x1
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3331              	.Ldebug_loc0:
  3332              	.LLST0:
  3333 0000 00000000 		.4byte	.LVL0
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 66
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 66
 
 
  3334 0004 08000000 		.4byte	.LVL1
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3388 0089 0400     		.2byte	0x4
  3389 008b F3       		.byte	0xf3
  3390 008c 01       		.uleb128 0x1
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 67
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 67
 
 
  3391 008d 50       		.byte	0x50
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3445 010f F3       		.byte	0xf3
  3446 0110 01       		.uleb128 0x1
  3447 0111 50       		.byte	0x50
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 68
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 68
 
 
  3448 0112 9F       		.byte	0x9f
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3502 003c 18000000 		.4byte	.LFE38-.LFB38
  3503 0040 00000000 		.4byte	.LFB39
  3504 0044 F0000000 		.4byte	.LFE39-.LFB39
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 69
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 69
 
 
  3505 0048 00000000 		.4byte	.LFB40
@@ -4127,8 +4127,8 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3548 006c 00000000 		.4byte	0
  3549              		.section	.debug_line,"",%progbits
  3550              	.Ldebug_line0:
- 3551 0000 34040000 		.section	.debug_str,"MS",%progbits,1
- 3551      02005901 
+ 3551 0000 40040000 		.section	.debug_str,"MS",%progbits,1
+ 3551      02006501 
  3551      00000201 
  3551      FB0E0D00 
  3551      01010101 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3554              	.LASF33:
  3555 0008 6163635F 		.ascii	"acc_read\000"
  3555      72656164 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 70
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 70
 
 
  3555      00
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3589 008f 6779726F 		.ascii	"gyro_q_offset\000"
  3589      5F715F6F 
  3589      66667365 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 71
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 71
 
 
  3589      7400
@@ -4217,339 +4217,339 @@ ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 1
  3595 00c3 5F5F7569 		.ascii	"__uint16_t\000"
  3595      6E743136 
  3595      5F7400
- 3596              	.LASF69:
- 3597 00ce 6163635F 		.ascii	"acc_x_g\000"
- 3597      785F6700 
- 3598              	.LASF94:
- 3599 00d6 4932434D 		.ascii	"I2CM_I2CMasterReadByte\000"
- 3599      5F493243 
- 3599      4D617374 
- 3599      65725265 
- 3599      61644279 
- 3600              	.LASF67:
- 3601 00ed 6163635F 		.ascii	"acc_x_l\000"
- 3601      785F6C00 
- 3602              	.LASF41:
- 3603 00f5 6261725F 		.ascii	"bar_xl\000"
- 3603      786C00
- 3604              	.LASF26:
- 3605 00fc 72656769 		.ascii	"registry\000"
- 3605      73747279 
- 3605      00
- 3606              	.LASF15:
- 3607 0105 75696E74 		.ascii	"uint8_t\000"
- 3607      385F7400 
- 3608              	.LASF32:
- 3609 010d 6163635F 		.ascii	"acc_start\000"
- 3609      73746172 
- 3609      7400
- 3610              	.LASF35:
- 3611 0117 6D61675F 		.ascii	"mag_start\000"
- 3611      73746172 
- 3611      7400
- 3612              	.LASF48:
- 3613 0121 7475726E 		.ascii	"turn_rate_p\000"
- 3613      5F726174 
- 3613      655F7000 
- 3614              	.LASF54:
- 3615 012d 7475726E 		.ascii	"turn_rate_q\000"
- 3615      5F726174 
- 3615      655F7100 
- 3616              	.LASF59:
- 3617 0139 7475726E 		.ascii	"turn_rate_r\000"
- 3617      5F726174 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 72
+ 3596              	.LASF97:
+ 3597 00ce 453A5C44 		.ascii	"E:\\Dokumente\\GitHub\\T-50_Project\\Software\\T-50"
+ 3597      6F6B756D 
+ 3597      656E7465 
+ 3597      5C476974 
+ 3597      4875625C 
+ 3598 00fc 5F50726F 		.ascii	"_Project\\T-50_Project.cydsn\000"
+ 3598      6A656374 
+ 3598      5C542D35 
+ 3598      305F5072 
+ 3598      6F6A6563 
+ 3599              	.LASF69:
+ 3600 0118 6163635F 		.ascii	"acc_x_g\000"
+ 3600      785F6700 
+ 3601              	.LASF94:
+ 3602 0120 4932434D 		.ascii	"I2CM_I2CMasterReadByte\000"
+ 3602      5F493243 
+ 3602      4D617374 
+ 3602      65725265 
+ 3602      61644279 
+ 3603              	.LASF67:
+ 3604 0137 6163635F 		.ascii	"acc_x_l\000"
+ 3604      785F6C00 
+ 3605              	.LASF41:
+ 3606 013f 6261725F 		.ascii	"bar_xl\000"
+ 3606      786C00
+ 3607              	.LASF26:
+ 3608 0146 72656769 		.ascii	"registry\000"
+ 3608      73747279 
+ 3608      00
+ 3609              	.LASF15:
+ 3610 014f 75696E74 		.ascii	"uint8_t\000"
+ 3610      385F7400 
+ 3611              	.LASF32:
+ 3612 0157 6163635F 		.ascii	"acc_start\000"
+ 3612      73746172 
+ 3612      7400
+ 3613              	.LASF35:
+ 3614 0161 6D61675F 		.ascii	"mag_start\000"
+ 3614      73746172 
+ 3614      7400
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 72
 
 
- 3617      655F7200 
- 3618              	.LASF20:
- 3619 0145 666C6F61 		.ascii	"float\000"
- 3619      7400
- 3620              	.LASF80:
- 3621 014b 6D61675F 		.ascii	"mag_x\000"
- 3621      7800
- 3622              	.LASF84:
- 3623 0151 6D61675F 		.ascii	"mag_y\000"
- 3623      7900
- 3624              	.LASF88:
- 3625 0157 6D61675F 		.ascii	"mag_z\000"
- 3625      7A00
- 3626              	.LASF62:
- 3627 015d 6779726F 		.ascii	"gyro_p_offset\000"
- 3627      5F705F6F 
- 3627      66667365 
- 3627      7400
- 3628              	.LASF9:
- 3629 016b 6C6F6E67 		.ascii	"long int\000"
- 3629      20696E74 
- 3629      00
- 3630              	.LASF1:
- 3631 0174 5F5F7569 		.ascii	"__uint8_t\000"
- 3631      6E74385F 
- 3631      7400
- 3632              	.LASF28:
- 3633 017e 77726974 		.ascii	"write_gyro_registry\000"
- 3633      655F6779 
- 3633      726F5F72 
- 3633      65676973 
- 3633      74727900 
- 3634              	.LASF3:
- 3635 0192 756E7369 		.ascii	"unsigned char\000"
- 3635      676E6564 
- 3635      20636861 
- 3635      7200
- 3636              	.LASF36:
- 3637 01a0 6D61675F 		.ascii	"mag_read\000"
- 3637      72656164 
- 3637      00
- 3638              	.LASF12:
- 3639 01a9 6C6F6E67 		.ascii	"long long unsigned int\000"
- 3639      206C6F6E 
- 3639      6720756E 
- 3639      7369676E 
- 3639      65642069 
- 3640              	.LASF92:
- 3641 01c0 4932434D 		.ascii	"I2CM_I2CMasterSendRestart\000"
- 3641      5F493243 
- 3641      4D617374 
- 3641      65725365 
- 3641      6E645265 
- 3642              	.LASF34:
- 3643 01da 77726974 		.ascii	"write_mag_registry\000"
- 3643      655F6D61 
- 3643      675F7265 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 73
+ 3615              	.LASF48:
+ 3616 016b 7475726E 		.ascii	"turn_rate_p\000"
+ 3616      5F726174 
+ 3616      655F7000 
+ 3617              	.LASF54:
+ 3618 0177 7475726E 		.ascii	"turn_rate_q\000"
+ 3618      5F726174 
+ 3618      655F7100 
+ 3619              	.LASF59:
+ 3620 0183 7475726E 		.ascii	"turn_rate_r\000"
+ 3620      5F726174 
+ 3620      655F7200 
+ 3621              	.LASF20:
+ 3622 018f 666C6F61 		.ascii	"float\000"
+ 3622      7400
+ 3623              	.LASF80:
+ 3624 0195 6D61675F 		.ascii	"mag_x\000"
+ 3624      7800
+ 3625              	.LASF84:
+ 3626 019b 6D61675F 		.ascii	"mag_y\000"
+ 3626      7900
+ 3627              	.LASF88:
+ 3628 01a1 6D61675F 		.ascii	"mag_z\000"
+ 3628      7A00
+ 3629              	.LASF62:
+ 3630 01a7 6779726F 		.ascii	"gyro_p_offset\000"
+ 3630      5F705F6F 
+ 3630      66667365 
+ 3630      7400
+ 3631              	.LASF9:
+ 3632 01b5 6C6F6E67 		.ascii	"long int\000"
+ 3632      20696E74 
+ 3632      00
+ 3633              	.LASF1:
+ 3634 01be 5F5F7569 		.ascii	"__uint8_t\000"
+ 3634      6E74385F 
+ 3634      7400
+ 3635              	.LASF28:
+ 3636 01c8 77726974 		.ascii	"write_gyro_registry\000"
+ 3636      655F6779 
+ 3636      726F5F72 
+ 3636      65676973 
+ 3636      74727900 
+ 3637              	.LASF3:
+ 3638 01dc 756E7369 		.ascii	"unsigned char\000"
+ 3638      676E6564 
+ 3638      20636861 
+ 3638      7200
+ 3639              	.LASF36:
+ 3640 01ea 6D61675F 		.ascii	"mag_read\000"
+ 3640      72656164 
+ 3640      00
+ 3641              	.LASF12:
+ 3642 01f3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3642      206C6F6E 
+ 3642      6720756E 
+ 3642      7369676E 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 73
 
 
- 3643      67697374 
- 3643      727900
- 3644              	.LASF13:
- 3645 01ed 756E7369 		.ascii	"unsigned int\000"
- 3645      676E6564 
- 3645      20696E74 
- 3645      00
- 3646              	.LASF58:
- 3647 01fa 6779726F 		.ascii	"gyro_r\000"
- 3647      5F7200
- 3648              	.LASF17:
- 3649 0201 75696E74 		.ascii	"uint16_t\000"
- 3649      31365F74 
- 3649      00
- 3650              	.LASF37:
- 3651 020a 77726974 		.ascii	"write_baro_registry\000"
- 3651      655F6261 
- 3651      726F5F72 
- 3651      65676973 
- 3651      74727900 
- 3652              	.LASF47:
- 3653 021e 6779726F 		.ascii	"gyro_x\000"
- 3653      5F7800
- 3654              	.LASF61:
- 3655 0225 74656D70 		.ascii	"temperature_0\000"
- 3655      65726174 
- 3655      7572655F 
- 3655      3000
- 3656              	.LASF57:
- 3657 0233 6779726F 		.ascii	"gyro_z\000"
- 3657      5F7A00
- 3658              	.LASF24:
- 3659 023a 72656733 		.ascii	"reg32\000"
- 3659      3200
- 3660              	.LASF7:
- 3661 0240 73686F72 		.ascii	"short unsigned int\000"
- 3661      7420756E 
- 3661      7369676E 
- 3661      65642069 
- 3661      6E7400
- 3662              	.LASF0:
- 3663 0253 5F5F696E 		.ascii	"__int8_t\000"
- 3663      74385F74 
- 3663      00
- 3664              	.LASF38:
- 3665 025c 6261726F 		.ascii	"baro_start\000"
- 3665      5F737461 
- 3665      727400
- 3666              	.LASF23:
- 3667 0267 63686172 		.ascii	"char\000"
- 3667      00
- 3668              	.LASF55:
- 3669 026c 6779726F 		.ascii	"gyro_z_h\000"
- 3669      5F7A5F68 
- 3669      00
- 3670              	.LASF18:
- 3671 0275 696E7433 		.ascii	"int32_t\000"
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 74
+ 3642      65642069 
+ 3643              	.LASF92:
+ 3644 020a 4932434D 		.ascii	"I2CM_I2CMasterSendRestart\000"
+ 3644      5F493243 
+ 3644      4D617374 
+ 3644      65725365 
+ 3644      6E645265 
+ 3645              	.LASF34:
+ 3646 0224 77726974 		.ascii	"write_mag_registry\000"
+ 3646      655F6D61 
+ 3646      675F7265 
+ 3646      67697374 
+ 3646      727900
+ 3647              	.LASF13:
+ 3648 0237 756E7369 		.ascii	"unsigned int\000"
+ 3648      676E6564 
+ 3648      20696E74 
+ 3648      00
+ 3649              	.LASF58:
+ 3650 0244 6779726F 		.ascii	"gyro_r\000"
+ 3650      5F7200
+ 3651              	.LASF17:
+ 3652 024b 75696E74 		.ascii	"uint16_t\000"
+ 3652      31365F74 
+ 3652      00
+ 3653              	.LASF37:
+ 3654 0254 77726974 		.ascii	"write_baro_registry\000"
+ 3654      655F6261 
+ 3654      726F5F72 
+ 3654      65676973 
+ 3654      74727900 
+ 3655              	.LASF47:
+ 3656 0268 6779726F 		.ascii	"gyro_x\000"
+ 3656      5F7800
+ 3657              	.LASF61:
+ 3658 026f 74656D70 		.ascii	"temperature_0\000"
+ 3658      65726174 
+ 3658      7572655F 
+ 3658      3000
+ 3659              	.LASF57:
+ 3660 027d 6779726F 		.ascii	"gyro_z\000"
+ 3660      5F7A00
+ 3661              	.LASF24:
+ 3662 0284 72656733 		.ascii	"reg32\000"
+ 3662      3200
+ 3663              	.LASF7:
+ 3664 028a 73686F72 		.ascii	"short unsigned int\000"
+ 3664      7420756E 
+ 3664      7369676E 
+ 3664      65642069 
+ 3664      6E7400
+ 3665              	.LASF0:
+ 3666 029d 5F5F696E 		.ascii	"__int8_t\000"
+ 3666      74385F74 
+ 3666      00
+ 3667              	.LASF38:
+ 3668 02a6 6261726F 		.ascii	"baro_start\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 74
 
 
- 3671      325F7400 
- 3672              	.LASF56:
- 3673 027d 6779726F 		.ascii	"gyro_z_l\000"
- 3673      5F7A5F6C 
- 3673      00
- 3674              	.LASF16:
- 3675 0286 696E7431 		.ascii	"int16_t\000"
- 3675      365F7400 
- 3676              	.LASF95:
- 3677 028e 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
- 3677      4320342E 
- 3677      382E3420 
- 3677      32303134 
- 3677      30353236 
- 3678 02c1 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
- 3678      20726576 
- 3678      6973696F 
- 3678      6E203231 
- 3678      31333538 
- 3679 02f4 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
- 3679      66756E63 
- 3679      74696F6E 
- 3679      2D736563 
- 3679      74696F6E 
- 3680              	.LASF65:
- 3681 031d 6572726F 		.ascii	"error_stat\000"
- 3681      725F7374 
- 3681      617400
- 3682              	.LASF27:
- 3683 0328 64617461 		.ascii	"data\000"
- 3683      00
- 3684              	.LASF19:
- 3685 032d 75696E74 		.ascii	"uint32\000"
- 3685      333200
- 3686              	.LASF96:
- 3687 0334 2E5C494D 		.ascii	".\\IMU.c\000"
- 3687      552E6300 
- 3688              	.LASF10:
- 3689 033c 6C6F6E67 		.ascii	"long unsigned int\000"
- 3689      20756E73 
- 3689      69676E65 
- 3689      6420696E 
- 3689      7400
- 3690              	.LASF29:
- 3691 034e 6779726F 		.ascii	"gyro_start\000"
- 3691      5F737461 
- 3691      727400
- 3692              	.LASF50:
- 3693 0359 6779726F 		.ascii	"gyro_y_h\000"
- 3693      5F795F68 
- 3693      00
- 3694              	.LASF21:
- 3695 0362 646F7562 		.ascii	"double\000"
- 3695      6C6500
- 3696              	.LASF93:
- 3697 0369 55415254 		.ascii	"UART_1_UartPutString\000"
- 3697      5F315F55 
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 75
+ 3668      5F737461 
+ 3668      727400
+ 3669              	.LASF23:
+ 3670 02b1 63686172 		.ascii	"char\000"
+ 3670      00
+ 3671              	.LASF55:
+ 3672 02b6 6779726F 		.ascii	"gyro_z_h\000"
+ 3672      5F7A5F68 
+ 3672      00
+ 3673              	.LASF18:
+ 3674 02bf 696E7433 		.ascii	"int32_t\000"
+ 3674      325F7400 
+ 3675              	.LASF56:
+ 3676 02c7 6779726F 		.ascii	"gyro_z_l\000"
+ 3676      5F7A5F6C 
+ 3676      00
+ 3677              	.LASF16:
+ 3678 02d0 696E7431 		.ascii	"int16_t\000"
+ 3678      365F7400 
+ 3679              	.LASF95:
+ 3680 02d8 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 3680      4320342E 
+ 3680      382E3420 
+ 3680      32303134 
+ 3680      30353236 
+ 3681 030b 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 3681      20726576 
+ 3681      6973696F 
+ 3681      6E203231 
+ 3681      31333538 
+ 3682 033e 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 3682      66756E63 
+ 3682      74696F6E 
+ 3682      2D736563 
+ 3682      74696F6E 
+ 3683              	.LASF65:
+ 3684 0367 6572726F 		.ascii	"error_stat\000"
+ 3684      725F7374 
+ 3684      617400
+ 3685              	.LASF27:
+ 3686 0372 64617461 		.ascii	"data\000"
+ 3686      00
+ 3687              	.LASF19:
+ 3688 0377 75696E74 		.ascii	"uint32\000"
+ 3688      333200
+ 3689              	.LASF96:
+ 3690 037e 2E5C494D 		.ascii	".\\IMU.c\000"
+ 3690      552E6300 
+ 3691              	.LASF10:
+ 3692 0386 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3692      20756E73 
+ 3692      69676E65 
+ 3692      6420696E 
+ 3692      7400
+ 3693              	.LASF29:
+ 3694 0398 6779726F 		.ascii	"gyro_start\000"
+ 3694      5F737461 
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 75
 
 
- 3697      61727450 
- 3697      75745374 
- 3697      72696E67 
- 3698              	.LASF51:
- 3699 037e 6779726F 		.ascii	"gyro_y_l\000"
- 3699      5F795F6C 
- 3699      00
- 3700              	.LASF79:
- 3701 0387 6D61675F 		.ascii	"mag_x_l\000"
- 3701      785F6C00 
- 3702              	.LASF77:
- 3703 038f 6163635F 		.ascii	"acc_z_g\000"
- 3703      7A5F6700 
- 3704              	.LASF90:
- 3705 0397 4932434D 		.ascii	"I2CM_I2CMasterSendStart\000"
- 3705      5F493243 
- 3705      4D617374 
- 3705      65725365 
- 3705      6E645374 
- 3706              	.LASF60:
- 3707 03af 74656D70 		.ascii	"temperature\000"
- 3707      65726174 
- 3707      75726500 
- 3708              	.LASF8:
- 3709 03bb 5F5F696E 		.ascii	"__int32_t\000"
- 3709      7433325F 
- 3709      7400
- 3710              	.LASF53:
- 3711 03c5 6779726F 		.ascii	"gyro_q\000"
- 3711      5F7100
- 3712              	.LASF31:
- 3713 03cc 77726974 		.ascii	"write_acc_registry\000"
- 3713      655F6163 
- 3713      635F7265 
- 3713      67697374 
- 3713      727900
- 3714              	.LASF2:
- 3715 03df 7369676E 		.ascii	"signed char\000"
- 3715      65642063 
- 3715      68617200 
- 3716              	.LASF4:
- 3717 03eb 5F5F696E 		.ascii	"__int16_t\000"
- 3717      7431365F 
- 3717      7400
- 3718              	.LASF44:
- 3719 03f5 70726573 		.ascii	"press_temp\000"
- 3719      735F7465 
- 3719      6D7000
- 3720              	.LASF25:
- 3721 0400 73697A65 		.ascii	"sizetype\000"
- 3721      74797065 
- 3721      00
- 3722              	.LASF45:
- 3723 0409 6779726F 		.ascii	"gyro_x_h\000"
- 3723      5F785F68 
- 3723      00
- 3724              	.LASF89:
-ARM GAS  C:\Users\SNFU\AppData\Local\Temp\cc6Hio47.s 			page 76
+ 3694      727400
+ 3695              	.LASF50:
+ 3696 03a3 6779726F 		.ascii	"gyro_y_h\000"
+ 3696      5F795F68 
+ 3696      00
+ 3697              	.LASF21:
+ 3698 03ac 646F7562 		.ascii	"double\000"
+ 3698      6C6500
+ 3699              	.LASF93:
+ 3700 03b3 55415254 		.ascii	"UART_1_UartPutString\000"
+ 3700      5F315F55 
+ 3700      61727450 
+ 3700      75745374 
+ 3700      72696E67 
+ 3701              	.LASF51:
+ 3702 03c8 6779726F 		.ascii	"gyro_y_l\000"
+ 3702      5F795F6C 
+ 3702      00
+ 3703              	.LASF79:
+ 3704 03d1 6D61675F 		.ascii	"mag_x_l\000"
+ 3704      785F6C00 
+ 3705              	.LASF77:
+ 3706 03d9 6163635F 		.ascii	"acc_z_g\000"
+ 3706      7A5F6700 
+ 3707              	.LASF90:
+ 3708 03e1 4932434D 		.ascii	"I2CM_I2CMasterSendStart\000"
+ 3708      5F493243 
+ 3708      4D617374 
+ 3708      65725365 
+ 3708      6E645374 
+ 3709              	.LASF60:
+ 3710 03f9 74656D70 		.ascii	"temperature\000"
+ 3710      65726174 
+ 3710      75726500 
+ 3711              	.LASF8:
+ 3712 0405 5F5F696E 		.ascii	"__int32_t\000"
+ 3712      7433325F 
+ 3712      7400
+ 3713              	.LASF53:
+ 3714 040f 6779726F 		.ascii	"gyro_q\000"
+ 3714      5F7100
+ 3715              	.LASF31:
+ 3716 0416 77726974 		.ascii	"write_acc_registry\000"
+ 3716      655F6163 
+ 3716      635F7265 
+ 3716      67697374 
+ 3716      727900
+ 3717              	.LASF2:
+ 3718 0429 7369676E 		.ascii	"signed char\000"
+ 3718      65642063 
+ 3718      68617200 
+ 3719              	.LASF4:
+ 3720 0435 5F5F696E 		.ascii	"__int16_t\000"
+ 3720      7431365F 
+ 3720      7400
+ 3721              	.LASF44:
+ 3722 043f 70726573 		.ascii	"press_temp\000"
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\ccZnyGgD.s 			page 76
 
 
- 3725 0412 6D61675F 		.ascii	"mag_z_g\000"
- 3725      7A5F6700 
- 3726              	.LASF86:
- 3727 041a 6D61675F 		.ascii	"mag_z_h\000"
- 3727      7A5F6800 
- 3728              	.LASF46:
- 3729 0422 6779726F 		.ascii	"gyro_x_l\000"
- 3729      5F785F6C 
- 3729      00
- 3730              	.LASF52:
- 3731 042b 6779726F 		.ascii	"gyro_y\000"
- 3731      5F7900
- 3732              	.LASF87:
- 3733 0432 6D61675F 		.ascii	"mag_z_l\000"
- 3733      7A5F6C00 
- 3734              	.LASF97:
- 3735 043a 433A5C55 		.ascii	"C:\\Users\\SNFU\\Documents\\T-50_UAV_Project\\Softw"
- 3735      73657273 
- 3735      5C534E46 
- 3735      555C446F 
- 3735      63756D65 
- 3736 0468 6172655C 		.ascii	"are\\T-50_Project\\T-50_Project.cydsn\000"
- 3736      542D3530 
- 3736      5F50726F 
- 3736      6A656374 
- 3736      5C542D35 
+ 3722      735F7465 
+ 3722      6D7000
+ 3723              	.LASF25:
+ 3724 044a 73697A65 		.ascii	"sizetype\000"
+ 3724      74797065 
+ 3724      00
+ 3725              	.LASF45:
+ 3726 0453 6779726F 		.ascii	"gyro_x_h\000"
+ 3726      5F785F68 
+ 3726      00
+ 3727              	.LASF89:
+ 3728 045c 6D61675F 		.ascii	"mag_z_g\000"
+ 3728      7A5F6700 
+ 3729              	.LASF86:
+ 3730 0464 6D61675F 		.ascii	"mag_z_h\000"
+ 3730      7A5F6800 
+ 3731              	.LASF46:
+ 3732 046c 6779726F 		.ascii	"gyro_x_l\000"
+ 3732      5F785F6C 
+ 3732      00
+ 3733              	.LASF52:
+ 3734 0475 6779726F 		.ascii	"gyro_y\000"
+ 3734      5F7900
+ 3735              	.LASF87:
+ 3736 047c 6D61675F 		.ascii	"mag_z_l\000"
+ 3736      7A5F6C00 
  3737              	.LASF76:
- 3738 048c 6163635F 		.ascii	"acc_z\000"
+ 3738 0484 6163635F 		.ascii	"acc_z\000"
  3738      7A00
  3739              	.LASF30:
- 3740 0492 6779726F 		.ascii	"gyro_read\000"
+ 3740 048a 6779726F 		.ascii	"gyro_read\000"
  3740      5F726561 
  3740      6400
  3741              	.LASF74:
- 3742 049c 6163635F 		.ascii	"acc_z_h\000"
+ 3742 0494 6163635F 		.ascii	"acc_z_h\000"
  3742      7A5F6800 
  3743              	.LASF75:
- 3744 04a4 6163635F 		.ascii	"acc_z_l\000"
+ 3744 049c 6163635F 		.ascii	"acc_z_l\000"
  3744      7A5F6C00 
  3745              	.LASF66:
- 3746 04ac 6163635F 		.ascii	"acc_x_h\000"
+ 3746 04a4 6163635F 		.ascii	"acc_x_h\000"
  3746      785F6800 
  3747              	.LASF39:
- 3748 04b4 72656164 		.ascii	"read_gyro_registry\000"
+ 3748 04ac 72656164 		.ascii	"read_gyro_registry\000"
  3748      5F677972 
  3748      6F5F7265 
  3748      67697374 
  3748      727900
  3749              	.LASF85:
- 3750 04c7 6D61675F 		.ascii	"mag_y_g\000"
+ 3750 04bf 6D61675F 		.ascii	"mag_y_g\000"
  3750      795F6700 
  3751              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

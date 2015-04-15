@@ -461,18 +461,19 @@ int main()
             if(debug == 0)
             {
                 ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                //ctrl_out[out_mot] = 800;
                 ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
                 ctrl_out[out_ail2] = ctrl_in[in_ail];
                 ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
                 ctrl_out[out_ele2] = ctrl_in[in_ele];
                 ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
-                ctrl_out[out_fl1] = ctrl_in[in_gear];            // gear:   down: 1000  retracted: 2000
-                ctrl_out[out_fl2] = ctrl_in[in_gear];
-                ctrl_out[out_ge1] = ctrl_in[in_can];             // canopy: open: 1000  closed: 2000
-                ctrl_out[out_ge2] = ctrl_in[in_can];
-                ctrl_out[out_ge3] = ctrl_in[in_can];
-                ctrl_out[out_sp1] = ctrl_in[in_mod];            // down: 2000 mid: 1500 up: 1000
-                ctrl_out[out_sp2] = ctrl_in[in_sp2];
+                ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                ctrl_out[out_ge2] = ctrl_in[in_gear];
+                ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                ctrl_out[out_fl2] = ctrl_in[in_can];
+                //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 up: 1000
+                //ctrl_out[out_sp2] = ctrl_in[in_sp2];
             }
             else
             {
@@ -496,7 +497,7 @@ int main()
                 Data Logging
               =======================================*/
                 
-                UART_1_UartPutNum(ctrl_in[in_mot]);
+                UART_1_UartPutNum(ctrl_out[out_mot]);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_in[in_ail]);
                 UART_1_UartPutString(";");
