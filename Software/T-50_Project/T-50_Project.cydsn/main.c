@@ -29,12 +29,6 @@ volatile uint8_t blink_cnt = 0;
 float sample_time = 0.01;               // 10 ms Sample time
 
 /*=============================*/
-/* TASK Flags*/
-/*=============================*/
-
-
-
-/*=============================*/
 /*Remote Input variables*/
 /*=============================*/
 uint8_t PPM_channel = 0;                    // input channel variable
@@ -105,8 +99,8 @@ int16_t mag_y_g = 0;
 int16_t mag_z_g = 0;
 
 /* Euler Angles */
-float Theta, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
-float Phi, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+float Theta, Theta_Mav, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
+float Phi, Phi_Mav, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
 float Psi, Psi_acc = 0;       // Psi , Psi_acc => Psi from accelerometer
 
 /* Magnetic Heading*/
@@ -121,7 +115,7 @@ uint8_t cnt_baro  = 0;
 /* Speed conversion			*/
 /*=============================*/
 #define SPEED_TASK  TRUE
-int16_t speed = 0;
+uint16_t speed = 0;
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -140,6 +134,12 @@ float p_bias = 0;
 //int8_t P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
 float P_Phi[2][2] = {0,0,0,0};
 float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
+
+/*=============================*/
+/* UART Rx Tx variables		*/
+/*=============================*/
+#define DATA_LOG        TRUE
+uint32_t Rx_char = 0;
 
 /*=============================*/
 /* MAVLINK			*/
@@ -194,6 +194,8 @@ int16_t ADC_read_speed(void)
     return(speed);
 }
 
+/*##########################*/
+/* main */
 int main()
 {
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
@@ -401,9 +403,10 @@ int main()
 			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
             // Complementary filter. Substitute for Kalman filter.
             // it is not clear why the 8 in the end is required, but it gives useable results
-            Theta = (0.90* (Theta + turn_rate_q*sample_time) + 0.10*Theta_acc)*PI/180*8;
-            Phi = (0.90 * (Phi + turn_rate_p*sample_time) + 0.10*Phi_acc)*PI/180*8;
-
+            Theta = (0.90* (Theta + turn_rate_q*sample_time) + 0.10*Theta_acc);
+            Theta_Mav = Theta*PI/180*8;
+            Phi = (0.90 * (Phi + turn_rate_p*sample_time) + 0.10*Phi_acc);
+            Phi_Mav = Phi*PI/180*8;
             
              // Tilt compensated Magnetic filed X:
             //  MAG_X = c_magnetom_x*cos_pitch+c_magnetom_y*sin_roll*sin_pitch+c_magnetom_z*cos_roll*sin_pitch;
@@ -432,7 +435,7 @@ int main()
             {
                 if((cnt_ML_HEARTBEAT_send % 20) == 0)  // 20*10ms = 200ms
                 {
-                    mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0, Phi, Theta, 0, 0,0,0);
+                    mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0, Phi_Mav, Theta_Mav, 0, 0,0,0);
                     uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
                     UART_1_UartSendMavlink(buf, len);
                     
@@ -496,7 +499,8 @@ int main()
             /*=======================================
                 Data Logging
               =======================================*/
-                
+            if(DATA_LOG == TRUE)
+            {
                 UART_1_UartPutNum(ctrl_out[out_mot]);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_in[in_ail]);
@@ -511,11 +515,28 @@ int main()
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_in[in_mod]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[7]);
-                UART_1_UartPutString("\r\n");
+                //UART_1_UartPutNum(ctrl_in[7]);
+                //UART_1_UartPutString("\r\n");
+                UART_1_UartPutNum(Phi);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(Theta);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(speed);
+                UART_1_UartPutString(";\r\n");
+            }
             
         }
-
+        // Activating the Bootloader
+        Rx_char = UART_1_UartGetChar(); // check permanently for 
+        if(Rx_char > 0u)  
+            {
+                if(Rx_char == 'B')
+                {
+                    UART_1_UartPutString("Boot\r\n");
+                    CyDelay(100);
+                    Bootloadable_1_Load();   
+                }
+            }
     }
 }
 
