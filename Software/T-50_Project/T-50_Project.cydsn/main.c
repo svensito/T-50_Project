@@ -63,6 +63,17 @@ enum e_out{   // Output Control Enum - 13 Signals
 };
 
 /*=============================*/
+/* State Machine for mode control*/
+/*=============================*/
+uint8_t Ctrl_Mode = 0;
+enum ctrl_mode
+{
+    manual = 0,
+    damped,
+    autonom
+};
+
+/*=============================*/
 /*Light control variables*/
 /*=============================*/
 uint8_t flag_LightsEnabled = TRUE;
@@ -135,11 +146,21 @@ float p_bias = 0;
 float P_Phi[2][2] = {0,0,0,0};
 float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 
+/*============================*/
+/* Control variables	*/
 /*=============================*/
+uint8_t K_d_p = 1;
+uint8_t K_d_q = 1;
+uint8_t K_d_r = 3;
+
+/*============================*/
 /* UART Rx Tx variables		*/
 /*=============================*/
 #define DATA_LOG        TRUE
-uint32_t Rx_char = 0;
+uint8_t Rx_char = 0;
+char Rx_String[10] = {0,0,0,0,0,0,0,0,0,0};
+uint8_t Rx_index = 0;
+uint8_t Rx_flag = 0;
 
 /*=============================*/
 /* MAVLINK			*/
@@ -461,22 +482,56 @@ int main()
                 Output Control
               =======================================*/
         uint8_t debug = 0;
+            
+            if(/*ctrl_in[in_mod]<1750 &&*/ ctrl_in[in_mod]> 1250) Ctrl_Mode = manual;
+            else if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;
+            
             if(debug == 0)
             {
-                ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
-                //ctrl_out[out_mot] = 800;
-                ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
-                ctrl_out[out_ail2] = ctrl_in[in_ail];
-                ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
-                ctrl_out[out_ele2] = ctrl_in[in_ele];
-                ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
-                ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
-                ctrl_out[out_ge2] = ctrl_in[in_gear];
-                ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
-                ctrl_out[out_fl2] = ctrl_in[in_can];
-                //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 up: 1000
-                //ctrl_out[out_sp2] = ctrl_in[in_sp2];
+                uint16_t flap_offset = 0;
+                // Flap Control
+                if(ctrl_in[in_sp2]>1750)
+                {
+                    flap_offset = 300;
+                }
+                
+                switch (Ctrl_Mode)
+                {
+                    case manual:
+                        ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]-flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele];
+                        ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 up: 1000
+                        //ctrl_out[out_sp2] = ctrl_in[in_sp2];
+ 
+                        
+                    break;
+                    
+                    case damped:
+                        ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*turn_rate_p);           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*turn_rate_p);
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);
+                        ctrl_out[out_rud] = ctrl_in[in_rud]-(K_d_r*turn_rate_r);            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];            
+                    break;
+                    
+                }
             }
             else
             {
@@ -501,19 +556,19 @@ int main()
               =======================================*/
             if(DATA_LOG == TRUE)
             {
-                UART_1_UartPutNum(ctrl_out[out_mot]);
+                UART_1_UartPutNum(ctrl_out[out_ge1]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_ail]);
+                UART_1_UartPutNum(ctrl_out[out_ail1]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_ele]);
+                UART_1_UartPutNum(ctrl_out[out_ele1]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_rud]);
+                UART_1_UartPutNum(ctrl_out[out_rud]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_gear]);
+                UART_1_UartPutNum(ctrl_out[out_ge2]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_can]);
+                UART_1_UartPutNum(ctrl_out[out_fl1]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_mod]);
+                UART_1_UartPutNum(ctrl_in[in_sp2]);
                 UART_1_UartPutString(";");
                 //UART_1_UartPutNum(ctrl_in[7]);
                 //UART_1_UartPutString("\r\n");
@@ -524,17 +579,35 @@ int main()
                 UART_1_UartPutNum(speed);
                 UART_1_UartPutString(";\r\n");
             }
+            if(Rx_flag == 1)
+            {
+                Rx_flag = 0;
+                UART_1_UartPutString(Rx_String);
+                UART_1_UartPutString("\r\n");
+                // In case "Boot" is received -> Bootloader gets enabled
+                if(strcmp(Rx_String,"Boot")==0)
+                {
+                    UART_1_UartPutString("BootEnabl\r\n");
+                    CyDelay(100);
+                    Bootloadable_1_Load(); 
+                }
+            }
             
         }
-        // Activating the Bootloader
-        Rx_char = UART_1_UartGetChar(); // check permanently for 
+        // Reading the serial data and putting it to a string
+        Rx_char = UART_1_UartGetChar(); // Poll for Characters
         if(Rx_char > 0u)  
             {
-                if(Rx_char == 'B')
+                if(Rx_char == '\r')
                 {
-                    UART_1_UartPutString("Boot\r\n");
-                    CyDelay(100);
-                    Bootloadable_1_Load();   
+                    Rx_String[Rx_index] = '\0';
+                    Rx_flag = 1;
+                    Rx_index = 0;
+                }
+                else
+                {
+                    Rx_String[Rx_index] = Rx_char;
+                    Rx_index++;
                 }
             }
     }

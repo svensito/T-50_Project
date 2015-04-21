@@ -1,4 +1,4 @@
---------------- Build Started: 04/17/2015 08:46:17 Project: T-50_Project, Configuration: ARM GCC 4.8.4 Debug ---------------
+--------------- Build Started: 04/21/2015 23:24:52 Project: T-50_Project, Configuration: ARM GCC 4.8.4 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I.\MAVLINK -I.\MAVLINK\common -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -finline-functions -Os -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
 In file included from .\MAVLINK\common/../protocol.h:5:0,
@@ -11,21 +11,21 @@ In file included from .\MAVLINK\common/../protocol.h:5:0,
 .\MAVLINK\common/../mavlink_types.h:13:40: note: in definition of macro 'MAVPACKED'
    #define MAVPACKED( __Declaration__ ) __Declaration__ __attribute__((packed))
                                         ^
-.\main.c:130:1: warning: missing braces around initializer [-Wmissing-braces]
+.\main.c:141:1: warning: missing braces around initializer [-Wmissing-braces]
  float P_Theta[2][2] = {0,0,0,0};
  ^
-.\main.c:130:1: warning: (near initialization for 'P_Theta[0]') [-Wmissing-braces]
-.\main.c:135:1: warning: missing braces around initializer [-Wmissing-braces]
+.\main.c:141:1: warning: (near initialization for 'P_Theta[0]') [-Wmissing-braces]
+.\main.c:146:1: warning: missing braces around initializer [-Wmissing-braces]
  float P_Phi[2][2] = {0,0,0,0};
  ^
-.\main.c:135:1: warning: (near initialization for 'P_Phi[0]') [-Wmissing-braces]
+.\main.c:146:1: warning: (near initialization for 'P_Phi[0]') [-Wmissing-braces]
 .\main.c: In function 'UART_1_UartPutNum':
-.\main.c:172:5: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32_t' [-Wformat=]
+.\main.c:193:5: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32_t' [-Wformat=]
      sprintf(k,"%d",num);
      ^
-.\main.c:172:5: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32_t' [-Wformat=]
+.\main.c:193:5: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32_t' [-Wformat=]
 .\main.c: In function 'main':
-.\main.c:432:13: warning: "/*" within comment [-Wcomment]
+.\main.c:453:13: warning: "/*" within comment [-Wcomment]
              /*=======================================================*/
  ^
 arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_484\Debug\T-50_Project.a .\CortexM0\ARM_GCC_484\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_484\Debug\Bootloadable_1.o .\CortexM0\ARM_GCC_484\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_484\Debug\CyFlash.o .\CortexM0\ARM_GCC_484\Debug\CyLib.o .\CortexM0\ARM_GCC_484\Debug\cyPm.o .\CortexM0\ARM_GCC_484\Debug\cyutils.o .\CortexM0\ARM_GCC_484\Debug\UART_1.o .\CortexM0\ARM_GCC_484\Debug\UART_1_SPI_UART.o .\CortexM0\ARM_GCC_484\Debug\UART_1_SPI_UART_INT.o .\CortexM0\ARM_GCC_484\Debug\UART_1_PM.o .\CortexM0\ARM_GCC_484\Debug\UART_1_UART.o .\CortexM0\ARM_GCC_484\Debug\UART_1_BOOT.o .\CortexM0\ARM_GCC_484\Debug\UART_1_UART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\UART_1_tx.o .\CortexM0\ARM_GCC_484\Debug\UART_1_rx.o .\CortexM0\ARM_GCC_484\Debug\Clock_1.o .\CortexM0\ARM_GCC_484\Debug\TaskTimer.o .\CortexM0\ARM_GCC_484\Debug\TaskTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\TaskISR.o .\CortexM0\ARM_GCC_484\Debug\NavLightPWM.o .\CortexM0\ARM_GCC_484\Debug\NavLightPWM_PM.o .\CortexM0\ARM_GCC_484\Debug\Clock_2.o .\CortexM0\ARM_GCC_484\Debug\BootISR.o .\CortexM0\ARM_GCC_484\Debug\SW1.o .\CortexM0\ARM_GCC_484\Debug\NavLR.o .\CortexM0\ARM_GCC_484\Debug\NavB.o .\CortexM0\ARM_GCC_484\Debug\Strobes.o .\CortexM0\ARM_GCC_484\Debug\Collis.o .\CortexM0\ARM_GCC_484\Debug\Ldg.o .\CortexM0\ARM_GCC_484\Debug\SpareLight.o .\CortexM0\ARM_GCC_484\Debug\OnBoardLED.o .\CortexM0\ARM_GCC_484\Debug\PPMCounter.o .\CortexM0\ARM_GCC_484\Debug\PPMCounter_PM.o .\CortexM0\ARM_GCC_484\Debug\Clock_3.o .\CortexM0\ARM_GCC_484\Debug\PPMISR.o .\CortexM0\ARM_GCC_484\Debug\PPMRstISR.o .\CortexM0\ARM_GCC_484\Debug\PPMIN.o .\CortexM0\ARM_GCC_484\Debug\TelemUART.o .\CortexM0\ARM_GCC_484\Debug\TelemUART_PM.o .\CortexM0\ARM_GCC_484\Debug\TelemUART_INT.o .\CortexM0\ARM_GCC_484\Debug\TelemUART_BOOT.o .\CortexM0\ARM_GCC_484\Debug\TelemUART_IntClock.o .\CortexM0\ARM_GCC_484\Debug\ServoTimer.o .\CortexM0\ARM_GCC_484\Debug\ServoTimer_PM.o .\CortexM0\ARM_GCC_484\Debug\ServoISR.o .\CortexM0\ARM_GCC_484\Debug\Out_Mot_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ail1_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ail2_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ele1_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ele2_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Rud_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Fl1_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Fl2_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ge1_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ge2_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Ge3_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Sp1_Pin.o .\CortexM0\ARM_GCC_484\Debug\Out_Sp2_Pin.o .\CortexM0\ARM_GCC_484\Debug\I2CM.o .\CortexM0\ARM_GCC_484\Debug\I2CM_I2C_INT.o .\CortexM0\ARM_GCC_484\Debug\I2CM_I2C.o .\CortexM0\ARM_GCC_484\Debug\I2CM_I2C_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2CM_I2C_MASTER.o .\CortexM0\ARM_GCC_484\Debug\I2CM_PM.o .\CortexM0\ARM_GCC_484\Debug\I2CM_BOOT.o .\CortexM0\ARM_GCC_484\Debug\I2CM_sda.o .\CortexM0\ARM_GCC_484\Debug\I2CM_scl.o .\CortexM0\ARM_GCC_484\Debug\UART_1_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\I2CM_SCBCLK.o .\CortexM0\ARM_GCC_484\Debug\I2CM_SCB_IRQ.o .\CortexM0\ARM_GCC_484\Debug\ADC.o .\CortexM0\ARM_GCC_484\Debug\ADC_PM.o .\CortexM0\ARM_GCC_484\Debug\ADC_INT.o .\CortexM0\ARM_GCC_484\Debug\In_Speed.o .\CortexM0\ARM_GCC_484\Debug\ADC_IRQ.o .\CortexM0\ARM_GCC_484\Debug\ADC_intClock.o
@@ -33,6 +33,6 @@ arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\T-50_Project.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\IMU.o .\CortexM0\ARM_GCC_484\Debug\cybootloader.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o .\CortexM0\ARM_GCC_484\Debug\T-50_Project.a "E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -l m -Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/T-50_Project.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" -flto -Os -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -B E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf --flash_row_size 128 --flash_size 32768 --flash_array_size 32768
 cyelftool.exe -S E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf
-Flash used: 26600 of 32768 bytes (81,2%). Bootloader: 4224 bytes. Application: 22376 bytes
-SRAM used: 2560 of 4096 bytes (62,5%). Stack: 1024 bytes. Heap: 256 bytes.
---------------- Build Succeeded: 04/17/2015 08:46:19 ---------------
+Flash used: 26876 of 32768 bytes (82,0%). Bootloader: 4224 bytes. Application: 22652 bytes
+SRAM used: 2576 of 4096 bytes (62,9%). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 04/21/2015 23:24:54 ---------------
