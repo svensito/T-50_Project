@@ -91,10 +91,10 @@ uint8_t cnt_StrobeLight     = 0;
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
-#define GYRO_TASK   TRUE
-#define ACC_TASK    TRUE
-#define MAG_TASK    TRUE
-#define BARO_TASK   TRUE
+#define GYRO_TASK   FALSE
+#define ACC_TASK    FALSE
+#define MAG_TASK    FALSE
+#define BARO_TASK   FALSE
 
 /* turn rates */
 int16_t turn_rate_p = 0;
@@ -125,7 +125,7 @@ uint8_t cnt_baro  = 0;
 /*=============================*/
 /* Speed conversion			*/
 /*=============================*/
-#define SPEED_TASK  TRUE
+#define SPEED_TASK  FALSE
 uint16_t speed = 0;
 
 /*=============================*/
@@ -156,7 +156,7 @@ uint8_t K_d_r = 3;
 /*============================*/
 /* UART Rx Tx variables		*/
 /*=============================*/
-#define DATA_LOG        TRUE
+#define DATA_LOG        FALSE
 uint8_t Rx_char = 0;
 char Rx_String[10] = {0,0,0,0,0,0,0,0,0,0};
 uint8_t Rx_index = 0;
@@ -226,6 +226,15 @@ int main()
     UART_1_Start();     /* Enabling the UART */
     I2CM_Start();
     ADC_Start();
+    // Setup the watchdog
+    CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_RESET);  // Generate RESET
+    CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, 32000);                 // Every 16000 cycles // 1000ms
+    //CySysWdtLock(); // Lock WDT settings
+    
+   
+    // End Watchdog setup
+    
+    
     CyDelay(500);
     TaskTimer_Start();
     NavLightPWM_Start();
@@ -250,6 +259,10 @@ int main()
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+    
+    // Enable Watchdog
+    CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
+    
     for(;;)
     {
         
@@ -481,7 +494,7 @@ int main()
             /*=======================================
                 Output Control
               =======================================*/
-        uint8_t debug = 0;
+        uint8_t debug = 1;
             
             if(/*ctrl_in[in_mod]<1750 &&*/ ctrl_in[in_mod]> 1250) Ctrl_Mode = manual;
             else if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;
@@ -587,12 +600,19 @@ int main()
                 // In case "Boot" is received -> Bootloader gets enabled
                 if(strcmp(Rx_String,"Boot")==0)
                 {
+                    //CySysWdtUnlock();   // Stop The Watchdog...?
+                    //CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
                     UART_1_UartPutString("BootEnabl\r\n");
                     CyDelay(100);
                     Bootloadable_1_Load(); 
                 }
             }
-            
+            // Feed the Watchdog
+            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0);
+            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_MASK);
+            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
+            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_);
+            CySysWdtResetCounters(CY_SYS_WDT_COUNTER0_RESET);
         }
         // Reading the serial data and putting it to a string
         Rx_char = UART_1_UartGetChar(); // Poll for Characters
