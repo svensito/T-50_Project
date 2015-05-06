@@ -125,8 +125,10 @@ uint8_t cnt_baro  = 0;
 /*=============================*/
 /* Speed conversion			*/
 /*=============================*/
-#define SPEED_TASK  FALSE
-uint16_t speed = 0;
+#define SPEED_TASK  TRUE
+uint16_t speed_offset = 0;
+int16_t speed = 0;
+uint8_t cal_cnt = 0;
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -215,6 +217,21 @@ int16_t ADC_read_speed(void)
     return(speed);
 }
 
+// Speed calibration
+void ADC_calibrate_speed(void)
+{
+    while(cal_cnt < 254)
+        {
+            speed = ADC_read_speed();
+            speed_offset+=speed;
+            cal_cnt++;
+        }
+    speed_offset /= cal_cnt;
+    //cal_cnt = 0;
+    UART_1_UartPutNum(speed_offset);
+    UART_1_UartPutString("Cal Compl\r\n");    
+}
+
 /*##########################*/
 /* main */
 int main()
@@ -256,6 +273,7 @@ int main()
     if(ACC_TASK == TRUE) acc_start();
     if(MAG_TASK == TRUE) mag_start();
     if(BARO_TASK == TRUE) baro_start();
+    if(SPEED_TASK == TRUE) ADC_calibrate_speed();
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
@@ -369,7 +387,7 @@ int main()
             }
             if(SPEED_TASK == TRUE)
             {
-                speed = ADC_read_speed();
+                speed = ADC_read_speed() - speed_offset;
             }
             
             /* Theta and Phi out of acceleration data*/
@@ -494,7 +512,7 @@ int main()
             /*=======================================
                 Output Control
               =======================================*/
-        uint8_t debug = 1;
+        uint8_t debug = 0;
             
             if(/*ctrl_in[in_mod]<1750 &&*/ ctrl_in[in_mod]> 1250) Ctrl_Mode = manual;
             else if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;
@@ -511,20 +529,20 @@ int main()
                 switch (Ctrl_Mode)
                 {
                     case manual:
-                        ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]-flap_offset;           // ail:     left: 1000  right: 2000
                         ctrl_out[out_ail2] = ctrl_in[in_ail]+flap_offset;
                         ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
                         ctrl_out[out_ele2] = ctrl_in[in_ele];
                         ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
-                        ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_gear];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
                         ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
                         ctrl_out[out_fl2] = ctrl_in[in_can];
                         //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 up: 1000
-                        //ctrl_out[out_sp2] = ctrl_in[in_sp2];
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];
  
                         
                     break;
@@ -592,6 +610,9 @@ int main()
                 UART_1_UartPutNum(speed);
                 UART_1_UartPutString(";\r\n");
             }
+                // DEBUGGING
+                UART_1_UartPutNum(speed);
+                UART_1_UartPutString(";\r\n");
             if(Rx_flag == 1)
             {
                 Rx_flag = 0;
