@@ -91,8 +91,8 @@ uint8_t cnt_StrobeLight     = 0;
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
-#define GYRO_TASK   FALSE
-#define ACC_TASK    FALSE
+#define GYRO_TASK   TRUE
+#define ACC_TASK    TRUE
 #define MAG_TASK    FALSE
 #define BARO_TASK   FALSE
 
@@ -126,9 +126,10 @@ uint8_t cnt_baro  = 0;
 /* Speed conversion			*/
 /*=============================*/
 #define SPEED_TASK  TRUE
-uint16_t speed_offset = 0;
+uint16_t speed_offset = 172;
 int16_t speed = 0;
 uint8_t cal_cnt = 0;
+uint8_t speed_cal_compl = 0;
 
 /*=============================*/
 /* Kalman Filter Data			*/
@@ -220,6 +221,7 @@ int16_t ADC_read_speed(void)
 // Speed calibration
 void ADC_calibrate_speed(void)
 {
+    speed_offset = 0;
     while(cal_cnt < 254)
         {
             speed = ADC_read_speed();
@@ -273,7 +275,7 @@ int main()
     if(ACC_TASK == TRUE) acc_start();
     if(MAG_TASK == TRUE) mag_start();
     if(BARO_TASK == TRUE) baro_start();
-    if(SPEED_TASK == TRUE) ADC_calibrate_speed();
+    if(SPEED_TASK == TRUE) ;//ADC_calibrate_speed();
     UART_1_UartPutString("Started OK\r\n");
     //CyDelay(500);
     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
@@ -387,6 +389,28 @@ int main()
             }
             if(SPEED_TASK == TRUE)
             {
+                
+                /*
+                     - - - -         - - - -
+                    |       |       |       |
+                    |       |       |       |
+                    |       |       |       |
+                    |X      |       |X      |
+                     - - - -         - - - -
+                */
+                
+                if((ctrl_in[in_mot]<1200) &&        
+                   (ctrl_in[in_rud]<1200) && 
+                   (ctrl_in[in_ail]<1200) &&
+                   (ctrl_in[in_ail]<1200) &&
+                    speed_cal_compl == FALSE)
+                
+                {
+                    speed_cal_compl = TRUE;
+                    ADC_calibrate_speed();
+                }
+                
+                
                 speed = ADC_read_speed() - speed_offset;
             }
             
@@ -510,9 +534,9 @@ int main()
                 cnt_ML_HEARTBEAT_send++;
             }
             /*=======================================
-                Output Control
+                Airplane Control
               =======================================*/
-        uint8_t debug = 0;
+        uint8_t debug = 1;
             
             if(/*ctrl_in[in_mod]<1750 &&*/ ctrl_in[in_mod]> 1250) Ctrl_Mode = manual;
             else if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;
@@ -587,7 +611,7 @@ int main()
               =======================================*/
             if(DATA_LOG == TRUE)
             {
-                UART_1_UartPutNum(ctrl_out[out_ge1]);
+                UART_1_UartPutNum(ctrl_out[out_mot]);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_out[out_ail1]);
                 UART_1_UartPutString(";");
@@ -599,8 +623,6 @@ int main()
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_out[out_fl1]);
                 UART_1_UartPutString(";");
-                UART_1_UartPutNum(ctrl_in[in_sp2]);
-                UART_1_UartPutString(";");
                 //UART_1_UartPutNum(ctrl_in[7]);
                 //UART_1_UartPutString("\r\n");
                 UART_1_UartPutNum(Phi);
@@ -610,7 +632,10 @@ int main()
                 UART_1_UartPutNum(speed);
                 UART_1_UartPutString(";\r\n");
             }
-                // DEBUGGING
+                UART_1_UartPutNum(Phi);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(Theta);
+                UART_1_UartPutString(";");
                 UART_1_UartPutNum(speed);
                 UART_1_UartPutString(";\r\n");
             if(Rx_flag == 1)
