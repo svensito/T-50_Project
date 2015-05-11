@@ -70,6 +70,7 @@ enum ctrl_mode
 {
     manual = 0,
     damped,
+    tune,
     autonom
 };
 
@@ -123,7 +124,7 @@ int32_t Bar_press = 0;
 uint8_t cnt_baro  = 0;
 
 /*=============================*/
-/* Speed conversion			*/
+/* Speed reading       		*/
 /*=============================*/
 #define SPEED_TASK  TRUE
 uint16_t speed_offset = 172;
@@ -152,14 +153,20 @@ float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 /*============================*/
 /* Control variables	*/
 /*=============================*/
-uint8_t K_d_p = 1;
-uint8_t K_d_q = 1;
+uint8_t K_d_p = 2;
+uint8_t K_d_q = 2;
 uint8_t K_d_r = 3;
+
+/*============================*/
+/* Tune variables	            */
+/*=============================*/
+uint8_t tune_cnt = 0;
+
 
 /*============================*/
 /* UART Rx Tx variables		*/
 /*=============================*/
-#define DATA_LOG        FALSE
+#define DATA_LOG        TRUE
 uint8_t Rx_char = 0;
 char Rx_String[10] = {0,0,0,0,0,0,0,0,0,0};
 uint8_t Rx_index = 0;
@@ -222,6 +229,7 @@ int16_t ADC_read_speed(void)
 void ADC_calibrate_speed(void)
 {
     speed_offset = 0;
+    cal_cnt = 0;
     while(cal_cnt < 254)
         {
             speed = ADC_read_speed();
@@ -402,15 +410,20 @@ int main()
                 if((ctrl_in[in_mot]<1200) &&        
                    (ctrl_in[in_rud]<1200) && 
                    (ctrl_in[in_ail]<1200) &&
-                   (ctrl_in[in_ail]<1200) &&
+                   (ctrl_in[in_ele]>1800) &&
                     speed_cal_compl == FALSE)
-                
                 {
                     speed_cal_compl = TRUE;
                     ADC_calibrate_speed();
+                    UART_1_UartPutString("ADC Calibrated\r\n");
                 }
-                
-                
+                else if((ctrl_in[in_rud]>1200) && 
+                   (ctrl_in[in_ail]>1200) &&
+                   (ctrl_in[in_ele]<1800) &&
+                    speed_cal_compl == TRUE)
+                {
+                    speed_cal_compl = FALSE;
+                }
                 speed = ADC_read_speed() - speed_offset;
             }
             
@@ -536,10 +549,12 @@ int main()
             /*=======================================
                 Airplane Control
               =======================================*/
-        uint8_t debug = 1;
+        uint8_t debug = 0;
             
-            if(/*ctrl_in[in_mod]<1750 &&*/ ctrl_in[in_mod]> 1250) Ctrl_Mode = manual;
-            else if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;
+                
+            if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;       // up:      damped mode
+            else if (ctrl_in[in_mod]>1750) Ctrl_Mode = tune;    // down:    tune mode
+            else Ctrl_Mode = manual;                            // mid:     manual mode
             
             if(debug == 0)
             {
@@ -553,6 +568,7 @@ int main()
                 switch (Ctrl_Mode)
                 {
                     case manual:
+                        tune_cnt= 0;    // Reset in case tune cnt was used before...
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]-flap_offset;           // ail:     left: 1000  right: 2000
@@ -582,13 +598,39 @@ int main()
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
                         ctrl_out[out_fl2] = ctrl_in[in_can];            
+                    break;
+                        
+                    case tune:
+                        if(tune_cnt == 0)
+                        {
+                            ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                            ctrl_out[out_ail1] = ctrl_in[in_ail];           // ail:     left: 1000  right: 2000
+                            ctrl_out[out_ail2] = ctrl_in[in_ail];
+                            ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
+                            ctrl_out[out_ele2] = ctrl_in[in_ele];
+                            ctrl_out[out_rud] = ctrl_in[in_rud];
+                        }
+                        if(ctrl_in[in_can] < 1500 && (tune_cnt == 100))
+                        {
+                            // step Aileron
+                            ctrl_out[out_ail1]+= 150;
+                            ctrl_out[out_ail2]-= 150;
+                        }
+                        else if (ctrl_in[in_can] > 1500 && (tune_cnt == 100))
+                        {
+                            // step Elevator
+                            ctrl_out[out_ele1]+= 150;   // positive step -> Up
+                        }
+                        
+                        if(tune_cnt < 250) tune_cnt++;
+                        
                     break;
                     
                 }
             }
-            else
+            else    // for debug use only (no receiver connected)
             {
                 ctrl_in[in_mot] = 1000;
                 ctrl_out[out_mot] = ctrl_in[in_mot];    
@@ -630,14 +672,16 @@ int main()
                 UART_1_UartPutNum(Theta);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(speed);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(Ctrl_Mode);
                 UART_1_UartPutString(";\r\n");
             }
-                UART_1_UartPutNum(Phi);
-                UART_1_UartPutString(";");
-                UART_1_UartPutNum(Theta);
-                UART_1_UartPutString(";");
-                UART_1_UartPutNum(speed);
-                UART_1_UartPutString(";\r\n");
+                //UART_1_UartPutNum(Phi);
+                //UART_1_UartPutString(";");
+                //UART_1_UartPutNum(Theta);
+                //UART_1_UartPutString(";");
+                //UART_1_UartPutNum(speed);
+                //UART_1_UartPutString(";\r\n");
             if(Rx_flag == 1)
             {
                 Rx_flag = 0;
