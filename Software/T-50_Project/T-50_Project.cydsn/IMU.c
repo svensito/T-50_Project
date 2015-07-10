@@ -129,13 +129,13 @@ void gyro_start(void)
 {
     // CTRL REG 1
 	write_gyro_registry(L3GD20H_CTRL_REG1, 0x0F);		// Enabling all axes read out and Power On -> 100 Hz output data rate
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
     // CTRL REG 2
 	write_gyro_registry(L3GD20H_CTRL_REG2, 0x20);		// Normal Mode of High Pass Filter (High Bits), Filter Rate (Low Bits 0-9), Output Data Rate to 100 Hz (default)
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
     // CTRL REG 5
 	write_gyro_registry(L3GD20H_CTRL_REG5, 0x10);		// High Pass Filter Enable (High Bit 1)
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
     UART_1_UartPutString("Gyro started\r\n");
 }
 

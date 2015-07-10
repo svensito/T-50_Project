@@ -304,7 +304,7 @@ uint32 I2CM_I2CMasterSendStart(uint32 slaveAddress, uint32 bitRnW)
         }
         else
         {
-            //I2CM_DisableInt();  /* Lock from interruption */
+            ////I2CM_DisableInt();  /* Lock from interruption */
 
         #if (!I2CM_CY_SCBIP_V0 && \
             I2CM_I2C_MULTI_MASTER_SLAVE_CONST && I2CM_I2C_WAKE_ENABLE_CONST)

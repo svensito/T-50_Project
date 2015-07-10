@@ -33,7 +33,19 @@ float sample_time = 0.01;               // 10 ms Sample time
 /*=============================*/
 uint8_t PPM_channel = 0;                    // input channel variable
 uint16_t ctrl_in[8] = {0};                  // input control vector
-uint16_t ctrl_out[13] = {0};                // output control vector
+uint16_t ctrl_out[13] = {1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500,
+                         1500};                // output control vector
 
 enum e_in{   // Input Control Enum - 8 Channels
     in_mot = 0,
@@ -92,8 +104,8 @@ uint8_t cnt_StrobeLight     = 0;
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
-#define GYRO_TASK   TRUE
-#define ACC_TASK    TRUE
+#define GYRO_TASK   FALSE
+#define ACC_TASK    FALSE
 #define MAG_TASK    FALSE
 #define BARO_TASK   FALSE
 
@@ -255,7 +267,7 @@ int main()
     ADC_Start();
     // Setup the watchdog
     CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_RESET);  // Generate RESET
-    CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, 32000);                 // Every 16000 cycles // 1000ms
+    CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, 16000);                 // Every 16000 cycles // 500ms
     //CySysWdtLock(); // Lock WDT settings
     
    
@@ -551,13 +563,13 @@ int main()
               =======================================*/
         uint8_t debug = 0;
             
-                
-            if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;       // up:      damped mode
-            else if (ctrl_in[in_mod]>1750) Ctrl_Mode = tune;    // down:    tune mode
-            else Ctrl_Mode = manual;                            // mid:     manual mode
-            
+           
             if(debug == 0)
-            {
+            {                     
+                if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;       // up:      damped mode
+                else if (ctrl_in[in_mod]>1750) Ctrl_Mode = tune;    // down:    tune mode
+                else Ctrl_Mode = manual;                            // mid:     manual mode
+                            
                 uint16_t flap_offset = 0;
                 // Flap Control
                 if(ctrl_in[in_sp2]>1750)
@@ -571,8 +583,8 @@ int main()
                         tune_cnt= 0;    // Reset in case tune cnt was used before...
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
-                        ctrl_out[out_ail1] = ctrl_in[in_ail]-flap_offset;           // ail:     left: 1000  right: 2000
-                        ctrl_out[out_ail2] = ctrl_in[in_ail]+flap_offset;
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]-flap_offset;
                         ctrl_out[out_ele1] = ctrl_in[in_ele];           // ele:     low: 2000   high: 1000
                         ctrl_out[out_ele2] = ctrl_in[in_ele];
                         ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
@@ -581,7 +593,7 @@ int main()
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
                         ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
                         ctrl_out[out_fl2] = ctrl_in[in_can];
-                        //ctrl_out[out_sp1] = ctrl_in[in_mod];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
  
                         
@@ -599,7 +611,9 @@ int main()
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
                         ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
-                        ctrl_out[out_fl2] = ctrl_in[in_can];            
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];
                     break;
                         
                     case tune:
@@ -690,8 +704,8 @@ int main()
                 // In case "Boot" is received -> Bootloader gets enabled
                 if(strcmp(Rx_String,"Boot")==0)
                 {
-                    //CySysWdtUnlock();   // Stop The Watchdog...?
-                    //CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
+                    CySysWdtUnlock();   // Stop The Watchdog...?
+                    CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
                     UART_1_UartPutString("BootEnabl\r\n");
                     CyDelay(100);
                     Bootloadable_1_Load(); 
