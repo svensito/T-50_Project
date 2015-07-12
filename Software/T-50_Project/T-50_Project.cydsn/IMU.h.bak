@@ -14,8 +14,6 @@
 #define IMU_H
 
 #include <project.h>
-
-#ifdef ALTIMU    
     
 // #################################
 // Gyro addresses                   
@@ -133,40 +131,6 @@ void baro_start(void);
 int32_t baro_read(void);
 void baro_calibration(void);
 
-#endif  /* ALTIMU */
-
-//#ifdef MPU6050    // How To add a "symbol" for the precompiler?
-/*===========================*/
-/*      MPU6050              */
-/*===========================*/
-#define MPU6050_ADDRESS         0x68 // 7Bit I2C address -> Read & Write is set when communicating
-                                //0x69  // This is AD0 to VCC
-#define MPU6050_WHO_AM_I        0x75
-#define MPU6050_CONFIG          0x1A
-#define MPU6050_GYRO_CONFIG     0x1B
-#define MPU6050_ACC_CONFIG      0x1C
-
-#define MPU6050_ACC_XOUT_H      0x3B
-#define MPU6050_ACC_XOUT_L      0x3C
-#define MPU6050_ACC_YOUT_H      0x3D
-#define MPU6050_ACC_YOUT_L      0x3E
-#define MPU6050_ACC_ZOUT_H      0x3F
-#define MPU6050_ACC_ZOUT_L      0x40
-
-#define MPU6050_GYRO_XOUT_H      0x43
-#define MPU6050_GYRO_XOUT_L      0x44
-#define MPU6050_GYRO_YOUT_H      0x45
-#define MPU6050_GYRO_YOUT_L      0x46
-#define MPU6050_GYRO_ZOUT_H      0x47
-#define MPU6050_GYRO_ZOUT_L      0x48
-
-#define MPU6050_PWR_MGMT_1       0x6B
-#define MPU6050_PWR_MGMT_2       0x6C
-
-void MPU6050_Init(void);
-void MPU6050_acc_read(void);
-void MPU6050_gyro_read(void);
-void MPU6050_data_read(void);
 
 #endif  // endif IMU_H
 /* [] END OF FILE */

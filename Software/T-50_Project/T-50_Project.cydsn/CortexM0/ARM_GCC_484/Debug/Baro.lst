@@ -1,0 +1,4902 @@
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"Baro.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.read_BMP180_registry,"ax",%progbits
+  18              		.align	1
+  19              		.global	read_BMP180_registry
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	read_BMP180_registry, %function
+  23              	read_BMP180_registry:
+  24              	.LFB33:
+  25              		.file 1 ".\\Baro.c"
+   1:.\Baro.c      **** /* ========================================
+   2:.\Baro.c      ****  *
+   3:.\Baro.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\Baro.c      ****  * All Rights Reserved
+   5:.\Baro.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\Baro.c      ****  *
+   7:.\Baro.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\Baro.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\Baro.c      ****  *
+  10:.\Baro.c      ****  * ========================================
+  11:.\Baro.c      **** */
+  12:.\Baro.c      **** 
+  13:.\Baro.c      **** #include <baro.h>
+  14:.\Baro.c      **** 
+  15:.\Baro.c      **** #define READ    1
+  16:.\Baro.c      **** #define WRITE   0
+  17:.\Baro.c      **** #define ACK     0
+  18:.\Baro.c      **** #define NACK    1
+  19:.\Baro.c      **** 
+  20:.\Baro.c      **** /* Altitude value */
+  21:.\Baro.c      **** //extern int32_t alt;     /* from main.c file */
+  22:.\Baro.c      **** 
+  23:.\Baro.c      **** //uint8_t cnt_baro  = 0;  /* baro counter */
+  24:.\Baro.c      **** //int32_t temp = 0;   // temperature reading by BMP180
+  25:.\Baro.c      **** //int32_t press = 0;   // pressure reading by BMP180
+  26:.\Baro.c      **** 
+  27:.\Baro.c      **** /* Calibration Values required for calculation of pressure and temperature */
+  28:.\Baro.c      ****     int16_t AC1, AC2, AC3 = 0;
+  29:.\Baro.c      ****     uint16_t AC4, AC5, AC6 = 0;
+  30:.\Baro.c      ****     int16_t B1, B2, B5, MB, MC, MD = 0;
+  31:.\Baro.c      ****     
+  32:.\Baro.c      **** extern void UART_1_UartPutNum();
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 2
+
+
+  33:.\Baro.c      **** 
+  34:.\Baro.c      **** // function to read 16 bit registry
+  35:.\Baro.c      **** uint16_t read_BMP180_registry(uint8_t registry)
+  36:.\Baro.c      **** {
+  26              		.loc 1 36 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 10B5     		push	{r4, lr}
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 4, -8
+  32              		.cfi_offset 14, -4
+  37:.\Baro.c      ****     I2CM_I2CMasterSendStart(BMP180_ADDR, WRITE);
+  33              		.loc 1 37 0
+  34 0002 0021     		mov	r1, #0
+  36:.\Baro.c      **** {
+  35              		.loc 1 36 0
+  36 0004 041C     		mov	r4, r0
+  37              		.loc 1 37 0
+  38 0006 7720     		mov	r0, #119
+  39              	.LVL1:
+  40 0008 FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+  41              	.LVL2:
+  38:.\Baro.c      **** 	CyDelay(1);
+  42              		.loc 1 38 0
+  43 000c 0120     		mov	r0, #1
+  44 000e FFF7FEFF 		bl	CyDelay
+  45              	.LVL3:
+  39:.\Baro.c      ****     I2CM_I2CMasterWriteByte(registry);
+  46              		.loc 1 39 0
+  47 0012 201C     		mov	r0, r4
+  48 0014 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+  49              	.LVL4:
+  40:.\Baro.c      **** 	I2CM_I2CMasterSendRestart(BMP180_ADDR, READ);
+  50              		.loc 1 40 0
+  51 0018 0121     		mov	r1, #1
+  52 001a 7720     		mov	r0, #119
+  53 001c FFF7FEFF 		bl	I2CM_I2CMasterSendRestart
+  54              	.LVL5:
+  41:.\Baro.c      **** 	uint8_t reg_h = I2CM_I2CMasterReadByte(ACK);
+  55              		.loc 1 41 0
+  56 0020 0020     		mov	r0, #0
+  57 0022 FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+  58              	.LVL6:
+  59 0026 041C     		mov	r4, r0
+  60              	.LVL7:
+  42:.\Baro.c      **** 	uint8_t reg_l = I2CM_I2CMasterReadByte(NACK);
+  61              		.loc 1 42 0
+  62 0028 0120     		mov	r0, #1
+  63              	.LVL8:
+  64 002a FFF7FEFF 		bl	I2CM_I2CMasterReadByte
+  65              	.LVL9:
+  43:.\Baro.c      ****     I2CM_I2C_MASTER_GENERATE_STOP;
+  66              		.loc 1 43 0
+  67 002e 064B     		ldr	r3, .L6
+  42:.\Baro.c      **** 	uint8_t reg_l = I2CM_I2CMasterReadByte(NACK);
+  68              		.loc 1 42 0
+  69 0030 C2B2     		uxtb	r2, r0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 3
+
+
+  70              	.LVL10:
+  71              		.loc 1 43 0
+  72 0032 1968     		ldr	r1, [r3]
+  73 0034 1023     		mov	r3, #16
+  74 0036 8806     		lsl	r0, r1, #26
+  75 0038 00D5     		bpl	.L2
+  76              	.LVL11:
+  77 003a 1823     		mov	r3, #24
+  78              	.L2:
+  79              		.loc 1 43 0 is_stmt 0 discriminator 3
+  80 003c 0349     		ldr	r1, .L6+4
+  81 003e E0B2     		uxtb	r0, r4
+  44:.\Baro.c      ****     uint16_t reg_value = ((reg_h << 8) | (reg_l));    
+  82              		.loc 1 44 0 is_stmt 1 discriminator 3
+  83 0040 0002     		lsl	r0, r0, #8
+  45:.\Baro.c      ****     return(reg_value);
+  84              		.loc 1 45 0 discriminator 3
+  85 0042 1043     		orr	r0, r2
+  43:.\Baro.c      ****     I2CM_I2C_MASTER_GENERATE_STOP;
+  86              		.loc 1 43 0 discriminator 3
+  87 0044 0B60     		str	r3, [r1]
+  88              	.LVL12:
+  46:.\Baro.c      **** }
+  89              		.loc 1 46 0 discriminator 3
+  90              		@ sp needed
+  91              	.LVL13:
+  92 0046 10BD     		pop	{r4, pc}
+  93              	.L7:
+  94              		.align	2
+  95              	.L6:
+  96 0048 64000740 		.word	1074200676
+  97 004c 68000740 		.word	1074200680
+  98              		.cfi_endproc
+  99              	.LFE33:
+ 100              		.size	read_BMP180_registry, .-read_BMP180_registry
+ 101              		.section	.text.write_BMP180_registry,"ax",%progbits
+ 102              		.align	1
+ 103              		.global	write_BMP180_registry
+ 104              		.code	16
+ 105              		.thumb_func
+ 106              		.type	write_BMP180_registry, %function
+ 107              	write_BMP180_registry:
+ 108              	.LFB34:
+  47:.\Baro.c      **** 
+  48:.\Baro.c      **** void write_BMP180_registry(uint8_t registry, uint8_t data)
+  49:.\Baro.c      **** {
+ 109              		.loc 1 49 0
+ 110              		.cfi_startproc
+ 111              	.LVL14:
+ 112 0000 38B5     		push	{r3, r4, r5, lr}
+ 113              		.cfi_def_cfa_offset 16
+ 114              		.cfi_offset 3, -16
+ 115              		.cfi_offset 4, -12
+ 116              		.cfi_offset 5, -8
+ 117              		.cfi_offset 14, -4
+ 118              		.loc 1 49 0
+ 119 0002 051C     		mov	r5, r0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 4
+
+
+ 120 0004 0C1C     		mov	r4, r1
+  50:.\Baro.c      ****     I2CM_I2CMasterSendStart(BMP180_ADDR, WRITE);
+ 121              		.loc 1 50 0
+ 122 0006 7720     		mov	r0, #119
+ 123              	.LVL15:
+ 124 0008 0021     		mov	r1, #0
+ 125              	.LVL16:
+ 126 000a FFF7FEFF 		bl	I2CM_I2CMasterSendStart
+ 127              	.LVL17:
+  51:.\Baro.c      **** 	CyDelay(1);
+ 128              		.loc 1 51 0
+ 129 000e 0120     		mov	r0, #1
+ 130 0010 FFF7FEFF 		bl	CyDelay
+ 131              	.LVL18:
+  52:.\Baro.c      ****     I2CM_I2CMasterWriteByte(registry);
+ 132              		.loc 1 52 0
+ 133 0014 281C     		mov	r0, r5
+ 134 0016 FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 135              	.LVL19:
+  53:.\Baro.c      ****     I2CM_I2CMasterWriteByte(data);
+ 136              		.loc 1 53 0
+ 137 001a 201C     		mov	r0, r4
+ 138 001c FFF7FEFF 		bl	I2CM_I2CMasterWriteByte
+ 139              	.LVL20:
+  54:.\Baro.c      ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 140              		.loc 1 54 0
+ 141 0020 044B     		ldr	r3, .L12
+ 142 0022 1A68     		ldr	r2, [r3]
+ 143 0024 1023     		mov	r3, #16
+ 144 0026 9106     		lsl	r1, r2, #26
+ 145 0028 00D5     		bpl	.L9
+ 146 002a 1823     		mov	r3, #24
+ 147              	.L9:
+ 148              		.loc 1 54 0 is_stmt 0 discriminator 3
+ 149 002c 024A     		ldr	r2, .L12+4
+  55:.\Baro.c      **** }
+ 150              		.loc 1 55 0 is_stmt 1 discriminator 3
+ 151              		@ sp needed
+  54:.\Baro.c      ****     I2CM_I2C_MASTER_GENERATE_STOP;
+ 152              		.loc 1 54 0 discriminator 3
+ 153 002e 1360     		str	r3, [r2]
+ 154              		.loc 1 55 0 discriminator 3
+ 155 0030 38BD     		pop	{r3, r4, r5, pc}
+ 156              	.L13:
+ 157 0032 C046     		.align	2
+ 158              	.L12:
+ 159 0034 64000740 		.word	1074200676
+ 160 0038 68000740 		.word	1074200680
+ 161              		.cfi_endproc
+ 162              	.LFE34:
+ 163              		.size	write_BMP180_registry, .-write_BMP180_registry
+ 164              		.section	.text.BMP180_baro_init,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	BMP180_baro_init
+ 167              		.code	16
+ 168              		.thumb_func
+ 169              		.type	BMP180_baro_init, %function
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 5
+
+
+ 170              	BMP180_baro_init:
+ 171              	.LFB35:
+  56:.\Baro.c      **** 
+  57:.\Baro.c      **** void BMP180_baro_init(void)
+  58:.\Baro.c      **** {
+ 172              		.loc 1 58 0
+ 173              		.cfi_startproc
+ 174 0000 38B5     		push	{r3, r4, r5, lr}
+ 175              		.cfi_def_cfa_offset 16
+ 176              		.cfi_offset 3, -16
+ 177              		.cfi_offset 4, -12
+ 178              		.cfi_offset 5, -8
+ 179              		.cfi_offset 14, -4
+  59:.\Baro.c      ****     /* Reading the values of the registers and calculate pressure*/
+  60:.\Baro.c      ****     AC1 = read_BMP180_registry(0xAA);
+ 180              		.loc 1 60 0
+ 181 0002 AA20     		mov	r0, #170
+ 182 0004 FFF7FEFF 		bl	read_BMP180_registry
+ 183              	.LVL21:
+ 184 0008 4F4B     		ldr	r3, .L15
+ 185 000a 80B2     		uxth	r0, r0
+ 186 000c 1880     		strh	r0, [r3]
+  61:.\Baro.c      ****     UART_1_UartPutNum(AC1);
+ 187              		.loc 1 61 0
+ 188 000e 00B2     		sxth	r0, r0
+ 189 0010 FFF7FEFF 		bl	UART_1_UartPutNum
+ 190              	.LVL22:
+  62:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 191              		.loc 1 62 0
+ 192 0014 4D4C     		ldr	r4, .L15+4
+  63:.\Baro.c      ****     CyDelay(1);
+  64:.\Baro.c      ****     
+  65:.\Baro.c      ****     AC2 = read_BMP180_registry(0xAC);
+  66:.\Baro.c      ****     UART_1_UartPutNum(AC2);
+  67:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  68:.\Baro.c      ****     CyDelay(1);
+  69:.\Baro.c      ****     
+  70:.\Baro.c      ****     AC3 = read_BMP180_registry(0xAE);
+  71:.\Baro.c      ****     UART_1_UartPutNum(AC3);
+  72:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  73:.\Baro.c      ****     CyDelay(1);
+  74:.\Baro.c      ****     
+  75:.\Baro.c      ****     AC4 = read_BMP180_registry(0xB0);
+  76:.\Baro.c      ****     UART_1_UartPutNum(AC4);
+  77:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  78:.\Baro.c      ****     CyDelay(1);
+  79:.\Baro.c      ****     
+  80:.\Baro.c      ****     AC5 = read_BMP180_registry(0xB2);
+  81:.\Baro.c      ****     UART_1_UartPutNum(AC5);
+  82:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  83:.\Baro.c      ****     CyDelay(1);
+  84:.\Baro.c      ****     
+  85:.\Baro.c      ****     AC6 = read_BMP180_registry(0xB4);
+  86:.\Baro.c      ****     UART_1_UartPutNum(AC6);
+  87:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  88:.\Baro.c      ****     CyDelay(1);
+  89:.\Baro.c      ****     
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 6
+
+
+  90:.\Baro.c      ****     B1 = read_BMP180_registry(0xB6);
+  91:.\Baro.c      ****     UART_1_UartPutNum(B1);
+  92:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  93:.\Baro.c      ****     CyDelay(1);
+  94:.\Baro.c      ****     
+  95:.\Baro.c      ****     B2 = read_BMP180_registry(0xB8);
+  96:.\Baro.c      ****     UART_1_UartPutNum(B2);
+  97:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+  98:.\Baro.c      ****     CyDelay(1);
+  99:.\Baro.c      ****     
+ 100:.\Baro.c      ****     MB = read_BMP180_registry(0xBA);
+ 101:.\Baro.c      ****     UART_1_UartPutNum(MB);
+ 102:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 103:.\Baro.c      ****     CyDelay(1);
+ 104:.\Baro.c      ****     
+ 105:.\Baro.c      ****     MC = read_BMP180_registry(0xBC);
+ 106:.\Baro.c      ****     UART_1_UartPutNum(MC);
+ 107:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 108:.\Baro.c      ****     CyDelay(1);
+ 109:.\Baro.c      ****     
+ 110:.\Baro.c      ****     MD = read_BMP180_registry(0xBE);
+ 111:.\Baro.c      ****     UART_1_UartPutNum(MD);
+ 112:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 113:.\Baro.c      ****     CyDelay(1);
+ 114:.\Baro.c      ****     UART_1_UartPutString("BARO INIT COMPLETE\r\n");
+ 115:.\Baro.c      **** }
+ 193              		.loc 1 115 0
+ 194              		@ sp needed
+  62:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 195              		.loc 1 62 0
+ 196 0016 201C     		mov	r0, r4
+ 197 0018 FFF7FEFF 		bl	UART_1_UartPutString
+ 198              	.LVL23:
+  63:.\Baro.c      ****     CyDelay(1);
+ 199              		.loc 1 63 0
+ 200 001c 0120     		mov	r0, #1
+ 201 001e FFF7FEFF 		bl	CyDelay
+ 202              	.LVL24:
+  65:.\Baro.c      ****     AC2 = read_BMP180_registry(0xAC);
+ 203              		.loc 1 65 0
+ 204 0022 AC20     		mov	r0, #172
+ 205 0024 FFF7FEFF 		bl	read_BMP180_registry
+ 206              	.LVL25:
+ 207 0028 494B     		ldr	r3, .L15+8
+ 208 002a 80B2     		uxth	r0, r0
+ 209 002c 1880     		strh	r0, [r3]
+  66:.\Baro.c      ****     UART_1_UartPutNum(AC2);
+ 210              		.loc 1 66 0
+ 211 002e 00B2     		sxth	r0, r0
+ 212 0030 FFF7FEFF 		bl	UART_1_UartPutNum
+ 213              	.LVL26:
+  67:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 214              		.loc 1 67 0
+ 215 0034 201C     		mov	r0, r4
+ 216 0036 FFF7FEFF 		bl	UART_1_UartPutString
+ 217              	.LVL27:
+  68:.\Baro.c      ****     CyDelay(1);
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 7
+
+
+ 218              		.loc 1 68 0
+ 219 003a 0120     		mov	r0, #1
+ 220 003c FFF7FEFF 		bl	CyDelay
+ 221              	.LVL28:
+  70:.\Baro.c      ****     AC3 = read_BMP180_registry(0xAE);
+ 222              		.loc 1 70 0
+ 223 0040 AE20     		mov	r0, #174
+ 224 0042 FFF7FEFF 		bl	read_BMP180_registry
+ 225              	.LVL29:
+ 226 0046 434D     		ldr	r5, .L15+12
+ 227 0048 80B2     		uxth	r0, r0
+ 228 004a 2880     		strh	r0, [r5]
+  71:.\Baro.c      ****     UART_1_UartPutNum(AC3);
+ 229              		.loc 1 71 0
+ 230 004c 00B2     		sxth	r0, r0
+ 231 004e FFF7FEFF 		bl	UART_1_UartPutNum
+ 232              	.LVL30:
+  72:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 233              		.loc 1 72 0
+ 234 0052 201C     		mov	r0, r4
+ 235 0054 FFF7FEFF 		bl	UART_1_UartPutString
+ 236              	.LVL31:
+  73:.\Baro.c      ****     CyDelay(1);
+ 237              		.loc 1 73 0
+ 238 0058 0120     		mov	r0, #1
+ 239 005a FFF7FEFF 		bl	CyDelay
+ 240              	.LVL32:
+  75:.\Baro.c      ****     AC4 = read_BMP180_registry(0xB0);
+ 241              		.loc 1 75 0
+ 242 005e B020     		mov	r0, #176
+ 243 0060 FFF7FEFF 		bl	read_BMP180_registry
+ 244              	.LVL33:
+ 245 0064 3C4B     		ldr	r3, .L15+16
+ 246 0066 1880     		strh	r0, [r3]
+  76:.\Baro.c      ****     UART_1_UartPutNum(AC4);
+ 247              		.loc 1 76 0
+ 248 0068 FFF7FEFF 		bl	UART_1_UartPutNum
+ 249              	.LVL34:
+  77:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 250              		.loc 1 77 0
+ 251 006c 201C     		mov	r0, r4
+ 252 006e FFF7FEFF 		bl	UART_1_UartPutString
+ 253              	.LVL35:
+  78:.\Baro.c      ****     CyDelay(1);
+ 254              		.loc 1 78 0
+ 255 0072 0120     		mov	r0, #1
+ 256 0074 FFF7FEFF 		bl	CyDelay
+ 257              	.LVL36:
+  80:.\Baro.c      ****     AC5 = read_BMP180_registry(0xB2);
+ 258              		.loc 1 80 0
+ 259 0078 B220     		mov	r0, #178
+ 260 007a FFF7FEFF 		bl	read_BMP180_registry
+ 261              	.LVL37:
+ 262 007e 374B     		ldr	r3, .L15+20
+ 263 0080 1880     		strh	r0, [r3]
+  81:.\Baro.c      ****     UART_1_UartPutNum(AC5);
+ 264              		.loc 1 81 0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 8
+
+
+ 265 0082 FFF7FEFF 		bl	UART_1_UartPutNum
+ 266              	.LVL38:
+  82:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 267              		.loc 1 82 0
+ 268 0086 201C     		mov	r0, r4
+ 269 0088 FFF7FEFF 		bl	UART_1_UartPutString
+ 270              	.LVL39:
+  83:.\Baro.c      ****     CyDelay(1);
+ 271              		.loc 1 83 0
+ 272 008c 0120     		mov	r0, #1
+ 273 008e FFF7FEFF 		bl	CyDelay
+ 274              	.LVL40:
+  85:.\Baro.c      ****     AC6 = read_BMP180_registry(0xB4);
+ 275              		.loc 1 85 0
+ 276 0092 B420     		mov	r0, #180
+ 277 0094 FFF7FEFF 		bl	read_BMP180_registry
+ 278              	.LVL41:
+ 279 0098 6880     		strh	r0, [r5, #2]
+  86:.\Baro.c      ****     UART_1_UartPutNum(AC6);
+ 280              		.loc 1 86 0
+ 281 009a FFF7FEFF 		bl	UART_1_UartPutNum
+ 282              	.LVL42:
+  87:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 283              		.loc 1 87 0
+ 284 009e 201C     		mov	r0, r4
+ 285 00a0 FFF7FEFF 		bl	UART_1_UartPutString
+ 286              	.LVL43:
+  88:.\Baro.c      ****     CyDelay(1);
+ 287              		.loc 1 88 0
+ 288 00a4 0120     		mov	r0, #1
+ 289 00a6 FFF7FEFF 		bl	CyDelay
+ 290              	.LVL44:
+  90:.\Baro.c      ****     B1 = read_BMP180_registry(0xB6);
+ 291              		.loc 1 90 0
+ 292 00aa B620     		mov	r0, #182
+ 293 00ac FFF7FEFF 		bl	read_BMP180_registry
+ 294              	.LVL45:
+ 295 00b0 2B4B     		ldr	r3, .L15+24
+ 296 00b2 80B2     		uxth	r0, r0
+ 297 00b4 1880     		strh	r0, [r3]
+  91:.\Baro.c      ****     UART_1_UartPutNum(B1);
+ 298              		.loc 1 91 0
+ 299 00b6 00B2     		sxth	r0, r0
+ 300 00b8 FFF7FEFF 		bl	UART_1_UartPutNum
+ 301              	.LVL46:
+  92:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 302              		.loc 1 92 0
+ 303 00bc 201C     		mov	r0, r4
+ 304 00be FFF7FEFF 		bl	UART_1_UartPutString
+ 305              	.LVL47:
+  93:.\Baro.c      ****     CyDelay(1);
+ 306              		.loc 1 93 0
+ 307 00c2 0120     		mov	r0, #1
+ 308 00c4 FFF7FEFF 		bl	CyDelay
+ 309              	.LVL48:
+  95:.\Baro.c      ****     B2 = read_BMP180_registry(0xB8);
+ 310              		.loc 1 95 0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 9
+
+
+ 311 00c8 B820     		mov	r0, #184
+ 312 00ca FFF7FEFF 		bl	read_BMP180_registry
+ 313              	.LVL49:
+ 314 00ce 254B     		ldr	r3, .L15+28
+ 315 00d0 80B2     		uxth	r0, r0
+ 316 00d2 1880     		strh	r0, [r3]
+  96:.\Baro.c      ****     UART_1_UartPutNum(B2);
+ 317              		.loc 1 96 0
+ 318 00d4 00B2     		sxth	r0, r0
+ 319 00d6 FFF7FEFF 		bl	UART_1_UartPutNum
+ 320              	.LVL50:
+  97:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 321              		.loc 1 97 0
+ 322 00da 201C     		mov	r0, r4
+ 323 00dc FFF7FEFF 		bl	UART_1_UartPutString
+ 324              	.LVL51:
+  98:.\Baro.c      ****     CyDelay(1);
+ 325              		.loc 1 98 0
+ 326 00e0 0120     		mov	r0, #1
+ 327 00e2 FFF7FEFF 		bl	CyDelay
+ 328              	.LVL52:
+ 100:.\Baro.c      ****     MB = read_BMP180_registry(0xBA);
+ 329              		.loc 1 100 0
+ 330 00e6 BA20     		mov	r0, #186
+ 331 00e8 FFF7FEFF 		bl	read_BMP180_registry
+ 332              	.LVL53:
+ 333 00ec 1E4B     		ldr	r3, .L15+32
+ 334 00ee 80B2     		uxth	r0, r0
+ 335 00f0 1880     		strh	r0, [r3]
+ 101:.\Baro.c      ****     UART_1_UartPutNum(MB);
+ 336              		.loc 1 101 0
+ 337 00f2 00B2     		sxth	r0, r0
+ 338 00f4 FFF7FEFF 		bl	UART_1_UartPutNum
+ 339              	.LVL54:
+ 102:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 340              		.loc 1 102 0
+ 341 00f8 201C     		mov	r0, r4
+ 342 00fa FFF7FEFF 		bl	UART_1_UartPutString
+ 343              	.LVL55:
+ 103:.\Baro.c      ****     CyDelay(1);
+ 344              		.loc 1 103 0
+ 345 00fe 0120     		mov	r0, #1
+ 346 0100 FFF7FEFF 		bl	CyDelay
+ 347              	.LVL56:
+ 105:.\Baro.c      ****     MC = read_BMP180_registry(0xBC);
+ 348              		.loc 1 105 0
+ 349 0104 BC20     		mov	r0, #188
+ 350 0106 FFF7FEFF 		bl	read_BMP180_registry
+ 351              	.LVL57:
+ 352 010a 184B     		ldr	r3, .L15+36
+ 353 010c 80B2     		uxth	r0, r0
+ 354 010e 1880     		strh	r0, [r3]
+ 106:.\Baro.c      ****     UART_1_UartPutNum(MC);
+ 355              		.loc 1 106 0
+ 356 0110 00B2     		sxth	r0, r0
+ 357 0112 FFF7FEFF 		bl	UART_1_UartPutNum
+ 358              	.LVL58:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 10
+
+
+ 107:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 359              		.loc 1 107 0
+ 360 0116 201C     		mov	r0, r4
+ 361 0118 FFF7FEFF 		bl	UART_1_UartPutString
+ 362              	.LVL59:
+ 108:.\Baro.c      ****     CyDelay(1);
+ 363              		.loc 1 108 0
+ 364 011c 0120     		mov	r0, #1
+ 365 011e FFF7FEFF 		bl	CyDelay
+ 366              	.LVL60:
+ 110:.\Baro.c      ****     MD = read_BMP180_registry(0xBE);
+ 367              		.loc 1 110 0
+ 368 0122 BE20     		mov	r0, #190
+ 369 0124 FFF7FEFF 		bl	read_BMP180_registry
+ 370              	.LVL61:
+ 371 0128 80B2     		uxth	r0, r0
+ 372 012a A880     		strh	r0, [r5, #4]
+ 111:.\Baro.c      ****     UART_1_UartPutNum(MD);
+ 373              		.loc 1 111 0
+ 374 012c 00B2     		sxth	r0, r0
+ 375 012e FFF7FEFF 		bl	UART_1_UartPutNum
+ 376              	.LVL62:
+ 112:.\Baro.c      ****     UART_1_UartPutString("\r\n");
+ 377              		.loc 1 112 0
+ 378 0132 201C     		mov	r0, r4
+ 379 0134 FFF7FEFF 		bl	UART_1_UartPutString
+ 380              	.LVL63:
+ 113:.\Baro.c      ****     CyDelay(1);
+ 381              		.loc 1 113 0
+ 382 0138 0120     		mov	r0, #1
+ 383 013a FFF7FEFF 		bl	CyDelay
+ 384              	.LVL64:
+ 114:.\Baro.c      ****     UART_1_UartPutString("BARO INIT COMPLETE\r\n");
+ 385              		.loc 1 114 0
+ 386 013e 0C48     		ldr	r0, .L15+40
+ 387 0140 FFF7FEFF 		bl	UART_1_UartPutString
+ 388              	.LVL65:
+ 389              		.loc 1 115 0
+ 390 0144 38BD     		pop	{r3, r4, r5, pc}
+ 391              	.L16:
+ 392 0146 C046     		.align	2
+ 393              	.L15:
+ 394 0148 00000000 		.word	AC1
+ 395 014c 00000000 		.word	.LC1
+ 396 0150 00000000 		.word	AC2
+ 397 0154 00000000 		.word	.LANCHOR0
+ 398 0158 00000000 		.word	AC4
+ 399 015c 00000000 		.word	AC5
+ 400 0160 00000000 		.word	B1
+ 401 0164 00000000 		.word	B2
+ 402 0168 00000000 		.word	MB
+ 403 016c 00000000 		.word	MC
+ 404 0170 03000000 		.word	.LC11
+ 405              		.cfi_endproc
+ 406              	.LFE35:
+ 407              		.size	BMP180_baro_init, .-BMP180_baro_init
+ 408              		.section	.text.BMP180_baro_trigger_temp,"ax",%progbits
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 11
+
+
+ 409              		.align	1
+ 410              		.global	BMP180_baro_trigger_temp
+ 411              		.code	16
+ 412              		.thumb_func
+ 413              		.type	BMP180_baro_trigger_temp, %function
+ 414              	BMP180_baro_trigger_temp:
+ 415              	.LFB36:
+ 116:.\Baro.c      **** 
+ 117:.\Baro.c      **** void BMP180_baro_trigger_temp(void)
+ 118:.\Baro.c      **** {
+ 416              		.loc 1 118 0
+ 417              		.cfi_startproc
+ 418 0000 08B5     		push	{r3, lr}
+ 419              		.cfi_def_cfa_offset 8
+ 420              		.cfi_offset 3, -8
+ 421              		.cfi_offset 14, -4
+ 119:.\Baro.c      ****     write_BMP180_registry(BMP180_REG_CONTROL, BMP180_COMMAND_TEMPERATURE);
+ 422              		.loc 1 119 0
+ 423 0002 F420     		mov	r0, #244
+ 424 0004 2E21     		mov	r1, #46
+ 425 0006 FFF7FEFF 		bl	write_BMP180_registry
+ 426              	.LVL66:
+ 120:.\Baro.c      **** }
+ 427              		.loc 1 120 0
+ 428              		@ sp needed
+ 429 000a 08BD     		pop	{r3, pc}
+ 430              		.cfi_endproc
+ 431              	.LFE36:
+ 432              		.size	BMP180_baro_trigger_temp, .-BMP180_baro_trigger_temp
+ 433              		.global	__aeabi_idiv
+ 434              		.section	.text.BMP180_baro_read_temp,"ax",%progbits
+ 435              		.align	1
+ 436              		.global	BMP180_baro_read_temp
+ 437              		.code	16
+ 438              		.thumb_func
+ 439              		.type	BMP180_baro_read_temp, %function
+ 440              	BMP180_baro_read_temp:
+ 441              	.LFB37:
+ 121:.\Baro.c      **** 
+ 122:.\Baro.c      **** int32_t BMP180_baro_read_temp(void)
+ 123:.\Baro.c      **** {
+ 442              		.loc 1 123 0
+ 443              		.cfi_startproc
+ 444 0000 10B5     		push	{r4, lr}
+ 445              		.cfi_def_cfa_offset 8
+ 446              		.cfi_offset 4, -8
+ 447              		.cfi_offset 14, -4
+ 124:.\Baro.c      ****         int16_t t_raw = (int16_t) read_BMP180_registry(BMP180_REG_RESULT);
+ 448              		.loc 1 124 0
+ 449 0002 F620     		mov	r0, #246
+ 450 0004 FFF7FEFF 		bl	read_BMP180_registry
+ 451              	.LVL67:
+ 125:.\Baro.c      ****         //UART_1_UartPutString("\r\nT RAW: ");
+ 126:.\Baro.c      ****         //UART_1_UartPutNum(t_raw);
+ 127:.\Baro.c      ****         int32_t x1 = (t_raw-AC6)*AC5/(32768); // 2^15 = 32768
+ 452              		.loc 1 127 0
+ 453 0008 0F4B     		ldr	r3, .L19
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 12
+
+
+ 454 000a 02B2     		sxth	r2, r0
+ 455 000c 5988     		ldrh	r1, [r3, #2]
+ 128:.\Baro.c      ****         //UART_1_UartPutString("\r\nT_x1: ");
+ 129:.\Baro.c      ****         //UART_1_UartPutNum(x1);
+ 130:.\Baro.c      ****         
+ 131:.\Baro.c      ****         int32_t x2 = (MC*2048)/(x1+MD);       // 2^11 = 2048
+ 132:.\Baro.c      ****         //UART_1_UartPutString("\r\nT_x2: ");
+ 133:.\Baro.c      ****         //UART_1_UartPutNum(x2);
+ 134:.\Baro.c      ****         
+ 135:.\Baro.c      ****         B5 = x1+x2;   // B5 is also used for the pressure reading
+ 136:.\Baro.c      ****         //UART_1_UartPutString("\r\nB5: ");
+ 137:.\Baro.c      ****         //UART_1_UartPutNum(B5);
+ 138:.\Baro.c      ****         int32_t t_true = ((B5+8)/16)/10;      // by 10 for degC (check datasheet page 15)
+ 139:.\Baro.c      ****         return t_true;
+ 140:.\Baro.c      **** }
+ 456              		.loc 1 140 0
+ 457              		@ sp needed
+ 127:.\Baro.c      ****         int32_t x1 = (t_raw-AC6)*AC5/(32768); // 2^15 = 32768
+ 458              		.loc 1 127 0
+ 459 000e 521A     		sub	r2, r2, r1
+ 460 0010 0E49     		ldr	r1, .L19+4
+ 461 0012 0C88     		ldrh	r4, [r1]
+ 462 0014 6243     		mul	r2, r4
+ 463 0016 D417     		asr	r4, r2, #31
+ 464 0018 640C     		lsr	r4, r4, #17
+ 465 001a A418     		add	r4, r4, r2
+ 131:.\Baro.c      ****         int32_t x2 = (MC*2048)/(x1+MD);       // 2^11 = 2048
+ 466              		.loc 1 131 0
+ 467 001c 0C4A     		ldr	r2, .L19+8
+ 127:.\Baro.c      ****         int32_t x1 = (t_raw-AC6)*AC5/(32768); // 2^15 = 32768
+ 468              		.loc 1 127 0
+ 469 001e E413     		asr	r4, r4, #15
+ 470              	.LVL68:
+ 131:.\Baro.c      ****         int32_t x2 = (MC*2048)/(x1+MD);       // 2^11 = 2048
+ 471              		.loc 1 131 0
+ 472 0020 0021     		mov	r1, #0
+ 473 0022 505E     		ldrsh	r0, [r2, r1]
+ 474              	.LVL69:
+ 475 0024 0422     		mov	r2, #4
+ 476 0026 995E     		ldrsh	r1, [r3, r2]
+ 477              	.LVL70:
+ 478 0028 C002     		lsl	r0, r0, #11
+ 479 002a 6118     		add	r1, r4, r1
+ 480 002c FFF7FEFF 		bl	__aeabi_idiv
+ 481              	.LVL71:
+ 135:.\Baro.c      ****         B5 = x1+x2;   // B5 is also used for the pressure reading
+ 482              		.loc 1 135 0
+ 483 0030 084B     		ldr	r3, .L19+12
+ 484 0032 0419     		add	r4, r0, r4
+ 485              	.LVL72:
+ 486 0034 A4B2     		uxth	r4, r4
+ 487 0036 1C80     		strh	r4, [r3]
+ 488              	.LVL73:
+ 138:.\Baro.c      ****         int32_t t_true = ((B5+8)/16)/10;      // by 10 for degC (check datasheet page 15)
+ 489              		.loc 1 138 0
+ 490 0038 24B2     		sxth	r4, r4
+ 491              	.LVL74:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 13
+
+
+ 492 003a 201C     		mov	r0, r4
+ 493 003c A021     		mov	r1, #160
+ 494 003e 0830     		add	r0, r0, #8
+ 495 0040 FFF7FEFF 		bl	__aeabi_idiv
+ 496              	.LVL75:
+ 497              		.loc 1 140 0
+ 498 0044 10BD     		pop	{r4, pc}
+ 499              	.L20:
+ 500 0046 C046     		.align	2
+ 501              	.L19:
+ 502 0048 00000000 		.word	.LANCHOR0
+ 503 004c 00000000 		.word	AC5
+ 504 0050 00000000 		.word	MC
+ 505 0054 00000000 		.word	B5
+ 506              		.cfi_endproc
+ 507              	.LFE37:
+ 508              		.size	BMP180_baro_read_temp, .-BMP180_baro_read_temp
+ 509              		.section	.text.BMP180_baro_trigger_pressure,"ax",%progbits
+ 510              		.align	1
+ 511              		.global	BMP180_baro_trigger_pressure
+ 512              		.code	16
+ 513              		.thumb_func
+ 514              		.type	BMP180_baro_trigger_pressure, %function
+ 515              	BMP180_baro_trigger_pressure:
+ 516              	.LFB38:
+ 141:.\Baro.c      **** 
+ 142:.\Baro.c      **** void BMP180_baro_trigger_pressure(void)
+ 143:.\Baro.c      **** {
+ 517              		.loc 1 143 0
+ 518              		.cfi_startproc
+ 519 0000 08B5     		push	{r3, lr}
+ 520              		.cfi_def_cfa_offset 8
+ 521              		.cfi_offset 3, -8
+ 522              		.cfi_offset 14, -4
+ 144:.\Baro.c      ****     // Using Ultra Low Power Mode with 4.5ms conversion time
+ 145:.\Baro.c      ****     write_BMP180_registry(BMP180_REG_CONTROL, BMP180_COMMAND_PRESSURE0);
+ 523              		.loc 1 145 0
+ 524 0002 F420     		mov	r0, #244
+ 525 0004 3421     		mov	r1, #52
+ 526 0006 FFF7FEFF 		bl	write_BMP180_registry
+ 527              	.LVL76:
+ 146:.\Baro.c      **** }
+ 528              		.loc 1 146 0
+ 529              		@ sp needed
+ 530 000a 08BD     		pop	{r3, pc}
+ 531              		.cfi_endproc
+ 532              	.LFE38:
+ 533              		.size	BMP180_baro_trigger_pressure, .-BMP180_baro_trigger_pressure
+ 534              		.global	__aeabi_uidiv
+ 535              		.section	.text.BMP180_baro_read_pressure,"ax",%progbits
+ 536              		.align	1
+ 537              		.global	BMP180_baro_read_pressure
+ 538              		.code	16
+ 539              		.thumb_func
+ 540              		.type	BMP180_baro_read_pressure, %function
+ 541              	BMP180_baro_read_pressure:
+ 542              	.LFB39:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 14
+
+
+ 147:.\Baro.c      **** 
+ 148:.\Baro.c      **** int32_t BMP180_baro_read_pressure(void)
+ 149:.\Baro.c      **** {
+ 543              		.loc 1 149 0
+ 544              		.cfi_startproc
+ 545 0000 70B5     		push	{r4, r5, r6, lr}
+ 546              		.cfi_def_cfa_offset 16
+ 547              		.cfi_offset 4, -16
+ 548              		.cfi_offset 5, -12
+ 549              		.cfi_offset 6, -8
+ 550              		.cfi_offset 14, -4
+ 150:.\Baro.c      ****         uint16_t p_raw = (uint16_t)read_BMP180_registry(BMP180_REG_RESULT);
+ 551              		.loc 1 150 0
+ 552 0002 F620     		mov	r0, #246
+ 553 0004 FFF7FEFF 		bl	read_BMP180_registry
+ 554              	.LVL77:
+ 151:.\Baro.c      ****         //UART_1_UartPutString("\r\nP RAW: ");
+ 152:.\Baro.c      ****         //UART_1_UartPutNum(p_raw);
+ 153:.\Baro.c      ****         
+ 154:.\Baro.c      ****         int32_t B6 = B5-4000;
+ 555              		.loc 1 154 0
+ 556 0008 344B     		ldr	r3, .L25
+ 557 000a 354C     		ldr	r4, .L25+4
+ 558 000c 0022     		mov	r2, #0
+ 559 000e 9B5E     		ldrsh	r3, [r3, r2]
+ 560 0010 1B19     		add	r3, r3, r4
+ 561              	.LVL78:
+ 155:.\Baro.c      ****         //UART_1_UartPutString("\r\nB6: ");
+ 156:.\Baro.c      ****         //UART_1_UartPutNum(B6);
+ 157:.\Baro.c      ****         
+ 158:.\Baro.c      ****         int32_t x1 = (B2*((B6*B6)/4096))/2048;
+ 562              		.loc 1 158 0
+ 563 0012 191C     		mov	r1, r3
+ 564 0014 5943     		mul	r1, r3
+ 565 0016 CA17     		asr	r2, r1, #31
+ 566 0018 120D     		lsr	r2, r2, #20
+ 567 001a 5218     		add	r2, r2, r1
+ 159:.\Baro.c      ****         //UART_1_UartPutString("\r\nx1: ");
+ 160:.\Baro.c      ****         //UART_1_UartPutNum(x1);
+ 161:.\Baro.c      ****         
+ 162:.\Baro.c      ****         int32_t x2 = AC2*B6 / 2048;
+ 163:.\Baro.c      ****         //UART_1_UartPutString("\r\nx2: ");
+ 164:.\Baro.c      ****         //UART_1_UartPutNum(x2);
+ 165:.\Baro.c      ****         int32_t x3 = x1+x2;
+ 166:.\Baro.c      ****         //UART_1_UartPutString("\r\nx3: ");
+ 167:.\Baro.c      ****         //UART_1_UartPutNum(x3);
+ 168:.\Baro.c      ****         
+ 169:.\Baro.c      ****         int32_t B3 = ((AC1*4+x3)+2)/4;
+ 170:.\Baro.c      ****         //UART_1_UartPutString("\r\nB3: ");
+ 171:.\Baro.c      ****         //UART_1_UartPutNum(B3);
+ 172:.\Baro.c      ****         
+ 173:.\Baro.c      ****         x1 = AC3 * B6 / 8192;
+ 568              		.loc 1 173 0
+ 569 001c 3149     		ldr	r1, .L25+8
+ 158:.\Baro.c      ****         int32_t x1 = (B2*((B6*B6)/4096))/2048;
+ 570              		.loc 1 158 0
+ 571 001e 1213     		asr	r2, r2, #12
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 15
+
+
+ 572              	.LVL79:
+ 573              		.loc 1 173 0
+ 574 0020 0025     		mov	r5, #0
+ 575 0022 4C5F     		ldrsh	r4, [r1, r5]
+ 174:.\Baro.c      ****         //UART_1_UartPutString("\r\nP_x1: ");
+ 175:.\Baro.c      ****         //UART_1_UartPutNum(x1);
+ 176:.\Baro.c      ****         
+ 177:.\Baro.c      ****         x2 = (B1*(B6*B6/4096))/65536;
+ 576              		.loc 1 177 0
+ 577 0024 3049     		ldr	r1, .L25+12
+ 578              	.LVL80:
+ 173:.\Baro.c      ****         x1 = AC3 * B6 / 8192;
+ 579              		.loc 1 173 0
+ 580 0026 5C43     		mul	r4, r3
+ 581              	.LVL81:
+ 582 0028 E517     		asr	r5, r4, #31
+ 583 002a ED0C     		lsr	r5, r5, #19
+ 584 002c 2C19     		add	r4, r5, r4
+ 585              	.LVL82:
+ 586 002e 6513     		asr	r5, r4, #13
+ 587              		.loc 1 177 0
+ 588 0030 0026     		mov	r6, #0
+ 589 0032 8C5F     		ldrsh	r4, [r1, r6]
+ 590 0034 5443     		mul	r4, r2
+ 591              	.LVL83:
+ 592 0036 E117     		asr	r1, r4, #31
+ 593              	.LVL84:
+ 594 0038 090C     		lsr	r1, r1, #16
+ 595 003a 0919     		add	r1, r1, r4
+ 596 003c 0914     		asr	r1, r1, #16
+ 178:.\Baro.c      ****         //UART_1_UartPutString("\r\nP_x2: ");
+ 179:.\Baro.c      ****         //UART_1_UartPutNum(x2);
+ 180:.\Baro.c      ****         
+ 181:.\Baro.c      ****         x3 = ((x1+x2)+2)/4;
+ 597              		.loc 1 181 0
+ 598 003e 6918     		add	r1, r5, r1
+ 599 0040 0231     		add	r1, r1, #2
+ 600 0042 CC17     		asr	r4, r1, #31
+ 601              	.LVL85:
+ 602 0044 A40F     		lsr	r4, r4, #30
+ 603 0046 6118     		add	r1, r4, r1
+ 182:.\Baro.c      ****         //UART_1_UartPutString("\r\nP_x3: ");
+ 183:.\Baro.c      ****         //UART_1_UartPutNum(x3);
+ 184:.\Baro.c      ****         
+ 185:.\Baro.c      ****         uint32_t B4 = AC4*(uint32_t)(x3+32768)/32768;
+ 604              		.loc 1 185 0
+ 605 0048 8024     		mov	r4, #128
+ 606 004a 2402     		lsl	r4, r4, #8
+ 181:.\Baro.c      ****         x3 = ((x1+x2)+2)/4;
+ 607              		.loc 1 181 0
+ 608 004c 8910     		asr	r1, r1, #2
+ 609              		.loc 1 185 0
+ 610 004e 0919     		add	r1, r1, r4
+ 611 0050 264C     		ldr	r4, .L25+16
+ 612 0052 2488     		ldrh	r4, [r4]
+ 613 0054 6143     		mul	r1, r4
+ 169:.\Baro.c      ****         int32_t B3 = ((AC1*4+x3)+2)/4;
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 16
+
+
+ 614              		.loc 1 169 0
+ 615 0056 264C     		ldr	r4, .L25+20
+ 616              	.LVL86:
+ 617              		.loc 1 185 0
+ 618 0058 C90B     		lsr	r1, r1, #15
+ 619              	.LVL87:
+ 169:.\Baro.c      ****         int32_t B3 = ((AC1*4+x3)+2)/4;
+ 620              		.loc 1 169 0
+ 621 005a 0025     		mov	r5, #0
+ 622 005c 645F     		ldrsh	r4, [r4, r5]
+ 623              	.LVL88:
+ 158:.\Baro.c      ****         int32_t x1 = (B2*((B6*B6)/4096))/2048;
+ 624              		.loc 1 158 0
+ 625 005e 254D     		ldr	r5, .L25+24
+ 626              	.LVL89:
+ 169:.\Baro.c      ****         int32_t B3 = ((AC1*4+x3)+2)/4;
+ 627              		.loc 1 169 0
+ 628 0060 A400     		lsl	r4, r4, #2
+ 629              	.LVL90:
+ 158:.\Baro.c      ****         int32_t x1 = (B2*((B6*B6)/4096))/2048;
+ 630              		.loc 1 158 0
+ 631 0062 0026     		mov	r6, #0
+ 632 0064 AD5F     		ldrsh	r5, [r5, r6]
+ 633              	.LVL91:
+ 634 0066 6A43     		mul	r2, r5
+ 635              	.LVL92:
+ 636 0068 D517     		asr	r5, r2, #31
+ 637 006a 6D0D     		lsr	r5, r5, #21
+ 638 006c AA18     		add	r2, r5, r2
+ 162:.\Baro.c      ****         int32_t x2 = AC2*B6 / 2048;
+ 639              		.loc 1 162 0
+ 640 006e 224D     		ldr	r5, .L25+28
+ 641              	.LVL93:
+ 158:.\Baro.c      ****         int32_t x1 = (B2*((B6*B6)/4096))/2048;
+ 642              		.loc 1 158 0
+ 643 0070 D212     		asr	r2, r2, #11
+ 162:.\Baro.c      ****         int32_t x2 = AC2*B6 / 2048;
+ 644              		.loc 1 162 0
+ 645 0072 0026     		mov	r6, #0
+ 646 0074 AD5F     		ldrsh	r5, [r5, r6]
+ 647              	.LVL94:
+ 648 0076 6B43     		mul	r3, r5
+ 649              	.LVL95:
+ 650 0078 DD17     		asr	r5, r3, #31
+ 651 007a 6D0D     		lsr	r5, r5, #21
+ 652 007c EB18     		add	r3, r5, r3
+ 653              	.LVL96:
+ 654 007e DB12     		asr	r3, r3, #11
+ 165:.\Baro.c      ****         int32_t x3 = x1+x2;
+ 655              		.loc 1 165 0
+ 656 0080 D318     		add	r3, r2, r3
+ 169:.\Baro.c      ****         int32_t B3 = ((AC1*4+x3)+2)/4;
+ 657              		.loc 1 169 0
+ 658 0082 E318     		add	r3, r4, r3
+ 659 0084 0233     		add	r3, r3, #2
+ 660 0086 DA17     		asr	r2, r3, #31
+ 661 0088 920F     		lsr	r2, r2, #30
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 17
+
+
+ 662 008a D318     		add	r3, r2, r3
+ 663 008c 9B10     		asr	r3, r3, #2
+ 186:.\Baro.c      ****         //UART_1_UartPutString("\r\nB4: ");
+ 187:.\Baro.c      ****         //UART_1_UartPutNum(B4);
+ 188:.\Baro.c      ****         
+ 189:.\Baro.c      ****         uint32_t B7 = ((uint32_t)p_raw - B3) * (50000);
+ 664              		.loc 1 189 0
+ 665 008e C01A     		sub	r0, r0, r3
+ 666              	.LVL97:
+ 667 0090 1A4B     		ldr	r3, .L25+32
+ 668 0092 5843     		mul	r0, r3
+ 669              	.LVL98:
+ 190:.\Baro.c      ****         //UART_1_UartPutString("\r\nB7: ");
+ 191:.\Baro.c      ****         //UART_1_UartPutNum(B7);
+ 192:.\Baro.c      ****         
+ 193:.\Baro.c      ****         int32_t p_true = 0;
+ 194:.\Baro.c      ****         if(B7 < 0x80000000)
+ 670              		.loc 1 194 0
+ 671 0094 0028     		cmp	r0, #0
+ 672 0096 03DB     		blt	.L23
+ 195:.\Baro.c      ****         {
+ 196:.\Baro.c      ****             p_true = B7*2/B4;    
+ 673              		.loc 1 196 0
+ 674 0098 4000     		lsl	r0, r0, #1
+ 675              	.LVL99:
+ 676 009a FFF7FEFF 		bl	__aeabi_uidiv
+ 677              	.LVL100:
+ 678 009e 02E0     		b	.L24
+ 679              	.LVL101:
+ 680              	.L23:
+ 197:.\Baro.c      ****         }
+ 198:.\Baro.c      ****         else p_true = (B7/B4)*2;
+ 681              		.loc 1 198 0
+ 682 00a0 FFF7FEFF 		bl	__aeabi_uidiv
+ 683              	.LVL102:
+ 684 00a4 4000     		lsl	r0, r0, #1
+ 685              	.LVL103:
+ 686              	.L24:
+ 199:.\Baro.c      ****         //UART_1_UartPutString("\r\nP: ");
+ 200:.\Baro.c      ****         //UART_1_UartPutNum(p_true);
+ 201:.\Baro.c      ****         
+ 202:.\Baro.c      ****         x1 = (p_true / 256)*(p_true / 256);
+ 687              		.loc 1 202 0
+ 688 00a6 C217     		asr	r2, r0, #31
+ 689 00a8 120E     		lsr	r2, r2, #24
+ 690 00aa 1218     		add	r2, r2, r0
+ 691 00ac 1212     		asr	r2, r2, #8
+ 692              	.LVL104:
+ 693 00ae 5243     		mul	r2, r2
+ 694              	.LVL105:
+ 203:.\Baro.c      ****                 //UART_1_UartPutString("\r\nP_x1: ");
+ 204:.\Baro.c      ****         //UART_1_UartPutNum(x1);
+ 205:.\Baro.c      ****         
+ 206:.\Baro.c      ****         x1 = (x1*3038)/65536;
+ 695              		.loc 1 206 0
+ 696 00b0 134B     		ldr	r3, .L25+36
+ 207:.\Baro.c      ****                         //UART_1_UartPutString("\r\nP_x1: ");
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 18
+
+
+ 208:.\Baro.c      ****         //UART_1_UartPutNum(x1);
+ 209:.\Baro.c      ****         
+ 210:.\Baro.c      ****         x2 = (-7357*p_true)/65536;
+ 211:.\Baro.c      ****                 //UART_1_UartPutString("\r\nP_x2: ");
+ 212:.\Baro.c      ****         //UART_1_UartPutNum(x2);
+ 213:.\Baro.c      ****         p_true = p_true + ((x1+x2+3791)/16);
+ 214:.\Baro.c      ****                          //UART_1_UartPutString("\r\nP_TRUE: ");
+ 215:.\Baro.c      ****         //UART_1_UartPutNum(p_true);               
+ 216:.\Baro.c      ****         // by 10 for degC (check datasheet page 15)
+ 217:.\Baro.c      ****         return p_true;
+ 218:.\Baro.c      **** }
+ 697              		.loc 1 218 0
+ 698              		@ sp needed
+ 206:.\Baro.c      ****         x1 = (x1*3038)/65536;
+ 699              		.loc 1 206 0
+ 700 00b2 5A43     		mul	r2, r3
+ 701              	.LVL106:
+ 702 00b4 D117     		asr	r1, r2, #31
+ 703 00b6 090C     		lsr	r1, r1, #16
+ 704 00b8 8A18     		add	r2, r1, r2
+ 705              	.LVL107:
+ 706 00ba 1114     		asr	r1, r2, #16
+ 210:.\Baro.c      ****         x2 = (-7357*p_true)/65536;
+ 707              		.loc 1 210 0
+ 708 00bc 114A     		ldr	r2, .L25+40
+ 709 00be 4243     		mul	r2, r0
+ 710 00c0 D317     		asr	r3, r2, #31
+ 711              	.LVL108:
+ 712 00c2 1B0C     		lsr	r3, r3, #16
+ 713 00c4 9B18     		add	r3, r3, r2
+ 714 00c6 1B14     		asr	r3, r3, #16
+ 213:.\Baro.c      ****         p_true = p_true + ((x1+x2+3791)/16);
+ 715              		.loc 1 213 0
+ 716 00c8 0F4A     		ldr	r2, .L25+44
+ 717 00ca CB18     		add	r3, r1, r3
+ 718 00cc 9B18     		add	r3, r3, r2
+ 719 00ce DA17     		asr	r2, r3, #31
+ 720 00d0 120F     		lsr	r2, r2, #28
+ 721 00d2 D318     		add	r3, r2, r3
+ 722 00d4 1B11     		asr	r3, r3, #4
+ 723              	.LVL109:
+ 724 00d6 C018     		add	r0, r0, r3
+ 725              	.LVL110:
+ 726              		.loc 1 218 0
+ 727 00d8 70BD     		pop	{r4, r5, r6, pc}
+ 728              	.L26:
+ 729 00da C046     		.align	2
+ 730              	.L25:
+ 731 00dc 00000000 		.word	B5
+ 732 00e0 60F0FFFF 		.word	-4000
+ 733 00e4 00000000 		.word	.LANCHOR0
+ 734 00e8 00000000 		.word	B1
+ 735 00ec 00000000 		.word	AC4
+ 736 00f0 00000000 		.word	AC1
+ 737 00f4 00000000 		.word	B2
+ 738 00f8 00000000 		.word	AC2
+ 739 00fc 50C30000 		.word	50000
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 19
+
+
+ 740 0100 DE0B0000 		.word	3038
+ 741 0104 43E3FFFF 		.word	-7357
+ 742 0108 CF0E0000 		.word	3791
+ 743              		.cfi_endproc
+ 744              	.LFE39:
+ 745              		.size	BMP180_baro_read_pressure, .-BMP180_baro_read_pressure
+ 746              		.global	MD
+ 747              		.comm	MC,2,2
+ 748              		.comm	MB,2,2
+ 749              		.comm	B5,2,2
+ 750              		.comm	B2,2,2
+ 751              		.comm	B1,2,2
+ 752              		.global	AC6
+ 753              		.comm	AC5,2,2
+ 754              		.comm	AC4,2,2
+ 755              		.global	AC3
+ 756              		.comm	AC2,2,2
+ 757              		.comm	AC1,2,2
+ 758              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 759              	.LC1:
+ 760 0000 0D0A00   		.ascii	"\015\012\000"
+ 761              	.LC11:
+ 762 0003 4241524F 		.ascii	"BARO INIT COMPLETE\015\012\000"
+ 762      20494E49 
+ 762      5420434F 
+ 762      4D504C45 
+ 762      54450D0A 
+ 763              		.bss
+ 764              		.align	1
+ 765              		.set	.LANCHOR0,. + 0
+ 766              		.type	AC3, %object
+ 767              		.size	AC3, 2
+ 768              	AC3:
+ 769 0000 0000     		.space	2
+ 770              		.type	AC6, %object
+ 771              		.size	AC6, 2
+ 772              	AC6:
+ 773 0002 0000     		.space	2
+ 774              		.type	MD, %object
+ 775              		.size	MD, 2
+ 776              	MD:
+ 777 0004 0000     		.space	2
+ 778              		.text
+ 779              	.Letext0:
+ 780              		.file 2 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 781              		.file 3 "e:\\program files (x86)\\cypress\\psoc creator\\3.1\\psoc creator\\import\\gnu_cs\\arm\\4
+ 782              		.file 4 ".\\Generated_Source\\PSoC4/cytypes.h"
+ 783              		.file 5 ".\\Generated_Source\\PSoC4/I2CM_I2C.h"
+ 784              		.file 6 ".\\Generated_Source\\PSoC4/CyLib.h"
+ 785              		.file 7 ".\\Generated_Source\\PSoC4/UART_1_SPI_UART.h"
+ 786              		.section	.debug_info,"",%progbits
+ 787              	.Ldebug_info0:
+ 788 0000 48080000 		.4byte	0x848
+ 789 0004 0400     		.2byte	0x4
+ 790 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 791 000a 04       		.byte	0x4
+ 792 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 20
+
+
+ 793 000c 29020000 		.4byte	.LASF48
+ 794 0010 01       		.byte	0x1
+ 795 0011 E5010000 		.4byte	.LASF49
+ 796 0015 5B010000 		.4byte	.LASF50
+ 797 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 798 001d 00000000 		.4byte	0
+ 799 0021 00000000 		.4byte	.Ldebug_line0
+ 800 0025 02       		.uleb128 0x2
+ 801 0026 01       		.byte	0x1
+ 802 0027 06       		.byte	0x6
+ 803 0028 3E000000 		.4byte	.LASF0
+ 804 002c 03       		.uleb128 0x3
+ 805 002d 07000000 		.4byte	.LASF2
+ 806 0031 02       		.byte	0x2
+ 807 0032 1C       		.byte	0x1c
+ 808 0033 37000000 		.4byte	0x37
+ 809 0037 02       		.uleb128 0x2
+ 810 0038 01       		.byte	0x1
+ 811 0039 08       		.byte	0x8
+ 812 003a C0020000 		.4byte	.LASF1
+ 813 003e 03       		.uleb128 0x3
+ 814 003f AC000000 		.4byte	.LASF3
+ 815 0043 02       		.byte	0x2
+ 816 0044 25       		.byte	0x25
+ 817 0045 49000000 		.4byte	0x49
+ 818 0049 02       		.uleb128 0x2
+ 819 004a 02       		.byte	0x2
+ 820 004b 05       		.byte	0x5
+ 821 004c CE020000 		.4byte	.LASF4
+ 822 0050 03       		.uleb128 0x3
+ 823 0051 EC020000 		.4byte	.LASF5
+ 824 0055 02       		.byte	0x2
+ 825 0056 26       		.byte	0x26
+ 826 0057 5B000000 		.4byte	0x5b
+ 827 005b 02       		.uleb128 0x2
+ 828 005c 02       		.byte	0x2
+ 829 005d 07       		.byte	0x7
+ 830 005e 30010000 		.4byte	.LASF6
+ 831 0062 03       		.uleb128 0x3
+ 832 0063 F7020000 		.4byte	.LASF7
+ 833 0067 02       		.byte	0x2
+ 834 0068 37       		.byte	0x37
+ 835 0069 6D000000 		.4byte	0x6d
+ 836 006d 02       		.uleb128 0x2
+ 837 006e 04       		.byte	0x4
+ 838 006f 05       		.byte	0x5
+ 839 0070 60000000 		.4byte	.LASF8
+ 840 0074 03       		.uleb128 0x3
+ 841 0075 87000000 		.4byte	.LASF9
+ 842 0079 02       		.byte	0x2
+ 843 007a 38       		.byte	0x38
+ 844 007b 7F000000 		.4byte	0x7f
+ 845 007f 02       		.uleb128 0x2
+ 846 0080 04       		.byte	0x4
+ 847 0081 07       		.byte	0x7
+ 848 0082 F3000000 		.4byte	.LASF10
+ 849 0086 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 21
+
+
+ 850 0087 08       		.byte	0x8
+ 851 0088 05       		.byte	0x5
+ 852 0089 30000000 		.4byte	.LASF11
+ 853 008d 02       		.uleb128 0x2
+ 854 008e 08       		.byte	0x8
+ 855 008f 07       		.byte	0x7
+ 856 0090 11000000 		.4byte	.LASF12
+ 857 0094 04       		.uleb128 0x4
+ 858 0095 04       		.byte	0x4
+ 859 0096 05       		.byte	0x5
+ 860 0097 696E7400 		.ascii	"int\000"
+ 861 009b 02       		.uleb128 0x2
+ 862 009c 04       		.byte	0x4
+ 863 009d 07       		.byte	0x7
+ 864 009e DC000000 		.4byte	.LASF13
+ 865 00a2 03       		.uleb128 0x3
+ 866 00a3 28030000 		.4byte	.LASF14
+ 867 00a7 03       		.byte	0x3
+ 868 00a8 2A       		.byte	0x2a
+ 869 00a9 2C000000 		.4byte	0x2c
+ 870 00ad 03       		.uleb128 0x3
+ 871 00ae 28000000 		.4byte	.LASF15
+ 872 00b2 03       		.byte	0x3
+ 873 00b3 35       		.byte	0x35
+ 874 00b4 3E000000 		.4byte	0x3e
+ 875 00b8 03       		.uleb128 0x3
+ 876 00b9 69000000 		.4byte	.LASF16
+ 877 00bd 03       		.byte	0x3
+ 878 00be 36       		.byte	0x36
+ 879 00bf 50000000 		.4byte	0x50
+ 880 00c3 03       		.uleb128 0x3
+ 881 00c4 B8020000 		.4byte	.LASF17
+ 882 00c8 03       		.byte	0x3
+ 883 00c9 41       		.byte	0x41
+ 884 00ca 62000000 		.4byte	0x62
+ 885 00ce 03       		.uleb128 0x3
+ 886 00cf D8020000 		.4byte	.LASF18
+ 887 00d3 03       		.byte	0x3
+ 888 00d4 42       		.byte	0x42
+ 889 00d5 74000000 		.4byte	0x74
+ 890 00d9 03       		.uleb128 0x3
+ 891 00da 80000000 		.4byte	.LASF19
+ 892 00de 04       		.byte	0x4
+ 893 00df A3       		.byte	0xa3
+ 894 00e0 7F000000 		.4byte	0x7f
+ 895 00e4 02       		.uleb128 0x2
+ 896 00e5 04       		.byte	0x4
+ 897 00e6 04       		.byte	0x4
+ 898 00e7 0C020000 		.4byte	.LASF20
+ 899 00eb 02       		.uleb128 0x2
+ 900 00ec 08       		.byte	0x8
+ 901 00ed 04       		.byte	0x4
+ 902 00ee 72000000 		.4byte	.LASF21
+ 903 00f2 03       		.uleb128 0x3
+ 904 00f3 01030000 		.4byte	.LASF22
+ 905 00f7 04       		.byte	0x4
+ 906 00f8 B2       		.byte	0xb2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 22
+
+
+ 907 00f9 FD000000 		.4byte	0xfd
+ 908 00fd 02       		.uleb128 0x2
+ 909 00fe 01       		.byte	0x1
+ 910 00ff 08       		.byte	0x8
+ 911 0100 E1020000 		.4byte	.LASF23
+ 912 0104 05       		.uleb128 0x5
+ 913 0105 AE010000 		.4byte	.LASF24
+ 914 0109 04       		.byte	0x4
+ 915 010a 4D01     		.2byte	0x14d
+ 916 010c 10010000 		.4byte	0x110
+ 917 0110 06       		.uleb128 0x6
+ 918 0111 D9000000 		.4byte	0xd9
+ 919 0115 02       		.uleb128 0x2
+ 920 0116 04       		.byte	0x4
+ 921 0117 07       		.byte	0x7
+ 922 0118 CA010000 		.4byte	.LASF25
+ 923 011c 07       		.uleb128 0x7
+ 924 011d 4D030000 		.4byte	.LASF34
+ 925 0121 01       		.byte	0x1
+ 926 0122 23       		.byte	0x23
+ 927 0123 B8000000 		.4byte	0xb8
+ 928 0127 00000000 		.4byte	.LFB33
+ 929 012b 50000000 		.4byte	.LFE33-.LFB33
+ 930 012f 01       		.uleb128 0x1
+ 931 0130 9C       		.byte	0x9c
+ 932 0131 ED010000 		.4byte	0x1ed
+ 933 0135 08       		.uleb128 0x8
+ 934 0136 A5010000 		.4byte	.LASF29
+ 935 013a 01       		.byte	0x1
+ 936 013b 23       		.byte	0x23
+ 937 013c A2000000 		.4byte	0xa2
+ 938 0140 00000000 		.4byte	.LLST0
+ 939 0144 09       		.uleb128 0x9
+ 940 0145 05010000 		.4byte	.LASF26
+ 941 0149 01       		.byte	0x1
+ 942 014a 29       		.byte	0x29
+ 943 014b A2000000 		.4byte	0xa2
+ 944 014f 21000000 		.4byte	.LLST1
+ 945 0153 09       		.uleb128 0x9
+ 946 0154 0B010000 		.4byte	.LASF27
+ 947 0158 01       		.byte	0x1
+ 948 0159 2A       		.byte	0x2a
+ 949 015a A2000000 		.4byte	0xa2
+ 950 015e 3F000000 		.4byte	.LLST2
+ 951 0162 09       		.uleb128 0x9
+ 952 0163 E9000000 		.4byte	.LASF28
+ 953 0167 01       		.byte	0x1
+ 954 0168 2C       		.byte	0x2c
+ 955 0169 B8000000 		.4byte	0xb8
+ 956 016d 5D000000 		.4byte	.LLST3
+ 957 0171 0A       		.uleb128 0xa
+ 958 0172 0C000000 		.4byte	.LVL2
+ 959 0176 B2070000 		.4byte	0x7b2
+ 960 017a 8A010000 		.4byte	0x18a
+ 961 017e 0B       		.uleb128 0xb
+ 962 017f 01       		.uleb128 0x1
+ 963 0180 51       		.byte	0x51
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 23
+
+
+ 964 0181 01       		.uleb128 0x1
+ 965 0182 30       		.byte	0x30
+ 966 0183 0B       		.uleb128 0xb
+ 967 0184 01       		.uleb128 0x1
+ 968 0185 50       		.byte	0x50
+ 969 0186 02       		.uleb128 0x2
+ 970 0187 08       		.byte	0x8
+ 971 0188 77       		.byte	0x77
+ 972 0189 00       		.byte	0
+ 973 018a 0A       		.uleb128 0xa
+ 974 018b 12000000 		.4byte	.LVL3
+ 975 018f CC070000 		.4byte	0x7cc
+ 976 0193 9D010000 		.4byte	0x19d
+ 977 0197 0B       		.uleb128 0xb
+ 978 0198 01       		.uleb128 0x1
+ 979 0199 50       		.byte	0x50
+ 980 019a 01       		.uleb128 0x1
+ 981 019b 31       		.byte	0x31
+ 982 019c 00       		.byte	0
+ 983 019d 0A       		.uleb128 0xa
+ 984 019e 18000000 		.4byte	.LVL4
+ 985 01a2 DD070000 		.4byte	0x7dd
+ 986 01a6 B1010000 		.4byte	0x1b1
+ 987 01aa 0B       		.uleb128 0xb
+ 988 01ab 01       		.uleb128 0x1
+ 989 01ac 50       		.byte	0x50
+ 990 01ad 02       		.uleb128 0x2
+ 991 01ae 74       		.byte	0x74
+ 992 01af 00       		.sleb128 0
+ 993 01b0 00       		.byte	0
+ 994 01b1 0A       		.uleb128 0xa
+ 995 01b2 20000000 		.4byte	.LVL5
+ 996 01b6 F2070000 		.4byte	0x7f2
+ 997 01ba CA010000 		.4byte	0x1ca
+ 998 01be 0B       		.uleb128 0xb
+ 999 01bf 01       		.uleb128 0x1
+ 1000 01c0 51       		.byte	0x51
+ 1001 01c1 01       		.uleb128 0x1
+ 1002 01c2 31       		.byte	0x31
+ 1003 01c3 0B       		.uleb128 0xb
+ 1004 01c4 01       		.uleb128 0x1
+ 1005 01c5 50       		.byte	0x50
+ 1006 01c6 02       		.uleb128 0x2
+ 1007 01c7 08       		.byte	0x8
+ 1008 01c8 77       		.byte	0x77
+ 1009 01c9 00       		.byte	0
+ 1010 01ca 0A       		.uleb128 0xa
+ 1011 01cb 26000000 		.4byte	.LVL6
+ 1012 01cf 0C080000 		.4byte	0x80c
+ 1013 01d3 DD010000 		.4byte	0x1dd
+ 1014 01d7 0B       		.uleb128 0xb
+ 1015 01d8 01       		.uleb128 0x1
+ 1016 01d9 50       		.byte	0x50
+ 1017 01da 01       		.uleb128 0x1
+ 1018 01db 30       		.byte	0x30
+ 1019 01dc 00       		.byte	0
+ 1020 01dd 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 24
+
+
+ 1021 01de 2E000000 		.4byte	.LVL9
+ 1022 01e2 0C080000 		.4byte	0x80c
+ 1023 01e6 0B       		.uleb128 0xb
+ 1024 01e7 01       		.uleb128 0x1
+ 1025 01e8 50       		.byte	0x50
+ 1026 01e9 01       		.uleb128 0x1
+ 1027 01ea 31       		.byte	0x31
+ 1028 01eb 00       		.byte	0
+ 1029 01ec 00       		.byte	0
+ 1030 01ed 0D       		.uleb128 0xd
+ 1031 01ee 4A000000 		.4byte	.LASF31
+ 1032 01f2 01       		.byte	0x1
+ 1033 01f3 30       		.byte	0x30
+ 1034 01f4 00000000 		.4byte	.LFB34
+ 1035 01f8 3C000000 		.4byte	.LFE34-.LFB34
+ 1036 01fc 01       		.uleb128 0x1
+ 1037 01fd 9C       		.byte	0x9c
+ 1038 01fe 71020000 		.4byte	0x271
+ 1039 0202 08       		.uleb128 0x8
+ 1040 0203 A5010000 		.4byte	.LASF29
+ 1041 0207 01       		.byte	0x1
+ 1042 0208 30       		.byte	0x30
+ 1043 0209 A2000000 		.4byte	0xa2
+ 1044 020d 7D000000 		.4byte	.LLST4
+ 1045 0211 08       		.uleb128 0x8
+ 1046 0212 2B010000 		.4byte	.LASF30
+ 1047 0216 01       		.byte	0x1
+ 1048 0217 30       		.byte	0x30
+ 1049 0218 A2000000 		.4byte	0xa2
+ 1050 021c 9E000000 		.4byte	.LLST5
+ 1051 0220 0A       		.uleb128 0xa
+ 1052 0221 0E000000 		.4byte	.LVL17
+ 1053 0225 B2070000 		.4byte	0x7b2
+ 1054 0229 39020000 		.4byte	0x239
+ 1055 022d 0B       		.uleb128 0xb
+ 1056 022e 01       		.uleb128 0x1
+ 1057 022f 51       		.byte	0x51
+ 1058 0230 01       		.uleb128 0x1
+ 1059 0231 30       		.byte	0x30
+ 1060 0232 0B       		.uleb128 0xb
+ 1061 0233 01       		.uleb128 0x1
+ 1062 0234 50       		.byte	0x50
+ 1063 0235 02       		.uleb128 0x2
+ 1064 0236 08       		.byte	0x8
+ 1065 0237 77       		.byte	0x77
+ 1066 0238 00       		.byte	0
+ 1067 0239 0A       		.uleb128 0xa
+ 1068 023a 14000000 		.4byte	.LVL18
+ 1069 023e CC070000 		.4byte	0x7cc
+ 1070 0242 4C020000 		.4byte	0x24c
+ 1071 0246 0B       		.uleb128 0xb
+ 1072 0247 01       		.uleb128 0x1
+ 1073 0248 50       		.byte	0x50
+ 1074 0249 01       		.uleb128 0x1
+ 1075 024a 31       		.byte	0x31
+ 1076 024b 00       		.byte	0
+ 1077 024c 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 25
+
+
+ 1078 024d 1A000000 		.4byte	.LVL19
+ 1079 0251 DD070000 		.4byte	0x7dd
+ 1080 0255 60020000 		.4byte	0x260
+ 1081 0259 0B       		.uleb128 0xb
+ 1082 025a 01       		.uleb128 0x1
+ 1083 025b 50       		.byte	0x50
+ 1084 025c 02       		.uleb128 0x2
+ 1085 025d 75       		.byte	0x75
+ 1086 025e 00       		.sleb128 0
+ 1087 025f 00       		.byte	0
+ 1088 0260 0C       		.uleb128 0xc
+ 1089 0261 20000000 		.4byte	.LVL20
+ 1090 0265 DD070000 		.4byte	0x7dd
+ 1091 0269 0B       		.uleb128 0xb
+ 1092 026a 01       		.uleb128 0x1
+ 1093 026b 50       		.byte	0x50
+ 1094 026c 02       		.uleb128 0x2
+ 1095 026d 74       		.byte	0x74
+ 1096 026e 00       		.sleb128 0
+ 1097 026f 00       		.byte	0
+ 1098 0270 00       		.byte	0
+ 1099 0271 0D       		.uleb128 0xd
+ 1100 0272 B6000000 		.4byte	.LASF32
+ 1101 0276 01       		.byte	0x1
+ 1102 0277 39       		.byte	0x39
+ 1103 0278 00000000 		.4byte	.LFB35
+ 1104 027c 74010000 		.4byte	.LFE35-.LFB35
+ 1105 0280 01       		.uleb128 0x1
+ 1106 0281 9C       		.byte	0x9c
+ 1107 0282 86050000 		.4byte	0x586
+ 1108 0286 0A       		.uleb128 0xa
+ 1109 0287 08000000 		.4byte	.LVL21
+ 1110 028b 1C010000 		.4byte	0x11c
+ 1111 028f 9A020000 		.4byte	0x29a
+ 1112 0293 0B       		.uleb128 0xb
+ 1113 0294 01       		.uleb128 0x1
+ 1114 0295 50       		.byte	0x50
+ 1115 0296 02       		.uleb128 0x2
+ 1116 0297 09       		.byte	0x9
+ 1117 0298 AA       		.byte	0xaa
+ 1118 0299 00       		.byte	0
+ 1119 029a 0E       		.uleb128 0xe
+ 1120 029b 14000000 		.4byte	.LVL22
+ 1121 029f 21080000 		.4byte	0x821
+ 1122 02a3 0A       		.uleb128 0xa
+ 1123 02a4 1C000000 		.4byte	.LVL23
+ 1124 02a8 2E080000 		.4byte	0x82e
+ 1125 02ac B7020000 		.4byte	0x2b7
+ 1126 02b0 0B       		.uleb128 0xb
+ 1127 02b1 01       		.uleb128 0x1
+ 1128 02b2 50       		.byte	0x50
+ 1129 02b3 02       		.uleb128 0x2
+ 1130 02b4 74       		.byte	0x74
+ 1131 02b5 00       		.sleb128 0
+ 1132 02b6 00       		.byte	0
+ 1133 02b7 0A       		.uleb128 0xa
+ 1134 02b8 22000000 		.4byte	.LVL24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 26
+
+
+ 1135 02bc CC070000 		.4byte	0x7cc
+ 1136 02c0 CA020000 		.4byte	0x2ca
+ 1137 02c4 0B       		.uleb128 0xb
+ 1138 02c5 01       		.uleb128 0x1
+ 1139 02c6 50       		.byte	0x50
+ 1140 02c7 01       		.uleb128 0x1
+ 1141 02c8 31       		.byte	0x31
+ 1142 02c9 00       		.byte	0
+ 1143 02ca 0A       		.uleb128 0xa
+ 1144 02cb 28000000 		.4byte	.LVL25
+ 1145 02cf 1C010000 		.4byte	0x11c
+ 1146 02d3 DE020000 		.4byte	0x2de
+ 1147 02d7 0B       		.uleb128 0xb
+ 1148 02d8 01       		.uleb128 0x1
+ 1149 02d9 50       		.byte	0x50
+ 1150 02da 02       		.uleb128 0x2
+ 1151 02db 09       		.byte	0x9
+ 1152 02dc AC       		.byte	0xac
+ 1153 02dd 00       		.byte	0
+ 1154 02de 0E       		.uleb128 0xe
+ 1155 02df 34000000 		.4byte	.LVL26
+ 1156 02e3 21080000 		.4byte	0x821
+ 1157 02e7 0A       		.uleb128 0xa
+ 1158 02e8 3A000000 		.4byte	.LVL27
+ 1159 02ec 2E080000 		.4byte	0x82e
+ 1160 02f0 FB020000 		.4byte	0x2fb
+ 1161 02f4 0B       		.uleb128 0xb
+ 1162 02f5 01       		.uleb128 0x1
+ 1163 02f6 50       		.byte	0x50
+ 1164 02f7 02       		.uleb128 0x2
+ 1165 02f8 74       		.byte	0x74
+ 1166 02f9 00       		.sleb128 0
+ 1167 02fa 00       		.byte	0
+ 1168 02fb 0A       		.uleb128 0xa
+ 1169 02fc 40000000 		.4byte	.LVL28
+ 1170 0300 CC070000 		.4byte	0x7cc
+ 1171 0304 0E030000 		.4byte	0x30e
+ 1172 0308 0B       		.uleb128 0xb
+ 1173 0309 01       		.uleb128 0x1
+ 1174 030a 50       		.byte	0x50
+ 1175 030b 01       		.uleb128 0x1
+ 1176 030c 31       		.byte	0x31
+ 1177 030d 00       		.byte	0
+ 1178 030e 0A       		.uleb128 0xa
+ 1179 030f 46000000 		.4byte	.LVL29
+ 1180 0313 1C010000 		.4byte	0x11c
+ 1181 0317 22030000 		.4byte	0x322
+ 1182 031b 0B       		.uleb128 0xb
+ 1183 031c 01       		.uleb128 0x1
+ 1184 031d 50       		.byte	0x50
+ 1185 031e 02       		.uleb128 0x2
+ 1186 031f 09       		.byte	0x9
+ 1187 0320 AE       		.byte	0xae
+ 1188 0321 00       		.byte	0
+ 1189 0322 0E       		.uleb128 0xe
+ 1190 0323 52000000 		.4byte	.LVL30
+ 1191 0327 21080000 		.4byte	0x821
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 27
+
+
+ 1192 032b 0A       		.uleb128 0xa
+ 1193 032c 58000000 		.4byte	.LVL31
+ 1194 0330 2E080000 		.4byte	0x82e
+ 1195 0334 3F030000 		.4byte	0x33f
+ 1196 0338 0B       		.uleb128 0xb
+ 1197 0339 01       		.uleb128 0x1
+ 1198 033a 50       		.byte	0x50
+ 1199 033b 02       		.uleb128 0x2
+ 1200 033c 74       		.byte	0x74
+ 1201 033d 00       		.sleb128 0
+ 1202 033e 00       		.byte	0
+ 1203 033f 0A       		.uleb128 0xa
+ 1204 0340 5E000000 		.4byte	.LVL32
+ 1205 0344 CC070000 		.4byte	0x7cc
+ 1206 0348 52030000 		.4byte	0x352
+ 1207 034c 0B       		.uleb128 0xb
+ 1208 034d 01       		.uleb128 0x1
+ 1209 034e 50       		.byte	0x50
+ 1210 034f 01       		.uleb128 0x1
+ 1211 0350 31       		.byte	0x31
+ 1212 0351 00       		.byte	0
+ 1213 0352 0A       		.uleb128 0xa
+ 1214 0353 64000000 		.4byte	.LVL33
+ 1215 0357 1C010000 		.4byte	0x11c
+ 1216 035b 66030000 		.4byte	0x366
+ 1217 035f 0B       		.uleb128 0xb
+ 1218 0360 01       		.uleb128 0x1
+ 1219 0361 50       		.byte	0x50
+ 1220 0362 02       		.uleb128 0x2
+ 1221 0363 09       		.byte	0x9
+ 1222 0364 B0       		.byte	0xb0
+ 1223 0365 00       		.byte	0
+ 1224 0366 0E       		.uleb128 0xe
+ 1225 0367 6C000000 		.4byte	.LVL34
+ 1226 036b 21080000 		.4byte	0x821
+ 1227 036f 0A       		.uleb128 0xa
+ 1228 0370 72000000 		.4byte	.LVL35
+ 1229 0374 2E080000 		.4byte	0x82e
+ 1230 0378 83030000 		.4byte	0x383
+ 1231 037c 0B       		.uleb128 0xb
+ 1232 037d 01       		.uleb128 0x1
+ 1233 037e 50       		.byte	0x50
+ 1234 037f 02       		.uleb128 0x2
+ 1235 0380 74       		.byte	0x74
+ 1236 0381 00       		.sleb128 0
+ 1237 0382 00       		.byte	0
+ 1238 0383 0A       		.uleb128 0xa
+ 1239 0384 78000000 		.4byte	.LVL36
+ 1240 0388 CC070000 		.4byte	0x7cc
+ 1241 038c 96030000 		.4byte	0x396
+ 1242 0390 0B       		.uleb128 0xb
+ 1243 0391 01       		.uleb128 0x1
+ 1244 0392 50       		.byte	0x50
+ 1245 0393 01       		.uleb128 0x1
+ 1246 0394 31       		.byte	0x31
+ 1247 0395 00       		.byte	0
+ 1248 0396 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 28
+
+
+ 1249 0397 7E000000 		.4byte	.LVL37
+ 1250 039b 1C010000 		.4byte	0x11c
+ 1251 039f AA030000 		.4byte	0x3aa
+ 1252 03a3 0B       		.uleb128 0xb
+ 1253 03a4 01       		.uleb128 0x1
+ 1254 03a5 50       		.byte	0x50
+ 1255 03a6 02       		.uleb128 0x2
+ 1256 03a7 09       		.byte	0x9
+ 1257 03a8 B2       		.byte	0xb2
+ 1258 03a9 00       		.byte	0
+ 1259 03aa 0E       		.uleb128 0xe
+ 1260 03ab 86000000 		.4byte	.LVL38
+ 1261 03af 21080000 		.4byte	0x821
+ 1262 03b3 0A       		.uleb128 0xa
+ 1263 03b4 8C000000 		.4byte	.LVL39
+ 1264 03b8 2E080000 		.4byte	0x82e
+ 1265 03bc C7030000 		.4byte	0x3c7
+ 1266 03c0 0B       		.uleb128 0xb
+ 1267 03c1 01       		.uleb128 0x1
+ 1268 03c2 50       		.byte	0x50
+ 1269 03c3 02       		.uleb128 0x2
+ 1270 03c4 74       		.byte	0x74
+ 1271 03c5 00       		.sleb128 0
+ 1272 03c6 00       		.byte	0
+ 1273 03c7 0A       		.uleb128 0xa
+ 1274 03c8 92000000 		.4byte	.LVL40
+ 1275 03cc CC070000 		.4byte	0x7cc
+ 1276 03d0 DA030000 		.4byte	0x3da
+ 1277 03d4 0B       		.uleb128 0xb
+ 1278 03d5 01       		.uleb128 0x1
+ 1279 03d6 50       		.byte	0x50
+ 1280 03d7 01       		.uleb128 0x1
+ 1281 03d8 31       		.byte	0x31
+ 1282 03d9 00       		.byte	0
+ 1283 03da 0A       		.uleb128 0xa
+ 1284 03db 98000000 		.4byte	.LVL41
+ 1285 03df 1C010000 		.4byte	0x11c
+ 1286 03e3 EE030000 		.4byte	0x3ee
+ 1287 03e7 0B       		.uleb128 0xb
+ 1288 03e8 01       		.uleb128 0x1
+ 1289 03e9 50       		.byte	0x50
+ 1290 03ea 02       		.uleb128 0x2
+ 1291 03eb 09       		.byte	0x9
+ 1292 03ec B4       		.byte	0xb4
+ 1293 03ed 00       		.byte	0
+ 1294 03ee 0E       		.uleb128 0xe
+ 1295 03ef 9E000000 		.4byte	.LVL42
+ 1296 03f3 21080000 		.4byte	0x821
+ 1297 03f7 0A       		.uleb128 0xa
+ 1298 03f8 A4000000 		.4byte	.LVL43
+ 1299 03fc 2E080000 		.4byte	0x82e
+ 1300 0400 0B040000 		.4byte	0x40b
+ 1301 0404 0B       		.uleb128 0xb
+ 1302 0405 01       		.uleb128 0x1
+ 1303 0406 50       		.byte	0x50
+ 1304 0407 02       		.uleb128 0x2
+ 1305 0408 74       		.byte	0x74
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 29
+
+
+ 1306 0409 00       		.sleb128 0
+ 1307 040a 00       		.byte	0
+ 1308 040b 0A       		.uleb128 0xa
+ 1309 040c AA000000 		.4byte	.LVL44
+ 1310 0410 CC070000 		.4byte	0x7cc
+ 1311 0414 1E040000 		.4byte	0x41e
+ 1312 0418 0B       		.uleb128 0xb
+ 1313 0419 01       		.uleb128 0x1
+ 1314 041a 50       		.byte	0x50
+ 1315 041b 01       		.uleb128 0x1
+ 1316 041c 31       		.byte	0x31
+ 1317 041d 00       		.byte	0
+ 1318 041e 0A       		.uleb128 0xa
+ 1319 041f B0000000 		.4byte	.LVL45
+ 1320 0423 1C010000 		.4byte	0x11c
+ 1321 0427 32040000 		.4byte	0x432
+ 1322 042b 0B       		.uleb128 0xb
+ 1323 042c 01       		.uleb128 0x1
+ 1324 042d 50       		.byte	0x50
+ 1325 042e 02       		.uleb128 0x2
+ 1326 042f 09       		.byte	0x9
+ 1327 0430 B6       		.byte	0xb6
+ 1328 0431 00       		.byte	0
+ 1329 0432 0E       		.uleb128 0xe
+ 1330 0433 BC000000 		.4byte	.LVL46
+ 1331 0437 21080000 		.4byte	0x821
+ 1332 043b 0A       		.uleb128 0xa
+ 1333 043c C2000000 		.4byte	.LVL47
+ 1334 0440 2E080000 		.4byte	0x82e
+ 1335 0444 4F040000 		.4byte	0x44f
+ 1336 0448 0B       		.uleb128 0xb
+ 1337 0449 01       		.uleb128 0x1
+ 1338 044a 50       		.byte	0x50
+ 1339 044b 02       		.uleb128 0x2
+ 1340 044c 74       		.byte	0x74
+ 1341 044d 00       		.sleb128 0
+ 1342 044e 00       		.byte	0
+ 1343 044f 0A       		.uleb128 0xa
+ 1344 0450 C8000000 		.4byte	.LVL48
+ 1345 0454 CC070000 		.4byte	0x7cc
+ 1346 0458 62040000 		.4byte	0x462
+ 1347 045c 0B       		.uleb128 0xb
+ 1348 045d 01       		.uleb128 0x1
+ 1349 045e 50       		.byte	0x50
+ 1350 045f 01       		.uleb128 0x1
+ 1351 0460 31       		.byte	0x31
+ 1352 0461 00       		.byte	0
+ 1353 0462 0A       		.uleb128 0xa
+ 1354 0463 CE000000 		.4byte	.LVL49
+ 1355 0467 1C010000 		.4byte	0x11c
+ 1356 046b 76040000 		.4byte	0x476
+ 1357 046f 0B       		.uleb128 0xb
+ 1358 0470 01       		.uleb128 0x1
+ 1359 0471 50       		.byte	0x50
+ 1360 0472 02       		.uleb128 0x2
+ 1361 0473 09       		.byte	0x9
+ 1362 0474 B8       		.byte	0xb8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 30
+
+
+ 1363 0475 00       		.byte	0
+ 1364 0476 0E       		.uleb128 0xe
+ 1365 0477 DA000000 		.4byte	.LVL50
+ 1366 047b 21080000 		.4byte	0x821
+ 1367 047f 0A       		.uleb128 0xa
+ 1368 0480 E0000000 		.4byte	.LVL51
+ 1369 0484 2E080000 		.4byte	0x82e
+ 1370 0488 93040000 		.4byte	0x493
+ 1371 048c 0B       		.uleb128 0xb
+ 1372 048d 01       		.uleb128 0x1
+ 1373 048e 50       		.byte	0x50
+ 1374 048f 02       		.uleb128 0x2
+ 1375 0490 74       		.byte	0x74
+ 1376 0491 00       		.sleb128 0
+ 1377 0492 00       		.byte	0
+ 1378 0493 0A       		.uleb128 0xa
+ 1379 0494 E6000000 		.4byte	.LVL52
+ 1380 0498 CC070000 		.4byte	0x7cc
+ 1381 049c A6040000 		.4byte	0x4a6
+ 1382 04a0 0B       		.uleb128 0xb
+ 1383 04a1 01       		.uleb128 0x1
+ 1384 04a2 50       		.byte	0x50
+ 1385 04a3 01       		.uleb128 0x1
+ 1386 04a4 31       		.byte	0x31
+ 1387 04a5 00       		.byte	0
+ 1388 04a6 0A       		.uleb128 0xa
+ 1389 04a7 EC000000 		.4byte	.LVL53
+ 1390 04ab 1C010000 		.4byte	0x11c
+ 1391 04af BA040000 		.4byte	0x4ba
+ 1392 04b3 0B       		.uleb128 0xb
+ 1393 04b4 01       		.uleb128 0x1
+ 1394 04b5 50       		.byte	0x50
+ 1395 04b6 02       		.uleb128 0x2
+ 1396 04b7 09       		.byte	0x9
+ 1397 04b8 BA       		.byte	0xba
+ 1398 04b9 00       		.byte	0
+ 1399 04ba 0E       		.uleb128 0xe
+ 1400 04bb F8000000 		.4byte	.LVL54
+ 1401 04bf 21080000 		.4byte	0x821
+ 1402 04c3 0A       		.uleb128 0xa
+ 1403 04c4 FE000000 		.4byte	.LVL55
+ 1404 04c8 2E080000 		.4byte	0x82e
+ 1405 04cc D7040000 		.4byte	0x4d7
+ 1406 04d0 0B       		.uleb128 0xb
+ 1407 04d1 01       		.uleb128 0x1
+ 1408 04d2 50       		.byte	0x50
+ 1409 04d3 02       		.uleb128 0x2
+ 1410 04d4 74       		.byte	0x74
+ 1411 04d5 00       		.sleb128 0
+ 1412 04d6 00       		.byte	0
+ 1413 04d7 0A       		.uleb128 0xa
+ 1414 04d8 04010000 		.4byte	.LVL56
+ 1415 04dc CC070000 		.4byte	0x7cc
+ 1416 04e0 EA040000 		.4byte	0x4ea
+ 1417 04e4 0B       		.uleb128 0xb
+ 1418 04e5 01       		.uleb128 0x1
+ 1419 04e6 50       		.byte	0x50
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 31
+
+
+ 1420 04e7 01       		.uleb128 0x1
+ 1421 04e8 31       		.byte	0x31
+ 1422 04e9 00       		.byte	0
+ 1423 04ea 0A       		.uleb128 0xa
+ 1424 04eb 0A010000 		.4byte	.LVL57
+ 1425 04ef 1C010000 		.4byte	0x11c
+ 1426 04f3 FE040000 		.4byte	0x4fe
+ 1427 04f7 0B       		.uleb128 0xb
+ 1428 04f8 01       		.uleb128 0x1
+ 1429 04f9 50       		.byte	0x50
+ 1430 04fa 02       		.uleb128 0x2
+ 1431 04fb 09       		.byte	0x9
+ 1432 04fc BC       		.byte	0xbc
+ 1433 04fd 00       		.byte	0
+ 1434 04fe 0E       		.uleb128 0xe
+ 1435 04ff 16010000 		.4byte	.LVL58
+ 1436 0503 21080000 		.4byte	0x821
+ 1437 0507 0A       		.uleb128 0xa
+ 1438 0508 1C010000 		.4byte	.LVL59
+ 1439 050c 2E080000 		.4byte	0x82e
+ 1440 0510 1B050000 		.4byte	0x51b
+ 1441 0514 0B       		.uleb128 0xb
+ 1442 0515 01       		.uleb128 0x1
+ 1443 0516 50       		.byte	0x50
+ 1444 0517 02       		.uleb128 0x2
+ 1445 0518 74       		.byte	0x74
+ 1446 0519 00       		.sleb128 0
+ 1447 051a 00       		.byte	0
+ 1448 051b 0A       		.uleb128 0xa
+ 1449 051c 22010000 		.4byte	.LVL60
+ 1450 0520 CC070000 		.4byte	0x7cc
+ 1451 0524 2E050000 		.4byte	0x52e
+ 1452 0528 0B       		.uleb128 0xb
+ 1453 0529 01       		.uleb128 0x1
+ 1454 052a 50       		.byte	0x50
+ 1455 052b 01       		.uleb128 0x1
+ 1456 052c 31       		.byte	0x31
+ 1457 052d 00       		.byte	0
+ 1458 052e 0A       		.uleb128 0xa
+ 1459 052f 28010000 		.4byte	.LVL61
+ 1460 0533 1C010000 		.4byte	0x11c
+ 1461 0537 42050000 		.4byte	0x542
+ 1462 053b 0B       		.uleb128 0xb
+ 1463 053c 01       		.uleb128 0x1
+ 1464 053d 50       		.byte	0x50
+ 1465 053e 02       		.uleb128 0x2
+ 1466 053f 09       		.byte	0x9
+ 1467 0540 BE       		.byte	0xbe
+ 1468 0541 00       		.byte	0
+ 1469 0542 0E       		.uleb128 0xe
+ 1470 0543 32010000 		.4byte	.LVL62
+ 1471 0547 21080000 		.4byte	0x821
+ 1472 054b 0A       		.uleb128 0xa
+ 1473 054c 38010000 		.4byte	.LVL63
+ 1474 0550 2E080000 		.4byte	0x82e
+ 1475 0554 5F050000 		.4byte	0x55f
+ 1476 0558 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 32
+
+
+ 1477 0559 01       		.uleb128 0x1
+ 1478 055a 50       		.byte	0x50
+ 1479 055b 02       		.uleb128 0x2
+ 1480 055c 74       		.byte	0x74
+ 1481 055d 00       		.sleb128 0
+ 1482 055e 00       		.byte	0
+ 1483 055f 0A       		.uleb128 0xa
+ 1484 0560 3E010000 		.4byte	.LVL64
+ 1485 0564 CC070000 		.4byte	0x7cc
+ 1486 0568 72050000 		.4byte	0x572
+ 1487 056c 0B       		.uleb128 0xb
+ 1488 056d 01       		.uleb128 0x1
+ 1489 056e 50       		.byte	0x50
+ 1490 056f 01       		.uleb128 0x1
+ 1491 0570 31       		.byte	0x31
+ 1492 0571 00       		.byte	0
+ 1493 0572 0C       		.uleb128 0xc
+ 1494 0573 44010000 		.4byte	.LVL65
+ 1495 0577 2E080000 		.4byte	0x82e
+ 1496 057b 0B       		.uleb128 0xb
+ 1497 057c 01       		.uleb128 0x1
+ 1498 057d 50       		.byte	0x50
+ 1499 057e 05       		.uleb128 0x5
+ 1500 057f 03       		.byte	0x3
+ 1501 0580 03000000 		.4byte	.LC11
+ 1502 0584 00       		.byte	0
+ 1503 0585 00       		.byte	0
+ 1504 0586 0D       		.uleb128 0xd
+ 1505 0587 0F030000 		.4byte	.LASF33
+ 1506 058b 01       		.byte	0x1
+ 1507 058c 75       		.byte	0x75
+ 1508 058d 00000000 		.4byte	.LFB36
+ 1509 0591 0C000000 		.4byte	.LFE36-.LFB36
+ 1510 0595 01       		.uleb128 0x1
+ 1511 0596 9C       		.byte	0x9c
+ 1512 0597 B2050000 		.4byte	0x5b2
+ 1513 059b 0C       		.uleb128 0xc
+ 1514 059c 0A000000 		.4byte	.LVL66
+ 1515 05a0 ED010000 		.4byte	0x1ed
+ 1516 05a4 0B       		.uleb128 0xb
+ 1517 05a5 01       		.uleb128 0x1
+ 1518 05a6 51       		.byte	0x51
+ 1519 05a7 02       		.uleb128 0x2
+ 1520 05a8 08       		.byte	0x8
+ 1521 05a9 2E       		.byte	0x2e
+ 1522 05aa 0B       		.uleb128 0xb
+ 1523 05ab 01       		.uleb128 0x1
+ 1524 05ac 50       		.byte	0x50
+ 1525 05ad 02       		.uleb128 0x2
+ 1526 05ae 09       		.byte	0x9
+ 1527 05af F4       		.byte	0xf4
+ 1528 05b0 00       		.byte	0
+ 1529 05b1 00       		.byte	0
+ 1530 05b2 0F       		.uleb128 0xf
+ 1531 05b3 B4010000 		.4byte	.LASF35
+ 1532 05b7 01       		.byte	0x1
+ 1533 05b8 7A       		.byte	0x7a
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 33
+
+
+ 1534 05b9 C3000000 		.4byte	0xc3
+ 1535 05bd 00000000 		.4byte	.LFB37
+ 1536 05c1 58000000 		.4byte	.LFE37-.LFB37
+ 1537 05c5 01       		.uleb128 0x1
+ 1538 05c6 9C       		.byte	0x9c
+ 1539 05c7 16060000 		.4byte	0x616
+ 1540 05cb 09       		.uleb128 0x9
+ 1541 05cc 06020000 		.4byte	.LASF36
+ 1542 05d0 01       		.byte	0x1
+ 1543 05d1 7C       		.byte	0x7c
+ 1544 05d2 AD000000 		.4byte	0xad
+ 1545 05d6 BF000000 		.4byte	.LLST6
+ 1546 05da 10       		.uleb128 0x10
+ 1547 05db 783100   		.ascii	"x1\000"
+ 1548 05de 01       		.byte	0x1
+ 1549 05df 7F       		.byte	0x7f
+ 1550 05e0 C3000000 		.4byte	0xc3
+ 1551 05e4 D2000000 		.4byte	.LLST7
+ 1552 05e8 10       		.uleb128 0x10
+ 1553 05e9 783200   		.ascii	"x2\000"
+ 1554 05ec 01       		.byte	0x1
+ 1555 05ed 83       		.byte	0x83
+ 1556 05ee C3000000 		.4byte	0xc3
+ 1557 05f2 E5000000 		.4byte	.LLST8
+ 1558 05f6 09       		.uleb128 0x9
+ 1559 05f7 00000000 		.4byte	.LASF37
+ 1560 05fb 01       		.byte	0x1
+ 1561 05fc 8A       		.byte	0x8a
+ 1562 05fd C3000000 		.4byte	0xc3
+ 1563 0601 3B010000 		.4byte	.LLST9
+ 1564 0605 0C       		.uleb128 0xc
+ 1565 0606 08000000 		.4byte	.LVL67
+ 1566 060a 1C010000 		.4byte	0x11c
+ 1567 060e 0B       		.uleb128 0xb
+ 1568 060f 01       		.uleb128 0x1
+ 1569 0610 50       		.byte	0x50
+ 1570 0611 02       		.uleb128 0x2
+ 1571 0612 09       		.byte	0x9
+ 1572 0613 F6       		.byte	0xf6
+ 1573 0614 00       		.byte	0
+ 1574 0615 00       		.byte	0
+ 1575 0616 0D       		.uleb128 0xd
+ 1576 0617 30030000 		.4byte	.LASF38
+ 1577 061b 01       		.byte	0x1
+ 1578 061c 8E       		.byte	0x8e
+ 1579 061d 00000000 		.4byte	.LFB38
+ 1580 0621 0C000000 		.4byte	.LFE38-.LFB38
+ 1581 0625 01       		.uleb128 0x1
+ 1582 0626 9C       		.byte	0x9c
+ 1583 0627 42060000 		.4byte	0x642
+ 1584 062b 0C       		.uleb128 0xc
+ 1585 062c 0A000000 		.4byte	.LVL76
+ 1586 0630 ED010000 		.4byte	0x1ed
+ 1587 0634 0B       		.uleb128 0xb
+ 1588 0635 01       		.uleb128 0x1
+ 1589 0636 51       		.byte	0x51
+ 1590 0637 02       		.uleb128 0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 34
+
+
+ 1591 0638 08       		.byte	0x8
+ 1592 0639 34       		.byte	0x34
+ 1593 063a 0B       		.uleb128 0xb
+ 1594 063b 01       		.uleb128 0x1
+ 1595 063c 50       		.byte	0x50
+ 1596 063d 02       		.uleb128 0x2
+ 1597 063e 09       		.byte	0x9
+ 1598 063f F4       		.byte	0xf4
+ 1599 0640 00       		.byte	0
+ 1600 0641 00       		.byte	0
+ 1601 0642 0F       		.uleb128 0xf
+ 1602 0643 11010000 		.4byte	.LASF39
+ 1603 0647 01       		.byte	0x1
+ 1604 0648 94       		.byte	0x94
+ 1605 0649 C3000000 		.4byte	0xc3
+ 1606 064d 00000000 		.4byte	.LFB39
+ 1607 0651 0C010000 		.4byte	.LFE39-.LFB39
+ 1608 0655 01       		.uleb128 0x1
+ 1609 0656 9C       		.byte	0x9c
+ 1610 0657 EC060000 		.4byte	0x6ec
+ 1611 065b 09       		.uleb128 0x9
+ 1612 065c E6020000 		.4byte	.LASF40
+ 1613 0660 01       		.byte	0x1
+ 1614 0661 96       		.byte	0x96
+ 1615 0662 B8000000 		.4byte	0xb8
+ 1616 0666 59010000 		.4byte	.LLST10
+ 1617 066a 10       		.uleb128 0x10
+ 1618 066b 423600   		.ascii	"B6\000"
+ 1619 066e 01       		.byte	0x1
+ 1620 066f 9A       		.byte	0x9a
+ 1621 0670 C3000000 		.4byte	0xc3
+ 1622 0674 6C010000 		.4byte	.LLST11
+ 1623 0678 10       		.uleb128 0x10
+ 1624 0679 783100   		.ascii	"x1\000"
+ 1625 067c 01       		.byte	0x1
+ 1626 067d 9E       		.byte	0x9e
+ 1627 067e C3000000 		.4byte	0xc3
+ 1628 0682 B3010000 		.4byte	.LLST12
+ 1629 0686 10       		.uleb128 0x10
+ 1630 0687 783200   		.ascii	"x2\000"
+ 1631 068a 01       		.byte	0x1
+ 1632 068b A2       		.byte	0xa2
+ 1633 068c C3000000 		.4byte	0xc3
+ 1634 0690 AB020000 		.4byte	.LLST13
+ 1635 0694 10       		.uleb128 0x10
+ 1636 0695 783300   		.ascii	"x3\000"
+ 1637 0698 01       		.byte	0x1
+ 1638 0699 A5       		.byte	0xa5
+ 1639 069a C3000000 		.4byte	0xc3
+ 1640 069e 0B040000 		.4byte	.LLST14
+ 1641 06a2 10       		.uleb128 0x10
+ 1642 06a3 423300   		.ascii	"B3\000"
+ 1643 06a6 01       		.byte	0x1
+ 1644 06a7 A9       		.byte	0xa9
+ 1645 06a8 C3000000 		.4byte	0xc3
+ 1646 06ac 7E060000 		.4byte	.LLST15
+ 1647 06b0 10       		.uleb128 0x10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 35
+
+
+ 1648 06b1 423400   		.ascii	"B4\000"
+ 1649 06b4 01       		.byte	0x1
+ 1650 06b5 B9       		.byte	0xb9
+ 1651 06b6 CE000000 		.4byte	0xce
+ 1652 06ba 4A0A0000 		.4byte	.LLST16
+ 1653 06be 10       		.uleb128 0x10
+ 1654 06bf 423700   		.ascii	"B7\000"
+ 1655 06c2 01       		.byte	0x1
+ 1656 06c3 BD       		.byte	0xbd
+ 1657 06c4 CE000000 		.4byte	0xce
+ 1658 06c8 680A0000 		.4byte	.LLST17
+ 1659 06cc 09       		.uleb128 0x9
+ 1660 06cd 79000000 		.4byte	.LASF41
+ 1661 06d1 01       		.byte	0x1
+ 1662 06d2 C1       		.byte	0xc1
+ 1663 06d3 C3000000 		.4byte	0xc3
+ 1664 06d7 860A0000 		.4byte	.LLST18
+ 1665 06db 0C       		.uleb128 0xc
+ 1666 06dc 08000000 		.4byte	.LVL77
+ 1667 06e0 1C010000 		.4byte	0x11c
+ 1668 06e4 0B       		.uleb128 0xb
+ 1669 06e5 01       		.uleb128 0x1
+ 1670 06e6 50       		.byte	0x50
+ 1671 06e7 02       		.uleb128 0x2
+ 1672 06e8 09       		.byte	0x9
+ 1673 06e9 F6       		.byte	0xf6
+ 1674 06ea 00       		.byte	0
+ 1675 06eb 00       		.byte	0
+ 1676 06ec 11       		.uleb128 0x11
+ 1677 06ed 41433100 		.ascii	"AC1\000"
+ 1678 06f1 01       		.byte	0x1
+ 1679 06f2 1C       		.byte	0x1c
+ 1680 06f3 AD000000 		.4byte	0xad
+ 1681 06f7 05       		.uleb128 0x5
+ 1682 06f8 03       		.byte	0x3
+ 1683 06f9 00000000 		.4byte	AC1
+ 1684 06fd 11       		.uleb128 0x11
+ 1685 06fe 41433200 		.ascii	"AC2\000"
+ 1686 0702 01       		.byte	0x1
+ 1687 0703 1C       		.byte	0x1c
+ 1688 0704 AD000000 		.4byte	0xad
+ 1689 0708 05       		.uleb128 0x5
+ 1690 0709 03       		.byte	0x3
+ 1691 070a 00000000 		.4byte	AC2
+ 1692 070e 11       		.uleb128 0x11
+ 1693 070f 41433300 		.ascii	"AC3\000"
+ 1694 0713 01       		.byte	0x1
+ 1695 0714 1C       		.byte	0x1c
+ 1696 0715 AD000000 		.4byte	0xad
+ 1697 0719 05       		.uleb128 0x5
+ 1698 071a 03       		.byte	0x3
+ 1699 071b 00000000 		.4byte	AC3
+ 1700 071f 11       		.uleb128 0x11
+ 1701 0720 41433400 		.ascii	"AC4\000"
+ 1702 0724 01       		.byte	0x1
+ 1703 0725 1D       		.byte	0x1d
+ 1704 0726 B8000000 		.4byte	0xb8
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 36
+
+
+ 1705 072a 05       		.uleb128 0x5
+ 1706 072b 03       		.byte	0x3
+ 1707 072c 00000000 		.4byte	AC4
+ 1708 0730 11       		.uleb128 0x11
+ 1709 0731 41433500 		.ascii	"AC5\000"
+ 1710 0735 01       		.byte	0x1
+ 1711 0736 1D       		.byte	0x1d
+ 1712 0737 B8000000 		.4byte	0xb8
+ 1713 073b 05       		.uleb128 0x5
+ 1714 073c 03       		.byte	0x3
+ 1715 073d 00000000 		.4byte	AC5
+ 1716 0741 11       		.uleb128 0x11
+ 1717 0742 41433600 		.ascii	"AC6\000"
+ 1718 0746 01       		.byte	0x1
+ 1719 0747 1D       		.byte	0x1d
+ 1720 0748 B8000000 		.4byte	0xb8
+ 1721 074c 05       		.uleb128 0x5
+ 1722 074d 03       		.byte	0x3
+ 1723 074e 00000000 		.4byte	AC6
+ 1724 0752 11       		.uleb128 0x11
+ 1725 0753 423100   		.ascii	"B1\000"
+ 1726 0756 01       		.byte	0x1
+ 1727 0757 1E       		.byte	0x1e
+ 1728 0758 AD000000 		.4byte	0xad
+ 1729 075c 05       		.uleb128 0x5
+ 1730 075d 03       		.byte	0x3
+ 1731 075e 00000000 		.4byte	B1
+ 1732 0762 11       		.uleb128 0x11
+ 1733 0763 423200   		.ascii	"B2\000"
+ 1734 0766 01       		.byte	0x1
+ 1735 0767 1E       		.byte	0x1e
+ 1736 0768 AD000000 		.4byte	0xad
+ 1737 076c 05       		.uleb128 0x5
+ 1738 076d 03       		.byte	0x3
+ 1739 076e 00000000 		.4byte	B2
+ 1740 0772 11       		.uleb128 0x11
+ 1741 0773 423500   		.ascii	"B5\000"
+ 1742 0776 01       		.byte	0x1
+ 1743 0777 1E       		.byte	0x1e
+ 1744 0778 AD000000 		.4byte	0xad
+ 1745 077c 05       		.uleb128 0x5
+ 1746 077d 03       		.byte	0x3
+ 1747 077e 00000000 		.4byte	B5
+ 1748 0782 11       		.uleb128 0x11
+ 1749 0783 4D4200   		.ascii	"MB\000"
+ 1750 0786 01       		.byte	0x1
+ 1751 0787 1E       		.byte	0x1e
+ 1752 0788 AD000000 		.4byte	0xad
+ 1753 078c 05       		.uleb128 0x5
+ 1754 078d 03       		.byte	0x3
+ 1755 078e 00000000 		.4byte	MB
+ 1756 0792 11       		.uleb128 0x11
+ 1757 0793 4D4300   		.ascii	"MC\000"
+ 1758 0796 01       		.byte	0x1
+ 1759 0797 1E       		.byte	0x1e
+ 1760 0798 AD000000 		.4byte	0xad
+ 1761 079c 05       		.uleb128 0x5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 37
+
+
+ 1762 079d 03       		.byte	0x3
+ 1763 079e 00000000 		.4byte	MC
+ 1764 07a2 11       		.uleb128 0x11
+ 1765 07a3 4D4400   		.ascii	"MD\000"
+ 1766 07a6 01       		.byte	0x1
+ 1767 07a7 1E       		.byte	0x1e
+ 1768 07a8 AD000000 		.4byte	0xad
+ 1769 07ac 05       		.uleb128 0x5
+ 1770 07ad 03       		.byte	0x3
+ 1771 07ae 00000000 		.4byte	MD
+ 1772 07b2 12       		.uleb128 0x12
+ 1773 07b3 EE010000 		.4byte	.LASF42
+ 1774 07b7 05       		.byte	0x5
+ 1775 07b8 BB       		.byte	0xbb
+ 1776 07b9 D9000000 		.4byte	0xd9
+ 1777 07bd CC070000 		.4byte	0x7cc
+ 1778 07c1 13       		.uleb128 0x13
+ 1779 07c2 D9000000 		.4byte	0xd9
+ 1780 07c6 13       		.uleb128 0x13
+ 1781 07c7 D9000000 		.4byte	0xd9
+ 1782 07cb 00       		.byte	0
+ 1783 07cc 14       		.uleb128 0x14
+ 1784 07cd 07030000 		.4byte	.LASF46
+ 1785 07d1 06       		.byte	0x6
+ 1786 07d2 7B       		.byte	0x7b
+ 1787 07d3 DD070000 		.4byte	0x7dd
+ 1788 07d7 13       		.uleb128 0x13
+ 1789 07d8 D9000000 		.4byte	0xd9
+ 1790 07dc 00       		.byte	0
+ 1791 07dd 12       		.uleb128 0x12
+ 1792 07de 43010000 		.4byte	.LASF43
+ 1793 07e2 05       		.byte	0x5
+ 1794 07e3 BE       		.byte	0xbe
+ 1795 07e4 D9000000 		.4byte	0xd9
+ 1796 07e8 F2070000 		.4byte	0x7f2
+ 1797 07ec 13       		.uleb128 0x13
+ 1798 07ed D9000000 		.4byte	0xd9
+ 1799 07f1 00       		.byte	0
+ 1800 07f2 12       		.uleb128 0x12
+ 1801 07f3 92000000 		.4byte	.LASF44
+ 1802 07f7 05       		.byte	0x5
+ 1803 07f8 BC       		.byte	0xbc
+ 1804 07f9 D9000000 		.4byte	0xd9
+ 1805 07fd 0C080000 		.4byte	0x80c
+ 1806 0801 13       		.uleb128 0x13
+ 1807 0802 D9000000 		.4byte	0xd9
+ 1808 0806 13       		.uleb128 0x13
+ 1809 0807 D9000000 		.4byte	0xd9
+ 1810 080b 00       		.byte	0
+ 1811 080c 12       		.uleb128 0x12
+ 1812 080d 12020000 		.4byte	.LASF45
+ 1813 0811 05       		.byte	0x5
+ 1814 0812 BF       		.byte	0xbf
+ 1815 0813 D9000000 		.4byte	0xd9
+ 1816 0817 21080000 		.4byte	0x821
+ 1817 081b 13       		.uleb128 0x13
+ 1818 081c D9000000 		.4byte	0xd9
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 38
+
+
+ 1819 0820 00       		.byte	0
+ 1820 0821 15       		.uleb128 0x15
+ 1821 0822 D3010000 		.4byte	.LASF51
+ 1822 0826 01       		.byte	0x1
+ 1823 0827 20       		.byte	0x20
+ 1824 0828 2E080000 		.4byte	0x82e
+ 1825 082c 16       		.uleb128 0x16
+ 1826 082d 00       		.byte	0
+ 1827 082e 17       		.uleb128 0x17
+ 1828 082f C7000000 		.4byte	.LASF47
+ 1829 0833 07       		.byte	0x7
+ 1830 0834 6801     		.2byte	0x168
+ 1831 0836 40080000 		.4byte	0x840
+ 1832 083a 13       		.uleb128 0x13
+ 1833 083b 40080000 		.4byte	0x840
+ 1834 083f 00       		.byte	0
+ 1835 0840 18       		.uleb128 0x18
+ 1836 0841 04       		.byte	0x4
+ 1837 0842 46080000 		.4byte	0x846
+ 1838 0846 19       		.uleb128 0x19
+ 1839 0847 F2000000 		.4byte	0xf2
+ 1840 084b 00       		.byte	0
+ 1841              		.section	.debug_abbrev,"",%progbits
+ 1842              	.Ldebug_abbrev0:
+ 1843 0000 01       		.uleb128 0x1
+ 1844 0001 11       		.uleb128 0x11
+ 1845 0002 01       		.byte	0x1
+ 1846 0003 25       		.uleb128 0x25
+ 1847 0004 0E       		.uleb128 0xe
+ 1848 0005 13       		.uleb128 0x13
+ 1849 0006 0B       		.uleb128 0xb
+ 1850 0007 03       		.uleb128 0x3
+ 1851 0008 0E       		.uleb128 0xe
+ 1852 0009 1B       		.uleb128 0x1b
+ 1853 000a 0E       		.uleb128 0xe
+ 1854 000b 55       		.uleb128 0x55
+ 1855 000c 17       		.uleb128 0x17
+ 1856 000d 11       		.uleb128 0x11
+ 1857 000e 01       		.uleb128 0x1
+ 1858 000f 10       		.uleb128 0x10
+ 1859 0010 17       		.uleb128 0x17
+ 1860 0011 00       		.byte	0
+ 1861 0012 00       		.byte	0
+ 1862 0013 02       		.uleb128 0x2
+ 1863 0014 24       		.uleb128 0x24
+ 1864 0015 00       		.byte	0
+ 1865 0016 0B       		.uleb128 0xb
+ 1866 0017 0B       		.uleb128 0xb
+ 1867 0018 3E       		.uleb128 0x3e
+ 1868 0019 0B       		.uleb128 0xb
+ 1869 001a 03       		.uleb128 0x3
+ 1870 001b 0E       		.uleb128 0xe
+ 1871 001c 00       		.byte	0
+ 1872 001d 00       		.byte	0
+ 1873 001e 03       		.uleb128 0x3
+ 1874 001f 16       		.uleb128 0x16
+ 1875 0020 00       		.byte	0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 39
+
+
+ 1876 0021 03       		.uleb128 0x3
+ 1877 0022 0E       		.uleb128 0xe
+ 1878 0023 3A       		.uleb128 0x3a
+ 1879 0024 0B       		.uleb128 0xb
+ 1880 0025 3B       		.uleb128 0x3b
+ 1881 0026 0B       		.uleb128 0xb
+ 1882 0027 49       		.uleb128 0x49
+ 1883 0028 13       		.uleb128 0x13
+ 1884 0029 00       		.byte	0
+ 1885 002a 00       		.byte	0
+ 1886 002b 04       		.uleb128 0x4
+ 1887 002c 24       		.uleb128 0x24
+ 1888 002d 00       		.byte	0
+ 1889 002e 0B       		.uleb128 0xb
+ 1890 002f 0B       		.uleb128 0xb
+ 1891 0030 3E       		.uleb128 0x3e
+ 1892 0031 0B       		.uleb128 0xb
+ 1893 0032 03       		.uleb128 0x3
+ 1894 0033 08       		.uleb128 0x8
+ 1895 0034 00       		.byte	0
+ 1896 0035 00       		.byte	0
+ 1897 0036 05       		.uleb128 0x5
+ 1898 0037 16       		.uleb128 0x16
+ 1899 0038 00       		.byte	0
+ 1900 0039 03       		.uleb128 0x3
+ 1901 003a 0E       		.uleb128 0xe
+ 1902 003b 3A       		.uleb128 0x3a
+ 1903 003c 0B       		.uleb128 0xb
+ 1904 003d 3B       		.uleb128 0x3b
+ 1905 003e 05       		.uleb128 0x5
+ 1906 003f 49       		.uleb128 0x49
+ 1907 0040 13       		.uleb128 0x13
+ 1908 0041 00       		.byte	0
+ 1909 0042 00       		.byte	0
+ 1910 0043 06       		.uleb128 0x6
+ 1911 0044 35       		.uleb128 0x35
+ 1912 0045 00       		.byte	0
+ 1913 0046 49       		.uleb128 0x49
+ 1914 0047 13       		.uleb128 0x13
+ 1915 0048 00       		.byte	0
+ 1916 0049 00       		.byte	0
+ 1917 004a 07       		.uleb128 0x7
+ 1918 004b 2E       		.uleb128 0x2e
+ 1919 004c 01       		.byte	0x1
+ 1920 004d 3F       		.uleb128 0x3f
+ 1921 004e 19       		.uleb128 0x19
+ 1922 004f 03       		.uleb128 0x3
+ 1923 0050 0E       		.uleb128 0xe
+ 1924 0051 3A       		.uleb128 0x3a
+ 1925 0052 0B       		.uleb128 0xb
+ 1926 0053 3B       		.uleb128 0x3b
+ 1927 0054 0B       		.uleb128 0xb
+ 1928 0055 27       		.uleb128 0x27
+ 1929 0056 19       		.uleb128 0x19
+ 1930 0057 49       		.uleb128 0x49
+ 1931 0058 13       		.uleb128 0x13
+ 1932 0059 11       		.uleb128 0x11
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 40
+
+
+ 1933 005a 01       		.uleb128 0x1
+ 1934 005b 12       		.uleb128 0x12
+ 1935 005c 06       		.uleb128 0x6
+ 1936 005d 40       		.uleb128 0x40
+ 1937 005e 18       		.uleb128 0x18
+ 1938 005f 9742     		.uleb128 0x2117
+ 1939 0061 19       		.uleb128 0x19
+ 1940 0062 01       		.uleb128 0x1
+ 1941 0063 13       		.uleb128 0x13
+ 1942 0064 00       		.byte	0
+ 1943 0065 00       		.byte	0
+ 1944 0066 08       		.uleb128 0x8
+ 1945 0067 05       		.uleb128 0x5
+ 1946 0068 00       		.byte	0
+ 1947 0069 03       		.uleb128 0x3
+ 1948 006a 0E       		.uleb128 0xe
+ 1949 006b 3A       		.uleb128 0x3a
+ 1950 006c 0B       		.uleb128 0xb
+ 1951 006d 3B       		.uleb128 0x3b
+ 1952 006e 0B       		.uleb128 0xb
+ 1953 006f 49       		.uleb128 0x49
+ 1954 0070 13       		.uleb128 0x13
+ 1955 0071 02       		.uleb128 0x2
+ 1956 0072 17       		.uleb128 0x17
+ 1957 0073 00       		.byte	0
+ 1958 0074 00       		.byte	0
+ 1959 0075 09       		.uleb128 0x9
+ 1960 0076 34       		.uleb128 0x34
+ 1961 0077 00       		.byte	0
+ 1962 0078 03       		.uleb128 0x3
+ 1963 0079 0E       		.uleb128 0xe
+ 1964 007a 3A       		.uleb128 0x3a
+ 1965 007b 0B       		.uleb128 0xb
+ 1966 007c 3B       		.uleb128 0x3b
+ 1967 007d 0B       		.uleb128 0xb
+ 1968 007e 49       		.uleb128 0x49
+ 1969 007f 13       		.uleb128 0x13
+ 1970 0080 02       		.uleb128 0x2
+ 1971 0081 17       		.uleb128 0x17
+ 1972 0082 00       		.byte	0
+ 1973 0083 00       		.byte	0
+ 1974 0084 0A       		.uleb128 0xa
+ 1975 0085 898201   		.uleb128 0x4109
+ 1976 0088 01       		.byte	0x1
+ 1977 0089 11       		.uleb128 0x11
+ 1978 008a 01       		.uleb128 0x1
+ 1979 008b 31       		.uleb128 0x31
+ 1980 008c 13       		.uleb128 0x13
+ 1981 008d 01       		.uleb128 0x1
+ 1982 008e 13       		.uleb128 0x13
+ 1983 008f 00       		.byte	0
+ 1984 0090 00       		.byte	0
+ 1985 0091 0B       		.uleb128 0xb
+ 1986 0092 8A8201   		.uleb128 0x410a
+ 1987 0095 00       		.byte	0
+ 1988 0096 02       		.uleb128 0x2
+ 1989 0097 18       		.uleb128 0x18
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 41
+
+
+ 1990 0098 9142     		.uleb128 0x2111
+ 1991 009a 18       		.uleb128 0x18
+ 1992 009b 00       		.byte	0
+ 1993 009c 00       		.byte	0
+ 1994 009d 0C       		.uleb128 0xc
+ 1995 009e 898201   		.uleb128 0x4109
+ 1996 00a1 01       		.byte	0x1
+ 1997 00a2 11       		.uleb128 0x11
+ 1998 00a3 01       		.uleb128 0x1
+ 1999 00a4 31       		.uleb128 0x31
+ 2000 00a5 13       		.uleb128 0x13
+ 2001 00a6 00       		.byte	0
+ 2002 00a7 00       		.byte	0
+ 2003 00a8 0D       		.uleb128 0xd
+ 2004 00a9 2E       		.uleb128 0x2e
+ 2005 00aa 01       		.byte	0x1
+ 2006 00ab 3F       		.uleb128 0x3f
+ 2007 00ac 19       		.uleb128 0x19
+ 2008 00ad 03       		.uleb128 0x3
+ 2009 00ae 0E       		.uleb128 0xe
+ 2010 00af 3A       		.uleb128 0x3a
+ 2011 00b0 0B       		.uleb128 0xb
+ 2012 00b1 3B       		.uleb128 0x3b
+ 2013 00b2 0B       		.uleb128 0xb
+ 2014 00b3 27       		.uleb128 0x27
+ 2015 00b4 19       		.uleb128 0x19
+ 2016 00b5 11       		.uleb128 0x11
+ 2017 00b6 01       		.uleb128 0x1
+ 2018 00b7 12       		.uleb128 0x12
+ 2019 00b8 06       		.uleb128 0x6
+ 2020 00b9 40       		.uleb128 0x40
+ 2021 00ba 18       		.uleb128 0x18
+ 2022 00bb 9742     		.uleb128 0x2117
+ 2023 00bd 19       		.uleb128 0x19
+ 2024 00be 01       		.uleb128 0x1
+ 2025 00bf 13       		.uleb128 0x13
+ 2026 00c0 00       		.byte	0
+ 2027 00c1 00       		.byte	0
+ 2028 00c2 0E       		.uleb128 0xe
+ 2029 00c3 898201   		.uleb128 0x4109
+ 2030 00c6 00       		.byte	0
+ 2031 00c7 11       		.uleb128 0x11
+ 2032 00c8 01       		.uleb128 0x1
+ 2033 00c9 31       		.uleb128 0x31
+ 2034 00ca 13       		.uleb128 0x13
+ 2035 00cb 00       		.byte	0
+ 2036 00cc 00       		.byte	0
+ 2037 00cd 0F       		.uleb128 0xf
+ 2038 00ce 2E       		.uleb128 0x2e
+ 2039 00cf 01       		.byte	0x1
+ 2040 00d0 3F       		.uleb128 0x3f
+ 2041 00d1 19       		.uleb128 0x19
+ 2042 00d2 03       		.uleb128 0x3
+ 2043 00d3 0E       		.uleb128 0xe
+ 2044 00d4 3A       		.uleb128 0x3a
+ 2045 00d5 0B       		.uleb128 0xb
+ 2046 00d6 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 42
+
+
+ 2047 00d7 0B       		.uleb128 0xb
+ 2048 00d8 27       		.uleb128 0x27
+ 2049 00d9 19       		.uleb128 0x19
+ 2050 00da 49       		.uleb128 0x49
+ 2051 00db 13       		.uleb128 0x13
+ 2052 00dc 11       		.uleb128 0x11
+ 2053 00dd 01       		.uleb128 0x1
+ 2054 00de 12       		.uleb128 0x12
+ 2055 00df 06       		.uleb128 0x6
+ 2056 00e0 40       		.uleb128 0x40
+ 2057 00e1 18       		.uleb128 0x18
+ 2058 00e2 9642     		.uleb128 0x2116
+ 2059 00e4 19       		.uleb128 0x19
+ 2060 00e5 01       		.uleb128 0x1
+ 2061 00e6 13       		.uleb128 0x13
+ 2062 00e7 00       		.byte	0
+ 2063 00e8 00       		.byte	0
+ 2064 00e9 10       		.uleb128 0x10
+ 2065 00ea 34       		.uleb128 0x34
+ 2066 00eb 00       		.byte	0
+ 2067 00ec 03       		.uleb128 0x3
+ 2068 00ed 08       		.uleb128 0x8
+ 2069 00ee 3A       		.uleb128 0x3a
+ 2070 00ef 0B       		.uleb128 0xb
+ 2071 00f0 3B       		.uleb128 0x3b
+ 2072 00f1 0B       		.uleb128 0xb
+ 2073 00f2 49       		.uleb128 0x49
+ 2074 00f3 13       		.uleb128 0x13
+ 2075 00f4 02       		.uleb128 0x2
+ 2076 00f5 17       		.uleb128 0x17
+ 2077 00f6 00       		.byte	0
+ 2078 00f7 00       		.byte	0
+ 2079 00f8 11       		.uleb128 0x11
+ 2080 00f9 34       		.uleb128 0x34
+ 2081 00fa 00       		.byte	0
+ 2082 00fb 03       		.uleb128 0x3
+ 2083 00fc 08       		.uleb128 0x8
+ 2084 00fd 3A       		.uleb128 0x3a
+ 2085 00fe 0B       		.uleb128 0xb
+ 2086 00ff 3B       		.uleb128 0x3b
+ 2087 0100 0B       		.uleb128 0xb
+ 2088 0101 49       		.uleb128 0x49
+ 2089 0102 13       		.uleb128 0x13
+ 2090 0103 3F       		.uleb128 0x3f
+ 2091 0104 19       		.uleb128 0x19
+ 2092 0105 02       		.uleb128 0x2
+ 2093 0106 18       		.uleb128 0x18
+ 2094 0107 00       		.byte	0
+ 2095 0108 00       		.byte	0
+ 2096 0109 12       		.uleb128 0x12
+ 2097 010a 2E       		.uleb128 0x2e
+ 2098 010b 01       		.byte	0x1
+ 2099 010c 3F       		.uleb128 0x3f
+ 2100 010d 19       		.uleb128 0x19
+ 2101 010e 03       		.uleb128 0x3
+ 2102 010f 0E       		.uleb128 0xe
+ 2103 0110 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 43
+
+
+ 2104 0111 0B       		.uleb128 0xb
+ 2105 0112 3B       		.uleb128 0x3b
+ 2106 0113 0B       		.uleb128 0xb
+ 2107 0114 27       		.uleb128 0x27
+ 2108 0115 19       		.uleb128 0x19
+ 2109 0116 49       		.uleb128 0x49
+ 2110 0117 13       		.uleb128 0x13
+ 2111 0118 3C       		.uleb128 0x3c
+ 2112 0119 19       		.uleb128 0x19
+ 2113 011a 01       		.uleb128 0x1
+ 2114 011b 13       		.uleb128 0x13
+ 2115 011c 00       		.byte	0
+ 2116 011d 00       		.byte	0
+ 2117 011e 13       		.uleb128 0x13
+ 2118 011f 05       		.uleb128 0x5
+ 2119 0120 00       		.byte	0
+ 2120 0121 49       		.uleb128 0x49
+ 2121 0122 13       		.uleb128 0x13
+ 2122 0123 00       		.byte	0
+ 2123 0124 00       		.byte	0
+ 2124 0125 14       		.uleb128 0x14
+ 2125 0126 2E       		.uleb128 0x2e
+ 2126 0127 01       		.byte	0x1
+ 2127 0128 3F       		.uleb128 0x3f
+ 2128 0129 19       		.uleb128 0x19
+ 2129 012a 03       		.uleb128 0x3
+ 2130 012b 0E       		.uleb128 0xe
+ 2131 012c 3A       		.uleb128 0x3a
+ 2132 012d 0B       		.uleb128 0xb
+ 2133 012e 3B       		.uleb128 0x3b
+ 2134 012f 0B       		.uleb128 0xb
+ 2135 0130 27       		.uleb128 0x27
+ 2136 0131 19       		.uleb128 0x19
+ 2137 0132 3C       		.uleb128 0x3c
+ 2138 0133 19       		.uleb128 0x19
+ 2139 0134 01       		.uleb128 0x1
+ 2140 0135 13       		.uleb128 0x13
+ 2141 0136 00       		.byte	0
+ 2142 0137 00       		.byte	0
+ 2143 0138 15       		.uleb128 0x15
+ 2144 0139 2E       		.uleb128 0x2e
+ 2145 013a 01       		.byte	0x1
+ 2146 013b 3F       		.uleb128 0x3f
+ 2147 013c 19       		.uleb128 0x19
+ 2148 013d 03       		.uleb128 0x3
+ 2149 013e 0E       		.uleb128 0xe
+ 2150 013f 3A       		.uleb128 0x3a
+ 2151 0140 0B       		.uleb128 0xb
+ 2152 0141 3B       		.uleb128 0x3b
+ 2153 0142 0B       		.uleb128 0xb
+ 2154 0143 3C       		.uleb128 0x3c
+ 2155 0144 19       		.uleb128 0x19
+ 2156 0145 01       		.uleb128 0x1
+ 2157 0146 13       		.uleb128 0x13
+ 2158 0147 00       		.byte	0
+ 2159 0148 00       		.byte	0
+ 2160 0149 16       		.uleb128 0x16
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 44
+
+
+ 2161 014a 18       		.uleb128 0x18
+ 2162 014b 00       		.byte	0
+ 2163 014c 00       		.byte	0
+ 2164 014d 00       		.byte	0
+ 2165 014e 17       		.uleb128 0x17
+ 2166 014f 2E       		.uleb128 0x2e
+ 2167 0150 01       		.byte	0x1
+ 2168 0151 3F       		.uleb128 0x3f
+ 2169 0152 19       		.uleb128 0x19
+ 2170 0153 03       		.uleb128 0x3
+ 2171 0154 0E       		.uleb128 0xe
+ 2172 0155 3A       		.uleb128 0x3a
+ 2173 0156 0B       		.uleb128 0xb
+ 2174 0157 3B       		.uleb128 0x3b
+ 2175 0158 05       		.uleb128 0x5
+ 2176 0159 27       		.uleb128 0x27
+ 2177 015a 19       		.uleb128 0x19
+ 2178 015b 3C       		.uleb128 0x3c
+ 2179 015c 19       		.uleb128 0x19
+ 2180 015d 01       		.uleb128 0x1
+ 2181 015e 13       		.uleb128 0x13
+ 2182 015f 00       		.byte	0
+ 2183 0160 00       		.byte	0
+ 2184 0161 18       		.uleb128 0x18
+ 2185 0162 0F       		.uleb128 0xf
+ 2186 0163 00       		.byte	0
+ 2187 0164 0B       		.uleb128 0xb
+ 2188 0165 0B       		.uleb128 0xb
+ 2189 0166 49       		.uleb128 0x49
+ 2190 0167 13       		.uleb128 0x13
+ 2191 0168 00       		.byte	0
+ 2192 0169 00       		.byte	0
+ 2193 016a 19       		.uleb128 0x19
+ 2194 016b 26       		.uleb128 0x26
+ 2195 016c 00       		.byte	0
+ 2196 016d 49       		.uleb128 0x49
+ 2197 016e 13       		.uleb128 0x13
+ 2198 016f 00       		.byte	0
+ 2199 0170 00       		.byte	0
+ 2200 0171 00       		.byte	0
+ 2201              		.section	.debug_loc,"",%progbits
+ 2202              	.Ldebug_loc0:
+ 2203              	.LLST0:
+ 2204 0000 00000000 		.4byte	.LVL0
+ 2205 0004 08000000 		.4byte	.LVL1
+ 2206 0008 0100     		.2byte	0x1
+ 2207 000a 50       		.byte	0x50
+ 2208 000b 08000000 		.4byte	.LVL1
+ 2209 000f 50000000 		.4byte	.LFE33
+ 2210 0013 0400     		.2byte	0x4
+ 2211 0015 F3       		.byte	0xf3
+ 2212 0016 01       		.uleb128 0x1
+ 2213 0017 50       		.byte	0x50
+ 2214 0018 9F       		.byte	0x9f
+ 2215 0019 00000000 		.4byte	0
+ 2216 001d 00000000 		.4byte	0
+ 2217              	.LLST1:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 45
+
+
+ 2218 0021 28000000 		.4byte	.LVL7
+ 2219 0025 2A000000 		.4byte	.LVL8
+ 2220 0029 0100     		.2byte	0x1
+ 2221 002b 50       		.byte	0x50
+ 2222 002c 2A000000 		.4byte	.LVL8
+ 2223 0030 46000000 		.4byte	.LVL13
+ 2224 0034 0100     		.2byte	0x1
+ 2225 0036 54       		.byte	0x54
+ 2226 0037 00000000 		.4byte	0
+ 2227 003b 00000000 		.4byte	0
+ 2228              	.LLST2:
+ 2229 003f 32000000 		.4byte	.LVL10
+ 2230 0043 3A000000 		.4byte	.LVL11
+ 2231 0047 0100     		.2byte	0x1
+ 2232 0049 50       		.byte	0x50
+ 2233 004a 3A000000 		.4byte	.LVL11
+ 2234 004e 50000000 		.4byte	.LFE33
+ 2235 0052 0100     		.2byte	0x1
+ 2236 0054 52       		.byte	0x52
+ 2237 0055 00000000 		.4byte	0
+ 2238 0059 00000000 		.4byte	0
+ 2239              	.LLST3:
+ 2240 005d 46000000 		.4byte	.LVL12
+ 2241 0061 46000000 		.4byte	.LVL13
+ 2242 0065 0E00     		.2byte	0xe
+ 2243 0067 74       		.byte	0x74
+ 2244 0068 00       		.sleb128 0
+ 2245 0069 08       		.byte	0x8
+ 2246 006a FF       		.byte	0xff
+ 2247 006b 1A       		.byte	0x1a
+ 2248 006c 38       		.byte	0x38
+ 2249 006d 24       		.byte	0x24
+ 2250 006e 72       		.byte	0x72
+ 2251 006f 00       		.sleb128 0
+ 2252 0070 08       		.byte	0x8
+ 2253 0071 FF       		.byte	0xff
+ 2254 0072 1A       		.byte	0x1a
+ 2255 0073 21       		.byte	0x21
+ 2256 0074 9F       		.byte	0x9f
+ 2257 0075 00000000 		.4byte	0
+ 2258 0079 00000000 		.4byte	0
+ 2259              	.LLST4:
+ 2260 007d 00000000 		.4byte	.LVL14
+ 2261 0081 08000000 		.4byte	.LVL15
+ 2262 0085 0100     		.2byte	0x1
+ 2263 0087 50       		.byte	0x50
+ 2264 0088 08000000 		.4byte	.LVL15
+ 2265 008c 3C000000 		.4byte	.LFE34
+ 2266 0090 0400     		.2byte	0x4
+ 2267 0092 F3       		.byte	0xf3
+ 2268 0093 01       		.uleb128 0x1
+ 2269 0094 50       		.byte	0x50
+ 2270 0095 9F       		.byte	0x9f
+ 2271 0096 00000000 		.4byte	0
+ 2272 009a 00000000 		.4byte	0
+ 2273              	.LLST5:
+ 2274 009e 00000000 		.4byte	.LVL14
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 46
+
+
+ 2275 00a2 0A000000 		.4byte	.LVL16
+ 2276 00a6 0100     		.2byte	0x1
+ 2277 00a8 51       		.byte	0x51
+ 2278 00a9 0A000000 		.4byte	.LVL16
+ 2279 00ad 3C000000 		.4byte	.LFE34
+ 2280 00b1 0400     		.2byte	0x4
+ 2281 00b3 F3       		.byte	0xf3
+ 2282 00b4 01       		.uleb128 0x1
+ 2283 00b5 51       		.byte	0x51
+ 2284 00b6 9F       		.byte	0x9f
+ 2285 00b7 00000000 		.4byte	0
+ 2286 00bb 00000000 		.4byte	0
+ 2287              	.LLST6:
+ 2288 00bf 08000000 		.4byte	.LVL67
+ 2289 00c3 24000000 		.4byte	.LVL69
+ 2290 00c7 0100     		.2byte	0x1
+ 2291 00c9 50       		.byte	0x50
+ 2292 00ca 00000000 		.4byte	0
+ 2293 00ce 00000000 		.4byte	0
+ 2294              	.LLST7:
+ 2295 00d2 20000000 		.4byte	.LVL68
+ 2296 00d6 34000000 		.4byte	.LVL72
+ 2297 00da 0100     		.2byte	0x1
+ 2298 00dc 54       		.byte	0x54
+ 2299 00dd 00000000 		.4byte	0
+ 2300 00e1 00000000 		.4byte	0
+ 2301              	.LLST8:
+ 2302 00e5 20000000 		.4byte	.LVL68
+ 2303 00e9 28000000 		.4byte	.LVL70
+ 2304 00ed 1D00     		.2byte	0x1d
+ 2305 00ef 03       		.byte	0x3
+ 2306 00f0 00000000 		.4byte	MC
+ 2307 00f4 94       		.byte	0x94
+ 2308 00f5 02       		.byte	0x2
+ 2309 00f6 40       		.byte	0x40
+ 2310 00f7 24       		.byte	0x24
+ 2311 00f8 40       		.byte	0x40
+ 2312 00f9 26       		.byte	0x26
+ 2313 00fa 3B       		.byte	0x3b
+ 2314 00fb 24       		.byte	0x24
+ 2315 00fc 03       		.byte	0x3
+ 2316 00fd 00000000 		.4byte	MD
+ 2317 0101 94       		.byte	0x94
+ 2318 0102 02       		.byte	0x2
+ 2319 0103 40       		.byte	0x40
+ 2320 0104 24       		.byte	0x24
+ 2321 0105 40       		.byte	0x40
+ 2322 0106 26       		.byte	0x26
+ 2323 0107 74       		.byte	0x74
+ 2324 0108 00       		.sleb128 0
+ 2325 0109 22       		.byte	0x22
+ 2326 010a 1B       		.byte	0x1b
+ 2327 010b 9F       		.byte	0x9f
+ 2328 010c 28000000 		.4byte	.LVL70
+ 2329 0110 2F000000 		.4byte	.LVL71-1
+ 2330 0114 1D00     		.2byte	0x1d
+ 2331 0116 03       		.byte	0x3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 47
+
+
+ 2332 0117 00000000 		.4byte	MC
+ 2333 011b 94       		.byte	0x94
+ 2334 011c 02       		.byte	0x2
+ 2335 011d 40       		.byte	0x40
+ 2336 011e 24       		.byte	0x24
+ 2337 011f 40       		.byte	0x40
+ 2338 0120 26       		.byte	0x26
+ 2339 0121 3B       		.byte	0x3b
+ 2340 0122 24       		.byte	0x24
+ 2341 0123 03       		.byte	0x3
+ 2342 0124 00000000 		.4byte	MD
+ 2343 0128 94       		.byte	0x94
+ 2344 0129 02       		.byte	0x2
+ 2345 012a 40       		.byte	0x40
+ 2346 012b 24       		.byte	0x24
+ 2347 012c 40       		.byte	0x40
+ 2348 012d 26       		.byte	0x26
+ 2349 012e 74       		.byte	0x74
+ 2350 012f 00       		.sleb128 0
+ 2351 0130 22       		.byte	0x22
+ 2352 0131 1B       		.byte	0x1b
+ 2353 0132 9F       		.byte	0x9f
+ 2354 0133 00000000 		.4byte	0
+ 2355 0137 00000000 		.4byte	0
+ 2356              	.LLST9:
+ 2357 013b 38000000 		.4byte	.LVL73
+ 2358 013f 3A000000 		.4byte	.LVL74
+ 2359 0143 0C00     		.2byte	0xc
+ 2360 0145 74       		.byte	0x74
+ 2361 0146 00       		.sleb128 0
+ 2362 0147 40       		.byte	0x40
+ 2363 0148 24       		.byte	0x24
+ 2364 0149 40       		.byte	0x40
+ 2365 014a 26       		.byte	0x26
+ 2366 014b 23       		.byte	0x23
+ 2367 014c 08       		.uleb128 0x8
+ 2368 014d 08       		.byte	0x8
+ 2369 014e A0       		.byte	0xa0
+ 2370 014f 1B       		.byte	0x1b
+ 2371 0150 9F       		.byte	0x9f
+ 2372 0151 00000000 		.4byte	0
+ 2373 0155 00000000 		.4byte	0
+ 2374              	.LLST10:
+ 2375 0159 08000000 		.4byte	.LVL77
+ 2376 015d 90000000 		.4byte	.LVL97
+ 2377 0161 0100     		.2byte	0x1
+ 2378 0163 50       		.byte	0x50
+ 2379 0164 00000000 		.4byte	0
+ 2380 0168 00000000 		.4byte	0
+ 2381              	.LLST11:
+ 2382 016c 12000000 		.4byte	.LVL78
+ 2383 0170 78000000 		.4byte	.LVL95
+ 2384 0174 0100     		.2byte	0x1
+ 2385 0176 53       		.byte	0x53
+ 2386 0177 78000000 		.4byte	.LVL95
+ 2387 017b 9D000000 		.4byte	.LVL100-1
+ 2388 017f 1000     		.2byte	0x10
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 48
+
+
+ 2389 0181 03       		.byte	0x3
+ 2390 0182 00000000 		.4byte	B5
+ 2391 0186 94       		.byte	0x94
+ 2392 0187 02       		.byte	0x2
+ 2393 0188 40       		.byte	0x40
+ 2394 0189 24       		.byte	0x24
+ 2395 018a 40       		.byte	0x40
+ 2396 018b 26       		.byte	0x26
+ 2397 018c 0A       		.byte	0xa
+ 2398 018d A00F     		.2byte	0xfa0
+ 2399 018f 1C       		.byte	0x1c
+ 2400 0190 9F       		.byte	0x9f
+ 2401 0191 A0000000 		.4byte	.LVL101
+ 2402 0195 A3000000 		.4byte	.LVL102-1
+ 2403 0199 1000     		.2byte	0x10
+ 2404 019b 03       		.byte	0x3
+ 2405 019c 00000000 		.4byte	B5
+ 2406 01a0 94       		.byte	0x94
+ 2407 01a1 02       		.byte	0x2
+ 2408 01a2 40       		.byte	0x40
+ 2409 01a3 24       		.byte	0x24
+ 2410 01a4 40       		.byte	0x40
+ 2411 01a5 26       		.byte	0x26
+ 2412 01a6 0A       		.byte	0xa
+ 2413 01a7 A00F     		.2byte	0xfa0
+ 2414 01a9 1C       		.byte	0x1c
+ 2415 01aa 9F       		.byte	0x9f
+ 2416 01ab 00000000 		.4byte	0
+ 2417 01af 00000000 		.4byte	0
+ 2418              	.LLST12:
+ 2419 01b3 20000000 		.4byte	.LVL79
+ 2420 01b7 78000000 		.4byte	.LVL95
+ 2421 01bb 1300     		.2byte	0x13
+ 2422 01bd 03       		.byte	0x3
+ 2423 01be 00000000 		.4byte	AC3
+ 2424 01c2 94       		.byte	0x94
+ 2425 01c3 02       		.byte	0x2
+ 2426 01c4 40       		.byte	0x40
+ 2427 01c5 24       		.byte	0x24
+ 2428 01c6 40       		.byte	0x40
+ 2429 01c7 26       		.byte	0x26
+ 2430 01c8 73       		.byte	0x73
+ 2431 01c9 00       		.sleb128 0
+ 2432 01ca 1E       		.byte	0x1e
+ 2433 01cb 0A       		.byte	0xa
+ 2434 01cc 0020     		.2byte	0x2000
+ 2435 01ce 1B       		.byte	0x1b
+ 2436 01cf 9F       		.byte	0x9f
+ 2437 01d0 78000000 		.4byte	.LVL95
+ 2438 01d4 9D000000 		.4byte	.LVL100-1
+ 2439 01d8 2000     		.2byte	0x20
+ 2440 01da 03       		.byte	0x3
+ 2441 01db 00000000 		.4byte	B5
+ 2442 01df 94       		.byte	0x94
+ 2443 01e0 02       		.byte	0x2
+ 2444 01e1 40       		.byte	0x40
+ 2445 01e2 24       		.byte	0x24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 49
+
+
+ 2446 01e3 40       		.byte	0x40
+ 2447 01e4 26       		.byte	0x26
+ 2448 01e5 0A       		.byte	0xa
+ 2449 01e6 A00F     		.2byte	0xfa0
+ 2450 01e8 1C       		.byte	0x1c
+ 2451 01e9 03       		.byte	0x3
+ 2452 01ea 00000000 		.4byte	AC3
+ 2453 01ee 94       		.byte	0x94
+ 2454 01ef 02       		.byte	0x2
+ 2455 01f0 40       		.byte	0x40
+ 2456 01f1 24       		.byte	0x24
+ 2457 01f2 40       		.byte	0x40
+ 2458 01f3 26       		.byte	0x26
+ 2459 01f4 1E       		.byte	0x1e
+ 2460 01f5 0A       		.byte	0xa
+ 2461 01f6 0020     		.2byte	0x2000
+ 2462 01f8 1B       		.byte	0x1b
+ 2463 01f9 9F       		.byte	0x9f
+ 2464 01fa A0000000 		.4byte	.LVL101
+ 2465 01fe A3000000 		.4byte	.LVL102-1
+ 2466 0202 2000     		.2byte	0x20
+ 2467 0204 03       		.byte	0x3
+ 2468 0205 00000000 		.4byte	B5
+ 2469 0209 94       		.byte	0x94
+ 2470 020a 02       		.byte	0x2
+ 2471 020b 40       		.byte	0x40
+ 2472 020c 24       		.byte	0x24
+ 2473 020d 40       		.byte	0x40
+ 2474 020e 26       		.byte	0x26
+ 2475 020f 0A       		.byte	0xa
+ 2476 0210 A00F     		.2byte	0xfa0
+ 2477 0212 1C       		.byte	0x1c
+ 2478 0213 03       		.byte	0x3
+ 2479 0214 00000000 		.4byte	AC3
+ 2480 0218 94       		.byte	0x94
+ 2481 0219 02       		.byte	0x2
+ 2482 021a 40       		.byte	0x40
+ 2483 021b 24       		.byte	0x24
+ 2484 021c 40       		.byte	0x40
+ 2485 021d 26       		.byte	0x26
+ 2486 021e 1E       		.byte	0x1e
+ 2487 021f 0A       		.byte	0xa
+ 2488 0220 0020     		.2byte	0x2000
+ 2489 0222 1B       		.byte	0x1b
+ 2490 0223 9F       		.byte	0x9f
+ 2491 0224 AE000000 		.4byte	.LVL104
+ 2492 0228 B0000000 		.4byte	.LVL105
+ 2493 022c 0600     		.2byte	0x6
+ 2494 022e 72       		.byte	0x72
+ 2495 022f 00       		.sleb128 0
+ 2496 0230 72       		.byte	0x72
+ 2497 0231 00       		.sleb128 0
+ 2498 0232 1E       		.byte	0x1e
+ 2499 0233 9F       		.byte	0x9f
+ 2500 0234 B0000000 		.4byte	.LVL105
+ 2501 0238 B4000000 		.4byte	.LVL106
+ 2502 023c 0100     		.2byte	0x1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 50
+
+
+ 2503 023e 52       		.byte	0x52
+ 2504 023f B4000000 		.4byte	.LVL106
+ 2505 0243 BA000000 		.4byte	.LVL107
+ 2506 0247 0700     		.2byte	0x7
+ 2507 0249 72       		.byte	0x72
+ 2508 024a 00       		.sleb128 0
+ 2509 024b 40       		.byte	0x40
+ 2510 024c 3C       		.byte	0x3c
+ 2511 024d 24       		.byte	0x24
+ 2512 024e 1B       		.byte	0x1b
+ 2513 024f 9F       		.byte	0x9f
+ 2514 0250 BA000000 		.4byte	.LVL107
+ 2515 0254 C2000000 		.4byte	.LVL108
+ 2516 0258 1F00     		.2byte	0x1f
+ 2517 025a 70       		.byte	0x70
+ 2518 025b 00       		.sleb128 0
+ 2519 025c 4F       		.byte	0x4f
+ 2520 025d 26       		.byte	0x26
+ 2521 025e 48       		.byte	0x48
+ 2522 025f 25       		.byte	0x25
+ 2523 0260 70       		.byte	0x70
+ 2524 0261 00       		.sleb128 0
+ 2525 0262 22       		.byte	0x22
+ 2526 0263 38       		.byte	0x38
+ 2527 0264 26       		.byte	0x26
+ 2528 0265 70       		.byte	0x70
+ 2529 0266 00       		.sleb128 0
+ 2530 0267 4F       		.byte	0x4f
+ 2531 0268 26       		.byte	0x26
+ 2532 0269 48       		.byte	0x48
+ 2533 026a 25       		.byte	0x25
+ 2534 026b 70       		.byte	0x70
+ 2535 026c 00       		.sleb128 0
+ 2536 026d 22       		.byte	0x22
+ 2537 026e 38       		.byte	0x38
+ 2538 026f 26       		.byte	0x26
+ 2539 0270 1E       		.byte	0x1e
+ 2540 0271 73       		.byte	0x73
+ 2541 0272 00       		.sleb128 0
+ 2542 0273 1E       		.byte	0x1e
+ 2543 0274 40       		.byte	0x40
+ 2544 0275 3C       		.byte	0x3c
+ 2545 0276 24       		.byte	0x24
+ 2546 0277 1B       		.byte	0x1b
+ 2547 0278 9F       		.byte	0x9f
+ 2548 0279 C2000000 		.4byte	.LVL108
+ 2549 027d D8000000 		.4byte	.LVL110
+ 2550 0281 2000     		.2byte	0x20
+ 2551 0283 70       		.byte	0x70
+ 2552 0284 00       		.sleb128 0
+ 2553 0285 4F       		.byte	0x4f
+ 2554 0286 26       		.byte	0x26
+ 2555 0287 48       		.byte	0x48
+ 2556 0288 25       		.byte	0x25
+ 2557 0289 70       		.byte	0x70
+ 2558 028a 00       		.sleb128 0
+ 2559 028b 22       		.byte	0x22
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 51
+
+
+ 2560 028c 38       		.byte	0x38
+ 2561 028d 26       		.byte	0x26
+ 2562 028e 70       		.byte	0x70
+ 2563 028f 00       		.sleb128 0
+ 2564 0290 4F       		.byte	0x4f
+ 2565 0291 26       		.byte	0x26
+ 2566 0292 48       		.byte	0x48
+ 2567 0293 25       		.byte	0x25
+ 2568 0294 70       		.byte	0x70
+ 2569 0295 00       		.sleb128 0
+ 2570 0296 22       		.byte	0x22
+ 2571 0297 38       		.byte	0x38
+ 2572 0298 26       		.byte	0x26
+ 2573 0299 1E       		.byte	0x1e
+ 2574 029a 0A       		.byte	0xa
+ 2575 029b DE0B     		.2byte	0xbde
+ 2576 029d 1E       		.byte	0x1e
+ 2577 029e 40       		.byte	0x40
+ 2578 029f 3C       		.byte	0x3c
+ 2579 02a0 24       		.byte	0x24
+ 2580 02a1 1B       		.byte	0x1b
+ 2581 02a2 9F       		.byte	0x9f
+ 2582 02a3 00000000 		.4byte	0
+ 2583 02a7 00000000 		.4byte	0
+ 2584              	.LLST13:
+ 2585 02ab 20000000 		.4byte	.LVL79
+ 2586 02af 26000000 		.4byte	.LVL80
+ 2587 02b3 1300     		.2byte	0x13
+ 2588 02b5 03       		.byte	0x3
+ 2589 02b6 00000000 		.4byte	B1
+ 2590 02ba 94       		.byte	0x94
+ 2591 02bb 02       		.byte	0x2
+ 2592 02bc 40       		.byte	0x40
+ 2593 02bd 24       		.byte	0x24
+ 2594 02be 40       		.byte	0x40
+ 2595 02bf 26       		.byte	0x26
+ 2596 02c0 72       		.byte	0x72
+ 2597 02c1 00       		.sleb128 0
+ 2598 02c2 1E       		.byte	0x1e
+ 2599 02c3 40       		.byte	0x40
+ 2600 02c4 3C       		.byte	0x3c
+ 2601 02c5 24       		.byte	0x24
+ 2602 02c6 1B       		.byte	0x1b
+ 2603 02c7 9F       		.byte	0x9f
+ 2604 02c8 26000000 		.4byte	.LVL80
+ 2605 02cc 38000000 		.4byte	.LVL84
+ 2606 02d0 1300     		.2byte	0x13
+ 2607 02d2 03       		.byte	0x3
+ 2608 02d3 00000000 		.4byte	B1
+ 2609 02d7 94       		.byte	0x94
+ 2610 02d8 02       		.byte	0x2
+ 2611 02d9 40       		.byte	0x40
+ 2612 02da 24       		.byte	0x24
+ 2613 02db 40       		.byte	0x40
+ 2614 02dc 26       		.byte	0x26
+ 2615 02dd 72       		.byte	0x72
+ 2616 02de 00       		.sleb128 0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 52
+
+
+ 2617 02df 1E       		.byte	0x1e
+ 2618 02e0 40       		.byte	0x40
+ 2619 02e1 3C       		.byte	0x3c
+ 2620 02e2 24       		.byte	0x24
+ 2621 02e3 1B       		.byte	0x1b
+ 2622 02e4 9F       		.byte	0x9f
+ 2623 02e5 38000000 		.4byte	.LVL84
+ 2624 02e9 68000000 		.4byte	.LVL92
+ 2625 02ed 1300     		.2byte	0x13
+ 2626 02ef 03       		.byte	0x3
+ 2627 02f0 00000000 		.4byte	B1
+ 2628 02f4 94       		.byte	0x94
+ 2629 02f5 02       		.byte	0x2
+ 2630 02f6 40       		.byte	0x40
+ 2631 02f7 24       		.byte	0x24
+ 2632 02f8 40       		.byte	0x40
+ 2633 02f9 26       		.byte	0x26
+ 2634 02fa 72       		.byte	0x72
+ 2635 02fb 00       		.sleb128 0
+ 2636 02fc 1E       		.byte	0x1e
+ 2637 02fd 40       		.byte	0x40
+ 2638 02fe 3C       		.byte	0x3c
+ 2639 02ff 24       		.byte	0x24
+ 2640 0300 1B       		.byte	0x1b
+ 2641 0301 9F       		.byte	0x9f
+ 2642 0302 68000000 		.4byte	.LVL92
+ 2643 0306 78000000 		.4byte	.LVL95
+ 2644 030a 2200     		.2byte	0x22
+ 2645 030c 73       		.byte	0x73
+ 2646 030d 00       		.sleb128 0
+ 2647 030e 73       		.byte	0x73
+ 2648 030f 00       		.sleb128 0
+ 2649 0310 1E       		.byte	0x1e
+ 2650 0311 73       		.byte	0x73
+ 2651 0312 00       		.sleb128 0
+ 2652 0313 73       		.byte	0x73
+ 2653 0314 00       		.sleb128 0
+ 2654 0315 1E       		.byte	0x1e
+ 2655 0316 4F       		.byte	0x4f
+ 2656 0317 26       		.byte	0x26
+ 2657 0318 44       		.byte	0x44
+ 2658 0319 25       		.byte	0x25
+ 2659 031a 22       		.byte	0x22
+ 2660 031b 3C       		.byte	0x3c
+ 2661 031c 26       		.byte	0x26
+ 2662 031d 03       		.byte	0x3
+ 2663 031e 00000000 		.4byte	B1
+ 2664 0322 94       		.byte	0x94
+ 2665 0323 02       		.byte	0x2
+ 2666 0324 40       		.byte	0x40
+ 2667 0325 24       		.byte	0x24
+ 2668 0326 40       		.byte	0x40
+ 2669 0327 26       		.byte	0x26
+ 2670 0328 1E       		.byte	0x1e
+ 2671 0329 40       		.byte	0x40
+ 2672 032a 3C       		.byte	0x3c
+ 2673 032b 24       		.byte	0x24
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 53
+
+
+ 2674 032c 1B       		.byte	0x1b
+ 2675 032d 9F       		.byte	0x9f
+ 2676 032e 78000000 		.4byte	.LVL95
+ 2677 0332 9D000000 		.4byte	.LVL100-1
+ 2678 0336 5600     		.2byte	0x56
+ 2679 0338 03       		.byte	0x3
+ 2680 0339 00000000 		.4byte	B5
+ 2681 033d 94       		.byte	0x94
+ 2682 033e 02       		.byte	0x2
+ 2683 033f 40       		.byte	0x40
+ 2684 0340 24       		.byte	0x24
+ 2685 0341 40       		.byte	0x40
+ 2686 0342 26       		.byte	0x26
+ 2687 0343 0A       		.byte	0xa
+ 2688 0344 A00F     		.2byte	0xfa0
+ 2689 0346 1C       		.byte	0x1c
+ 2690 0347 03       		.byte	0x3
+ 2691 0348 00000000 		.4byte	B5
+ 2692 034c 94       		.byte	0x94
+ 2693 034d 02       		.byte	0x2
+ 2694 034e 40       		.byte	0x40
+ 2695 034f 24       		.byte	0x24
+ 2696 0350 40       		.byte	0x40
+ 2697 0351 26       		.byte	0x26
+ 2698 0352 0A       		.byte	0xa
+ 2699 0353 A00F     		.2byte	0xfa0
+ 2700 0355 1C       		.byte	0x1c
+ 2701 0356 1E       		.byte	0x1e
+ 2702 0357 03       		.byte	0x3
+ 2703 0358 00000000 		.4byte	B5
+ 2704 035c 94       		.byte	0x94
+ 2705 035d 02       		.byte	0x2
+ 2706 035e 40       		.byte	0x40
+ 2707 035f 24       		.byte	0x24
+ 2708 0360 40       		.byte	0x40
+ 2709 0361 26       		.byte	0x26
+ 2710 0362 0A       		.byte	0xa
+ 2711 0363 A00F     		.2byte	0xfa0
+ 2712 0365 1C       		.byte	0x1c
+ 2713 0366 03       		.byte	0x3
+ 2714 0367 00000000 		.4byte	B5
+ 2715 036b 94       		.byte	0x94
+ 2716 036c 02       		.byte	0x2
+ 2717 036d 40       		.byte	0x40
+ 2718 036e 24       		.byte	0x24
+ 2719 036f 40       		.byte	0x40
+ 2720 0370 26       		.byte	0x26
+ 2721 0371 0A       		.byte	0xa
+ 2722 0372 A00F     		.2byte	0xfa0
+ 2723 0374 1C       		.byte	0x1c
+ 2724 0375 1E       		.byte	0x1e
+ 2725 0376 4F       		.byte	0x4f
+ 2726 0377 26       		.byte	0x26
+ 2727 0378 44       		.byte	0x44
+ 2728 0379 25       		.byte	0x25
+ 2729 037a 22       		.byte	0x22
+ 2730 037b 3C       		.byte	0x3c
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 54
+
+
+ 2731 037c 26       		.byte	0x26
+ 2732 037d 03       		.byte	0x3
+ 2733 037e 00000000 		.4byte	B1
+ 2734 0382 94       		.byte	0x94
+ 2735 0383 02       		.byte	0x2
+ 2736 0384 40       		.byte	0x40
+ 2737 0385 24       		.byte	0x24
+ 2738 0386 40       		.byte	0x40
+ 2739 0387 26       		.byte	0x26
+ 2740 0388 1E       		.byte	0x1e
+ 2741 0389 40       		.byte	0x40
+ 2742 038a 3C       		.byte	0x3c
+ 2743 038b 24       		.byte	0x24
+ 2744 038c 1B       		.byte	0x1b
+ 2745 038d 9F       		.byte	0x9f
+ 2746 038e A0000000 		.4byte	.LVL101
+ 2747 0392 A3000000 		.4byte	.LVL102-1
+ 2748 0396 5600     		.2byte	0x56
+ 2749 0398 03       		.byte	0x3
+ 2750 0399 00000000 		.4byte	B5
+ 2751 039d 94       		.byte	0x94
+ 2752 039e 02       		.byte	0x2
+ 2753 039f 40       		.byte	0x40
+ 2754 03a0 24       		.byte	0x24
+ 2755 03a1 40       		.byte	0x40
+ 2756 03a2 26       		.byte	0x26
+ 2757 03a3 0A       		.byte	0xa
+ 2758 03a4 A00F     		.2byte	0xfa0
+ 2759 03a6 1C       		.byte	0x1c
+ 2760 03a7 03       		.byte	0x3
+ 2761 03a8 00000000 		.4byte	B5
+ 2762 03ac 94       		.byte	0x94
+ 2763 03ad 02       		.byte	0x2
+ 2764 03ae 40       		.byte	0x40
+ 2765 03af 24       		.byte	0x24
+ 2766 03b0 40       		.byte	0x40
+ 2767 03b1 26       		.byte	0x26
+ 2768 03b2 0A       		.byte	0xa
+ 2769 03b3 A00F     		.2byte	0xfa0
+ 2770 03b5 1C       		.byte	0x1c
+ 2771 03b6 1E       		.byte	0x1e
+ 2772 03b7 03       		.byte	0x3
+ 2773 03b8 00000000 		.4byte	B5
+ 2774 03bc 94       		.byte	0x94
+ 2775 03bd 02       		.byte	0x2
+ 2776 03be 40       		.byte	0x40
+ 2777 03bf 24       		.byte	0x24
+ 2778 03c0 40       		.byte	0x40
+ 2779 03c1 26       		.byte	0x26
+ 2780 03c2 0A       		.byte	0xa
+ 2781 03c3 A00F     		.2byte	0xfa0
+ 2782 03c5 1C       		.byte	0x1c
+ 2783 03c6 03       		.byte	0x3
+ 2784 03c7 00000000 		.4byte	B5
+ 2785 03cb 94       		.byte	0x94
+ 2786 03cc 02       		.byte	0x2
+ 2787 03cd 40       		.byte	0x40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 55
+
+
+ 2788 03ce 24       		.byte	0x24
+ 2789 03cf 40       		.byte	0x40
+ 2790 03d0 26       		.byte	0x26
+ 2791 03d1 0A       		.byte	0xa
+ 2792 03d2 A00F     		.2byte	0xfa0
+ 2793 03d4 1C       		.byte	0x1c
+ 2794 03d5 1E       		.byte	0x1e
+ 2795 03d6 4F       		.byte	0x4f
+ 2796 03d7 26       		.byte	0x26
+ 2797 03d8 44       		.byte	0x44
+ 2798 03d9 25       		.byte	0x25
+ 2799 03da 22       		.byte	0x22
+ 2800 03db 3C       		.byte	0x3c
+ 2801 03dc 26       		.byte	0x26
+ 2802 03dd 03       		.byte	0x3
+ 2803 03de 00000000 		.4byte	B1
+ 2804 03e2 94       		.byte	0x94
+ 2805 03e3 02       		.byte	0x2
+ 2806 03e4 40       		.byte	0x40
+ 2807 03e5 24       		.byte	0x24
+ 2808 03e6 40       		.byte	0x40
+ 2809 03e7 26       		.byte	0x26
+ 2810 03e8 1E       		.byte	0x1e
+ 2811 03e9 40       		.byte	0x40
+ 2812 03ea 3C       		.byte	0x3c
+ 2813 03eb 24       		.byte	0x24
+ 2814 03ec 1B       		.byte	0x1b
+ 2815 03ed 9F       		.byte	0x9f
+ 2816 03ee B4000000 		.4byte	.LVL106
+ 2817 03f2 D8000000 		.4byte	.LVL110
+ 2818 03f6 0B00     		.2byte	0xb
+ 2819 03f8 70       		.byte	0x70
+ 2820 03f9 00       		.sleb128 0
+ 2821 03fa 0B       		.byte	0xb
+ 2822 03fb 43E3     		.2byte	0xe343
+ 2823 03fd 1E       		.byte	0x1e
+ 2824 03fe 40       		.byte	0x40
+ 2825 03ff 3C       		.byte	0x3c
+ 2826 0400 24       		.byte	0x24
+ 2827 0401 1B       		.byte	0x1b
+ 2828 0402 9F       		.byte	0x9f
+ 2829 0403 00000000 		.4byte	0
+ 2830 0407 00000000 		.4byte	0
+ 2831              	.LLST14:
+ 2832 040b 20000000 		.4byte	.LVL79
+ 2833 040f 26000000 		.4byte	.LVL80
+ 2834 0413 2A00     		.2byte	0x2a
+ 2835 0415 03       		.byte	0x3
+ 2836 0416 00000000 		.4byte	AC3
+ 2837 041a 94       		.byte	0x94
+ 2838 041b 02       		.byte	0x2
+ 2839 041c 40       		.byte	0x40
+ 2840 041d 24       		.byte	0x24
+ 2841 041e 40       		.byte	0x40
+ 2842 041f 26       		.byte	0x26
+ 2843 0420 73       		.byte	0x73
+ 2844 0421 00       		.sleb128 0
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 56
+
+
+ 2845 0422 1E       		.byte	0x1e
+ 2846 0423 0A       		.byte	0xa
+ 2847 0424 0020     		.2byte	0x2000
+ 2848 0426 1B       		.byte	0x1b
+ 2849 0427 03       		.byte	0x3
+ 2850 0428 00000000 		.4byte	B1
+ 2851 042c 94       		.byte	0x94
+ 2852 042d 02       		.byte	0x2
+ 2853 042e 40       		.byte	0x40
+ 2854 042f 24       		.byte	0x24
+ 2855 0430 40       		.byte	0x40
+ 2856 0431 26       		.byte	0x26
+ 2857 0432 72       		.byte	0x72
+ 2858 0433 00       		.sleb128 0
+ 2859 0434 1E       		.byte	0x1e
+ 2860 0435 40       		.byte	0x40
+ 2861 0436 3C       		.byte	0x3c
+ 2862 0437 24       		.byte	0x24
+ 2863 0438 1B       		.byte	0x1b
+ 2864 0439 22       		.byte	0x22
+ 2865 043a 23       		.byte	0x23
+ 2866 043b 02       		.uleb128 0x2
+ 2867 043c 34       		.byte	0x34
+ 2868 043d 1B       		.byte	0x1b
+ 2869 043e 9F       		.byte	0x9f
+ 2870 043f 26000000 		.4byte	.LVL80
+ 2871 0443 28000000 		.4byte	.LVL81
+ 2872 0447 2A00     		.2byte	0x2a
+ 2873 0449 03       		.byte	0x3
+ 2874 044a 00000000 		.4byte	AC3
+ 2875 044e 94       		.byte	0x94
+ 2876 044f 02       		.byte	0x2
+ 2877 0450 40       		.byte	0x40
+ 2878 0451 24       		.byte	0x24
+ 2879 0452 40       		.byte	0x40
+ 2880 0453 26       		.byte	0x26
+ 2881 0454 73       		.byte	0x73
+ 2882 0455 00       		.sleb128 0
+ 2883 0456 1E       		.byte	0x1e
+ 2884 0457 0A       		.byte	0xa
+ 2885 0458 0020     		.2byte	0x2000
+ 2886 045a 1B       		.byte	0x1b
+ 2887 045b 03       		.byte	0x3
+ 2888 045c 00000000 		.4byte	B1
+ 2889 0460 94       		.byte	0x94
+ 2890 0461 02       		.byte	0x2
+ 2891 0462 40       		.byte	0x40
+ 2892 0463 24       		.byte	0x24
+ 2893 0464 40       		.byte	0x40
+ 2894 0465 26       		.byte	0x26
+ 2895 0466 72       		.byte	0x72
+ 2896 0467 00       		.sleb128 0
+ 2897 0468 1E       		.byte	0x1e
+ 2898 0469 40       		.byte	0x40
+ 2899 046a 3C       		.byte	0x3c
+ 2900 046b 24       		.byte	0x24
+ 2901 046c 1B       		.byte	0x1b
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 57
+
+
+ 2902 046d 22       		.byte	0x22
+ 2903 046e 23       		.byte	0x23
+ 2904 046f 02       		.uleb128 0x2
+ 2905 0470 34       		.byte	0x34
+ 2906 0471 1B       		.byte	0x1b
+ 2907 0472 9F       		.byte	0x9f
+ 2908 0473 28000000 		.4byte	.LVL81
+ 2909 0477 2E000000 		.4byte	.LVL82
+ 2910 047b 1E00     		.2byte	0x1e
+ 2911 047d 74       		.byte	0x74
+ 2912 047e 00       		.sleb128 0
+ 2913 047f 0A       		.byte	0xa
+ 2914 0480 0020     		.2byte	0x2000
+ 2915 0482 1B       		.byte	0x1b
+ 2916 0483 03       		.byte	0x3
+ 2917 0484 00000000 		.4byte	B1
+ 2918 0488 94       		.byte	0x94
+ 2919 0489 02       		.byte	0x2
+ 2920 048a 40       		.byte	0x40
+ 2921 048b 24       		.byte	0x24
+ 2922 048c 40       		.byte	0x40
+ 2923 048d 26       		.byte	0x26
+ 2924 048e 72       		.byte	0x72
+ 2925 048f 00       		.sleb128 0
+ 2926 0490 1E       		.byte	0x1e
+ 2927 0491 40       		.byte	0x40
+ 2928 0492 3C       		.byte	0x3c
+ 2929 0493 24       		.byte	0x24
+ 2930 0494 1B       		.byte	0x1b
+ 2931 0495 22       		.byte	0x22
+ 2932 0496 23       		.byte	0x23
+ 2933 0497 02       		.uleb128 0x2
+ 2934 0498 34       		.byte	0x34
+ 2935 0499 1B       		.byte	0x1b
+ 2936 049a 9F       		.byte	0x9f
+ 2937 049b 2E000000 		.4byte	.LVL82
+ 2938 049f 36000000 		.4byte	.LVL83
+ 2939 04a3 2A00     		.2byte	0x2a
+ 2940 04a5 03       		.byte	0x3
+ 2941 04a6 00000000 		.4byte	AC3
+ 2942 04aa 94       		.byte	0x94
+ 2943 04ab 02       		.byte	0x2
+ 2944 04ac 40       		.byte	0x40
+ 2945 04ad 24       		.byte	0x24
+ 2946 04ae 40       		.byte	0x40
+ 2947 04af 26       		.byte	0x26
+ 2948 04b0 73       		.byte	0x73
+ 2949 04b1 00       		.sleb128 0
+ 2950 04b2 1E       		.byte	0x1e
+ 2951 04b3 0A       		.byte	0xa
+ 2952 04b4 0020     		.2byte	0x2000
+ 2953 04b6 1B       		.byte	0x1b
+ 2954 04b7 03       		.byte	0x3
+ 2955 04b8 00000000 		.4byte	B1
+ 2956 04bc 94       		.byte	0x94
+ 2957 04bd 02       		.byte	0x2
+ 2958 04be 40       		.byte	0x40
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 58
+
+
+ 2959 04bf 24       		.byte	0x24
+ 2960 04c0 40       		.byte	0x40
+ 2961 04c1 26       		.byte	0x26
+ 2962 04c2 72       		.byte	0x72
+ 2963 04c3 00       		.sleb128 0
+ 2964 04c4 1E       		.byte	0x1e
+ 2965 04c5 40       		.byte	0x40
+ 2966 04c6 3C       		.byte	0x3c
+ 2967 04c7 24       		.byte	0x24
+ 2968 04c8 1B       		.byte	0x1b
+ 2969 04c9 22       		.byte	0x22
+ 2970 04ca 23       		.byte	0x23
+ 2971 04cb 02       		.uleb128 0x2
+ 2972 04cc 34       		.byte	0x34
+ 2973 04cd 1B       		.byte	0x1b
+ 2974 04ce 9F       		.byte	0x9f
+ 2975 04cf 36000000 		.4byte	.LVL83
+ 2976 04d3 44000000 		.4byte	.LVL85
+ 2977 04d7 1E00     		.2byte	0x1e
+ 2978 04d9 03       		.byte	0x3
+ 2979 04da 00000000 		.4byte	AC3
+ 2980 04de 94       		.byte	0x94
+ 2981 04df 02       		.byte	0x2
+ 2982 04e0 40       		.byte	0x40
+ 2983 04e1 24       		.byte	0x24
+ 2984 04e2 40       		.byte	0x40
+ 2985 04e3 26       		.byte	0x26
+ 2986 04e4 73       		.byte	0x73
+ 2987 04e5 00       		.sleb128 0
+ 2988 04e6 1E       		.byte	0x1e
+ 2989 04e7 0A       		.byte	0xa
+ 2990 04e8 0020     		.2byte	0x2000
+ 2991 04ea 1B       		.byte	0x1b
+ 2992 04eb 74       		.byte	0x74
+ 2993 04ec 00       		.sleb128 0
+ 2994 04ed 40       		.byte	0x40
+ 2995 04ee 3C       		.byte	0x3c
+ 2996 04ef 24       		.byte	0x24
+ 2997 04f0 1B       		.byte	0x1b
+ 2998 04f1 22       		.byte	0x22
+ 2999 04f2 23       		.byte	0x23
+ 3000 04f3 02       		.uleb128 0x2
+ 3001 04f4 34       		.byte	0x34
+ 3002 04f5 1B       		.byte	0x1b
+ 3003 04f6 9F       		.byte	0x9f
+ 3004 04f7 44000000 		.4byte	.LVL85
+ 3005 04fb 68000000 		.4byte	.LVL92
+ 3006 04ff 2A00     		.2byte	0x2a
+ 3007 0501 03       		.byte	0x3
+ 3008 0502 00000000 		.4byte	AC3
+ 3009 0506 94       		.byte	0x94
+ 3010 0507 02       		.byte	0x2
+ 3011 0508 40       		.byte	0x40
+ 3012 0509 24       		.byte	0x24
+ 3013 050a 40       		.byte	0x40
+ 3014 050b 26       		.byte	0x26
+ 3015 050c 73       		.byte	0x73
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 59
+
+
+ 3016 050d 00       		.sleb128 0
+ 3017 050e 1E       		.byte	0x1e
+ 3018 050f 0A       		.byte	0xa
+ 3019 0510 0020     		.2byte	0x2000
+ 3020 0512 1B       		.byte	0x1b
+ 3021 0513 03       		.byte	0x3
+ 3022 0514 00000000 		.4byte	B1
+ 3023 0518 94       		.byte	0x94
+ 3024 0519 02       		.byte	0x2
+ 3025 051a 40       		.byte	0x40
+ 3026 051b 24       		.byte	0x24
+ 3027 051c 40       		.byte	0x40
+ 3028 051d 26       		.byte	0x26
+ 3029 051e 72       		.byte	0x72
+ 3030 051f 00       		.sleb128 0
+ 3031 0520 1E       		.byte	0x1e
+ 3032 0521 40       		.byte	0x40
+ 3033 0522 3C       		.byte	0x3c
+ 3034 0523 24       		.byte	0x24
+ 3035 0524 1B       		.byte	0x1b
+ 3036 0525 22       		.byte	0x22
+ 3037 0526 23       		.byte	0x23
+ 3038 0527 02       		.uleb128 0x2
+ 3039 0528 34       		.byte	0x34
+ 3040 0529 1B       		.byte	0x1b
+ 3041 052a 9F       		.byte	0x9f
+ 3042 052b 68000000 		.4byte	.LVL92
+ 3043 052f 78000000 		.4byte	.LVL95
+ 3044 0533 3900     		.2byte	0x39
+ 3045 0535 03       		.byte	0x3
+ 3046 0536 00000000 		.4byte	AC3
+ 3047 053a 94       		.byte	0x94
+ 3048 053b 02       		.byte	0x2
+ 3049 053c 40       		.byte	0x40
+ 3050 053d 24       		.byte	0x24
+ 3051 053e 40       		.byte	0x40
+ 3052 053f 26       		.byte	0x26
+ 3053 0540 73       		.byte	0x73
+ 3054 0541 00       		.sleb128 0
+ 3055 0542 1E       		.byte	0x1e
+ 3056 0543 0A       		.byte	0xa
+ 3057 0544 0020     		.2byte	0x2000
+ 3058 0546 1B       		.byte	0x1b
+ 3059 0547 73       		.byte	0x73
+ 3060 0548 00       		.sleb128 0
+ 3061 0549 73       		.byte	0x73
+ 3062 054a 00       		.sleb128 0
+ 3063 054b 1E       		.byte	0x1e
+ 3064 054c 73       		.byte	0x73
+ 3065 054d 00       		.sleb128 0
+ 3066 054e 73       		.byte	0x73
+ 3067 054f 00       		.sleb128 0
+ 3068 0550 1E       		.byte	0x1e
+ 3069 0551 4F       		.byte	0x4f
+ 3070 0552 26       		.byte	0x26
+ 3071 0553 44       		.byte	0x44
+ 3072 0554 25       		.byte	0x25
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 60
+
+
+ 3073 0555 22       		.byte	0x22
+ 3074 0556 3C       		.byte	0x3c
+ 3075 0557 26       		.byte	0x26
+ 3076 0558 03       		.byte	0x3
+ 3077 0559 00000000 		.4byte	B1
+ 3078 055d 94       		.byte	0x94
+ 3079 055e 02       		.byte	0x2
+ 3080 055f 40       		.byte	0x40
+ 3081 0560 24       		.byte	0x24
+ 3082 0561 40       		.byte	0x40
+ 3083 0562 26       		.byte	0x26
+ 3084 0563 1E       		.byte	0x1e
+ 3085 0564 40       		.byte	0x40
+ 3086 0565 3C       		.byte	0x3c
+ 3087 0566 24       		.byte	0x24
+ 3088 0567 1B       		.byte	0x1b
+ 3089 0568 22       		.byte	0x22
+ 3090 0569 23       		.byte	0x23
+ 3091 056a 02       		.uleb128 0x2
+ 3092 056b 34       		.byte	0x34
+ 3093 056c 1B       		.byte	0x1b
+ 3094 056d 9F       		.byte	0x9f
+ 3095 056e 78000000 		.4byte	.LVL95
+ 3096 0572 9D000000 		.4byte	.LVL100-1
+ 3097 0576 7A00     		.2byte	0x7a
+ 3098 0578 03       		.byte	0x3
+ 3099 0579 00000000 		.4byte	B5
+ 3100 057d 94       		.byte	0x94
+ 3101 057e 02       		.byte	0x2
+ 3102 057f 40       		.byte	0x40
+ 3103 0580 24       		.byte	0x24
+ 3104 0581 40       		.byte	0x40
+ 3105 0582 26       		.byte	0x26
+ 3106 0583 0A       		.byte	0xa
+ 3107 0584 A00F     		.2byte	0xfa0
+ 3108 0586 1C       		.byte	0x1c
+ 3109 0587 03       		.byte	0x3
+ 3110 0588 00000000 		.4byte	AC3
+ 3111 058c 94       		.byte	0x94
+ 3112 058d 02       		.byte	0x2
+ 3113 058e 40       		.byte	0x40
+ 3114 058f 24       		.byte	0x24
+ 3115 0590 40       		.byte	0x40
+ 3116 0591 26       		.byte	0x26
+ 3117 0592 1E       		.byte	0x1e
+ 3118 0593 0A       		.byte	0xa
+ 3119 0594 0020     		.2byte	0x2000
+ 3120 0596 1B       		.byte	0x1b
+ 3121 0597 03       		.byte	0x3
+ 3122 0598 00000000 		.4byte	B5
+ 3123 059c 94       		.byte	0x94
+ 3124 059d 02       		.byte	0x2
+ 3125 059e 40       		.byte	0x40
+ 3126 059f 24       		.byte	0x24
+ 3127 05a0 40       		.byte	0x40
+ 3128 05a1 26       		.byte	0x26
+ 3129 05a2 0A       		.byte	0xa
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 61
+
+
+ 3130 05a3 A00F     		.2byte	0xfa0
+ 3131 05a5 1C       		.byte	0x1c
+ 3132 05a6 03       		.byte	0x3
+ 3133 05a7 00000000 		.4byte	B5
+ 3134 05ab 94       		.byte	0x94
+ 3135 05ac 02       		.byte	0x2
+ 3136 05ad 40       		.byte	0x40
+ 3137 05ae 24       		.byte	0x24
+ 3138 05af 40       		.byte	0x40
+ 3139 05b0 26       		.byte	0x26
+ 3140 05b1 0A       		.byte	0xa
+ 3141 05b2 A00F     		.2byte	0xfa0
+ 3142 05b4 1C       		.byte	0x1c
+ 3143 05b5 1E       		.byte	0x1e
+ 3144 05b6 03       		.byte	0x3
+ 3145 05b7 00000000 		.4byte	B5
+ 3146 05bb 94       		.byte	0x94
+ 3147 05bc 02       		.byte	0x2
+ 3148 05bd 40       		.byte	0x40
+ 3149 05be 24       		.byte	0x24
+ 3150 05bf 40       		.byte	0x40
+ 3151 05c0 26       		.byte	0x26
+ 3152 05c1 0A       		.byte	0xa
+ 3153 05c2 A00F     		.2byte	0xfa0
+ 3154 05c4 1C       		.byte	0x1c
+ 3155 05c5 03       		.byte	0x3
+ 3156 05c6 00000000 		.4byte	B5
+ 3157 05ca 94       		.byte	0x94
+ 3158 05cb 02       		.byte	0x2
+ 3159 05cc 40       		.byte	0x40
+ 3160 05cd 24       		.byte	0x24
+ 3161 05ce 40       		.byte	0x40
+ 3162 05cf 26       		.byte	0x26
+ 3163 05d0 0A       		.byte	0xa
+ 3164 05d1 A00F     		.2byte	0xfa0
+ 3165 05d3 1C       		.byte	0x1c
+ 3166 05d4 1E       		.byte	0x1e
+ 3167 05d5 4F       		.byte	0x4f
+ 3168 05d6 26       		.byte	0x26
+ 3169 05d7 44       		.byte	0x44
+ 3170 05d8 25       		.byte	0x25
+ 3171 05d9 22       		.byte	0x22
+ 3172 05da 3C       		.byte	0x3c
+ 3173 05db 26       		.byte	0x26
+ 3174 05dc 03       		.byte	0x3
+ 3175 05dd 00000000 		.4byte	B1
+ 3176 05e1 94       		.byte	0x94
+ 3177 05e2 02       		.byte	0x2
+ 3178 05e3 40       		.byte	0x40
+ 3179 05e4 24       		.byte	0x24
+ 3180 05e5 40       		.byte	0x40
+ 3181 05e6 26       		.byte	0x26
+ 3182 05e7 1E       		.byte	0x1e
+ 3183 05e8 40       		.byte	0x40
+ 3184 05e9 3C       		.byte	0x3c
+ 3185 05ea 24       		.byte	0x24
+ 3186 05eb 1B       		.byte	0x1b
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 62
+
+
+ 3187 05ec 22       		.byte	0x22
+ 3188 05ed 23       		.byte	0x23
+ 3189 05ee 02       		.uleb128 0x2
+ 3190 05ef 34       		.byte	0x34
+ 3191 05f0 1B       		.byte	0x1b
+ 3192 05f1 9F       		.byte	0x9f
+ 3193 05f2 A0000000 		.4byte	.LVL101
+ 3194 05f6 A3000000 		.4byte	.LVL102-1
+ 3195 05fa 7A00     		.2byte	0x7a
+ 3196 05fc 03       		.byte	0x3
+ 3197 05fd 00000000 		.4byte	B5
+ 3198 0601 94       		.byte	0x94
+ 3199 0602 02       		.byte	0x2
+ 3200 0603 40       		.byte	0x40
+ 3201 0604 24       		.byte	0x24
+ 3202 0605 40       		.byte	0x40
+ 3203 0606 26       		.byte	0x26
+ 3204 0607 0A       		.byte	0xa
+ 3205 0608 A00F     		.2byte	0xfa0
+ 3206 060a 1C       		.byte	0x1c
+ 3207 060b 03       		.byte	0x3
+ 3208 060c 00000000 		.4byte	AC3
+ 3209 0610 94       		.byte	0x94
+ 3210 0611 02       		.byte	0x2
+ 3211 0612 40       		.byte	0x40
+ 3212 0613 24       		.byte	0x24
+ 3213 0614 40       		.byte	0x40
+ 3214 0615 26       		.byte	0x26
+ 3215 0616 1E       		.byte	0x1e
+ 3216 0617 0A       		.byte	0xa
+ 3217 0618 0020     		.2byte	0x2000
+ 3218 061a 1B       		.byte	0x1b
+ 3219 061b 03       		.byte	0x3
+ 3220 061c 00000000 		.4byte	B5
+ 3221 0620 94       		.byte	0x94
+ 3222 0621 02       		.byte	0x2
+ 3223 0622 40       		.byte	0x40
+ 3224 0623 24       		.byte	0x24
+ 3225 0624 40       		.byte	0x40
+ 3226 0625 26       		.byte	0x26
+ 3227 0626 0A       		.byte	0xa
+ 3228 0627 A00F     		.2byte	0xfa0
+ 3229 0629 1C       		.byte	0x1c
+ 3230 062a 03       		.byte	0x3
+ 3231 062b 00000000 		.4byte	B5
+ 3232 062f 94       		.byte	0x94
+ 3233 0630 02       		.byte	0x2
+ 3234 0631 40       		.byte	0x40
+ 3235 0632 24       		.byte	0x24
+ 3236 0633 40       		.byte	0x40
+ 3237 0634 26       		.byte	0x26
+ 3238 0635 0A       		.byte	0xa
+ 3239 0636 A00F     		.2byte	0xfa0
+ 3240 0638 1C       		.byte	0x1c
+ 3241 0639 1E       		.byte	0x1e
+ 3242 063a 03       		.byte	0x3
+ 3243 063b 00000000 		.4byte	B5
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 63
+
+
+ 3244 063f 94       		.byte	0x94
+ 3245 0640 02       		.byte	0x2
+ 3246 0641 40       		.byte	0x40
+ 3247 0642 24       		.byte	0x24
+ 3248 0643 40       		.byte	0x40
+ 3249 0644 26       		.byte	0x26
+ 3250 0645 0A       		.byte	0xa
+ 3251 0646 A00F     		.2byte	0xfa0
+ 3252 0648 1C       		.byte	0x1c
+ 3253 0649 03       		.byte	0x3
+ 3254 064a 00000000 		.4byte	B5
+ 3255 064e 94       		.byte	0x94
+ 3256 064f 02       		.byte	0x2
+ 3257 0650 40       		.byte	0x40
+ 3258 0651 24       		.byte	0x24
+ 3259 0652 40       		.byte	0x40
+ 3260 0653 26       		.byte	0x26
+ 3261 0654 0A       		.byte	0xa
+ 3262 0655 A00F     		.2byte	0xfa0
+ 3263 0657 1C       		.byte	0x1c
+ 3264 0658 1E       		.byte	0x1e
+ 3265 0659 4F       		.byte	0x4f
+ 3266 065a 26       		.byte	0x26
+ 3267 065b 44       		.byte	0x44
+ 3268 065c 25       		.byte	0x25
+ 3269 065d 22       		.byte	0x22
+ 3270 065e 3C       		.byte	0x3c
+ 3271 065f 26       		.byte	0x26
+ 3272 0660 03       		.byte	0x3
+ 3273 0661 00000000 		.4byte	B1
+ 3274 0665 94       		.byte	0x94
+ 3275 0666 02       		.byte	0x2
+ 3276 0667 40       		.byte	0x40
+ 3277 0668 24       		.byte	0x24
+ 3278 0669 40       		.byte	0x40
+ 3279 066a 26       		.byte	0x26
+ 3280 066b 1E       		.byte	0x1e
+ 3281 066c 40       		.byte	0x40
+ 3282 066d 3C       		.byte	0x3c
+ 3283 066e 24       		.byte	0x24
+ 3284 066f 1B       		.byte	0x1b
+ 3285 0670 22       		.byte	0x22
+ 3286 0671 23       		.byte	0x23
+ 3287 0672 02       		.uleb128 0x2
+ 3288 0673 34       		.byte	0x34
+ 3289 0674 1B       		.byte	0x1b
+ 3290 0675 9F       		.byte	0x9f
+ 3291 0676 00000000 		.4byte	0
+ 3292 067a 00000000 		.4byte	0
+ 3293              	.LLST15:
+ 3294 067e 20000000 		.4byte	.LVL79
+ 3295 0682 58000000 		.4byte	.LVL86
+ 3296 0686 3800     		.2byte	0x38
+ 3297 0688 03       		.byte	0x3
+ 3298 0689 00000000 		.4byte	B2
+ 3299 068d 94       		.byte	0x94
+ 3300 068e 02       		.byte	0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 64
+
+
+ 3301 068f 40       		.byte	0x40
+ 3302 0690 24       		.byte	0x24
+ 3303 0691 40       		.byte	0x40
+ 3304 0692 26       		.byte	0x26
+ 3305 0693 72       		.byte	0x72
+ 3306 0694 00       		.sleb128 0
+ 3307 0695 1E       		.byte	0x1e
+ 3308 0696 0A       		.byte	0xa
+ 3309 0697 0008     		.2byte	0x800
+ 3310 0699 1B       		.byte	0x1b
+ 3311 069a 03       		.byte	0x3
+ 3312 069b 00000000 		.4byte	AC2
+ 3313 069f 94       		.byte	0x94
+ 3314 06a0 02       		.byte	0x2
+ 3315 06a1 40       		.byte	0x40
+ 3316 06a2 24       		.byte	0x24
+ 3317 06a3 40       		.byte	0x40
+ 3318 06a4 26       		.byte	0x26
+ 3319 06a5 73       		.byte	0x73
+ 3320 06a6 00       		.sleb128 0
+ 3321 06a7 1E       		.byte	0x1e
+ 3322 06a8 0A       		.byte	0xa
+ 3323 06a9 0008     		.2byte	0x800
+ 3324 06ab 1B       		.byte	0x1b
+ 3325 06ac 22       		.byte	0x22
+ 3326 06ad 03       		.byte	0x3
+ 3327 06ae 00000000 		.4byte	AC1
+ 3328 06b2 94       		.byte	0x94
+ 3329 06b3 02       		.byte	0x2
+ 3330 06b4 40       		.byte	0x40
+ 3331 06b5 24       		.byte	0x24
+ 3332 06b6 40       		.byte	0x40
+ 3333 06b7 26       		.byte	0x26
+ 3334 06b8 32       		.byte	0x32
+ 3335 06b9 24       		.byte	0x24
+ 3336 06ba 22       		.byte	0x22
+ 3337 06bb 23       		.byte	0x23
+ 3338 06bc 02       		.uleb128 0x2
+ 3339 06bd 34       		.byte	0x34
+ 3340 06be 1B       		.byte	0x1b
+ 3341 06bf 9F       		.byte	0x9f
+ 3342 06c0 58000000 		.4byte	.LVL86
+ 3343 06c4 5E000000 		.4byte	.LVL88
+ 3344 06c8 3800     		.2byte	0x38
+ 3345 06ca 03       		.byte	0x3
+ 3346 06cb 00000000 		.4byte	B2
+ 3347 06cf 94       		.byte	0x94
+ 3348 06d0 02       		.byte	0x2
+ 3349 06d1 40       		.byte	0x40
+ 3350 06d2 24       		.byte	0x24
+ 3351 06d3 40       		.byte	0x40
+ 3352 06d4 26       		.byte	0x26
+ 3353 06d5 72       		.byte	0x72
+ 3354 06d6 00       		.sleb128 0
+ 3355 06d7 1E       		.byte	0x1e
+ 3356 06d8 0A       		.byte	0xa
+ 3357 06d9 0008     		.2byte	0x800
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 65
+
+
+ 3358 06db 1B       		.byte	0x1b
+ 3359 06dc 03       		.byte	0x3
+ 3360 06dd 00000000 		.4byte	AC2
+ 3361 06e1 94       		.byte	0x94
+ 3362 06e2 02       		.byte	0x2
+ 3363 06e3 40       		.byte	0x40
+ 3364 06e4 24       		.byte	0x24
+ 3365 06e5 40       		.byte	0x40
+ 3366 06e6 26       		.byte	0x26
+ 3367 06e7 73       		.byte	0x73
+ 3368 06e8 00       		.sleb128 0
+ 3369 06e9 1E       		.byte	0x1e
+ 3370 06ea 0A       		.byte	0xa
+ 3371 06eb 0008     		.2byte	0x800
+ 3372 06ed 1B       		.byte	0x1b
+ 3373 06ee 22       		.byte	0x22
+ 3374 06ef 03       		.byte	0x3
+ 3375 06f0 00000000 		.4byte	AC1
+ 3376 06f4 94       		.byte	0x94
+ 3377 06f5 02       		.byte	0x2
+ 3378 06f6 40       		.byte	0x40
+ 3379 06f7 24       		.byte	0x24
+ 3380 06f8 40       		.byte	0x40
+ 3381 06f9 26       		.byte	0x26
+ 3382 06fa 32       		.byte	0x32
+ 3383 06fb 24       		.byte	0x24
+ 3384 06fc 22       		.byte	0x22
+ 3385 06fd 23       		.byte	0x23
+ 3386 06fe 02       		.uleb128 0x2
+ 3387 06ff 34       		.byte	0x34
+ 3388 0700 1B       		.byte	0x1b
+ 3389 0701 9F       		.byte	0x9f
+ 3390 0702 5E000000 		.4byte	.LVL88
+ 3391 0706 60000000 		.4byte	.LVL89
+ 3392 070a 3800     		.2byte	0x38
+ 3393 070c 03       		.byte	0x3
+ 3394 070d 00000000 		.4byte	B2
+ 3395 0711 94       		.byte	0x94
+ 3396 0712 02       		.byte	0x2
+ 3397 0713 40       		.byte	0x40
+ 3398 0714 24       		.byte	0x24
+ 3399 0715 40       		.byte	0x40
+ 3400 0716 26       		.byte	0x26
+ 3401 0717 72       		.byte	0x72
+ 3402 0718 00       		.sleb128 0
+ 3403 0719 1E       		.byte	0x1e
+ 3404 071a 0A       		.byte	0xa
+ 3405 071b 0008     		.2byte	0x800
+ 3406 071d 1B       		.byte	0x1b
+ 3407 071e 03       		.byte	0x3
+ 3408 071f 00000000 		.4byte	AC2
+ 3409 0723 94       		.byte	0x94
+ 3410 0724 02       		.byte	0x2
+ 3411 0725 40       		.byte	0x40
+ 3412 0726 24       		.byte	0x24
+ 3413 0727 40       		.byte	0x40
+ 3414 0728 26       		.byte	0x26
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 66
+
+
+ 3415 0729 73       		.byte	0x73
+ 3416 072a 00       		.sleb128 0
+ 3417 072b 1E       		.byte	0x1e
+ 3418 072c 0A       		.byte	0xa
+ 3419 072d 0008     		.2byte	0x800
+ 3420 072f 1B       		.byte	0x1b
+ 3421 0730 22       		.byte	0x22
+ 3422 0731 03       		.byte	0x3
+ 3423 0732 00000000 		.4byte	AC1
+ 3424 0736 94       		.byte	0x94
+ 3425 0737 02       		.byte	0x2
+ 3426 0738 40       		.byte	0x40
+ 3427 0739 24       		.byte	0x24
+ 3428 073a 40       		.byte	0x40
+ 3429 073b 26       		.byte	0x26
+ 3430 073c 32       		.byte	0x32
+ 3431 073d 24       		.byte	0x24
+ 3432 073e 22       		.byte	0x22
+ 3433 073f 23       		.byte	0x23
+ 3434 0740 02       		.uleb128 0x2
+ 3435 0741 34       		.byte	0x34
+ 3436 0742 1B       		.byte	0x1b
+ 3437 0743 9F       		.byte	0x9f
+ 3438 0744 60000000 		.4byte	.LVL89
+ 3439 0748 62000000 		.4byte	.LVL90
+ 3440 074c 3800     		.2byte	0x38
+ 3441 074e 03       		.byte	0x3
+ 3442 074f 00000000 		.4byte	B2
+ 3443 0753 94       		.byte	0x94
+ 3444 0754 02       		.byte	0x2
+ 3445 0755 40       		.byte	0x40
+ 3446 0756 24       		.byte	0x24
+ 3447 0757 40       		.byte	0x40
+ 3448 0758 26       		.byte	0x26
+ 3449 0759 72       		.byte	0x72
+ 3450 075a 00       		.sleb128 0
+ 3451 075b 1E       		.byte	0x1e
+ 3452 075c 0A       		.byte	0xa
+ 3453 075d 0008     		.2byte	0x800
+ 3454 075f 1B       		.byte	0x1b
+ 3455 0760 03       		.byte	0x3
+ 3456 0761 00000000 		.4byte	AC2
+ 3457 0765 94       		.byte	0x94
+ 3458 0766 02       		.byte	0x2
+ 3459 0767 40       		.byte	0x40
+ 3460 0768 24       		.byte	0x24
+ 3461 0769 40       		.byte	0x40
+ 3462 076a 26       		.byte	0x26
+ 3463 076b 73       		.byte	0x73
+ 3464 076c 00       		.sleb128 0
+ 3465 076d 1E       		.byte	0x1e
+ 3466 076e 0A       		.byte	0xa
+ 3467 076f 0008     		.2byte	0x800
+ 3468 0771 1B       		.byte	0x1b
+ 3469 0772 22       		.byte	0x22
+ 3470 0773 03       		.byte	0x3
+ 3471 0774 00000000 		.4byte	AC1
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 67
+
+
+ 3472 0778 94       		.byte	0x94
+ 3473 0779 02       		.byte	0x2
+ 3474 077a 40       		.byte	0x40
+ 3475 077b 24       		.byte	0x24
+ 3476 077c 40       		.byte	0x40
+ 3477 077d 26       		.byte	0x26
+ 3478 077e 32       		.byte	0x32
+ 3479 077f 24       		.byte	0x24
+ 3480 0780 22       		.byte	0x22
+ 3481 0781 23       		.byte	0x23
+ 3482 0782 02       		.uleb128 0x2
+ 3483 0783 34       		.byte	0x34
+ 3484 0784 1B       		.byte	0x1b
+ 3485 0785 9F       		.byte	0x9f
+ 3486 0786 62000000 		.4byte	.LVL90
+ 3487 078a 66000000 		.4byte	.LVL91
+ 3488 078e 2D00     		.2byte	0x2d
+ 3489 0790 03       		.byte	0x3
+ 3490 0791 00000000 		.4byte	B2
+ 3491 0795 94       		.byte	0x94
+ 3492 0796 02       		.byte	0x2
+ 3493 0797 40       		.byte	0x40
+ 3494 0798 24       		.byte	0x24
+ 3495 0799 40       		.byte	0x40
+ 3496 079a 26       		.byte	0x26
+ 3497 079b 72       		.byte	0x72
+ 3498 079c 00       		.sleb128 0
+ 3499 079d 1E       		.byte	0x1e
+ 3500 079e 0A       		.byte	0xa
+ 3501 079f 0008     		.2byte	0x800
+ 3502 07a1 1B       		.byte	0x1b
+ 3503 07a2 03       		.byte	0x3
+ 3504 07a3 00000000 		.4byte	AC2
+ 3505 07a7 94       		.byte	0x94
+ 3506 07a8 02       		.byte	0x2
+ 3507 07a9 40       		.byte	0x40
+ 3508 07aa 24       		.byte	0x24
+ 3509 07ab 40       		.byte	0x40
+ 3510 07ac 26       		.byte	0x26
+ 3511 07ad 73       		.byte	0x73
+ 3512 07ae 00       		.sleb128 0
+ 3513 07af 1E       		.byte	0x1e
+ 3514 07b0 0A       		.byte	0xa
+ 3515 07b1 0008     		.2byte	0x800
+ 3516 07b3 1B       		.byte	0x1b
+ 3517 07b4 22       		.byte	0x22
+ 3518 07b5 74       		.byte	0x74
+ 3519 07b6 00       		.sleb128 0
+ 3520 07b7 22       		.byte	0x22
+ 3521 07b8 23       		.byte	0x23
+ 3522 07b9 02       		.uleb128 0x2
+ 3523 07ba 34       		.byte	0x34
+ 3524 07bb 1B       		.byte	0x1b
+ 3525 07bc 9F       		.byte	0x9f
+ 3526 07bd 66000000 		.4byte	.LVL91
+ 3527 07c1 68000000 		.4byte	.LVL92
+ 3528 07c5 2D00     		.2byte	0x2d
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 68
+
+
+ 3529 07c7 03       		.byte	0x3
+ 3530 07c8 00000000 		.4byte	B2
+ 3531 07cc 94       		.byte	0x94
+ 3532 07cd 02       		.byte	0x2
+ 3533 07ce 40       		.byte	0x40
+ 3534 07cf 24       		.byte	0x24
+ 3535 07d0 40       		.byte	0x40
+ 3536 07d1 26       		.byte	0x26
+ 3537 07d2 72       		.byte	0x72
+ 3538 07d3 00       		.sleb128 0
+ 3539 07d4 1E       		.byte	0x1e
+ 3540 07d5 0A       		.byte	0xa
+ 3541 07d6 0008     		.2byte	0x800
+ 3542 07d8 1B       		.byte	0x1b
+ 3543 07d9 03       		.byte	0x3
+ 3544 07da 00000000 		.4byte	AC2
+ 3545 07de 94       		.byte	0x94
+ 3546 07df 02       		.byte	0x2
+ 3547 07e0 40       		.byte	0x40
+ 3548 07e1 24       		.byte	0x24
+ 3549 07e2 40       		.byte	0x40
+ 3550 07e3 26       		.byte	0x26
+ 3551 07e4 73       		.byte	0x73
+ 3552 07e5 00       		.sleb128 0
+ 3553 07e6 1E       		.byte	0x1e
+ 3554 07e7 0A       		.byte	0xa
+ 3555 07e8 0008     		.2byte	0x800
+ 3556 07ea 1B       		.byte	0x1b
+ 3557 07eb 22       		.byte	0x22
+ 3558 07ec 74       		.byte	0x74
+ 3559 07ed 00       		.sleb128 0
+ 3560 07ee 22       		.byte	0x22
+ 3561 07ef 23       		.byte	0x23
+ 3562 07f0 02       		.uleb128 0x2
+ 3563 07f1 34       		.byte	0x34
+ 3564 07f2 1B       		.byte	0x1b
+ 3565 07f3 9F       		.byte	0x9f
+ 3566 07f4 68000000 		.4byte	.LVL92
+ 3567 07f8 70000000 		.4byte	.LVL93
+ 3568 07fc 3C00     		.2byte	0x3c
+ 3569 07fe 73       		.byte	0x73
+ 3570 07ff 00       		.sleb128 0
+ 3571 0800 73       		.byte	0x73
+ 3572 0801 00       		.sleb128 0
+ 3573 0802 1E       		.byte	0x1e
+ 3574 0803 73       		.byte	0x73
+ 3575 0804 00       		.sleb128 0
+ 3576 0805 73       		.byte	0x73
+ 3577 0806 00       		.sleb128 0
+ 3578 0807 1E       		.byte	0x1e
+ 3579 0808 4F       		.byte	0x4f
+ 3580 0809 26       		.byte	0x26
+ 3581 080a 44       		.byte	0x44
+ 3582 080b 25       		.byte	0x25
+ 3583 080c 22       		.byte	0x22
+ 3584 080d 3C       		.byte	0x3c
+ 3585 080e 26       		.byte	0x26
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 69
+
+
+ 3586 080f 03       		.byte	0x3
+ 3587 0810 00000000 		.4byte	B2
+ 3588 0814 94       		.byte	0x94
+ 3589 0815 02       		.byte	0x2
+ 3590 0816 40       		.byte	0x40
+ 3591 0817 24       		.byte	0x24
+ 3592 0818 40       		.byte	0x40
+ 3593 0819 26       		.byte	0x26
+ 3594 081a 1E       		.byte	0x1e
+ 3595 081b 0A       		.byte	0xa
+ 3596 081c 0008     		.2byte	0x800
+ 3597 081e 1B       		.byte	0x1b
+ 3598 081f 03       		.byte	0x3
+ 3599 0820 00000000 		.4byte	AC2
+ 3600 0824 94       		.byte	0x94
+ 3601 0825 02       		.byte	0x2
+ 3602 0826 40       		.byte	0x40
+ 3603 0827 24       		.byte	0x24
+ 3604 0828 40       		.byte	0x40
+ 3605 0829 26       		.byte	0x26
+ 3606 082a 73       		.byte	0x73
+ 3607 082b 00       		.sleb128 0
+ 3608 082c 1E       		.byte	0x1e
+ 3609 082d 0A       		.byte	0xa
+ 3610 082e 0008     		.2byte	0x800
+ 3611 0830 1B       		.byte	0x1b
+ 3612 0831 22       		.byte	0x22
+ 3613 0832 74       		.byte	0x74
+ 3614 0833 00       		.sleb128 0
+ 3615 0834 22       		.byte	0x22
+ 3616 0835 23       		.byte	0x23
+ 3617 0836 02       		.uleb128 0x2
+ 3618 0837 34       		.byte	0x34
+ 3619 0838 1B       		.byte	0x1b
+ 3620 0839 9F       		.byte	0x9f
+ 3621 083a 70000000 		.4byte	.LVL93
+ 3622 083e 76000000 		.4byte	.LVL94
+ 3623 0842 3C00     		.2byte	0x3c
+ 3624 0844 73       		.byte	0x73
+ 3625 0845 00       		.sleb128 0
+ 3626 0846 73       		.byte	0x73
+ 3627 0847 00       		.sleb128 0
+ 3628 0848 1E       		.byte	0x1e
+ 3629 0849 73       		.byte	0x73
+ 3630 084a 00       		.sleb128 0
+ 3631 084b 73       		.byte	0x73
+ 3632 084c 00       		.sleb128 0
+ 3633 084d 1E       		.byte	0x1e
+ 3634 084e 4F       		.byte	0x4f
+ 3635 084f 26       		.byte	0x26
+ 3636 0850 44       		.byte	0x44
+ 3637 0851 25       		.byte	0x25
+ 3638 0852 22       		.byte	0x22
+ 3639 0853 3C       		.byte	0x3c
+ 3640 0854 26       		.byte	0x26
+ 3641 0855 03       		.byte	0x3
+ 3642 0856 00000000 		.4byte	B2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 70
+
+
+ 3643 085a 94       		.byte	0x94
+ 3644 085b 02       		.byte	0x2
+ 3645 085c 40       		.byte	0x40
+ 3646 085d 24       		.byte	0x24
+ 3647 085e 40       		.byte	0x40
+ 3648 085f 26       		.byte	0x26
+ 3649 0860 1E       		.byte	0x1e
+ 3650 0861 0A       		.byte	0xa
+ 3651 0862 0008     		.2byte	0x800
+ 3652 0864 1B       		.byte	0x1b
+ 3653 0865 03       		.byte	0x3
+ 3654 0866 00000000 		.4byte	AC2
+ 3655 086a 94       		.byte	0x94
+ 3656 086b 02       		.byte	0x2
+ 3657 086c 40       		.byte	0x40
+ 3658 086d 24       		.byte	0x24
+ 3659 086e 40       		.byte	0x40
+ 3660 086f 26       		.byte	0x26
+ 3661 0870 73       		.byte	0x73
+ 3662 0871 00       		.sleb128 0
+ 3663 0872 1E       		.byte	0x1e
+ 3664 0873 0A       		.byte	0xa
+ 3665 0874 0008     		.2byte	0x800
+ 3666 0876 1B       		.byte	0x1b
+ 3667 0877 22       		.byte	0x22
+ 3668 0878 74       		.byte	0x74
+ 3669 0879 00       		.sleb128 0
+ 3670 087a 22       		.byte	0x22
+ 3671 087b 23       		.byte	0x23
+ 3672 087c 02       		.uleb128 0x2
+ 3673 087d 34       		.byte	0x34
+ 3674 087e 1B       		.byte	0x1b
+ 3675 087f 9F       		.byte	0x9f
+ 3676 0880 76000000 		.4byte	.LVL94
+ 3677 0884 78000000 		.4byte	.LVL95
+ 3678 0888 3C00     		.2byte	0x3c
+ 3679 088a 73       		.byte	0x73
+ 3680 088b 00       		.sleb128 0
+ 3681 088c 73       		.byte	0x73
+ 3682 088d 00       		.sleb128 0
+ 3683 088e 1E       		.byte	0x1e
+ 3684 088f 73       		.byte	0x73
+ 3685 0890 00       		.sleb128 0
+ 3686 0891 73       		.byte	0x73
+ 3687 0892 00       		.sleb128 0
+ 3688 0893 1E       		.byte	0x1e
+ 3689 0894 4F       		.byte	0x4f
+ 3690 0895 26       		.byte	0x26
+ 3691 0896 44       		.byte	0x44
+ 3692 0897 25       		.byte	0x25
+ 3693 0898 22       		.byte	0x22
+ 3694 0899 3C       		.byte	0x3c
+ 3695 089a 26       		.byte	0x26
+ 3696 089b 03       		.byte	0x3
+ 3697 089c 00000000 		.4byte	B2
+ 3698 08a0 94       		.byte	0x94
+ 3699 08a1 02       		.byte	0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 71
+
+
+ 3700 08a2 40       		.byte	0x40
+ 3701 08a3 24       		.byte	0x24
+ 3702 08a4 40       		.byte	0x40
+ 3703 08a5 26       		.byte	0x26
+ 3704 08a6 1E       		.byte	0x1e
+ 3705 08a7 0A       		.byte	0xa
+ 3706 08a8 0008     		.2byte	0x800
+ 3707 08aa 1B       		.byte	0x1b
+ 3708 08ab 03       		.byte	0x3
+ 3709 08ac 00000000 		.4byte	AC2
+ 3710 08b0 94       		.byte	0x94
+ 3711 08b1 02       		.byte	0x2
+ 3712 08b2 40       		.byte	0x40
+ 3713 08b3 24       		.byte	0x24
+ 3714 08b4 40       		.byte	0x40
+ 3715 08b5 26       		.byte	0x26
+ 3716 08b6 73       		.byte	0x73
+ 3717 08b7 00       		.sleb128 0
+ 3718 08b8 1E       		.byte	0x1e
+ 3719 08b9 0A       		.byte	0xa
+ 3720 08ba 0008     		.2byte	0x800
+ 3721 08bc 1B       		.byte	0x1b
+ 3722 08bd 22       		.byte	0x22
+ 3723 08be 74       		.byte	0x74
+ 3724 08bf 00       		.sleb128 0
+ 3725 08c0 22       		.byte	0x22
+ 3726 08c1 23       		.byte	0x23
+ 3727 08c2 02       		.uleb128 0x2
+ 3728 08c3 34       		.byte	0x34
+ 3729 08c4 1B       		.byte	0x1b
+ 3730 08c5 9F       		.byte	0x9f
+ 3731 08c6 78000000 		.4byte	.LVL95
+ 3732 08ca 7E000000 		.4byte	.LVL96
+ 3733 08ce 6400     		.2byte	0x64
+ 3734 08d0 03       		.byte	0x3
+ 3735 08d1 00000000 		.4byte	B5
+ 3736 08d5 94       		.byte	0x94
+ 3737 08d6 02       		.byte	0x2
+ 3738 08d7 40       		.byte	0x40
+ 3739 08d8 24       		.byte	0x24
+ 3740 08d9 40       		.byte	0x40
+ 3741 08da 26       		.byte	0x26
+ 3742 08db 0A       		.byte	0xa
+ 3743 08dc A00F     		.2byte	0xfa0
+ 3744 08de 1C       		.byte	0x1c
+ 3745 08df 03       		.byte	0x3
+ 3746 08e0 00000000 		.4byte	B5
+ 3747 08e4 94       		.byte	0x94
+ 3748 08e5 02       		.byte	0x2
+ 3749 08e6 40       		.byte	0x40
+ 3750 08e7 24       		.byte	0x24
+ 3751 08e8 40       		.byte	0x40
+ 3752 08e9 26       		.byte	0x26
+ 3753 08ea 0A       		.byte	0xa
+ 3754 08eb A00F     		.2byte	0xfa0
+ 3755 08ed 1C       		.byte	0x1c
+ 3756 08ee 1E       		.byte	0x1e
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 72
+
+
+ 3757 08ef 03       		.byte	0x3
+ 3758 08f0 00000000 		.4byte	B5
+ 3759 08f4 94       		.byte	0x94
+ 3760 08f5 02       		.byte	0x2
+ 3761 08f6 40       		.byte	0x40
+ 3762 08f7 24       		.byte	0x24
+ 3763 08f8 40       		.byte	0x40
+ 3764 08f9 26       		.byte	0x26
+ 3765 08fa 0A       		.byte	0xa
+ 3766 08fb A00F     		.2byte	0xfa0
+ 3767 08fd 1C       		.byte	0x1c
+ 3768 08fe 03       		.byte	0x3
+ 3769 08ff 00000000 		.4byte	B5
+ 3770 0903 94       		.byte	0x94
+ 3771 0904 02       		.byte	0x2
+ 3772 0905 40       		.byte	0x40
+ 3773 0906 24       		.byte	0x24
+ 3774 0907 40       		.byte	0x40
+ 3775 0908 26       		.byte	0x26
+ 3776 0909 0A       		.byte	0xa
+ 3777 090a A00F     		.2byte	0xfa0
+ 3778 090c 1C       		.byte	0x1c
+ 3779 090d 1E       		.byte	0x1e
+ 3780 090e 4F       		.byte	0x4f
+ 3781 090f 26       		.byte	0x26
+ 3782 0910 44       		.byte	0x44
+ 3783 0911 25       		.byte	0x25
+ 3784 0912 22       		.byte	0x22
+ 3785 0913 3C       		.byte	0x3c
+ 3786 0914 26       		.byte	0x26
+ 3787 0915 03       		.byte	0x3
+ 3788 0916 00000000 		.4byte	B2
+ 3789 091a 94       		.byte	0x94
+ 3790 091b 02       		.byte	0x2
+ 3791 091c 40       		.byte	0x40
+ 3792 091d 24       		.byte	0x24
+ 3793 091e 40       		.byte	0x40
+ 3794 091f 26       		.byte	0x26
+ 3795 0920 1E       		.byte	0x1e
+ 3796 0921 0A       		.byte	0xa
+ 3797 0922 0008     		.2byte	0x800
+ 3798 0924 1B       		.byte	0x1b
+ 3799 0925 73       		.byte	0x73
+ 3800 0926 00       		.sleb128 0
+ 3801 0927 0A       		.byte	0xa
+ 3802 0928 0008     		.2byte	0x800
+ 3803 092a 1B       		.byte	0x1b
+ 3804 092b 22       		.byte	0x22
+ 3805 092c 74       		.byte	0x74
+ 3806 092d 00       		.sleb128 0
+ 3807 092e 22       		.byte	0x22
+ 3808 092f 23       		.byte	0x23
+ 3809 0930 02       		.uleb128 0x2
+ 3810 0931 34       		.byte	0x34
+ 3811 0932 1B       		.byte	0x1b
+ 3812 0933 9F       		.byte	0x9f
+ 3813 0934 7E000000 		.4byte	.LVL96
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 73
+
+
+ 3814 0938 9D000000 		.4byte	.LVL100-1
+ 3815 093c 7D00     		.2byte	0x7d
+ 3816 093e 03       		.byte	0x3
+ 3817 093f 00000000 		.4byte	B5
+ 3818 0943 94       		.byte	0x94
+ 3819 0944 02       		.byte	0x2
+ 3820 0945 40       		.byte	0x40
+ 3821 0946 24       		.byte	0x24
+ 3822 0947 40       		.byte	0x40
+ 3823 0948 26       		.byte	0x26
+ 3824 0949 0A       		.byte	0xa
+ 3825 094a A00F     		.2byte	0xfa0
+ 3826 094c 1C       		.byte	0x1c
+ 3827 094d 03       		.byte	0x3
+ 3828 094e 00000000 		.4byte	B5
+ 3829 0952 94       		.byte	0x94
+ 3830 0953 02       		.byte	0x2
+ 3831 0954 40       		.byte	0x40
+ 3832 0955 24       		.byte	0x24
+ 3833 0956 40       		.byte	0x40
+ 3834 0957 26       		.byte	0x26
+ 3835 0958 0A       		.byte	0xa
+ 3836 0959 A00F     		.2byte	0xfa0
+ 3837 095b 1C       		.byte	0x1c
+ 3838 095c 1E       		.byte	0x1e
+ 3839 095d 03       		.byte	0x3
+ 3840 095e 00000000 		.4byte	B5
+ 3841 0962 94       		.byte	0x94
+ 3842 0963 02       		.byte	0x2
+ 3843 0964 40       		.byte	0x40
+ 3844 0965 24       		.byte	0x24
+ 3845 0966 40       		.byte	0x40
+ 3846 0967 26       		.byte	0x26
+ 3847 0968 0A       		.byte	0xa
+ 3848 0969 A00F     		.2byte	0xfa0
+ 3849 096b 1C       		.byte	0x1c
+ 3850 096c 03       		.byte	0x3
+ 3851 096d 00000000 		.4byte	B5
+ 3852 0971 94       		.byte	0x94
+ 3853 0972 02       		.byte	0x2
+ 3854 0973 40       		.byte	0x40
+ 3855 0974 24       		.byte	0x24
+ 3856 0975 40       		.byte	0x40
+ 3857 0976 26       		.byte	0x26
+ 3858 0977 0A       		.byte	0xa
+ 3859 0978 A00F     		.2byte	0xfa0
+ 3860 097a 1C       		.byte	0x1c
+ 3861 097b 1E       		.byte	0x1e
+ 3862 097c 4F       		.byte	0x4f
+ 3863 097d 26       		.byte	0x26
+ 3864 097e 44       		.byte	0x44
+ 3865 097f 25       		.byte	0x25
+ 3866 0980 22       		.byte	0x22
+ 3867 0981 3C       		.byte	0x3c
+ 3868 0982 26       		.byte	0x26
+ 3869 0983 03       		.byte	0x3
+ 3870 0984 00000000 		.4byte	B2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 74
+
+
+ 3871 0988 94       		.byte	0x94
+ 3872 0989 02       		.byte	0x2
+ 3873 098a 40       		.byte	0x40
+ 3874 098b 24       		.byte	0x24
+ 3875 098c 40       		.byte	0x40
+ 3876 098d 26       		.byte	0x26
+ 3877 098e 1E       		.byte	0x1e
+ 3878 098f 0A       		.byte	0xa
+ 3879 0990 0008     		.2byte	0x800
+ 3880 0992 1B       		.byte	0x1b
+ 3881 0993 03       		.byte	0x3
+ 3882 0994 00000000 		.4byte	B5
+ 3883 0998 94       		.byte	0x94
+ 3884 0999 02       		.byte	0x2
+ 3885 099a 40       		.byte	0x40
+ 3886 099b 24       		.byte	0x24
+ 3887 099c 40       		.byte	0x40
+ 3888 099d 26       		.byte	0x26
+ 3889 099e 0A       		.byte	0xa
+ 3890 099f A00F     		.2byte	0xfa0
+ 3891 09a1 1C       		.byte	0x1c
+ 3892 09a2 03       		.byte	0x3
+ 3893 09a3 00000000 		.4byte	AC2
+ 3894 09a7 94       		.byte	0x94
+ 3895 09a8 02       		.byte	0x2
+ 3896 09a9 40       		.byte	0x40
+ 3897 09aa 24       		.byte	0x24
+ 3898 09ab 40       		.byte	0x40
+ 3899 09ac 26       		.byte	0x26
+ 3900 09ad 1E       		.byte	0x1e
+ 3901 09ae 0A       		.byte	0xa
+ 3902 09af 0008     		.2byte	0x800
+ 3903 09b1 1B       		.byte	0x1b
+ 3904 09b2 22       		.byte	0x22
+ 3905 09b3 74       		.byte	0x74
+ 3906 09b4 00       		.sleb128 0
+ 3907 09b5 22       		.byte	0x22
+ 3908 09b6 23       		.byte	0x23
+ 3909 09b7 02       		.uleb128 0x2
+ 3910 09b8 34       		.byte	0x34
+ 3911 09b9 1B       		.byte	0x1b
+ 3912 09ba 9F       		.byte	0x9f
+ 3913 09bb A0000000 		.4byte	.LVL101
+ 3914 09bf A3000000 		.4byte	.LVL102-1
+ 3915 09c3 7D00     		.2byte	0x7d
+ 3916 09c5 03       		.byte	0x3
+ 3917 09c6 00000000 		.4byte	B5
+ 3918 09ca 94       		.byte	0x94
+ 3919 09cb 02       		.byte	0x2
+ 3920 09cc 40       		.byte	0x40
+ 3921 09cd 24       		.byte	0x24
+ 3922 09ce 40       		.byte	0x40
+ 3923 09cf 26       		.byte	0x26
+ 3924 09d0 0A       		.byte	0xa
+ 3925 09d1 A00F     		.2byte	0xfa0
+ 3926 09d3 1C       		.byte	0x1c
+ 3927 09d4 03       		.byte	0x3
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 75
+
+
+ 3928 09d5 00000000 		.4byte	B5
+ 3929 09d9 94       		.byte	0x94
+ 3930 09da 02       		.byte	0x2
+ 3931 09db 40       		.byte	0x40
+ 3932 09dc 24       		.byte	0x24
+ 3933 09dd 40       		.byte	0x40
+ 3934 09de 26       		.byte	0x26
+ 3935 09df 0A       		.byte	0xa
+ 3936 09e0 A00F     		.2byte	0xfa0
+ 3937 09e2 1C       		.byte	0x1c
+ 3938 09e3 1E       		.byte	0x1e
+ 3939 09e4 03       		.byte	0x3
+ 3940 09e5 00000000 		.4byte	B5
+ 3941 09e9 94       		.byte	0x94
+ 3942 09ea 02       		.byte	0x2
+ 3943 09eb 40       		.byte	0x40
+ 3944 09ec 24       		.byte	0x24
+ 3945 09ed 40       		.byte	0x40
+ 3946 09ee 26       		.byte	0x26
+ 3947 09ef 0A       		.byte	0xa
+ 3948 09f0 A00F     		.2byte	0xfa0
+ 3949 09f2 1C       		.byte	0x1c
+ 3950 09f3 03       		.byte	0x3
+ 3951 09f4 00000000 		.4byte	B5
+ 3952 09f8 94       		.byte	0x94
+ 3953 09f9 02       		.byte	0x2
+ 3954 09fa 40       		.byte	0x40
+ 3955 09fb 24       		.byte	0x24
+ 3956 09fc 40       		.byte	0x40
+ 3957 09fd 26       		.byte	0x26
+ 3958 09fe 0A       		.byte	0xa
+ 3959 09ff A00F     		.2byte	0xfa0
+ 3960 0a01 1C       		.byte	0x1c
+ 3961 0a02 1E       		.byte	0x1e
+ 3962 0a03 4F       		.byte	0x4f
+ 3963 0a04 26       		.byte	0x26
+ 3964 0a05 44       		.byte	0x44
+ 3965 0a06 25       		.byte	0x25
+ 3966 0a07 22       		.byte	0x22
+ 3967 0a08 3C       		.byte	0x3c
+ 3968 0a09 26       		.byte	0x26
+ 3969 0a0a 03       		.byte	0x3
+ 3970 0a0b 00000000 		.4byte	B2
+ 3971 0a0f 94       		.byte	0x94
+ 3972 0a10 02       		.byte	0x2
+ 3973 0a11 40       		.byte	0x40
+ 3974 0a12 24       		.byte	0x24
+ 3975 0a13 40       		.byte	0x40
+ 3976 0a14 26       		.byte	0x26
+ 3977 0a15 1E       		.byte	0x1e
+ 3978 0a16 0A       		.byte	0xa
+ 3979 0a17 0008     		.2byte	0x800
+ 3980 0a19 1B       		.byte	0x1b
+ 3981 0a1a 03       		.byte	0x3
+ 3982 0a1b 00000000 		.4byte	B5
+ 3983 0a1f 94       		.byte	0x94
+ 3984 0a20 02       		.byte	0x2
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 76
+
+
+ 3985 0a21 40       		.byte	0x40
+ 3986 0a22 24       		.byte	0x24
+ 3987 0a23 40       		.byte	0x40
+ 3988 0a24 26       		.byte	0x26
+ 3989 0a25 0A       		.byte	0xa
+ 3990 0a26 A00F     		.2byte	0xfa0
+ 3991 0a28 1C       		.byte	0x1c
+ 3992 0a29 03       		.byte	0x3
+ 3993 0a2a 00000000 		.4byte	AC2
+ 3994 0a2e 94       		.byte	0x94
+ 3995 0a2f 02       		.byte	0x2
+ 3996 0a30 40       		.byte	0x40
+ 3997 0a31 24       		.byte	0x24
+ 3998 0a32 40       		.byte	0x40
+ 3999 0a33 26       		.byte	0x26
+ 4000 0a34 1E       		.byte	0x1e
+ 4001 0a35 0A       		.byte	0xa
+ 4002 0a36 0008     		.2byte	0x800
+ 4003 0a38 1B       		.byte	0x1b
+ 4004 0a39 22       		.byte	0x22
+ 4005 0a3a 74       		.byte	0x74
+ 4006 0a3b 00       		.sleb128 0
+ 4007 0a3c 22       		.byte	0x22
+ 4008 0a3d 23       		.byte	0x23
+ 4009 0a3e 02       		.uleb128 0x2
+ 4010 0a3f 34       		.byte	0x34
+ 4011 0a40 1B       		.byte	0x1b
+ 4012 0a41 9F       		.byte	0x9f
+ 4013 0a42 00000000 		.4byte	0
+ 4014 0a46 00000000 		.4byte	0
+ 4015              	.LLST16:
+ 4016 0a4a 5A000000 		.4byte	.LVL87
+ 4017 0a4e 9D000000 		.4byte	.LVL100-1
+ 4018 0a52 0100     		.2byte	0x1
+ 4019 0a54 51       		.byte	0x51
+ 4020 0a55 A0000000 		.4byte	.LVL101
+ 4021 0a59 A3000000 		.4byte	.LVL102-1
+ 4022 0a5d 0100     		.2byte	0x1
+ 4023 0a5f 51       		.byte	0x51
+ 4024 0a60 00000000 		.4byte	0
+ 4025 0a64 00000000 		.4byte	0
+ 4026              	.LLST17:
+ 4027 0a68 94000000 		.4byte	.LVL98
+ 4028 0a6c 9A000000 		.4byte	.LVL99
+ 4029 0a70 0100     		.2byte	0x1
+ 4030 0a72 50       		.byte	0x50
+ 4031 0a73 A0000000 		.4byte	.LVL101
+ 4032 0a77 A3000000 		.4byte	.LVL102-1
+ 4033 0a7b 0100     		.2byte	0x1
+ 4034 0a7d 50       		.byte	0x50
+ 4035 0a7e 00000000 		.4byte	0
+ 4036 0a82 00000000 		.4byte	0
+ 4037              	.LLST18:
+ 4038 0a86 94000000 		.4byte	.LVL98
+ 4039 0a8a 9E000000 		.4byte	.LVL100
+ 4040 0a8e 0200     		.2byte	0x2
+ 4041 0a90 30       		.byte	0x30
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 77
+
+
+ 4042 0a91 9F       		.byte	0x9f
+ 4043 0a92 9E000000 		.4byte	.LVL100
+ 4044 0a96 A0000000 		.4byte	.LVL101
+ 4045 0a9a 0100     		.2byte	0x1
+ 4046 0a9c 50       		.byte	0x50
+ 4047 0a9d A0000000 		.4byte	.LVL101
+ 4048 0aa1 A6000000 		.4byte	.LVL103
+ 4049 0aa5 0200     		.2byte	0x2
+ 4050 0aa7 30       		.byte	0x30
+ 4051 0aa8 9F       		.byte	0x9f
+ 4052 0aa9 A6000000 		.4byte	.LVL103
+ 4053 0aad D6000000 		.4byte	.LVL109
+ 4054 0ab1 0100     		.2byte	0x1
+ 4055 0ab3 50       		.byte	0x50
+ 4056 0ab4 D6000000 		.4byte	.LVL109
+ 4057 0ab8 D8000000 		.4byte	.LVL110
+ 4058 0abc 0600     		.2byte	0x6
+ 4059 0abe 70       		.byte	0x70
+ 4060 0abf 00       		.sleb128 0
+ 4061 0ac0 73       		.byte	0x73
+ 4062 0ac1 00       		.sleb128 0
+ 4063 0ac2 22       		.byte	0x22
+ 4064 0ac3 9F       		.byte	0x9f
+ 4065 0ac4 D8000000 		.4byte	.LVL110
+ 4066 0ac8 0C010000 		.4byte	.LFE39
+ 4067 0acc 0100     		.2byte	0x1
+ 4068 0ace 50       		.byte	0x50
+ 4069 0acf 00000000 		.4byte	0
+ 4070 0ad3 00000000 		.4byte	0
+ 4071              		.section	.debug_aranges,"",%progbits
+ 4072 0000 4C000000 		.4byte	0x4c
+ 4073 0004 0200     		.2byte	0x2
+ 4074 0006 00000000 		.4byte	.Ldebug_info0
+ 4075 000a 04       		.byte	0x4
+ 4076 000b 00       		.byte	0
+ 4077 000c 0000     		.2byte	0
+ 4078 000e 0000     		.2byte	0
+ 4079 0010 00000000 		.4byte	.LFB33
+ 4080 0014 50000000 		.4byte	.LFE33-.LFB33
+ 4081 0018 00000000 		.4byte	.LFB34
+ 4082 001c 3C000000 		.4byte	.LFE34-.LFB34
+ 4083 0020 00000000 		.4byte	.LFB35
+ 4084 0024 74010000 		.4byte	.LFE35-.LFB35
+ 4085 0028 00000000 		.4byte	.LFB36
+ 4086 002c 0C000000 		.4byte	.LFE36-.LFB36
+ 4087 0030 00000000 		.4byte	.LFB37
+ 4088 0034 58000000 		.4byte	.LFE37-.LFB37
+ 4089 0038 00000000 		.4byte	.LFB38
+ 4090 003c 0C000000 		.4byte	.LFE38-.LFB38
+ 4091 0040 00000000 		.4byte	.LFB39
+ 4092 0044 0C010000 		.4byte	.LFE39-.LFB39
+ 4093 0048 00000000 		.4byte	0
+ 4094 004c 00000000 		.4byte	0
+ 4095              		.section	.debug_ranges,"",%progbits
+ 4096              	.Ldebug_ranges0:
+ 4097 0000 00000000 		.4byte	.LFB33
+ 4098 0004 50000000 		.4byte	.LFE33
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 78
+
+
+ 4099 0008 00000000 		.4byte	.LFB34
+ 4100 000c 3C000000 		.4byte	.LFE34
+ 4101 0010 00000000 		.4byte	.LFB35
+ 4102 0014 74010000 		.4byte	.LFE35
+ 4103 0018 00000000 		.4byte	.LFB36
+ 4104 001c 0C000000 		.4byte	.LFE36
+ 4105 0020 00000000 		.4byte	.LFB37
+ 4106 0024 58000000 		.4byte	.LFE37
+ 4107 0028 00000000 		.4byte	.LFB38
+ 4108 002c 0C000000 		.4byte	.LFE38
+ 4109 0030 00000000 		.4byte	.LFB39
+ 4110 0034 0C010000 		.4byte	.LFE39
+ 4111 0038 00000000 		.4byte	0
+ 4112 003c 00000000 		.4byte	0
+ 4113              		.section	.debug_line,"",%progbits
+ 4114              	.Ldebug_line0:
+ 4115 0000 A7020000 		.section	.debug_str,"MS",%progbits,1
+ 4115      02007101 
+ 4115      00000201 
+ 4115      FB0E0D00 
+ 4115      01010101 
+ 4116              	.LASF37:
+ 4117 0000 745F7472 		.ascii	"t_true\000"
+ 4117      756500
+ 4118              	.LASF2:
+ 4119 0007 5F5F7569 		.ascii	"__uint8_t\000"
+ 4119      6E74385F 
+ 4119      7400
+ 4120              	.LASF12:
+ 4121 0011 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4121      206C6F6E 
+ 4121      6720756E 
+ 4121      7369676E 
+ 4121      65642069 
+ 4122              	.LASF15:
+ 4123 0028 696E7431 		.ascii	"int16_t\000"
+ 4123      365F7400 
+ 4124              	.LASF11:
+ 4125 0030 6C6F6E67 		.ascii	"long long int\000"
+ 4125      206C6F6E 
+ 4125      6720696E 
+ 4125      7400
+ 4126              	.LASF0:
+ 4127 003e 7369676E 		.ascii	"signed char\000"
+ 4127      65642063 
+ 4127      68617200 
+ 4128              	.LASF31:
+ 4129 004a 77726974 		.ascii	"write_BMP180_registry\000"
+ 4129      655F424D 
+ 4129      50313830 
+ 4129      5F726567 
+ 4129      69737472 
+ 4130              	.LASF8:
+ 4131 0060 6C6F6E67 		.ascii	"long int\000"
+ 4131      20696E74 
+ 4131      00
+ 4132              	.LASF16:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 79
+
+
+ 4133 0069 75696E74 		.ascii	"uint16_t\000"
+ 4133      31365F74 
+ 4133      00
+ 4134              	.LASF21:
+ 4135 0072 646F7562 		.ascii	"double\000"
+ 4135      6C6500
+ 4136              	.LASF41:
+ 4137 0079 705F7472 		.ascii	"p_true\000"
+ 4137      756500
+ 4138              	.LASF19:
+ 4139 0080 75696E74 		.ascii	"uint32\000"
+ 4139      333200
+ 4140              	.LASF9:
+ 4141 0087 5F5F7569 		.ascii	"__uint32_t\000"
+ 4141      6E743332 
+ 4141      5F7400
+ 4142              	.LASF44:
+ 4143 0092 4932434D 		.ascii	"I2CM_I2CMasterSendRestart\000"
+ 4143      5F493243 
+ 4143      4D617374 
+ 4143      65725365 
+ 4143      6E645265 
+ 4144              	.LASF3:
+ 4145 00ac 5F5F696E 		.ascii	"__int16_t\000"
+ 4145      7431365F 
+ 4145      7400
+ 4146              	.LASF32:
+ 4147 00b6 424D5031 		.ascii	"BMP180_baro_init\000"
+ 4147      38305F62 
+ 4147      61726F5F 
+ 4147      696E6974 
+ 4147      00
+ 4148              	.LASF47:
+ 4149 00c7 55415254 		.ascii	"UART_1_UartPutString\000"
+ 4149      5F315F55 
+ 4149      61727450 
+ 4149      75745374 
+ 4149      72696E67 
+ 4150              	.LASF13:
+ 4151 00dc 756E7369 		.ascii	"unsigned int\000"
+ 4151      676E6564 
+ 4151      20696E74 
+ 4151      00
+ 4152              	.LASF28:
+ 4153 00e9 7265675F 		.ascii	"reg_value\000"
+ 4153      76616C75 
+ 4153      6500
+ 4154              	.LASF10:
+ 4155 00f3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4155      20756E73 
+ 4155      69676E65 
+ 4155      6420696E 
+ 4155      7400
+ 4156              	.LASF26:
+ 4157 0105 7265675F 		.ascii	"reg_h\000"
+ 4157      6800
+ 4158              	.LASF27:
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 80
+
+
+ 4159 010b 7265675F 		.ascii	"reg_l\000"
+ 4159      6C00
+ 4160              	.LASF39:
+ 4161 0111 424D5031 		.ascii	"BMP180_baro_read_pressure\000"
+ 4161      38305F62 
+ 4161      61726F5F 
+ 4161      72656164 
+ 4161      5F707265 
+ 4162              	.LASF30:
+ 4163 012b 64617461 		.ascii	"data\000"
+ 4163      00
+ 4164              	.LASF6:
+ 4165 0130 73686F72 		.ascii	"short unsigned int\000"
+ 4165      7420756E 
+ 4165      7369676E 
+ 4165      65642069 
+ 4165      6E7400
+ 4166              	.LASF43:
+ 4167 0143 4932434D 		.ascii	"I2CM_I2CMasterWriteByte\000"
+ 4167      5F493243 
+ 4167      4D617374 
+ 4167      65725772 
+ 4167      69746542 
+ 4168              	.LASF50:
+ 4169 015b 453A5C44 		.ascii	"E:\\Dokumente\\GitHub\\T-50_Project\\Software\\T-50"
+ 4169      6F6B756D 
+ 4169      656E7465 
+ 4169      5C476974 
+ 4169      4875625C 
+ 4170 0189 5F50726F 		.ascii	"_Project\\T-50_Project.cydsn\000"
+ 4170      6A656374 
+ 4170      5C542D35 
+ 4170      305F5072 
+ 4170      6F6A6563 
+ 4171              	.LASF29:
+ 4172 01a5 72656769 		.ascii	"registry\000"
+ 4172      73747279 
+ 4172      00
+ 4173              	.LASF24:
+ 4174 01ae 72656733 		.ascii	"reg32\000"
+ 4174      3200
+ 4175              	.LASF35:
+ 4176 01b4 424D5031 		.ascii	"BMP180_baro_read_temp\000"
+ 4176      38305F62 
+ 4176      61726F5F 
+ 4176      72656164 
+ 4176      5F74656D 
+ 4177              	.LASF25:
+ 4178 01ca 73697A65 		.ascii	"sizetype\000"
+ 4178      74797065 
+ 4178      00
+ 4179              	.LASF51:
+ 4180 01d3 55415254 		.ascii	"UART_1_UartPutNum\000"
+ 4180      5F315F55 
+ 4180      61727450 
+ 4180      75744E75 
+ 4180      6D00
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 81
+
+
+ 4181              	.LASF49:
+ 4182 01e5 2E5C4261 		.ascii	".\\Baro.c\000"
+ 4182      726F2E63 
+ 4182      00
+ 4183              	.LASF42:
+ 4184 01ee 4932434D 		.ascii	"I2CM_I2CMasterSendStart\000"
+ 4184      5F493243 
+ 4184      4D617374 
+ 4184      65725365 
+ 4184      6E645374 
+ 4185              	.LASF36:
+ 4186 0206 745F7261 		.ascii	"t_raw\000"
+ 4186      7700
+ 4187              	.LASF20:
+ 4188 020c 666C6F61 		.ascii	"float\000"
+ 4188      7400
+ 4189              	.LASF45:
+ 4190 0212 4932434D 		.ascii	"I2CM_I2CMasterReadByte\000"
+ 4190      5F493243 
+ 4190      4D617374 
+ 4190      65725265 
+ 4190      61644279 
+ 4191              	.LASF48:
+ 4192 0229 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 4192      4320342E 
+ 4192      382E3420 
+ 4192      32303134 
+ 4192      30353236 
+ 4193 025c 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 4193      20726576 
+ 4193      6973696F 
+ 4193      6E203231 
+ 4193      31333538 
+ 4194 028f 73202D66 		.ascii	"s -ffunction-sections -finline-functions\000"
+ 4194      66756E63 
+ 4194      74696F6E 
+ 4194      2D736563 
+ 4194      74696F6E 
+ 4195              	.LASF17:
+ 4196 02b8 696E7433 		.ascii	"int32_t\000"
+ 4196      325F7400 
+ 4197              	.LASF1:
+ 4198 02c0 756E7369 		.ascii	"unsigned char\000"
+ 4198      676E6564 
+ 4198      20636861 
+ 4198      7200
+ 4199              	.LASF4:
+ 4200 02ce 73686F72 		.ascii	"short int\000"
+ 4200      7420696E 
+ 4200      7400
+ 4201              	.LASF18:
+ 4202 02d8 75696E74 		.ascii	"uint32_t\000"
+ 4202      33325F74 
+ 4202      00
+ 4203              	.LASF23:
+ 4204 02e1 63686172 		.ascii	"char\000"
+ 4204      00
+ARM GAS  C:\Users\Sven\AppData\Local\Temp\cckecheH.s 			page 82
+
+
+ 4205              	.LASF40:
+ 4206 02e6 705F7261 		.ascii	"p_raw\000"
+ 4206      7700
+ 4207              	.LASF5:
+ 4208 02ec 5F5F7569 		.ascii	"__uint16_t\000"
+ 4208      6E743136 
+ 4208      5F7400
+ 4209              	.LASF7:
+ 4210 02f7 5F5F696E 		.ascii	"__int32_t\000"
+ 4210      7433325F 
+ 4210      7400
+ 4211              	.LASF22:
+ 4212 0301 63686172 		.ascii	"char8\000"
+ 4212      3800
+ 4213              	.LASF46:
+ 4214 0307 43794465 		.ascii	"CyDelay\000"
+ 4214      6C617900 
+ 4215              	.LASF33:
+ 4216 030f 424D5031 		.ascii	"BMP180_baro_trigger_temp\000"
+ 4216      38305F62 
+ 4216      61726F5F 
+ 4216      74726967 
+ 4216      6765725F 
+ 4217              	.LASF14:
+ 4218 0328 75696E74 		.ascii	"uint8_t\000"
+ 4218      385F7400 
+ 4219              	.LASF38:
+ 4220 0330 424D5031 		.ascii	"BMP180_baro_trigger_pressure\000"
+ 4220      38305F62 
+ 4220      61726F5F 
+ 4220      74726967 
+ 4220      6765725F 
+ 4221              	.LASF34:
+ 4222 034d 72656164 		.ascii	"read_BMP180_registry\000"
+ 4222      5F424D50 
+ 4222      3138305F 
+ 4222      72656769 
+ 4222      73747279 
+ 4223              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

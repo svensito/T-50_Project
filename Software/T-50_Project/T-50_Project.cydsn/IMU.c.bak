@@ -92,11 +92,6 @@ uint8_t	mag_z_l		= 0;		// low bits of mag z reading
 int16_t mag_z	= 0;		// the value read on the z axis of the magnetometer
 extern int16_t	mag_z_g;		// the geodetic reference frame value of y
 
-
-#ifdef ALTIMU
-/*=====================================*/
-/* ALT-IMU10 v4*/
-    
 /* ================================= */
 /* BAROMETER VARIABLES				 */
 /* ================================= */
@@ -134,13 +129,13 @@ void gyro_start(void)
 {
     // CTRL REG 1
 	write_gyro_registry(L3GD20H_CTRL_REG1, 0x0F);		// Enabling all axes read out and Power On -> 100 Hz output data rate
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG1));
     // CTRL REG 2
 	write_gyro_registry(L3GD20H_CTRL_REG2, 0x20);		// Normal Mode of High Pass Filter (High Bits), Filter Rate (Low Bits 0-9), Output Data Rate to 100 Hz (default)
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG2));
     // CTRL REG 5
 	write_gyro_registry(L3GD20H_CTRL_REG5, 0x10);		// High Pass Filter Enable (High Bit 1)
-    //UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
+    UART_1_UartPutNum(read_gyro_registry(L3GD20H_CTRL_REG5));
     UART_1_UartPutString("Gyro started\r\n");
 }
 
@@ -293,159 +288,6 @@ int32_t baro_read(void)
     int32_t press_temp = (int8_t)(bar_h << 16) |(uint16_t)(bar_l<<8) | (bar_xl);    
     //Bar_press = press_temp / 4096;      // 4096 bit / hPa = 4096 bit / mbar
     return(press_temp/4096);
-}
-  
-    
-#endif
-
-//#ifdef MPU6050    // How To add a "symbol" for the precompiler?
-/*===========================*/
-/*      MPU6050              */
-/*===========================*/
-
-void write_mpu6050_registry(uint8_t registry, uint8_t data)
-{
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-	UART_1_UartPutString("GYR W Add Ok\r\n");
-	I2CM_I2CMasterWriteByte(registry);
-    UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterWriteByte(data);
-    UART_1_UartPutString("GYR W Dat Ok\r\n");
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    UART_1_UartPutString("GYR W Stop Ok\r\n");    
-}
-
-int16_t read_mpu6050_registry(uint8_t registry)
-{
-	I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(registry); // add MSB to activate auto increment
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	int8_t reg_h = I2CM_I2CMasterReadByte(ACK);
-	uint8_t reg_l = I2CM_I2CMasterReadByte(NACK);
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    return ((int16_t)((reg_h << 8) | (reg_l)));
-}
-
-void MPU6050_Init(void)
-{
-    /* Init routine of the MPU6050 */
-    write_mpu6050_registry(MPU6050_PWR_MGMT_1,0b00000000);    // Disabling Sleep Mode
-    write_mpu6050_registry(MPU6050_ACC_CONFIG,0b00001000);    // Setting ACC Scale to +-4G
-    UART_1_UartPutString("\r\nMPU Init Complete\r\n");
-    /*int16_t id = read_mpu6050_registry(MPU6050_WHO_AM_I);
-        UART_1_UartPutNum(id);
-        UART_1_UartPutString("\r\nMPU Complete\r\n");*/
-    
-}
-
-void MPU6050_acc_read(void)
-{
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    acc_z_l = I2CM_I2CMasterReadByte(NACK);     // ZOUT L
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    
-    UART_1_UartPutNum(acc_x_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_x_l);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_y_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_y_l);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_z_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_z_l);
-    UART_1_UartPutString(";\r\n");
-    
-    acc_x_g = (acc_x_h<<8) | (acc_x_l);
-    acc_y_g = (acc_y_h<<8) | (acc_y_l);
-    acc_z_g = (acc_z_h<<8) | (acc_z_l);
-    // FS = 1: +-4G -> 16 bit -> 1 bit = 0.1mg => 10 bit = 1mg
-    // we do not need further calculation, the vector will be normed anyways
-    return;
-    
-}
-
-//#endif
-
-void MPU6050_gyro_read(void)
-{
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_GYRO_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    gyro_x = (gyro_x_h<<8) | (gyro_x_l);
-    gyro_y = (gyro_y_h<<8) | (gyro_y_l);
-    gyro_z = (gyro_z_h<<8) | (gyro_z_l);
-    
-    // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
-    turn_rate_p = gyro_x / 131;
-    turn_rate_q = gyro_y / 131;
-    turn_rate_r = gyro_z / 131;
-    return;
-    
-}
-void MPU6050_data_read(void)
-{
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    acc_z_l = I2CM_I2CMasterReadByte(ACK);     // ZOUT L
-    int8_t  temp_h = I2CM_I2CMasterReadByte(ACK);   // Temperature H
-    uint8_t temp_l = I2CM_I2CMasterReadByte(ACK);   // Temperature L
-    gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L     
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    
-    acc_x_g = (acc_x_h<<8) | (acc_x_l);
-    acc_y_g = (acc_y_h<<8) | (acc_y_l);
-    acc_z_g = (acc_z_h<<8) | (acc_z_l);
-    
-    gyro_x = (gyro_x_h<<8) | (gyro_x_l);
-    gyro_y = (gyro_y_h<<8) | (gyro_y_l);
-    gyro_z = (gyro_z_h<<8) | (gyro_z_l);
-    
-    // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
-    turn_rate_p = gyro_x / 131;
-    turn_rate_q = gyro_y / 131;
-    turn_rate_r = gyro_z / 131;
-    
-    return;
-    
 }
 
 /* [] END OF FILE */

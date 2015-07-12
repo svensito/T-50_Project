@@ -2723,6 +2723,7 @@
 <dep name=".\MAVLINK\mavlink_conversions.h" />
 <dep name=".\MAVLINK\mavlink_helpers.h" />
 <dep name=".\MAVLINK\mavlink_types.h" />
+<dep name=".\Baro.h" />
 <dep name=".\IMU.h" />
 <dep name=".\main.c" />
 </file>
@@ -2950,8 +2951,115 @@
 <file name=".\MAVLINK\mavlink_conversions.h" />
 <file name=".\MAVLINK\mavlink_helpers.h" />
 <file name=".\MAVLINK\mavlink_types.h" />
+<file name=".\Baro.h" />
 <file name=".\IMU.h" />
 <file name=".\main.c" />
+<file name=".\CortexM0\ARM_GCC_484\Debug\Baro.o">
+<dep name=".\Generated_Source\PSoC4\ADC.h" />
+<dep name=".\Generated_Source\PSoC4\ADC_IRQ.h" />
+<dep name=".\Generated_Source\PSoC4\ADC_intClock.h" />
+<dep name=".\Generated_Source\PSoC4\BootISR.h" />
+<dep name=".\Generated_Source\PSoC4\Bootloadable_1.h" />
+<dep name=".\Generated_Source\PSoC4\Clock_1.h" />
+<dep name=".\Generated_Source\PSoC4\Clock_2.h" />
+<dep name=".\Generated_Source\PSoC4\Clock_3.h" />
+<dep name=".\Generated_Source\PSoC4\Collis.h" />
+<dep name=".\Generated_Source\PSoC4\Collis_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\CyFlash.h" />
+<dep name=".\Generated_Source\PSoC4\CyLib.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_I2C.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_I2C_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_SCB_IRQ.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_scl.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_scl_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_sda.h" />
+<dep name=".\Generated_Source\PSoC4\I2CM_sda_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\In_Speed.h" />
+<dep name=".\Generated_Source\PSoC4\In_Speed_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Ldg.h" />
+<dep name=".\Generated_Source\PSoC4\Ldg_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\NavB.h" />
+<dep name=".\Generated_Source\PSoC4\NavB_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\NavLR.h" />
+<dep name=".\Generated_Source\PSoC4\NavLR_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\NavLightPWM.h" />
+<dep name=".\Generated_Source\PSoC4\OnBoardLED.h" />
+<dep name=".\Generated_Source\PSoC4\OnBoardLED_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ail1_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ail1_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ail2_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ail2_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ele1_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ele1_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ele2_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ele2_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Fl1_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Fl1_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Fl2_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Fl2_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge1_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge1_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge2_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge2_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge3_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Ge3_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Mot_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Mot_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Rud_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Rud_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Sp1_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Sp1_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Sp2_Pin.h" />
+<dep name=".\Generated_Source\PSoC4\Out_Sp2_Pin_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\PPMCounter.h" />
+<dep name=".\Generated_Source\PSoC4\PPMIN.h" />
+<dep name=".\Generated_Source\PSoC4\PPMIN_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\PPMISR.h" />
+<dep name=".\Generated_Source\PSoC4\PPMRstISR.h" />
+<dep name=".\Generated_Source\PSoC4\SW1.h" />
+<dep name=".\Generated_Source\PSoC4\SW1_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\ServoISR.h" />
+<dep name=".\Generated_Source\PSoC4\ServoTimer.h" />
+<dep name=".\Generated_Source\PSoC4\SpareLight.h" />
+<dep name=".\Generated_Source\PSoC4\SpareLight_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\Strobes.h" />
+<dep name=".\Generated_Source\PSoC4\Strobes_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\TaskISR.h" />
+<dep name=".\Generated_Source\PSoC4\TaskTimer.h" />
+<dep name=".\Generated_Source\PSoC4\TelemUART.h" />
+<dep name=".\Generated_Source\PSoC4\TelemUART_IntClock.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_BOOT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_PINS.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_SCBCLK.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_SPI_UART.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_SPI_UART_PVT.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_rx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_rx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_tx.h" />
+<dep name=".\Generated_Source\PSoC4\UART_1_tx_aliases.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0.h" />
+<dep name=".\Generated_Source\PSoC4\core_cm0_psoc4.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmFunc.h" />
+<dep name=".\Generated_Source\PSoC4\core_cmInstr.h" />
+<dep name=".\Generated_Source\PSoC4\cyPm.h" />
+<dep name=".\Generated_Source\PSoC4\cydevice_trm.h" />
+<dep name=".\Generated_Source\PSoC4\cydisabledsheets.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter.h" />
+<dep name=".\Generated_Source\PSoC4\cyfitter_cfg.h" />
+<dep name=".\Generated_Source\PSoC4\cypins.h" />
+<dep name=".\Generated_Source\PSoC4\cytypes.h" />
+<dep name=".\Generated_Source\PSoC4\project.h" />
+<dep name=".\Baro.c" />
+<dep name=".\baro.h" />
+</file>
+<file name=".\Baro.c" />
 <file name=".\CortexM0\ARM_GCC_484\Debug\IMU.o">
 <dep name=".\Generated_Source\PSoC4\ADC.h" />
 <dep name=".\Generated_Source\PSoC4\ADC_IRQ.h" />
@@ -4424,6 +4532,7 @@
 <file name=".\CortexM0\ARM_GCC_484\Debug\T-50_Project.hex">
 <dep name=".\CortexM0\ARM_GCC_484\Debug\main.o" />
 <dep name=".\CortexM0\ARM_GCC_484\Debug\IMU.o" />
+<dep name=".\CortexM0\ARM_GCC_484\Debug\Baro.o" />
 <dep name=".\CortexM0\ARM_GCC_484\Debug\cyfitter_cfg.o" />
 <dep name=".\CortexM0\ARM_GCC_484\Debug\cybootloader.o" />
 <dep name=".\CortexM0\ARM_GCC_484\Debug\cymetadata.o" />
@@ -4600,6 +4709,7 @@
 <name_val_pair name=".\Generated_Source\PSoC4\ADC_IRQ.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I.\MAVLINK -I.\MAVLINK\common -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -finline-functions -Os" />
 <name_val_pair name=".\Generated_Source\PSoC4\ADC_intClock.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I.\MAVLINK -I.\MAVLINK\common -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -finline-functions -Os" />
 <name_val_pair name="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\CortexM0\ARM_GCC_484\Debug\T-50_Project.hex" v="-mthumb -march=armv6-m -l m -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs &quot;-u _printf_float&quot; -flto -Os -Wl,--gc-sections" />
+<name_val_pair name=".\Baro.c" v="-mcpu=cortex-m0 -mthumb -Wno-main -I.\MAVLINK -I.\MAVLINK\common -I. -I.\Generated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -finline-functions -Os" />
 </name>
 </genericCmdLineData>
 <codeGenCmdLineTag v="-.appdatapath &quot;C:\Users\Sven\AppData\Local\Cypress Semiconductor\PSoC Creator\3.1&quot; -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\T-50_Project.cyprj -d CY8C4245AXI-483 -s E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE" />
@@ -4607,7 +4717,7 @@
 </dataGuid>
 <dataGuid v="769d31ea-68b1-4f0c-b90a-7c10a43ee563">
 <CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563 type_name="CyDesigner.Common.ProjMgmt.Model.CyLinkCustomData" version="1">
-<deps_time v="130771519685827001" />
+<deps_time v="130811974908552466" />
 </CyGuid_769d31ea-68b1-4f0c-b90a-7c10a43ee563>
 </dataGuid>
 </userData>
