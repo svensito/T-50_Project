@@ -48,6 +48,11 @@ uint16_t ctrl_out[13] = {1500,
                          1500,
                          1500};                // output control vector
 
+uint16_t ctrl_in_trim[5] = {1500,				/* motor*/
+							1500,				/* aileron */
+							1500,				/* elevator */
+							1500,				/* rudder */
+							1500};			 
 uint16_t ctrl_out_PID[5] =  {0};				/* PID Control Vector */
 uint16_t ctrl_out_DAMP[5] =  {0};				/* DAMPING Control Vector */			 
 						 
@@ -202,10 +207,14 @@ uint8_t tune_cnt = 0;
 /* Autopilot variables	            */
 /*=============================*/
 int8_t Theta_Target = 0;			/* Initializing Theta Target Pitch Angle */
-int8_t Theta_Error = 0;			/* Initializing Theta Error */
+int8_t Theta_Error = 0;			    /* Initializing Theta Error */
 int32_t Theta_Error_sum = 0;		/* Initializing Theta Error Sum */
-int32_t Theta_Error_prev = 0;		/* Initializing Theta Error Sum */
-uint16_t ele1_trim = 0;
+int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Sum */
+
+int8_t Phi_Target = 0;			    /* Initializing Phi Target Bank Angle */
+int8_t Phi_Error = 0;			    /* Initializing Phi Error */
+int32_t Phi_Error_sum = 0;		    /* Initializing Phi Error Sum */
+int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Sum */
 
 /*============================*/
 /* UART Rx Tx variables		*/
@@ -284,10 +293,10 @@ void ADC_calibrate_speed(void)
     UART_1_UartPutString("Cal Compl\r\n");    
 }
 
-/*##########################*/
+/*=============================*/
 /* main */
 /* Application Code */
-/*##########################*/
+/*=============================*/
 int main()
 {
     /* initialization/startup code */
@@ -755,29 +764,43 @@ int main()
 						
 						if(state_change == TRUE)
 						{
-							/* In case the autonomous mode is entered 
+                            /* Entering Autonomous Mode */
+							/* Store current ctrl inputs in trim vecotr*/
+							ctrl_in_trim[in_mot] = ctrl_in[in_mot];  /* Set trimmed Motor input */
+                            ctrl_in_trim[in_ele] = ctrl_in[in_ele];  /* Set trimmed Elevator input */
+							ctrl_in_trim[in_ail] = ctrl_in[in_ail];  /* Set trimmed Aileron input */
+                            ctrl_in_trim[in_rud] = ctrl_in[in_rud];  /* Set trimmed Rudder input */
+                            /* In case the autonomous mode is entered 
 							all errors etc need to be reset */
+							
+                            /* Theta Control */
 							Theta_Error = 0;					/* Needs to be reset always when this state is entered */
 							Theta_Error_sum = 0;				/* Theta Sum to be reset */
 							Theta_Target = Theta; /* = 0 */		/* Set Theta Target */
-							ele1_trim = ctrl_in[in_ele];		/* Set trimmed Elevator input */
+							
+                            /* Phi Control */
+							Phi_Error = 0;					/* Needs to be reset always when this state is entered */
+							Phi_Error_sum = 0;				/* Phi Sum to be reset */
+							Phi_Target = Phi; /* = 0 */		/* Set Phi Target */
 						}
-                        
+                        if(ctrl_in[in_can] > 1750)
+                        {
+                        //#ifdef THCTRL
 						//******************************************************
  						// Theta control with elevator
  						// Input: Theta command from Altitude Hold loop
  						// Output: elevator command pid loop
  						// Controller: PID Controller
 						// Gains: K_p = 10 K_i = 10 K_d = 5
-						uint8_t Kp_Theta = 2;
-						uint8_t Ki_Theta = 2;
-						uint8_t Kd_Theta = 0;
+						uint8_t Kp_Theta = 5;
+						uint8_t Ki_Theta = 5;
+						uint8_t Kd_Theta = 1;
 						
  						Theta_Error = Theta - Theta_Target; // as per Simulation in SCILAB this convention is best
  						Theta_Error_sum += Theta_Error;
  						// controller formula for the necessary control change						 
- 						ctrl_out_PID[out_ele1] = (Kp_Theta*Theta_Error + Ki_Theta*Theta_Error_sum*sample_time + Kd_Theta*(-Theta_Error_prev + Theta_Error)/(sample_time*3));
-
+ 						ctrl_out_PID[out_ele1] = (Kp_Theta*Theta_Error + Ki_Theta*Theta_Error_sum*sample_time + Kd_Theta*(-Theta_Error_prev + Theta_Error));
+                        Theta_Error_prev = Theta_Error;
 						//******************************************************
 						
 						//******************************************************
@@ -790,11 +813,51 @@ int main()
 						
 						//******************************************************
 						// Combining the calculated inputs elevator and limiting elevator command
-						ctrl_out[out_ele1] = ele1_trim - ctrl_out_PID[out_ele1] - ctrl_out_DAMP[out_ele1];
+						ctrl_out[out_ele1] = ctrl_in_trim[in_ele] - ctrl_out_PID[out_ele1] - ctrl_out_DAMP[out_ele1];
 						if(ctrl_out[out_ele1] > 2000) ctrl_out[out_ele1] = 2000;
 						else if (ctrl_out[out_ele1] < 900) ctrl_out[out_ele1] = 900;
 						//******************************************************
+						//#endif
+                        }
+                        else
+                        {
+                        
+                        //#ifdef PHICTRL
+                        //******************************************************
+ 						// Phi control with Aileron
+ 						// Input: Phi command from Heading hold loop
+ 						// Output: aileron command pid loop
+ 						// Controller: PID Controller
+						// Gains: K_p = 10 K_i = 10 K_d = 5
+						uint8_t Kp_Phi = 5;
+						uint8_t Ki_Phi = 5;
+						uint8_t Kd_Phi = 1;
 						
+ 						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						Phi_Error_sum += Phi_Error;
+ 						// controller formula for the necessary control change						 
+ 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error));
+                        Phi_Error_prev = Phi_Error;
+						//******************************************************
+						
+						//******************************************************
+						// Pitch damping
+						// Input: turn rate q
+						// Output: elevator command damping
+						// Gains: K_d_q
+						ctrl_out_DAMP[out_ail1] = K_d_p * (turn_rate_p);
+						//******************************************************
+						
+						//******************************************************
+						// Combining the calculated inputs elevator and limiting elevator command
+						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] - ctrl_out_PID[out_ail1] + ctrl_out_DAMP[out_ail1];
+						if(ctrl_out[out_ail1] > 2000) ctrl_out[out_ail1] = 2000;
+						else if (ctrl_out[out_ail1] < 900) ctrl_out[out_ail1] = 900;
+                        ctrl_out[out_ail2] = ctrl_out[out_ail1];    /* Both Servos need to be controlled */
+						//******************************************************
+                        //#endif
+                        }
+                        
                     break;
                         
                 }
