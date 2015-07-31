@@ -780,8 +780,17 @@ int main()
 							Theta_Target = Theta; /* = 0 */		/* Set Theta Target */
 							
                             /* Phi Control */
+<<<<<<< HEAD
 						}
                         
+=======
+							Phi_Error = 0;					/* Needs to be reset always when this state is entered */
+							Phi_Error_sum = 0;				/* Phi Sum to be reset */
+							Phi_Target = Phi; /* = 0 */		/* Set Phi Target */
+						}
+                        if(ctrl_in[in_can] > 1750)
+                        {
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
                         //#ifdef THCTRL
 						//******************************************************
  						// Theta control with elevator
@@ -789,14 +798,18 @@ int main()
  						// Output: elevator command pid loop
  						// Controller: PID Controller
 						// Gains: K_p = 10 K_i = 10 K_d = 5
-						uint8_t Kp_Theta = 2;
-						uint8_t Ki_Theta = 2;
-						uint8_t Kd_Theta = 0;
+						uint8_t Kp_Theta = 5;
+						uint8_t Ki_Theta = 5;
+						uint8_t Kd_Theta = 1;
 						
  						Theta_Error = Theta - Theta_Target; // as per Simulation in SCILAB this convention is best
  						Theta_Error_sum += Theta_Error;
  						// controller formula for the necessary control change						 
+<<<<<<< HEAD
  						ctrl_out_PID[out_ele1] = (Kp_Theta*Theta_Error + Ki_Theta*Theta_Error_sum*sample_time + Kd_Theta*(-Theta_Error_prev + Theta_Error)/(sample_time));
+=======
+ 						ctrl_out_PID[out_ele1] = (Kp_Theta*Theta_Error + Ki_Theta*Theta_Error_sum*sample_time + Kd_Theta*(-Theta_Error_prev + Theta_Error));
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
                         Theta_Error_prev = Theta_Error;
 						//******************************************************
 						
@@ -815,8 +828,14 @@ int main()
 						else if (ctrl_out[out_ele1] < 900) ctrl_out[out_ele1] = 900;
 						//******************************************************
 						//#endif
+<<<<<<< HEAD
                         
                         
+=======
+                        }
+                        else
+                        {
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
                         
                         //#ifdef PHICTRL
                         //******************************************************
@@ -825,6 +844,7 @@ int main()
  						// Output: aileron command pid loop
  						// Controller: PID Controller
 						// Gains: K_p = 10 K_i = 10 K_d = 5
+<<<<<<< HEAD
 						uint8_t Kp_Phi = 2;
 						uint8_t Ki_Phi = 2;
 						uint8_t Kd_Phi = 0;
@@ -836,6 +856,19 @@ int main()
                         Phi_Error_prev = Phi_Error;
 						//******************************************************
 						
+=======
+						uint8_t Kp_Phi = 5;
+						uint8_t Ki_Phi = 5;
+						uint8_t Kd_Phi = 1;
+						
+ 						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						Phi_Error_sum += Phi_Error;
+ 						// controller formula for the necessary control change						 
+ 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error));
+                        Phi_Error_prev = Phi_Error;
+						//******************************************************
+						
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
 						//******************************************************
 						// Pitch damping
 						// Input: turn rate q
@@ -846,13 +879,21 @@ int main()
 						
 						//******************************************************
 						// Combining the calculated inputs elevator and limiting elevator command
+<<<<<<< HEAD
 						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] - ctrl_out_PID[out_ail1] - ctrl_out_DAMP[out_ail1];
+=======
+						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] - ctrl_out_PID[out_ail1] + ctrl_out_DAMP[out_ail1];
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
 						if(ctrl_out[out_ail1] > 2000) ctrl_out[out_ail1] = 2000;
 						else if (ctrl_out[out_ail1] < 900) ctrl_out[out_ail1] = 900;
                         ctrl_out[out_ail2] = ctrl_out[out_ail1];    /* Both Servos need to be controlled */
 						//******************************************************
                         //#endif
+<<<<<<< HEAD
                         
+=======
+                        }
+>>>>>>> 9877e36aed75cc683058c8ab246d50d5d5359656
                         
                     break;
                         
