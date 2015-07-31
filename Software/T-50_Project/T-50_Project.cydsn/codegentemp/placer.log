@@ -6,7 +6,7 @@
 
 #Build Date:         Oct 23 2014 13:00:08
 
-#File Generated:     May 19 2015 08:33:06
+#File Generated:     Jul 14 2015 16:05:36
 
 #Purpose:            
 
@@ -14,7 +14,7 @@
 
 #***************************************************************************
 
-Executing : E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\bin/sjplacer.exe --proj-name T-50_Project --netlist-vh2 T-50_Project_p.vh2 --arch-file E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark --rrg-file E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/route_arch-rrg.cydata --irq-file E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/irqconn.cydata --dsi-conn-file E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/dsiconn.cydata --pins-file pins_44-TQFP.xml --lib-file T-50_Project_p.lib --sdc-file T-50_Project.sdc --io-pcf T-50_Project.pci --outdir .
+Executing : C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\bin/sjplacer.exe --proj-name T-50_Project --netlist-vh2 T-50_Project_p.vh2 --arch-file C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark --rrg-file C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/route_arch-rrg.cydata --irq-file C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/irqconn.cydata --dsi-conn-file C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/dsiconn.cydata --pins-file pins_44-TQFP.xml --lib-file T-50_Project_p.lib --sdc-file T-50_Project.sdc --io-pcf T-50_Project.pci --outdir .
 
 		Softjin Techologies Placer, Version 1.1
 
@@ -23,7 +23,7 @@ Build Date : Oct 23 2014	13:09:21
 D2004: Option and Settings Summary
 =============================================================
 Netlist vh2 file          - T-50_Project_p.vh2
-Architecture file         - E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark
+Architecture file         - C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark
 Package                   - 
 Defparam file             - 
 SDC file                  - T-50_Project.sdc
@@ -34,7 +34,7 @@ IO Placement file         - T-50_Project.pci
 D2050: Starting reading inputs for placer
 =============================================================
 D2065: Reading netlist file : "T-50_Project_p.vh2"
-D2065: Reading arch file : "E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark"
+D2065: Reading arch file : "C:\Program Files\Cypress\PSoC Creator\3.1\PSoC Creator\dev/psoc4/psoc4a/placer.ark"
 D2051: Reading of inputs for placer completed successfully
 
 D2053: Starting placement of the design
@@ -131,7 +131,7 @@ Clock: UART_1_SCBCLK(FFB)   | Frequency: N/A       | Target:   0.7 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.0 (sec)
+D2088: Phase 7, elapsed time : 0.1 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	5
@@ -314,5 +314,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 1.1 sec.
+I2076: Total run-time: 1.2 sec.
 

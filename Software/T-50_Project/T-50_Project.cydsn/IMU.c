@@ -332,8 +332,9 @@ int16_t read_mpu6050_registry(uint8_t registry)
 void MPU6050_Init(void)
 {
     /* Init routine of the MPU6050 */
-    write_mpu6050_registry(MPU6050_PWR_MGMT_1,0b00000000);    // Disabling Sleep Mode
-    write_mpu6050_registry(MPU6050_ACC_CONFIG,0b00001000);    // Setting ACC Scale to +-4G
+    write_mpu6050_registry(MPU6050_PWR_MGMT_1,0b00000000);    	// Disabling Sleep Mode
+	write_mpu6050_registry(MPU6050_CONFIG,0x04);    			// Setting the DLPC to 3 -> 44Hz Low Pass Band / 2 -> 94Hz Low Pass
+    write_mpu6050_registry(MPU6050_ACC_CONFIG,0b00001000);    	// Setting ACC Scale to +-4G
     UART_1_UartPutString("\r\nMPU Init Complete\r\n");
     /*int16_t id = read_mpu6050_registry(MPU6050_WHO_AM_I);
         UART_1_UartPutNum(id);
