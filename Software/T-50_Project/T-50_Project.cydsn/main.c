@@ -57,14 +57,14 @@ uint16_t ctrl_out_PID[5] =  {0};				/* PID Control Vector */
 uint16_t ctrl_out_DAMP[5] =  {0};				/* DAMPING Control Vector */			 
 						 
 enum e_in{   // Input Control Enum - 8 Channels
-    in_mot = 0,
-    in_ail,
-    in_ele,
-    in_rud,
-    in_gear,
-    in_can,
-    in_mod,
-    in_sp2
+    in_mot = 0, // Channel 1
+    in_ail,     // Channel 2
+    in_ele,     // Channel 3
+    in_rud,     // Channel 4
+    in_gear,    // Channel 5
+    in_can,     // Channel 6
+    in_mod,     // Channel 7
+    in_sp2      // Channel 8
 };
 
 enum e_out{   // Output Control Enum - 13 Signals
@@ -104,8 +104,8 @@ enum ctrl_mode
 #define ACC_TASK        TRUE
 #define MAG_TASK        FALSE
 #define BARO_TASK       TRUE
-#define SPEED_TASK      FALSE    
-#define DATA_LOG        FALSE
+#define SPEED_TASK      TRUE    
+#define DATA_LOG        TRUE
 #define MAVLINK_TASK    FALSE
 
 /*=============================*/
@@ -195,8 +195,8 @@ float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 /* Control variables	*/
 /*=============================*/
 uint8_t K_d_p = 1;
-uint8_t K_d_q = 2;
-uint8_t K_d_r = 3;
+uint8_t K_d_q = 1;
+uint8_t K_d_r = 1;
 
 /*============================*/
 /* Tune variables	            */
@@ -505,8 +505,8 @@ int main()
                 */
                 
                 if((ctrl_in[in_mot]<1200) &&        
-                   (ctrl_in[in_rud]<1200) && 
-                   (ctrl_in[in_ail]>1700) &&
+                   (ctrl_in[in_rud]>1800) && 
+                   (ctrl_in[in_ail]<1200) &&
                    (ctrl_in[in_ele]>1800) &&
                     speed_cal_compl == FALSE)
                 {
@@ -656,7 +656,7 @@ int main()
             /*=======================================
                 Airplane Control
               =======================================*/
-            //uint8_t debug = 1;
+            //uint8_t debug = 0;
             
            
             if(receiver_connected == TRUE)
@@ -671,17 +671,26 @@ int main()
 				/* Indicate State Change */
 				if(PrevCtrl_Mode != Ctrl_Mode) state_change = TRUE;
 				 
-                uint16_t flap_offset = 0;
-                /* Flap Control */
+                uint16_t aileron_offset = 0;
+                uint16_t elevator_offset = 0;
+                
+                /* Step Input Control Lateral */
                 if(ctrl_in[in_sp2]>1750)
                 {
-                    flap_offset = 300;
+                    aileron_offset = 200;
+                }
+                
+                /* Step Input Control Longitudinal */
+                if(ctrl_in[in_gear]>1750)
+                {
+                    elevator_offset = 200;
                 }
                 
                 switch (Ctrl_Mode)
                 {
                     case manual:
                         tune_cnt= 0;    // Reset in case tune cnt was used before...
+                    #ifdef T50
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]+flap_offset;           // ail:     left: 1000  right: 2000
@@ -696,8 +705,23 @@ int main()
                         ctrl_out[out_fl2] = ctrl_in[in_can];
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
- 
-                        
+                    #else
+                        ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+aileron_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+aileron_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]+elevator_offset;           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]+elevator_offset;
+                        ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_gear];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];
+                    #endif
+                    
                     break;
                     
                     case damped:
@@ -719,11 +743,12 @@ int main()
                         
                         ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
-                        ctrl_out[out_ail1] = ctrl_in[in_ail]+(K_d_p*turn_rate_p)+flap_offset;           // ail:     left: 1000  right: 2000
-                        ctrl_out[out_ail2] = ctrl_in[in_ail]+(K_d_p*turn_rate_p)-flap_offset;
-                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);           // ele:     low: 2000   high: 1000
-                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);
-                        ctrl_out[out_rud] = ctrl_in[in_rud]-(K_d_r*turn_rate_r);            // rud:     left: 1000  right: 2000
+                        #ifdef T50
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))-flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
+                        ctrl_out[out_rud] = ctrl_in[in_rud]-((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
@@ -731,6 +756,20 @@ int main()
                         ctrl_out[out_fl2] = ctrl_in[in_can];
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
+                        #else // Funcub
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p));//+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p));//-flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
+                        ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];    
+                        #endif
                     break;
                         
                     case tune:
@@ -780,14 +819,12 @@ int main()
 							Theta_Target = Theta; /* = 0 */		/* Set Theta Target */
 							
                             /* Phi Control */
-
-						}
-                        
-
-							Phi_Error = 0;					/* Needs to be reset always when this state is entered */
+                            Phi_Error = 0;					/* Needs to be reset always when this state is entered */
 							Phi_Error_sum = 0;				/* Phi Sum to be reset */
 							Phi_Target = Phi; /* = 0 */		/* Set Phi Target */
 						}
+                        
+                        // For changing if Lat Auto or Long Auto Test
                         if(ctrl_in[in_can] > 1750)
                         {
 
@@ -850,9 +887,9 @@ int main()
                         Phi_Error_prev = Phi_Error;
 						//******************************************************
 						
-						uint8_t Kp_Phi = 5;
-						uint8_t Ki_Phi = 5;
-						uint8_t Kd_Phi = 1;
+						//uint8_t Kp_Phi = 5;
+						//uint8_t Ki_Phi = 5;
+						//uint8_t Kd_Phi = 1;
 						
  						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
  						Phi_Error_sum += Phi_Error;

@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="T-50_Project" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" Version="4.20" Type="Bootloadable">
+  <Project Name="T-50_Project" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" Version="4.20" Type="Bootloadable">
     <CMSIS_SVD_File>T-50_Project.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -33,8 +33,8 @@
       <LinkerFile Toolchain="ARM MDK Generic">.\Generated_Source\PSoC4\Cm0RealView.scat</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="BUILD" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="BUILD" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\IMU.c</File>
           <File BuildType="BUILD" Toolchain="">.\IMU.h</File>
@@ -42,8 +42,8 @@
           <File BuildType="BUILD" Toolchain="">.\Baro.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="BUILD" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\MAVLINK\common">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="BUILD" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\MAVLINK\common">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\common\common.h</File>
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\common\mavlink.h</File>
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\common\mavlink_msg_actuator_control_target.h</File>
@@ -165,8 +165,8 @@
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\common\version.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="BUILD" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\MAVLINK">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="BUILD" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\MAVLINK">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\checksum.h</File>
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\mavlink_conversions.h</File>
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\mavlink_helpers.h</File>
@@ -174,8 +174,8 @@
           <File BuildType="BUILD" Toolchain="">.\MAVLINK\protocol.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\Generated_Source\PSoC4">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="STRICT" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\Generated_Source\PSoC4">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\cybootloader.c</File>
@@ -367,47 +367,47 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\ADC_intClock.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="STRICT" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="STRICT" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn">
+      <Folder BuildType="STRICT" Path="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_951">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC3">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC5">
-        <Files Root="C:\Users\SNFU\Documents\T-50_UAV_Project\Software\T-50_Project\T-50_Project.cydsn" />
+        <Files Root="E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn" />
       </Folder>
     </Folders>
   </Project>
