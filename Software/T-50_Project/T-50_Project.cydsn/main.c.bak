@@ -11,6 +11,22 @@
  *
  * ========================================
 */
+
+/*========================================
+
+TO DO LIST (August 14,2015)
+- Configure XBee (HW) -> 3,3 VDC TTL or is 5 okay?
+- If XBee too inreliable -> Program FRSky Protocol, 
+ground station with additional controller or intermediate software (Matlab?)
+- Include Functions for HMC5883L Magnetometer -> Completed
+
+
+
+
+==========================================*/
+
+
+
 #include <project.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,15 +64,23 @@ uint16_t ctrl_out[13] = {1500,
                          1500,
                          1500};                // output control vector
 
+uint16_t ctrl_in_trim[5] = {1500,				/* motor*/
+							1500,				/* aileron */
+							1500,				/* elevator */
+							1500,				/* rudder */
+							1500};			 
+uint16_t ctrl_out_PID[5] =  {0};				/* PID Control Vector */
+uint16_t ctrl_out_DAMP[5] =  {0};				/* DAMPING Control Vector */			 
+						 
 enum e_in{   // Input Control Enum - 8 Channels
-    in_mot = 0,
-    in_ail,
-    in_ele,
-    in_rud,
-    in_gear,
-    in_can,
-    in_mod,
-    in_sp2
+    in_mot = 0, // Channel 1
+    in_ail,     // Channel 2
+    in_ele,     // Channel 3
+    in_rud,     // Channel 4
+    in_gear,    // Channel 5
+    in_can,     // Channel 6
+    in_mod,     // Channel 7
+    in_sp2      // Channel 8
 };
 
 enum e_out{   // Output Control Enum - 13 Signals
@@ -74,6 +98,8 @@ enum e_out{   // Output Control Enum - 13 Signals
     out_sp1,
     out_sp2
 };
+
+uint8_t receiver_connected = FALSE;
 
 /*=============================*/
 /* State Machine for mode control*/
@@ -94,8 +120,8 @@ enum ctrl_mode
 #define ACC_TASK        TRUE
 #define MAG_TASK        FALSE
 #define BARO_TASK       TRUE
-#define SPEED_TASK      FALSE    
-#define DATA_LOG        FALSE
+#define SPEED_TASK      TRUE    
+#define DATA_LOG        TRUE
 #define MAVLINK_TASK    FALSE
 
 /*=============================*/
@@ -131,8 +157,8 @@ int16_t mag_y_g = 0;
 int16_t mag_z_g = 0;
 
 /* Euler Angles */
-float Theta, Theta_Mav, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
-float Phi, Phi_Mav, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+float Theta, Theta_Mav, Theta_acc, Theta_meas = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
+float Phi, Phi_Mav, Phi_acc, Phi_meas = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
 float Psi, Psi_acc = 0;       // Psi , Psi_acc => Psi from accelerometer
 
 /* Magnetic Heading*/
@@ -162,6 +188,7 @@ int32_t alt = 0;    // altitude from pressure
 uint8_t cnt_baro  = 0;  /* baro counter */
 int32_t temp = 0;   // temperature reading by BMP180
 int32_t press = 0;   // pressure reading by BMP180
+int32_t QFE = 0;	/* QFE Ground pressure -> gives altitude to current ground pressure */
 /*=============================*/
 /* Kalman Filter Data			*/
 /*=============================*/
@@ -183,15 +210,34 @@ float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 /*============================*/
 /* Control variables	*/
 /*=============================*/
-uint8_t K_d_p = 2;
-uint8_t K_d_q = 2;
-uint8_t K_d_r = 3;
 
+
+#ifdef FUNCUB
+uint8_t K_d_p = 7;
+uint8_t K_d_q = 7;
+uint8_t K_d_r = 5;
+#else // T-50
+uint8_t K_d_p = 1;
+uint8_t K_d_q = 1;
+uint8_t K_d_r = 1;
+#endif
 /*============================*/
 /* Tune variables	            */
 /*=============================*/
 uint8_t tune_cnt = 0;
 
+/*============================*/
+/* Autopilot variables	            */
+/*=============================*/
+int8_t Theta_Target = 0;			/* Initializing Theta Target Pitch Angle */
+int8_t Theta_Error = 0;			    /* Initializing Theta Error */
+int32_t Theta_Error_sum = 0;		/* Initializing Theta Error Sum */
+int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Sum */
+
+int8_t Phi_Target = 0;			    /* Initializing Phi Target Bank Angle */
+int8_t Phi_Error = 0;			    /* Initializing Phi Error */
+int32_t Phi_Error_sum = 0;		    /* Initializing Phi Error Sum */
+int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Sum */
 
 /*============================*/
 /* UART Rx Tx variables		*/
@@ -224,7 +270,8 @@ uint8_t cnt_ML_ATTITUDE_send = 0;           // used for timing of the ATTITUDE m
 /*=============================*/
 /* General Functions */
 /*=============================*/
-// UART Put Num to write serial number data
+
+// UART Put Num to write serial number data as String
 void UART_1_UartPutNum(int32_t num)
 {
     char k[31];
@@ -232,7 +279,7 @@ void UART_1_UartPutNum(int32_t num)
     UART_1_UartPutString(k);   
 }
 
-// UART Put Num to write serial number data
+// UART Send Mavlink data
 void UART_1_UartSendMavlink(uint8_t buf[], uint16_t len)
 {
     uint16_t i = 0;
@@ -244,16 +291,16 @@ void UART_1_UartSendMavlink(uint8_t buf[], uint16_t len)
 	}  
 }
 
-// Read speed
+/* Read speed */
 int16_t ADC_read_speed(void)
 {
-    ADC_StartConvert();
-    int16_t speed = ADC_GetResult16(0); // channel 0 is the first channel
-    ADC_StopConvert();
+    ADC_StartConvert();		/* Start Conversion */
+    int16_t speed = ADC_GetResult16(0); /* channel 0 is the first ADC */
+    ADC_StopConvert();		/* Stop Conversion */	
     return(speed);
 }
 
-// Speed calibration
+/* Speed calibration */
 void ADC_calibrate_speed(void)
 {
     speed_offset = 0;
@@ -270,61 +317,91 @@ void ADC_calibrate_speed(void)
     UART_1_UartPutString("Cal Compl\r\n");    
 }
 
-/*##########################*/
+/*=============================*/
 /* main */
+/* Application Code */
+/*=============================*/
 int main()
 {
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+    /* initialization/startup code */
     
-    CyDelay(500); // Wait before initialization happens. -> gives time for receiver to send PPM signal
-    CyGlobalIntEnable; 
+    if(CySysGetResetReason(CY_SYS_RESET_WDT) == TRUE)
+    {
+        // Reset is due to Watchdog
+        CY_SYS_RES_CAUSE_REG = 0;   
+        /* Reset the Cause Register after Watchdog Reset to be ready for new Reset Reason
+        This will automatically happen on Power On Reset, Brown out or external Reset */
+    }
+    
+    
+    
+    
+    /* Static Variables */
+    static int8_t Phi_Prev1, Phi_Prev2, Phi_Prev3, Phi_Prev4 = 0;
+    static int8_t Theta_Prev1, Theta_Prev2, Theta_Prev3, Theta_Prev4 = 0;
+    static int8_t Speed_Prev1, Speed_Prev2, Speed_Prev3, Speed_Prev4 = 0;        
+    
+    CyDelay(100); 		/* Wait before initialization happens. -> gives time for receiver to send PPM signal */
+    CyGlobalIntEnable; 	/* Enable Global Interrupts */
     UART_1_Start();     /* Enabling the UART */
-    I2CM_Start();
-    ADC_Start();
-    // Setup the watchdog
-    CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_RESET);  // Generate RESET
-    CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, 16000);                 // Every 16000 cycles // 500ms
+    I2CM_Start();		/* Enabling I2C */
+    ADC_Start();		/* Starting ADC */
+    
+	/*  watchdog Setup */
+    CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_RESET);  /* Generate SW RESET when not triggered */
+    CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0, 16000);                 /* Every 16000 cycles // 500ms */
     //CySysWdtLock(); // Lock WDT settings
     
-   
-    // End Watchdog setup
     
-    
-    CyDelay(500);
-    TaskTimer_Start();
-    NavLightPWM_Start();
-    PPMCounter_Start();
-    ServoTimer_Start();
-    PPMISR_Start();
-    PPMRstISR_Start();
-    ServoISR_Start();
-    TaskISR_Start();
-    BootISR_Start();
+    CyDelay(100);			/* 500ms Delay */
+    TaskTimer_Start();		/* Timer for main Task */
+    NavLightPWM_Start();	/* Navigation Light PWM Timer Start */
+    PPMCounter_Start();		/* PPM counter for input */
+    ServoTimer_Start();		/* Timer for Servo PWM */
+    PPMISR_Start();			/* PPM ISR Start */
+    PPMRstISR_Start();		/* PPM Reset ISR Start*/
+    ServoISR_Start();		/* Servo PWM ISR */
+    TaskISR_Start();		/* main task ISR */
+    BootISR_Start();		/* Boot ISR Start */
        
-    // Mavlink Initialization
-    mavlink_system.sysid = 58;     ///< ID 25 for this airplane
-    mavlink_system.compid = 58;     ///< The component ID
+    /* Mavlink Initialization */
+    mavlink_system.sysid = 58;     /* ID for Airplane*/
+    mavlink_system.compid = 58;    /* The component ID */
     
-    UART_1_UartPutString("UART OK\r\n");
-    
-    #ifdef ALTIMU
+	/* in use if ALT IMU installed */
+    #ifdef ALTIMU	
     if(GYRO_TASK == TRUE) gyro_start();
     if(ACC_TASK == TRUE) acc_start();
     if(MAG_TASK == TRUE) mag_start();
-    #else
+	/* in use if MPU6050 installed */
+    #else 
     if(GYRO_TASK == TRUE) MPU6050_Init();
+    if(MAG_TASK == TRUE) HMC_Init();
     #endif
     
+    if(BARO_TASK == TRUE) 
+	{
+		BMP180_baro_init();		/* Initialize Barometer BMP180 */
+		
+		/* Determine current pressure setting (On ground pressure (QNH) */
+		
+        BMP180_baro_trigger_temp();			/* Trigger Temperature conversion and wait min 4.5ms */
+		CyDelay(5);
+		temp = BMP180_baro_read_temp();		/* Read temperature from Barometer */
+		CyDelay(5);
+		BMP180_baro_trigger_pressure();		/* Trigger pressure conversion and wait min 4.5ms */
+		CyDelay(5);                    
+		QFE = BMP180_baro_read_pressure();/* Read pressure and calculate pressure output */
+		UART_1_UartPutString("Current QFE: ");
+		UART_1_UartPutNum(QFE);
+		UART_1_UartPutString("\r\n");
+	}
     
-    if(BARO_TASK == TRUE) BMP180_baro_init();
-    if(SPEED_TASK == TRUE) ;//ADC_calibrate_speed();
-    UART_1_UartPutString("Started OK\r\n");
-    //CyDelay(500);
-    /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
-    
-    // Enable Watchdog
+    /* Enable Watchdog */
     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
-    
+	
+	/* Initialization Complete */
+    UART_1_UartPutString("Init Complete\r\n");
     for(;;)
     {
         
@@ -333,26 +410,7 @@ int main()
             /*=======================================
                 Main Task that is executed every 10ms
               =======================================*/
-            task_flag = FALSE;
-            
-//            blink_cnt++;
-//            if(blink_cnt == 10)
-//            {
-//                blink_cnt = 0;   
-//       
-//            }
-//            if(blink_cnt == 100)
-//            {
-//                //Pin_2_Write(0xFF);
-//                
-//            }
-//            if(blink_cnt == 110)
-//            {
-//                blink_cnt = 0;
-//                //Pin_2_Write(0x00);    
-//            }
-//            //NavLightCompare++;
-//            //NavLightPWM_WriteCompare(NavLightCompare);      
+            task_flag = FALSE;	/* Resetting Task Flag */    
             
             /*=======================================
                 Light Control
@@ -361,7 +419,7 @@ int main()
             if(flag_LightsEnabled == TRUE)
             {
                 /* Lights enabled */
-                // START PWM FOR NAV LIGHTS HERE??
+                /* START PWM FOR NAV LIGHTS HERE */
                 if(NavLightCompare == NavLightBright)
                 {
                     flag_NavLightPulse = TRUE;
@@ -380,15 +438,15 @@ int main()
                     NavLightCompare-=NavLightStep;
                     NavLightPWM_WriteCompare(NavLightCompare);
                 }
-                // Strobe Light Control
-                if(cnt_StrobeLight == 200) Strobes_Write(0xFF); // Setting Output High
-                if(cnt_StrobeLight == 205)  // (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe
+                /* Strobe Light Control */
+                if(cnt_StrobeLight == 200) Strobes_Write(0xFF); /* Setting Output High */
+                if(cnt_StrobeLight == 205)  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
                 {
                     cnt_StrobeLight = 0;
-                    Strobes_Write(0x00);    // Setting output Low
+                    Strobes_Write(0x00);    /* Setting output Low */
                 }
                 cnt_StrobeLight++;
-                // Landing Light Control
+                /* Landing Light Control */
                 if(ctrl_in[in_gear] < 1100)
                 {
                     Ldg_Write(0xFF);
@@ -398,22 +456,21 @@ int main()
             else
             {
                 /* Lights disabled*/
-                NavLightPWM_WriteCompare(0);    // Nav Lights set to 0
-                Strobes_Write(0x00);    // Setting output Low
+                NavLightPWM_WriteCompare(0);    /* Nav Lights set to 0 */
+                Strobes_Write(0x00);    		/* Setting output Low */
                 Ldg_Write(0x00);
             }
-            
+
             /*=======================================
                 Sensor Reading
               =======================================*/
-            //turn_rate_p = gyro_read_p();
-            //UART_1_UartPutNum(turn_rate_p);
+			/* Gyro Reading */
             if(GYRO_TASK == TRUE)
             {
                 #ifdef ALTIMU
                     gyro_read();
                 #else
-                    MPU6050_data_read();    
+                    MPU6050_data_read();    /* All MPU Data is read at once */
                 #endif
 
             }
@@ -429,22 +486,33 @@ int main()
             }
             if(MAG_TASK == TRUE)
             {
+                static uint8_t mag_cnt = 0;
+                
                 #ifdef ALTIMU
                     mag_read();
+                #else // HMC Magnetometer
+                    if(mag_cnt == 10)
+                    {
+                        HMC_data_read();
+                        mag_cnt = 0;
+                    }
+                    mag_cnt++;
                 #endif
             }
             if(BARO_TASK == TRUE)
             {
-                //BMP180_read_altitude(); /* stores in "alt" variable*/
+				/* The pressure reading from BMP180 takes some time (check functions) 
+					therefore we are not in one cycle doing all calculcations but put
+					one cycle in between calculations / triggering etc. */
                 cnt_baro++;
                 if(cnt_baro == 49)
                 {
-                    // Trigger Temperature conversion and wait min 4.5ms
+                    /* Trigger Temperature conversion and wait min 4.5ms */
                     BMP180_baro_trigger_temp();
                 }
                 if(cnt_baro == 50)
                 {
-                    // Read temperature from Barometer
+                    /* Read temperature from Barometer */
                     temp = BMP180_baro_read_temp();
 
                     //UART_1_UartPutNum(temp);
@@ -452,13 +520,13 @@ int main()
                 }
                 if(cnt_baro == 51)
                 {
-                    // Trigger pressure conversion and wait min 4.5ms
+                    /* Trigger pressure conversion and wait min 4.5ms */
                     BMP180_baro_trigger_pressure();
                 }
                 if(cnt_baro == 52)
                 {
                     
-                    // Read pressure and calculate pressure output
+                    /* Read pressure and calculate pressure output */
                     press = BMP180_baro_read_pressure();
                     //UART_1_UartPutNum(press/100);
                     //UART_1_UartPutString("; ");
@@ -466,19 +534,18 @@ int main()
                 if(cnt_baro == 53)
                 {
                     cnt_baro = 0;
-                    // Calculate Altitude
-                    /* replace STD pressure with calibrated pressure */
-                    alt = (101325-(press))*0.0843;  // pressure in Pa -> 0.0843m / Pa of change
+                    /* Calculate Altitude */
+                    /* take calibrated pressure (QFE) and determine by press difference the altitude */
+                    alt = (QFE-(press))*0.0843;  // pressure in Pa -> 0.0843m / Pa of change
                     
-                    //alt = 44330*(1-(((press/100)/1013)^(1/5)));
-                    //UART_1_UartPutNum(alt);
-                    //UART_1_UartPutString("\r\n");
                 }
             }
             if(SPEED_TASK == TRUE)
             {
                 
                 /*
+				For calibrating the speed reading, put both sticks to lower left corner
+				
                      - - - -         - - - -
                     |       |       |       |
                     |       |       |       |
@@ -488,12 +555,14 @@ int main()
                 */
                 
                 if((ctrl_in[in_mot]<1200) &&        
-                   (ctrl_in[in_rud]<1200) && 
+                   (ctrl_in[in_rud]>1800) && 
                    (ctrl_in[in_ail]<1200) &&
                    (ctrl_in[in_ele]>1800) &&
                     speed_cal_compl == FALSE)
                 {
                     speed_cal_compl = TRUE;
+					/* used to determine the speed offset (not during power up as 
+					the reading stablizes after some seconds only) */
                     ADC_calibrate_speed();
                     UART_1_UartPutString("ADC Calibrated\r\n");
                 }
@@ -505,32 +574,43 @@ int main()
                     speed_cal_compl = FALSE;
                 }
                 speed = ADC_read_speed() - speed_offset;
+                
+                speed = (speed+Speed_Prev1+Speed_Prev2+Speed_Prev3+Speed_Prev4)/5;
+                
+                Speed_Prev4 = Speed_Prev3;
+                Speed_Prev3 = Speed_Prev2;
+                Speed_Prev2 = Speed_Prev1;
+                Speed_Prev1 = speed;
             }
             
             /* Theta and Phi out of acceleration data*/
             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
-            //Psi_acc = (atan2(-acc_y_g,-acc_x_g))*180/PI;
-			/*=========================================================*/
-			/* Calculating the attitude by using Kalman Filtering START*/
+            //Psi_acc = (atan2(-acc_y_g,-acc_x_g))*180/PI;	/* Psi is not of any use, Heading would be useful -> from GPS? */
 			
-//            Theta += sample_time * (turn_rate_q-q_bias);
-//            
-//			//P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
-//            P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
-////			P_01_Theta +=  - sample_time * P_11_Theta;
-//            P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
+			
+			/*=========================================================*/
+			/* KALMAN FILTER  */
+			/* Calculating the attitude by using Kalman Filtering START*/
+			/* Currently not in use due to high calculation efforts, using complementary filter only (see below) */
+			/*=======================================================*/
+            Theta += sample_time * (turn_rate_q-q_bias);
+            
+			//P_00_Theta +=  - sample_time * ((P_10_Theta + P_01_Theta) - Q_angle);
+            P_Theta[0][0] +=  - sample_time * ((P_Theta[1][0] + P_Theta[0][1]) - Q_angle);
+//			P_01_Theta +=  - sample_time * P_11_Theta;
+            P_Theta[0][1] +=  - sample_time * P_Theta[1][1];
 //			//P_10_Theta = P_01_Theta;
-//            P_Theta[1][0] = P_Theta[0][1];
+            P_Theta[1][0] = P_Theta[0][1];
 //			//P_11_Theta +=  + Q_gyro * sample_time;
-//            P_Theta[1][1] +=  + Q_gyro * sample_time;
-//			
-//			
-//			Phi += sample_time * (turn_rate_p-p_bias);
-//			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
-//			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
-//			P_Phi[1][0] = P_Phi[0][1];
-//			P_Phi[1][1] +=  + Q_gyro * sample_time;
+            P_Theta[1][1] +=  + Q_gyro * sample_time;
+			
+			
+			Phi += sample_time * (turn_rate_p-p_bias);
+			P_Phi[0][0] +=  - sample_time * ((P_Phi[1][0] + P_Phi[0][1]) - Q_angle);
+			P_Phi[0][1] +=  - sample_time * P_Phi[1][1];
+			P_Phi[1][0] = P_Phi[0][1];
+			P_Phi[1][1] +=  + Q_gyro * sample_time;
 //			
 //		
 //			/*
@@ -540,44 +620,63 @@ int main()
 //			P_10_Psi +=  - sample_time * P_11_Psi;
 //			P_11_Psi +=  + Q_gyro * sample_time;
 //			*/
-//			Theta_temp = Theta_acc - Theta;
-//			S_Theta = P_Theta[0][0] + R_angle;
-//			K_0_Theta = P_Theta[0][0] / S_Theta;
-//			K_1_Theta = P_Theta[1][0] / S_Theta;
-//			
-//			Phi_temp = Phi_acc - Phi;
-//			S_Phi = P_Phi[0][0] + R_angle;
-//			K_0_Phi = P_Phi[0][0] / S_Phi;
-//			K_1_Phi = P_Phi[1][0] / S_Phi;
+			Theta_temp = Theta_acc - Theta;
+			S_Theta = P_Theta[0][0] + R_angle;
+			K_0_Theta = P_Theta[0][0] / S_Theta;
+			K_1_Theta = P_Theta[1][0] / S_Theta;
+			
+			Phi_temp = Phi_acc - Phi;
+			S_Phi = P_Phi[0][0] + R_angle;
+			K_0_Phi = P_Phi[0][0] / S_Phi;
+			K_1_Phi = P_Phi[1][0] / S_Phi;
 //			/*
 //			Psi_temp = mag - Psi;
 //			S_Psi = P_00_Psi + R_angle;
 //			K_0_Psi = P_00_Psi / S_Psi;
 //			K_1_Psi = P_10_Psi / S_Psi;
 //			*/
-//			Theta +=  K_0_Theta * Theta_temp;
-//			q_bias  +=  K_1_Theta * Theta_temp;
-//			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
-//			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
-//			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
-//			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
-//			
-//			Phi +=  K_0_Phi * Phi_temp;
-//			p_bias  +=  K_1_Phi * Phi_temp;
-//			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
-//			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
-//			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
-//			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
+			Theta +=  K_0_Theta * Theta_temp;
+			q_bias  +=  K_1_Theta * Theta_temp;
+			P_Theta[0][0] -= K_0_Theta * P_Theta[0][0];
+			P_Theta[0][1] -= K_0_Theta * P_Theta[0][1];
+			P_Theta[1][0] -= K_1_Theta * P_Theta[0][0];
+			P_Theta[1][1] -= K_1_Theta * P_Theta[0][1];
+			
+			Phi +=  K_0_Phi * Phi_temp;
+			p_bias  +=  K_1_Phi * Phi_temp;
+			P_Phi[0][0] -= K_0_Phi * P_Phi[0][0];
+			P_Phi[0][1] -= K_0_Phi * P_Phi[0][1];
+			P_Phi[1][0] -= K_1_Phi * P_Phi[0][0];
+			P_Phi[1][1] -= K_1_Phi * P_Phi[0][1];
+
+			/* ============================================== */
+			/* Complementary Filter Design 					  */
+			/* ============================================== */
 		
 			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
             // Complementary filter. Substitute for Kalman filter.
-            // it is not clear why the 8 in the end is required, but it gives useable results
-            Theta = (0.90* (Theta + turn_rate_q*sample_time) + 0.10*Theta_acc);
-            Theta_Mav = Theta*PI/180*8;
-            Phi = (0.90 * (Phi + turn_rate_p*sample_time) + 0.10*Phi_acc);
-            Phi_Mav = Phi*PI/180*8;
+            // gives useable results
+ //           Theta = (0.45* (Theta + turn_rate_q*sample_time) + 0.55*Theta_acc);
+ //           Theta_Mav = Theta*PI/180*8;	/* Theta in radians for MavLink (not sure why divided by 8) */
+ //           Phi = (0.45 * (Phi + turn_rate_p*sample_time) + 0.55*Phi_acc);
+ //           Phi_Mav = Phi*PI/180*8;		/* Phi in radians for MavLink */
             
-             // Tilt compensated Magnetic filed X:
+            // Smoothing the data reading -> less noisy Euler Angles
+  //          Phi = (Phi+Phi_Prev1+Phi_Prev2+Phi_Prev3+Phi_Prev4)/5;
+  //          Theta = (Theta+Theta_Prev1+Theta_Prev2+Theta_Prev3+Theta_Prev4)/5;
+            
+  //          Phi_Prev4 = Phi_Prev3;
+  //          Phi_Prev3 = Phi_Prev2;
+ //           Phi_Prev2 = Phi_Prev1;
+ //           Phi_Prev1 = Phi;
+           
+ //           Theta_Prev4 = Theta_Prev3;
+ //           Theta_Prev3 = Theta_Prev2;
+ //           Theta_Prev2 = Theta_Prev1;
+  //          Theta_Prev1 = Theta;
+            
+            
+            // Tilt compensated Magnetic field X:
             //  MAG_X = c_magnetom_x*cos_pitch+c_magnetom_y*sin_roll*sin_pitch+c_magnetom_z*cos_roll*sin_pitch;
             //  // Tilt compensated Magnetic filed Y:
             //  MAG_Y = c_magnetom_y*cos_roll-c_magnetom_z*sin_roll;
@@ -595,9 +694,9 @@ int main()
             //UART_1_UartPutNum(Bar_press);   //Print Baro Press
             //UART_1_UartPutString(";\r\n");
             
-			/* Calculating the attitude by using Kalman Filtering END*/
+
 			/*=======================================================*/
-            /* MAVLINK
+            /* MAVLINK */
             /*=======================================================*/
             
 		    if(MAVLINK_TASK == TRUE)
@@ -629,26 +728,41 @@ int main()
             /*=======================================
                 Airplane Control
               =======================================*/
-        uint8_t debug = 0;
+            //uint8_t debug = 0;
             
            
-            if(debug == 0)
+            if(receiver_connected == TRUE)
+            //if(debug == 0)
             {                     
-                if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;       // up:      damped mode
-                else if (ctrl_in[in_mod]>1750) Ctrl_Mode = tune;    // down:    tune mode
-                else Ctrl_Mode = manual;                            // mid:     manual mode
-                            
-                uint16_t flap_offset = 0;
-                // Flap Control
+				uint8_t PrevCtrl_Mode = Ctrl_Mode;
+				uint8_t state_change = FALSE;
+                if (ctrl_in[in_mod]<1250) Ctrl_Mode = damped;       /* up:      damped mode */
+                else if (ctrl_in[in_mod]>1750) Ctrl_Mode = autonom;    /* down:    auto mode */
+                else Ctrl_Mode = manual;                            /* mid:     manual mode */
+                 
+				/* Indicate State Change */
+				if(PrevCtrl_Mode != Ctrl_Mode) state_change = TRUE;
+				 
+                uint16_t aileron_offset = 0;
+                uint16_t elevator_offset = 0;
+                
+                /* Step Input Control Lateral */
                 if(ctrl_in[in_sp2]>1750)
                 {
-                    flap_offset = 300;
+                    aileron_offset = 200;
                 }
+                
+                /* Step Input Control Longitudinal */
+                //if(ctrl_in[in_gear]>1750)
+                //{
+                //    elevator_offset = 200;
+                //}
                 
                 switch (Ctrl_Mode)
                 {
                     case manual:
                         tune_cnt= 0;    // Reset in case tune cnt was used before...
+                    #ifdef T50
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]+flap_offset;           // ail:     left: 1000  right: 2000
@@ -663,18 +777,50 @@ int main()
                         ctrl_out[out_fl2] = ctrl_in[in_can];
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
- 
-                        
+                    #else
+                        ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+aileron_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+aileron_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]+elevator_offset;           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]+elevator_offset;
+                        ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_gear];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];
+                    #endif
+                    
                     break;
                     
                     case damped:
+                        
+                        /* Speed related damp GAINs */
+                        if (speed > 25)
+						{
+
+						}
+						else if (speed >16)
+						{
+
+						}
+						else
+						{
+
+						}
+                        
+                        
                         ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
-                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*turn_rate_p);           // ail:     left: 1000  right: 2000
-                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*turn_rate_p);
-                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);           // ele:     low: 2000   high: 1000
-                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*turn_rate_q);
-                        ctrl_out[out_rud] = ctrl_in[in_rud]-(K_d_r*turn_rate_r);            // rud:     left: 1000  right: 2000
+                        #ifdef T50
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))-flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
+                        ctrl_out[out_rud] = ctrl_in[in_rud]-((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
@@ -682,6 +828,20 @@ int main()
                         ctrl_out[out_fl2] = ctrl_in[in_can];
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
+                        #else // Funcub
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p));//+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p));//-flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
+                        ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
+                        ctrl_out[out_ge2] = ctrl_in[in_gear];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
+                        ctrl_out[out_sp2] = ctrl_in[in_mot];    
+                        #endif
                     break;
                         
                     case tune:
@@ -710,13 +870,160 @@ int main()
                         
                     break;
                     
+                   // case autonom:
+                        
+                    //    break;
+                        
+                    case autonom:
+                        /* autonomous mode */
+
+						
+						if(state_change == TRUE)
+						{
+                            /* Entering Autonomous Mode */
+							/* Store current ctrl inputs in trim vecotr*/
+							ctrl_in_trim[in_mot] = ctrl_in[in_mot];  /* Set trimmed Motor input */
+                            ctrl_in_trim[in_ele] = ctrl_in[in_ele];  /* Set trimmed Elevator input */
+							ctrl_in_trim[in_ail] = ctrl_in[in_ail];  /* Set trimmed Aileron input */
+                            ctrl_in_trim[in_rud] = ctrl_in[in_rud];  /* Set trimmed Rudder input */
+                            /* In case the autonomous mode is entered 
+							all errors etc need to be reset */
+							
+                            /* Theta Control */
+							Theta_Error = 0;					/* Needs to be reset always when this state is entered */
+							Theta_Error_sum = 0;				/* Theta Sum to be reset */
+							Theta_Target = -5; /* = 0 */		/* Set Theta Target */
+							
+                            /* Phi Control */
+                            Phi_Error = 0;					/* Needs to be reset always when this state is entered */
+							Phi_Error_sum = 0;				/* Phi Sum to be reset */
+							Phi_Target = 0; /* = 0 */		/* Set Phi Target */
+						}
+                        
+                    
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];         
+                        
+                            // For changing if Lat Auto or Long Auto Test
+                        //if(ctrl_in[in_gear] > 1750)
+                        //{
+
+                        //#ifdef THCTRL
+						//******************************************************
+ 						// Theta control with elevator
+ 						// Input: Theta command from Altitude Hold loop
+ 						// Output: elevator command pid loop
+ 						// Controller: PID Controller
+						// Gains: K_p = 10 K_i = 10 K_d = 5
+						uint8_t Kp_Theta = 5;
+						uint8_t Ki_Theta = 5;
+						uint8_t Kd_Theta = 0;
+						
+ 						Theta_Error = Theta - Theta_Target; // as per Simulation in SCILAB this convention is best
+ 						Theta_Error_sum += Theta_Error;
+ 						// controller formula for the necessary control change						 
+
+ 						ctrl_out_PID[out_ele1] = (Kp_Theta*Theta_Error + Ki_Theta*Theta_Error_sum*sample_time + Kd_Theta*(-Theta_Error_prev + Theta_Error)/(sample_time));
+
+                        Theta_Error_prev = Theta_Error;
+						//******************************************************
+						
+						//******************************************************
+						// Pitch damping
+						// Input: turn rate q
+						// Output: elevator command damping
+						// Gains: K_d_q
+						ctrl_out_DAMP[out_ele1] = K_d_q * (turn_rate_q);
+						//******************************************************
+						
+						//******************************************************
+						// Combining the calculated inputs elevator and limiting elevator command
+						ctrl_out[out_ele1] = ctrl_in_trim[in_ele] - ctrl_out_PID[out_ele1] - ctrl_out_DAMP[out_ele1];
+						if(ctrl_out[out_ele1] > 2000) ctrl_out[out_ele1] = 2000;
+						else if (ctrl_out[out_ele1] < 900) ctrl_out[out_ele1] = 900;
+						//******************************************************
+						//#endif
+                        
+         // rud:     left: 1000  right: 2000
+                        
+                        //}
+                        //else
+                        //{
+                        
+                        //#ifdef PHICTRL
+                        //******************************************************
+ 						// Phi control with Aileron
+ 						// Input: Phi command from Heading hold loop
+ 						// Output: aileron command pid loop
+ 						// Controller: PID Controller
+						// Gains: K_p = 10 K_i = 10 K_d = 5
+                           
+                        ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        //ctrl_out[out_ail1] = ctrl_in[in_ail]+aileron_offset;           // ail:     left: 1000  right: 2000
+                        //ctrl_out[out_ail2] = ctrl_in[in_ail]+aileron_offset;
+                        //ctrl_out[out_ele1] = ctrl_in[in_ele]+elevator_offset;           // ele:     low: 2000   high: 1000
+                        //ctrl_out[out_ele2] = ctrl_in[in_ele]+elevator_offset;    
+                        
+						uint8_t Kp_Phi = 10;
+						uint8_t Ki_Phi = 5;
+						uint8_t Kd_Phi = 0;
+						
+ 						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						Phi_Error_sum += Phi_Error;
+ 						// controller formula for the necessary control change						 
+ 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error) + (Ki_Phi*Phi_Error_sum*sample_time) + (Kd_Phi*(-Phi_Error_prev + Phi_Error)/(sample_time));
+                        Phi_Error_prev = Phi_Error;
+						//******************************************************
+						
+						//uint8_t Kp_Phi = 5;
+						//uint8_t Ki_Phi = 5;
+						//uint8_t Kd_Phi = 1;
+						
+ 						//Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						//Phi_Error_sum += Phi_Error;
+ 						// controller formula for the necessary control change						 
+ 						//ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error);// + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error));
+                        //Phi_Error_prev = Phi_Error;
+						//******************************************************
+						
+
+						//******************************************************
+						// Pitch damping
+						// Input: turn rate q
+						// Output: elevator command damping
+						// Gains: K_d_q
+						ctrl_out_DAMP[out_ail1] = K_d_p * (turn_rate_p);
+						//******************************************************
+						
+						//******************************************************
+						// Combining the calculated inputs elevator and limiting elevator command
+
+						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] + ctrl_out_PID[out_ail1] - ctrl_out_DAMP[out_ail1];
+
+						if(ctrl_out[out_ail1] > 2000) ctrl_out[out_ail1] = 2000;
+						else if (ctrl_out[out_ail1] < 900) ctrl_out[out_ail1] = 900;
+                        ctrl_out[out_ail2] = ctrl_out[out_ail1];    /* Both Servos need to be controlled */
+						//******************************************************
+                        //#endif
+
+                       
+                        /********************************************************************
+                                    YAW Damping is also required to stabilize the lateral movement
+                        **********************************************************************/
+                        
+
+                        ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));//-ctrl_out_PID[out_ail1];   
+                        //}
+                    break;
+                        
                 }
             }
             else    // for debug use only (no receiver connected)
             {
                 ctrl_in[in_mot] = 1000;
                 ctrl_out[out_mot] = ctrl_in[in_mot];    
-                ctrl_out[out_ail1] = ctrl_in[in_mot];    
+                ctrl_out[out_ail1] = 1500 +(K_d_p*turn_rate_p);    
                 ctrl_out[out_ail2] = ctrl_in[in_mot];
                 ctrl_out[out_ele1] = ctrl_in[in_mot];
                 ctrl_out[out_ele2] = ctrl_in[in_mot];
@@ -755,6 +1062,10 @@ int main()
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(speed);
                 UART_1_UartPutString(";");
+                UART_1_UartPutNum(press);
+                UART_1_UartPutString(";");
+                UART_1_UartPutNum(alt);
+                UART_1_UartPutString(";");
                 UART_1_UartPutNum(Ctrl_Mode);
                 UART_1_UartPutString(";\r\n");
             }
@@ -772,8 +1083,8 @@ int main()
                 // In case "Boot" is received -> Bootloader gets enabled
                 if(strcmp(Rx_String,"Boot")==0)
                 {
-                    CySysWdtUnlock();   // Stop The Watchdog...?
-                    CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
+                    //CySysWdtUnlock();   // Stop The Watchdog...?
+                    //CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
                     UART_1_UartPutString("BootEnabl\r\n");
                     CyDelay(100);
                     Bootloadable_1_Load(); 

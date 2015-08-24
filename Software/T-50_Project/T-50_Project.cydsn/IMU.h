@@ -168,5 +168,28 @@ void MPU6050_acc_read(void);
 void MPU6050_gyro_read(void);
 void MPU6050_data_read(void);
 
+/*===========================*/
+/*      HMC5883L           */
+/*===========================*/
+
+#define HMC_ADDRESS             0x1E    // as per datasheet page 11
+
+#define HMC_CONFIG_A            0x00
+#define HMC_CONFIG_B            0x01
+#define HMC_MODE                0x02
+#define HMC_OUT_X_H             0x03
+#define HMC_OUT_X_L             0x04
+#define HMC_OUT_Z_H             0x05
+#define HMC_OUT_Z_L             0x06
+#define HMC_OUT_Y_H             0x07
+#define HMC_OUT_Y_L             0x08
+#define HMC_STATUS              0x09
+#define HMC_ID_A                0x0A
+#define HMC_ID_B                0x0B
+#define HMC_ID_C                0x0C
+
+void HMC_Init(void);
+void HMC_data_read(void);
+
 #endif  // endif IMU_H
 /* [] END OF FILE */

@@ -344,40 +344,42 @@ void MPU6050_Init(void)
 
 void MPU6050_acc_read(void)
 {
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    acc_z_l = I2CM_I2CMasterReadByte(NACK);     // ZOUT L
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    
-    UART_1_UartPutNum(acc_x_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_x_l);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_y_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_y_l);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_z_h);
-    UART_1_UartPutString(";");
-    UART_1_UartPutNum(acc_z_l);
-    UART_1_UartPutString(";\r\n");
-    
-    acc_x_g = (acc_x_h<<8) | (acc_x_l);
-    acc_y_g = (acc_y_h<<8) | (acc_y_l);
-    acc_z_g = (acc_z_h<<8) | (acc_z_l);
-    // FS = 1: +-4G -> 16 bit -> 1 bit = 0.1mg => 10 bit = 1mg
-    // we do not need further calculation, the vector will be normed anyways
-    return;
-    
+    if(I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE)==0)
+    {
+        CyDelay(1);
+    	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
+    	//UART_1_UartPutString("GYR W Reg Ok\r\n");
+        I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
+        //UART_1_UartPutString("GYR Rest Ok\r\n");
+    	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
+        acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
+        acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
+        acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
+        acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
+        acc_z_l = I2CM_I2CMasterReadByte(NACK);     // ZOUT L
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        
+        UART_1_UartPutNum(acc_x_h);
+        UART_1_UartPutString(";");
+        UART_1_UartPutNum(acc_x_l);
+        UART_1_UartPutString(";");
+        UART_1_UartPutNum(acc_y_h);
+        UART_1_UartPutString(";");
+        UART_1_UartPutNum(acc_y_l);
+        UART_1_UartPutString(";");
+        UART_1_UartPutNum(acc_z_h);
+        UART_1_UartPutString(";");
+        UART_1_UartPutNum(acc_z_l);
+        UART_1_UartPutString(";\r\n");
+        
+        acc_x_g = (acc_x_h<<8) | (acc_x_l);
+        acc_y_g = (acc_y_h<<8) | (acc_y_l);
+        acc_z_g = (acc_z_h<<8) | (acc_z_l);
+        // FS = 1: +-4G -> 16 bit -> 1 bit = 0.1mg => 10 bit = 1mg
+        // we do not need further calculation, the vector will be normed anyways
+        return;
+    }
+    else return;
 }
 
 //#endif
@@ -448,5 +450,109 @@ void MPU6050_data_read(void)
     return;
     
 }
+
+/*===========================*/
+/*      HMC5883L           */
+/*===========================*/
+
+void HMC_Init(void)
+{
+    //uint32 hmc_start = I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE);
+    if(I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE) == 0)  // only if no error present -> continue
+    {
+    CyDelay(1);
+	I2CM_I2CMasterWriteByte(HMC_CONFIG_A);
+    I2CM_I2CMasterWriteByte(0b01110000);    // sets CRA6/CRA5/CRA 4 = Averaged over 8 samples, 15Hz = 67ms for a sample
+    I2CM_I2C_MASTER_GENERATE_STOP;
+    
+    CyDelay(1);
+    
+    I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE);
+    CyDelay(1);
+	I2CM_I2CMasterWriteByte(HMC_CONFIG_B);  // Select CRB for sensitivity
+    I2CM_I2CMasterWriteByte(0b00100000);    // default setting: 00100000 = 1090 LSB/Gauss
+    I2CM_I2C_MASTER_GENERATE_STOP;
+    
+    CyDelay(1);
+    
+    
+    I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE);
+    CyDelay(1);
+	I2CM_I2CMasterWriteByte(HMC_MODE);      // Select CRB for sensitivity
+    I2CM_I2CMasterWriteByte(0b00000000);    // Select continuous measurement mode
+    I2CM_I2C_MASTER_GENERATE_STOP;
+    
+    UART_1_UartPutString("HMC Initiated\r\n");
+    }
+    // else there is an error
+    else UART_1_UartPutString("HMC Not Ready\r\n");
+}
+
+void HMC_data_read(void)
+{
+    
+    //uint8_t status = 0;
+    // 1 - check if Data is available
+    //uint32 hmc_start = I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE);
+    /*
+    if(I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE) == 0)  // only if no error present -> continue
+    {
+        //UART_1_UartPutString("HMC TRY\r\n");
+        CyDelay(1);
+    	I2CM_I2CMasterWriteByte(HMC_STATUS); // Set pointer to HMC Status register
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        CyDelay(1);
+        //UART_1_UartPutString("HMC TRY 1\r\n");
+        I2CM_I2CMasterSendStart(HMC_ADDRESS, READ);
+        //UART_1_UartPutString("HMC TRY 2\r\n");
+        //I2CM_I2CMasterWriteByte(0x01);      // read 1 Byte 
+        //UART_1_UartPutString("HMC TRY 3\r\n");
+        status = I2CM_I2CMasterReadByte(NACK);     // MAG YOUT L
+        //UART_1_UartPutString("HMC TRY 4\r\n");
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        CyDelay(1);
+    }
+    else UART_1_UartPutString("NRDY\r\n");
+    // 2 - read data if data available
+    */
+        if(I2CM_I2CMasterSendStart(HMC_ADDRESS, WRITE)==0)
+        {
+        //CyDelay(1);
+    	I2CM_I2CMasterWriteByte(HMC_OUT_X_H);       // auto increment if no NACK is sent by Master
+        //CyDelay(1);
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        CyDelay(1);
+        
+        
+        I2CM_I2CMasterSendStart(HMC_ADDRESS, READ);
+        //CyDelay(1);
+        //CyDelay(1);
+        //I2CM_I2CMasterWriteByte(0x06);              // read six bytes
+        mag_x_h = I2CM_I2CMasterReadByte(ACK);     // MAG XOUT H
+        mag_x_l = I2CM_I2CMasterReadByte(ACK);     // MAG XOUT L
+        mag_z_h = I2CM_I2CMasterReadByte(ACK);     // MAG ZOUT H
+        mag_z_l = I2CM_I2CMasterReadByte(ACK);     // MAG ZOUT L
+        mag_y_h = I2CM_I2CMasterReadByte(ACK);     // MAG YOUT H
+        mag_y_l = I2CM_I2CMasterReadByte(NACK);     // MAG YOUT L
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        
+        // sensitivity at +-4 Gauss = 
+        mag_x_g = ((mag_x_h<<8) | (mag_x_l))*0.92;
+	    mag_y_g = ((mag_y_h<<8) | (mag_y_l))*0.92;
+	    mag_z_g = ((mag_z_h<<8) | (mag_z_l))*0.92; 
+        /*
+        UART_1_UartPutNum(mag_x_g);
+        UART_1_UartPutString(" ");
+        UART_1_UartPutNum(mag_y_g);
+        UART_1_UartPutString(" ");
+        UART_1_UartPutNum(mag_z_g);
+        UART_1_UartPutString("\r\n");
+        */
+        return;
+        }
+        else return;
+    
+}
+
 
 /* [] END OF FILE */

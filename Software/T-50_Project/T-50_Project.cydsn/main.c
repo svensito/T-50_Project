@@ -11,6 +11,22 @@
  *
  * ========================================
 */
+
+/*========================================
+
+TO DO LIST (August 14,2015)
+- Configure XBee (HW) -> 3,3 VDC TTL or is 5 okay?
+- If XBee too inreliable -> Program FRSky Protocol, 
+ground station with additional controller or intermediate software (Matlab?)
+- Include Functions for HMC5883L Magnetometer -> Completed
+
+
+
+
+==========================================*/
+
+
+
 #include <project.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -141,8 +157,8 @@ int16_t mag_y_g = 0;
 int16_t mag_z_g = 0;
 
 /* Euler Angles */
-float Theta, Theta_Mav, Theta_acc = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
-float Phi, Phi_Mav, Phi_acc = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
+float Theta, Theta_Mav, Theta_acc, Theta_meas = 0;   // Theta => estimated angle after Kalman, Theta_acc => Theta from accelerometer
+float Phi, Phi_Mav, Phi_acc, Phi_meas = 0;       // Phi => estimated angle after Kalman, Phi_acc => Theta from accelerometer
 float Psi, Psi_acc = 0;       // Psi , Psi_acc => Psi from accelerometer
 
 /* Magnetic Heading*/
@@ -191,13 +207,24 @@ float p_bias = 0;
 float P_Phi[2][2] = {0,0,0,0};
 float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 
+#define W_GYRO 20
+
 /*============================*/
 /* Control variables	*/
 /*=============================*/
-uint8_t K_d_p = 1;
-uint8_t K_d_q = 1;
-uint8_t K_d_r = 1;
 
+//#define FUNCUB
+#define T_50
+
+#ifdef FUNCUB
+    uint8_t K_d_p = 7;
+    uint8_t K_d_q = 7;
+    uint8_t K_d_r = 5;
+#elif defined T_50  // T-50
+    uint8_t K_d_p = 1;
+    uint8_t K_d_q = 1;
+    uint8_t K_d_r = 1;
+#endif
 /*============================*/
 /* Tune variables	            */
 /*=============================*/
@@ -247,7 +274,8 @@ uint8_t cnt_ML_ATTITUDE_send = 0;           // used for timing of the ATTITUDE m
 /*=============================*/
 /* General Functions */
 /*=============================*/
-// UART Put Num to write serial number data
+
+// UART Put Num to write serial number data as String
 void UART_1_UartPutNum(int32_t num)
 {
     char k[31];
@@ -255,7 +283,7 @@ void UART_1_UartPutNum(int32_t num)
     UART_1_UartPutString(k);   
 }
 
-// UART Put Num to write serial number data
+// UART Send Mavlink data
 void UART_1_UartSendMavlink(uint8_t buf[], uint16_t len)
 {
     uint16_t i = 0;
@@ -301,7 +329,23 @@ int main()
 {
     /* initialization/startup code */
     
-    CyDelay(500); 		/* Wait before initialization happens. -> gives time for receiver to send PPM signal */
+    if(CySysGetResetReason(CY_SYS_RESET_WDT) == TRUE)
+    {
+        // Reset is due to Watchdog
+        CY_SYS_RES_CAUSE_REG = 0;   
+        /* Reset the Cause Register after Watchdog Reset to be ready for new Reset Reason
+        This will automatically happen on Power On Reset, Brown out or external Reset */
+    }
+    
+    
+    
+    
+    /* Static Variables */
+    static int8_t Phi_Prev1, Phi_Prev2, Phi_Prev3, Phi_Prev4 = 0;
+    static int8_t Theta_Prev1, Theta_Prev2, Theta_Prev3, Theta_Prev4 = 0;
+    static int8_t Speed_Prev1, Speed_Prev2, Speed_Prev3, Speed_Prev4 = 0;        
+    
+    CyDelay(100); 		/* Wait before initialization happens. -> gives time for receiver to send PPM signal */
     CyGlobalIntEnable; 	/* Enable Global Interrupts */
     UART_1_Start();     /* Enabling the UART */
     I2CM_Start();		/* Enabling I2C */
@@ -313,7 +357,7 @@ int main()
     //CySysWdtLock(); // Lock WDT settings
     
     
-    CyDelay(500);			/* 500ms Delay */
+    CyDelay(100);			/* 500ms Delay */
     TaskTimer_Start();		/* Timer for main Task */
     NavLightPWM_Start();	/* Navigation Light PWM Timer Start */
     PPMCounter_Start();		/* PPM counter for input */
@@ -336,6 +380,7 @@ int main()
 	/* in use if MPU6050 installed */
     #else 
     if(GYRO_TASK == TRUE) MPU6050_Init();
+    if(MAG_TASK == TRUE) HMC_Init();
     #endif
     
     if(BARO_TASK == TRUE) 
@@ -398,11 +443,11 @@ int main()
                     NavLightPWM_WriteCompare(NavLightCompare);
                 }
                 /* Strobe Light Control */
-                if(cnt_StrobeLight == 200) Strobes_Write(0xFF); /* Setting Output High */
+                if(cnt_StrobeLight == 200) Strobes_Write(0x00); /* Setting Output Low */
                 if(cnt_StrobeLight == 205)  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
                 {
                     cnt_StrobeLight = 0;
-                    Strobes_Write(0x00);    /* Setting output Low */
+                    Strobes_Write(0xFF);    /* Setting output High */
                 }
                 cnt_StrobeLight++;
                 /* Landing Light Control */
@@ -416,7 +461,7 @@ int main()
             {
                 /* Lights disabled*/
                 NavLightPWM_WriteCompare(0);    /* Nav Lights set to 0 */
-                Strobes_Write(0x00);    		/* Setting output Low */
+                Strobes_Write(0xFF);    		/* Setting output High to turn off */
                 Ldg_Write(0x00);
             }
 
@@ -445,8 +490,17 @@ int main()
             }
             if(MAG_TASK == TRUE)
             {
+                static uint8_t mag_cnt = 0;
+                
                 #ifdef ALTIMU
                     mag_read();
+                #else // HMC Magnetometer
+                    if(mag_cnt == 10)
+                    {
+                        HMC_data_read();
+                        mag_cnt = 0;
+                    }
+                    mag_cnt++;
                 #endif
             }
             if(BARO_TASK == TRUE)
@@ -524,13 +578,26 @@ int main()
                     speed_cal_compl = FALSE;
                 }
                 speed = ADC_read_speed() - speed_offset;
+                
+                speed = (speed+Speed_Prev1+Speed_Prev2+Speed_Prev3+Speed_Prev4)/5;
+                
+                Speed_Prev4 = Speed_Prev3;
+                Speed_Prev3 = Speed_Prev2;
+                Speed_Prev2 = Speed_Prev1;
+                Speed_Prev1 = speed;
             }
             
+            #ifdef FUNCUB
             /* Theta and Phi out of acceleration data*/
+            // In Funcub the IMU is installed correctly
             Theta_acc = (atan2(acc_x_g,-acc_z_g))*180/PI;
 		    Phi_acc = (atan2(-acc_y_g,-acc_z_g))*180/PI;
             //Psi_acc = (atan2(-acc_y_g,-acc_x_g))*180/PI;	/* Psi is not of any use, Heading would be useful -> from GPS? */
-			
+			#elif defined T_50
+            // in T 50 the IMU is installed turned 180 deg by z axis and x axis
+            Theta_acc = (atan2(-acc_x_g,acc_z_g))*180/PI;
+		    Phi_acc = (atan2(-acc_y_g,acc_z_g))*180/PI;   
+            #endif
 			
 			/*=========================================================*/
 			/* KALMAN FILTER  */
@@ -596,13 +663,39 @@ int main()
 			/* Complementary Filter Design 					  */
 			/* ============================================== */
 		
+            
+            #ifdef T_50
+                // IMU is installed backwards
+                //turn_rate_p *= -1;
+                //turn_rate_q *= -1;
+            #endif
 			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
             // Complementary filter. Substitute for Kalman filter.
             // gives useable results
-            Theta = (0.45* (Theta + turn_rate_q*sample_time) + 0.55*Theta_acc);
-            Theta_Mav = Theta*PI/180*8;	/* Theta in radians for MavLink (not sure why divided by 8) */
-            Phi = (0.45 * (Phi + turn_rate_p*sample_time) + 0.55*Phi_acc);
-            Phi_Mav = Phi*PI/180*8;		/* Phi in radians for MavLink */
+            //Theta = (0.60* (Theta + turn_rate_q*sample_time) + 0.40*Theta_acc);
+            Theta_meas = (Theta_acc +(Theta_meas + turn_rate_q*sample_time)* W_GYRO) / (1+W_GYRO);
+            
+            //Phi = (0.60 * (Phi + turn_rate_p*sample_time) + 0.40*Phi_acc);
+            Phi_meas = (Phi_acc + (Phi_meas+turn_rate_p*sample_time)* W_GYRO) / (1+W_GYRO);
+            
+                        
+            // Smoothing the data reading -> less noisy Euler Angles
+            Phi = (Phi_meas+Phi_Prev1+Phi_Prev2+Phi_Prev3+Phi_Prev4)/5;
+            Theta = (Theta_meas+Theta_Prev1+Theta_Prev2+Theta_Prev3+Theta_Prev4)/5;
+            
+            //Theta_Mav = Theta*PI/180;	/* Theta in radians for MavLink (not sure why multiplied by 8) */
+            //Phi_Mav = Phi*PI/180;		/* Phi in radians for MavLink */
+            
+            Phi_Prev4 = Phi_Prev3;
+            Phi_Prev3 = Phi_Prev2;
+            Phi_Prev2 = Phi_Prev1;
+            Phi_Prev1 = Phi_meas;
+           
+            Theta_Prev4 = Theta_Prev3;
+            Theta_Prev3 = Theta_Prev2;
+            Theta_Prev2 = Theta_Prev1;
+            Theta_Prev1 = Theta_meas;
+            
             
             // Tilt compensated Magnetic field X:
             //  MAG_X = c_magnetom_x*cos_pitch+c_magnetom_y*sin_roll*sin_pitch+c_magnetom_z*cos_roll*sin_pitch;
@@ -671,26 +764,50 @@ int main()
 				/* Indicate State Change */
 				if(PrevCtrl_Mode != Ctrl_Mode) state_change = TRUE;
 				 
-                uint16_t aileron_offset = 0;
-                uint16_t elevator_offset = 0;
+                //uint16_t aileron_offset = 0;
+                //uint16_t elevator_offset = 0;
                 
                 /* Step Input Control Lateral */
+                //if(ctrl_in[in_sp2]>1750)
+                //{
+                //    aileron_offset = 200;
+                //}
+                
+                static uint8_t flap_target = 0;
+                static uint8_t flap_cmd = FALSE;
+                static uint8_t flap_offset = 0;
+                
                 if(ctrl_in[in_sp2]>1750)
                 {
-                    aileron_offset = 200;
+                    
+                    flap_target = 200;
+                    if(flap_offset < flap_target)
+                    {
+                        flap_offset += 1;
+                    }
+                    
                 }
-                
-                /* Step Input Control Longitudinal */
-                if(ctrl_in[in_gear]>1750)
+                else
                 {
-                    elevator_offset = 200;
+                    flap_target = 0;
+                    if(flap_offset > flap_target)
+                    {
+                        flap_offset-= 1;
+                    }
                 }
+                // Flap Control
+               
+                /* Step Input Control Longitudinal */
+                //if(ctrl_in[in_gear]>1750)
+                //{
+                //    elevator_offset = 200;
+                //}
                 
                 switch (Ctrl_Mode)
                 {
                     case manual:
                         tune_cnt= 0;    // Reset in case tune cnt was used before...
-                    #ifdef T50
+                    #ifdef T_50
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]+flap_offset;           // ail:     left: 1000  right: 2000
@@ -743,12 +860,12 @@ int main()
                         
                         ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
-                        #ifdef T50
-                        ctrl_out[out_ail1] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
-                        ctrl_out[out_ail2] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))-flap_offset;
+                        #ifdef T_50
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p))-flap_offset;
                         ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
                         ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
-                        ctrl_out[out_rud] = ctrl_in[in_rud]-((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
+                        ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
@@ -798,6 +915,10 @@ int main()
                         
                     break;
                     
+                   // case autonom:
+                        
+                    //    break;
+                        
                     case autonom:
                         /* autonomous mode */
 
@@ -816,17 +937,21 @@ int main()
                             /* Theta Control */
 							Theta_Error = 0;					/* Needs to be reset always when this state is entered */
 							Theta_Error_sum = 0;				/* Theta Sum to be reset */
-							Theta_Target = Theta; /* = 0 */		/* Set Theta Target */
+							Theta_Target = -5; /* = 0 */		/* Set Theta Target */
 							
                             /* Phi Control */
                             Phi_Error = 0;					/* Needs to be reset always when this state is entered */
 							Phi_Error_sum = 0;				/* Phi Sum to be reset */
-							Phi_Target = Phi; /* = 0 */		/* Set Phi Target */
+							Phi_Target = 0; /* = 0 */		/* Set Phi Target */
 						}
                         
-                        // For changing if Lat Auto or Long Auto Test
-                        if(ctrl_in[in_can] > 1750)
-                        {
+                    	// Flap control enable during auto mode
+                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_in[in_can];         
+                        
+                            // For changing if Lat Auto or Long Auto Test
+                        //if(ctrl_in[in_gear] > 1750)
+                        //{
 
                         //#ifdef THCTRL
 						//******************************************************
@@ -837,7 +962,7 @@ int main()
 						// Gains: K_p = 10 K_i = 10 K_d = 5
 						uint8_t Kp_Theta = 5;
 						uint8_t Ki_Theta = 5;
-						uint8_t Kd_Theta = 1;
+						uint8_t Kd_Theta = 0;
 						
  						Theta_Error = Theta - Theta_Target; // as per Simulation in SCILAB this convention is best
  						Theta_Error_sum += Theta_Error;
@@ -863,10 +988,12 @@ int main()
 						else if (ctrl_out[out_ele1] < 900) ctrl_out[out_ele1] = 900;
 						//******************************************************
 						//#endif
-
-                        }
-                        else
-                        {
+                        
+         // rud:     left: 1000  right: 2000
+                        
+                        //}
+                        //else
+                        //{
                         
                         //#ifdef PHICTRL
                         //******************************************************
@@ -875,15 +1002,22 @@ int main()
  						// Output: aileron command pid loop
  						// Controller: PID Controller
 						// Gains: K_p = 10 K_i = 10 K_d = 5
-
-						uint8_t Kp_Phi = 2;
-						uint8_t Ki_Phi = 2;
+                           
+                        ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
+                        //ctrl_out[out_mot] = 800;
+                        //ctrl_out[out_ail1] = ctrl_in[in_ail]+aileron_offset;           // ail:     left: 1000  right: 2000
+                        //ctrl_out[out_ail2] = ctrl_in[in_ail]+aileron_offset;
+                        //ctrl_out[out_ele1] = ctrl_in[in_ele]+elevator_offset;           // ele:     low: 2000   high: 1000
+                        //ctrl_out[out_ele2] = ctrl_in[in_ele]+elevator_offset;    
+                        
+						uint8_t Kp_Phi = 10;
+						uint8_t Ki_Phi = 5;
 						uint8_t Kd_Phi = 0;
 						
- 						Phi_Error = Phi - Phi_Target; // as per Simulation in SCILAB this convention is best
- 						Phi_Error_sum += Theta_Error;
+ 						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						Phi_Error_sum += Phi_Error;
  						// controller formula for the necessary control change						 
- 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error)/(sample_time));
+ 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error) + (Ki_Phi*Phi_Error_sum*sample_time) + (Kd_Phi*(-Phi_Error_prev + Phi_Error)/(sample_time));
                         Phi_Error_prev = Phi_Error;
 						//******************************************************
 						
@@ -891,11 +1025,11 @@ int main()
 						//uint8_t Ki_Phi = 5;
 						//uint8_t Kd_Phi = 1;
 						
- 						Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
- 						Phi_Error_sum += Phi_Error;
+ 						//Phi_Error = Phi_Target - Phi; // as per Simulation in SCILAB this convention is best
+ 						//Phi_Error_sum += Phi_Error;
  						// controller formula for the necessary control change						 
- 						ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error));
-                        Phi_Error_prev = Phi_Error;
+ 						//ctrl_out_PID[out_ail1] = (Kp_Phi*Phi_Error);// + Ki_Phi*Phi_Error_sum*sample_time + Kd_Phi*(-Phi_Error_prev + Phi_Error));
+                        //Phi_Error_prev = Phi_Error;
 						//******************************************************
 						
 
@@ -910,7 +1044,7 @@ int main()
 						//******************************************************
 						// Combining the calculated inputs elevator and limiting elevator command
 
-						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] - ctrl_out_PID[out_ail1] - ctrl_out_DAMP[out_ail1];
+						ctrl_out[out_ail1] = ctrl_in_trim[in_ail] + ctrl_out_PID[out_ail1] - ctrl_out_DAMP[out_ail1];
 
 						if(ctrl_out[out_ail1] > 2000) ctrl_out[out_ail1] = 2000;
 						else if (ctrl_out[out_ail1] < 900) ctrl_out[out_ail1] = 900;
@@ -918,9 +1052,14 @@ int main()
 						//******************************************************
                         //#endif
 
-                        }
-
+                       
+                        /********************************************************************
+                                    YAW Damping is also required to stabilize the lateral movement
+                        **********************************************************************/
                         
+
+                        ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));//-ctrl_out_PID[out_ail1];   
+                        //}
                     break;
                         
                 }
