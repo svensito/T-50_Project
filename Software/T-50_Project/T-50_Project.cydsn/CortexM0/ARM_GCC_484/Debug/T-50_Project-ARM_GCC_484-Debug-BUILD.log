@@ -1,4 +1,4 @@
---------------- Build Started: 08/25/2015 00:04:34 Project: T-50_Project, Configuration: ARM GCC 4.8.4 Debug ---------------
+--------------- Build Started: 08/25/2015 07:49:35 Project: T-50_Project, Configuration: ARM GCC 4.8.4 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I.\MAVLINK -I.\MAVLINK\common -I. -I.\Generated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_484\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -finline-functions -Os -c .\main.c -o .\CortexM0\ARM_GCC_484\Debug\main.o
 In file included from .\MAVLINK\common/../protocol.h:5:0,
@@ -33,6 +33,6 @@ arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_484\Debug\T-50_Project.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf .\CortexM0\ARM_GCC_484\Debug\main.o .\CortexM0\ARM_GCC_484\Debug\IMU.o .\CortexM0\ARM_GCC_484\Debug\Baro.o .\CortexM0\ARM_GCC_484\Debug\cybootloader.o .\CortexM0\ARM_GCC_484\Debug\cymetadata.o .\CortexM0\ARM_GCC_484\Debug\Cm0Start.o .\CortexM0\ARM_GCC_484\Debug\T-50_Project.a "E:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_484\Debug\CyComponentLibrary.a" -mthumb -march=armv6-m -l m -Wl,-Map,.\CortexM0\ARM_GCC_484\Debug/T-50_Project.map -T .\Generated_Source\PSoC4\cm0gcc.ld -g -specs=nano.specs "-u _printf_float" -flto -Os -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -B E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf --flash_row_size 128 --flash_size 32768 --flash_array_size 32768
 cyelftool.exe -S E:\Dokumente\GitHub\T-50_Project\Software\T-50_Project\T-50_Project.cydsn\CortexM0\ARM_GCC_484\Debug\T-50_Project.elf
-Flash used: 30448 of 32768 bytes (92,9%). Bootloader: 4224 bytes. Application: 26224 bytes
-SRAM used: 2688 of 4096 bytes (65,6%). Stack: 1024 bytes. Heap: 256 bytes.
---------------- Build Succeeded: 08/25/2015 00:04:42 ---------------
+Flash used: 30480 of 32768 bytes (93,0%). Bootloader: 4224 bytes. Application: 26256 bytes
+SRAM used: 2680 of 4096 bytes (65,4%). Stack: 1024 bytes. Heap: 256 bytes.
+--------------- Build Succeeded: 08/25/2015 07:49:38 ---------------

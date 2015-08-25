@@ -666,8 +666,8 @@ int main()
             
             #ifdef T_50
                 // IMU is installed backwards
-                //turn_rate_p *= -1;
-                //turn_rate_q *= -1;
+                turn_rate_p *= -1;
+                turn_rate_q *= -1;
             #endif
 			//angle = 0.98 *(angle+gyro*dt) + 0.02*acc
             // Complementary filter. Substitute for Kalman filter.
@@ -861,10 +861,10 @@ int main()
                         ctrl_out[out_mot] = ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         #ifdef T_50
-                        ctrl_out[out_ail1] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
-                        ctrl_out[out_ail2] = ctrl_in[in_ail]-(K_d_p*(turn_rate_p))-flap_offset;
-                        ctrl_out[out_ele1] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
-                        ctrl_out[out_ele2] = ctrl_in[in_ele]-(K_d_q*(turn_rate_q));
+                        ctrl_out[out_ail1] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))+flap_offset;           // ail:     left: 1000  right: 2000
+                        ctrl_out[out_ail2] = ctrl_in[in_ail]+(K_d_p*(turn_rate_p))-flap_offset;
+                        ctrl_out[out_ele1] = ctrl_in[in_ele]+(K_d_q*(turn_rate_q));           // ele:     low: 2000   high: 1000
+                        ctrl_out[out_ele2] = ctrl_in[in_ele]+(K_d_q*(turn_rate_q));
                         ctrl_out[out_rud] = ctrl_in[in_rud]+((K_d_r*turn_rate_r));            // rud:     left: 1000  right: 2000
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
