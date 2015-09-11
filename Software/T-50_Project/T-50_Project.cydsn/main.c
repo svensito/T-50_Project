@@ -16,7 +16,7 @@
 
 TO DO LIST (August 14,2015)
 - Configure XBee (HW) -> 3,3 VDC TTL or is 5 okay?
-- If XBee too inreliable -> Program FRSky Protocol, 
+- If XBee too unreliable -> Program FRSky Protocol, 
 ground station with additional controller or intermediate software (Matlab?)
 - Include Functions for HMC5883L Magnetometer -> Completed
 
@@ -41,9 +41,22 @@ ground station with additional controller or intermediate software (Matlab?)
 
 #define PI			3.1415926535897932384626433832795
 
-volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
-volatile uint8_t blink_cnt = 0;
-float sample_time = 0.01;               // 10 ms Sample time
+/*=============================*/
+/* SELECT MODEL IN USE */
+/*=============================*/
+#define T_50
+//#define FUNCUB
+
+/*=============================*/
+/* TASK FLAGS */
+/*=============================*/
+#define GYRO_TASK       FALSE   // requires I2C
+#define ACC_TASK        FALSE   // requires I2C
+#define MAG_TASK        FALSE   // requires I2C
+#define BARO_TASK       FALSE   // requires I2C
+#define SPEED_TASK      TRUE    // requires ADC
+#define DATA_LOG        FALSE   // on TX Pin
+#define MAVLINK_TASK    FALSE   // on TX Pin
 
 /*=============================*/
 /*Remote Input variables*/
@@ -113,16 +126,7 @@ enum ctrl_mode
     autonom
 };
 
-/*=============================*/
-/* TASK FLAGS */
-/*=============================*/
-#define GYRO_TASK       TRUE
-#define ACC_TASK        TRUE
-#define MAG_TASK        FALSE
-#define BARO_TASK       TRUE
-#define SPEED_TASK      TRUE    
-#define DATA_LOG        TRUE
-#define MAVLINK_TASK    FALSE
+
 
 /*=============================*/
 /*Light control variables*/
@@ -183,6 +187,8 @@ uint8_t speed_cal_compl = 0;
 /*=============================*/
 
 int32_t alt = 0;    // altitude from pressure
+int32_t alt_previous = 0;    // altitude from pressure previous
+int16_t climb_rate = 0;     // climb rate
 //extern int32_t alt;     /* from main.c file */
 
 uint8_t cnt_baro  = 0;  /* baro counter */
@@ -193,29 +199,25 @@ int32_t QFE = 0;	/* QFE Ground pressure -> gives altitude to current ground pres
 /* Kalman Filter Data			*/
 /*=============================*/
 // weighing matrices ???
-float Q_angle = 0.005;
-float Q_gyro = 0.005;
-float R_angle = 0.02;
+//float Q_angle = 0.005;
+//float Q_gyro = 0.005;
+//float R_angle = 0.02;
 // Estimation of Theta (Kalman)
-float q_bias = 0;
+//float q_bias = 0;
 //int8_t P_00_Theta, P_01_Theta, P_10_Theta, P_11_Theta = 0;
-float P_Theta[2][2] = {0,0,0,0};
-float Theta_temp, S_Theta, K_0_Theta, K_1_Theta = 0;
+//float P_Theta[2][2] = {0,0,0,0};
+//float Theta_temp, S_Theta, K_0_Theta, K_1_Theta = 0;
 // Estimation of Phi (Kalman)
-float p_bias = 0;
+//float p_bias = 0;
 //int8_t P_00_Phi, P_01_Phi, P_10_Phi, P_11_Phi = 0;
-float P_Phi[2][2] = {0,0,0,0};
-float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
+//float P_Phi[2][2] = {0,0,0,0};
+//float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
 
 #define W_GYRO 20
 
 /*============================*/
 /* Control variables	*/
 /*=============================*/
-
-//#define FUNCUB
-#define T_50
-
 #ifdef FUNCUB
     uint8_t K_d_p = 7;
     uint8_t K_d_q = 7;
@@ -225,6 +227,7 @@ float Phi_temp, S_Phi, K_0_Phi, K_1_Phi = 0;
     uint8_t K_d_q = 1;
     uint8_t K_d_r = 1;
 #endif
+
 /*============================*/
 /* Tune variables	            */
 /*=============================*/
@@ -236,12 +239,12 @@ uint8_t tune_cnt = 0;
 int8_t Theta_Target = 0;			/* Initializing Theta Target Pitch Angle */
 int8_t Theta_Error = 0;			    /* Initializing Theta Error */
 int32_t Theta_Error_sum = 0;		/* Initializing Theta Error Sum */
-int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Sum */
+int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Prev */
 
 int8_t Phi_Target = 0;			    /* Initializing Phi Target Bank Angle */
 int8_t Phi_Error = 0;			    /* Initializing Phi Error */
 int32_t Phi_Error_sum = 0;		    /* Initializing Phi Error Sum */
-int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Sum */
+int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Prev */
 
 /*============================*/
 /* UART Rx Tx variables		*/
@@ -270,6 +273,13 @@ uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 
 uint8_t cnt_ML_HEARTBEAT_send = 0;          // used for timing of the HEARTBEAT message sending
 uint8_t cnt_ML_ATTITUDE_send = 0;           // used for timing of the ATTITUDE message sending
+
+/*=============================*/
+/* General Functions */
+/*=============================*/
+volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
+volatile uint8_t blink_cnt = 0;
+float sample_time = 0.01;               // 10 ms Sample time
 
 /*=============================*/
 /* General Functions */
@@ -537,11 +547,17 @@ int main()
                 }
                 if(cnt_baro == 53)
                 {
-                    cnt_baro = 0;
                     /* Calculate Altitude */
                     /* take calibrated pressure (QFE) and determine by press difference the altitude */
                     alt = (QFE-(press))*0.0843;  // pressure in Pa -> 0.0843m / Pa of change
-                    
+
+                }
+                if(cnt_baro == 54)
+                {
+                    // Calculate Climb Rate
+                    cnt_baro = 0;
+                    climb_rate = alt-alt_previous;
+                    alt_previous = alt;
                 }
             }
             if(SPEED_TASK == TRUE)
@@ -683,8 +699,8 @@ int main()
             Phi = (Phi_meas+Phi_Prev1+Phi_Prev2+Phi_Prev3+Phi_Prev4)/5;
             Theta = (Theta_meas+Theta_Prev1+Theta_Prev2+Theta_Prev3+Theta_Prev4)/5;
             
-            //Theta_Mav = Theta*PI/180;	/* Theta in radians for MavLink (not sure why multiplied by 8) */
-            //Phi_Mav = Phi*PI/180;		/* Phi in radians for MavLink */
+            Theta_Mav = Theta*PI/180;	/* Theta in radians for MavLink (not sure why multiplied by 8) */
+            Phi_Mav = Phi*PI/180;		/* Phi in radians for MavLink */
             
             Phi_Prev4 = Phi_Prev3;
             Phi_Prev3 = Phi_Prev2;
@@ -722,18 +738,48 @@ int main()
             
 		    if(MAVLINK_TASK == TRUE)
             {
-                if((cnt_ML_HEARTBEAT_send % 20) == 0)  // 20*10ms = 200ms
+                if((cnt_ML_HEARTBEAT_send % 10) == 0)  // 10*10ms = 100ms
                 {
                     mavlink_msg_attitude_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0, Phi_Mav, Theta_Mav, 0, 0,0,0);
                     uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
                     UART_1_UartSendMavlink(buf, len);
                     
+                }
+                
+                #ifdef MP_ON /* MISSION PLANNER ONLY */
+                if((cnt_ML_HEARTBEAT_send % 15) == 0)  // 100*10ms = 110ms
+                {
                     // GLOBAL_POSITION_INT
-                    //mavlink_msg_global_position_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg, 0,0,0,10,0,0,0,0,Mag_Heading);
-                    //uint16_t len2 = mavlink_msg_to_send_buffer(buf, &msg);
-                    //UART_1_UartSendMavlink(buf, len);
+                    //mavlink_msg_vfr_hud_pack(mavlink_system.sysid, mavlink_system.compid, &msg,
+					//99/*speed*/, 0 /*groundspeed */, 110/*heading*/, 0/*throttle*/, 400/*alt*/, 10/*climb*/);
                     
-                }               
+                    /* USE THIS FOR MISSION PLANNER IF REQUIRED */
+                    
+                    mavlink_msg_global_position_int_pack(mavlink_system.sysid, mavlink_system.compid, &msg,
+						        0/*time_boot_ms*/, 0/*lat*/, 0/*lon*/, 
+                                0/*alt DO NOT USE */, 
+                                (15*1000)/* in mm relative_alt USE THIS FOR OSD/MP*/, 
+                                0/*vx*/, 0/*vy*/, 0/*vz*/, (240*100)/*hdg*/);
+                    
+                    uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+                    UART_1_UartSendMavlink(buf, len);
+                }
+                #endif
+                
+                if((cnt_ML_HEARTBEAT_send % 20) == 0)  // 20*10ms = 200ms
+                {
+                    /* This is used for the OSD */
+                    mavlink_msg_vfr_hud_pack(mavlink_system.sysid, mavlink_system.compid, &msg,
+					    0,  /* speed - not displayed */ 
+                        speed, /* groundspeed [m/s] - use for speed */
+                        0,/* heading [deg] */
+                        0,  /* throttle [%] */
+                        alt,/* alt [m] */
+                        climb_rate   /* climb rate [m/s] */);
+                    uint16_t len = mavlink_msg_to_send_buffer(buf, &msg);
+                    UART_1_UartSendMavlink(buf, len);
+                }
+                
                 if((cnt_ML_HEARTBEAT_send % 100) == 0)  // 100*10ms = 1000ms
                 {
                     cnt_ML_HEARTBEAT_send = 0;
@@ -818,11 +864,13 @@ int main()
                         ctrl_out[out_ge1] = ctrl_in[in_gear];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
-                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        /* Camera Control Start - Signal on 0.4 or 0.5 */
+                        ctrl_out[out_fl1] = 600 + ((ctrl_in[in_can]) - 1000)*(18)/(10);            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_out[out_fl1];
+                        /* Camera Control End */
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
-                    #else
+                    #else // FUNCUB
                         ctrl_out[out_mot] = ctrl_in[in_mot];//ctrl_in[in_mot];            // motor:   low: 1000   high: 2000
                         //ctrl_out[out_mot] = 800;
                         ctrl_out[out_ail1] = ctrl_in[in_ail]+aileron_offset;           // ail:     left: 1000  right: 2000
@@ -832,9 +880,11 @@ int main()
                         ctrl_out[out_rud] = ctrl_in[in_rud];            // rud:     left: 1000  right: 2000
                         ctrl_out[out_ge1] = ctrl_in[in_gear];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
-                        ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
-                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        ctrl_out[out_ge3] = ctrl_in[in_gear];
+                        /* Camera Control Start - Signal on 0.4 or 0.5 */
+                        ctrl_out[out_fl1] = 600 + ((ctrl_in[in_can]) - 1000)*(2400-600)/(2000-1000);            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_out[out_fl1];
+                        /* Camera Control End */
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
                     #endif
@@ -869,8 +919,10 @@ int main()
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
-                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        /* Camera Control Start - Signal on 0.4 or 0.5 */
+                        ctrl_out[out_fl1] = 600 + ((ctrl_in[in_can]) - 1000)*(18)/(10);            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_out[out_fl1];
+                        /* Camera Control End */
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];
                         #else // Funcub
@@ -882,8 +934,10 @@ int main()
                         ctrl_out[out_ge1] = ctrl_in[in_mot];           // gear:    down: 1000  retracted: 2000
                         ctrl_out[out_ge2] = ctrl_in[in_gear];
                         ctrl_out[out_ge3] = ctrl_in[in_gear];             
-                        ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  front: 1000  back: 2000
-                        ctrl_out[out_fl2] = ctrl_in[in_can];
+                        /* Camera Control Start - Signal on 0.4 or 0.5 */
+                        ctrl_out[out_fl1] = 600 + ((ctrl_in[in_can]) - 1000)*(2400-600)/(2000-1000);            // canopy:  open: 1000  closed: 2000
+                        ctrl_out[out_fl2] = ctrl_out[out_fl1];
+                        /* Camera Control End */
                         ctrl_out[out_sp1] = ctrl_in[in_mot];            // mode:    down: 2000 mid: 1500 up: 1000
                         ctrl_out[out_sp2] = ctrl_in[in_mot];    
                         #endif
@@ -944,11 +998,11 @@ int main()
 							Phi_Error_sum = 0;				/* Phi Sum to be reset */
 							Phi_Target = 0; /* = 0 */		/* Set Phi Target */
 						}
-                        
+                        #ifdef FUNCUB
                     	// Flap control enable during auto mode
                         ctrl_out[out_fl1] = ctrl_in[in_can];            // canopy:  open: 1000  closed: 2000
                         ctrl_out[out_fl2] = ctrl_in[in_can];         
-                        
+                        #endif
                             // For changing if Lat Auto or Long Auto Test
                         //if(ctrl_in[in_gear] > 1750)
                         //{
@@ -1085,8 +1139,10 @@ int main()
             /*=======================================
                 Data Logging
               =======================================*/
-            if(DATA_LOG == TRUE)
+            static uint8_t tx_counter = 0;
+            if(DATA_LOG == TRUE && tx_counter == 2) // data every 20ms
             {
+                tx_counter = 0;
                 UART_1_UartPutNum(ctrl_out[out_mot]);
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(ctrl_out[out_ail1]);
@@ -1111,9 +1167,12 @@ int main()
                 UART_1_UartPutString(";");
                 UART_1_UartPutNum(alt);
                 UART_1_UartPutString(";");
+                UART_1_UartPutNum(Mag_Heading);
+                UART_1_UartPutString(";");
                 UART_1_UartPutNum(Ctrl_Mode);
                 UART_1_UartPutString(";\r\n");
             }
+            tx_counter++;
                 //UART_1_UartPutNum(Phi);
                 //UART_1_UartPutString(";");
                 //UART_1_UartPutNum(Theta);

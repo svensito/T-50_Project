@@ -1,5 +1,9 @@
 // MESSAGE VFR_HUD PACKING
 
+#include <project.h>
+#include <common/mavlink.h>
+#include <mavlink_types.h>
+
 #define MAVLINK_MSG_ID_VFR_HUD 74
 
 typedef struct __mavlink_vfr_hud_t
