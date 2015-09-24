@@ -1,5 +1,5 @@
 -- Project:   T-50_Project
--- Generated: 07/14/2015 16:05:38
+-- Generated: 09/24/2015 22:00:19
 -- PSoC Creator  3.1 SP1
 
 ENTITY \T-50_Project\ IS
@@ -70,7 +70,7 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     SIGNAL Net_196 : bit;
     SIGNAL Net_197 : bit;
     SIGNAL Net_206 : bit;
-    ATTRIBUTE placement_force OF Net_206 : SIGNAL IS "U(0,0,B)2";
+    ATTRIBUTE placement_force OF Net_206 : SIGNAL IS "U(0,0,A)3";
     SIGNAL Net_295 : bit;
     SIGNAL Net_296 : bit;
     SIGNAL Net_297 : bit;
@@ -147,28 +147,28 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     SIGNAL \I2CM:ss_2\ : bit;
     SIGNAL \I2CM:ss_3\ : bit;
     SIGNAL \TelemUART:BUART:counter_load_not\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:counter_load_not\ : SIGNAL IS "U(0,0,B)1";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:counter_load_not\ : SIGNAL IS "U(1,0,B)1";
     SIGNAL \TelemUART:BUART:tx_bitclk\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_bitclk\ : SIGNAL IS "U(0,0,A)1";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_bitclk\ : SIGNAL IS "U(1,0,A)1";
     SIGNAL \TelemUART:BUART:tx_bitclk_dp\ : bit;
     SIGNAL \TelemUART:BUART:tx_bitclk_enable_pre\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_bitclk_enable_pre\ : SIGNAL IS "U(0,0,A)2";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_bitclk_enable_pre\ : SIGNAL IS "U(1,0,A)2";
     SIGNAL \TelemUART:BUART:tx_counter_dp\ : bit;
     SIGNAL \TelemUART:BUART:tx_fifo_empty\ : bit;
     SIGNAL \TelemUART:BUART:tx_fifo_notfull\ : bit;
     SIGNAL \TelemUART:BUART:tx_shift_out\ : bit;
     SIGNAL \TelemUART:BUART:tx_state_0\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_0\ : SIGNAL IS "U(1,0,A)3";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_0\ : SIGNAL IS "U(0,0,A)1";
     SIGNAL \TelemUART:BUART:tx_state_1\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_1\ : SIGNAL IS "U(0,0,B)0";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_1\ : SIGNAL IS "U(1,0,B)0";
     SIGNAL \TelemUART:BUART:tx_state_2\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_2\ : SIGNAL IS "U(1,0,A)1";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_state_2\ : SIGNAL IS "U(1,0,B)2";
     SIGNAL \TelemUART:BUART:tx_status_0\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_status_0\ : SIGNAL IS "U(1,0,B)0";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_status_0\ : SIGNAL IS "U(0,0,B)0";
     SIGNAL \TelemUART:BUART:tx_status_2\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_status_2\ : SIGNAL IS "U(1,0,A)0";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:tx_status_2\ : SIGNAL IS "U(0,0,A)0";
     SIGNAL \TelemUART:BUART:txn\ : bit;
-    ATTRIBUTE placement_force OF \TelemUART:BUART:txn\ : SIGNAL IS "U(0,0,A)0";
+    ATTRIBUTE placement_force OF \TelemUART:BUART:txn\ : SIGNAL IS "U(1,0,A)0";
     SIGNAL \TelemUART:Net_9_digital\ : bit;
     ATTRIBUTE udbclken_assigned OF \TelemUART:Net_9_digital\ : SIGNAL IS "True";
     ATTRIBUTE global_signal OF \TelemUART:Net_9_digital\ : SIGNAL IS true;
@@ -268,29 +268,29 @@ ARCHITECTURE __DEFAULT__ OF \T-50_Project\ IS
     ATTRIBUTE Location OF \ServoTimer:cy_m0s8_tcpwm_1\ : LABEL IS "F(TCPWM,1)";
     ATTRIBUTE Location OF \TaskTimer:cy_m0s8_tcpwm_1\ : LABEL IS "F(TCPWM,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:counter_load_not\ : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF \TelemUART:BUART:counter_load_not\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:counter_load_not\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:sTX:TxShifter:u0\ : LABEL IS "datapathcell1";
-    ATTRIBUTE Location OF \TelemUART:BUART:sTX:TxShifter:u0\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:sTX:TxShifter:u0\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:sTX:TxSts\ : LABEL IS "statusicell1";
-    ATTRIBUTE Location OF \TelemUART:BUART:sTX:TxSts\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:sTX:TxSts\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "datapathcell2";
-    ATTRIBUTE Location OF \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:sTX:sCLOCK:TxBitClkGen\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_bitclk\ : LABEL IS "macrocell3";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_bitclk\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_bitclk\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_bitclk_enable_pre\ : LABEL IS "macrocell4";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_bitclk_enable_pre\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_bitclk_enable_pre\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_state_0\ : LABEL IS "macrocell5";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_state_0\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_state_0\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_state_1\ : LABEL IS "macrocell6";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_state_1\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_state_1\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_state_2\ : LABEL IS "macrocell7";
     ATTRIBUTE Location OF \TelemUART:BUART:tx_state_2\ : LABEL IS "U(1,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_status_0\ : LABEL IS "macrocell8";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_status_0\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_status_0\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:tx_status_2\ : LABEL IS "macrocell9";
-    ATTRIBUTE Location OF \TelemUART:BUART:tx_status_2\ : LABEL IS "U(1,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:tx_status_2\ : LABEL IS "U(0,0)";
     ATTRIBUTE lib_model OF \TelemUART:BUART:txn\ : LABEL IS "macrocell10";
-    ATTRIBUTE Location OF \TelemUART:BUART:txn\ : LABEL IS "U(0,0)";
+    ATTRIBUTE Location OF \TelemUART:BUART:txn\ : LABEL IS "U(1,0)";
     ATTRIBUTE Location OF \UART_1:SCB\ : LABEL IS "F(SCB,0)";
     ATTRIBUTE lib_model OF \UART_1:rx(0)\ : LABEL IS "iocell27";
     ATTRIBUTE Location OF \UART_1:rx(0)\ : LABEL IS "P4[0]";
@@ -1129,7 +1129,7 @@ BEGIN
             drive_mode => "110",
             ibuf_enabled => "1",
             id => "c6bdccaf-3c6f-44fe-9f0e-7fd6feb980d9",
-            init_dr_st => "1",
+            init_dr_st => "0",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "1",
@@ -1148,7 +1148,7 @@ BEGIN
             oe_sync => "0",
             output_clk_en => 0,
             output_clock_mode => "0",
-            output_conn => "1",
+            output_conn => "0",
             output_mode => "0",
             output_reset => 0,
             output_sync => "0",
@@ -1201,12 +1201,10 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "OnBoardLED",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000100000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
         PORT MAP(
             pa_out => OnBoardLED(0)__PA,
             oe => open,
-            pin_input => Net_150,
-            pad_out => OnBoardLED(0)_PAD,
             pad_in => OnBoardLED(0)_PAD,
             in_clock => open,
             in_clock_en => '1',

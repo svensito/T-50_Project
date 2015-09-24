@@ -16,7 +16,7 @@
 
 TO DO LIST (August 14,2015)
 - Configure XBee (HW) -> 3,3 VDC TTL or is 5 okay?
-- If XBee too unreliable -> Program FRSky Protocol, 
+- If XBee too inreliable -> Program FRSky Protocol, 
 ground station with additional controller or intermediate software (Matlab?)
 - Include Functions for HMC5883L Magnetometer -> Completed
 
@@ -35,28 +35,22 @@ ground station with additional controller or intermediate software (Matlab?)
 #include <mavlink.h>
 #include <mavlink_types.h>
 #include <Baro.h>
+#include <Stabilizer.h>
+#include <EEPROM.h>
 
 #define FALSE   0
 #define TRUE    1
 
 #define PI			3.1415926535897932384626433832795
 
-/*=============================*/
-/* SELECT MODEL IN USE */
-/*=============================*/
+/* MODEL SELECTION */
 #define T_50
 //#define FUNCUB
 
-/*=============================*/
-/* TASK FLAGS */
-/*=============================*/
-#define GYRO_TASK       FALSE   // requires I2C
-#define ACC_TASK        FALSE   // requires I2C
-#define MAG_TASK        FALSE   // requires I2C
-#define BARO_TASK       FALSE   // requires I2C
-#define SPEED_TASK      TRUE    // requires ADC
-#define DATA_LOG        FALSE   // on TX Pin
-#define MAVLINK_TASK    FALSE   // on TX Pin
+
+volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
+volatile uint8_t blink_cnt = 0;
+float sample_time = 0.01;               // 10 ms Sample time
 
 /*=============================*/
 /*Remote Input variables*/
@@ -113,6 +107,7 @@ enum e_out{   // Output Control Enum - 13 Signals
 };
 
 uint8_t receiver_connected = FALSE;
+uint8_t eeprom_conn = 0;
 
 /*=============================*/
 /* State Machine for mode control*/
@@ -123,10 +118,20 @@ enum ctrl_mode
     manual = 0,
     damped,
     tune,
-    autonom
+    autonom,
+    prog
 };
 
-
+/*=============================*/
+/* TASK FLAGS */
+/*=============================*/
+#define GYRO_TASK       TRUE
+#define ACC_TASK        TRUE
+#define MAG_TASK        FALSE
+#define BARO_TASK       FALSE
+#define SPEED_TASK      FALSE
+#define DATA_LOG        FALSE
+#define MAVLINK_TASK    FALSE
 
 /*=============================*/
 /*Light control variables*/
@@ -146,6 +151,9 @@ uint8_t cnt_StrobeLight     = 0;
 /*=============================*/
 /*IMU variables*/
 /*=============================*/
+
+/* IMU Connected Flag */ 
+uint8_t imu_conn = FALSE;
 
 /* turn rates */
 int16_t turn_rate_p = 0;
@@ -218,16 +226,20 @@ int32_t QFE = 0;	/* QFE Ground pressure -> gives altitude to current ground pres
 /*============================*/
 /* Control variables	*/
 /*=============================*/
+
+static const uint8 CYCODE stab_val_stor[3] = {0x00, 0x00, 0x00}; /* EEprom Stabi Values */
+uint8 stab_val_use[3] = {0x10, 0x10, 0x10};
+
+
 #ifdef FUNCUB
     uint8_t K_d_p = 7;
     uint8_t K_d_q = 7;
     uint8_t K_d_r = 5;
 #elif defined T_50  // T-50
-    uint8_t K_d_p = 1;
-    uint8_t K_d_q = 1;
-    uint8_t K_d_r = 1;
+    int8_t K_d_p = 0;
+    int8_t K_d_q = 0;
+    int8_t K_d_r = 0;
 #endif
-
 /*============================*/
 /* Tune variables	            */
 /*=============================*/
@@ -239,12 +251,12 @@ uint8_t tune_cnt = 0;
 int8_t Theta_Target = 0;			/* Initializing Theta Target Pitch Angle */
 int8_t Theta_Error = 0;			    /* Initializing Theta Error */
 int32_t Theta_Error_sum = 0;		/* Initializing Theta Error Sum */
-int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Prev */
+int8_t Theta_Error_prev = 0;		/* Initializing Theta Error Sum */
 
 int8_t Phi_Target = 0;			    /* Initializing Phi Target Bank Angle */
 int8_t Phi_Error = 0;			    /* Initializing Phi Error */
 int32_t Phi_Error_sum = 0;		    /* Initializing Phi Error Sum */
-int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Prev */
+int8_t Phi_Error_prev = 0;		    /* Initializing Phi Error Sum */
 
 /*============================*/
 /* UART Rx Tx variables		*/
@@ -273,13 +285,6 @@ uint8_t buf[MAVLINK_MAX_PACKET_LEN];
 
 uint8_t cnt_ML_HEARTBEAT_send = 0;          // used for timing of the HEARTBEAT message sending
 uint8_t cnt_ML_ATTITUDE_send = 0;           // used for timing of the ATTITUDE message sending
-
-/*=============================*/
-/* General Functions */
-/*=============================*/
-volatile uint8_t task_flag = FALSE;     // The Task Flag is set in TaskISR Interrupt Routine
-volatile uint8_t blink_cnt = 0;
-float sample_time = 0.01;               // 10 ms Sample time
 
 /*=============================*/
 /* General Functions */
@@ -330,6 +335,9 @@ void ADC_calibrate_speed(void)
     UART_1_UartPutNum(speed_offset);
     UART_1_UartPutString("Cal Compl\r\n");    
 }
+
+
+
 
 /*=============================*/
 /* main */
@@ -382,6 +390,10 @@ int main()
     mavlink_system.sysid = 58;     /* ID for Airplane*/
     mavlink_system.compid = 58;    /* The component ID */
     
+    OnBoardLED_Write(0xFF);
+    
+    CyDelay(1000);
+    
 	/* in use if ALT IMU installed */
     #ifdef ALTIMU	
     if(GYRO_TASK == TRUE) gyro_start();
@@ -392,6 +404,8 @@ int main()
     if(GYRO_TASK == TRUE) MPU6050_Init();
     if(MAG_TASK == TRUE) HMC_Init();
     #endif
+    
+    UART_1_UartPutString("Init 2\r\n");
     
     if(BARO_TASK == TRUE) 
 	{
@@ -411,11 +425,66 @@ int main()
 		UART_1_UartPutString("\r\n");
 	}
     
+    CyDelay(2000); 	
+    
+
+	
+    /* Initialize Damping Values */
+    //UART_1_UartPutString("Start Write EEPROM\r\n");
+    //EEPROM_write(0x0001, (uint8_t) 0x00);
+    //UART_1_UartPutString("Finish Write EEPROM\r\n");
+    
+     /*
+    EEPROM_write(EEPROM_K_D_P_ADD, 0x01);
+    EEPROM_write(EEPROM_K_D_Q_ADD, 0x01);
+    EEPROM_write(EEPROM_K_D_R_ADD, 0x01);
+    
+
+    */
+    CyDelay(1000);
+    
+    K_d_p = (int8_t) EEPROM_read(EEPROM_K_D_P_ADD);
+    CyDelay(100);
+    K_d_q = (int8_t) EEPROM_read(EEPROM_K_D_Q_ADD);
+    CyDelay(100);
+    K_d_r = (int8_t) EEPROM_read(EEPROM_K_D_R_ADD);
+    CyDelay(100);
+    UART_1_UartPutNum(K_d_p);
+    UART_1_UartPutString(" ");
+    UART_1_UartPutNum(K_d_q);
+    UART_1_UartPutString(" ");
+    UART_1_UartPutNum(K_d_r);
+    UART_1_UartPutString("\r\n");
+
+    if(eeprom_conn == 0) UART_1_UartPutString("EEPROM BAD\r\n");
+    else if(eeprom_conn == 1) UART_1_UartPutString("EEPROM OK\r\n");
+    
     /* Enable Watchdog */
     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK);
-	
+    
+    
+    //Em_EEPROM_1_Write(K_d_p,Stab_Values[0],1);
+
+    /*
+    uint8_t status = Em_EEPROM_1_Write(&Stab_Val_Use,&Stab_Val_Stor,3);
+    
+    if(status == CYRET_SUCCESS)
+    {
+        UART_1_UartPutString("Storage OK\r\n ");
+    }
+    else 
+    {
+        UART_1_UartPutString("Storage SHIT ");
+        UART_1_UartPutNum(status);
+        UART_1_UartPutString("\r\n");
+    }
+    */
 	/* Initialization Complete */
     UART_1_UartPutString("Init Complete\r\n");
+    
+    /* Ctrl Mode to Stabi Mode -> ONLY FOR STABI Software */
+    Ctrl_Mode = damped;
+    
     for(;;)
     {
         
@@ -425,6 +494,17 @@ int main()
                 Main Task that is executed every 10ms
               =======================================*/
             task_flag = FALSE;	/* Resetting Task Flag */    
+            
+            /* Execute the following Task */
+            /* Lights */
+            /* Stabi Only */
+            /* Complete FCU */
+            
+            Stabi_Task();
+            
+
+            //UART_1_UartPutNum(ctrl_in[in_rud]);
+		    //UART_1_UartPutString("\r\n");
             
             /*=======================================
                 Light Control
@@ -452,12 +532,35 @@ int main()
                     NavLightCompare-=NavLightStep;
                     NavLightPWM_WriteCompare(NavLightCompare);
                 }
-                /* Strobe Light Control */
-                if(cnt_StrobeLight == 200) Strobes_Write(0x00); /* Setting Output Low */
-                if(cnt_StrobeLight == 205)  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
+                /* Strobe Light Control - used for indication of externals */
+                if(cnt_StrobeLight == 160 && (receiver_connected == TRUE) && (Ctrl_Mode == damped)) 
+                {
+                    OnBoardLED_Write(0xFF);
+                }
+                if(cnt_StrobeLight == 165 && (receiver_connected == TRUE)&& (Ctrl_Mode == damped))  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
+                {
+                    OnBoardLED_Write(0x00);
+                }
+                
+                if(cnt_StrobeLight == 180 && (imu_conn == TRUE)&& (Ctrl_Mode == damped)) 
+                {
+                    OnBoardLED_Write(0xFF);
+                }
+                if(cnt_StrobeLight == 185 && (imu_conn == TRUE)&& (Ctrl_Mode == damped))  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
+                {
+                    OnBoardLED_Write(0x00);
+                }
+                
+                if((cnt_StrobeLight == 200) && (Ctrl_Mode == damped)) 
+                {
+                    Strobes_Write(0x00); /* Setting Output Low */
+                    OnBoardLED_Write(0xFF);
+                }
+                if((cnt_StrobeLight == 205) && (Ctrl_Mode == damped))  /* (205 - 200) *10 ms = 5 * 10 ms = 50 ms Strobe */
                 {
                     cnt_StrobeLight = 0;
                     Strobes_Write(0xFF);    /* Setting output High */
+                    OnBoardLED_Write(0x00);
                 }
                 cnt_StrobeLight++;
                 /* Landing Light Control */
@@ -472,9 +575,14 @@ int main()
                 /* Lights disabled*/
                 NavLightPWM_WriteCompare(0);    /* Nav Lights set to 0 */
                 Strobes_Write(0xFF);    		/* Setting output High to turn off */
+                OnBoardLED_Write(0x00);
                 Ldg_Write(0x00);
             }
-
+            
+            
+            
+            #ifdef TEST
+            
             /*=======================================
                 Sensor Reading
               =======================================*/
@@ -1179,6 +1287,9 @@ int main()
                 //UART_1_UartPutString(";");
                 //UART_1_UartPutNum(speed);
                 //UART_1_UartPutString(";\r\n");
+            
+        #endif
+        
             if(Rx_flag == 1)
             {
                 Rx_flag = 0;
@@ -1191,15 +1302,12 @@ int main()
                     //CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK);
                     UART_1_UartPutString("BootEnabl\r\n");
                     CyDelay(100);
-                    Bootloadable_1_Load(); 
+                    Bootloadable_1_Load();
                 }
             }
-            // Feed the Watchdog
-            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0);
-            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_MASK);
-            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_INT);
-            //CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER0_);
+            /* Trigger the Watchdog */
             CySysWdtResetCounters(CY_SYS_WDT_COUNTER0_RESET);
+            
         }
         // Reading the serial data and putting it to a string
         Rx_char = UART_1_UartGetChar(); // Poll for Characters
@@ -1219,5 +1327,3 @@ int main()
             }
     }
 }
-
-/* [] END OF FILE */

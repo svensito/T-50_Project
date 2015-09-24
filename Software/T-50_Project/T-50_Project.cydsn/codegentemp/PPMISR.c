@@ -28,9 +28,10 @@
 /* `#START PPMISR_intc` */
 #include <project.h>
     
-extern uint8_t PPM_channel;     // input channel variable
-extern uint16_t ctrl_in[];      // input control vector
-extern uint8_t overflow;        // overflow from the PPMRstISR    
+extern uint8_t PPM_channel;         // input channel variable
+extern uint16_t ctrl_in[];          // input control vector
+extern uint8_t overflow;            // overflow from the PPMRstISR   
+extern uint8_t receiver_connected;  // Flag for receiver connection
 /* `#END` */
 
 extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
@@ -144,6 +145,8 @@ CY_ISR(PPMISR_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START PPMISR_Interrupt` */
     PPMCounter_ClearInterrupt(PPMCounter_INTR_MASK_CC_MATCH); // clears the interrupt
+    
+    receiver_connected = 1;  // In case an interrupt is detected, the receiver is connected
     
     if(overflow == 1) 
     {

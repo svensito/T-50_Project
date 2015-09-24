@@ -1,5 +1,5 @@
 -- Project:   T-50_Project
--- Generated: 07/14/2015 16:05:36
+-- Generated: 09/24/2015 22:00:17
 -- PSoC Creator  3.1 SP1
 
 ENTITY \T-50_Project\ IS
@@ -1080,7 +1080,7 @@ BEGIN
             drive_mode => "110",
             ibuf_enabled => "1",
             id => "c6bdccaf-3c6f-44fe-9f0e-7fd6feb980d9",
-            init_dr_st => "1",
+            init_dr_st => "0",
             input_buffer_sel => "00",
             input_clk_en => 0,
             input_sync => "1",
@@ -1099,7 +1099,7 @@ BEGIN
             oe_sync => "0",
             output_clk_en => 0,
             output_clock_mode => "0",
-            output_conn => "1",
+            output_conn => "0",
             output_mode => "0",
             output_reset => 0,
             output_sync => "0",
@@ -1152,12 +1152,10 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "OnBoardLED",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000100000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
         PORT MAP(
             pa_out => OnBoardLED(0)__PA,
             oe => open,
-            pin_input => Net_150,
-            pad_out => OnBoardLED(0)_PAD,
             pad_in => OnBoardLED(0)_PAD,
             in_clock => open,
             in_clock_en => '1',

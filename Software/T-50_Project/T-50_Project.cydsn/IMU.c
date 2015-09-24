@@ -20,6 +20,8 @@ extern void UART_1_UartPutNum();
 #define ACK     0
 #define NACK    1
 
+extern uint8_t imu_conn;
+
 /* ================================= */
 /* GYRO VARIABLES					*/
 /* ================================= */
@@ -305,14 +307,16 @@ int32_t baro_read(void)
 
 void write_mpu6050_registry(uint8_t registry, uint8_t data)
 {
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-	UART_1_UartPutString("GYR W Add Ok\r\n");
-	I2CM_I2CMasterWriteByte(registry);
-    UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterWriteByte(data);
-    UART_1_UartPutString("GYR W Dat Ok\r\n");
+    if(I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE)==0) 
+    {
+        I2CM_I2CMasterWriteByte(registry);
+        CyDelay(1);
+        I2CM_I2CMasterWriteByte(data);
+        CyDelay(1);
+        imu_conn = 1;   // declare that the IMU is present
+    }
+    else imu_conn = 0;
     I2CM_I2C_MASTER_GENERATE_STOP;
-    UART_1_UartPutString("GYR W Stop Ok\r\n");    
 }
 
 int16_t read_mpu6050_registry(uint8_t registry)
@@ -335,7 +339,8 @@ void MPU6050_Init(void)
     write_mpu6050_registry(MPU6050_PWR_MGMT_1,0b00000000);    	// Disabling Sleep Mode
 	write_mpu6050_registry(MPU6050_CONFIG,0x04);    			// Setting the DLPC to 3 -> 44Hz Low Pass Band / 2 -> 94Hz Low Pass
     write_mpu6050_registry(MPU6050_ACC_CONFIG,0b00001000);    	// Setting ACC Scale to +-4G
-    UART_1_UartPutString("\r\nMPU Init Complete\r\n");
+    if(imu_conn == 1) UART_1_UartPutString("\r\nMPU Init Complete\r\n");
+    else UART_1_UartPutString("\r\nMPU Not detected\r\n");
     /*int16_t id = read_mpu6050_registry(MPU6050_WHO_AM_I);
         UART_1_UartPutNum(id);
         UART_1_UartPutString("\r\nMPU Complete\r\n");*/
@@ -386,69 +391,76 @@ void MPU6050_acc_read(void)
 
 void MPU6050_gyro_read(void)
 {
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_GYRO_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L
-    I2CM_I2C_MASTER_GENERATE_STOP;
-    gyro_x = (gyro_x_h<<8) | (gyro_x_l);
-    gyro_y = (gyro_y_h<<8) | (gyro_y_l);
-    gyro_z = (gyro_z_h<<8) | (gyro_z_l);
-    
-    // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
-    turn_rate_p = gyro_x / 131;
-    turn_rate_q = gyro_y / 131;
-    turn_rate_r = gyro_z / 131;
-    return;
-    
+    if(I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE)==0)
+    {
+        CyDelay(1);
+    	I2CM_I2CMasterWriteByte(MPU6050_GYRO_XOUT_H); // auto increment if no NACK is sent by Master
+    	//UART_1_UartPutString("GYR W Reg Ok\r\n");
+        I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
+        //UART_1_UartPutString("GYR Rest Ok\r\n");
+    	gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
+        gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
+        gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
+        gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
+        gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
+        gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L
+        I2CM_I2C_MASTER_GENERATE_STOP;
+        gyro_x = (gyro_x_h<<8) | (gyro_x_l);
+        gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+        gyro_z = (gyro_z_h<<8) | (gyro_z_l);
+        
+        // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
+        turn_rate_p = gyro_x / 131;
+        turn_rate_q = gyro_y / 131;
+        turn_rate_r = gyro_z / 131;
+        return;
+    }
 }
 void MPU6050_data_read(void)
 {
-    I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE);
-    CyDelay(1);
-	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
-	//UART_1_UartPutString("GYR W Reg Ok\r\n");
-    I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
-    //UART_1_UartPutString("GYR Rest Ok\r\n");
-	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    acc_z_l = I2CM_I2CMasterReadByte(ACK);     // ZOUT L
-    int8_t  temp_h = I2CM_I2CMasterReadByte(ACK);   // Temperature H
-    uint8_t temp_l = I2CM_I2CMasterReadByte(ACK);   // Temperature L
-    gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
-    gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
-    gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
-    gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
-    gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
-    gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L     
-    I2CM_I2C_MASTER_GENERATE_STOP;
     
-    acc_x_g = (acc_x_h<<8) | (acc_x_l);
-    acc_y_g = (acc_y_h<<8) | (acc_y_l);
-    acc_z_g = (acc_z_h<<8) | (acc_z_l);
-    
-    gyro_x = (gyro_x_h<<8) | (gyro_x_l);
-    gyro_y = (gyro_y_h<<8) | (gyro_y_l);
-    gyro_z = (gyro_z_h<<8) | (gyro_z_l);
-    
-    // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
-    turn_rate_p = gyro_x / 131;
-    turn_rate_q = gyro_y / 131;
-    turn_rate_r = gyro_z / 131;
-    
-    return;
-    
+    if (imu_conn == 1)
+    {
+        if(I2CM_I2CMasterSendStart(MPU6050_ADDRESS, WRITE)==0)  /* Only enter if Start succeeded */
+        {
+            CyDelay(1);
+        	I2CM_I2CMasterWriteByte(MPU6050_ACC_XOUT_H); // auto increment if no NACK is sent by Master
+        	//UART_1_UartPutString("GYR W Reg Ok\r\n");
+            I2CM_I2CMasterSendRestart(MPU6050_ADDRESS, READ);
+            //UART_1_UartPutString("GYR Rest Ok\r\n");
+        	acc_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
+            acc_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
+            acc_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
+            acc_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
+            acc_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
+            acc_z_l = I2CM_I2CMasterReadByte(ACK);     // ZOUT L
+            int8_t  temp_h = I2CM_I2CMasterReadByte(ACK);   // Temperature H
+            uint8_t temp_l = I2CM_I2CMasterReadByte(ACK);   // Temperature L
+            gyro_x_h = I2CM_I2CMasterReadByte(ACK);     // XOUT H
+            gyro_x_l = I2CM_I2CMasterReadByte(ACK);     // XOUT L
+            gyro_y_h = I2CM_I2CMasterReadByte(ACK);     // YOUT H
+            gyro_y_l = I2CM_I2CMasterReadByte(ACK);     // YOUT L
+            gyro_z_h = I2CM_I2CMasterReadByte(ACK);     // ZOUT H
+            gyro_z_l = I2CM_I2CMasterReadByte(NACK);    // ZOUT L     
+            I2CM_I2C_MASTER_GENERATE_STOP;
+            
+            acc_x_g = (acc_x_h<<8) | (acc_x_l);
+            acc_y_g = (acc_y_h<<8) | (acc_y_l);
+            acc_z_g = (acc_z_h<<8) | (acc_z_l);
+            
+            gyro_x = (gyro_x_h<<8) | (gyro_x_l);
+            gyro_y = (gyro_y_h<<8) | (gyro_y_l);
+            gyro_z = (gyro_z_h<<8) | (gyro_z_l);
+            
+            // FS = 0: +-250°/s -> 16 bit -> 1 bit = 0.00763°/s = 1/131°/s
+            turn_rate_p = gyro_x / 131;
+            turn_rate_q = gyro_y / 131;
+            turn_rate_r = gyro_z / 131;
+            return;
+        }    
+        else return;
+    }
+    else return;
 }
 
 /*===========================*/
